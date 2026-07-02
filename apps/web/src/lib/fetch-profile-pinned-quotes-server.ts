@@ -1,21 +1,15 @@
 import "server-only";
 
-import { fetchMySavedQuotesServer } from "@/lib/fetch-my-saved-quotes-server";
 import { normalizeSavedQuotesPage } from "@/lib/normalize-saved-quotes-page";
 import type { SavedQuotesPage } from "@/lib/quote-saved-types";
 import { serverApi } from "@/lib/server-api";
 
-/** Profile strip preview — owner sees all visibilities; visitors public only. */
-export async function fetchProfileSavedQuotesPreview(args: {
+/** Profile strip preview — pinned saves only; owner sees all visibilities. */
+export async function fetchProfilePinnedQuotesPreview(args: {
 	handle: string;
-	isOwner: boolean;
 	limit?: number;
 }): Promise<SavedQuotesPage> {
 	const limit = args.limit ?? 3;
-	if (args.isOwner) {
-		return fetchMySavedQuotesServer({ kind: "all", page: 1, limit });
-	}
-
 	const empty: SavedQuotesPage = {
 		items: [],
 		page: 1,
@@ -30,7 +24,7 @@ export async function fetchProfileSavedQuotesPreview(args: {
 		if (res.error != null) return empty;
 		return normalizeSavedQuotesPage(res.data);
 	} catch (err) {
-		console.error("[fetchProfileSavedQuotesPreview] threw:", err);
+		console.error("[fetchProfilePinnedQuotesPreview] threw:", err);
 		return empty;
 	}
 }

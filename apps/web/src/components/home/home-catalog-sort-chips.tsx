@@ -21,7 +21,7 @@ import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 
 /**
  * Second-row chips on `/home`:
- * - **Movies / TV:** Upcoming, Latest, and Popular (TMDb) with a sliding `layoutId` pill.
+ * - **Movies / TV:** Popular, Latest, and Upcoming (TMDb) with a sliding `layoutId` pill.
  * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces.
  */
 function HomeCommunityFeedChips({
@@ -251,9 +251,9 @@ function HomeTmdbSortChips({
 				aria-label="Catalogue sort"
 				aria-describedby={sortToolbarDescId}
 			>
-				{browse !== "tv" && !searchActive ? chipForUpcoming() : null}
-				{chipFor("latest")}
 				{chipFor("popular")}
+				{chipFor("latest")}
+				{browse !== "tv" && !searchActive ? chipForUpcoming() : null}
 				{browse === "tv" && !searchActive ? (
 					<button
 						type="button"
@@ -297,11 +297,11 @@ export function HomeCatalogSortChips({
 			? "Choose what kind of member-made content to browse — public lists, reviews, activity, or patron rankings. Switch Films or Shows in the center when Ranks is active."
 			: catalogBrowse === "tv"
 				? searchParams.get("search")?.trim()
-					? "Latest and Popular reorder committed search results. Clear search from the chip on the right."
-					: "Latest and Popular choose TMDb ordering. This season narrows to airing animation from the last 90 days. Ongoing, Completed, and Upcoming on the right pick a different catalogue slice — only one right-rail slice at a time."
+					? "Popular and Latest reorder committed search results. Clear search from the chip on the right."
+					: "Popular and Latest choose TMDb ordering. This season narrows to airing animation from the last 90 days. Ongoing, Completed, and Upcoming on the right pick a different catalogue slice — only one right-rail slice at a time."
 				: searchParams.get("search")?.trim()
-					? "Latest and Popular reorder committed search results. Clear search from the chip on the right."
-					: "Upcoming, Latest, and Popular choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
+					? "Popular and Latest reorder committed search results. Clear search from the chip on the right."
+					: "Popular, Latest, and Upcoming choose the TMDb list or discover sort. On Movies, the right rail picks theatrical versus at-home digital releases — same knobs carry into Filters on discover.";
 
 	if (catalogBrowse === "community") {
 		return (

@@ -1,5 +1,7 @@
 import { recordProductEvent } from "./record-product-event";
+import { fetchConsumedMovieTmdbIds } from "./taste-consumed-movies";
 import { persistTasteDismissedMovie } from "./taste-dismissed-movie-store";
+import { enrichTasteMatchMovies } from "./taste-match-enrichment";
 import {
 	scoreTasteMatchCandidatesForUser,
 	type TasteMatchMovie,
@@ -49,13 +51,19 @@ export async function dismissTasteMovie(args: {
 
 	const onScreen = new Set(args.excludeTmdbIds ?? []);
 	onScreen.add(args.movieTmdbId);
+	const consumedIds = await fetchConsumedMovieTmdbIds(args.userId);
+	for (const id of consumedIds) onScreen.add(id);
 
 	const replacement = pickNextTasteMatchCandidate(scoredResult.scored, {
 		excludeTmdbIds: onScreen,
 	});
 
+	const enrichedReplacement = replacement
+		? ((await enrichTasteMatchMovies([replacement]))[0] ?? null)
+		: null;
+
 	return {
 		dismissedTmdbId: args.movieTmdbId,
-		replacement,
+		replacement: enrichedReplacement,
 	};
 }

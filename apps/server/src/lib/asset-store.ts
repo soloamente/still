@@ -1,6 +1,6 @@
 import { env } from "@still/env/server";
 import { get as vercelGet } from "@vercel/blob";
-
+import { fetchR2AssetDevFallback, r2KeyCandidates } from "./r2-dev-assets";
 import { vercelBlobImagePut } from "./vercel-blob-image-put";
 
 /** Minimal R2 surface we use (typed locally so the Bun/Node tsconfig stays clean). */
@@ -69,12 +69,22 @@ export async function getImageAsset(value: string): Promise<ImageBody | null> {
 	if (!trimmed) return null;
 
 	if (_bucket && isR2Key(trimmed)) {
-		const obj = await _bucket.get(trimmed);
-		if (!obj) return null;
-		return {
-			body: obj.body,
-			contentType: obj.httpMetadata?.contentType ?? "image/jpeg",
-		};
+		for (const candidate of r2KeyCandidates(trimmed)) {
+			const obj = await _bucket.get(candidate);
+			if (!obj) continue;
+			return {
+				body: obj.body,
+				contentType: obj.httpMetadata?.contentType ?? "image/jpeg",
+			};
+		}
+		return null;
+	}
+
+	// Local `bun dev` — DB stores R2 keys but the Worker ASSETS binding is absent.
+	if (isR2Key(trimmed)) {
+		const devAsset = await fetchR2AssetDevFallback(trimmed);
+		if (devAsset) return devAsset;
+		return null;
 	}
 
 	if (trimmed.includes("blob.vercel-storage.com")) {

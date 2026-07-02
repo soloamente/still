@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useEffect, useState } from "react";
 
 import { SearchDialogPeopleRow } from "@/components/home/search-dialog-people-row";
+import { SearchDialogListSkeleton } from "@/components/home/search-dialog-result-skeletons";
 import {
 	type FollowSuggestionRow,
 	fetchFollowSuggestions,
@@ -96,8 +97,10 @@ export function SearchDialogPeopleSuggestions({
 		);
 	}
 
-	// Skip skeleton while loading — the browse column stays quiet until rows arrive.
-	if (loading && !hasTaste && !hasNetwork) return null;
+	// Reserve list space while patron suggestions load so the browse column does not collapse.
+	if (loading && !hasTaste && !hasNetwork) {
+		return <SearchDialogListSkeleton count={4} />;
+	}
 
 	return (
 		<div className={cn("space-y-3", className)}>

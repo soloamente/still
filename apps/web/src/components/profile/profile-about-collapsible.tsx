@@ -10,10 +10,81 @@ type ProfileAboutCollapsibleProps = {
 	website: string | null;
 	birthdayDisplay?: string | null;
 	className?: string;
+	/** Own profile moves the heatmap into the streak pill popover. */
+	hideActivitySignature?: boolean;
+	/** Meta renders in the profile hero under @handle — skip duplicate row here. */
+	hideMeta?: boolean;
 };
 
 function formatWebsiteLabel(website: string) {
 	return website.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
+/** Pronouns · location · website row — sits under @handle in the profile hero. */
+export function ProfilePatronMetaLine({
+	pronouns,
+	location,
+	website,
+	birthdayDisplay,
+	className,
+}: {
+	pronouns: string | null;
+	location: string | null;
+	website: string | null;
+	birthdayDisplay?: string | null;
+	className?: string;
+}) {
+	const trimmedPronouns = pronouns?.trim() ?? "";
+	const trimmedLocation = location?.trim() ?? "";
+	const trimmedWebsite = website?.trim() ?? "";
+	const trimmedBirthday = birthdayDisplay?.trim() ?? "";
+
+	const hasMeta =
+		Boolean(trimmedPronouns) ||
+		Boolean(trimmedLocation) ||
+		Boolean(trimmedWebsite) ||
+		Boolean(trimmedBirthday);
+
+	if (!hasMeta) return null;
+
+	return (
+		<p
+			className={cn(
+				"mt-1.5 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs leading-snug",
+				className,
+			)}
+		>
+			{trimmedPronouns ? <span>{trimmedPronouns}</span> : null}
+			{trimmedPronouns &&
+			(trimmedLocation || trimmedWebsite || trimmedBirthday) ? (
+				<span aria-hidden className="text-muted-foreground/40">
+					·
+				</span>
+			) : null}
+			{trimmedLocation ? <span>{trimmedLocation}</span> : null}
+			{trimmedLocation && (trimmedWebsite || trimmedBirthday) ? (
+				<span aria-hidden className="text-muted-foreground/40">
+					·
+				</span>
+			) : null}
+			{trimmedWebsite ? (
+				<a
+					href={trimmedWebsite}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
+				>
+					{formatWebsiteLabel(trimmedWebsite)}
+				</a>
+			) : null}
+			{trimmedWebsite && trimmedBirthday ? (
+				<span aria-hidden className="text-muted-foreground/40">
+					·
+				</span>
+			) : null}
+			{trimmedBirthday ? <span>{trimmedBirthday}</span> : null}
+		</p>
+	);
 }
 
 /**
@@ -28,20 +99,24 @@ export function ProfileAboutCollapsible({
 	website,
 	birthdayDisplay,
 	className,
+	hideActivitySignature = false,
+	hideMeta = false,
 }: ProfileAboutCollapsibleProps) {
 	const trimmedBio = bio?.trim() ?? "";
-	const trimmedPronouns = pronouns?.trim() ?? "";
-	const trimmedLocation = location?.trim() ?? "";
-	const trimmedWebsite = website?.trim() ?? "";
-	const trimmedBirthday = birthdayDisplay?.trim() ?? "";
 
 	const hasMeta =
-		Boolean(trimmedPronouns) ||
-		Boolean(trimmedLocation) ||
-		Boolean(trimmedWebsite) ||
-		Boolean(trimmedBirthday);
+		!hideMeta &&
+		(Boolean(pronouns?.trim()) ||
+			Boolean(location?.trim()) ||
+			Boolean(website?.trim()) ||
+			Boolean(birthdayDisplay?.trim()));
 
 	const hasCopy = Boolean(trimmedBio) || hasMeta;
+	const showActivity = !hideActivitySignature;
+
+	if (!hasCopy && !showActivity) {
+		return null;
+	}
 
 	return (
 		<section
@@ -59,47 +134,24 @@ export function ProfileAboutCollapsible({
 					) : null}
 
 					{hasMeta ? (
-						<p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs leading-snug">
-							{trimmedPronouns ? <span>{trimmedPronouns}</span> : null}
-							{trimmedPronouns &&
-							(trimmedLocation || trimmedWebsite || trimmedBirthday) ? (
-								<span aria-hidden className="text-muted-foreground/40">
-									·
-								</span>
-							) : null}
-							{trimmedLocation ? <span>{trimmedLocation}</span> : null}
-							{trimmedLocation && (trimmedWebsite || trimmedBirthday) ? (
-								<span aria-hidden className="text-muted-foreground/40">
-									·
-								</span>
-							) : null}
-							{trimmedWebsite ? (
-								<a
-									href={trimmedWebsite}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
-								>
-									{formatWebsiteLabel(trimmedWebsite)}
-								</a>
-							) : null}
-							{trimmedWebsite && trimmedBirthday ? (
-								<span aria-hidden className="text-muted-foreground/40">
-									·
-								</span>
-							) : null}
-							{trimmedBirthday ? <span>{trimmedBirthday}</span> : null}
-						</p>
+						<ProfilePatronMetaLine
+							pronouns={pronouns}
+							location={location}
+							website={website}
+							birthdayDisplay={birthdayDisplay}
+						/>
 					) : null}
 				</div>
 			) : null}
 
-			<div className={cn(hasCopy ? "mt-4" : "mt-0")}>
-				<p className="mb-2 text-center text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
-					Diary rhythm
-				</p>
-				<ProfileActivitySignature handle={handle} variant="embedded" />
-			</div>
+			{showActivity ? (
+				<div className={cn(hasCopy ? "mt-4" : "mt-0")}>
+					<p className="mb-2 text-center text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
+						Diary rhythm
+					</p>
+					<ProfileActivitySignature handle={handle} variant="embedded" />
+				</div>
+			) : null}
 		</section>
 	);
 }

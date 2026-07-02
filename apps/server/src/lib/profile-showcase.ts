@@ -1,6 +1,6 @@
-import type { ShowcaseItem } from "@still/db";
-import { db, movie, review, tv } from "@still/db";
-import { and, eq, inArray, isNull } from "drizzle-orm";
+import type { ShowcaseItem, ShowcaseTvLogScope, TvLogScope } from "@still/db";
+import { db, log, movie, review, tv } from "@still/db";
+import { and, eq, inArray, isNotNull, isNull } from "drizzle-orm";
 
 /** Patron-curated identity strip on profile hero (max 4 slots). */
 export const MAX_SHOWCASE_ITEMS = 4;
@@ -12,7 +12,86 @@ export type ResolvedShowcaseTile = {
 	posterPath: string | null;
 	/** Review headline for `kind: review` — title or trimmed body excerpt. */
 	reviewHeadline: string | null;
+	/** TV-only — diary scope label for scoped showcase slots. */
+	tvScopeLabel: string | null;
+	logScope: ShowcaseTvLogScope | null;
+	seasonNumber: number | null;
+	episodeNumber: number | null;
 };
+
+type ShowcaseTvItem = Extract<ShowcaseItem, { kind: "tv" }>;
+
+/** Stable dedup key — TV slots include diary scope (whole show · season · episode). */
+export function showcaseItemKey(item: ShowcaseItem): string {
+	if (item.kind === "review") return `review:${item.id}`;
+	if (item.kind === "movie") return `movie:${item.id}`;
+	const scope = item.logScope ?? "show";
+	if (scope === "show") return `tv:${item.id}:show`;
+	if (scope === "season")
+		return `tv:${item.id}:season:${item.seasonNumber ?? ""}`;
+	return `tv:${item.id}:episode:${item.seasonNumber ?? ""}:${item.episodeNumber ?? ""}`;
+}
+
+function normalizeShowcaseTvItem(item: ShowcaseTvItem): ShowcaseTvItem {
+	const logScope = item.logScope ?? "show";
+	if (logScope === "show") {
+		return { kind: "tv", id: item.id, logScope: "show" };
+	}
+	if (logScope === "season") {
+		if (
+			typeof item.seasonNumber !== "number" ||
+			!Number.isFinite(item.seasonNumber)
+		) {
+			throw new Error("invalid season number");
+		}
+		return {
+			kind: "tv",
+			id: item.id,
+			logScope: "season",
+			seasonNumber: item.seasonNumber,
+		};
+	}
+	if (
+		typeof item.seasonNumber !== "number" ||
+		!Number.isFinite(item.seasonNumber)
+	) {
+		throw new Error("invalid season number");
+	}
+	if (
+		typeof item.episodeNumber !== "number" ||
+		!Number.isFinite(item.episodeNumber)
+	) {
+		throw new Error("invalid episode number");
+	}
+	return {
+		kind: "tv",
+		id: item.id,
+		logScope: "episode",
+		seasonNumber: item.seasonNumber,
+		episodeNumber: item.episodeNumber,
+	};
+}
+
+function parseShowcaseTvScope(raw: unknown): ShowcaseTvLogScope | undefined {
+	if (raw === undefined || raw === null) return undefined;
+	if (raw === "show" || raw === "season" || raw === "episode") return raw;
+	throw new Error("invalid tv log scope");
+}
+
+function tvScopeLabel(
+	logScope: ShowcaseTvLogScope,
+	seasonNumber: number | null,
+	episodeNumber: number | null,
+): string | null {
+	if (logScope === "show") return null;
+	if (logScope === "season" && seasonNumber != null) {
+		return `Season ${seasonNumber}`;
+	}
+	if (logScope === "episode" && seasonNumber != null && episodeNumber != null) {
+		return `S${String(seasonNumber).padStart(2, "0")}E${String(episodeNumber).padStart(2, "0")}`;
+	}
+	return null;
+}
 
 /** Parse and validate raw showcase json from PATCH body or DB. */
 export function parseShowcaseItems(raw: unknown): ShowcaseItem[] {
@@ -30,27 +109,56 @@ export function parseShowcaseItems(raw: unknown): ShowcaseItem[] {
 		if (!entry || typeof entry !== "object") {
 			throw new Error("invalid showcase item");
 		}
-		const kind = (entry as { kind?: string }).kind;
-		const id = (entry as { id?: unknown }).id;
+		const row = entry as Record<string, unknown>;
+		const kind = row.kind;
+		const id = row.id;
 
-		if (kind === "movie" || kind === "tv") {
+		if (kind === "movie") {
 			if (typeof id !== "number" || !Number.isFinite(id)) {
 				throw new Error("invalid listing id");
 			}
-		} else if (kind === "review") {
+			const item: ShowcaseItem = { kind: "movie", id };
+			const key = showcaseItemKey(item);
+			if (seen.has(key)) throw new Error("duplicate showcase item");
+			seen.add(key);
+			out.push(item);
+			continue;
+		}
+
+		if (kind === "tv") {
+			if (typeof id !== "number" || !Number.isFinite(id)) {
+				throw new Error("invalid listing id");
+			}
+			const logScope = parseShowcaseTvScope(row.logScope);
+			const item = normalizeShowcaseTvItem({
+				kind: "tv",
+				id,
+				logScope,
+				seasonNumber:
+					typeof row.seasonNumber === "number" ? row.seasonNumber : undefined,
+				episodeNumber:
+					typeof row.episodeNumber === "number" ? row.episodeNumber : undefined,
+			});
+			const key = showcaseItemKey(item);
+			if (seen.has(key)) throw new Error("duplicate showcase item");
+			seen.add(key);
+			out.push(item);
+			continue;
+		}
+
+		if (kind === "review") {
 			if (typeof id !== "string" || id.trim().length < 4) {
 				throw new Error("invalid review id");
 			}
-		} else {
-			throw new Error("invalid showcase kind");
+			const item: ShowcaseItem = { kind: "review", id };
+			const key = showcaseItemKey(item);
+			if (seen.has(key)) throw new Error("duplicate showcase item");
+			seen.add(key);
+			out.push(item);
+			continue;
 		}
 
-		const key = `${kind}:${id}`;
-		if (seen.has(key)) {
-			throw new Error("duplicate showcase item");
-		}
-		seen.add(key);
-		out.push({ kind, id } as ShowcaseItem);
+		throw new Error("invalid showcase kind");
 	}
 
 	return out;
@@ -87,8 +195,70 @@ function reviewHeadlineFromRow(row: {
 	return body.length <= 120 ? body : `${body.slice(0, 117)}…`;
 }
 
+function logRowMatchesShowcaseTvItem(
+	row: {
+		logScope: TvLogScope;
+		seasonNumber: number | null;
+		episodeNumber: number | null;
+	},
+	item: ShowcaseTvItem,
+): boolean {
+	const scope = item.logScope ?? "show";
+	if (scope === "show") return row.logScope === "show";
+	if (scope === "season") {
+		return row.logScope === "season" && row.seasonNumber === item.seasonNumber;
+	}
+	return (
+		row.logScope === "episode" &&
+		row.seasonNumber === item.seasonNumber &&
+		row.episodeNumber === item.episodeNumber
+	);
+}
+
+async function patronHasDiaryForShowcaseItem(
+	userId: string,
+	item: ShowcaseItem,
+): Promise<boolean> {
+	if (item.kind === "review") return true;
+
+	if (item.kind === "movie") {
+		const [row] = await db
+			.select({ id: log.id })
+			.from(log)
+			.where(
+				and(
+					eq(log.userId, userId),
+					isNull(log.removedAt),
+					eq(log.movieId, item.id),
+					isNotNull(log.movieId),
+				),
+			)
+			.limit(1);
+		return Boolean(row);
+	}
+
+	const rows = await db
+		.select({
+			logScope: log.logScope,
+			seasonNumber: log.seasonNumber,
+			episodeNumber: log.episodeNumber,
+		})
+		.from(log)
+		.where(
+			and(
+				eq(log.userId, userId),
+				isNull(log.removedAt),
+				eq(log.tvId, item.id),
+				isNotNull(log.tvId),
+			),
+		);
+
+	return rows.some((row) => logRowMatchesShowcaseTvItem(row, item));
+}
+
 /**
- * Ensure showcase items reference real cached listings and owned public reviews.
+ * Ensure showcase items reference real cached listings, owned public reviews,
+ * and diary logs the patron has actually watched.
  */
 export async function validateShowcaseItemsForUser(
 	userId: string,
@@ -110,9 +280,11 @@ export async function validateShowcaseItemsForUser(
 	const movieIds = items
 		.filter((item) => item.kind === "movie")
 		.map((item) => item.id);
-	const tvIds = items
-		.filter((item) => item.kind === "tv")
-		.map((item) => item.id);
+	const tvIds = [
+		...new Set(
+			items.filter((item) => item.kind === "tv").map((item) => item.id),
+		),
+	];
 	const reviewIds = items
 		.filter((item) => item.kind === "review")
 		.map((item) => item.id);
@@ -154,6 +326,18 @@ export async function validateShowcaseItemsForUser(
 				ok: false,
 				status: 400,
 				error: "Showcase reviews must be your own public reviews",
+			};
+		}
+	}
+
+	for (const item of items) {
+		if (item.kind === "review") continue;
+		const hasDiary = await patronHasDiaryForShowcaseItem(userId, item);
+		if (!hasDiary) {
+			return {
+				ok: false,
+				status: 400,
+				error: "Showcase films and shows must be in your diary",
 			};
 		}
 	}
@@ -240,6 +424,10 @@ export async function hydrateShowcaseTiles(
 				title: row.title,
 				posterPath: row.posterPath,
 				reviewHeadline: null,
+				tvScopeLabel: null,
+				logScope: null,
+				seasonNumber: null,
+				episodeNumber: null,
 			});
 			continue;
 		}
@@ -247,12 +435,21 @@ export async function hydrateShowcaseTiles(
 		if (item.kind === "tv") {
 			const row = tvById.get(item.id);
 			if (!row) continue;
+			const logScope = item.logScope ?? "show";
+			const seasonNumber =
+				logScope === "show" ? null : (item.seasonNumber ?? null);
+			const episodeNumber =
+				logScope === "episode" ? (item.episodeNumber ?? null) : null;
 			tiles.push({
 				kind: "tv",
 				id: row.id,
 				title: row.title,
 				posterPath: row.posterPath,
 				reviewHeadline: null,
+				tvScopeLabel: tvScopeLabel(logScope, seasonNumber, episodeNumber),
+				logScope,
+				seasonNumber,
+				episodeNumber,
 			});
 			continue;
 		}
@@ -265,6 +462,10 @@ export async function hydrateShowcaseTiles(
 			title: row.movieTitle ?? "Review",
 			posterPath: row.posterPath,
 			reviewHeadline: reviewHeadlineFromRow(row) || null,
+			tvScopeLabel: null,
+			logScope: null,
+			seasonNumber: null,
+			episodeNumber: null,
 		});
 	}
 

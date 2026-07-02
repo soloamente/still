@@ -378,6 +378,9 @@ export async function resolveOnlinePresenceForViewer(
 	workerEntries: PatronOnlineOccupancyEntry[] | null,
 	nowMs: number = Date.now(),
 ): Promise<VisiblePatronPresence[]> {
+	const handles = normalizePatronOnlineHandleBatch(requestedHandles);
+	if (handles.length === 0) return [];
+
 	const fromRedis = await resolveVisiblePresenceForViewer(
 		viewerId,
 		requestedHandles,
@@ -385,15 +388,52 @@ export async function resolveOnlinePresenceForViewer(
 		nowMs,
 	);
 
-	if (!workerEntries || workerEntries.length === 0) {
-		return fromRedis;
+	const merged =
+		workerEntries && workerEntries.length > 0
+			? mergeVisiblePatronPresence(
+					await resolveVisiblePresenceFromOccupancy(
+						viewerId,
+						requestedHandles,
+						workerEntries,
+					),
+					fromRedis,
+				)
+			: fromRedis;
+
+	// Union Redis ZSET + Worker DO occupancy so self-view survives split transport.
+	const redisActiveIds =
+		redis != null
+			? await activeListingPresenceUserIds(redis, patronAppRoomId(), nowMs)
+			: [];
+	const unionActiveUserIds = new Set([
+		...redisActiveIds,
+		...(workerEntries ?? []).map((entry) => entry.userId),
+	]);
+
+	const activityByUserId = new Map<string, PatronActivityState>();
+	if (
+		redis &&
+		typeof redis.hget === "function" &&
+		unionActiveUserIds.size > 0
+	) {
+		const redisActivity = await readActivityStatesForUserIds(
+			{ hget: redis.hget },
+			[...unionActiveUserIds],
+		);
+		for (const [userId, state] of redisActivity) {
+			activityByUserId.set(userId, state);
+		}
+	}
+	for (const entry of workerEntries ?? []) {
+		activityByUserId.set(entry.userId, entry.activityState);
 	}
 
-	const fromWorker = await resolveVisiblePresenceFromOccupancy(
+	return resolveViewerSelfPresenceAppend({
 		viewerId,
-		requestedHandles,
-		workerEntries,
-	);
-
-	return mergeVisiblePatronPresence(fromWorker, fromRedis);
+		requestedHandles: handles,
+		activeUserIds: unionActiveUserIds,
+		activityByUserId,
+		presence: merged,
+		viewerHandleFromRows: null,
+	});
 }

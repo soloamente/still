@@ -3,7 +3,15 @@ import { afterEach, describe, expect, mock, test } from "bun:test";
 // Hermetic: stub env so importing ./asset-store (and its transitive
 // vercel-blob-image-put) does not trigger env-schema validation at load.
 mock.module("@still/env/server", () => ({
-	env: { BLOB_READ_WRITE_TOKEN: undefined, BLOB_STORE_ACCESS: "public" },
+	env: {
+		BLOB_READ_WRITE_TOKEN: undefined,
+		BLOB_STORE_ACCESS: "public",
+		NODE_ENV: "test",
+		R2_ACCOUNT_ID: undefined,
+		R2_ACCESS_KEY_ID: undefined,
+		R2_SECRET_ACCESS_KEY: undefined,
+		R2_ASSETS_BUCKET: undefined,
+	},
 }));
 
 const { getImageAsset, isR2Key, setAssetsBucket } = await import(

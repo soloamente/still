@@ -30,6 +30,18 @@ describe("showcaseItemKey", () => {
 		expect(showcaseItemKey({ kind: "review", id: "rev-1" })).toBe(
 			"review:rev-1",
 		);
+		expect(showcaseItemKey({ kind: "tv", id: 1399, logScope: "show" })).toBe(
+			"tv:1399:show",
+		);
+		expect(
+			showcaseItemKey({
+				kind: "tv",
+				id: 1399,
+				logScope: "episode",
+				seasonNumber: 1,
+				episodeNumber: 3,
+			}),
+		).toBe("tv:1399:episode:1:3");
 	});
 });
 
@@ -43,6 +55,10 @@ describe("parseProfileShowcaseResolved", () => {
 					title: "Fight Club",
 					posterPath: "/abc.jpg",
 					reviewHeadline: null,
+					tvScopeLabel: null,
+					logScope: null,
+					seasonNumber: null,
+					episodeNumber: null,
 				},
 			],
 		});
@@ -66,6 +82,10 @@ describe("tilesToShowcaseItems", () => {
 					title: "A review",
 					posterPath: null,
 					reviewHeadline: "Headline",
+					tvScopeLabel: null,
+					logScope: null,
+					seasonNumber: null,
+					episodeNumber: null,
 				},
 			]),
 		).toEqual([{ kind: "review", id: "abcd1234" }]);

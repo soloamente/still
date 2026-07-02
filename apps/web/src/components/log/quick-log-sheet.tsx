@@ -72,6 +72,7 @@ import {
 	patchLog,
 	postLog,
 } from "@/lib/still-api-fetch";
+import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
@@ -713,6 +714,9 @@ export function QuickLogRoot() {
 			stillToast.logged(
 				movieTitle.trim() ? `Logged “${movieTitle}”` : "Saved to diary",
 			);
+			if (movieId != null) {
+				dispatchTasteTitleConsumed({ tmdbId: movieId });
+			}
 			args.onSuccess?.();
 			if (shouldRefreshRouteAfterMutation(pathname)) {
 				router.refresh();

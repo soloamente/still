@@ -1,10 +1,7 @@
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { ProfileFilmographyPanel } from "@/components/profile/profile-filmography-panel";
 import { ProfileListsPanel } from "@/components/profile/profile-lists-panel";
-import {
-	type ProfileReviewRow,
-	ProfileReviewsPanel,
-} from "@/components/profile/profile-reviews-panel";
+import { ProfileReviewsInfinitePanel } from "@/components/profile/profile-reviews-infinite-panel";
 import type { ProfileTabId } from "@/components/profile/profile-tab-toolbar";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
@@ -25,7 +22,6 @@ export function ProfileTabPanels({
 	showAllLedgerHref,
 	lobbyVenue,
 	switchVenueHref,
-	reviews,
 	lists,
 	catalogueWaveKey,
 	monochromePeersOnHover,
@@ -45,7 +41,6 @@ export function ProfileTabPanels({
 	showAllLedgerHref: string;
 	lobbyVenue: HomeVenue;
 	switchVenueHref: string;
-	reviews: ProfileReviewRow[];
 	lists: ListBoardRow[];
 	catalogueWaveKey: string;
 	monochromePeersOnHover: boolean;
@@ -78,7 +73,7 @@ export function ProfileTabPanels({
 		);
 	}
 	if (activeTab === "reviews") {
-		return <ProfileReviewsPanel rows={reviews} isMe={isMe} />;
+		return <ProfileReviewsInfinitePanel handle={handle} isMe={isMe} />;
 	}
 	if (activeTab === "lists") {
 		return (

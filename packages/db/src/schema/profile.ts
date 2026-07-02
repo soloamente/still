@@ -37,10 +37,20 @@ export interface TasteSignatureJson {
 	confidence: TasteSignatureConfidence;
 }
 
+/** TV diary granularity mirrored on profile showcase tiles. */
+export type ShowcaseTvLogScope = "show" | "season" | "episode";
+
 /** Up to 4 patron-curated identity slots on the profile hero (film · TV · review). */
 export type ShowcaseItem =
 	| { kind: "movie"; id: number }
-	| { kind: "tv"; id: number }
+	| {
+			kind: "tv";
+			id: number;
+			/** Whole series when omitted — legacy rows without scope. */
+			logScope?: ShowcaseTvLogScope;
+			seasonNumber?: number;
+			episodeNumber?: number;
+	  }
 	| { kind: "review"; id: string };
 
 /**
@@ -115,6 +125,11 @@ export const profile = pgTable(
 		isPro: boolean("is_pro").default(false).notNull(),
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */
 		pinnedReviewIds: jsonb("pinned_review_ids")
+			.$type<string[]>()
+			.default([])
+			.notNull(),
+		/** Ordered quote save ids (max 3) shown on profile — pinned from `/quotes`. */
+		pinnedQuoteSaveIds: jsonb("pinned_quote_save_ids")
 			.$type<string[]>()
 			.default([])
 			.notNull(),

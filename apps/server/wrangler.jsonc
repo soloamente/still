@@ -12,7 +12,11 @@
 		}
 	],
 	"r2_buckets": [
-		{ "binding": "ASSETS", "bucket_name": "cue-assets" },
+		{
+			"binding": "ASSETS",
+			"bucket_name": "cue-assets",
+			"remote": true
+		},
 		{ "binding": "MEDIA", "bucket_name": "cue-media" }
 	],
 	"vars": {

@@ -4,9 +4,13 @@ import { cn } from "@still/ui/lib/utils";
 import { Film, Tv } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
 import { QuoteAttribution } from "@/components/quote/quote-attribution";
 import { VisibilityChip } from "@/components/review/visibility-chip";
+import { api } from "@/lib/api";
+import { normalizeSavedQuotesPage } from "@/lib/normalize-saved-quotes-page";
+import { QUOTE_PINS_CHANGED_EVENT } from "@/lib/quote-pins-events";
 import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import { savedQuoteListingHref } from "@/lib/quotes-lobby";
 
@@ -79,35 +83,60 @@ function ProfileSavedQuoteCard({
 	);
 }
 
-/** Up to three recent saves under showcase — public subset for visitors. */
+/** Up to three pinned quotes under showcase — only explicit pins from `/quotes`. */
 export function ProfileSavedQuotesStrip({
-	items,
+	handle,
+	items: initialItems,
 	isMe,
 	showViewAll = false,
 	className,
 }: {
+	handle: string;
 	items: SavedQuoteLobbyItem[];
 	isMe: boolean;
 	showViewAll?: boolean;
 	className?: string;
 }) {
+	const [items, setItems] = useState(initialItems);
+
+	useEffect(() => {
+		setItems(initialItems);
+	}, [initialItems]);
+
+	const refreshPinnedQuotes = useCallback(async () => {
+		if (!isMe) return;
+		const res = await api.api.profiles({ handle }).quotes.get({
+			query: { page: "1", limit: "3" },
+		});
+		if (res.error != null) return;
+		setItems(normalizeSavedQuotesPage(res.data).items);
+	}, [handle, isMe]);
+
+	useEffect(() => {
+		if (!isMe) return;
+		const onChanged = () => void refreshPinnedQuotes();
+		window.addEventListener(QUOTE_PINS_CHANGED_EVENT, onChanged);
+		return () =>
+			window.removeEventListener(QUOTE_PINS_CHANGED_EVENT, onChanged);
+	}, [isMe, refreshPinnedQuotes]);
+
 	if (items.length === 0) return null;
 
 	return (
 		<section
 			className={cn("mx-auto mt-4 w-full max-w-lg text-left", className)}
-			aria-label="Recent quotes"
+			aria-label="Pinned quotes"
 		>
 			<div className="mb-2 flex items-center justify-center gap-3">
 				<p className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
-					Recent quotes
+					Pinned quotes
 				</p>
 				{showViewAll ? (
 					<Link
 						href="/quotes"
-						className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em] transition-colors duration-200 [@media(hover:hover)]:hover:text-foreground"
+						className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em] transition-[color,transform] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 [@media(hover:hover)]:hover:text-foreground"
 					>
-						View all
+						Manage quotes
 					</Link>
 				) : null}
 			</div>

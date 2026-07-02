@@ -114,3 +114,42 @@ export function formatActivitySignatureTooltip(
 	if (count === 1) return `1 log · ${label}`;
 	return `${count} logs · ${label}`;
 }
+
+/** Keep heatmap hover tooltips inside the viewport — popover + right-edge cells clip easily. */
+export const ACTIVITY_SIGNATURE_TOOLTIP_VIEWPORT_PADDING_PX = 12;
+
+export function resolveActivitySignatureTooltipPlacement({
+	anchorX,
+	anchorY,
+	tooltipWidth,
+	tooltipHeight,
+	offsetAbovePx = 40,
+	cellHeightPx = 12,
+	viewportWidth,
+	viewportHeight,
+}: {
+	anchorX: number;
+	anchorY: number;
+	tooltipWidth: number;
+	tooltipHeight: number;
+	offsetAbovePx?: number;
+	cellHeightPx?: number;
+	viewportWidth: number;
+	viewportHeight: number;
+}): { left: number; top: number } {
+	const pad = ACTIVITY_SIGNATURE_TOOLTIP_VIEWPORT_PADDING_PX;
+
+	// Top-left `left` — no CSS transform so Motion scale/y animations cannot override X.
+	let left = anchorX - tooltipWidth / 2;
+	left = Math.max(pad, Math.min(left, viewportWidth - pad - tooltipWidth));
+
+	let top = anchorY - offsetAbovePx;
+	if (top < pad) {
+		top = anchorY + cellHeightPx + 8;
+	}
+	if (top + tooltipHeight > viewportHeight - pad) {
+		top = Math.max(pad, viewportHeight - pad - tooltipHeight);
+	}
+
+	return { left, top };
+}

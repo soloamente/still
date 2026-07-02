@@ -12,7 +12,7 @@ import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { fetchProfileDetailServer } from "@/lib/fetch-profile-detail-server";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
-import { fetchProfileSavedQuotesPreview } from "@/lib/fetch-profile-saved-quotes-server";
+import { fetchProfilePinnedQuotesPreview } from "@/lib/fetch-profile-pinned-quotes-server";
 import { toListBoardRow } from "@/lib/list-board-row";
 import {
 	OG_DEFAULT_PATH,
@@ -105,8 +105,8 @@ type ProfileData = {
 		tv: number;
 		likedMovies: number;
 		likedTv: number;
+		reviews: number;
 	};
-	recentReviews: ProfileReviewRow[];
 	pinnedReviews: ProfileReviewRow[];
 	showcaseResolved?: { items: ProfileShowcaseTile[] };
 	lists: {
@@ -210,18 +210,15 @@ export default async function ProfilePage({
 		favorites: favoritesOnly,
 	});
 
-	const savedQuotesPreviewPage = await fetchProfileSavedQuotesPreview({
+	const savedQuotesPreviewPage = await fetchProfilePinnedQuotesPreview({
 		handle: profile.handle,
-		isOwner: isMe,
 		limit: 3,
 	});
 
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
 		if (sec === "favorites") return counts.likedMovies + counts.likedTv > 0;
 		if (sec === "reviews")
-			return (
-				data.recentReviews.length > 0 || (data.pinnedReviews?.length ?? 0) > 0
-			);
+			return counts.reviews > 0 || (data.pinnedReviews?.length ?? 0) > 0;
 		if (sec === "lists") return data.lists.length > 0;
 		return false;
 	});
@@ -272,11 +269,9 @@ export default async function ProfilePage({
 			totalResults={filmographyPage1.totalResults}
 			venueCounts={filmographyPage1.venueCounts}
 			filmographyCounts={counts}
-			recentReviews={data.recentReviews}
 			pinnedReviews={data.pinnedReviews ?? []}
 			showcaseItems={showcaseItems}
 			savedQuotesPreview={savedQuotesPreviewPage.items}
-			savedQuotesHasMore={savedQuotesPreviewPage.hasMore}
 			lists={data.lists.map((l) => toListBoardRow(l))}
 			socialTabs={socialTabs}
 			earnedBadges={earnedBadges}

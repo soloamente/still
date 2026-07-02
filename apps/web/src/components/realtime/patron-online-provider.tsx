@@ -185,8 +185,10 @@ export function PatronOnlineProvider({
 		const scheduler = createPresenceHeartbeatScheduler(
 			readAggregatePatronActivityState,
 			async (state, opts) => {
+				// WS updates the Worker DO; HTTP POST updates Upstash Redis. Production
+				// reads merge both — skipping Redis when WS succeeds hid the self dot.
 				if (transport === "ws" && !opts?.keepalive) {
-					if (sendHeartbeat(patronAppRoomId(), state)) return true;
+					sendHeartbeat(patronAppRoomId(), state);
 				}
 				return touchPatronAppPresenceClient(state, opts);
 			},
@@ -205,7 +207,13 @@ export function PatronOnlineProvider({
 			heartbeatSchedulerRef.current = null;
 			leavePresence();
 		};
-	}, [active, leavePresence, readAggregatePatronActivityState]);
+	}, [
+		active,
+		leavePresence,
+		readAggregatePatronActivityState,
+		sendHeartbeat,
+		transport,
+	]);
 
 	useEffect(() => {
 		if (!active) return;

@@ -20,6 +20,7 @@ import {
 	useCallback,
 	useEffect,
 	useId,
+	useLayoutEffect,
 	useMemo,
 	useRef,
 	useState,
@@ -372,6 +373,10 @@ export function CatalogSearchDialogRoot({
 		anchorHeight: number;
 	} | null>(null);
 	const [portalReady, setPortalReady] = useState(false);
+	/** Tallest empty-state browse pane seen this session — keeps Movies / TV / People swaps from resizing the sheet. */
+	const browsePaneRef = useRef<HTMLDivElement>(null);
+	const browsePaneMinHeightRef = useRef(0);
+	const [browsePaneMinHeight, setBrowsePaneMinHeight] = useState(0);
 
 	const reduceMotion = useReducedMotion();
 	const softwareGpu = useSoftwareGpuRendering();
@@ -412,6 +417,8 @@ export function CatalogSearchDialogRoot({
 		setDialogOpen(false);
 		setSearchTags([]);
 		setFreeText("");
+		browsePaneMinHeightRef.current = 0;
+		setBrowsePaneMinHeight(0);
 		hydrateFromUrlOnOpenRef.current = false;
 		// Return focus to the sticky pill when present so Escape / close does not strand focus.
 		requestAnimationFrame(() => homeTriggerEl?.focus());
@@ -590,6 +597,43 @@ export function CatalogSearchDialogRoot({
 		if (browseCategory === "people") return;
 		setSearchListingKind(browseCategory === "tv" ? "tv" : "movie");
 	}, [browseCategory, isEmptyDraft]);
+
+	// Remember the tallest empty-state browse layout so tab swaps do not shrink the sheet.
+	useLayoutEffect(() => {
+		if (!showSheet || !isEmptyDraft) {
+			browsePaneMinHeightRef.current = 0;
+			setBrowsePaneMinHeight(0);
+			return;
+		}
+
+		const el = browsePaneRef.current;
+		if (!el) return;
+
+		const rememberTallestPane = () => {
+			const next = Math.ceil(el.getBoundingClientRect().height);
+			if (next > browsePaneMinHeightRef.current) {
+				browsePaneMinHeightRef.current = next;
+				setBrowsePaneMinHeight(next);
+			}
+		};
+
+		rememberTallestPane();
+		const resizeObserver = new ResizeObserver(() => {
+			rememberTallestPane();
+		});
+		resizeObserver.observe(el);
+		return () => resizeObserver.disconnect();
+	}, [
+		showSheet,
+		isEmptyDraft,
+		browseCategory,
+		browsePreviewLoading,
+		browseStudiosLoading,
+		browsePreviewItems.length,
+		browseStudios.length,
+		hasStudioTag,
+		viewer,
+	]);
 
 	// Keep the anchored sheet aligned with the sticky pill (and clamped to the viewport) on resize / header reflow.
 	useEffect(() => {
@@ -1196,7 +1240,15 @@ export function CatalogSearchDialogRoot({
 
 								{isEmptyDraft || searchTags.length > 0 ? (
 									isEmptyDraft ? (
-										<div className="flex min-w-0 max-w-full flex-col gap-5 px-4 pb-4 sm:flex-row sm:items-start sm:gap-8">
+										<div
+											ref={browsePaneRef}
+											className="flex min-w-0 max-w-full flex-col gap-5 px-4 pb-4 sm:flex-row sm:items-start sm:gap-8"
+											style={
+												browsePaneMinHeight > 0
+													? { minHeight: browsePaneMinHeight }
+													: undefined
+											}
+										>
 											{/* Left rail — category picks update the preview column. */}
 											<nav
 												aria-labelledby={`${titleId}-browse-heading`}

@@ -2,7 +2,10 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
-import { ProfileAboutCollapsible } from "@/components/profile/profile-about-collapsible";
+import {
+	ProfileAboutCollapsible,
+	ProfilePatronMetaLine,
+} from "@/components/profile/profile-about-collapsible";
 import { openProfileFollows } from "@/components/profile/profile-follows-drawer";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
 import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
@@ -11,7 +14,7 @@ import { ProfileSavedQuotesStrip } from "@/components/profile/profile-saved-quot
 import { ProfileShowcaseStrip } from "@/components/profile/profile-showcase-strip";
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
-import { ProfileTasteSignature } from "@/components/profile/profile-taste-signature";
+import { ProfileTasteCategoryPill } from "@/components/profile/profile-taste-signature";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import {
 	type ProfileBannerFrameId,
@@ -22,6 +25,10 @@ import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
 import type { ProfileShowcaseTile } from "@/lib/profile-showcase";
 import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
+
+/** Hero portrait straddles the banner — half on canvas, half on card body. */
+const PROFILE_HERO_PORTRAIT_CLASSNAME = "size-28 sm:size-32";
+const PROFILE_HERO_PORTRAIT_IMAGE_PX = 128;
 
 /** Horizontal gutters for lobby body content on `bg-card` (matches profile page `p-6 sm:p-8`). */
 export const PROFILE_LOBBY_BODY_GUTTER_CLASSNAME = "px-6 sm:px-8";
@@ -49,7 +56,6 @@ type ProfilePatronHeaderProps = {
 	pinnedReviews?: ProfileReviewRow[];
 	showcaseItems?: ProfileShowcaseTile[];
 	savedQuotesPreview?: SavedQuoteLobbyItem[];
-	savedQuotesHasMore?: boolean;
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	avatarIsAnimated?: boolean;
@@ -83,7 +89,6 @@ export function ProfilePatronHeader({
 	pinnedReviews = [],
 	showcaseItems = [],
 	savedQuotesPreview = [],
-	savedQuotesHasMore = false,
 	canCompareTaste,
 	initialTasteCompareOpen,
 	avatarIsAnimated,
@@ -97,82 +102,121 @@ export function ProfilePatronHeader({
 		? profileBannerImageUrl(handle, profileMediaCacheKey(bannerUrl))
 		: null;
 	const hasPortrait = Boolean(avatarUrl?.trim());
+	const trimmedBio = bio?.trim() ?? "";
 
 	return (
 		<header className="relative mb-8 shrink-0">
-			<div
-				className={cn(
-					"relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25",
-					profileBannerFrameClass(bannerFrame),
-				)}
-			>
-				{bannerSrc ? (
-					bannerIsAnimated ? (
-						// Animated GIF/WebP must use native <img> so frames play.
-						// biome-ignore lint/performance/noImgElement: Next Image does not animate GIF/WebP frames
-						<img
-							src={bannerSrc}
-							alt=""
-							className="absolute inset-0 size-full object-cover"
-						/>
-					) : (
-						<Image
-							src={bannerSrc}
-							alt=""
-							fill
-							unoptimized
-							className="object-cover"
-							sizes="(max-width: 1280px) 100vw, 1200px"
-							priority
-						/>
-					)
-				) : (
-					<div
-						className="size-full"
-						style={{
-							background: `linear-gradient(120deg, ${accent}44, transparent 55%), var(--surface-card-base, var(--card))`,
-						}}
-						aria-hidden
-					/>
-				)}
+			{/* Banner + portrait — PFP straddles the banner bottom (half on / half off). */}
+			<div className="relative">
 				<div
-					className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent"
-					aria-hidden
-				/>
-			</div>
-
-			<div className="relative mx-auto -mt-14 max-w-lg px-2 text-center sm:-mt-16 sm:px-4">
-				{/* Portrait */}
-				<div className="mx-auto mb-4 flex justify-center">
-					<div className="relative aspect-[2/3] w-[5.5rem] sm:w-24">
-						{/* Poster chrome behind the portrait; overflow stays visible so the online dot is not clipped. */}
-						<div
-							className="pointer-events-none absolute inset-0 rounded-2xl bg-muted/30 shadow-lg ring-4 ring-card"
-							aria-hidden
-						/>
-						{hasPortrait ? (
-							<PatronPortraitWithMetalTier
-								handle={handle}
-								avatarUrl={avatarUrl}
-								name={displayName || initials}
-								isAnimated={avatarIsAnimated}
-								grayscaleUntilHover={profilePortraitGrayscaleUntilHover ?? true}
-								className="size-full rounded-2xl"
-								diaryMetalTier={diaryMetalTier}
+					className={cn(
+						"relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25",
+						profileBannerFrameClass(bannerFrame),
+					)}
+				>
+					{bannerSrc ? (
+						bannerIsAnimated ? (
+							// Animated GIF/WebP must use native <img> so frames play.
+							// biome-ignore lint/performance/noImgElement: Next Image does not animate GIF/WebP frames
+							<img
+								src={bannerSrc}
+								alt=""
+								className="absolute inset-0 size-full object-cover"
 							/>
 						) : (
-							<div className="size-full overflow-hidden rounded-2xl">
-								<PersonCreditPortrait
-									name={displayName || initials}
-									profilePath={null}
-									grayscale
-									sizes="96px"
-								/>
-							</div>
-						)}
-					</div>
+							<Image
+								src={bannerSrc}
+								alt=""
+								fill
+								unoptimized
+								className="object-cover"
+								sizes="(max-width: 1280px) 100vw, 1200px"
+								priority
+							/>
+						)
+					) : (
+						<div
+							className="size-full"
+							style={{
+								background: `linear-gradient(120deg, ${accent}44, transparent 55%), var(--surface-card-base, var(--card))`,
+							}}
+							aria-hidden
+						/>
+					)}
+					<div
+						className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent"
+						aria-hidden
+					/>
 				</div>
 
+				<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center">
+					<div className="pointer-events-auto translate-y-1/2">
+						<div className={cn("relative", PROFILE_HERO_PORTRAIT_CLASSNAME)}>
+							<div
+								className="pointer-events-none absolute inset-0 rounded-full bg-muted/30 shadow-lg ring-6 ring-card sm:ring-8"
+								aria-hidden
+							/>
+							{hasPortrait ? (
+								<PatronPortraitWithMetalTier
+									handle={handle}
+									avatarUrl={avatarUrl}
+									name={displayName || initials}
+									isAnimated={avatarIsAnimated}
+									grayscaleUntilHover={
+										profilePortraitGrayscaleUntilHover ?? true
+									}
+									className="size-full rounded-full"
+									width={PROFILE_HERO_PORTRAIT_IMAGE_PX}
+									height={PROFILE_HERO_PORTRAIT_IMAGE_PX}
+									diaryMetalTier={diaryMetalTier}
+								/>
+							) : (
+								<div className="size-full overflow-hidden rounded-full">
+									<PersonCreditPortrait
+										name={displayName || initials}
+										profilePath={null}
+										grayscale
+										sizes="(max-width: 640px) 112px, 128px"
+									/>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* Ledger + social counts — compact pills directly under the banner. */}
+			<div className="relative z-10 mt-5 flex min-h-11 items-center justify-between gap-3 sm:mt-6 sm:min-h-12">
+				<div className="flex min-w-0 flex-wrap items-center gap-1.5">
+					<ProfileTasteCategoryPill
+						tasteSignature={tasteSignature ?? null}
+						perspective={isMe ? "self" : "visitor"}
+					/>
+					<ProfileStatCell variant="pill" value={moviesCount} label="films" />
+					<ProfileStatCell variant="pill" value={tvCount} label="shows" />
+				</div>
+				<div className="flex min-w-0 flex-wrap justify-end gap-1.5">
+					<ProfileStatCell
+						variant="pill"
+						value={stats.followers}
+						label="followers"
+						onClick={() =>
+							openProfileFollows({ targetUserId, tab: "followers" })
+						}
+					/>
+					<ProfileStatCell
+						variant="pill"
+						value={stats.following}
+						label="following"
+						onClick={() =>
+							openProfileFollows({ targetUserId, tab: "following" })
+						}
+					/>
+					{isMe ? <ProfileStreakStatCell handle={handle} /> : null}
+				</div>
+			</div>
+
+			<div className="relative mx-auto max-w-lg px-2 pt-3 text-center sm:px-4">
 				{/* Name */}
 				<h1 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
 					{displayName}
@@ -183,11 +227,26 @@ export function ProfilePatronHeader({
 					@{handle}
 				</p>
 
-				{/* Taste signature */}
-				<ProfileTasteSignature
-					tasteSignature={tasteSignature ?? null}
-					perspective={isMe ? "self" : "visitor"}
-					className="mt-4"
+				<ProfilePatronMetaLine
+					pronouns={pronouns}
+					location={location}
+					website={website}
+					birthdayDisplay={birthdayDisplay}
+				/>
+
+				{/* Bio — compact pill directly under identity meta */}
+				{trimmedBio ? (
+					<p className="mx-auto mt-3 max-w-md text-pretty rounded-full bg-background px-4 py-2.5 text-foreground/85 text-sm leading-snug">
+						{trimmedBio}
+					</p>
+				) : null}
+
+				<ProfilePatronActions
+					isMe={isMe}
+					targetUserId={targetUserId}
+					handle={handle}
+					canCompareTaste={canCompareTaste}
+					initialTasteCompareOpen={initialTasteCompareOpen}
 				/>
 
 				<ProfileShowcaseStrip
@@ -198,51 +257,22 @@ export function ProfilePatronHeader({
 				/>
 
 				<ProfileSavedQuotesStrip
+					handle={handle}
 					items={savedQuotesPreview}
 					isMe={isMe}
-					showViewAll={
-						isMe && (savedQuotesHasMore || savedQuotesPreview.length > 0)
-					}
+					showViewAll={isMe}
 				/>
 
-				{/* Stats row — equal metric cells (films · shows · followers · following · streak) */}
-				<div className="mt-4 flex flex-wrap items-stretch justify-center gap-2">
-					<ProfileStatCell value={moviesCount} label="Films" />
-					<ProfileStatCell value={tvCount} label="Shows" />
-					<ProfileStatCell
-						value={stats.followers}
-						label="Followers"
-						onClick={() =>
-							openProfileFollows({ targetUserId, tab: "followers" })
-						}
-					/>
-					<ProfileStatCell
-						value={stats.following}
-						label="Following"
-						onClick={() =>
-							openProfileFollows({ targetUserId, tab: "following" })
-						}
-					/>
-					{isMe ? <ProfileStreakStatCell /> : null}
-				</div>
-
-				{/* Actions */}
-				<ProfilePatronActions
-					isMe={isMe}
-					targetUserId={targetUserId}
-					handle={handle}
-					canCompareTaste={canCompareTaste}
-					initialTasteCompareOpen={initialTasteCompareOpen}
-				/>
-
-				{/* Collapsible: bio, pronouns, location, website, heatmap */}
+				{/* Diary heatmap — meta lives under @handle in the hero block above */}
 				<ProfileAboutCollapsible
 					handle={handle}
-					bio={bio}
+					bio={null}
 					pronouns={pronouns}
 					location={location}
 					website={website}
 					birthdayDisplay={birthdayDisplay}
+					hideActivitySignature={isMe}
+					hideMeta
 				/>
 
 				{/* Pinned reviews */}

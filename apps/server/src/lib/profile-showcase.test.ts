@@ -28,14 +28,23 @@ describe("parseShowcaseItems", () => {
 		expect(
 			parseShowcaseItems([
 				{ kind: "movie", id: 550 },
-				{ kind: "tv", id: 1399 },
+				{ kind: "tv", id: 1399, logScope: "season", seasonNumber: 2 },
 				{ kind: "review", id: "rev_abc" },
 			]),
 		).toEqual([
 			{ kind: "movie", id: 550 },
-			{ kind: "tv", id: 1399 },
+			{ kind: "tv", id: 1399, logScope: "season", seasonNumber: 2 },
 			{ kind: "review", id: "rev_abc" },
 		]);
+	});
+
+	test("allows two tv scopes for the same show", () => {
+		expect(
+			parseShowcaseItems([
+				{ kind: "tv", id: 1399, logScope: "show" },
+				{ kind: "tv", id: 1399, logScope: "season", seasonNumber: 1 },
+			]),
+		).toHaveLength(2);
 	});
 });
 

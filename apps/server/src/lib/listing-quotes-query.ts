@@ -237,6 +237,13 @@ export async function toggleListingQuoteUpvote(
 	return { upvoted: true, upvoteCount: nextCount };
 }
 
+/** New saves default to private bookmarks in `/quotes` — pin separately for profile. */
+function resolveQuoteSaveVisibility(
+	explicit?: ContentVisibility,
+): ContentVisibility {
+	return explicit ?? "private";
+}
+
 /** Save a published quote — idempotent when already saved. */
 export async function saveListingQuote(args: {
 	userId: string;
@@ -254,7 +261,7 @@ export async function saveListingQuote(args: {
 		.limit(1);
 	if (!quoteRow) return null;
 
-	const visibility = args.visibility ?? "private";
+	const visibility = resolveQuoteSaveVisibility(args.visibility);
 
 	const [existing] = await db
 		.select({

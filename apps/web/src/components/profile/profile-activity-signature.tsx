@@ -2,7 +2,13 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 import { createPortal } from "react-dom";
 
 import {
@@ -11,6 +17,7 @@ import {
 	ACTIVITY_SIGNATURE_WEEKDAY_ROW_KEYS,
 	activityDateKeyFromUnknown,
 	formatActivitySignatureTooltip,
+	resolveActivitySignatureTooltipPlacement,
 } from "@/lib/activity-signature";
 import { useProfileActivitySignature } from "@/lib/use-profile-activity-signature";
 
@@ -92,9 +99,14 @@ export function ProfileActivitySignature({
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const hoveredCellRef = useRef<HTMLElement | null>(null);
+	const tooltipRef = useRef<HTMLDivElement>(null);
 	const reduceMotion = useReducedMotion();
 	const { signature, loading } = useProfileActivitySignature(handle);
 	const [hover, setHover] = useState<HoverState | null>(null);
+	const [tooltipPlacement, setTooltipPlacement] = useState<{
+		left: number;
+		top: number;
+	} | null>(null);
 	const [portalReady, setPortalReady] = useState(false);
 
 	const syncHoverPosition = useCallback((cell: HTMLElement) => {
@@ -112,7 +124,30 @@ export function ProfileActivitySignature({
 	const clearHover = useCallback(() => {
 		hoveredCellRef.current = null;
 		setHover(null);
+		setTooltipPlacement(null);
 	}, []);
+
+	// Measure the portal tooltip and clamp it inside the viewport (right-edge cells).
+	useLayoutEffect(() => {
+		if (!hover || !tooltipRef.current) {
+			setTooltipPlacement(null);
+			return;
+		}
+
+		const { width, height } = tooltipRef.current.getBoundingClientRect();
+		setTooltipPlacement(
+			resolveActivitySignatureTooltipPlacement({
+				anchorX: hover.x,
+				anchorY: hover.y,
+				tooltipWidth: width,
+				tooltipHeight: height,
+				offsetAbovePx: TOOLTIP_OFFSET_PX,
+				cellHeightPx: CELL_PX,
+				viewportWidth: window.innerWidth,
+				viewportHeight: window.innerHeight,
+			}),
+		);
+	}, [hover]);
 
 	useEffect(() => {
 		setPortalReady(true);
@@ -169,39 +204,49 @@ export function ProfileActivitySignature({
 		portalReady && hover
 			? createPortal(
 					<AnimatePresence>
-						<motion.div
+						<div
 							key={hover.dateKey}
-							initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.9 }}
-							animate={{ opacity: 1, y: 0, scale: 1 }}
-							exit={
-								reduceMotion ? { opacity: 0 } : { opacity: 0, y: 5, scale: 0.9 }
-							}
-							transition={{ duration: 0.2 }}
-							className="pointer-events-none fixed z-120 whitespace-nowrap rounded-md bg-zinc-900 px-3 py-1.5 text-white text-xs shadow-xl dark:bg-white dark:text-zinc-900"
+							ref={tooltipRef}
+							className="pointer-events-none fixed z-120"
 							style={{
-								left: hover.x,
-								top: hover.y - TOOLTIP_OFFSET_PX,
-								transform: "translateX(-50%)",
+								left: tooltipPlacement?.left ?? 0,
+								top: tooltipPlacement?.top ?? 0,
+								visibility: tooltipPlacement ? "visible" : "hidden",
 							}}
 						>
-							{hover.count <= 0 ? (
-								<>
-									<span className="font-bold">No</span>
-									<span className="text-zinc-400 dark:text-zinc-500">
-										{" "}
-										logs on {formatActivitySignatureTooltipDate(hover.dateKey)}
-									</span>
-								</>
-							) : (
-								<>
-									<span className="mr-1 font-bold">{hover.count}</span>
-									<span className="text-zinc-400 dark:text-zinc-500">
-										{hover.count === 1 ? "log" : "logs"} on{" "}
-										{formatActivitySignatureTooltipDate(hover.dateKey)}
-									</span>
-								</>
-							)}
-						</motion.div>
+							<motion.div
+								initial={
+									reduceMotion ? false : { opacity: 0, y: 10, scale: 0.9 }
+								}
+								animate={{ opacity: 1, y: 0, scale: 1 }}
+								exit={
+									reduceMotion
+										? { opacity: 0 }
+										: { opacity: 0, y: 5, scale: 0.9 }
+								}
+								transition={{ duration: 0.2 }}
+								className="max-w-[calc(100vw-1.5rem)] whitespace-nowrap rounded-md bg-zinc-900 px-3 py-1.5 text-white text-xs shadow-xl dark:bg-white dark:text-zinc-900"
+							>
+								{hover.count <= 0 ? (
+									<>
+										<span className="font-bold">No</span>
+										<span className="text-zinc-400 dark:text-zinc-500">
+											{" "}
+											logs on{" "}
+											{formatActivitySignatureTooltipDate(hover.dateKey)}
+										</span>
+									</>
+								) : (
+									<>
+										<span className="mr-1 font-bold">{hover.count}</span>
+										<span className="text-zinc-400 dark:text-zinc-500">
+											{hover.count === 1 ? "log" : "logs"} on{" "}
+											{formatActivitySignatureTooltipDate(hover.dateKey)}
+										</span>
+									</>
+								)}
+							</motion.div>
+						</div>
 					</AnimatePresence>,
 					document.body,
 				)

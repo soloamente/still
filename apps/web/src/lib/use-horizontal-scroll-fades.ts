@@ -100,3 +100,110 @@ export function useHorizontalScrollFades(
 
 	return { showStartFade, showEndFade, syncScrollFades };
 }
+
+const POSTER_EDGE_FADE_WIDTH_PX = 64;
+const POSTER_EDGE_MIN_OPACITY = 0.15;
+
+/** Ramp poster opacity when clipped by the rail viewport — no overlay scrims. */
+function computePosterEdgeOpacityFactor(
+	containerRect: DOMRect,
+	childRect: DOMRect,
+	fadeWidthPx: number,
+	minOpacity: number,
+): number {
+	let edgeFactor = 1;
+	if (childRect.right > containerRect.right) {
+		edgeFactor = Math.min(
+			edgeFactor,
+			1 - (childRect.right - containerRect.right) / fadeWidthPx,
+		);
+	}
+	if (childRect.left < containerRect.left) {
+		edgeFactor = Math.min(
+			edgeFactor,
+			1 - (containerRect.left - childRect.left) / fadeWidthPx,
+		);
+	}
+	return Math.max(minOpacity, Math.min(1, edgeFactor));
+}
+
+/**
+ * Writes `--edge-opacity` on each scroll-rail child so posters fade at clipped edges
+ * instead of using a horizontal gradient/blur overlay.
+ */
+export function useHorizontalRailPosterEdgeOpacity(
+	scrollRef: RefObject<HTMLDivElement | null>,
+	enabled: boolean,
+	contentKey = "",
+	options?: { fadeWidthPx?: number; minOpacity?: number },
+) {
+	const syncPosterEdgeOpacity = useCallback(() => {
+		const el = scrollRef.current;
+		if (!el || !enabled) return;
+
+		const fadeWidthPx = options?.fadeWidthPx ?? POSTER_EDGE_FADE_WIDTH_PX;
+		const minOpacity = options?.minOpacity ?? POSTER_EDGE_MIN_OPACITY;
+		const containerRect = el.getBoundingClientRect();
+
+		for (const child of el.children) {
+			if (!(child instanceof HTMLElement)) continue;
+			const edgeFactor = computePosterEdgeOpacityFactor(
+				containerRect,
+				child.getBoundingClientRect(),
+				fadeWidthPx,
+				minOpacity,
+			);
+			child.style.setProperty("--edge-opacity", String(edgeFactor));
+		}
+	}, [enabled, options?.fadeWidthPx, options?.minOpacity, scrollRef]);
+
+	useEffect(() => {
+		const el = scrollRef.current;
+		if (!enabled || !el) {
+			return;
+		}
+		void contentKey;
+
+		let scrollRaf: number | null = null;
+
+		const runSync = () => {
+			syncPosterEdgeOpacity();
+		};
+
+		const handleScroll = () => {
+			if (scrollRaf !== null) return;
+			scrollRaf = requestAnimationFrame(() => {
+				scrollRaf = null;
+				runSync();
+			});
+		};
+
+		runSync();
+		const raf1 = requestAnimationFrame(() => {
+			runSync();
+			requestAnimationFrame(runSync);
+		});
+
+		const resizeObserver = new ResizeObserver(runSync);
+		resizeObserver.observe(el);
+		for (const child of el.children) {
+			resizeObserver.observe(child);
+		}
+
+		el.addEventListener("load", runSync, true);
+		el.addEventListener("scroll", handleScroll, { passive: true });
+
+		return () => {
+			if (scrollRaf !== null) cancelAnimationFrame(scrollRaf);
+			cancelAnimationFrame(raf1);
+			resizeObserver.disconnect();
+			el.removeEventListener("load", runSync, true);
+			el.removeEventListener("scroll", handleScroll);
+			for (const child of el.children) {
+				if (child instanceof HTMLElement) {
+					child.style.removeProperty("--edge-opacity");
+				}
+			}
+		};
+	}, [contentKey, enabled, scrollRef, syncPosterEdgeOpacity]);
+}

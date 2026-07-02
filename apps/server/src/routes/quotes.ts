@@ -1,3 +1,5 @@
+import { db, profile } from "@still/db";
+import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context, requireStaff } from "../context";
@@ -9,6 +11,7 @@ import {
 	saveListingQuote,
 	toggleListingQuoteUpvote,
 } from "../lib/listing-quotes-query";
+import { removePinnedQuoteSaveId } from "../lib/profile-pinned-quotes";
 import { importMovieQuotesNow } from "../lib/quote-import";
 import {
 	isQuoteImportEnabled,
@@ -243,6 +246,23 @@ export const quotesRoute = new Elysia({
 				saveId: params.id,
 			});
 			if (!removed) return status(404, "Save not found");
+
+			const [prof] = await db
+				.select({ pinnedQuoteSaveIds: profile.pinnedQuoteSaveIds })
+				.from(profile)
+				.where(eq(profile.userId, user.id))
+				.limit(1);
+			if (prof) {
+				const next = removePinnedQuoteSaveId(
+					prof.pinnedQuoteSaveIds,
+					params.id,
+				);
+				await db
+					.update(profile)
+					.set({ pinnedQuoteSaveIds: next })
+					.where(eq(profile.userId, user.id));
+			}
+
 			void recordProductEvent(user.id, "quote.unsave", {
 				saveId: params.id,
 				quoteId: removed.quoteId,

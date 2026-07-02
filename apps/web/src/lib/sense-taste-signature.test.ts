@@ -3,6 +3,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	legacyVisitorHeadlineFromSelf,
 	resolveTasteHeadline,
+	shouldShowTasteArchetypePill,
 	tasteArchetypeDescription,
 } from "./sense-taste-signature";
 
@@ -33,5 +34,24 @@ describe("legacyVisitorHeadlineFromSelf", () => {
 			"visitor",
 		);
 		expect(headline?.charAt(0)).toBe("G");
+	});
+});
+
+describe("shouldShowTasteArchetypePill", () => {
+	test("shows confident genre-facing archetypes only", () => {
+		expect(
+			shouldShowTasteArchetypePill({
+				archetype: "eclectic",
+				headline: "x",
+				confidence: "medium",
+			}),
+		).toBe(true);
+		expect(
+			shouldShowTasteArchetypePill({
+				archetype: "forming",
+				headline: "x",
+				confidence: "high",
+			}),
+		).toBe(false);
 	});
 });

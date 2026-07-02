@@ -1,65 +1,24 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { useEffect, useState } from "react";
 
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeLeaderboardPodium } from "@/components/home/home-leaderboard-podium";
 import { HomeLeaderboardRow } from "@/components/home/home-leaderboard-row";
-import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
-import { fetchCommunityLeaderboard } from "@/lib/still-api-fetch";
 
 /**
  * Community rank feeds — period chips, tier podium, list from #4, optional viewer footer.
  */
 export function HomeCommunityLeaderboard({
 	kind,
-	data: initialData,
+	data,
 	viewerUserId,
 }: {
 	kind: "films" | "tv";
 	data: LeaderboardPayload;
 	viewerUserId: string | null;
 }) {
-	const [data, setData] = useState(initialData);
-
-	// SSR uses UTC; refetch in the patron's zone so week/month boundaries match local midnight.
-	useEffect(() => {
-		setData(initialData);
-	}, [initialData]);
-
-	useEffect(() => {
-		const tz = readViewerTimeZone();
-		if (tz === "UTC") return;
-
-		const controller = new AbortController();
-		void (async () => {
-			try {
-				const next = await fetchCommunityLeaderboard(
-					kind,
-					initialData.period,
-					tz,
-					{ signal: controller.signal },
-				);
-				// Period chip / feed changes abort the in-flight TZ refetch — not an error.
-				if (controller.signal.aborted) return;
-				if (next) setData(next);
-			} catch (err) {
-				if (
-					controller.signal.aborted ||
-					(err instanceof DOMException && err.name === "AbortError") ||
-					(err instanceof Error && err.name === "AbortError")
-				) {
-					return;
-				}
-				console.error("[home-community-leaderboard] tz refetch failed", err);
-			}
-		})();
-
-		return () => controller.abort();
-	}, [kind, initialData.period]);
-
 	const rest = data.entries.slice(3);
 
 	if (data.entries.length === 0) {

@@ -8,21 +8,19 @@ import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
+import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import { TasteOverlapDialog } from "@/components/profile/taste-overlap-dialog";
 import { api } from "@/lib/api";
-import {
-	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-	DETAIL_MOTION_PRESSABLE_CLASS,
-} from "@/lib/detail-action-motion";
+import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
 import { profileTasteCompareFromSearch } from "@/lib/notification-href";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 
-/** Secondary pill on `bg-card` — matches movie detail watchlist / circle controls. */
+/** Secondary pill on `bg-card` — matches profile stat pills under the banner. */
 const secondaryPill = cn(
 	"inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-background px-5 py-3 font-semibold text-foreground text-sm sm:text-base",
 	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 	"disabled:pointer-events-none disabled:opacity-45",
-	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+	PROFILE_HEADER_PILL_PRESS_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 );
 
@@ -52,7 +50,7 @@ export function ProfilePatronActions({
 }) {
 	if (isMe) {
 		return (
-			<div className="mt-6 flex flex-wrap justify-center gap-2">
+			<div className="mt-4 flex flex-wrap justify-center gap-2">
 				<DetailMotionButton
 					type="button"
 					className={secondaryPill}
@@ -121,7 +119,7 @@ function ProfileOtherPatronActions({
 
 	return (
 		<>
-			<div className="mt-6 flex flex-wrap justify-center gap-2">
+			<div className="mt-4 flex flex-wrap justify-center gap-2">
 				<ProfileFollowAction targetUserId={targetUserId} />
 				{canCompareTaste ? (
 					<DetailMotionButton

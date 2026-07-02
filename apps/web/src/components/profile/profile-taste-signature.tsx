@@ -8,8 +8,9 @@ import {
 } from "@still/ui/components/tooltip";
 import { cn } from "@still/ui/lib/utils";
 
+import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import {
-	resolveTasteHeadline,
+	shouldShowTasteArchetypePill,
 	type TasteArchetype,
 	type TastePerspective,
 	type TasteSignatureJson,
@@ -17,8 +18,11 @@ import {
 	tasteArchetypeLabel,
 } from "@/lib/sense-taste-signature";
 
-/** Archetype pill with hover/focus tooltip — explains what the label means. */
-function TasteArchetypePill({
+const TASTE_CATEGORY_PILL_CLASS =
+	"inline-flex min-h-9 max-w-full items-center rounded-full bg-background px-3 py-1.5 text-sm font-medium text-foreground";
+
+/** Compact taste category chip — matches profile stat pills under the banner. */
+function TasteCategoryPill({
 	archetype,
 	perspective,
 }: {
@@ -30,7 +34,7 @@ function TasteArchetypePill({
 
 	if (!description) {
 		return (
-			<span className="mt-2.5 inline-flex max-w-full items-center justify-center rounded-full bg-card px-2.5 py-1 font-medium text-[10px] text-muted-foreground tracking-wide">
+			<span className={cn(TASTE_CATEGORY_PILL_CLASS, "text-muted-foreground")}>
 				{label}
 			</span>
 		);
@@ -43,9 +47,9 @@ function TasteArchetypePill({
 					<button
 						type="button"
 						className={cn(
-							"mt-2.5 inline-flex max-w-full items-center justify-center rounded-full bg-card px-2.5 py-1 font-medium text-[10px] text-muted-foreground tracking-wide",
+							TASTE_CATEGORY_PILL_CLASS,
+							PROFILE_HEADER_PILL_PRESS_CLASS,
 							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-							"[@media(hover:hover)]:hover:text-foreground/80",
 						)}
 						aria-label={`${label} — what does this mean?`}
 					>
@@ -61,63 +65,27 @@ function TasteArchetypePill({
 }
 
 /**
- * Identity core on patron profiles — labeled taste block, more prominent than volume stats.
+ * Taste archetype as a left-rail pill (genre purist, eclectic, …) — no headline block.
  */
-export function ProfileTasteSignature({
+export function ProfileTasteCategoryPill({
 	tasteSignature,
-	perspective = "self",
+	perspective = "visitor",
 	className,
 }: {
 	tasteSignature: TasteSignatureJson | null;
-	/** Own profile uses second person; visitors see neutral third person. */
 	perspective?: TastePerspective;
 	className?: string;
 }) {
-	const headline = resolveTasteHeadline(tasteSignature, perspective);
-	const archetype = tasteSignature?.archetype;
-	const confidence = tasteSignature?.confidence ?? "low";
-	// Pill names the viewing lens — hide legacy scoring-only archetypes.
-	const showArchetype =
-		archetype != null &&
-		archetype !== "forming" &&
-		archetype !== "contrarian" &&
-		archetype !== "generous" &&
-		archetype !== "selective" &&
-		archetype !== "curator" &&
-		confidence !== "low";
-
-	// Always paint the taste block — placeholder when copy is not ready yet.
-	const displayHeadline =
-		headline ??
-		(perspective === "self"
-			? "Sense is still learning your taste — log a few titles to begin."
-			: "Taste map still forming — not enough logs yet.");
+	if (!shouldShowTasteArchetypePill(tasteSignature)) return null;
 
 	return (
-		<section
-			aria-label="Taste signature"
-			className={cn(
-				// Content-sized tile — avoids a full-bleed strip under the handle.
-				"mx-auto w-fit max-w-[min(100%,20rem)] rounded-2xl bg-background px-5 py-4 text-center",
-				className,
-			)}
-		>
-			<p className="font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
-				Taste
-			</p>
-			<p
-				className={cn(
-					"mt-2.5 text-pretty font-editorial text-[0.9375rem] leading-relaxed sm:text-base",
-					confidence === "low" ? "text-foreground/75" : "text-foreground/92",
-				)}
-			>
-				{displayHeadline}
-			</p>
-			{showArchetype && archetype ? (
-				<TooltipProvider delay={280} closeDelay={80}>
-					<TasteArchetypePill archetype={archetype} perspective={perspective} />
-				</TooltipProvider>
-			) : null}
-		</section>
+		<TooltipProvider delay={280} closeDelay={80}>
+			<div className={className}>
+				<TasteCategoryPill
+					archetype={tasteSignature.archetype}
+					perspective={perspective}
+				/>
+			</div>
+		</TooltipProvider>
 	);
 }

@@ -56,7 +56,7 @@ import {
 } from "../lib/diary-metal-tier";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { resolveListingPosterPath } from "../lib/listing-poster-path";
-import { fetchProfilePublicSavedQuotes } from "../lib/listing-quote-saves-query";
+import { fetchProfilePinnedQuotes } from "../lib/listing-quote-saves-query";
 import {
 	grandfatherOnboardedTimestamp,
 	shouldGrandfatherLegacyOnboarding,
@@ -90,10 +90,18 @@ import {
 	PRO_ANIMATED_MEDIA_REQUIRED,
 	readAvatarIsAnimatedPref,
 } from "../lib/profile-media";
+import { validatePinnedQuoteSaveIdsForUser } from "../lib/profile-pinned-quotes";
 import {
 	hydratePinnedReviews,
 	validatePinnedReviewIdsForUser,
 } from "../lib/profile-pinned-reviews";
+import {
+	fetchProfileReviewsCount,
+	fetchProfileReviewsPage,
+	parseProfileReviewsLimit,
+	parseProfileReviewsPage,
+	resolveProfileReviewsAccess,
+} from "../lib/profile-reviews-query";
 import {
 	normalizeProfileSearchQuery,
 	rankProfileSearchHits,
@@ -489,6 +497,45 @@ export const profilesRoute = new Elysia({
 			}),
 		},
 	)
+	/** Pin up to 3 saved quotes on profile (from `/quotes` collection). */
+	.patch(
+		"/me/pins/quotes",
+		async ({ body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			try {
+				assertEmailVerified(user);
+			} catch (e) {
+				if (e instanceof EmailVerificationRequiredError) {
+					return status(403, emailVerificationRequiredBody());
+				}
+				throw e;
+			}
+			if (!hit(`profile:pins:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
+				return status(429, "Slow down");
+			}
+			const body = routeBody<{ quoteSaveIds: string[] }>(rawBody);
+			const validated = await validatePinnedQuoteSaveIdsForUser(
+				user.id,
+				body.quoteSaveIds,
+			);
+			if (!validated.ok) {
+				return status(validated.status, validated.error);
+			}
+			const [row] = await db
+				.update(profile)
+				.set({ pinnedQuoteSaveIds: validated.quoteSaveIds })
+				.where(eq(profile.userId, user.id))
+				.returning({ pinnedQuoteSaveIds: profile.pinnedQuoteSaveIds });
+			return {
+				pinnedQuoteSaveIds: row?.pinnedQuoteSaveIds ?? [],
+			};
+		},
+		{
+			body: t.Object({
+				quoteSaveIds: t.Array(t.String(), { maxItems: 3 }),
+			}),
+		},
+	)
 	/** Patron-curated showcase strip — up to 4 film · TV · review slots. */
 	.patch(
 		"/me/showcase",
@@ -538,6 +585,15 @@ export const profilesRoute = new Elysia({
 							t.Literal("review"),
 						]),
 						id: t.Union([t.Number(), t.String()]),
+						logScope: t.Optional(
+							t.Union([
+								t.Literal("show"),
+								t.Literal("season"),
+								t.Literal("episode"),
+							]),
+						),
+						seasonNumber: t.Optional(t.Number()),
+						episodeNumber: t.Optional(t.Number()),
 					}),
 					{ maxItems: 4 },
 				),
@@ -896,13 +952,17 @@ export const profilesRoute = new Elysia({
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
-	/** Public saved quotes for profile strip / visitor view — public saves only. */
+	/** Pinned saved quotes for profile strip — owner sees all visibilities; visitors public only. */
 	.get(
 		"/:handle/quotes",
 		async ({ params, query, user: viewer, status }) => {
 			const handle = params.handle.toLowerCase();
 			const [row] = await db
-				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.select({
+					userId: profile.userId,
+					isPrivate: profile.isPrivate,
+					pinnedQuoteSaveIds: profile.pinnedQuoteSaveIds,
+				})
 				.from(profile)
 				.where(eq(profile.handle, handle))
 				.limit(1);
@@ -911,8 +971,10 @@ export const profilesRoute = new Elysia({
 			const isOwner = viewer?.id === row.userId;
 			if (row.isPrivate && !isOwner) return status(404, "Not found");
 
-			return fetchProfilePublicSavedQuotes({
+			return fetchProfilePinnedQuotes({
 				userId: row.userId,
+				rawSaveIds: row.pinnedQuoteSaveIds,
+				publicOnly: !isOwner,
 				page: query.page,
 				limit: query.limit,
 				kind: query.kind,
@@ -1097,6 +1159,37 @@ export const profilesRoute = new Elysia({
 			}),
 		},
 	)
+	/** Paginated published reviews for the profile **Reviews** tab. */
+	.get(
+		"/:handle/reviews",
+		async ({ params, query, user: viewer, status }) => {
+			const viewerId = viewer?.id ?? null;
+			const access = await resolveProfileReviewsAccess(params.handle, viewerId);
+			if (!access.ok) return status(access.status, access.error);
+
+			const page = parseProfileReviewsPage(query.page);
+			const limit = parseProfileReviewsLimit(query.limit);
+			const payload = await fetchProfileReviewsPage({
+				userId: access.userId,
+				viewerId,
+				page,
+				limit,
+			});
+
+			return {
+				results: payload.results,
+				total_pages: payload.totalPages,
+				total_results: payload.total,
+			};
+		},
+		{
+			params: t.Object({ handle: t.String() }),
+			query: t.Object({
+				page: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
+	)
 	/**
 	 * Public Wrapped stats for share previews — same payload as `/api/me/year/:year`
 	 * when the profile is public (404 for private non-owners).
@@ -1181,11 +1274,13 @@ export const profilesRoute = new Elysia({
 					.from(dedupMovies)
 					.where(eq(dedupMovies.liked, true)),
 				db.select({ c: count() }).from(dedupTv).where(eq(dedupTv.liked, true)),
-			]).then(([m, tvc, lm, ltv]) => ({
+				fetchProfileReviewsCount(targetUserId, viewerId),
+			]).then(([m, tvc, lm, ltv, reviews]) => ({
 				movies: Number(m[0]?.c ?? 0),
 				tv: Number(tvc[0]?.c ?? 0),
 				likedMovies: Number(lm[0]?.c ?? 0),
 				likedTv: Number(ltv[0]?.c ?? 0),
+				reviews,
 			}));
 
 			const cachedStats = row.profile.statsCache as {
@@ -1203,7 +1298,6 @@ export const profilesRoute = new Elysia({
 				followingCount,
 				isFollowing,
 				filmographyCounts,
-				recentReviews,
 				pinnedReviews,
 				lists,
 				pinned,
@@ -1244,24 +1338,6 @@ export const profilesRoute = new Elysia({
 							.then((r) => Boolean(r[0]))
 					: Promise.resolve(false),
 				filmographyCountsPromise,
-				// Recent reviews (3).
-				db
-					.select({ review, movie })
-					.from(review)
-					.leftJoin(movie, eq(review.movieId, movie.tmdbId))
-					.where(
-						and(
-							eq(review.userId, targetUserId),
-							isNull(review.removedAt),
-							contentVisibilityWhere(
-								viewerId,
-								review.userId,
-								review.visibility,
-							),
-						),
-					)
-					.orderBy(desc(review.publishedAt))
-					.limit(3),
 				hydratePinnedReviews(targetUserId, row.profile.pinnedReviewIds),
 				// Popular lists (public only) — poster paths hydrated for profile list rows.
 				db
@@ -1370,7 +1446,6 @@ export const profilesRoute = new Elysia({
 				creator: curator,
 				isFollowing,
 				filmographyCounts,
-				recentReviews,
 				pinnedReviews,
 				showcaseResolved,
 				lists,

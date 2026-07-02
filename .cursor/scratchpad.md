@@ -2573,3 +2573,7 @@ Reply **`ok`** when signed off, or report counts / missing titles.
 7. **Home nav** — Movies ↔ Community pill instant (no full-page freeze)
 
 **Pending:** human runs checklist on dev (web **3001**, API **3000**). Reply **`ok`** per scenario or **`go`** for next track after QA.
+
+**Executor (2026-07-01, home load perf):** `/home` Movies refresh blocked on slow `/api/taste/for-you` inside `HomeLobbyBody` `Promise.all` (taste scoring + up to 4× TMDb `movieImages` + community stats). **Fix:** `HomeTasteMatchedHeroRsc` in its own `Suspense` + skeleton so catalogue chips/grid stream without waiting on taste; `enrichTasteMatchMovies` now full-enriches **spotlight only** (index 0) — poster stack rows get backdrop only. **Pending human QA:** hard refresh `/home?browse=movies` — grid/chips should appear in ~2–4s; hero skeleton then fills; total wall-clock may still include hero stream but main lobby no longer blocked 10s+.
+
+**Executor (2026-07-02, patron feedback — Task 10):** Changelog **0.3.1** `2026-07-02-patron-feedback` + What's New slides bumped. Test sweep: server patron-feedback **23/23**, web notification-href **7/7**, auth permissions **12/12** pass. `graphify update .` skipped — `graphify` not on PATH / `bunx graphify` has no executable on Windows (run locally when available). **Patron feedback plan Tasks 1–10 complete** — pending Planner/human sign-off on E2E QA. Commits through **`a611d26`** + Task 10 changelog commit pending.

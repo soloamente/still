@@ -15,6 +15,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 
+import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { ProfileShowcaseListingPickerPopover } from "@/components/profile/profile-showcase-listing-picker-popover";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
@@ -22,12 +23,21 @@ import { api } from "@/lib/api";
 import {
 	MAX_SHOWCASE_ITEMS,
 	type ProfileShowcaseTile,
+	type ShowcaseItem,
 	showcaseFilledCount,
 	showcaseItemKey,
+	showcaseItemToTile,
 	showcaseListingHref,
 	showcasePosterUrl,
 	tilesToShowcaseItems,
 } from "@/lib/profile-showcase";
+import {
+	distinctShowcaseTvScopeOptions,
+	type ShowcaseDiaryLogRow,
+	type ShowcaseTvScopeOption,
+} from "@/lib/profile-showcase-scopes";
+import { fetchMyLogsForMovie, fetchMyLogsForTv } from "@/lib/still-api-fetch";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useAvatarGroupHover } from "@/lib/use-avatar-group-hover";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
@@ -39,6 +49,16 @@ const TILE_POSTER_CLASSNAME =
 	"relative w-20 shrink-0 overflow-hidden rounded-2xl outline outline-1 outline-black/10 transition-transform duration-150 active:scale-[0.96] motion-reduce:transition-none sm:w-24 dark:outline-white/10";
 
 const TILE_ASPECT_CLASSNAME = "aspect-2/3";
+
+function tileToKey(tile: ProfileShowcaseTile): string {
+	return showcaseItemKey({
+		kind: tile.kind,
+		id: tile.id,
+		logScope: tile.logScope ?? undefined,
+		seasonNumber: tile.seasonNumber ?? undefined,
+		episodeNumber: tile.episodeNumber ?? undefined,
+	});
+}
 
 function ShowcasePoster({
 	title,
@@ -70,16 +90,6 @@ function ShowcasePoster({
 	);
 }
 
-function listingHitToTile(hit: ListingMentionSearchHit): ProfileShowcaseTile {
-	return {
-		kind: hit.listingKind,
-		id: hit.id,
-		title: hit.title,
-		posterPath: hit.poster_url,
-		reviewHeadline: null,
-	};
-}
-
 function ShowcaseTileButton({
 	tile,
 	isMe,
@@ -98,6 +108,7 @@ function ShowcaseTileButton({
 	const posterUrl = showcasePosterUrl(tile);
 	const href = showcaseListingHref(tile);
 	const isReview = tile.kind === "review";
+	const scopeLabel = tile.tvScopeLabel?.trim() || null;
 
 	if (isReview) {
 		const headline = tile.reviewHeadline?.trim() || tile.title;
@@ -132,12 +143,22 @@ function ShowcaseTileButton({
 		);
 	}
 
+	const ariaTitle =
+		scopeLabel != null ? `${tile.title} · ${scopeLabel}` : tile.title;
+
 	return (
-		<li className="t-avatar relative shrink-0" onMouseEnter={onHoverEnter}>
+		<li
+			className="t-avatar relative flex w-20 shrink-0 flex-col gap-1.5 sm:w-24"
+			onMouseEnter={onHoverEnter}
+		>
 			<Link
 				href={href ?? "#"}
-				className={cn(TILE_POSTER_CLASSNAME, TILE_ASPECT_CLASSNAME, "block")}
-				aria-label={`${tile.kind === "tv" ? "TV show" : "Film"}: ${tile.title}`}
+				className={cn(
+					TILE_POSTER_CLASSNAME,
+					TILE_ASPECT_CLASSNAME,
+					"block w-full",
+				)}
+				aria-label={`${tile.kind === "tv" ? "TV show" : "Film"}: ${ariaTitle}`}
 			>
 				<ShowcasePoster title={tile.title} posterUrl={posterUrl} />
 			</Link>
@@ -145,13 +166,21 @@ function ShowcaseTileButton({
 				<button
 					type="button"
 					className="absolute -top-1 -right-1 flex size-7 items-center justify-center rounded-full bg-card text-muted-foreground transition-transform duration-150 active:scale-[0.96] motion-reduce:transition-none [@media(hover:hover)]:hover:text-foreground"
-					aria-label={`Remove ${tile.title} from showcase`}
+					aria-label={`Remove ${ariaTitle} from showcase`}
 					disabled={saving}
 					onClick={() => onRemove(tile)}
 				>
 					<X className="size-3" aria-hidden />
 				</button>
 			) : null}
+			<div className="text-center">
+				<p className="line-clamp-1 text-foreground text-xs">{tile.title}</p>
+				{scopeLabel ? (
+					<p className="line-clamp-1 text-[10px] text-muted-foreground">
+						{scopeLabel}
+					</p>
+				) : null}
+			</div>
 		</li>
 	);
 }
@@ -159,9 +188,27 @@ function ShowcaseTileButton({
 /** Stable slot ids for the four owner add affordances. */
 const SHOWCASE_SLOT_IDS = ["slot-a", "slot-b", "slot-c", "slot-d"] as const;
 
+type TvScopePickState = {
+	hit: ListingMentionSearchHit;
+	options: ShowcaseTvScopeOption[];
+};
+
+async function fetchDiaryLogsForListing(
+	hit: ListingMentionSearchHit,
+): Promise<ShowcaseDiaryLogRow[]> {
+	if (hit.listingKind === "movie") {
+		const res = await fetchMyLogsForMovie(hit.id);
+		if (!res.data || !Array.isArray(res.data)) return [];
+		return res.data as ShowcaseDiaryLogRow[];
+	}
+	const res = await fetchMyLogsForTv(hit.id);
+	if (!res.data || !Array.isArray(res.data)) return [];
+	return res.data as ShowcaseDiaryLogRow[];
+}
+
 /**
  * Up to four patron-chosen film · TV · review tiles under the taste signature.
- * Owners add films/TV via the same mention-style search popover as review composer.
+ * Films and TV must exist in the patron diary — unwatched picks open inline Quick Log.
  */
 export function ProfileShowcaseStrip({
 	handle,
@@ -177,25 +224,22 @@ export function ProfileShowcaseStrip({
 	const router = useRouter();
 	const scrollRef = useRef<HTMLUListElement>(null);
 	const setAvatarShifts = useAvatarGroupHover(scrollRef);
+	const openQuickLog = useQuickLog((s) => s.open);
 	const [tiles, setTiles] = useState(itemsProp);
 	const [saving, setSaving] = useState(false);
+	const [tvScopePick, setTvScopePick] = useState<TvScopePickState | null>(null);
 
 	useEffect(() => {
 		setTiles(itemsProp);
 	}, [itemsProp]);
 
 	const reservedKeys = useMemo(
-		() =>
-			new Set(
-				tiles.map((tile) => showcaseItemKey({ kind: tile.kind, id: tile.id })),
-			),
+		() => new Set(tiles.map((tile) => tileToKey(tile))),
 		[tiles],
 	);
 
 	const filled = showcaseFilledCount(tiles);
-	const contentKey = tiles
-		.map((tile) => showcaseItemKey({ kind: tile.kind, id: tile.id }))
-		.join("\0");
+	const contentKey = tiles.map((tile) => tileToKey(tile)).join("\0");
 	const showOwnerSlots = isMe;
 	const { showStartFade, showEndFade } = useHorizontalScrollFades(
 		scrollRef as RefObject<HTMLDivElement | null>,
@@ -234,9 +278,9 @@ export function ProfileShowcaseStrip({
 		[router],
 	);
 
-	const handlePickListing = useCallback(
-		async (hit: ListingMentionSearchHit) => {
-			const key = showcaseItemKey({ kind: hit.listingKind, id: hit.id });
+	const appendShowcaseFromItem = useCallback(
+		async (item: ShowcaseItem, hit: ListingMentionSearchHit) => {
+			const key = showcaseItemKey(item);
 			if (reservedKeys.has(key)) {
 				toast.error("Already in your showcase");
 				return;
@@ -245,18 +289,111 @@ export function ProfileShowcaseStrip({
 				toast.error(`You can showcase up to ${MAX_SHOWCASE_ITEMS} items`);
 				return;
 			}
-			const nextTiles = [...tiles, listingHitToTile(hit)];
+			const nextTiles = [
+				...tiles,
+				showcaseItemToTile(item, {
+					title: hit.title,
+					posterPath: hit.poster_url,
+				}),
+			];
 			await persistTiles(nextTiles);
 		},
 		[persistTiles, reservedKeys, tiles],
 	);
 
+	const openQuickLogForShowcase = useCallback(
+		(hit: ListingMentionSearchHit) => {
+			const posterUrl = tmdbPosterUrlFromPath(hit.poster_url, "w342");
+			const onLogged = () => {
+				void (async () => {
+					const logs = await fetchDiaryLogsForListing(hit);
+					if (hit.listingKind === "movie") {
+						if (logs.length === 0) {
+							toast.error("Log this title before adding it to your showcase");
+							return;
+						}
+						await appendShowcaseFromItem({ kind: "movie", id: hit.id }, hit);
+						return;
+					}
+					const options = distinctShowcaseTvScopeOptions(hit.id, logs);
+					if (options.length === 0) {
+						toast.error("Log this show before adding it to your showcase");
+						return;
+					}
+					if (options.length === 1) {
+						await appendShowcaseFromItem(
+							options[0]?.item ?? { kind: "tv", id: hit.id, logScope: "show" },
+							hit,
+						);
+						return;
+					}
+					setTvScopePick({ hit, options });
+				})();
+			};
+
+			if (hit.listingKind === "movie") {
+				openQuickLog({
+					movieId: hit.id,
+					movieTitle: hit.title,
+					posterUrl,
+					onSuccess: onLogged,
+				});
+				return;
+			}
+
+			openQuickLog({
+				tvId: hit.id,
+				movieTitle: hit.title,
+				posterUrl,
+				onSuccess: onLogged,
+			});
+		},
+		[appendShowcaseFromItem, openQuickLog],
+	);
+
+	const handlePickListing = useCallback(
+		async (hit: ListingMentionSearchHit) => {
+			const logs = await fetchDiaryLogsForListing(hit);
+
+			if (hit.listingKind === "movie") {
+				if (logs.length === 0) {
+					openQuickLogForShowcase(hit);
+					return;
+				}
+				await appendShowcaseFromItem({ kind: "movie", id: hit.id }, hit);
+				return;
+			}
+
+			const options = distinctShowcaseTvScopeOptions(hit.id, logs);
+			if (options.length === 0) {
+				openQuickLogForShowcase(hit);
+				return;
+			}
+			if (options.length === 1) {
+				const only = options[0];
+				if (!only) return;
+				await appendShowcaseFromItem(only.item, hit);
+				return;
+			}
+			setTvScopePick({ hit, options });
+		},
+		[appendShowcaseFromItem, openQuickLogForShowcase],
+	);
+
+	const handlePickTvScope = useCallback(
+		async (option: ShowcaseTvScopeOption) => {
+			if (!tvScopePick) return;
+			const { hit } = tvScopePick;
+			setTvScopePick(null);
+			await appendShowcaseFromItem(option.item, hit);
+		},
+		[appendShowcaseFromItem, tvScopePick],
+	);
+
 	const handleRemove = useCallback(
 		async (tile: ProfileShowcaseTile) => {
-			const key = showcaseItemKey({ kind: tile.kind, id: tile.id });
-			const nextTiles = tiles.filter(
-				(row) => showcaseItemKey({ kind: row.kind, id: row.id }) !== key,
-			);
+			const key = tileToKey(tile);
+			const nextTiles = tiles.filter((row) => tileToKey(row) !== key);
 			await persistTiles(nextTiles);
 		},
 		[persistTiles, tiles],
@@ -300,7 +437,41 @@ export function ProfileShowcaseStrip({
 				Showcase
 			</p>
 
-			{/* No overflow-hidden — avatar-group hover lift/scale must paint above the rail. */}
+			{tvScopePick ? (
+				<div
+					className="fixed inset-0 z-[250] flex items-end justify-center bg-background/80 p-4 sm:items-center"
+					role="dialog"
+					aria-modal="true"
+					aria-label="Pick diary scope for showcase"
+				>
+					<div className="w-full max-w-sm rounded-[1.75rem] bg-popover p-3 shadow-mobbin-xl ring-1 ring-foreground/10">
+						<p className="px-2 pb-2 text-center font-medium text-muted-foreground text-xs">
+							Which part of {tvScopePick.hit.title}?
+						</p>
+						<ul className="flex flex-col gap-1">
+							{tvScopePick.options.map((option) => (
+								<li key={showcaseItemKey(option.item)}>
+									<button
+										type="button"
+										className="flex w-full items-center rounded-2xl bg-background px-4 py-3 text-left text-foreground text-sm transition-transform duration-150 active:scale-[0.98] motion-reduce:transition-none [@media(hover:hover)]:hover:bg-card"
+										onClick={() => void handlePickTvScope(option)}
+									>
+										{option.label}
+									</button>
+								</li>
+							))}
+						</ul>
+						<button
+							type="button"
+							className="mt-2 w-full rounded-2xl px-4 py-2 text-center text-muted-foreground text-sm"
+							onClick={() => setTvScopePick(null)}
+						>
+							Cancel
+						</button>
+					</div>
+				</div>
+			) : null}
+
 			<div className="relative min-w-0">
 				<div
 					aria-hidden
@@ -322,7 +493,6 @@ export function ProfileShowcaseStrip({
 					className={cn(
 						"t-avatar-group",
 						HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
-						// Inset padding keeps comb lift + scale inside the x-scrollport.
 						"items-start justify-center gap-3 px-2 pt-3 pb-1",
 					)}
 				>
@@ -376,7 +546,7 @@ export function ProfileShowcaseStrip({
 							})
 						: tiles.map((tile, index) => (
 								<ShowcaseTileButton
-									key={showcaseItemKey({ kind: tile.kind, id: tile.id })}
+									key={tileToKey(tile)}
 									tile={tile}
 									isMe={false}
 									saving={false}

@@ -76,6 +76,23 @@ export function tasteArchetypeLabel(archetype: TasteArchetype): string {
 	}
 }
 
+/** Whether the patron has a confident, patron-facing taste category for profile pills. */
+export function shouldShowTasteArchetypePill(
+	tasteSignature: TasteSignatureJson | null,
+): tasteSignature is TasteSignatureJson & { archetype: TasteArchetype } {
+	const archetype = tasteSignature?.archetype;
+	const confidence = tasteSignature?.confidence ?? "low";
+	if (archetype == null) return false;
+	if (confidence === "low") return false;
+	return (
+		archetype !== "forming" &&
+		archetype !== "contrarian" &&
+		archetype !== "generous" &&
+		archetype !== "selective" &&
+		archetype !== "curator"
+	);
+}
+
 export interface TasteSignatureJson {
 	archetype?: TasteArchetype;
 	headlineSelf?: string;

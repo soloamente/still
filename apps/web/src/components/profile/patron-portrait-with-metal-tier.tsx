@@ -135,7 +135,7 @@ export function PatronPortraitWithMetalTier({
 			<PatronOnlineDot
 				presenceState={resolvedPresenceState}
 				label={dotLabel}
-				size={resolvePatronOnlineDotSize(fillsParent ? 96 : width)}
+				size={resolvePatronOnlineDotSize(width)}
 			/>
 		</span>
 	);

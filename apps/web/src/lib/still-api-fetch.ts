@@ -7,6 +7,7 @@ import type {
 	MembersLeaderboardSort,
 } from "@/lib/members-leaderboard-types";
 import { stillApiOrigin } from "@/lib/still-api-origin";
+import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import type {
 	TvEpisodeSummary,
 	TvProgressMode,
@@ -715,6 +716,23 @@ export async function fetchMySavedQuotes(
 	return finishStillApiPagedGet(response);
 }
 
+/** TMDb title wordmark path — used by the home taste hero when spotlight swaps. */
+export async function fetchMovieTitleLogoPath(
+	movieId: number,
+	init?: Pick<RequestInit, "signal">,
+): Promise<string | null> {
+	const url = new URL(`/api/movies/${movieId}/title-logo`, stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	const data = (await response.json()) as { logoPath?: string | null };
+	return typeof data.logoPath === "string" && data.logoPath.length > 0
+		? data.logoPath
+		: null;
+}
+
 /** Current-user diary rows for one TMDb title — canonical for “already logged?” on movie pages. */
 export async function fetchMyLogsForMovie(
 	movieId: number,
@@ -981,6 +999,13 @@ export async function postWatchlistAdd(
 		body: JSON.stringify(payload),
 	});
 	const data = await parseJsonBlob(response);
+	if (
+		response.ok &&
+		"movieId" in payload &&
+		typeof payload.movieId === "number"
+	) {
+		dispatchTasteTitleConsumed({ tmdbId: payload.movieId });
+	}
 	return {
 		ok: response.ok,
 		status: response.status,
@@ -1603,6 +1628,7 @@ export async function fetchCommunityLeaderboard(
 	url.searchParams.set("tz", tz);
 	const response = await fetch(url, {
 		credentials: "include",
+		cache: "no-store",
 		signal: init?.signal,
 	});
 	if (!response.ok) return null;

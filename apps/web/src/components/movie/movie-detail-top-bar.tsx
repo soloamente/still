@@ -4,7 +4,6 @@ import IconShareIn from "@still/ui/icons/share-in";
 import IconShareOut from "@still/ui/icons/share-out";
 import { cn } from "@still/ui/lib/utils";
 import { Check } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,6 +15,7 @@ import {
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
 import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
+import { DetailViewSegmentToolbar } from "@/components/ui/detail-view-segment-toolbar";
 import {
 	buildMovieDetailViewHref,
 	type MovieDetailListingKind,
@@ -34,7 +34,7 @@ const DETAIL_VIEW_TABS: readonly {
 
 /**
  * Film/TV detail header — dynamic back pill, four tabs on the raised `bg-card` track
- * with a sliding `layoutId` pill (same chip language as pre–Task 6 detail), and share.
+ * with a measured sliding pill (same chip language as `/home`), and share.
  */
 export function MovieDetailTopBar({
 	movieId,
@@ -56,7 +56,6 @@ export function MovieDetailTopBar({
 	const basePath = detailBasePath ?? `/movies/${movieId}`;
 	const lobbyNav = useLobbyNavigationOptional();
 
-	const reduceMotion = useReducedMotion();
 	const pathname = usePathname();
 	const back = useMovieDetailReturn();
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -71,14 +70,6 @@ export function MovieDetailTopBar({
 		window.addEventListener("scroll", onScroll, { passive: true });
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
-
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
 
 	const pill = cn(
 		"inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 font-medium text-sm transition-colors duration-200 ease-out",
@@ -119,59 +110,41 @@ export function MovieDetailTopBar({
 		}
 	}
 
-	const segLink = (active: boolean) =>
-		cn(
-			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-4",
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
-
-	function ViewTab({
-		tabView,
+	function renderViewTab({
+		id: tabView,
 		label,
+		active,
+		className,
+		"data-segment-id": dataSegmentId,
 	}: {
-		tabView: MovieDetailView;
+		id: MovieDetailView;
 		label: string;
+		active: boolean;
+		className: string;
+		"data-segment-id": string;
 	}) {
-		const active = view === tabView;
-		const className = segLink(active);
-
 		if (lobbyNav) {
 			return (
 				<button
 					type="button"
+					data-segment-id={dataSegmentId}
 					className={className}
 					aria-current={active ? "page" : undefined}
 					onClick={() => handleViewSelect(tabView)}
 				>
-					{active ? (
-						<motion.span
-							layoutId="movie-detail-view-pill"
-							className="absolute inset-0 z-0 rounded-full bg-background"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">{label}</span>
+					{label}
 				</button>
 			);
 		}
 
-		const href = buildViewHref(tabView);
 		return (
 			<Link
-				href={href}
+				href={buildViewHref(tabView)}
+				data-segment-id={dataSegmentId}
 				className={className}
 				aria-current={active ? "page" : undefined}
 			>
-				{active ? (
-					<motion.span
-						layoutId="movie-detail-view-pill"
-						className="absolute inset-0 z-0 rounded-full bg-background"
-						transition={pillTransition}
-					/>
-				) : null}
-				<span className="relative z-10">{label}</span>
+				{label}
 			</Link>
 		);
 	}
@@ -195,14 +168,12 @@ export function MovieDetailTopBar({
 						<span className="hidden truncate sm:inline">{back.label}</span>
 					</DetailMotionLink>
 				</div>
-				<nav
+				<DetailViewSegmentToolbar
 					aria-label="Title detail"
-					className="flex max-w-[min(100vw-7.5rem,22rem)] shrink-0 gap-1 overflow-x-auto rounded-full bg-card p-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:max-w-none [&::-webkit-scrollbar]:hidden"
-				>
-					{DETAIL_VIEW_TABS.map((tab) => (
-						<ViewTab key={tab.id} tabView={tab.id} label={tab.label} />
-					))}
-				</nav>
+					value={view}
+					tabs={DETAIL_VIEW_TABS}
+					renderTab={renderViewTab}
+				/>
 				<div className="flex min-w-0 items-center justify-end gap-2">
 					<DetailMotionButton
 						type="button"

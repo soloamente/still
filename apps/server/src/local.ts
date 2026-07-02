@@ -26,6 +26,11 @@ app.use(wsRoute);
 
 app.listen(3000, () => {
 	console.log("Server listening on http://localhost:3000");
+	if (process.env.NODE_ENV === "development") {
+		console.info(
+			"[boot] Profile banners/avatars use R2 keys — local dev reads via wrangler (slow first load) or R2_ACCESS_KEY_ID in apps/server/.env",
+		);
+	}
 });
 
 // ---------------------------------------------------------------------------

@@ -50,7 +50,18 @@ export type TasteMatchMovie = {
 	tmdbId: number;
 	title: string;
 	posterPath: string | null;
+	backdropPath?: string | null;
 	year: number | null;
+	/** Patron diary aggregate — display scale 0–10. */
+	communityAverage?: number | null;
+	communityRatingsCount?: number;
+	/** YouTube/Vimeo embed key when TMDb lists a trailer. */
+	trailerKey?: string | null;
+	trailerSite?: string | null;
+	/** Keyword-derived festival mark id for the home hero badge. */
+	festivalIcon?: string | null;
+	/** TMDb `images.logos` title treatment for the home hero lockup. */
+	logoPath?: string | null;
 };
 
 export type TasteMatchedDiscoveryPayload = {
@@ -58,6 +69,8 @@ export type TasteMatchedDiscoveryPayload = {
 	/** Short phrase for rail title, e.g. "drama and thriller". */
 	genrePhrase: string | null;
 	movies: TasteMatchMovie[];
+	/** Watchlist ∪ diary ids — client reconciliation for the taste hero. */
+	consumedTmdbIds?: number[];
 };
 
 export type TasteMatchServeMeta = {
@@ -416,8 +429,20 @@ export async function buildTasteMatchedDiscoveryWithMeta(
 	userId: string,
 ): Promise<TasteMatchedDiscoveryResult> {
 	const result = await scoreTasteMatchCandidatesForUser(userId);
+	let payload = payloadFromScoredResult(result);
+	if (!payload.coldStart && payload.movies.length > 0) {
+		const { enrichTasteMatchMovies } = await import("./taste-match-enrichment");
+		payload = {
+			...payload,
+			movies: await enrichTasteMatchMovies(payload.movies),
+		};
+	}
+	const { finalizeTasteMatchedPayload } = await import(
+		"./taste-consumed-movies"
+	);
+	payload = await finalizeTasteMatchedPayload(userId, payload);
 	return {
-		payload: payloadFromScoredResult(result),
+		payload,
 		meta: result.meta,
 	};
 }

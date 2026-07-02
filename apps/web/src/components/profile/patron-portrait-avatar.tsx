@@ -91,7 +91,7 @@ export function PatronPortraitAvatar({
 					fill
 					unoptimized
 					className={portraitClassName}
-					sizes="96px"
+					sizes={`${width}px`}
 				/>
 			);
 		}

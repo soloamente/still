@@ -58,8 +58,8 @@ export interface ProfilePatronLobbyShellProps {
 		tv: number;
 		likedMovies: number;
 		likedTv: number;
+		reviews: number;
 	};
-	recentReviews: ProfileReviewRow[];
 	lists: ListBoardRow[];
 	socialTabs: readonly ProfileSocialTabId[];
 	earnedBadges: ProfileEarnedBadge[];
@@ -69,7 +69,6 @@ export interface ProfilePatronLobbyShellProps {
 	pinnedReviews?: ProfileReviewRow[];
 	showcaseItems?: ProfileShowcaseTile[];
 	savedQuotesPreview?: SavedQuoteLobbyItem[];
-	savedQuotesHasMore?: boolean;
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	curatorHeadline?: string | null;
@@ -101,7 +100,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		totalResults,
 		venueCounts,
 		filmographyCounts,
-		recentReviews,
 		lists,
 		socialTabs,
 		earnedBadges,
@@ -111,7 +109,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		pinnedReviews = [],
 		showcaseItems = [],
 		savedQuotesPreview = [],
-		savedQuotesHasMore = false,
 		canCompareTaste,
 		initialTasteCompareOpen,
 		curatorHeadline,
@@ -212,7 +209,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 					pinnedReviews={pinnedReviews}
 					showcaseItems={showcaseItems}
 					savedQuotesPreview={savedQuotesPreview}
-					savedQuotesHasMore={savedQuotesHasMore}
 					canCompareTaste={canCompareTaste}
 					initialTasteCompareOpen={initialTasteCompareOpen}
 					avatarIsAnimated={avatarIsAnimated}
@@ -248,7 +244,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 						showAllLedgerHref={showAllLedgerHref}
 						lobbyVenue={venue}
 						switchVenueHref={switchVenueHref}
-						reviews={recentReviews}
 						lists={lists}
 						catalogueWaveKey={catalogueWaveKey}
 						monochromePeersOnHover={monochromePeersOnHover}

@@ -1,4 +1,7 @@
-import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
+import {
+	type HomeLeaderboardPeriod,
+	readViewerTimeZone,
+} from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { fetchCommunityLeaderboard } from "@/lib/still-api-fetch";
 
@@ -9,17 +12,18 @@ const HOME_LEADERBOARD_PERIODS: HomeLeaderboardPeriod[] = [
 	"all",
 ];
 
-/** Client fill for rank tabs — all periods prefetched so chips stay instant. */
+/** Client fill for rank tabs — patron IANA `tz` so period windows match local midnight (no UTC flash). */
 export async function fetchHomeLeaderboardsByPeriodClient(
 	kind: "films" | "tv",
 	signal?: AbortSignal,
 ): Promise<Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>> {
+	const tz = readViewerTimeZone();
 	const out: Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>> =
 		{};
 
 	await Promise.all(
 		HOME_LEADERBOARD_PERIODS.map(async (period) => {
-			out[period] = await fetchCommunityLeaderboard(kind, period, "UTC", {
+			out[period] = await fetchCommunityLeaderboard(kind, period, tz, {
 				signal,
 			});
 		}),

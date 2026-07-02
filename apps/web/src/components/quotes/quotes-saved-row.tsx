@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
 import { QuoteAttribution } from "@/components/quote/quote-attribution";
+import { QuotePinToProfileButton } from "@/components/quote/quote-pin-to-profile-button";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import type { ContentVisibility } from "@/components/review/visibility-select";
 import { StillPopoverSelect } from "@/components/ui/still-popover-select";
@@ -141,6 +142,9 @@ export function QuotesSavedRow({
 							) : (
 								<VisibilityChip visibility={item.visibility} />
 							)
+						) : null}
+						{isOwner ? (
+							<QuotePinToProfileButton saveId={item.saveId} variant="compact" />
 						) : null}
 					</div>
 

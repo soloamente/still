@@ -2242,6 +2242,14 @@ html[data-software-gpu] .modal-overlay-scrim {
 	--avatar-falloff: 0.5;
 }
 
+/* Home taste hero — comb lift on the stacked poster picks. */
+.home-taste-poster-stack {
+	--avatar-lift: -6px;
+	--avatar-dur: 320ms;
+	--avatar-scale: 1.06;
+	--avatar-falloff: 0.5;
+}
+
 /* ---------------------------------------------------------------------------
  * transitions.dev — panel reveal (`JournalArticleReveal`).
  * --------------------------------------------------------------------------- */

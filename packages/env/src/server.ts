@@ -77,6 +77,13 @@ const serverEnv = {
 	// Public base URL of the R2 media bucket (review audio), e.g.
 	// https://media.sense.fans. When unset, audio falls back to Vercel Blob.
 	MEDIA_PUBLIC_BASE: optionalUrl(),
+	/** Cloudflare account id — optional; speeds up local R2 image reads via S3 API. */
+	R2_ACCOUNT_ID: optionalNonEmptyString(),
+	/** R2 S3 API credentials — optional; preferred local dev path for profile media. */
+	R2_ACCESS_KEY_ID: optionalNonEmptyString(),
+	R2_SECRET_ACCESS_KEY: optionalNonEmptyString(),
+	/** Private images bucket (default `cue-assets`). */
+	R2_ASSETS_BUCKET: optionalNonEmptyString(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({

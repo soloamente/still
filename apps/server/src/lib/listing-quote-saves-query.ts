@@ -1,7 +1,7 @@
 import type { ContentVisibility } from "@still/db";
 import { db, listingQuote, listingQuoteSave, movie, tv } from "@still/db";
 import type { SQL } from "drizzle-orm";
-import { and, desc, eq, isNotNull } from "drizzle-orm";
+import { and, desc, eq, inArray, isNotNull } from "drizzle-orm";
 
 import { communityOffset, parseCommunityPage } from "./community-page-args";
 import {
@@ -9,6 +9,7 @@ import {
 	parseListingQuoteLimit,
 	toListingQuoteItem,
 } from "./listing-quote";
+import { normalizePinnedQuoteSaveIds } from "./profile-pinned-quotes";
 import { tmdbImg } from "./tmdb";
 
 export type SavedQuoteListingKind = "movie" | "tv";
@@ -207,18 +208,83 @@ export async function fetchMySavedQuotes(args: {
 	});
 }
 
-/** Visitor-safe public saves on a profile — caller must enforce profile access. */
+/** Visitor-safe pinned quotes on a profile — caller must enforce profile access. */
+export async function fetchProfilePinnedQuotes(args: {
+	userId: string;
+	rawSaveIds: unknown;
+	publicOnly: boolean;
+	page?: string;
+	limit?: string;
+	kind?: string;
+}): Promise<SavedQuotesPage> {
+	const saveIds = normalizePinnedQuoteSaveIds(args.rawSaveIds);
+	const page = parseCommunityPage(args.page);
+	const limit = parseListingQuoteLimit(args.limit);
+	if (saveIds.length === 0) {
+		return { items: [], page, limit, hasMore: false };
+	}
+
+	const kind = parseSavedQuotesKind(args.kind);
+	const filters: SQL[] = [
+		eq(listingQuoteSave.userId, args.userId),
+		inArray(listingQuoteSave.id, saveIds),
+	];
+	if (args.publicOnly) {
+		filters.push(eq(listingQuoteSave.visibility, "public"));
+	}
+	if (kind === "movie") {
+		filters.push(isNotNull(listingQuote.movieId));
+	} else if (kind === "tv") {
+		filters.push(isNotNull(listingQuote.tvId));
+	}
+
+	const rows = await db
+		.select({
+			save: listingQuoteSave,
+			quote: listingQuote,
+			movieTitle: movie.title,
+			tvTitle: tv.title,
+			moviePosterPath: movie.posterPath,
+			tvPosterPath: tv.posterPath,
+			movieYear: movie.year,
+			tvYear: tv.year,
+		})
+		.from(listingQuoteSave)
+		.innerJoin(listingQuote, eq(listingQuoteSave.quoteId, listingQuote.id))
+		.leftJoin(movie, eq(listingQuote.movieId, movie.tmdbId))
+		.leftJoin(tv, eq(listingQuote.tvId, tv.tmdbId))
+		.where(and(...filters));
+
+	const bySaveId = new Map(
+		rows
+			.map((row) => mapSavedQuoteRow(row))
+			.filter((item): item is SavedQuoteLobbyItem => item != null)
+			.map((item) => [item.saveId, item] as const),
+	);
+	const items = saveIds
+		.map((id) => bySaveId.get(id))
+		.filter((item): item is SavedQuoteLobbyItem => item != null);
+
+	const offset = communityOffset(page, limit);
+	const slice = items.slice(offset, offset + limit);
+	const hasMore = offset + limit < items.length;
+
+	return { items: slice, page, limit, hasMore };
+}
+
+/** @deprecated Use fetchProfilePinnedQuotes — profile strip shows pins only. */
 export async function fetchProfilePublicSavedQuotes(args: {
 	userId: string;
 	page?: string;
 	limit?: string;
 	kind?: string;
 }): Promise<SavedQuotesPage> {
-	return fetchSavedQuotesPage({
+	return fetchProfilePinnedQuotes({
 		userId: args.userId,
+		rawSaveIds: [],
+		publicOnly: true,
 		page: args.page,
 		limit: args.limit,
 		kind: args.kind,
-		publicOnly: true,
 	});
 }

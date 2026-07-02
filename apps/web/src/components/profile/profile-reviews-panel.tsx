@@ -63,7 +63,7 @@ function ProfileReviewPoster({
 	);
 }
 
-function ProfileReviewTile({
+export function ProfileReviewTile({
 	row,
 	isMe,
 }: {
