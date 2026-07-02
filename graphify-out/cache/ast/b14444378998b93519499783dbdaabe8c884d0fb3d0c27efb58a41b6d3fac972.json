@@ -1,0 +1,272 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"label": "search-dialog-category-body.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_search_dialog_category_body_categorysearch",
+			"label": "CategorySearch",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L12"
+		},
+		{
+			"id": "home_search_dialog_category_body_cataloggrid",
+			"label": "CatalogGrid()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "home_search_dialog_category_body_searchdialogcategorybody",
+			"label": "SearchDialogCategoryBody()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L60"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_cast_crew_results_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_cast_crew_results_searchdialogcastcrewresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_list_results_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_list_results_searchdialoglistresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_people_results_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_people_results_searchdialogpeopleresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_result_skeletons_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_result_skeletons_searchdialogposterskeletongrid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_movie_poster_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "movie_movie_poster_movieposter",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_search_active_category_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "lib_search_active_category_searchcategory",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_search_category_results_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "lib_use_search_category_results_usesearchcategoryresults",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_category_body_categorysearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_category_body_cataloggrid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_search_dialog_category_body_tsx",
+			"target": "home_search_dialog_category_body_searchdialogcategorybody",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L60",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_search_dialog_category_body_cataloggrid",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_cataloggrid",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_searchdialogcategorybody",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_searchdialogcategorybody",
+			"callee": "emptyHint",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_searchdialogcategorybody",
+			"callee": "emptyHint",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_searchdialogcategorybody",
+			"callee": "emptyHint",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "home_search_dialog_category_body_searchdialogcategorybody",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\search-dialog-category-body.tsx",
+			"source_location": "L145"
+		}
+	]
+}

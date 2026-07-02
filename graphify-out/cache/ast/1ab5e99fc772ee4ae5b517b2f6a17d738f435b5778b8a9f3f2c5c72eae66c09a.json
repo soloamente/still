@@ -1,0 +1,815 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_20_staff_plans_page_md",
+			"label": "2026-06-20-staff-plans-page.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"label": "Staff Plans Page Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_file_map",
+			"label": "File Map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"label": "Task 1: DB schema \u2014 plan tables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_1",
+			"label": "code:ts (// packages/db/src/schema/plan.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_2",
+			"label": "code:ts (export * from \"./plan\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L113"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_3",
+			"label": "code:bash (bun run db:generate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_4",
+			"label": "code:bash (bun run db:push)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L127"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_5",
+			"label": "code:bash (git add packages/db/src/schema/plan.ts packages/db/src/schem)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"label": "Task 2: Seed the plan catalogue",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L142"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_6",
+			"label": "code:ts (// apps/server/src/lib/seed-plan-catalogue.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_7",
+			"label": "code:bash (cd apps/server && bun -e \"import { seedPlanCatalogue } from )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_8",
+			"label": "code:bash (cd apps/server && bun -e \"import { db, planTier, planFeature)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L244"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_9",
+			"label": "code:bash (git add apps/server/src/lib/seed-plan-catalogue.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L252"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_3_add_staffplansroomid_to_realtime_package",
+			"label": "Task 3: Add `staffPlansRoomId` to realtime package",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L259"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_10",
+			"label": "code:ts (/** Staff plans collaboration room \u2014 presence for /staff/pla)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_11",
+			"label": "code:bash (git add packages/realtime/src/room-ids.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L279"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_4_server_route_plan_features_crud",
+			"label": "Task 4: Server route \u2014 plan features CRUD",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L286"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_12",
+			"label": "code:ts (// apps/server/src/routes/plan-features.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L294"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_13",
+			"label": "code:ts (import { planFeaturesRoute } from \"../routes/plan-features\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L462"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_14",
+			"label": "code:bash (git add apps/server/src/routes/plan-features.ts apps/server/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L470"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_5_client_api_helpers",
+			"label": "Task 5: Client API helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L477"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_15",
+			"label": "code:ts (// apps/web/src/lib/staff-plan-features-api.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L484"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_16",
+			"label": "code:bash (git add apps/web/src/lib/staff-plan-features-api.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L570"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_6_zustand_store_for_create_drawer",
+			"label": "Task 6: Zustand store for create drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L577"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_17",
+			"label": "code:ts (// apps/web/src/components/staff/use-plan-feature-drawer.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L584"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_18",
+			"label": "code:bash (git add apps/web/src/components/staff/use-plan-feature-drawe)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L609"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_7_create_feature_drawer",
+			"label": "Task 7: Create feature drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L616"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_19",
+			"label": "code:tsx (// apps/web/src/components/staff/plan-feature-create-drawer.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L623"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_20",
+			"label": "code:bash (git add apps/web/src/components/staff/plan-feature-create-dr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L814"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_8_shared_inline_edit_panel",
+			"label": "Task 8: Shared inline edit panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L821"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_21",
+			"label": "code:tsx (// apps/web/src/components/staff/plan-feature-inline-edit.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L830"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_22",
+			"label": "code:bash (git add apps/web/src/components/staff/plan-feature-inline-ed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1000"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_9_staff_plans_topbar",
+			"label": "Task 9: Staff plans topbar",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1007"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_23",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-plans-topbar.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1014"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_24",
+			"label": "code:bash (git add apps/web/src/components/staff/staff-plans-topbar.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1156"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_10_grid_view",
+			"label": "Task 10: Grid view",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1163"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_25",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-plans-grid-view.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1170"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_26",
+			"label": "code:bash (git add apps/web/src/components/staff/staff-plans-grid-view.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1294"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_11_details_view",
+			"label": "Task 11: Details view",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1301"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_27",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-plans-details-view.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1308"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_28",
+			"label": "code:bash (git add apps/web/src/components/staff/staff-plans-details-vi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1432"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_12_shell_page",
+			"label": "Task 12: Shell + page",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1439"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_29",
+			"label": "code:tsx (// apps/web/src/components/staff/staff-plans-shell.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1447"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_30",
+			"label": "code:tsx (// apps/web/src/app/(app)/staff/plans/page.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1536"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_31",
+			"label": "code:bash (git add apps/web/src/components/staff/staff-plans-shell.tsx )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1568"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_task_13_add_plans_link_to_staff_page",
+			"label": "Task 13: Add Plans link to staff page",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1575"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_32",
+			"label": "code:tsx (import Link from \"next/link\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1584"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_33",
+			"label": "code:tsx (<div className=\"mb-6 flex gap-3\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1590"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_codeblock_34",
+			"label": "code:bash (git add \"apps/web/src/app/(app)/staff/page.tsx\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1603"
+		},
+		{
+			"id": "plans_2026_06_20_staff_plans_page_self_review",
+			"label": "Self-Review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1610"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_20_staff_plans_page_md",
+			"target": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L113",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L127",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_1_db_schema_plan_tables",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L142",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L244",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_2_seed_the_plan_catalogue",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_3_add_staffplansroomid_to_realtime_package",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L259",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_3_add_staffplansroomid_to_realtime_package",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_3_add_staffplansroomid_to_realtime_package",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L279",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_4_server_route_plan_features_crud",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L286",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_4_server_route_plan_features_crud",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L294",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_4_server_route_plan_features_crud",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L462",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_4_server_route_plan_features_crud",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L470",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_5_client_api_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L477",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_5_client_api_helpers",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L484",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_5_client_api_helpers",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L570",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_6_zustand_store_for_create_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L577",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_6_zustand_store_for_create_drawer",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L584",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_6_zustand_store_for_create_drawer",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L609",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_7_create_feature_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L616",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_7_create_feature_drawer",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L623",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_7_create_feature_drawer",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L814",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_8_shared_inline_edit_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L821",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_8_shared_inline_edit_panel",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L830",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_8_shared_inline_edit_panel",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1000",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_9_staff_plans_topbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1007",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_9_staff_plans_topbar",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1014",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_9_staff_plans_topbar",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1156",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_10_grid_view",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1163",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_10_grid_view",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1170",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_10_grid_view",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1294",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_11_details_view",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1301",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_11_details_view",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1308",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_11_details_view",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1432",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_12_shell_page",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1439",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_12_shell_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1447",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_12_shell_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1536",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_12_shell_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1568",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_task_13_add_plans_link_to_staff_page",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1575",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_13_add_plans_link_to_staff_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1584",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_13_add_plans_link_to_staff_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1590",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_task_13_add_plans_link_to_staff_page",
+			"target": "plans_2026_06_20_staff_plans_page_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1603",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_20_staff_plans_page_staff_plans_page_implementation_plan",
+			"target": "plans_2026_06_20_staff_plans_page_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-20-staff-plans-page.md",
+			"source_location": "L1610",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

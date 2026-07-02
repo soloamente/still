@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_11_avatar_group_hover_md",
+			"label": "11-avatar-group-hover.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"label": "Avatar group hover",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_codeblock_1",
+			"label": "code:html (<!-- Apply .t-avatar to each item in your group (avatar,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_codeblock_3",
+			"label": "code:css (/* Hover-spring transition only \u2014 bring your own avatar/chip)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L81"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_codeblock_4",
+			"label": "code:js (// Distance-falloff lift with direction-aware easing. The tr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_react_form",
+			"label": "React form",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_codeblock_5",
+			"label": "code:jsx (import { useRef } from \"react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "transitions_dev_11_avatar_group_hover_why_the_timing_function_is_set_inline_before_the_variable_writes",
+			"label": "Why the timing-function is set inline before the variable writes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L197"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_11_avatar_group_hover_md",
+			"target": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"target": "transitions_dev_11_avatar_group_hover_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"target": "transitions_dev_11_avatar_group_hover_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_html_usage",
+			"target": "transitions_dev_11_avatar_group_hover_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"target": "transitions_dev_11_avatar_group_hover_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_tunable_variables",
+			"target": "transitions_dev_11_avatar_group_hover_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"target": "transitions_dev_11_avatar_group_hover_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_css",
+			"target": "transitions_dev_11_avatar_group_hover_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_avatar_group_hover",
+			"target": "transitions_dev_11_avatar_group_hover_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_javascript_orchestration",
+			"target": "transitions_dev_11_avatar_group_hover_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_javascript_orchestration",
+			"target": "transitions_dev_11_avatar_group_hover_react_form",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_react_form",
+			"target": "transitions_dev_11_avatar_group_hover_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_11_avatar_group_hover_javascript_orchestration",
+			"target": "transitions_dev_11_avatar_group_hover_why_the_timing_function_is_set_inline_before_the_variable_writes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\11-avatar-group-hover.md",
+			"source_location": "L197",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

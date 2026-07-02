@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_30_search_category_pills_autoswitch_design_md",
+			"label": "2026-06-30-search-category-pills-autoswitch-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"label": "Search: category pills + auto-switch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_decisions_human",
+			"label": "Decisions (human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L17"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_architecture_isolated_units",
+			"label": "Architecture (isolated units)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_codeblock_1",
+			"label": "code:ts (type SearchCategory = \"films\" | \"tv\" | \"castcrew\" | \"lists\" )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_auto_switch_state_machine",
+			"label": "Auto-switch state machine",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_data_flow",
+			"label": "Data flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L62"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_codeblock_2",
+			"label": "code:block2 (type free-text (no tags))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_error_handling_edge_cases",
+			"label": "Error handling / edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L77"
+		},
+		{
+			"id": "specs_2026_06_30_search_category_pills_autoswitch_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L85"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_30_search_category_pills_autoswitch_design_md",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_context",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_decisions_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_architecture_isolated_units",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_architecture_isolated_units",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_auto_switch_state_machine",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_data_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_data_flow",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_error_handling_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_search_category_pills_autoswitch_design_search_category_pills_auto_switch",
+			"target": "specs_2026_06_30_search_category_pills_autoswitch_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-search-category-pills-autoswitch-design.md",
+			"source_location": "L85",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,126 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"label": "staff-plans-page-header.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_staff_plans_page_header_staffplanspageheader",
+			"label": "StaffPlansPageHeader()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_share_in_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionlink",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"target": "staff_staff_plans_page_header_staffplanspageheader",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_staff_plans_page_header_staffplanspageheader",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L11"
+		},
+		{
+			"caller_nid": "staff_staff_plans_page_header_staffplanspageheader",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "staff_staff_plans_page_header_staffplanspageheader",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "staff_staff_plans_page_header_staffplanspageheader",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "staff_staff_plans_page_header_staffplanspageheader",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-page-header.tsx",
+			"source_location": "L45"
+		}
+	]
+}

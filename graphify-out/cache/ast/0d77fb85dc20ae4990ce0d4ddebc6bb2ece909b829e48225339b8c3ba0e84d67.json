@@ -1,0 +1,45 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_realtime_src_constant_time_ts",
+			"label": "constant-time.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\constant-time.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_constant_time_constanttimeequal",
+			"label": "constantTimeEqual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\constant-time.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_constant_time_ts",
+			"target": "src_constant_time_constanttimeequal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\constant-time.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_constant_time_constanttimeequal",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\constant-time.ts",
+			"source_location": "L8"
+		},
+		{
+			"caller_nid": "src_constant_time_constanttimeequal",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\constant-time.ts",
+			"source_location": "L9"
+		}
+	]
+}

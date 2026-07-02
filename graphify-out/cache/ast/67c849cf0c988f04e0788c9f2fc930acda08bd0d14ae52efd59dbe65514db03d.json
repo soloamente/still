@@ -1,0 +1,134 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"label": "home-leaderboard-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_home_leaderboard_types_leaderboardkind",
+			"label": "LeaderboardKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_home_leaderboard_types_leaderboardentry",
+			"label": "LeaderboardEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_home_leaderboard_types_leaderboardpayload",
+			"label": "LeaderboardPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L17"
+		},
+		{
+			"id": "lib_home_leaderboard_types_leaderboardlogitem",
+			"label": "LeaderboardLogItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_home_leaderboard_types_leaderboardlogspayload",
+			"label": "LeaderboardLogsPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_period_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_period_homeleaderboardperiod",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_types_leaderboardkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_types_leaderboardentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_types_leaderboardpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_types_leaderboardlogitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_types_ts",
+			"target": "lib_home_leaderboard_types_leaderboardlogspayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\home-leaderboard-types.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,105 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"label": "home-lobby-taste-trailer-background.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "home_home_lobby_taste_trailer_background_homelobbytastetrailerbackground",
+			"label": "HomeLobbyTasteTrailerBackground()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_home_home_taste_hero_trailer_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "home_home_taste_hero_trailer_context_usehometasteherotrailer",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_taste_hero_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "lib_home_taste_hero_layout_home_taste_hero_band_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_home_home_lobby_taste_trailer_background_tsx",
+			"target": "home_home_lobby_taste_trailer_background_homelobbytastetrailerbackground",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "home_home_lobby_taste_trailer_background_homelobbytastetrailerbackground",
+			"callee": "useHomeTasteHeroTrailer",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "home_home_lobby_taste_trailer_background_homelobbytastetrailerbackground",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\home\\home-lobby-taste-trailer-background.tsx",
+			"source_location": "L18"
+		}
+	]
+}

@@ -1,0 +1,317 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"label": "activity-signature.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_activity_signature_activitysignatureday",
+			"label": "ActivitySignatureDay",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_activity_signature_activitysignatureweek",
+			"label": "ActivitySignatureWeek",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "lib_activity_signature_activitysignaturepayload",
+			"label": "ActivitySignaturePayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L14"
+		},
+		{
+			"id": "lib_activity_signature_activitydatekeyfromunknown",
+			"label": "activityDateKeyFromUnknown()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_activity_signature_coerceactivitysignaturedays",
+			"label": "coerceActivitySignatureDays()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L37"
+		},
+		{
+			"id": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"label": "normalizeActivitySignaturePayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_activity_signature_activity_signature_level_class",
+			"label": "ACTIVITY_SIGNATURE_LEVEL_CLASS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L69"
+		},
+		{
+			"id": "lib_activity_signature_activity_signature_row_labels",
+			"label": "ACTIVITY_SIGNATURE_ROW_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L78"
+		},
+		{
+			"id": "lib_activity_signature_activity_signature_weekday_row_keys",
+			"label": "ACTIVITY_SIGNATURE_WEEKDAY_ROW_KEYS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L89"
+		},
+		{
+			"id": "lib_activity_signature_formatactivitysignaturetooltip",
+			"label": "formatActivitySignatureTooltip()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L99"
+		},
+		{
+			"id": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"label": "resolveActivitySignatureTooltipPlacement()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L121"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activitysignatureday",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activitysignatureweek",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activitysignaturepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activitydatekeyfromunknown",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_coerceactivitysignaturedays",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activity_signature_level_class",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activity_signature_row_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L78",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_activity_signature_weekday_row_keys",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_formatactivitysignaturetooltip",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"target": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L121",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "isNaN",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_activity_signature_activitydatekeyfromunknown",
+			"callee": "toISOString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_activity_signature_coerceactivitysignaturedays",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_activity_signature_coerceactivitysignaturedays",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_activity_signature_formatactivitysignaturetooltip",
+			"callee": "toLocaleDateString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature.ts",
+			"source_location": "L151"
+		}
+	]
+}

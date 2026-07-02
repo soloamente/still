@@ -1,0 +1,367 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"label": "staff-plans-shell.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_staff_plans_shell_staffplansshell",
+			"label": "StaffPlansShell()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_skeleton_shimmer_reveal_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "ui_skeleton_shimmer_reveal_skeletonshimmerreveal",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "hooks_use_listing_presence_uselistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_lobby_catalogue_layout_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "lib_home_lobby_catalogue_layout_home_lobby_catalogue_section_base_classname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_staff_plan_features_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "lib_staff_plan_features_api_fetchplancatalogue",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "lib_staff_plan_features_api_planfeature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "lib_staff_plan_features_api_plantier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_create_drawer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_plan_feature_create_drawer_planfeaturecreatedrawerroot",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_details_view_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_details_view_staffplansdetailsview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_grid_view_staffplansgridview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_loading_skeleton_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_loading_skeleton_staffplansloadingskeleton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_page_header_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_page_header_staffplanspageheader",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_topbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_topbar_plansview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_topbar_staffplanstopbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_shell_tsx",
+			"target": "staff_staff_plans_shell_staffplansshell",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L25"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useListingPresence",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "staffPlansRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "staff_staff_plans_shell_staffplansshell",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-shell.tsx",
+			"source_location": "L51"
+		}
+	]
+}

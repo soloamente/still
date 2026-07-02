@@ -1,0 +1,99 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"label": "plan-feature-row-expand-panel.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"label": "PlanFeatureRowExpandPanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"target": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-feature-row-expand-panel.tsx",
+			"source_location": "L37"
+		}
+	]
+}

@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_25_cloudflare_server_1d_cutover_md",
+			"label": "2026-06-25-cloudflare-server-1d-cutover.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"label": "Phase 1D \u2014 Production Cutover Runbook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_0_prerequisites_verify_before_starting",
+			"label": "Step 0 \u2014 Prerequisites (verify BEFORE starting)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_1_provision_hyperdrive_neon",
+			"label": "Step 1 \u2014 Provision Hyperdrive (\u2192 Neon)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_1",
+			"label": "code:bash (cd apps/server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_2_provision_r2_buckets",
+			"label": "Step 2 \u2014 Provision R2 buckets",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_2",
+			"label": "code:bash (wrangler r2 bucket create cue-assets)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_3",
+			"label": "code:bash (wrangler r2 bucket custom-domain add cue-media --domain medi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_3_set_worker_secrets_vars",
+			"label": "Step 3 \u2014 Set Worker secrets + vars",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_4",
+			"label": "code:bash (wrangler secret put DATABASE_URL            # Neon HTTP url )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_4_deploy_the_worker_no_traffic_yet",
+			"label": "Step 4 \u2014 Deploy the Worker (no traffic yet)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_5",
+			"label": "code:bash (cd apps/server && wrangler deploy)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_6",
+			"label": "code:bash (BASE=https://cue-server.<acct>.workers.dev)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_5_bind_api_sense_fans_full_smoke",
+			"label": "Step 5 \u2014 Bind `api.sense.fans` + full smoke",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_7",
+			"label": "code:jsonc (\"routes\": [{ \"pattern\": \"api.sense.fans\", \"custom_domain\": t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_8",
+			"label": "code:bash (BASE=https://api.sense.fans)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L115"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_6_migrate_blobs_then_flip_origins",
+			"label": "Step 6 \u2014 Migrate blobs, then flip origins",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_9",
+			"label": "code:bash (BASE=https://api.sense.fans)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_step_7_retire_the_vercel_server_after_a_soak",
+			"label": "Step 7 \u2014 Retire the Vercel server (after a soak)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_what_this_leaves_for_later_not_1d",
+			"label": "What this leaves for later (not 1D)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "plans_2026_06_25_cloudflare_server_1d_cutover_definition_of_done_phase_1",
+			"label": "Definition of done (Phase 1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L177"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_25_cloudflare_server_1d_cutover_md",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_0_prerequisites_verify_before_starting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_1_provision_hyperdrive_neon",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_1_provision_hyperdrive_neon",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_2_provision_r2_buckets",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_2_provision_r2_buckets",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_2_provision_r2_buckets",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_3_set_worker_secrets_vars",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_3_set_worker_secrets_vars",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_4_deploy_the_worker_no_traffic_yet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_4_deploy_the_worker_no_traffic_yet",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_4_deploy_the_worker_no_traffic_yet",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_5_bind_api_sense_fans_full_smoke",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_5_bind_api_sense_fans_full_smoke",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_5_bind_api_sense_fans_full_smoke",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L115",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_6_migrate_blobs_then_flip_origins",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_step_6_migrate_blobs_then_flip_origins",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_step_7_retire_the_vercel_server_after_a_soak",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_what_this_leaves_for_later_not_1d",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_25_cloudflare_server_1d_cutover_phase_1d_production_cutover_runbook",
+			"target": "plans_2026_06_25_cloudflare_server_1d_cutover_definition_of_done_phase_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-25-cloudflare-server-1d-cutover.md",
+			"source_location": "L177",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

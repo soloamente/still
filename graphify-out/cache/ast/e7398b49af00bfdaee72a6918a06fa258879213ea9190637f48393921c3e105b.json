@@ -1,0 +1,54 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_taste_title_consumed_events_ts",
+			"label": "taste-title-consumed-events.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_taste_title_consumed_events_tastetitleconsumeddetail",
+			"label": "TasteTitleConsumedDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "lib_taste_title_consumed_events_dispatchtastetitleconsumed",
+			"label": "dispatchTasteTitleConsumed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_taste_title_consumed_events_ts",
+			"target": "lib_taste_title_consumed_events_tastetitleconsumeddetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_taste_title_consumed_events_ts",
+			"target": "lib_taste_title_consumed_events_dispatchtastetitleconsumed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_taste_title_consumed_events_dispatchtastetitleconsumed",
+			"callee": "dispatchEvent",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\taste-title-consumed-events.ts",
+			"source_location": "L11"
+		}
+	]
+}

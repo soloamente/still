@@ -1,0 +1,87 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_use_plan_feature_drawer_ts",
+			"label": "use-plan-feature-drawer.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_use_plan_feature_drawer_planfeaturedrawerstore",
+			"label": "PlanFeatureDrawerStore",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "staff_use_plan_feature_drawer_useplanfeaturedrawer",
+			"label": "usePlanFeatureDrawer",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "staff_use_plan_feature_drawer_openplanfeaturedrawer",
+			"label": "openPlanFeatureDrawer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L17"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_use_plan_feature_drawer_ts",
+			"target": "zustand",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_use_plan_feature_drawer_ts",
+			"target": "staff_use_plan_feature_drawer_planfeaturedrawerstore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_use_plan_feature_drawer_ts",
+			"target": "staff_use_plan_feature_drawer_useplanfeaturedrawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_use_plan_feature_drawer_ts",
+			"target": "staff_use_plan_feature_drawer_openplanfeaturedrawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_use_plan_feature_drawer_openplanfeaturedrawer",
+			"callee": "open",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "staff_use_plan_feature_drawer_openplanfeaturedrawer",
+			"callee": "getState",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\use-plan-feature-drawer.ts",
+			"source_location": "L18"
+		}
+	]
+}

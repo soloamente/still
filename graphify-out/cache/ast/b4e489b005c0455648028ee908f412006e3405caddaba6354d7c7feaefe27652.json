@@ -1,0 +1,157 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"label": "crop-image.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_crop_image_cropareapixels",
+			"label": "CropAreaPixels",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_crop_image_size",
+			"label": "Size",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "lib_crop_image_computeoutputsize",
+			"label": "computeOutputSize()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L15"
+		},
+		{
+			"id": "lib_crop_image_loadimage",
+			"label": "loadImage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L24"
+		},
+		{
+			"id": "lib_crop_image_cropimagetofile",
+			"label": "cropImageToFile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L38"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"target": "lib_crop_image_cropareapixels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"target": "lib_crop_image_size",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"target": "lib_crop_image_computeoutputsize",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"target": "lib_crop_image_loadimage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_crop_image_ts",
+			"target": "lib_crop_image_cropimagetofile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_crop_image_cropimagetofile",
+			"target": "lib_crop_image_loadimage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_crop_image_cropimagetofile",
+			"target": "lib_crop_image_computeoutputsize",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L49",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_crop_image_computeoutputsize",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "lib_crop_image_computeoutputsize",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_crop_image_computeoutputsize",
+			"callee": "round",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_crop_image_cropimagetofile",
+			"callee": "createElement",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_crop_image_cropimagetofile",
+			"callee": "getContext",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "lib_crop_image_cropimagetofile",
+			"callee": "drawImage",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\crop-image.ts",
+			"source_location": "L60"
+		}
+	]
+}

@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_person_page_redesign_md",
+			"label": "2026-06-30-person-page-redesign.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"label": "Person page redesign Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_task_1_sortfilmographybyyeardesc_helper_tests",
+			"label": "Task 1: `sortFilmographyByYearDesc` helper + tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_1",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_2",
+			"label": "code:ts (/**)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_3",
+			"label": "code:bash (git add apps/web/src/lib/person-filmography.ts apps/web/src/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L125"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_task_2_personpagebackpill_client_component",
+			"label": "Task 2: `PersonPageBackPill` client component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_4",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L141"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_5",
+			"label": "code:bash (git add apps/web/src/components/people/person-page-back-pill)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L180"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_task_3_rewrite_people_id_page_tsx",
+			"label": "Task 3: Rewrite `/people/[id]/page.tsx`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_6",
+			"label": "code:tsx (import { Calendar, Clapperboard } from \"lucide-react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_codeblock_7",
+			"label": "code:bash (git add \"apps/web/src/app/(app)/people/[id]/page.tsx\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L409"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_task_4_verification",
+			"label": "Task 4: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L416"
+		},
+		{
+			"id": "plans_2026_06_30_person_page_redesign_self_review_notes",
+			"label": "Self-Review Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L443"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_person_page_redesign_md",
+			"target": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_task_1_sortfilmographybyyeardesc_helper_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_1_sortfilmographybyyeardesc_helper_tests",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_1_sortfilmographybyyeardesc_helper_tests",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_1_sortfilmographybyyeardesc_helper_tests",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_task_2_personpagebackpill_client_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_2_personpagebackpill_client_component",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L141",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_2_personpagebackpill_client_component",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_task_3_rewrite_people_id_page_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_3_rewrite_people_id_page_tsx",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_task_3_rewrite_people_id_page_tsx",
+			"target": "plans_2026_06_30_person_page_redesign_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L409",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_task_4_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L416",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_person_page_redesign_person_page_redesign_implementation_plan",
+			"target": "plans_2026_06_30_person_page_redesign_self_review_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-person-page-redesign.md",
+			"source_location": "L443",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

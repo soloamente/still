@@ -1,0 +1,559 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_patron_feedback_design_md",
+			"label": "2026-07-02-patron-feedback-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"label": "Sense \u2014 Patron Feedback Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_brainstorm_decisions_locked",
+			"label": "Brainstorm decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_goals",
+			"label": "Goals",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_non_goals_v1",
+			"label": "Non-goals (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_approach_comparison_chosen_a",
+			"label": "Approach comparison (chosen: #A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L55"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_data_model",
+			"label": "Data model",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_patron_feedback_ticket",
+			"label": "`patron_feedback` (ticket)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_patron_feedback_reply_patron_visible",
+			"label": "`patron_feedback_reply` (patron-visible)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L84"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_patron_feedback_staff_note_internal_only",
+			"label": "`patron_feedback_staff_note` (internal only)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L96"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_permissions",
+			"label": "Permissions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_codeblock_1",
+			"label": "code:ts (feedback: [\"read\", \"reply\"])",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_api",
+			"label": "API",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_patron_api_feedback",
+			"label": "Patron (`/api/feedback`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_staff_api_staff_feedback",
+			"label": "Staff (`/api/staff/feedback`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_notifications",
+			"label": "Notifications",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_kind_feedback_replied",
+			"label": "Kind: `feedback.replied`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L165"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_deep_link",
+			"label": "Deep link",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L185"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_patron_ui",
+			"label": "Patron UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L196"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_account_menu_app_user_account_menu_tsx",
+			"label": "Account menu (`app-user-account-menu.tsx`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_feedbackcomposedialog",
+			"label": "`FeedbackComposeDialog`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L209"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_feedbackdrawer_detailvaulsheet",
+			"label": "`FeedbackDrawer` (`DetailVaulSheet`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L219"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_staff_ui",
+			"label": "Staff UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L236"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_stafffeedbackpanel_on_staff_page_tsx",
+			"label": "`StaffFeedbackPanel` on `/staff/page.tsx`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L238"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_rate_limiting",
+			"label": "Rate limiting",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L261"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L271"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L284"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_server_apps_server",
+			"label": "Server (`apps/server`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L286"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_web_apps_web",
+			"label": "Web (`apps/web`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L291"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_file_map_implementation_reference",
+			"label": "File map (implementation reference)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L298"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_relationship_to_future_devoted_feature",
+			"label": "Relationship to future Devoted feature",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L315"
+		},
+		{
+			"id": "specs_2026_07_02_patron_feedback_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L325"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_patron_feedback_design_md",
+			"target": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_brainstorm_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_goals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_non_goals_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_architecture",
+			"target": "specs_2026_07_02_patron_feedback_design_approach_comparison_chosen_a",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_architecture",
+			"target": "specs_2026_07_02_patron_feedback_design_data_model",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_data_model",
+			"target": "specs_2026_07_02_patron_feedback_design_patron_feedback_ticket",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_data_model",
+			"target": "specs_2026_07_02_patron_feedback_design_patron_feedback_reply_patron_visible",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L84",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_data_model",
+			"target": "specs_2026_07_02_patron_feedback_design_patron_feedback_staff_note_internal_only",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L96",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_permissions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_permissions",
+			"target": "specs_2026_07_02_patron_feedback_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_api",
+			"target": "specs_2026_07_02_patron_feedback_design_patron_api_feedback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_api",
+			"target": "specs_2026_07_02_patron_feedback_design_staff_api_staff_feedback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_notifications",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_notifications",
+			"target": "specs_2026_07_02_patron_feedback_design_kind_feedback_replied",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L165",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_notifications",
+			"target": "specs_2026_07_02_patron_feedback_design_deep_link",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L185",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_patron_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L196",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_patron_ui",
+			"target": "specs_2026_07_02_patron_feedback_design_account_menu_app_user_account_menu_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_patron_ui",
+			"target": "specs_2026_07_02_patron_feedback_design_feedbackcomposedialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L209",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_patron_ui",
+			"target": "specs_2026_07_02_patron_feedback_design_feedbackdrawer_detailvaulsheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L219",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_staff_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_staff_ui",
+			"target": "specs_2026_07_02_patron_feedback_design_stafffeedbackpanel_on_staff_page_tsx",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L238",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_rate_limiting",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L261",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L271",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L284",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_testing",
+			"target": "specs_2026_07_02_patron_feedback_design_server_apps_server",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L286",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_testing",
+			"target": "specs_2026_07_02_patron_feedback_design_web_apps_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L291",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_file_map_implementation_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L298",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_relationship_to_future_devoted_feature",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L315",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_patron_feedback_design_sense_patron_feedback_design",
+			"target": "specs_2026_07_02_patron_feedback_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-patron-feedback-design.md",
+			"source_location": "L325",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

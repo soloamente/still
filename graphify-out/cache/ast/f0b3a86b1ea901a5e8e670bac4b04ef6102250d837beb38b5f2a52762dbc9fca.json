@@ -1,0 +1,972 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"label": "onboarding-wizard.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "onboarding_onboarding_wizard_onboardingwizardprops",
+			"label": "OnboardingWizardProps",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L58"
+		},
+		{
+			"id": "onboarding_onboarding_wizard_stepafterbio",
+			"label": "stepAfterBio()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L67"
+		},
+		{
+			"id": "onboarding_onboarding_wizard_previousstep",
+			"label": "previousStep()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L71"
+		},
+		{
+			"id": "onboarding_onboarding_wizard_onboardingwizard",
+			"label": "OnboardingWizard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L92"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_brand_mark_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "components_brand_mark_brandmark",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_form_controls_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingprimarybutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_form_controls_onboardingsecondarybutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_preview_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_preview_panel_onboardingpreviewpanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_preview_panel_onboardingpreviewstrip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_step_shell_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_step_shell_onboardingstepshell",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_avatar_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_avatar_step_avatarstep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_bio_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_bio_step_biostep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_done_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_done_step_donestep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_favorites_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_favorites_step_favoritesstepcontrols",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_favorites_step_favoritesstepgridpanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_favorites_step_usefavoritesstepdata",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_handle_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_handle_step_handlestep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_handle_step_ishandlestepready",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_handle_step_usehandleavailability",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_name_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_name_step_namestep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_taste_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_taste_step_tastestepcontrols",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_taste_step_tastestepgridpanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_taste_step_usetastestepdata",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_verify_email_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_verify_email_step_verifyemailstep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_steps_welcome_step_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_steps_welcome_step_welcomestep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_layout_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_wizard_layout_onboardingwizardlayout",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_auth_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_auth_client_authclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_email_verification_error_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_email_verification_error_email_verification_required_code",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_email_verification_error_email_verification_toast",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_email_verification_error_isemailverificationrequirederror",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_onboarding_finish_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_finish_runonboardingfinish",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_onboarding_gate_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_gate_resolveonboardingresumestep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_onboarding_taste_state_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_taste_state_canadvanceonboardingtaste",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_onboarding_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_types_onboarding_favorites_min",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_types_onboardingmovie",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_types_wizardskipmode",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_onboarding_types_wizardstep",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_upload_profile_me_asset_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "lib_upload_profile_me_asset_uploadprofilemeasset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_wizard_onboardingwizardprops",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_wizard_stepafterbio",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_wizard_previousstep",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_onboarding_onboarding_wizard_tsx",
+			"target": "onboarding_onboarding_wizard_onboardingwizard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L92",
+			"weight": 1.0
+		},
+		{
+			"source": "onboarding_onboarding_wizard_onboardingwizard",
+			"target": "onboarding_onboarding_wizard_previousstep",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L441",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "resolveOnboardingResumeStep",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L115"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L121"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useHandleAvailability",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useTasteStepData",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L126"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L180"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L186"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useFavoritesStepData",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L318"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L329"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L387"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L392"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L418"
+		},
+		{
+			"caller_nid": "onboarding_onboarding_wizard_onboardingwizard",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\onboarding\\onboarding-wizard.tsx",
+			"source_location": "L443"
+		}
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_pinned_quotes_ts",
+			"label": "profile-pinned-quotes.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-pinned-quotes.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_pinned_quotes_togglepinnedquotesaveid",
+			"label": "togglePinnedQuoteSaveId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-pinned-quotes.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_pinned_quotes_ts",
+			"target": "lib_profile_pinned_quotes_togglepinnedquotesaveid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-pinned-quotes.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_pinned_quotes_togglepinnedquotesaveid",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-pinned-quotes.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_profile_pinned_quotes_togglepinnedquotesaveid",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-pinned-quotes.ts",
+			"source_location": "L11"
+		}
+	]
+}

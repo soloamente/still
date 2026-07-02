@@ -1,0 +1,123 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"label": "redis-cache.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_redis_cache_cacheredis",
+			"label": "CacheRedis",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_redis_cache_cachedread",
+			"label": "cachedRead()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L27"
+		},
+		{
+			"id": "lib_redis_cache_invalidatecache",
+			"label": "invalidateCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L50"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"target": "lib_redis_cache_cacheredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"target": "lib_redis_cache_cacheredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"target": "lib_redis_cache_cachedread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"target": "lib_redis_cache_invalidatecache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_redis_cache_cacheredis",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"relation": "imports_from",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_redis_cache_cacheredis",
+			"callee": "getRealtimeRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_redis_cache_cachedread",
+			"callee": "loader",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_redis_cache_cachedread",
+			"callee": "await redis.get",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_redis_cache_cachedread",
+			"callee": "loader",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_redis_cache_cachedread",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_redis_cache_invalidatecache",
+			"callee": "del",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\redis-cache.ts",
+			"source_location": "L56"
+		}
+	]
+}

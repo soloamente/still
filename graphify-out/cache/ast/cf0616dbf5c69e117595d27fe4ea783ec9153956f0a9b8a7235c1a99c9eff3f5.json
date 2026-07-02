@@ -1,0 +1,815 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_patron_feedback_md",
+			"label": "2026-07-02-patron-feedback.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_patron_feedback_implementation_plan",
+			"label": "Patron Feedback Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"label": "Task 1: Database schema and migration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_1",
+			"label": "code:ts (// packages/db/src/schema/feedback.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_2",
+			"label": "code:ts (export * from \"./feedback\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L176"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_3",
+			"label": "code:bash (cd packages/db && bun run db:migrate)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_4",
+			"label": "code:bash (git add packages/db/src/schema/feedback.ts packages/db/src/m)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"label": "Task 2: Auth permissions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_5",
+			"label": "code:ts (// permissions.ts \u2014 add to statement)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L207"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_6",
+			"label": "code:ts (it(\"owner and admin can read and reply to feedback\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_7",
+			"label": "code:ts (type Resource = \"user\" | \"content\" | \"audit\" | \"feedback\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L246"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_8",
+			"label": "code:bash (cd packages/auth && bun test src/permissions.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L252"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_9",
+			"label": "code:bash (git commit -m \"feat(auth): add feedback read/reply permissio)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L258"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"label": "Task 3: Server lib \u2014 validation and helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L264"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_10",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L272"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_11",
+			"label": "code:bash (cd apps/server && bun test src/lib/patron-feedback.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L329"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_12",
+			"label": "code:ts (await deliverNotification({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L354"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_13",
+			"label": "code:bash (git commit -m \"feat(server): patron feedback domain lib\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L372"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"label": "Task 4: Patron API routes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L378"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_14",
+			"label": "code:ts (test(\"POST /api/feedback requires sign-in\", async () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L387"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_15",
+			"label": "code:ts (export const feedbackRoute = new Elysia({ prefix: \"/api/feed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L402"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_16",
+			"label": "code:ts (import { feedbackRoute } from \"../routes/feedback\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L443"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_17",
+			"label": "code:bash (cd apps/server && bun test src/routes/feedback.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L451"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_18",
+			"label": "code:bash (git commit -m \"feat(server): patron feedback API routes\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L457"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"label": "Task 5: Staff API routes + notification kind",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L463"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_19",
+			"label": "code:ts ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L473"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_20",
+			"label": "code:ts (test(\"GET /api/staff/feedback requires feedback:read\", async)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L485"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_21",
+			"label": "code:bash (cd apps/server && bun test src/routes/staff-feedback.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L499"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_22",
+			"label": "code:bash (git commit -m \"feat(server): staff feedback routes and notif)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L505"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"label": "Task 6: Web notification deep links",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L511"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_23",
+			"label": "code:ts (test(\"feedbackId in payload resolves to home deep link\", () )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L520"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_24",
+			"label": "code:ts (// feedback-notification-href.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L530"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_25",
+			"label": "code:ts (const feedbackId = feedbackIdFromNotificationPayload(payload)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L547"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_26",
+			"label": "code:bash (cd apps/web && bun test src/lib/notification-href.test.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L554"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_27",
+			"label": "code:bash (git commit -m \"feat(web): feedback notification deep links\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L560"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_7_patron_ui_provider_dialog_drawer",
+			"label": "Task 7: Patron UI \u2014 provider, dialog, drawer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L566"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_28",
+			"label": "code:bash (git commit -m \"feat(web): patron feedback dialog and drawer\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L611"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_8_account_menu_mobile_sheet",
+			"label": "Task 8: Account menu + mobile sheet",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L617"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_29",
+			"label": "code:tsx (<DropdownMenuItem)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L627"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_30",
+			"label": "code:bash (git commit -m \"feat(web): account menu feedback entry points)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L650"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_9_staff_feedback_panel",
+			"label": "Task 9: Staff feedback panel",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L656"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_31",
+			"label": "code:ts (const canReply = role === \"owner\" || role === \"admin\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L672"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_32",
+			"label": "code:tsx (<StaffQuotesPanel />)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L680"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_33",
+			"label": "code:bash (git commit -m \"feat(web): staff feedback panel\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L694"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_task_10_changelog_graphify",
+			"label": "Task 10: Changelog + graphify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L700"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_34",
+			"label": "code:bash (cd apps/server && bun test src/lib/patron-feedback.test.ts s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L709"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_35",
+			"label": "code:bash (graphify update .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L717"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_codeblock_36",
+			"label": "code:bash (git commit -m \"chore: changelog and graphify for patron feed)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L723"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L729"
+		},
+		{
+			"id": "plans_2026_07_02_patron_feedback_manual_test_plan",
+			"label": "Manual test plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L750"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_patron_feedback_md",
+			"target": "plans_2026_07_02_patron_feedback_patron_feedback_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_patron_feedback_implementation_plan",
+			"target": "plans_2026_07_02_patron_feedback_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_1_database_schema_and_migration",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L207",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L246",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L252",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_2_auth_permissions",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L264",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L329",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L354",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_3_server_lib_validation_and_helpers",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L372",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L378",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L387",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L402",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L443",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L451",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_4_patron_api_routes",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L457",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L463",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L473",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L485",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L499",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_5_staff_api_routes_notification_kind",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L505",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L511",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L520",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L530",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L547",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L554",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_6_web_notification_deep_links",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L560",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_7_patron_ui_provider_dialog_drawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L566",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_7_patron_ui_provider_dialog_drawer",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L611",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_8_account_menu_mobile_sheet",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L617",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_8_account_menu_mobile_sheet",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L627",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_8_account_menu_mobile_sheet",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L650",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_9_staff_feedback_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L656",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_9_staff_feedback_panel",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L672",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_9_staff_feedback_panel",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L680",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_9_staff_feedback_panel",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_33",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L694",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_file_map",
+			"target": "plans_2026_07_02_patron_feedback_task_10_changelog_graphify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L700",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_10_changelog_graphify",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_34",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L709",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_10_changelog_graphify",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_35",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L717",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_task_10_changelog_graphify",
+			"target": "plans_2026_07_02_patron_feedback_codeblock_36",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L723",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_patron_feedback_implementation_plan",
+			"target": "plans_2026_07_02_patron_feedback_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L729",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_patron_feedback_patron_feedback_implementation_plan",
+			"target": "plans_2026_07_02_patron_feedback_manual_test_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-patron-feedback.md",
+			"source_location": "L750",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

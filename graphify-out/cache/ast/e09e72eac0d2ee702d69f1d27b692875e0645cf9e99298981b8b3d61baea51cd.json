@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_14_skeleton_reveal_md",
+			"label": "14-skeleton-reveal.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"label": "Skeleton loader and reveal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_codeblock_1",
+			"label": "code:html (<div class=\"t-skel\" data-state=\"loading\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L43"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_codeblock_3",
+			"label": "code:css (/* The wrap stacks two layers on the same coordinates. The)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L121"
+		},
+		{
+			"id": "transitions_dev_14_skeleton_reveal_codeblock_4",
+			"label": "code:js (const skel = document.querySelector(\".t-skel\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L123"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_14_skeleton_reveal_md",
+			"target": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"target": "transitions_dev_14_skeleton_reveal_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"target": "transitions_dev_14_skeleton_reveal_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_html_usage",
+			"target": "transitions_dev_14_skeleton_reveal_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"target": "transitions_dev_14_skeleton_reveal_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_tunable_variables",
+			"target": "transitions_dev_14_skeleton_reveal_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"target": "transitions_dev_14_skeleton_reveal_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_css",
+			"target": "transitions_dev_14_skeleton_reveal_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_skeleton_loader_and_reveal",
+			"target": "transitions_dev_14_skeleton_reveal_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_14_skeleton_reveal_javascript_orchestration",
+			"target": "transitions_dev_14_skeleton_reveal_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\14-skeleton-reveal.md",
+			"source_location": "L123",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

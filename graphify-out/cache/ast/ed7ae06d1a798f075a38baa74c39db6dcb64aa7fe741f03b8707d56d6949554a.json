@@ -1,0 +1,98 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"label": "month-recap-types.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_month_recap_types_monthrecapcategoryid",
+			"label": "MonthRecapCategoryId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "lib_month_recap_types_monthrecapentry",
+			"label": "MonthRecapEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_month_recap_types_monthrecapcategory",
+			"label": "MonthRecapCategory",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_month_recap_types_monthrecappayload",
+			"label": "MonthRecapPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L22"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "lib_month_recap_types_monthrecapcategoryid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "lib_month_recap_types_monthrecapentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "lib_month_recap_types_monthrecapcategory",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"target": "lib_month_recap_types_monthrecappayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\month-recap-types.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

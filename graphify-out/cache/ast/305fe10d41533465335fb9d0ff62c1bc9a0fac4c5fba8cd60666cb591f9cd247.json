@@ -1,0 +1,191 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_27_profile_image_crop_design_md",
+			"label": "2026-06-27-profile-image-crop-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"label": "Profile Image Crop (banner + avatar) \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_context",
+			"label": "Context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_decisions_locked_in_brainstorming",
+			"label": "Decisions (locked in brainstorming)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_approach",
+			"label": "Approach",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_flow",
+			"label": "Flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_codeblock_1",
+			"label": "code:block1 (pick file)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_components_files_all_apps_web",
+			"label": "Components / files (all `apps/web`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_edge_cases",
+			"label": "Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L91"
+		},
+		{
+			"id": "specs_2026_06_27_profile_image_crop_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L98"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_27_profile_image_crop_design_md",
+			"target": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_decisions_locked_in_brainstorming",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_approach",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_flow",
+			"target": "specs_2026_06_27_profile_image_crop_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_components_files_all_apps_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_27_profile_image_crop_design_profile_image_crop_banner_avatar_design",
+			"target": "specs_2026_06_27_profile_image_crop_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-27-profile-image-crop-design.md",
+			"source_location": "L98",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

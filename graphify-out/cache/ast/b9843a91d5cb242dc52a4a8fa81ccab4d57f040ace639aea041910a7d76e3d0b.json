@@ -1,0 +1,461 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"label": "tmdb-sync.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "jobs_tmdb_sync_tmdb_virtual_sources",
+			"label": "TMDB_VIRTUAL_SOURCES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "jobs_tmdb_sync_ensuretmdbsources",
+			"label": "ensureTmdbSources()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "jobs_tmdb_sync_synctmdbfeeds",
+			"label": "syncTmdbFeeds()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L57"
+		},
+		{
+			"id": "jobs_tmdb_sync_refreshstalemovies",
+			"label": "refreshStaleMovies()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L122"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_cuid_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_cuid_makeid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_detail_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_listing_detail_cache_invalidatemoviedetailcache",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_sync_movie_palette_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_sync_movie_palette_syncmovieposterpalette",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_tmdb_tmdbmoviesummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_tmdb_tmdbapi",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "lib_tmdb_tmdbimg",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "jobs_tmdb_sync_tmdb_virtual_sources",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "jobs_tmdb_sync_ensuretmdbsources",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "jobs_tmdb_sync_synctmdbfeeds",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_jobs_tmdb_sync_ts",
+			"target": "jobs_tmdb_sync_refreshstalemovies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "jobs_tmdb_sync_synctmdbfeeds",
+			"target": "jobs_tmdb_sync_ensuretmdbsources",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "jobs_tmdb_sync_ensuretmdbsources",
+			"callee": "onConflictDoNothing",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_ensuretmdbsources",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_ensuretmdbsources",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "fetcher",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "onConflictDoNothing",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "onConflictDoNothing",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "values",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "insert",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L88"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "makeId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "backdrop",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "poster",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L99"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_synctmdbfeeds",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "lt",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "movieDetail",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "update",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "syncMoviePosterPalette",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L146"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "catch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "invalidateMovieDetailCache",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "jobs_tmdb_sync_refreshstalemovies",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\jobs\\tmdb-sync.ts",
+			"source_location": "L149"
+		}
+	]
+}

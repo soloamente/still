@@ -1,0 +1,241 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"label": "fetch-patron-feedback-client.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_fetch_patron_feedback_client_readapierror",
+			"label": "readApiError()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L9"
+		},
+		{
+			"id": "lib_fetch_patron_feedback_client_fetchpatronfeedbacklist",
+			"label": "fetchPatronFeedbackList()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_fetch_patron_feedback_client_fetchpatronfeedbackdetail",
+			"label": "fetchPatronFeedbackDetail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_fetch_patron_feedback_client_markpatronfeedbackread",
+			"label": "markPatronFeedbackRead()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L46"
+		},
+		{
+			"id": "lib_fetch_patron_feedback_client_submitpatronfeedback",
+			"label": "submitPatronFeedback()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L58"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackdetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbacklistitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_fetch_patron_feedback_client_readapierror",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_fetch_patron_feedback_client_fetchpatronfeedbacklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_fetch_patron_feedback_client_fetchpatronfeedbackdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_fetch_patron_feedback_client_markpatronfeedbackread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_feedback_client_ts",
+			"target": "lib_fetch_patron_feedback_client_submitpatronfeedback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_patron_feedback_client_fetchpatronfeedbacklist",
+			"target": "lib_fetch_patron_feedback_client_readapierror",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_patron_feedback_client_fetchpatronfeedbackdetail",
+			"target": "lib_fetch_patron_feedback_client_readapierror",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_patron_feedback_client_markpatronfeedbackread",
+			"target": "lib_fetch_patron_feedback_client_readapierror",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_fetch_patron_feedback_client_submitpatronfeedback",
+			"target": "lib_fetch_patron_feedback_client_readapierror",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L69",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_readapierror",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_fetchpatronfeedbacklist",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_fetchpatronfeedbacklist",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_fetchpatronfeedbackdetail",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_fetchpatronfeedbackdetail",
+			"callee": "feedback",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_markpatronfeedbackread",
+			"callee": "patch",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_markpatronfeedbackread",
+			"callee": "feedback",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_fetch_patron_feedback_client_submitpatronfeedback",
+			"callee": "post",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\fetch-patron-feedback-client.ts",
+			"source_location": "L63"
+		}
+	]
+}

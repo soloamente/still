@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_19_card_tilt_md",
+			"label": "19-card-tilt.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"label": "Card hover tilt",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_codeblock_1",
+			"label": "code:html (<div class=\"t-tilt\">                <!-- flat hit area -->)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_codeblock_3",
+			"label": "code:css (/* The outer wrapper is the flat hit area; touch-action:none)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L109"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_codeblock_4",
+			"label": "code:js (// Track the pointer on the OUTER .t-tilt (never transforms))",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_peak_tilt_angle",
+			"label": "Peak tilt angle",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L159"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_why_the_pointer_is_tracked_on_the_flat_wrapper",
+			"label": "Why the pointer is tracked on the flat wrapper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L163"
+		},
+		{
+			"id": "transitions_dev_19_card_tilt_touch_mobile",
+			"label": "Touch / mobile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L167"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_19_card_tilt_md",
+			"target": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"target": "transitions_dev_19_card_tilt_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"target": "transitions_dev_19_card_tilt_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_html_usage",
+			"target": "transitions_dev_19_card_tilt_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"target": "transitions_dev_19_card_tilt_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_tunable_variables",
+			"target": "transitions_dev_19_card_tilt_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"target": "transitions_dev_19_card_tilt_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_css",
+			"target": "transitions_dev_19_card_tilt_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_card_hover_tilt",
+			"target": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L109",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"target": "transitions_dev_19_card_tilt_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"target": "transitions_dev_19_card_tilt_peak_tilt_angle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"target": "transitions_dev_19_card_tilt_why_the_pointer_is_tracked_on_the_flat_wrapper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L163",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_19_card_tilt_javascript_orchestration",
+			"target": "transitions_dev_19_card_tilt_touch_mobile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\19-card-tilt.md",
+			"source_location": "L167",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

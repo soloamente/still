@@ -1,0 +1,228 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"label": "image-crop-dialog.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_image_crop_dialog_panel_ease",
+			"label": "PANEL_EASE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "profile_image_crop_dialog_imagecropdialog",
+			"label": "ImageCropDialog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "react_easy_crop",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "profile_image_crop_dialog_panel_ease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_image_crop_dialog_tsx",
+			"target": "profile_image_crop_dialog_imagecropdialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "profile_image_crop_dialog_imagecropdialog",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\image-crop-dialog.tsx",
+			"source_location": "L180"
+		}
+	]
+}

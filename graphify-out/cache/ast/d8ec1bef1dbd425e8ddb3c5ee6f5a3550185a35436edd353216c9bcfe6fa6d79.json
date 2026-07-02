@@ -1,0 +1,361 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"label": "month-recap-dialog-root.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_month_recap_dialog_root_monthrecaperrorboundary",
+			"label": "MonthRecapErrorBoundary",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "app_month_recap_dialog_root_monthrecaperrorboundary_getderivedstatefromerror",
+			"label": ".getDerivedStateFromError()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L38"
+		},
+		{
+			"id": "app_month_recap_dialog_root_monthrecaperrorboundary_componentdidcatch",
+			"label": ".componentDidCatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L42"
+		},
+		{
+			"id": "app_month_recap_dialog_root_monthrecaperrorboundary_render",
+			"label": ".render()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L47"
+		},
+		{
+			"id": "app_month_recap_dialog_root_iswhatsnewblocking",
+			"label": "isWhatsNewBlocking()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L54"
+		},
+		{
+			"id": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"label": "MonthRecapDialogRoot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L61"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "app_month_recap_dialog_monthrecapdialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_month_recap_client_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_fetch_month_recap_client_fetchmonthrecapclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_first_run_prompt_keys_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_first_run_prompt_keys_iswatchregionpromptactive",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_month_recap_month_key_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_month_recap_month_key_resolveclientcelebratedmonth",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_month_recap_seen_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_month_recap_seen_markmonthrecapseen",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_month_recap_seen_shouldshowmonthrecap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_month_recap_types_monthrecappayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_whats_new_releases_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_whats_new_releases_getactivewhatsnewrelease",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_whats_new_seen_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "lib_whats_new_seen_shouldshowwhatsnewrelease",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "app_month_recap_dialog_root_monthrecaperrorboundary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_root_monthrecaperrorboundary",
+			"target": "app_month_recap_dialog_root_monthrecaperrorboundary_getderivedstatefromerror",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_root_monthrecaperrorboundary",
+			"target": "app_month_recap_dialog_root_monthrecaperrorboundary_componentdidcatch",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_root_monthrecaperrorboundary",
+			"target": "app_month_recap_dialog_root_monthrecaperrorboundary_render",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "app_month_recap_dialog_root_iswhatsnewblocking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_root_tsx",
+			"target": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L61",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecaperrorboundary_componentdidcatch",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecaperrorboundary_componentdidcatch",
+			"callee": "onFailed",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_iswhatsnewblocking",
+			"callee": "getActiveWhatsNewRelease",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_iswhatsnewblocking",
+			"callee": "shouldShowWhatsNewRelease",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_root_monthrecapdialogroot",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog-root.tsx",
+			"source_location": "L78"
+		}
+	]
+}

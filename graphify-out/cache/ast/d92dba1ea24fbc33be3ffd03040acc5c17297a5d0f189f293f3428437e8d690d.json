@@ -1,0 +1,168 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_realtime_src_auth_ts",
+			"label": "auth.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_auth_realtimetokenclaims",
+			"label": "RealtimeTokenClaims",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_auth_verifyconnecttoken",
+			"label": "verifyConnectToken()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L4"
+		},
+		{
+			"id": "src_auth_timingsafeequal",
+			"label": "timingSafeEqual()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L53"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_auth_ts",
+			"target": "src_auth_realtimetokenclaims",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_auth_ts",
+			"target": "src_auth_verifyconnecttoken",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_auth_ts",
+			"target": "src_auth_timingsafeequal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L53",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "importKey",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "atob",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "verify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "atob",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "src_auth_verifyconnecttoken",
+			"callee": "parse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "src_auth_timingsafeequal",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "src_auth_timingsafeequal",
+			"callee": "encode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\auth.ts",
+			"source_location": "L56"
+		}
+	]
+}

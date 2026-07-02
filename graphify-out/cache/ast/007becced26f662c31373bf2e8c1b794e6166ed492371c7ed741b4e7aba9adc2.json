@@ -1,0 +1,74 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_plan_build_status_chip_filter_tsx",
+			"label": "plan-build-status-chip-filter.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_plan_build_status_chip_filter_status_options",
+			"label": "STATUS_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L5"
+		},
+		{
+			"id": "staff_plan_build_status_chip_filter_planbuildstatuschipfilter",
+			"label": "PlanBuildStatusChipFilter()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_build_status_chip_filter_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_plan_filter_chip_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_build_status_chip_filter_tsx",
+			"target": "staff_plan_filter_chip_planfilterchip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_build_status_chip_filter_tsx",
+			"target": "staff_plan_build_status_chip_filter_status_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_plan_build_status_chip_filter_tsx",
+			"target": "staff_plan_build_status_chip_filter_planbuildstatuschipfilter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_plan_build_status_chip_filter_planbuildstatuschipfilter",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\plan-build-status-chip-filter.tsx",
+			"source_location": "L24"
+		}
+	]
+}

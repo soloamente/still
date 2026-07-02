@@ -1,0 +1,54 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_db_src_driver_ts",
+			"label": "driver.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_driver_dbdriverchoice",
+			"label": "DbDriverChoice",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_driver_resolvedbdriver",
+			"label": "resolveDbDriver()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_driver_ts",
+			"target": "src_driver_dbdriverchoice",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_db_src_driver_ts",
+			"target": "src_driver_resolvedbdriver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_driver_resolvedbdriver",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\db\\src\\driver.ts",
+			"source_location": "L16"
+		}
+	]
+}

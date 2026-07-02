@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"label": "product-changelog.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_product_changelog_productchangelogitem",
+			"label": "ProductChangelogItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_product_changelog_productchangelogrelease",
+			"label": "ProductChangelogRelease",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "lib_product_changelog_product_changelog_releases",
+			"label": "PRODUCT_CHANGELOG_RELEASES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "lib_product_changelog_getproductchangelogrelease",
+			"label": "getProductChangelogRelease()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L404"
+		},
+		{
+			"id": "lib_product_changelog_formatreleasedatefromid",
+			"label": "formatReleaseDateFromId()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L412"
+		},
+		{
+			"id": "lib_product_changelog_formatreleaseversionlabel",
+			"label": "formatReleaseVersionLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L428"
+		},
+		{
+			"id": "lib_product_changelog_whatsnewreleasepilllabel",
+			"label": "whatsNewReleasePillLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L435"
+		},
+		{
+			"id": "lib_product_changelog_formatchangelogreleasekicker",
+			"label": "formatChangelogReleaseKicker()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L448"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_productchangelogitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_productchangelogrelease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_product_changelog_releases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_getproductchangelogrelease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L404",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_formatreleasedatefromid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L412",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_formatreleaseversionlabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L428",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_whatsnewreleasepilllabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L435",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_product_changelog_ts",
+			"target": "lib_product_changelog_formatchangelogreleasekicker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L448",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_product_changelog_whatsnewreleasepilllabel",
+			"target": "lib_product_changelog_getproductchangelogrelease",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L436",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_product_changelog_whatsnewreleasepilllabel",
+			"target": "lib_product_changelog_formatreleasedatefromid",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L438",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_product_changelog_whatsnewreleasepilllabel",
+			"target": "lib_product_changelog_formatreleaseversionlabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L440",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_product_changelog_formatchangelogreleasekicker",
+			"target": "lib_product_changelog_whatsnewreleasepilllabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L451",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_product_changelog_getproductchangelogrelease",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleasedatefromid",
+			"callee": "exec",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L413"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleasedatefromid",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L416"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleasedatefromid",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L417"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleasedatefromid",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L418"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleasedatefromid",
+			"callee": "toLocaleDateString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L420"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleaseversionlabel",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_product_changelog_formatreleaseversionlabel",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\product-changelog.ts",
+			"source_location": "L431"
+		}
+	]
+}

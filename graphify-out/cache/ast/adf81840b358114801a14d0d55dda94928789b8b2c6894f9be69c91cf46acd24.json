@@ -1,0 +1,150 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"label": "use-horizontal-scroll-fades.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"label": "useHorizontalScrollFades()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"label": "computePosterEdgeOpacityFactor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L108"
+		},
+		{
+			"id": "lib_use_horizontal_scroll_fades_usehorizontalrailposteredgeopacity",
+			"label": "useHorizontalRailPosterEdgeOpacity()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L134"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"target": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"target": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L108",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_horizontal_scroll_fades_ts",
+			"target": "lib_use_horizontal_scroll_fades_usehorizontalrailposteredgeopacity",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L134",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalscrollfades",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L116"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_computeposteredgeopacityfactor",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L127"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalrailposteredgeopacity",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L140"
+		},
+		{
+			"caller_nid": "lib_use_horizontal_scroll_fades_usehorizontalrailposteredgeopacity",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-horizontal-scroll-fades.ts",
+			"source_location": "L160"
+		}
+	]
+}

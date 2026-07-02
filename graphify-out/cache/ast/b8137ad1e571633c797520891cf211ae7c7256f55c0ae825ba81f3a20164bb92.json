@@ -1,0 +1,351 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_27_profile_image_crop_md",
+			"label": "2026-06-27-profile-image-crop.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_profile_image_crop_banner_avatar_implementation_plan",
+			"label": "Profile Image Crop (banner + avatar) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_task_1_add_the_react_easy_crop_dependency",
+			"label": "Task 1: Add the `react-easy-crop` dependency",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_1",
+			"label": "code:json (\"react-easy-crop\": \"^5.4.1\",)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_2",
+			"label": "code:bash (git add apps/web/package.json bun.lock)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_task_2_crop_image_utility_tdd_the_math",
+			"label": "Task 2: `crop-image` utility (TDD the math)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_3",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_4",
+			"label": "code:ts (/** Pixel rectangle in the *source* image (what react-easy-c)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L102"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_5",
+			"label": "code:bash (git add apps/web/src/lib/crop-image.ts apps/web/src/lib/crop)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_task_3_imagecropdialog_component",
+			"label": "Task 3: `ImageCropDialog` component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_6",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L208"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_7",
+			"label": "code:bash (git add apps/web/src/components/profile/image-crop-dialog.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L394"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"label": "Task 4: Wire the dialog into the media customizer",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L401"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_8",
+			"label": "code:ts (import { ImageCropDialog } from \"@/components/profile/image-)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L410"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_9",
+			"label": "code:ts (// Locked crop aspects (width / height) \u2014 must match the dis)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L417"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_10",
+			"label": "code:ts (const onPickBannerFile = useCallback()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L430"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_11",
+			"label": "code:ts (const closeCrop = useCallback(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L469"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_12",
+			"label": "code:tsx (<ImageCropDialog)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L509"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_codeblock_13",
+			"label": "code:bash (git add apps/web/src/components/profile/profile-media-custom)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L527"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_task_5_verification",
+			"label": "Task 5: Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L534"
+		},
+		{
+			"id": "plans_2026_06_27_profile_image_crop_self_review",
+			"label": "Self-Review",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L563"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_27_profile_image_crop_md",
+			"target": "plans_2026_06_27_profile_image_crop_profile_image_crop_banner_avatar_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_profile_image_crop_banner_avatar_implementation_plan",
+			"target": "plans_2026_06_27_profile_image_crop_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_file_structure",
+			"target": "plans_2026_06_27_profile_image_crop_task_1_add_the_react_easy_crop_dependency",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_1_add_the_react_easy_crop_dependency",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_1_add_the_react_easy_crop_dependency",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_file_structure",
+			"target": "plans_2026_06_27_profile_image_crop_task_2_crop_image_utility_tdd_the_math",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_2_crop_image_utility_tdd_the_math",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_2_crop_image_utility_tdd_the_math",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_2_crop_image_utility_tdd_the_math",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_file_structure",
+			"target": "plans_2026_06_27_profile_image_crop_task_3_imagecropdialog_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_3_imagecropdialog_component",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L208",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_3_imagecropdialog_component",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L394",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_file_structure",
+			"target": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L401",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L410",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L417",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L430",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L469",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L509",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_task_4_wire_the_dialog_into_the_media_customizer",
+			"target": "plans_2026_06_27_profile_image_crop_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L527",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_file_structure",
+			"target": "plans_2026_06_27_profile_image_crop_task_5_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L534",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_27_profile_image_crop_profile_image_crop_banner_avatar_implementation_plan",
+			"target": "plans_2026_06_27_profile_image_crop_self_review",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-27-profile-image-crop.md",
+			"source_location": "L563",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

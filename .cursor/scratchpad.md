@@ -677,6 +677,25 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-07-02 — Vercel build blocker fix (BlobPart / Uint8Array mismatch)
+
+**Shipped:** patched `apps/server/src/lib/r2-dev-assets.ts` in `bodyFromBytes`.
+- Normalized bytes with `Uint8Array.from(bytes)` before creating `Blob`
+- Switched Blob input to `normalizedBytes.buffer` to satisfy strict DOM `BlobPart` typing (`ArrayBuffer`-backed path) used by Next 16 typecheck
+
+**Why:** Vercel failed with:
+- `Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'BlobPart'`
+- failing line was `new Blob([bytes]).stream()`
+
+**Verification status:**
+- Original error signature is removed by code path change (line now uses normalized `ArrayBuffer`)
+- Local full build verification is currently blocked by existing environment dependency resolution issues (`aws4fetch` / `tsdown` module resolution in this machine), which are separate from the original `BlobPart` error.
+
+**Manual confirm request (Planner/human):**
+1. Re-run Vercel deploy for commit containing this patch
+2. Confirm the `BlobPart`/`Uint8Array<ArrayBufferLike>` type error no longer appears
+3. Report the next failing step (if any) so I can handle the next blocker as a separate task
+
 ### 2026-06-16 — Presence AFK Task 9 (complete — plan shipped)
 
 **Automated verification:**
@@ -2000,6 +2019,7 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **Next 16/TS 5.5 DOM typing:** `new Blob([bytes])` can fail when `bytes` is `Uint8Array<ArrayBufferLike>` (because `BlobPart` expects `ArrayBuffer`-compatible views). Normalize with `Uint8Array.from(bytes)` and pass `normalizedBytes.buffer` to `Blob` in strict monorepo typechecks.
 - **Presence AFK realtime:** `touchListingPresence` must set `changed: true` when **activity state** flips (not only ZSET occupancy) so `publishRealtimeEvent` fires `presence.updated`; global portrait badges need **`PatronOnlineProvider`** subscribed to **`patron:app`** SSE (`resolveStaticRealtimeRoomAccess` must allow that room). **Tab-away heartbeats** must fire **synchronously inside `visibilitychange`** (`usePatronActivityFlipHeartbeat`) with `fetch` **`keepalive`** — background tabs throttle React `useEffect`, so away POSTs never ran. **Upstash `hset`:** use **`hset(key, { [userId]: state })`** — the 3-arg `hset(key, field, value)` form is a **silent no-op** on `@upstash/redis`, so away never persisted and every read fell back to `active`. **Rapid tab churn:** coordinate with **`BroadcastChannel`** (`PatronActivityTabSync`) — patron stays **active** if **any** Sense tab is visible; debounce **away** heartbeats ~400ms (`createPresenceHeartbeatScheduler`); remove duplicate per-tab `visibilitychange` POSTs that raced sendBeacon vs active. `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
 - `packages/db/src/migrate.ts` must load `.env` with **`../../../apps/server/.env`**
   (from `src/`), matching how `drizzle.config.ts` resolves `../../apps/server/.env`

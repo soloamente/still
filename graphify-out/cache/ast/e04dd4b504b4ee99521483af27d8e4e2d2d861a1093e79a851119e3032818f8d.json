@@ -1,0 +1,834 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"label": "hub-do.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_hub_do_env",
+			"label": "Env",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "src_hub_do_socketmeta",
+			"label": "SocketMeta",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "src_hub_do_presenceentry",
+			"label": "PresenceEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "src_hub_do_realtimehub",
+			"label": "RealtimeHub",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "src_hub_do_realtimehub_constructor",
+			"label": ".constructor()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L23"
+		},
+		{
+			"id": "src_hub_do_realtimehub_fetch",
+			"label": ".fetch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L28"
+		},
+		{
+			"id": "src_hub_do_realtimehub_handlepublish",
+			"label": ".handlePublish()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L43"
+		},
+		{
+			"id": "src_hub_do_realtimehub_handleoccupancy",
+			"label": ".handleOccupancy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L59"
+		},
+		{
+			"id": "src_hub_do_realtimehub_handleconnect",
+			"label": ".handleConnect()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L68"
+		},
+		{
+			"id": "src_hub_do_realtimehub_websocketmessage",
+			"label": ".webSocketMessage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L88"
+		},
+		{
+			"id": "src_hub_do_realtimehub_websocketclose",
+			"label": ".webSocketClose()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L135"
+		},
+		{
+			"id": "src_hub_do_realtimehub_websocketerror",
+			"label": ".webSocketError()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L139"
+		},
+		{
+			"id": "src_hub_do_realtimehub_cleanupsocket",
+			"label": ".cleanupSocket()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L143"
+		},
+		{
+			"id": "src_hub_do_realtimehub_authorizeroom",
+			"label": ".authorizeRoom()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L151"
+		},
+		{
+			"id": "src_hub_do_realtimehub_recordheartbeat",
+			"label": ".recordHeartbeat()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L177"
+		},
+		{
+			"id": "src_hub_do_realtimehub_activeentries",
+			"label": ".activeEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L202"
+		},
+		{
+			"id": "src_hub_do_realtimehub_cleanupfromroom",
+			"label": ".cleanupFromRoom()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L226"
+		},
+		{
+			"id": "src_hub_do_realtimehub_broadcast",
+			"label": ".broadcast()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L255"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"target": "src_hub_do_env",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"target": "src_hub_do_socketmeta",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"target": "src_hub_do_presenceentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"target": "src_hub_do_realtimehub",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_constructor",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_fetch",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_handlepublish",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_handleoccupancy",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_handleconnect",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_websocketmessage",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_websocketclose",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_websocketerror",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L139",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_cleanupsocket",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_authorizeroom",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_recordheartbeat",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_activeentries",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_cleanupfromroom",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L226",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub",
+			"target": "src_hub_do_realtimehub_broadcast",
+			"relation": "method",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L255",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_fetch",
+			"target": "src_hub_do_realtimehub_handlepublish",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_fetch",
+			"target": "src_hub_do_realtimehub_handleoccupancy",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_fetch",
+			"target": "src_hub_do_realtimehub_handleconnect",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_handlepublish",
+			"target": "src_hub_do_realtimehub_broadcast",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_handleoccupancy",
+			"target": "src_hub_do_realtimehub_activeentries",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_handleconnect",
+			"target": "src_hub_do_realtimehub_recordheartbeat",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L82",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_websocketmessage",
+			"target": "src_hub_do_realtimehub_authorizeroom",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_websocketmessage",
+			"target": "src_hub_do_realtimehub_recordheartbeat",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_websocketmessage",
+			"target": "src_hub_do_realtimehub_cleanupfromroom",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_websocketclose",
+			"target": "src_hub_do_realtimehub_cleanupsocket",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_websocketerror",
+			"target": "src_hub_do_realtimehub_cleanupsocket",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L140",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_cleanupsocket",
+			"target": "src_hub_do_realtimehub_cleanupfromroom",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_authorizeroom",
+			"target": "src_hub_do_realtimehub_fetch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L158",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_recordheartbeat",
+			"target": "src_hub_do_realtimehub_broadcast",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "src_hub_do_realtimehub_cleanupfromroom",
+			"target": "src_hub_do_realtimehub_broadcast",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L244",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_hub_do_realtimehub_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "safeParse",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handlepublish",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleoccupancy",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleoccupancy",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleoccupancy",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L69"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L70"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "acceptWebSocket",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_handleconnect",
+			"callee": "serializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "deserializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "decode",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "parseClientFrame",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "send",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "serializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "send",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L119"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "serializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "send",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_websocketmessage",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupsocket",
+			"callee": "deserializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_authorizeroom",
+			"callee": "classifyRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_authorizeroom",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_authorizeroom",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L170"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_recordheartbeat",
+			"callee": "await this.state.storage.get",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_recordheartbeat",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_recordheartbeat",
+			"callee": "put",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L188"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_recordheartbeat",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_activeentries",
+			"callee": "await this.state.storage.get",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_activeentries",
+			"callee": "now",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_activeentries",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L213"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_activeentries",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L218"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_activeentries",
+			"callee": "put",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L222"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupfromroom",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupfromroom",
+			"callee": "getWebSockets",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupfromroom",
+			"callee": "await this.state.storage.get",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupfromroom",
+			"callee": "put",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L243"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_cleanupfromroom",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_broadcast",
+			"callee": "getWebSockets",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L256"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_broadcast",
+			"callee": "deserializeAttachment",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_broadcast",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L258"
+		},
+		{
+			"caller_nid": "src_hub_do_realtimehub_broadcast",
+			"callee": "send",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\hub-do.ts",
+			"source_location": "L260"
+		}
+	]
+}

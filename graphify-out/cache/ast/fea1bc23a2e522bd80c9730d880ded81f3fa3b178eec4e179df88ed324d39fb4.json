@@ -1,0 +1,45 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_tmdb_backdrop_url_ts",
+			"label": "tmdb-backdrop-url.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-backdrop-url.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tmdb_backdrop_url_tmdbbackdropurlfrompath",
+			"label": "tmdbBackdropUrlFromPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-backdrop-url.ts",
+			"source_location": "L2"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_tmdb_backdrop_url_ts",
+			"target": "lib_tmdb_backdrop_url_tmdbbackdropurlfrompath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-backdrop-url.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tmdb_backdrop_url_tmdbbackdropurlfrompath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-backdrop-url.ts",
+			"source_location": "L7"
+		},
+		{
+			"caller_nid": "lib_tmdb_backdrop_url_tmdbbackdropurlfrompath",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\tmdb-backdrop-url.ts",
+			"source_location": "L8"
+		}
+	]
+}

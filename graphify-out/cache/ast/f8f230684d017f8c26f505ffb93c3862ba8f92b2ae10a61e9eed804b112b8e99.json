@@ -1,0 +1,84 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_feedback_notification_href_ts",
+			"label": "feedback-notification-href.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_feedback_notification_href_buildfeedbacknotificationhref",
+			"label": "buildFeedbackNotificationHref()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_feedback_notification_href_feedbackidfromnotificationpayload",
+			"label": "feedbackIdFromNotificationPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_feedback_notification_href_feedbackidfromsearch",
+			"label": "feedbackIdFromSearch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feedback_notification_href_ts",
+			"target": "lib_feedback_notification_href_buildfeedbacknotificationhref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feedback_notification_href_ts",
+			"target": "lib_feedback_notification_href_feedbackidfromnotificationpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_feedback_notification_href_ts",
+			"target": "lib_feedback_notification_href_feedbackidfromsearch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_feedback_notification_href_buildfeedbacknotificationhref",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L3"
+		},
+		{
+			"caller_nid": "lib_feedback_notification_href_feedbackidfromsearch",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "lib_feedback_notification_href_feedbackidfromsearch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\feedback-notification-href.ts",
+			"source_location": "L21"
+		}
+	]
+}

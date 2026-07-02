@@ -1,0 +1,487 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"label": "profile-activity-signature.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_activity_signature_month_labels",
+			"label": "MONTH_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L24"
+		},
+		{
+			"id": "profile_profile_activity_signature_heatmapcellclass",
+			"label": "heatmapCellClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L46"
+		},
+		{
+			"id": "profile_profile_activity_signature_monthlabelforweekstart",
+			"label": "monthLabelForWeekStart()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L53"
+		},
+		{
+			"id": "profile_profile_activity_signature_formatactivitysignaturetooltipdate",
+			"label": "formatActivitySignatureTooltipDate()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L62"
+		},
+		{
+			"id": "profile_profile_activity_signature_weekcolumnstyle",
+			"label": "weekColumnStyle",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L72"
+		},
+		{
+			"id": "profile_profile_activity_signature_hoverstate",
+			"label": "HoverState",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L77"
+		},
+		{
+			"id": "profile_profile_activity_signature_profileactivitysignature",
+			"label": "ProfileActivitySignature()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L90"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_activity_signature_level_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_activity_signature_row_labels",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_activity_signature_weekday_row_keys",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_activitydatekeyfromunknown",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_formatactivitysignaturetooltip",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_activity_signature_resolveactivitysignaturetooltipplacement",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "lib_use_profile_activity_signature_useprofileactivitysignature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_month_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_heatmapcellclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_monthlabelforweekstart",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_formatactivitysignaturetooltipdate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_weekcolumnstyle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_hoverstate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_activity_signature_tsx",
+			"target": "profile_profile_activity_signature_profileactivitysignature",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "profile_profile_activity_signature_profileactivitysignature",
+			"target": "profile_profile_activity_signature_formatactivitysignaturetooltipdate",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L236",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_activity_signature_heatmapcellclass",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_monthlabelforweekstart",
+			"callee": "activityDateKeyFromUnknown",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_monthlabelforweekstart",
+			"callee": "parseInt",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_monthlabelforweekstart",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_monthlabelforweekstart",
+			"callee": "parseInt",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_monthlabelforweekstart",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_formatactivitysignaturetooltipdate",
+			"callee": "toLocaleDateString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L102"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useProfileActivitySignature",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L104"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L105"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L110"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useLayoutEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L131"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L152"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L187"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L205"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L257"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L286"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L299"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L319"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L352"
+		},
+		{
+			"caller_nid": "profile_profile_activity_signature_profileactivitysignature",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-activity-signature.tsx",
+			"source_location": "L414"
+		}
+	]
+}

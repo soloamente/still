@@ -1,0 +1,112 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"label": "profile-showcase.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_showcase_test_items",
+			"label": "items",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L11"
+		},
+		{
+			"id": "lib_profile_showcase_test_existing",
+			"label": "existing",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L60"
+		},
+		{
+			"id": "lib_profile_showcase_test_ids",
+			"label": "ids",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L65"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_parseshowcaseitems",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_validateshowcasepatch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_test_items",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_test_existing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_test_ts",
+			"target": "lib_profile_showcase_test_ids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.test.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

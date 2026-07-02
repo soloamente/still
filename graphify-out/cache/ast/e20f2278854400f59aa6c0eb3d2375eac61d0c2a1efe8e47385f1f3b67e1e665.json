@@ -1,0 +1,264 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"label": "realtime-publish.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_publish_isrealtimeworkerpublishenabled",
+			"label": "isRealtimeWorkerPublishEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_realtime_publish_publishviaworker",
+			"label": "publishViaWorker()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_realtime_publish_publishviadevrelay",
+			"label": "publishViaDevRelay()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_realtime_publish_publishrealtimeevent",
+			"label": "publishRealtimeEvent()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L70"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_redis_getrealtimeredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_redis_realtimestreamkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_publish_isrealtimeworkerpublishenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_publish_publishviaworker",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_publish_publishviadevrelay",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_publish_ts",
+			"target": "lib_realtime_publish_publishrealtimeevent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L70",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_publish_publishrealtimeevent",
+			"target": "lib_realtime_publish_isrealtimeworkerpublishenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_publish_publishrealtimeevent",
+			"target": "lib_realtime_publish_publishviadevrelay",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_realtime_publish_publishrealtimeevent",
+			"target": "lib_realtime_publish_publishviaworker",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L87",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_publish_isrealtimeworkerpublishenabled",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L9"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviaworker",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviaworker",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviaworker",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviaworker",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviadevrelay",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviadevrelay",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviadevrelay",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviadevrelay",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishviadevrelay",
+			"callee": "error",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishrealtimeevent",
+			"callee": "getRealtimeRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishrealtimeevent",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L87"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishrealtimeevent",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishrealtimeevent",
+			"callee": "(async () => {\n\t\t\t\ttry {\n\t\t\t\t\tconst key = realtimeStreamKey(roomId);\n\t\t\t\t\tawait redis.xadd(key, \"*\", { data: JSON.stringify(event) });\n\t\t\t\t\tawait redis.expire(key, 86_400);\n\t\t\t\t} catch (err) {\n\t\t\t\t\tconsole.error(\"[realtime] upstash publish failed\", {\n\t\t\t\t\t\troomId,\n\t\t\t\t\t\ttype: event.type,\n\t\t\t\t\t\terr,\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t})",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "lib_realtime_publish_publishrealtimeevent",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-publish.ts",
+			"source_location": "L108"
+		}
+	]
+}

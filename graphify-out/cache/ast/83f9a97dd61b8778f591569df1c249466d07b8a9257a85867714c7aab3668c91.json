@@ -1,0 +1,470 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"label": "chat-pane.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "chat_chat_pane_thread",
+			"label": "Thread",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L17"
+		},
+		{
+			"id": "chat_chat_pane_message",
+			"label": "Message",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L32"
+		},
+		{
+			"id": "chat_chat_pane_messagerow",
+			"label": "MessageRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L40"
+		},
+		{
+			"id": "chat_chat_pane_wsevent",
+			"label": "WsEvent",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L46"
+		},
+		{
+			"id": "chat_chat_pane_chatpane",
+			"label": "ChatPane()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L57"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_input_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "components_input_input",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_connection_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "hooks_use_realtime_connection_userealtimeheartbeat",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_subscription_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "hooks_use_realtime_subscription_userealtimesubscription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "lib_format_formatdistancetonowstrict",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "chat_chat_pane_thread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "chat_chat_pane_message",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "chat_chat_pane_messagerow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "chat_chat_pane_wsevent",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_chat_chat_pane_tsx",
+			"target": "chat_chat_pane_chatpane",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L57",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L66"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useRealtimeHeartbeat",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "chatRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useRegisterRealtimeRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useRealtimeSubscription",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L139"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L176"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L212"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L253"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L273"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L273"
+		},
+		{
+			"caller_nid": "chat_chat_pane_chatpane",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\chat\\chat-pane.tsx",
+			"source_location": "L287"
+		}
+	]
+}

@@ -1,0 +1,1087 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"label": "profile-showcase.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_showcase_resolvedshowcasetile",
+			"label": "ResolvedShowcaseTile",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_profile_showcase_showcasetvitem",
+			"label": "ShowcaseTvItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L22"
+		},
+		{
+			"id": "lib_profile_showcase_showcaseitemkey",
+			"label": "showcaseItemKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "lib_profile_showcase_normalizeshowcasetvitem",
+			"label": "normalizeShowcaseTvItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L35"
+		},
+		{
+			"id": "lib_profile_showcase_parseshowcasetvscope",
+			"label": "parseShowcaseTvScope()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L75"
+		},
+		{
+			"id": "lib_profile_showcase_tvscopelabel",
+			"label": "tvScopeLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L81"
+		},
+		{
+			"id": "lib_profile_showcase_parseshowcaseitems",
+			"label": "parseShowcaseItems()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L97"
+		},
+		{
+			"id": "lib_profile_showcase_validateshowcasepatch",
+			"label": "validateShowcasePatch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L168"
+		},
+		{
+			"id": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"label": "migrateLegacyFavoriteMovies()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L176"
+		},
+		{
+			"id": "lib_profile_showcase_reviewheadlinefromrow",
+			"label": "reviewHeadlineFromRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L187"
+		},
+		{
+			"id": "lib_profile_showcase_logrowmatchesshowcasetvitem",
+			"label": "logRowMatchesShowcaseTvItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L198"
+		},
+		{
+			"id": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"label": "patronHasDiaryForShowcaseItem()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L218"
+		},
+		{
+			"id": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"label": "validateShowcaseItemsForUser()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L263"
+		},
+		{
+			"id": "lib_profile_showcase_hydrateshowcasetiles",
+			"label": "hydrateShowcaseTiles()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L349"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_resolvedshowcasetile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcasetvitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_normalizeshowcasetvitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_parseshowcasetvscope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L75",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_tvscopelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_parseshowcaseitems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_validateshowcasepatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L168",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L176",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_reviewheadlinefromrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_logrowmatchesshowcasetvitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L218",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L263",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_profile_showcase_ts",
+			"target": "lib_profile_showcase_hydrateshowcasetiles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L349",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_parseshowcaseitems",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L121",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_parseshowcaseitems",
+			"target": "lib_profile_showcase_parseshowcasetvscope",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_parseshowcaseitems",
+			"target": "lib_profile_showcase_normalizeshowcasetvitem",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_validateshowcasepatch",
+			"target": "lib_profile_showcase_parseshowcaseitems",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"target": "lib_profile_showcase_parseshowcaseitems",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L272",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"target": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L335",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_hydrateshowcasetiles",
+			"target": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_hydrateshowcasetiles",
+			"target": "lib_profile_showcase_tvscopelabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L449",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_profile_showcase_hydrateshowcasetiles",
+			"target": "lib_profile_showcase_reviewheadlinefromrow",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L464",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_showcase_normalizeshowcasetvitem",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_normalizeshowcasetvitem",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_normalizeshowcasetvitem",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_tvscopelabel",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_tvscopelabel",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_tvscopelabel",
+			"callee": "padStart",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_tvscopelabel",
+			"callee": "String",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L91"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L117"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L122"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L123"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L124"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L144"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L150"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L155"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_parseshowcaseitems",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L157"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_migratelegacyfavoritemovies",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_reviewheadlinefromrow",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_reviewheadlinefromrow",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L193"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_reviewheadlinefromrow",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L195"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L229"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L230"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L231"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L232"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L233"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L237"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L240"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L248"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L249"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L250"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L251"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "isNotNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L252"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_patronhasdiaryforshowcaseitem",
+			"callee": "some",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L256"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L280"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L280"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L285"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L285"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L288"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L288"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L293"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L293"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L293"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L296"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L303"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L303"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L303"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L306"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L313"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L313"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L313"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L317"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L318"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L319"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L320"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_validateshowcaseitemsforuser",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L321"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "isArray",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L354"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L362"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L362"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L365"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L365"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L369"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L371"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L371"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L371"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L378"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "resolve",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L379"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L381"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L381"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L381"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L388"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "resolve",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L389"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L391"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L391"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L391"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L391"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L400"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L402"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L403"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L404"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "inArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L405"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "resolve",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L408"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L411"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L412"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L413"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L419"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L421"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L436"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L443"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L457"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_hydrateshowcasetiles",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\profile-showcase.ts",
+			"source_location": "L459"
+		}
+	]
+}

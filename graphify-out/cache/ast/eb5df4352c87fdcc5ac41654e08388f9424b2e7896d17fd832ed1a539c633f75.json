@@ -1,0 +1,2155 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"label": "listing-engagement-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementkind",
+			"label": "ListingEngagementKind",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L42"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementlistingref",
+			"label": "ListingEngagementListingRef",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L51"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementwatchreview",
+			"label": "ListingEngagementWatchReview",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementwatchitem",
+			"label": "ListingEngagementWatchItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L64"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementlistitem",
+			"label": "ListingEngagementListItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L77"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementpatronitem",
+			"label": "ListingEngagementPatronItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L90"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementpage",
+			"label": "ListingEngagementPage",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L102"
+		},
+		{
+			"id": "lib_listing_engagement_query_parselistingengagementlimit",
+			"label": "parseListingEngagementLimit()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L111"
+		},
+		{
+			"id": "lib_listing_engagement_query_parselistingengagementpage",
+			"label": "parseListingEngagementPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L117"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingengagementhasmore",
+			"label": "listingEngagementHasMore()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L122"
+		},
+		{
+			"id": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"label": "formatListingEngagementPrivateGapFooter()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L130"
+		},
+		{
+			"id": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"label": "blockedUserIdsForViewer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L153"
+		},
+		{
+			"id": "lib_listing_engagement_query_listinglogwhere",
+			"label": "listingLogWhere()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L169"
+		},
+		{
+			"id": "lib_listing_engagement_query_listinglistitemwhere",
+			"label": "listingListItemWhere()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L177"
+		},
+		{
+			"id": "lib_listing_engagement_query_listingwatchlistwhere",
+			"label": "listingWatchlistWhere()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L187"
+		},
+		{
+			"id": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"label": "publicPatronProfileWhere()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L194"
+		},
+		{
+			"id": "lib_listing_engagement_query_listvieweraccesswhere",
+			"label": "listViewerAccessWhere()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L205"
+		},
+		{
+			"id": "lib_listing_engagement_query_mapwatchrows",
+			"label": "mapWatchRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L223"
+		},
+		{
+			"id": "lib_listing_engagement_query_mappatronrows",
+			"label": "mapPatronRows()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L268"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"label": "fetchVisibleWatchCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L296"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"label": "fetchEngagementWatchesPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L323"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"label": "fetchVisibleListCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L420"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchengagementlistspage",
+			"label": "fetchEngagementListsPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L432"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"label": "fetchVisibleWatchlistCount()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L521"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"label": "fetchEngagementWatchlistPage()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L539"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchlistingengagementwatches",
+			"label": "fetchListingEngagementWatches()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L600"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchlistingengagementfavorites",
+			"label": "fetchListingEngagementFavorites()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L615"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchlistingengagementlists",
+			"label": "fetchListingEngagementLists()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L630"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchlistingengagementwatchlist",
+			"label": "fetchListingEngagementWatchlist()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L644"
+		},
+		{
+			"id": "lib_listing_engagement_query_fetchlistingengagementglobalstats",
+			"label": "fetchListingEngagementGlobalStats()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L659"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_community_page_args_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_community_page_args_communityoffset",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_community_page_args_parsecommunitypage",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_content_visibility_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_content_visibility_contentvisibilitywhere",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_diary_metal_tier_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_diary_metal_tier_diarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_diary_metal_tier_fetchdiarylogcountsforuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_diary_metal_tier_resolvediarymetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_cover_posters_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_list_cover_posters_withcoverposterpaths",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_community_stats_listingcommunityengagementstats",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_community_stats_watchlistpatronhasnotwatchedtitle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_profile_media_readavatarisanimatedpref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementkind",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementlistingref",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementwatchreview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementwatchitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementlistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementpatronitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L102",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_parselistingengagementlimit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_parselistingengagementpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingengagementhasmore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listinglogwhere",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L169",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listinglistitemwhere",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L177",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listingwatchlistwhere",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L194",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_listvieweraccesswhere",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L205",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_mapwatchrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L223",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_mappatronrows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L296",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L323",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L420",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchengagementlistspage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L432",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L521",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L539",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchlistingengagementwatches",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L600",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchlistingengagementfavorites",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L615",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchlistingengagementlists",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L630",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchlistingengagementwatchlist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L644",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_engagement_query_ts",
+			"target": "lib_listing_engagement_query_fetchlistingengagementglobalstats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L659",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"target": "lib_listing_engagement_query_listinglogwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L308",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"target": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L311",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_listinglogwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L364",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L367",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_listingengagementhasmore",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L395",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_mapwatchrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L397",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"target": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L400",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"target": "lib_listing_engagement_query_listinglistitemwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L428",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"target": "lib_listing_engagement_query_listvieweraccesswhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L428",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementlistspage",
+			"target": "lib_listing_engagement_query_listinglistitemwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L460",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementlistspage",
+			"target": "lib_listing_engagement_query_listvieweraccesswhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L461",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementlistspage",
+			"target": "lib_listing_engagement_query_listingengagementhasmore",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L475",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementlistspage",
+			"target": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L508",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"target": "lib_listing_engagement_query_listingwatchlistwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L531",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"target": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L533",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L545",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_listingwatchlistwhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L562",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L564",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_listingengagementhasmore",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L571",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_mappatronrows",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L573",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"target": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L587",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatches",
+			"target": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L606",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatches",
+			"target": "lib_listing_engagement_query_parselistingengagementpage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L609",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatches",
+			"target": "lib_listing_engagement_query_parselistingengagementlimit",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L610",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementfavorites",
+			"target": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L621",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementfavorites",
+			"target": "lib_listing_engagement_query_parselistingengagementpage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L624",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementfavorites",
+			"target": "lib_listing_engagement_query_parselistingengagementlimit",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L625",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementlists",
+			"target": "lib_listing_engagement_query_fetchengagementlistspage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L636",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementlists",
+			"target": "lib_listing_engagement_query_parselistingengagementpage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L639",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementlists",
+			"target": "lib_listing_engagement_query_parselistingengagementlimit",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L640",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatchlist",
+			"target": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L650",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatchlist",
+			"target": "lib_listing_engagement_query_parselistingengagementpage",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L653",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_engagement_query_fetchlistingengagementwatchlist",
+			"target": "lib_listing_engagement_query_parselistingengagementlimit",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L654",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_engagement_query_parselistingengagementlimit",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L112"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_parselistingengagementlimit",
+			"callee": "isFinite",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L113"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_parselistingengagementlimit",
+			"callee": "min",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_parselistingengagementlimit",
+			"callee": "floor",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_parselistingengagementpage",
+			"callee": "parseCommunityPage",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L118"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "max",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L135"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L141"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_formatlistingengagementprivategapfooter",
+			"callee": "toLocaleString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L154"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "or",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L163"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_blockeduseridsforviewer",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L164"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglogwhere",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L171"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglogwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglogwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglogwhere",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglistitemwhere",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglistitemwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L181"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglistitemwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L182"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listinglistitemwhere",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listingwatchlistwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L190"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listingwatchlistwhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L191"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_publicpatronprofilewhere",
+			"callee": "notInArray",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "or",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L206"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L207"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L208"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "exists",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L209"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L211"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L214"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L215"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_listvieweraccesswhere",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L216"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mapwatchrows",
+			"callee": "fetchDiaryLogCountsForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L241"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mapwatchrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L242"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mapwatchrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L244"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mappatronrows",
+			"callee": "fetchDiaryLogCountsForUserIds",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L280"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mappatronrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L281"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_mappatronrows",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L283"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "selectDistinctOn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L302"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L305"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L307"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L309"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "contentVisibilityWhere",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L310"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L314"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L317"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L317"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchcount",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L320"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "communityOffset",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L331"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "leftJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "selectDistinctOn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L333"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L341"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L347"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L352"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L353"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L356"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L357"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "isNull",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L358"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "contentVisibilityWhere",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L359"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L363"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L365"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "contentVisibilityWhere",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L366"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L370"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L370"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L391"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L396"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L399"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchespage",
+			"callee": "fetchCachedListingCommunityStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L406"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L424"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L424"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L424"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L424"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "countDistinct",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L425"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L427"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L428"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblelistcount",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L429"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "communityOffset",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L438"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "as",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "selectDistinctOn",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L440"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L456"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L457"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L459"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "sql",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L462"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L465"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L465"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L468"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L471"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L471"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L476"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "withCoverPosterPaths",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L477"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L478"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L494"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L507"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementlistspage",
+			"callee": "fetchCachedListingCommunityStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L509"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L525"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L525"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L525"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L525"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "count",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L526"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L528"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L530"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "watchlistPatronHasNotWatchedTitle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L532"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchvisiblewatchlistcount",
+			"callee": "Number",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L536"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "communityOffset",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L546"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "offset",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "orderBy",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "innerJoin",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L548"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L558"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L559"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L561"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "watchlistPatronHasNotWatchedTitle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L563"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "desc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L567"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L572"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L574"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L586"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchengagementwatchlistpage",
+			"callee": "fetchCachedListingCommunityStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L588"
+		},
+		{
+			"caller_nid": "lib_listing_engagement_query_fetchlistingengagementglobalstats",
+			"callee": "fetchCachedListingCommunityStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-engagement-query.ts",
+			"source_location": "L662"
+		}
+	]
+}

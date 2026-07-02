@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_16_tabs_sliding_md",
+			"label": "16-tabs-sliding.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"label": "Tabs sliding",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_codeblock_1",
+			"label": "code:html (<div class=\"t-tabs\" role=\"tablist\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_codeblock_3",
+			"label": "code:css (/* The bar is just a flex container with padding for the pil)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "transitions_dev_16_tabs_sliding_codeblock_4",
+			"label": "code:js (const bar = document.querySelector(\".t-tabs\");)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L114"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_16_tabs_sliding_md",
+			"target": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"target": "transitions_dev_16_tabs_sliding_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"target": "transitions_dev_16_tabs_sliding_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_html_usage",
+			"target": "transitions_dev_16_tabs_sliding_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"target": "transitions_dev_16_tabs_sliding_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tunable_variables",
+			"target": "transitions_dev_16_tabs_sliding_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"target": "transitions_dev_16_tabs_sliding_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_css",
+			"target": "transitions_dev_16_tabs_sliding_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_tabs_sliding",
+			"target": "transitions_dev_16_tabs_sliding_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_16_tabs_sliding_javascript_orchestration",
+			"target": "transitions_dev_16_tabs_sliding_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\16-tabs-sliding.md",
+			"source_location": "L114",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

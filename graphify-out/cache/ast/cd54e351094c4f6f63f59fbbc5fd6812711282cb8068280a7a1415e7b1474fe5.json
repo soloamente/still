@@ -1,0 +1,125 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"label": "badge-watcher.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "gamification_badge_watcher_badgewatcher",
+			"label": "BadgeWatcher()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_cinema_sound_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "cinema_sound_provider_usecinematicaudio",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_badge_prestige_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "lib_badge_prestige_shouldnotifybadgeaward",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_still_api_fetch_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "lib_still_api_fetch_fetchbadgesrecent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_gamification_badge_watcher_tsx",
+			"target": "gamification_badge_watcher_badgewatcher",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "gamification_badge_watcher_badgewatcher",
+			"callee": "useCinematicAudio",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "gamification_badge_watcher_badgewatcher",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\gamification\\badge-watcher.tsx",
+			"source_location": "L19"
+		}
+	]
+}

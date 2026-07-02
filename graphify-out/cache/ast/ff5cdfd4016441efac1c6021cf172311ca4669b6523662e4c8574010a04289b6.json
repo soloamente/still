@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_21_home_page_load_speed_design_md",
+			"label": "2026-06-21-home-page-load-speed-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"label": "Home Page Load Speed \u2014 Design Spec",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_root_cause",
+			"label": "Root Cause",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_codeblock_1",
+			"label": "code:block1 (1. serverApi()         \u2192 fast (builds Eden client, no networ)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_design",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_step_1_parallelize_auth_profile",
+			"label": "Step 1 \u2014 Parallelize auth + profile",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_codeblock_2",
+			"label": "code:ts (const api = await serverApi();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_codeblock_3",
+			"label": "code:ts (const api = await serverApi();)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_step_2_merge_lobbyresult_into_the_promise_all",
+			"label": "Step 2 \u2014 Merge lobbyResult into the Promise.all",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_codeblock_4",
+			"label": "code:ts (const [continueWatching, tasteMatchedRail, committedSearchPa)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_codeblock_5",
+			"label": "code:ts (const [continueWatching, tasteMatchedRail, committedSearchPa)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_what_doesn_t_change",
+			"label": "What doesn't change",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_files_affected",
+			"label": "Files Affected",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "specs_2026_06_21_home_page_load_speed_design_expected_impact",
+			"label": "Expected Impact",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L78"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_21_home_page_load_speed_design_md",
+			"target": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"target": "specs_2026_06_21_home_page_load_speed_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"target": "specs_2026_06_21_home_page_load_speed_design_root_cause",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_root_cause",
+			"target": "specs_2026_06_21_home_page_load_speed_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"target": "specs_2026_06_21_home_page_load_speed_design_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_design",
+			"target": "specs_2026_06_21_home_page_load_speed_design_step_1_parallelize_auth_profile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_step_1_parallelize_auth_profile",
+			"target": "specs_2026_06_21_home_page_load_speed_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_step_1_parallelize_auth_profile",
+			"target": "specs_2026_06_21_home_page_load_speed_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_design",
+			"target": "specs_2026_06_21_home_page_load_speed_design_step_2_merge_lobbyresult_into_the_promise_all",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_step_2_merge_lobbyresult_into_the_promise_all",
+			"target": "specs_2026_06_21_home_page_load_speed_design_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_step_2_merge_lobbyresult_into_the_promise_all",
+			"target": "specs_2026_06_21_home_page_load_speed_design_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_design",
+			"target": "specs_2026_06_21_home_page_load_speed_design_what_doesn_t_change",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"target": "specs_2026_06_21_home_page_load_speed_design_files_affected",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_21_home_page_load_speed_design_home_page_load_speed_design_spec",
+			"target": "specs_2026_06_21_home_page_load_speed_design_expected_impact",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-21-home-page-load-speed-design.md",
+			"source_location": "L78",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

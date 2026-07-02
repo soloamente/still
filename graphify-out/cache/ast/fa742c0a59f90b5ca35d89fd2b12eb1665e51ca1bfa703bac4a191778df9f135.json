@@ -1,0 +1,210 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"label": "permissions.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_permissions_statement",
+			"label": "statement",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "src_permissions_ac",
+			"label": "ac",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "src_permissions_owner",
+			"label": "owner",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L38"
+		},
+		{
+			"id": "src_permissions_admin",
+			"label": "admin",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "src_permissions_moderator",
+			"label": "moderator",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L62"
+		},
+		{
+			"id": "src_permissions_support",
+			"label": "support",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L67"
+		},
+		{
+			"id": "src_permissions_user",
+			"label": "user",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L83"
+		},
+		{
+			"id": "src_permissions_roles",
+			"label": "roles",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L91"
+		},
+		{
+			"id": "src_permissions_staff_roles",
+			"label": "STAFF_ROLES",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L94"
+		},
+		{
+			"id": "src_permissions_staffrole",
+			"label": "StaffRole",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L95"
+		},
+		{
+			"id": "src_permissions_approle",
+			"label": "AppRole",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L96"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "access",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "access",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_statement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_ac",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_owner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_admin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_moderator",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_support",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_user",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_roles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_staff_roles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_staffrole",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"target": "src_permissions_approle",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permissions.ts",
+			"source_location": "L96",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

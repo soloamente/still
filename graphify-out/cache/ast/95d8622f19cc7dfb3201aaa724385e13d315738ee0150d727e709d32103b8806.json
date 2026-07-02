@@ -1,0 +1,280 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"label": "feedback-drawer-provider.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "feedback_feedback_drawer_provider_feedbackdrawermode",
+			"label": "FeedbackDrawerMode",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "feedback_feedback_drawer_provider_feedbackdrawercontextvalue",
+			"label": "FeedbackDrawerContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L20"
+		},
+		{
+			"id": "feedback_feedback_drawer_provider_feedbackdrawercontext",
+			"label": "FeedbackDrawerContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"label": "FeedbackDrawerProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L31"
+		},
+		{
+			"id": "feedback_feedback_drawer_provider_usefeedbackdrawer",
+			"label": "useFeedbackDrawer()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L112"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_compose_dialog_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_compose_dialog_feedbackcomposedialog",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_feedbackdrawer",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_feedback_notification_href_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "lib_feedback_notification_href_feedbackidfromsearch",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_provider_feedbackdrawermode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_provider_feedbackdrawercontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_provider_feedbackdrawercontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L31",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_feedback_feedback_drawer_provider_tsx",
+			"target": "feedback_feedback_drawer_provider_usefeedbackdrawer",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L112",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useRouter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useSearchParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L34"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_feedbackdrawerprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "feedback_feedback_drawer_provider_usefeedbackdrawer",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\feedback\\feedback-drawer-provider.tsx",
+			"source_location": "L113"
+		}
+	]
+}

@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_skill_md",
+			"label": "SKILL.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_skill_transitions_dev",
+			"label": "Transitions.dev",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "transitions_dev_skill_quick_reference",
+			"label": "Quick reference",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L10"
+		},
+		{
+			"id": "transitions_dev_skill_decision_rules",
+			"label": "Decision rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L36"
+		},
+		{
+			"id": "transitions_dev_skill_commands",
+			"label": "Commands",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "transitions_dev_skill_transitions_reveal_list_every_transition",
+			"label": "transitions reveal \u2014 list every transition",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "transitions_dev_skill_transitions_review_audit_the_project_for_fit",
+			"label": "transitions review \u2014 audit the project for fit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "transitions_dev_skill_transitions_apply_install_the_best_fit_transition",
+			"label": "transitions apply \u2014 install the best-fit transition",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "transitions_dev_skill_transitions_refine_replace_ad_hoc_motion_with_the_motion_tokens",
+			"label": "transitions refine \u2014 replace ad-hoc motion with the motion tokens",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L99"
+		},
+		{
+			"id": "transitions_dev_skill_motion_tokens",
+			"label": "Motion tokens",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "transitions_dev_skill_universal_install",
+			"label": "Universal install",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L167"
+		},
+		{
+			"id": "transitions_dev_skill_output_format",
+			"label": "Output format",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L175"
+		},
+		{
+			"id": "transitions_dev_skill_common_mistakes_to_avoid",
+			"label": "Common mistakes to avoid",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L187"
+		},
+		{
+			"id": "transitions_dev_skill_reference_files",
+			"label": "Reference files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L202"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_skill_md",
+			"target": "transitions_dev_skill_transitions_dev",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_quick_reference",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_decision_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_commands",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_commands",
+			"target": "transitions_dev_skill_transitions_reveal_list_every_transition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_commands",
+			"target": "transitions_dev_skill_transitions_review_audit_the_project_for_fit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_commands",
+			"target": "transitions_dev_skill_transitions_apply_install_the_best_fit_transition",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_commands",
+			"target": "transitions_dev_skill_transitions_refine_replace_ad_hoc_motion_with_the_motion_tokens",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L99",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_motion_tokens",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_universal_install",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_output_format",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L175",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_common_mistakes_to_avoid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_skill_transitions_dev",
+			"target": "transitions_dev_skill_reference_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\SKILL.md",
+			"source_location": "L202",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,256 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"label": "staff-plans-grid-view.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "staff_staff_plans_grid_view_tier_order",
+			"label": "TIER_ORDER",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L11"
+		},
+		{
+			"id": "staff_staff_plans_grid_view_buildstatusdot",
+			"label": "BuildStatusDot()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L22"
+		},
+		{
+			"id": "staff_staff_plans_grid_view_tierincludedmark",
+			"label": "TierIncludedMark()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L35"
+		},
+		{
+			"id": "staff_staff_plans_grid_view_staffplansgridview",
+			"label": "StaffPlansGridView()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L47"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_staff_plan_features_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "lib_staff_plan_features_api_planfeature",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "lib_staff_plan_features_api_plantier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_inline_edit_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_plan_feature_inline_edit_planfeatureinlineedit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_staff_plan_feature_row_expand_panel_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_plan_feature_row_expand_panel_planfeaturerowexpandpanel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_staff_plans_grid_view_tier_order",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_staff_plans_grid_view_buildstatusdot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_staff_plans_grid_view_tierincludedmark",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_staff_staff_plans_grid_view_tsx",
+			"target": "staff_staff_plans_grid_view_staffplansgridview",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L47",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "staff_staff_plans_grid_view_buildstatusdot",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "staff_staff_plans_grid_view_staffplansgridview",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\staff\\staff-plans-grid-view.tsx",
+			"source_location": "L121"
+		}
+	]
+}

@@ -1,0 +1,412 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"label": "index.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_index_sendauthemail",
+			"label": "sendAuthEmail()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "src_index_buildpolarplugin",
+			"label": "buildPolarPlugin()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L41"
+		},
+		{
+			"id": "src_index_createauth",
+			"label": "createAuth()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L61"
+		},
+		{
+			"id": "src_index_auth",
+			"label": "auth",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L153"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "expo",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "better_auth",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "auth",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "better_auth",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "drizzle",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "plugins",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_emails_delete_account_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "emails_delete_account_deleteaccountemail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_emails_render_email_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "emails_render_email_renderauthemail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_emails_reset_password_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "emails_reset_password_resetpasswordemail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_emails_verify_email_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "emails_verify_email_verifyemail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_lib_delete_user_cleanup_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "lib_delete_user_cleanup_deleteuserblobassets",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_lib_payments_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "lib_payments_polarclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_lib_send_email_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "lib_send_email_sendemail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_permissions_ac",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_permissions_roles",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_index_sendauthemail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_index_buildpolarplugin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_index_createauth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_index_ts",
+			"target": "src_index_auth",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L153",
+			"weight": 1.0
+		},
+		{
+			"source": "src_index_createauth",
+			"target": "src_index_buildpolarplugin",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L62",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_index_sendauthemail",
+			"callee": "renderAuthEmail",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L26"
+		},
+		{
+			"caller_nid": "src_index_sendauthemail",
+			"callee": "sendEmail",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "src_index_buildpolarplugin",
+			"callee": "polar",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "src_index_buildpolarplugin",
+			"callee": "checkout",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "src_index_buildpolarplugin",
+			"callee": "portal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "src_index_createauth",
+			"callee": "betterAuth",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L64"
+		},
+		{
+			"caller_nid": "src_index_createauth",
+			"callee": "drizzleAdapter",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "src_index_createauth",
+			"callee": "expo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L137"
+		},
+		{
+			"caller_nid": "src_index_createauth",
+			"callee": "adminPlugin",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\index.ts",
+			"source_location": "L138"
+		}
+	]
+}

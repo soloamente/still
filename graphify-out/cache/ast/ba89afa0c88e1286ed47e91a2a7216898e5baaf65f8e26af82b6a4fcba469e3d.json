@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_06_modal_md",
+			"label": "06-modal.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_06_modal_modal_open_close",
+			"label": "Modal open / close",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_06_modal_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_06_modal_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_06_modal_codeblock_1",
+			"label": "code:html (<div class=\"t-modal\" role=\"dialog\">\u2026</div>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_06_modal_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L18"
+		},
+		{
+			"id": "transitions_dev_06_modal_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L30"
+		},
+		{
+			"id": "transitions_dev_06_modal_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "transitions_dev_06_modal_codeblock_3",
+			"label": "code:css (.t-modal {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "transitions_dev_06_modal_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L74"
+		},
+		{
+			"id": "transitions_dev_06_modal_codeblock_4",
+			"label": "code:js (// Same close-then-cleanup pattern as the dropdown \u2014 modals )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L76"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_06_modal_md",
+			"target": "transitions_dev_06_modal_modal_open_close",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_modal_open_close",
+			"target": "transitions_dev_06_modal_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_modal_open_close",
+			"target": "transitions_dev_06_modal_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_html_usage",
+			"target": "transitions_dev_06_modal_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_modal_open_close",
+			"target": "transitions_dev_06_modal_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_tunable_variables",
+			"target": "transitions_dev_06_modal_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_modal_open_close",
+			"target": "transitions_dev_06_modal_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_css",
+			"target": "transitions_dev_06_modal_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_modal_open_close",
+			"target": "transitions_dev_06_modal_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L74",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_06_modal_javascript_orchestration",
+			"target": "transitions_dev_06_modal_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\06-modal.md",
+			"source_location": "L76",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_01_home_taste_hero_consumed_exclusion_design_md",
+			"label": "2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"label": "Home Taste Hero \u2014 Consumed Title Exclusion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_server_final_guard",
+			"label": "Server \u2014 final guard",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_client_hero_reconciliation",
+			"label": "Client \u2014 hero reconciliation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L51"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_client_event_dispatch",
+			"label": "Client \u2014 event dispatch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_ui_copy",
+			"label": "UI copy",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L100"
+		},
+		{
+			"id": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_related_docs",
+			"label": "Related docs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L106"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_01_home_taste_hero_consumed_exclusion_design_md",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_architecture",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_server_final_guard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_architecture",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_client_hero_reconciliation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L51",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_architecture",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_client_event_dispatch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_ui_copy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L100",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_home_taste_hero_consumed_title_exclusion",
+			"target": "specs_2026_07_01_home_taste_hero_consumed_exclusion_design_related_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-01-home-taste-hero-consumed-exclusion-design.md",
+			"source_location": "L106",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

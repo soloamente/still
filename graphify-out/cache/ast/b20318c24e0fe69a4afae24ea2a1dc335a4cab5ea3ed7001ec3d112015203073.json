@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_20_plus_menu_morph_md",
+			"label": "20-plus-menu-morph.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"label": "Plus to menu morph",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_codeblock_1",
+			"label": "code:html (<div class=\"t-morph\" data-open=\"false\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L24"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L58"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_codeblock_3",
+			"label": "code:css (/* Closed: a small circular button. Open: a rounded panel.)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L60"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_codeblock_4",
+			"label": "code:js (// Toggle data-open on the container; CSS owns the morph. Mi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L137"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_pin_the_plus_button_to_a_corner",
+			"label": "Pin the plus button to a corner",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L160"
+		},
+		{
+			"id": "transitions_dev_20_plus_menu_morph_open_and_close_use_different_eases",
+			"label": "Open and close use different eases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L164"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_20_plus_menu_morph_md",
+			"target": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"target": "transitions_dev_20_plus_menu_morph_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"target": "transitions_dev_20_plus_menu_morph_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_html_usage",
+			"target": "transitions_dev_20_plus_menu_morph_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"target": "transitions_dev_20_plus_menu_morph_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_tunable_variables",
+			"target": "transitions_dev_20_plus_menu_morph_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"target": "transitions_dev_20_plus_menu_morph_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_css",
+			"target": "transitions_dev_20_plus_menu_morph_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_plus_to_menu_morph",
+			"target": "transitions_dev_20_plus_menu_morph_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_javascript_orchestration",
+			"target": "transitions_dev_20_plus_menu_morph_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L137",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_javascript_orchestration",
+			"target": "transitions_dev_20_plus_menu_morph_pin_the_plus_button_to_a_corner",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L160",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_20_plus_menu_morph_javascript_orchestration",
+			"target": "transitions_dev_20_plus_menu_morph_open_and_close_use_different_eases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\20-plus-menu-morph.md",
+			"source_location": "L164",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

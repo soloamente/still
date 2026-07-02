@@ -1,0 +1,495 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_presence_self_view_md",
+			"label": "2026-06-30-presence-self-view.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_self_presence_dot_online_away_implementation_plan",
+			"label": "Self Presence Dot (Online / Away) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"label": "Task 1: Server \u2014 append viewer self to `/online` presence batch",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_1",
+			"label": "code:ts (import { appendViewerSelfPresence } from \"./patron-presence\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_2",
+			"label": "code:ts (export function appendViewerSelfPresence(input: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_3",
+			"label": "code:ts (// Lookup viewer handle when private profile excluded from r)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L135"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_4",
+			"label": "code:bash (git add apps/server/src/lib/patron-presence.ts apps/server/s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L164"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"label": "Task 2: Server \u2014 prepend viewer to listing presence snapshot",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L171"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_5",
+			"label": "code:ts (import { prependViewerSelfToViewingPatrons } from \"./listing)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L181"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_6",
+			"label": "code:ts (/** Prepend viewer to visible patrons; self counts toward li)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L241"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_7",
+			"label": "code:ts (const others = await fetchViewingPatronsInRoom(/* unchanged )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L299"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_8",
+			"label": "code:bash (git add apps/server/src/lib/listing-presence.ts apps/server/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L322"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"label": "Task 3: Web \u2014 self SR labels and alone-with-self display resolver",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L329"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_9",
+			"label": "code:ts (describe(\"formatPatronPresenceDotLabel self perspective\", ())",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L339"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_10",
+			"label": "code:ts (export function formatPatronPresenceDotLabel()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L392"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_11",
+			"label": "code:ts (export function resolveListingPresenceRowDisplay()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L407"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_12",
+			"label": "code:bash (git add apps/web/src/lib/listing-presence-copy.ts apps/web/s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L427"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"label": "Task 4: Web \u2014 PatronOnlineProvider self visibility",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L434"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_13",
+			"label": "code:ts (// BEFORE)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L443"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_14",
+			"label": "code:ts (type PatronOnlineContextValue = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L453"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_15",
+			"label": "code:ts (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L473"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_16",
+			"label": "code:bash (git add apps/web/src/components/realtime/patron-online-provi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L486"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_5_web_portrait_self_labels_listing_row_aria",
+			"label": "Task 5: Web \u2014 portrait self labels + listing row aria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L493"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_17",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L503"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_18",
+			"label": "code:ts (const isAloneWithSelf =)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L529"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_19",
+			"label": "code:bash (git add apps/web/src/components/profile/patron-portrait-with)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L550"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_task_6_manual_qa_graphify_update",
+			"label": "Task 6: Manual QA + graphify update",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L557"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_codeblock_20",
+			"label": "code:bash (git add -A)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L579"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_spec_coverage_checklist",
+			"label": "Spec coverage checklist",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L586"
+		},
+		{
+			"id": "plans_2026_06_30_presence_self_view_out_of_scope_do_not_implement",
+			"label": "Out of scope (do not implement)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L599"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_presence_self_view_md",
+			"target": "plans_2026_06_30_presence_self_view_self_presence_dot_online_away_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_self_presence_dot_online_away_implementation_plan",
+			"target": "plans_2026_06_30_presence_self_view_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L135",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_1_server_append_viewer_self_to_online_presence_batch",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L164",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L171",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L241",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L299",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_2_server_prepend_viewer_to_listing_presence_snapshot",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L322",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L329",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L339",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L392",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L407",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_3_web_self_sr_labels_and_alone_with_self_display_resolver",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L427",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L434",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L443",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L453",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L473",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_4_web_patrononlineprovider_self_visibility",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L486",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_5_web_portrait_self_labels_listing_row_aria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L493",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_5_web_portrait_self_labels_listing_row_aria",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L503",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_5_web_portrait_self_labels_listing_row_aria",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L529",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_5_web_portrait_self_labels_listing_row_aria",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L550",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_file_map",
+			"target": "plans_2026_06_30_presence_self_view_task_6_manual_qa_graphify_update",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L557",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_task_6_manual_qa_graphify_update",
+			"target": "plans_2026_06_30_presence_self_view_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L579",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_self_presence_dot_online_away_implementation_plan",
+			"target": "plans_2026_06_30_presence_self_view_spec_coverage_checklist",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L586",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_presence_self_view_self_presence_dot_online_away_implementation_plan",
+			"target": "plans_2026_06_30_presence_self_view_out_of_scope_do_not_implement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-presence-self-view.md",
+			"source_location": "L599",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

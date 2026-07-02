@@ -1,0 +1,98 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"label": "realtime-occupancy.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_realtime_occupancy_roomoccupancyentry",
+			"label": "RoomOccupancyEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"label": "fetchWorkerOccupancy()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_presence_activity_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"target": "lib_presence_activity_patronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"target": "lib_realtime_occupancy_roomoccupancyentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_realtime_occupancy_ts",
+			"target": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"callee": "fetch",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "lib_realtime_occupancy_fetchworkeroccupancy",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\realtime-occupancy.ts",
+			"source_location": "L26"
+		}
+	]
+}

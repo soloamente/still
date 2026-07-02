@@ -1,0 +1,388 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"label": "index.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_index_env",
+			"label": "Env",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "src_index_originallowed",
+			"label": "originAllowed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "src_index_hubstub",
+			"label": "hubStub()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "src_index_authorizeroom",
+			"label": "authorizeRoom()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "src_index_fetch",
+			"label": "fetch()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L59"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "c_users_utente_documents_still_apps_realtime_src_auth_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_auth_timingsafeequal",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_auth_verifyconnecttoken",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "c_users_utente_documents_still_apps_realtime_src_hub_do_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_hub_do_realtimehub",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_index_env",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_index_originallowed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_index_hubstub",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_index_authorizeroom",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_realtime_src_index_ts",
+			"target": "src_index_fetch",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "src_index_authorizeroom",
+			"target": "src_index_fetch",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "src_index_fetch",
+			"target": "src_index_originallowed",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "src_index_fetch",
+			"target": "src_index_hubstub",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L99",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_index_originallowed",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "src_index_originallowed",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "src_index_originallowed",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "src_index_originallowed",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "src_index_hubstub",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "src_index_hubstub",
+			"callee": "idFromName",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "src_index_authorizeroom",
+			"callee": "classifyRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L36"
+		},
+		{
+			"caller_nid": "src_index_authorizeroom",
+			"callee": "stringify",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "src_index_authorizeroom",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L51"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L72"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "verifyConnectToken",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L75"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "split",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L84"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L96"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L97"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "toString",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L100"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L108"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "timingSafeEqual",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L111"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L125"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "timingSafeEqual",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "get",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L132"
+		},
+		{
+			"caller_nid": "src_index_fetch",
+			"callee": "encodeURIComponent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\realtime\\src\\index.ts",
+			"source_location": "L135"
+		}
+	]
+}

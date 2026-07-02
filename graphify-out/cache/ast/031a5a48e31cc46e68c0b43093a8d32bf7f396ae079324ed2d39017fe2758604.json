@@ -1,0 +1,751 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_search_cast_crew_people_md",
+			"label": "2026-06-30-search-cast-crew-people.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"label": "Search: Cast & Crew (directors & actors) Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_1_server_person_search_row_mapper",
+			"label": "Task 1: Server \u2014 person search row mapper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_1",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_2",
+			"label": "code:ts (import { tmdbImg } from \"./tmdb\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_3",
+			"label": "code:bash (git add apps/server/src/lib/people-search-row.ts apps/server)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L145"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_2_server_tmdbpersonsummary_type_searchperson_method",
+			"label": "Task 2: Server \u2014 `TmdbPersonSummary` type + `searchPerson` method",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L152"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_4",
+			"label": "code:ts (/** TMDb `/search/person` row \u2014 `known_for` mixes movie (`ti)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_5",
+			"label": "code:ts (/** TMDb `/search/person` \u2014 rows carry `known_for` (notable )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_6",
+			"label": "code:bash (git add apps/server/src/lib/tmdb.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"label": "Task 3: Server \u2014 `GET /api/people/search` route",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_7",
+			"label": "code:ts (import { getShowAdultContentForUser } from \"../lib/adult-con)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L220"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_8",
+			"label": "code:ts (.get()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L229"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_9",
+			"label": "code:bash (cd apps/server && bun run --hot src/local.ts &)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L273"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_10",
+			"label": "code:bash (git add apps/server/src/routes/people.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_4_web_castcrewsearchhit_type_castcrewmetaline_helper",
+			"label": "Task 4: Web \u2014 `CastCrewSearchHit` type + `castCrewMetaLine` helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L290"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_11",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_12",
+			"label": "code:ts (/** Person row from `GET /api/people/search` \u2014 mirrors the s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L365"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_13",
+			"label": "code:bash (git add apps/web/src/lib/cast-crew-search-query.ts apps/web/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L391"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_5_web_fetchpeoplesearch_helper",
+			"label": "Task 5: Web \u2014 `fetchPeopleSearch` helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L398"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_14",
+			"label": "code:ts (/** TMDb person search proxy \u2014 rows are slim `PeopleSearchRo)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L407"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_15",
+			"label": "code:bash (git add apps/web/src/lib/still-api-fetch.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L441"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_6_web_usecastcrewsearch_hook",
+			"label": "Task 6: Web \u2014 `useCastCrewSearch` hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L448"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_16",
+			"label": "code:ts (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L457"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_17",
+			"label": "code:bash (git add apps/web/src/lib/use-cast-crew-search.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L528"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_7_web_searchdialogcastcrewrow_component",
+			"label": "Task 7: Web \u2014 `SearchDialogCastCrewRow` component",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L535"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_18",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L544"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_19",
+			"label": "code:bash (git add apps/web/src/components/home/search-dialog-cast-crew)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L613"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_8_web_searchdialogcastcrewresults_section",
+			"label": "Task 8: Web \u2014 `SearchDialogCastCrewResults` section",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L620"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_20",
+			"label": "code:tsx (\"use client\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L629"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_21",
+			"label": "code:bash (git add apps/web/src/components/home/search-dialog-cast-crew)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L684"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_9_web_rename_patron_section_header_people_members",
+			"label": "Task 9: Web \u2014 rename patron section header \"People\" \u2192 \"Members\"",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L691"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_22",
+			"label": "code:tsx (People)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L700"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_23",
+			"label": "code:tsx (Members)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L706"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_24",
+			"label": "code:bash (git add apps/web/src/components/home/search-dialog-people-re)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L719"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"label": "Task 10: Web \u2014 wire Cast & Crew into the search dialog",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L726"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_25",
+			"label": "code:tsx (import { SearchDialogCastCrewResults } from \"@/components/ho)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L735"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_26",
+			"label": "code:tsx (import { useCastCrewSearch } from \"@/lib/use-cast-crew-searc)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L741"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_27",
+			"label": "code:tsx (const { hits: profileSearchHits, loading: profileSearchLoadi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L749"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_28",
+			"label": "code:tsx (const castCrewSearchEnabled = trimmedDraft.length >= 1 && sh)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L756"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_29",
+			"label": "code:tsx (const handlePersonSelect = useCallback()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L770"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_30",
+			"label": "code:tsx ({!isEmptyDraft && viewer ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L784"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_31",
+			"label": "code:tsx ({!isEmptyDraft ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L796"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_codeblock_32",
+			"label": "code:bash (git add apps/web/src/components/home/home-sticky-search.tsx)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L815"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_task_11_full_verification_manual_in_the_running_app",
+			"label": "Task 11: Full verification (manual, in the running app)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L822"
+		},
+		{
+			"id": "plans_2026_06_30_search_cast_crew_people_self_review_notes",
+			"label": "Self-Review Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L850"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_search_cast_crew_people_md",
+			"target": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_1_server_person_search_row_mapper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_1_server_person_search_row_mapper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_1_server_person_search_row_mapper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_1_server_person_search_row_mapper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L145",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_2_server_tmdbpersonsummary_type_searchperson_method",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L152",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_2_server_tmdbpersonsummary_type_searchperson_method",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_2_server_tmdbpersonsummary_type_searchperson_method",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_2_server_tmdbpersonsummary_type_searchperson_method",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L220",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L229",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L273",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_3_server_get_api_people_search_route",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_4_web_castcrewsearchhit_type_castcrewmetaline_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L290",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_4_web_castcrewsearchhit_type_castcrewmetaline_helper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_4_web_castcrewsearchhit_type_castcrewmetaline_helper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L365",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_4_web_castcrewsearchhit_type_castcrewmetaline_helper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L391",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_5_web_fetchpeoplesearch_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L398",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_5_web_fetchpeoplesearch_helper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L407",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_5_web_fetchpeoplesearch_helper",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L441",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_6_web_usecastcrewsearch_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L448",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_6_web_usecastcrewsearch_hook",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L457",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_6_web_usecastcrewsearch_hook",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L528",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_7_web_searchdialogcastcrewrow_component",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L535",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_7_web_searchdialogcastcrewrow_component",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L544",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_7_web_searchdialogcastcrewrow_component",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L613",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_8_web_searchdialogcastcrewresults_section",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L620",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_8_web_searchdialogcastcrewresults_section",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L629",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_8_web_searchdialogcastcrewresults_section",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L684",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_9_web_rename_patron_section_header_people_members",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L691",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_9_web_rename_patron_section_header_people_members",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L700",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_9_web_rename_patron_section_header_people_members",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L706",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_9_web_rename_patron_section_header_people_members",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L719",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L726",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_25",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L735",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_26",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L741",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_27",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L749",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_28",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L756",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_29",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L770",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_30",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L784",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_31",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L796",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_task_10_web_wire_cast_crew_into_the_search_dialog",
+			"target": "plans_2026_06_30_search_cast_crew_people_codeblock_32",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L815",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_task_11_full_verification_manual_in_the_running_app",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L822",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_search_cast_crew_people_search_cast_crew_directors_actors_implementation_plan",
+			"target": "plans_2026_06_30_search_cast_crew_people_self_review_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-search-cast-crew-people.md",
+			"source_location": "L850",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

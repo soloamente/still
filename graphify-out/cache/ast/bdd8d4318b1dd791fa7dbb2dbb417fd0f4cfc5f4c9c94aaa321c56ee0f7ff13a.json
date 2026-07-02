@@ -1,0 +1,511 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_onboarding_log_visibility_md",
+			"label": "2026-06-30-onboarding-log-visibility.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"label": "Onboarding Log Visibility Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_file_structure",
+			"label": "File Structure",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_task_1_forward_fix_onboarding_logs_inherit_profile_default",
+			"label": "Task 1: Forward fix \u2014 onboarding logs inherit profile default",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_1",
+			"label": "code:ts (postLog: async (movieId, rating) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_2",
+			"label": "code:ts (postLog: async (movieId, rating) => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_3",
+			"label": "code:bash (git add apps/web/src/components/onboarding/onboarding-wizard)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_task_2_targeted_backfill_script_for_existing_private_onboarding_logs",
+			"label": "Task 2: Targeted backfill script for existing private onboarding logs",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L87"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_4",
+			"label": "code:ts (import { db } from \"@still/db\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L98"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_5",
+			"label": "code:bash (git add apps/server/scripts/backfill-onboarding-visibility.t)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"label": "Task 3: Server returns `hiddenCount` from the leaderboard drawer endpoint",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L191"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_6",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L204"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_7",
+			"label": "code:ts (/**)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_8",
+			"label": "code:ts (import { clampHiddenCount } from \"./leaderboard-hidden-count)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L257"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_9",
+			"label": "code:ts (}): Promise<{)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L263"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_10",
+			"label": "code:ts (}): Promise<{)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L280"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_11",
+			"label": "code:ts (const [totalRow] = await db)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_12",
+			"label": "code:ts (period: opts.period,)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L321"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_13",
+			"label": "code:ts (const [tvTotalRow] = await db)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L334"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_14",
+			"label": "code:bash (git add apps/server/src/lib/leaderboard-hidden-count.ts apps)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L362"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"label": "Task 4: Drawer renders lock placeholder tiles for hidden private titles",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L369"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_15",
+			"label": "code:ts (export type LeaderboardLogsPayload = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L382"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_16",
+			"label": "code:tsx (import { Lock } from \"lucide-react\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L404"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_17",
+			"label": "code:tsx (export function PatronWatchLedgerGrid({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L410"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_18",
+			"label": "code:tsx (export function PatronWatchLedgerGrid({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L432"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_19",
+			"label": "code:tsx ({Array.from({ length: hiddenCount }).map((_, index) => ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L456"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_20",
+			"label": "code:tsx ({!loading && !error ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L482"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_21",
+			"label": "code:tsx ({!loading && !error ? ()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L490"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_22",
+			"label": "code:tsx (const titleCount = items.length;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L502"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_23",
+			"label": "code:tsx (const hiddenCount = payload?.hiddenCount ?? 0;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L508"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_codeblock_24",
+			"label": "code:bash (git add apps/web/src/lib/home-leaderboard-types.ts apps/web/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L526"
+		},
+		{
+			"id": "plans_2026_06_30_onboarding_log_visibility_final_verification",
+			"label": "Final verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L533"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_06_30_onboarding_log_visibility_md",
+			"target": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_file_structure",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_task_1_forward_fix_onboarding_logs_inherit_profile_default",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_1_forward_fix_onboarding_logs_inherit_profile_default",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_1_forward_fix_onboarding_logs_inherit_profile_default",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_1_forward_fix_onboarding_logs_inherit_profile_default",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_task_2_targeted_backfill_script_for_existing_private_onboarding_logs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L87",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_2_targeted_backfill_script_for_existing_private_onboarding_logs",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_2_targeted_backfill_script_for_existing_private_onboarding_logs",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L191",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L204",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L257",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L263",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L280",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L321",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L334",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_3_server_returns_hiddencount_from_the_leaderboard_drawer_endpoint",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L362",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L369",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L382",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L404",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L410",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L432",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L456",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L482",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L490",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_22",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L502",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_23",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L508",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_task_4_drawer_renders_lock_placeholder_tiles_for_hidden_private_titles",
+			"target": "plans_2026_06_30_onboarding_log_visibility_codeblock_24",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L526",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_06_30_onboarding_log_visibility_onboarding_log_visibility_implementation_plan",
+			"target": "plans_2026_06_30_onboarding_log_visibility_final_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-06-30-onboarding-log-visibility.md",
+			"source_location": "L533",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

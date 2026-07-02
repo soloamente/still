@@ -53,8 +53,11 @@ export function r2KeyCandidates(key: string): string[] {
 }
 
 function bodyFromBytes(bytes: Uint8Array, contentType: string): ImageBody {
+	// Normalize to a plain ArrayBuffer-backed view so DOM BlobPart typings used by
+	// Next.js typecheck don't reject ArrayBufferLike/SharedArrayBuffer unions.
+	const normalizedBytes = Uint8Array.from(bytes);
 	return {
-		body: new Blob([bytes]).stream(),
+		body: new Blob([normalizedBytes.buffer]).stream(),
 		contentType,
 	};
 }

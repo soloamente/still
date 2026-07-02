@@ -1,0 +1,669 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"label": "month-recap-dialog.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_month_recap_dialog_panel_ease",
+			"label": "PANEL_EASE",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L26"
+		},
+		{
+			"id": "app_month_recap_dialog_footernavbuttonclass",
+			"label": "footerNavButtonClass",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapmonthpill",
+			"label": "MonthRecapMonthPill()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L34"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapcoverpanel",
+			"label": "MonthRecapCoverPanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L43"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"label": "monthRecapFirstPlaceEntry()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L76"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapwinnerachievement",
+			"label": "monthRecapWinnerAchievement()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L83"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"label": "MonthRecapCongratulationsByline()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L98"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapcategorypanel",
+			"label": "MonthRecapCategoryPanel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L123"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapslide",
+			"label": "MonthRecapSlide",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L159"
+		},
+		{
+			"id": "app_month_recap_dialog_buildmonthrecapslides",
+			"label": "buildMonthRecapSlides()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L167"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapslidelabel",
+			"label": "monthRecapSlideLabel()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L180"
+		},
+		{
+			"id": "app_month_recap_dialog_monthrecapdialog",
+			"label": "MonthRecapDialog()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L187"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_components_button_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "components_button_button",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "react_dom",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_podium_monthrecappodium",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbuttonwrap",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_app_modal_layer_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_app_modal_layer_app_modal_overlay_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_detail_action_motion_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_detail_action_motion_detail_canvas_on_card_hover_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_detail_action_motion_detail_motion_pressable_class",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_month_recap_types_monthrecapcategory",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_month_recap_types_monthrecapcategoryid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_month_recap_types_monthrecapentry",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "lib_month_recap_types_monthrecappayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_panel_ease",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_footernavbuttonclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapmonthpill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapcoverpanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L43",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L76",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapwinnerachievement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L98",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapcategorypanel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapslide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L159",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_buildmonthrecapslides",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L167",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapslidelabel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L180",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_dialog_tsx",
+			"target": "app_month_recap_dialog_monthrecapdialog",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L187",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"target": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"target": "app_month_recap_dialog_monthrecapwinnerachievement",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_dialog_monthrecapdialog",
+			"target": "app_month_recap_dialog_monthrecapslidelabel",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L320",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapcoverpanel",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapfirstplaceentry",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L80"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapcongratulationsbyline",
+			"callee": "leaderboardHandleLinkClassName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L114"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapcategorypanel",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L128"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_buildmonthrecapslides",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L172"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L196"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L198"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L199"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L200"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L202"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L215"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L219"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L232"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "createPortal",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L259"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L269"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L285"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L336"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L373"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L392"
+		},
+		{
+			"caller_nid": "app_month_recap_dialog_monthrecapdialog",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-dialog.tsx",
+			"source_location": "L405"
+		}
+	]
+}

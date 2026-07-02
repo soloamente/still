@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_refine_live_skill_md",
+			"label": "SKILL.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "refine_live_skill_refine_live",
+			"label": "Refine Live",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "refine_live_skill_two_modes",
+			"label": "Two modes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "refine_live_skill_how_it_works",
+			"label": "How it works",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "refine_live_skill_codeblock_1",
+			"label": "code:block1 (Browser (Refine, LLM tab) \u2500\u2500POST /jobs\u2500\u2500\u25ba relay \u2500\u2500GET /jobs/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"label": "The loop \u2014 stay live, but don't burn credits forever",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "refine_live_skill_codeblock_2",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/poller/start)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "refine_live_skill_codeblock_3",
+			"label": "code:bash (curl -s http://localhost:7331/jobs/next)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "refine_live_skill_codeblock_4",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L83"
+		},
+		{
+			"id": "refine_live_skill_codeblock_5",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/jobs/<id>/status \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "refine_live_skill_codeblock_6",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/jobs/<id>/result \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L197"
+		},
+		{
+			"id": "refine_live_skill_codeblock_7",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L220"
+		},
+		{
+			"id": "refine_live_skill_codeblock_8",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/jobs/<id>/error \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L237"
+		},
+		{
+			"id": "refine_live_skill_scan_jobs_group_from_source",
+			"label": "Scan jobs (group from source)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L249"
+		},
+		{
+			"id": "refine_live_skill_codeblock_9",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L257"
+		},
+		{
+			"id": "refine_live_skill_codeblock_10",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/jobs/<id>/result \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L316"
+		},
+		{
+			"id": "refine_live_skill_apply_jobs_write_to_source",
+			"label": "Apply jobs (write to source)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L348"
+		},
+		{
+			"id": "refine_live_skill_codeblock_11",
+			"label": "code:json ({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L353"
+		},
+		{
+			"id": "refine_live_skill_codeblock_12",
+			"label": "code:bash (curl -s -X POST http://localhost:7331/jobs/<id>/result \\)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L391"
+		},
+		{
+			"id": "refine_live_skill_suggestion_shape_must_match_the_panel",
+			"label": "Suggestion shape (must match the panel)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L403"
+		},
+		{
+			"id": "refine_live_skill_notes",
+			"label": "Notes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L421"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_refine_live_skill_md",
+			"target": "refine_live_skill_refine_live",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_two_modes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_how_it_works",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_how_it_works",
+			"target": "refine_live_skill_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L83",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L197",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L220",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_the_loop_stay_live_but_don_t_burn_credits_forever",
+			"target": "refine_live_skill_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L237",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_scan_jobs_group_from_source",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L249",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_scan_jobs_group_from_source",
+			"target": "refine_live_skill_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L257",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_scan_jobs_group_from_source",
+			"target": "refine_live_skill_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L316",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_apply_jobs_write_to_source",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L348",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_apply_jobs_write_to_source",
+			"target": "refine_live_skill_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_apply_jobs_write_to_source",
+			"target": "refine_live_skill_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L391",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_suggestion_shape_must_match_the_panel",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L403",
+			"weight": 1.0
+		},
+		{
+			"source": "refine_live_skill_refine_live",
+			"target": "refine_live_skill_notes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\refine-live\\SKILL.md",
+			"source_location": "L421",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

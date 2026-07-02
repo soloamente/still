@@ -1,0 +1,47 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_md",
+			"label": "AGENTS.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\AGENTS.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_agents_learned_user_preferences",
+			"label": "Learned User Preferences",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\AGENTS.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "still_agents_learned_workspace_facts",
+			"label": "Learned Workspace Facts",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\AGENTS.md",
+			"source_location": "L16"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_md",
+			"target": "still_agents_learned_user_preferences",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\AGENTS.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_agents_md",
+			"target": "still_agents_learned_workspace_facts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\AGENTS.md",
+			"source_location": "L16",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,121 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"label": "permission-summary.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_permission_summary_permissionsummaryentry",
+			"label": "PermissionSummaryEntry",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L3"
+		},
+		{
+			"id": "src_permission_summary_action_labels",
+			"label": "ACTION_LABELS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "src_permission_summary_permissionsummary",
+			"label": "permissionSummary()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L51"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "c_users_utente_documents_still_packages_auth_src_permissions_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "src_permissions_approle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "src_permissions_roles",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "src_permission_summary_permissionsummaryentry",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "src_permission_summary_action_labels",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_auth_src_permission_summary_ts",
+			"target": "src_permission_summary_permissionsummary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L51",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "src_permission_summary_permissionsummary",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "src_permission_summary_permissionsummary",
+			"callee": "entries",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L56"
+		},
+		{
+			"caller_nid": "src_permission_summary_permissionsummary",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "src_permission_summary_permissionsummary",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\auth\\src\\permission-summary.ts",
+			"source_location": "L57"
+		}
+	]
+}

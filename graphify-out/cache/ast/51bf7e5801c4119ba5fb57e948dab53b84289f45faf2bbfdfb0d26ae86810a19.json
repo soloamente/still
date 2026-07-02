@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_17_neon_data_transfer_reduction_design_md",
+			"label": "2026-06-17-neon-data-transfer-reduction-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"label": "Riduzione data transfer Neon \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_problema",
+			"label": "Problema",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_sorgenti_del_transfer_ranking",
+			"label": "Sorgenti del transfer (ranking)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L19"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_cosa_\u00e8_gi\u00e0_a_posto_da_sfruttare_non_rifare",
+			"label": "Cosa \u00e8 gi\u00e0 a posto (da sfruttare, non rifare)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_approccio",
+			"label": "Approccio",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_1_payload_magri_e_safety_poll_pi\u00f9_lenti_rischio_0_taglio_maggiore",
+			"label": "Strato 1 \u2014 Payload magri e safety poll pi\u00f9 lenti (rischio ~0, taglio maggiore)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_2_cache_read_through_su_redis_per_le_letture_di_presenza",
+			"label": "Strato 2 \u2014 Cache read-through su Redis per le letture di presenza",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L65"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_3_frequenze_e_colonne",
+			"label": "Strato 3 \u2014 Frequenze e colonne",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_unit\u00e0_e_confini",
+			"label": "Unit\u00e0 e confini",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_verifica_senza_rompere_nulla",
+			"label": "Verifica (\"senza rompere nulla\")",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_rischi_e_mitigazioni",
+			"label": "Rischi e mitigazioni",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_06_17_neon_data_transfer_reduction_design_fuori_scope",
+			"label": "Fuori scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L110"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_17_neon_data_transfer_reduction_design_md",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_problema",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_problema",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_sorgenti_del_transfer_ranking",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_problema",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_cosa_\u00e8_gi\u00e0_a_posto_da_sfruttare_non_rifare",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_approccio",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_approccio",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_1_payload_magri_e_safety_poll_pi\u00f9_lenti_rischio_0_taglio_maggiore",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_approccio",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_2_cache_read_through_su_redis_per_le_letture_di_presenza",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_approccio",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_strato_3_frequenze_e_colonne",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_unit\u00e0_e_confini",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_verifica_senza_rompere_nulla",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_rischi_e_mitigazioni",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_17_neon_data_transfer_reduction_design_riduzione_data_transfer_neon_design",
+			"target": "specs_2026_06_17_neon_data_transfer_reduction_design_fuori_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-17-neon-data-transfer-reduction-design.md",
+			"source_location": "L110",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

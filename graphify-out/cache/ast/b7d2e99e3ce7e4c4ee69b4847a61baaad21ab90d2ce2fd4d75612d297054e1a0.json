@@ -1,0 +1,191 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_13_input_clear_dissolve_md",
+			"label": "13-input-clear-dissolve.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"label": "Input clear with dissolve",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_codeblock_1",
+			"label": "code:html (<!-- Drop .t-clear on a wrapper that you've sized like an)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_codeblock_3",
+			"label": "code:css (/* The wrap clips the glow to its rounded box. The hairline)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_codeblock_4",
+			"label": "code:js (// One clear routine per .t-clear. Reads timing/geometry fro)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L131"
+		},
+		{
+			"id": "transitions_dev_13_input_clear_dissolve_dark_mode",
+			"label": "Dark mode",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L273"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_13_input_clear_dissolve_md",
+			"target": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"target": "transitions_dev_13_input_clear_dissolve_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"target": "transitions_dev_13_input_clear_dissolve_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_html_usage",
+			"target": "transitions_dev_13_input_clear_dissolve_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"target": "transitions_dev_13_input_clear_dissolve_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_tunable_variables",
+			"target": "transitions_dev_13_input_clear_dissolve_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"target": "transitions_dev_13_input_clear_dissolve_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_css",
+			"target": "transitions_dev_13_input_clear_dissolve_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_input_clear_with_dissolve",
+			"target": "transitions_dev_13_input_clear_dissolve_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_javascript_orchestration",
+			"target": "transitions_dev_13_input_clear_dissolve_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_13_input_clear_dissolve_javascript_orchestration",
+			"target": "transitions_dev_13_input_clear_dissolve_dark_mode",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\13-input-clear-dissolve.md",
+			"source_location": "L273",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

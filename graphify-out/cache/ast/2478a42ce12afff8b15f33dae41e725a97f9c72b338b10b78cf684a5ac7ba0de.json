@@ -1,0 +1,482 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"label": "month-recap-podium.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "app_month_recap_podium_podiumslot",
+			"label": "PodiumSlot",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L15"
+		},
+		{
+			"id": "app_month_recap_podium_podiumslotsurfaceclass",
+			"label": "podiumSlotSurfaceClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L18"
+		},
+		{
+			"id": "app_month_recap_podium_monthrecapstatnoun",
+			"label": "monthRecapStatNoun()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L33"
+		},
+		{
+			"id": "app_month_recap_podium_resolvepodiumentries",
+			"label": "resolvePodiumEntries()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L53"
+		},
+		{
+			"id": "app_month_recap_podium_podiumtilelayoutclass",
+			"label": "podiumTileLayoutClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L66"
+		},
+		{
+			"id": "app_month_recap_podium_podiumportraitclass",
+			"label": "podiumPortraitClass()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L81"
+		},
+		{
+			"id": "app_month_recap_podium_podiumportraitdimensions",
+			"label": "podiumPortraitDimensions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L95"
+		},
+		{
+			"id": "app_month_recap_podium_monthrecappodiumtile",
+			"label": "MonthRecapPodiumTile()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L112"
+		},
+		{
+			"id": "app_month_recap_podium_monthrecappodium",
+			"label": "MonthRecapPodium()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L218"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_home_leaderboard_interactive_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "lib_home_leaderboard_interactive_leaderboardhandlelinkclassname",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_month_recap_types_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "lib_month_recap_types_monthrecapcategoryid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "lib_month_recap_types_monthrecapentry",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "lib_profile_media_inferanimatedfromprofileurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_podiumslot",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_podiumslotsurfaceclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_monthrecapstatnoun",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_resolvepodiumentries",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_podiumtilelayoutclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_podiumportraitclass",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_podiumportraitdimensions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_monthrecappodiumtile",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_app_month_recap_podium_tsx",
+			"target": "app_month_recap_podium_monthrecappodium",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L218",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodiumtile",
+			"target": "app_month_recap_podium_podiumportraitdimensions",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L125",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodiumtile",
+			"target": "app_month_recap_podium_podiumtilelayoutclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L131",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodiumtile",
+			"target": "app_month_recap_podium_podiumslotsurfaceclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodiumtile",
+			"target": "app_month_recap_podium_podiumportraitclass",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L162",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodiumtile",
+			"target": "app_month_recap_podium_monthrecapstatnoun",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L202",
+			"weight": 1.0
+		},
+		{
+			"source": "app_month_recap_podium_monthrecappodium",
+			"target": "app_month_recap_podium_resolvepodiumentries",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L226",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "app_month_recap_podium_resolvepodiumentries",
+			"callee": "sort",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_resolvepodiumentries",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L58"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_resolvepodiumentries",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_resolvepodiumentries",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L61"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_resolvepodiumentries",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L62"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L129"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L160"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "inferAnimatedFromProfileUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L166"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L174"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L179"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "leaderboardHandleLinkClassName",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L183"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L184"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L194"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodiumtile",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L206"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodium",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L225"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L237"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L246"
+		},
+		{
+			"caller_nid": "app_month_recap_podium_monthrecappodium",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\app\\month-recap-podium.tsx",
+			"source_location": "L253"
+		}
+	]
+}

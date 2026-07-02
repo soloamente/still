@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_03_notification_badge_md",
+			"label": "03-notification-badge.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_notification_badge",
+			"label": "Notification badge",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_codeblock_1",
+			"label": "code:html (<!-- Place .t-badge inside your trigger (bell icon, button, )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_codeblock_3",
+			"label": "code:css (@keyframes t-badge-slide-in {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "transitions_dev_03_notification_badge_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L107"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_03_notification_badge_md",
+			"target": "transitions_dev_03_notification_badge_notification_badge",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_notification_badge",
+			"target": "transitions_dev_03_notification_badge_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_notification_badge",
+			"target": "transitions_dev_03_notification_badge_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_html_usage",
+			"target": "transitions_dev_03_notification_badge_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_notification_badge",
+			"target": "transitions_dev_03_notification_badge_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_tunable_variables",
+			"target": "transitions_dev_03_notification_badge_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_notification_badge",
+			"target": "transitions_dev_03_notification_badge_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_css",
+			"target": "transitions_dev_03_notification_badge_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_03_notification_badge_notification_badge",
+			"target": "transitions_dev_03_notification_badge_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\03-notification-badge.md",
+			"source_location": "L107",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

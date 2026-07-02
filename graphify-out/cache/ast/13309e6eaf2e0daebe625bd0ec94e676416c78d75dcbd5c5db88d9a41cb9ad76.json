@@ -1,0 +1,168 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"label": "mutual-follow-cache.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_mutual_follow_cache_mutualfollowcachekey",
+			"label": "mutualFollowCacheKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L10"
+		},
+		{
+			"id": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"label": "fetchMutualFollowingIds()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_mutual_follow_cache_invalidatemutualfollowcache",
+			"label": "invalidateMutualFollowCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L37"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_redis_cache_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_redis_cache_cachedread",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_redis_cache_cacheredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_redis_cache_invalidatecache",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_mutual_follow_cache_mutualfollowcachekey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_mutual_follow_cache_ts",
+			"target": "lib_mutual_follow_cache_invalidatemutualfollowcache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"target": "lib_mutual_follow_cache_mutualfollowcachekey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"callee": "cachedRead",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "lib_mutual_follow_cache_fetchmutualfollowingids",
+			"callee": "cacheRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L23"
+		},
+		{
+			"caller_nid": "lib_mutual_follow_cache_invalidatemutualfollowcache",
+			"callee": "invalidateCache",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_mutual_follow_cache_invalidatemutualfollowcache",
+			"callee": "cacheRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_mutual_follow_cache_invalidatemutualfollowcache",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\mutual-follow-cache.ts",
+			"source_location": "L42"
+		}
+	]
+}

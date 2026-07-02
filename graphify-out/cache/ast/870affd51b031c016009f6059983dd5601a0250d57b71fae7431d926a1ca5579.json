@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_21_accordion_md",
+			"label": "21-accordion.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_21_accordion_accordion_expand",
+			"label": "Accordion expand",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_21_accordion_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_21_accordion_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_21_accordion_codeblock_1",
+			"label": "code:html (<div class=\"t-acc\" data-open=\"false\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "transitions_dev_21_accordion_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "transitions_dev_21_accordion_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "transitions_dev_21_accordion_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "transitions_dev_21_accordion_codeblock_3",
+			"label": "code:css (/* grid-template-rows 0fr \u2192 1fr gives a clean height animati)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "transitions_dev_21_accordion_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "transitions_dev_21_accordion_codeblock_4",
+			"label": "code:js (// Toggle data-open on the item; CSS owns the height + chevr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L105"
+		},
+		{
+			"id": "transitions_dev_21_accordion_two_element_panel_padding_placement",
+			"label": "Two-element panel + padding placement",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L117"
+		},
+		{
+			"id": "transitions_dev_21_accordion_why_the_chevron_flips_instead_of_morphing_its_path",
+			"label": "Why the chevron flips instead of morphing its path",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L121"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_21_accordion_md",
+			"target": "transitions_dev_21_accordion_accordion_expand",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_accordion_expand",
+			"target": "transitions_dev_21_accordion_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_accordion_expand",
+			"target": "transitions_dev_21_accordion_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_html_usage",
+			"target": "transitions_dev_21_accordion_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_accordion_expand",
+			"target": "transitions_dev_21_accordion_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_tunable_variables",
+			"target": "transitions_dev_21_accordion_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_accordion_expand",
+			"target": "transitions_dev_21_accordion_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_css",
+			"target": "transitions_dev_21_accordion_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_accordion_expand",
+			"target": "transitions_dev_21_accordion_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_javascript_orchestration",
+			"target": "transitions_dev_21_accordion_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_javascript_orchestration",
+			"target": "transitions_dev_21_accordion_two_element_panel_padding_placement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L117",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_21_accordion_javascript_orchestration",
+			"target": "transitions_dev_21_accordion_why_the_chevron_flips_instead_of_morphing_its_path",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\21-accordion.md",
+			"source_location": "L121",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

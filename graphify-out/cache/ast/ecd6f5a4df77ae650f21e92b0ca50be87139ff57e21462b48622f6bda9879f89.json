@@ -1,0 +1,392 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"label": "realtime-connect.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "routes_realtime_connect_checkinternalsecret",
+			"label": "checkInternalSecret()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "routes_realtime_connect_isdynamicroomallowed",
+			"label": "isDynamicRoomAllowed()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L25"
+		},
+		{
+			"id": "routes_realtime_connect_realtimeconnectroute",
+			"label": "realtimeConnectRoute",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L77"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "db",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "drizzle_orm",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "elysia",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_context_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "src_context_context",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_content_visibility_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "lib_content_visibility_canviewcontent",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "lib_content_visibility_resolveviewerfollow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_list_view_access_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "lib_list_view_access_canviewlist",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_token_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "lib_realtime_token_signconnecttoken",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "routes_realtime_connect_checkinternalsecret",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "routes_realtime_connect_isdynamicroomallowed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_routes_realtime_connect_ts",
+			"target": "routes_realtime_connect_realtimeconnectroute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L77",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "routes_realtime_connect_checkinternalsecret",
+			"callee": "startsWith",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L20"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_checkinternalsecret",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L21"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_checkinternalsecret",
+			"callee": "constantTimeEqual",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L22"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "parseChatRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "and",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "Boolean",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "parseReviewRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "resolveViewerFollow",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "canViewContent",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "parseListRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "limit",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "where",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "from",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "select",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "eq",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L68"
+		},
+		{
+			"caller_nid": "routes_realtime_connect_isdynamicroomallowed",
+			"callee": "canViewList",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\routes\\realtime-connect.ts",
+			"source_location": "L71"
+		}
+	]
+}

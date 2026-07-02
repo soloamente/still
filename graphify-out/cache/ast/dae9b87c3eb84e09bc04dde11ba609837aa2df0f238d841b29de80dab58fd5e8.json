@@ -1,0 +1,401 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"label": "listing-presence.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_presence_test_createtestpresenceredis",
+			"label": "createTestPresenceRedis()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L21"
+		},
+		{
+			"id": "lib_listing_presence_test_redis",
+			"label": "redis",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L91"
+		},
+		{
+			"id": "lib_listing_presence_test_rows",
+			"label": "rows",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L181"
+		},
+		{
+			"id": "lib_listing_presence_test_logcounts",
+			"label": "logCounts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L210"
+		},
+		{
+			"id": "lib_listing_presence_test_patrons",
+			"label": "patrons",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L215"
+		},
+		{
+			"id": "lib_listing_presence_test_selfpatron",
+			"label": "selfPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L342"
+		},
+		{
+			"id": "lib_listing_presence_test_otherpatron",
+			"label": "otherPatron",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L352"
+		},
+		{
+			"id": "lib_listing_presence_test_result",
+			"label": "result",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L380"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_activelistingpresenceuserids",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_countlistingpresenceoccupants",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_getlistingpresencesnapshot",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_islistingpresenceroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_listing_presence_mutual_fetch_limit",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_listing_presence_stale_ms",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_listingpresenceredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_leavelistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_picklistingpresenceviewingpatrons",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_prependviewerselftoviewingpatrons",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_presencerediskey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_prunestalelistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_touchlistingpresence",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_viewercountexcludingself",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_createtestpresenceredis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L91",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L105",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L130",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L154",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L181",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_logcounts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L210",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_patrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L215",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L236",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_patrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L258",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_rows",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L274",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_patrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L303",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_redis",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L321",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_selfpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_otherpatron",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L352",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_patrons",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L375",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_presence_test_ts",
+			"target": "lib_listing_presence_test_result",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-presence.test.ts",
+			"source_location": "L380",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

@@ -1,0 +1,219 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"label": "listing-community-stats-cache.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_listing_community_stats_cache_communitystatskey",
+			"label": "communityStatsKey()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"label": "fetchCachedListingCommunityStats()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L16"
+		},
+		{
+			"id": "lib_listing_community_stats_cache_invalidatelistingcommunitystatscache",
+			"label": "invalidateListingCommunityStatsCache()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L60"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_fetch_public_diary_community_stats_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_fetch_public_diary_community_stats_fetchpublicdiarycommunitystats",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_listing_community_stats_listingengagementlistingref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_listing_community_stats_fetchlistingcommunityengagementstats",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_realtime_redis_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_realtime_redis_getrealtimeredis",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_listing_community_stats_cache_communitystatskey",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L16",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_listing_community_stats_cache_ts",
+			"target": "lib_listing_community_stats_cache_invalidatelistingcommunitystatscache",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L60",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"target": "lib_listing_community_stats_cache_communitystatskey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_listing_community_stats_cache_invalidatelistingcommunitystatscache",
+			"target": "lib_listing_community_stats_cache_communitystatskey",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L66",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "getRealtimeRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L19"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "await redis.get",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L24"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "all",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L40"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "fetchPublicDiaryCommunityStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "fetchListingCommunityEngagementStats",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_fetchcachedlistingcommunitystats",
+			"callee": "set",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_invalidatelistingcommunitystatscache",
+			"callee": "getRealtimeRedis",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L63"
+		},
+		{
+			"caller_nid": "lib_listing_community_stats_cache_invalidatelistingcommunitystatscache",
+			"callee": "del",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\listing-community-stats-cache.ts",
+			"source_location": "L66"
+		}
+	]
+}

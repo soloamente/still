@@ -1,0 +1,175 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_02_number_pop_in_md",
+			"label": "02-number-pop-in.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_number_pop_in",
+			"label": "Number pop-in",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_codeblock_1",
+			"label": "code:html (<span class=\"t-digit-group is-animating\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L54"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_codeblock_3",
+			"label": "code:css (@keyframes t-digit-pop-in {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L56"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L94"
+		},
+		{
+			"id": "transitions_dev_02_number_pop_in_codeblock_4",
+			"label": "code:js (// Replay the digit pop-in: remove .is-animating, swap the d)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L96"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_02_number_pop_in_md",
+			"target": "transitions_dev_02_number_pop_in_number_pop_in",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_number_pop_in",
+			"target": "transitions_dev_02_number_pop_in_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_number_pop_in",
+			"target": "transitions_dev_02_number_pop_in_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_html_usage",
+			"target": "transitions_dev_02_number_pop_in_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_number_pop_in",
+			"target": "transitions_dev_02_number_pop_in_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_tunable_variables",
+			"target": "transitions_dev_02_number_pop_in_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_number_pop_in",
+			"target": "transitions_dev_02_number_pop_in_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L54",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_css",
+			"target": "transitions_dev_02_number_pop_in_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L56",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_number_pop_in",
+			"target": "transitions_dev_02_number_pop_in_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L94",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_02_number_pop_in_javascript_orchestration",
+			"target": "transitions_dev_02_number_pop_in_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\02-number-pop-in.md",
+			"source_location": "L96",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

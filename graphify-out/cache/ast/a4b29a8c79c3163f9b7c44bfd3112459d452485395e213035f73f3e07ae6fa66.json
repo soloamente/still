@@ -1,0 +1,168 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"label": "profile-showcase-scopes.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_profile_showcase_scopes_showcasediarylogrow",
+			"label": "ShowcaseDiaryLogRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L6"
+		},
+		{
+			"id": "lib_profile_showcase_scopes_showcasetvscopeoption",
+			"label": "ShowcaseTvScopeOption",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L12"
+		},
+		{
+			"id": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"label": "distinctShowcaseTvScopeOptions()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L18"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_showcaseitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_showcasetvlogscope",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_showcaseitemkey",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tv_log_scope_display_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_tv_log_scope_display_formattvlogscopelabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_scopes_showcasediarylogrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_scopes_showcasetvscopeoption",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_profile_showcase_scopes_ts",
+			"target": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"callee": "showcaseItemKey",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L46"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"callee": "has",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L47"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"callee": "add",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L48"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L49"
+		},
+		{
+			"caller_nid": "lib_profile_showcase_scopes_distinctshowcasetvscopeoptions",
+			"callee": "formatTvLogScopeLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\profile-showcase-scopes.ts",
+			"source_location": "L51"
+		}
+	]
+}

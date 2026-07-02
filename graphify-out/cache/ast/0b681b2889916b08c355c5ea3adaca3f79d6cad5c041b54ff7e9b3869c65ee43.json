@@ -1,0 +1,223 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_30_onboarding_log_visibility_design_md",
+			"label": "2026-06-30-onboarding-log-visibility-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"label": "Onboarding log visibility + drawer private reconciliation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_root_cause_verified",
+			"label": "Root cause (verified)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_decisions",
+			"label": "Decisions",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_design",
+			"label": "Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L57"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_part_1_forward_fix",
+			"label": "Part 1 \u2014 Forward fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L59"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_part_2_targeted_backfill",
+			"label": "Part 2 \u2014 Targeted backfill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L69"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_codeblock_1",
+			"label": "code:sql (UPDATE \"log\" l)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_part_3_drawer_private_reconciliation",
+			"label": "Part 3 \u2014 Drawer private reconciliation",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_codeblock_2",
+			"label": "code:block2 (hiddenCount = (in-window qualifying logs for this patron, sa)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L107"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_risks_rollback",
+			"label": "Risks & rollback",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "specs_2026_06_30_onboarding_log_visibility_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L140"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_06_30_onboarding_log_visibility_design_md",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_problem",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_root_cause_verified",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_decisions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L57",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_design",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_part_1_forward_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L59",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_design",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_part_2_targeted_backfill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L69",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_part_2_targeted_backfill",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_design",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_part_3_drawer_private_reconciliation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_part_3_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L107",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_risks_rollback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_06_30_onboarding_log_visibility_design_onboarding_log_visibility_drawer_private_reconciliation",
+			"target": "specs_2026_06_30_onboarding_log_visibility_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-06-30-onboarding-log-visibility-design.md",
+			"source_location": "L140",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

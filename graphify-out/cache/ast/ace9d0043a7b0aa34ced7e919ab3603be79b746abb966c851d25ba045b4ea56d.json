@@ -1,0 +1,327 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"label": "person-detail-top-bar.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "people_person_detail_top_bar_person_detail_view_tabs",
+			"label": "PERSON_DETAIL_VIEW_TABS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L24"
+		},
+		{
+			"id": "people_person_detail_top_bar_persondetailtopbar",
+			"label": "PersonDetailTopBar()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L36"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_share_in_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_share_out_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "navigation",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "sonner",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_lobby_lobby_navigation_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "lobby_lobby_navigation_provider_uselobbynavigationoptional",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionlink",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_use_movie_detail_return_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "movie_use_movie_detail_return_usemoviedetailreturn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L17",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_ui_detail_view_segment_toolbar_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "ui_detail_view_segment_toolbar_detailviewsegmenttoolbar",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_person_detail_view_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "lib_person_detail_view_buildpersondetailviewhref",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "lib_person_detail_view_persondetailview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "people_person_detail_top_bar_person_detail_view_tabs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_people_person_detail_top_bar_tsx",
+			"target": "people_person_detail_top_bar_persondetailtopbar",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L36",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "useLobbyNavigationOptional",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L50"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "usePathname",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L52"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "useMovieDetailReturn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L53"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L54"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L57"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L67"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L143"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L153"
+		},
+		{
+			"caller_nid": "people_person_detail_top_bar_persondetailtopbar",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\people\\person-detail-top-bar.tsx",
+			"source_location": "L169"
+		}
+	]
+}

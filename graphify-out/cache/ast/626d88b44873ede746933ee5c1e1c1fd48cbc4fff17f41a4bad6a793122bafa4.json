@@ -1,0 +1,115 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"label": "people-search-row.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_people_search_row_peoplesearchrow",
+			"label": "PeopleSearchRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_people_search_row_maptmdbpersontosearchrow",
+			"label": "mapTmdbPersonToSearchRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L14"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "lib_tmdb_tmdbpersonsummary",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "c_users_utente_documents_still_apps_server_src_lib_tmdb_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "lib_tmdb_tmdbimg",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "lib_people_search_row_peoplesearchrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_people_search_row_ts",
+			"target": "lib_people_search_row_maptmdbpersontosearchrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L14",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_people_search_row_maptmdbpersontosearchrow",
+			"callee": "slice",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_people_search_row_maptmdbpersontosearchrow",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_people_search_row_maptmdbpersontosearchrow",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "lib_people_search_row_maptmdbpersontosearchrow",
+			"callee": "profile",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\people-search-row.ts",
+			"source_location": "L24"
+		}
+	]
+}

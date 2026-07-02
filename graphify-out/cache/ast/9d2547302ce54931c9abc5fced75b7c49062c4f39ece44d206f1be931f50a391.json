@@ -1,0 +1,189 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"label": "patron-feedback-client.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbackcategory",
+			"label": "PatronFeedbackCategory",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbackstatus",
+			"label": "PatronFeedbackStatus",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbacklistitem",
+			"label": "PatronFeedbackListItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L7"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbackreplyitem",
+			"label": "PatronFeedbackReplyItem",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L19"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbackdetail",
+			"label": "PatronFeedbackDetail",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L26"
+		},
+		{
+			"id": "lib_patron_feedback_client_patron_feedback_category_options",
+			"label": "PATRON_FEEDBACK_CATEGORY_OPTIONS",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L30"
+		},
+		{
+			"id": "lib_patron_feedback_client_patron_feedback_category_label",
+			"label": "PATRON_FEEDBACK_CATEGORY_LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L36"
+		},
+		{
+			"id": "lib_patron_feedback_client_patron_feedback_status_label",
+			"label": "PATRON_FEEDBACK_STATUS_LABEL",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L45"
+		},
+		{
+			"id": "lib_patron_feedback_client_ispatronfeedbackunread",
+			"label": "isPatronFeedbackUnread()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L55"
+		},
+		{
+			"id": "lib_patron_feedback_client_patronfeedbackplaceholder",
+			"label": "patronFeedbackPlaceholder()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L65"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackcategory",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackstatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbacklistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackreplyitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patron_feedback_category_options",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patron_feedback_category_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L36",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patron_feedback_status_label",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_ispatronfeedbackunread",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L55",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_patron_feedback_client_ts",
+			"target": "lib_patron_feedback_client_patronfeedbackplaceholder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_patron_feedback_client_ispatronfeedbackunread",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L60"
+		},
+		{
+			"caller_nid": "lib_patron_feedback_client_ispatronfeedbackunread",
+			"callee": "getTime",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\patron-feedback-client.ts",
+			"source_location": "L62"
+		}
+	]
+}

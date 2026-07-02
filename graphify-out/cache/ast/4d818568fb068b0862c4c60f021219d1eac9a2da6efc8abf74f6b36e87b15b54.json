@@ -1,0 +1,159 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_agents_skills_transitions_dev_15_shimmer_text_md",
+			"label": "15-shimmer-text.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_shimmer_text",
+			"label": "Shimmer text",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_when_to_use",
+			"label": "When to use",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_html_usage",
+			"label": "HTML usage",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_codeblock_1",
+			"label": "code:html (<!-- Duplicate the visible string into data-text so the)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_tunable_variables",
+			"label": "Tunable variables",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L22"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_codeblock_2",
+			"label": "code:css (:root {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L34"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_css",
+			"label": "CSS",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_codeblock_3",
+			"label": "code:css (/* Two-layer construction:)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "transitions_dev_15_shimmer_text_javascript_orchestration",
+			"label": "JavaScript orchestration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L92"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_agents_skills_transitions_dev_15_shimmer_text_md",
+			"target": "transitions_dev_15_shimmer_text_shimmer_text",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_shimmer_text",
+			"target": "transitions_dev_15_shimmer_text_when_to_use",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_shimmer_text",
+			"target": "transitions_dev_15_shimmer_text_html_usage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_html_usage",
+			"target": "transitions_dev_15_shimmer_text_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_shimmer_text",
+			"target": "transitions_dev_15_shimmer_text_tunable_variables",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_tunable_variables",
+			"target": "transitions_dev_15_shimmer_text_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_shimmer_text",
+			"target": "transitions_dev_15_shimmer_text_css",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_css",
+			"target": "transitions_dev_15_shimmer_text_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "transitions_dev_15_shimmer_text_shimmer_text",
+			"target": "transitions_dev_15_shimmer_text_javascript_orchestration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.agents\\skills\\transitions-dev\\15-shimmer-text.md",
+			"source_location": "L92",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

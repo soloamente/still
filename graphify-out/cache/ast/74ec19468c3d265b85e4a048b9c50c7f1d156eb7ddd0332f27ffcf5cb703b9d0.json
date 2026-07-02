@@ -1,0 +1,75 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_cast_crew_search_query_ts",
+			"label": "cast-crew-search-query.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_cast_crew_search_query_castcrewsearchhit",
+			"label": "CastCrewSearchHit",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_cast_crew_search_query_castcrewmetaline",
+			"label": "castCrewMetaLine()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_cast_crew_search_query_ts",
+			"target": "lib_cast_crew_search_query_castcrewsearchhit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_cast_crew_search_query_ts",
+			"target": "lib_cast_crew_search_query_castcrewmetaline",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_cast_crew_search_query_castcrewmetaline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_cast_crew_search_query_castcrewmetaline",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_cast_crew_search_query_castcrewmetaline",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_cast_crew_search_query_castcrewmetaline",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\cast-crew-search-query.ts",
+			"source_location": "L15"
+		}
+	]
+}

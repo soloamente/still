@@ -1,0 +1,182 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"label": "client-protocol.test.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "src_client_protocol_test_frame",
+			"label": "frame",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L13"
+		},
+		{
+			"id": "src_client_protocol_test_result",
+			"label": "result",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L93"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "bun_test",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "c_users_utente_documents_still_packages_realtime_src_client_protocol_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_parseclientframe",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_parseserverframe",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "c_users_utente_documents_still_packages_realtime_src_room_ids_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_room_ids_classifyroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_room_ids_parsechatroomid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_room_ids_parselistroomid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_room_ids_parsereviewroomid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_room_ids_parseuserinboxroomid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_frame",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_packages_realtime_src_client_protocol_test_ts",
+			"target": "src_client_protocol_test_result",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\packages\\realtime\\src\\client-protocol.test.ts",
+			"source_location": "L93",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}
