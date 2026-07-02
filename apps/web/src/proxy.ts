@@ -1,5 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import {
+	isNextHandledApiPath,
+	resolveApiRewriteOrigin,
+} from "@/lib/next-handled-api-paths";
 import { retiredCatalogueRedirectUrl } from "@/lib/retired-catalogue-redirect";
 import { SESSION_COOKIE_NAMES } from "@/lib/session-cookie";
 
@@ -25,6 +29,19 @@ const PROTECTED_PREFIXES = [
 
 export function proxy(req: NextRequest) {
 	const { pathname } = req.nextUrl;
+
+	// `/api/*` rewrites run here so explicit Next route handlers win over Elysia.
+	if (pathname.startsWith("/api/")) {
+		if (isNextHandledApiPath(pathname)) {
+			return NextResponse.next();
+		}
+		const upstream = new URL(
+			`${pathname}${req.nextUrl.search}`,
+			resolveApiRewriteOrigin(),
+		);
+		return NextResponse.rewrite(upstream);
+	}
+
 	const catalogueRedirect = retiredCatalogueRedirectUrl(
 		pathname,
 		req.nextUrl.search,
@@ -67,13 +84,11 @@ export function proxy(req: NextRequest) {
 
 export const config = {
 	matcher: [
+		"/api/:path*",
 		/*
-		 * Match all paths except:
-		 * - api routes (Better Auth handler)
-		 * - Next.js static (_next/static, _next/image)
-		 * - favicon
-		 * - Public files (have an extension)
+		 * App pages (exclude static assets). `/api` is matched above so taste-hero
+		 * media routes can stay on Next instead of the catch-all Elysia rewrite.
 		 */
-		"/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)",
+		"/((?!_next/static|_next/image|favicon.ico|.*\\.).*)",
 	],
 };

@@ -17,27 +17,13 @@ const listCoverAssetPattern = {
 	pathname: "/api/lists/**",
 } as const;
 
-/**
- * Upstream Elysia host for `/api/*` rewrites. In production the browser must
- * call the **web** origin (`NEXT_PUBLIC_SERVER_URL`); this value is only the
- * rewrite target (e.g. `cue-server-*.vercel.app` or `http://localhost:3000`).
- */
-const apiRewriteOrigin =
-	process.env.API_REWRITE_ORIGIN?.trim() || env.NEXT_PUBLIC_SERVER_URL;
-
 const nextConfig: NextConfig = {
 	// Typed routes are useful but get loud while we wire up dozens of pages in
 	// parallel; keep disabled for v1 and turn back on after the route map
 	// stabilizes.
 	typedRoutes: false,
-	async rewrites() {
-		return [
-			{
-				source: "/api/:path*",
-				destination: `${apiRewriteOrigin}/api/:path*`,
-			},
-		];
-	},
+	// `/api/*` proxying lives in `src/proxy.ts` so explicit `app/api/.../route.ts`
+	// handlers (taste hero media, multipart uploads, SSE) are not rewritten to Elysia.
 	reactCompiler: true,
 	/** View Transitions for `<Link transitionTypes>` when React exposes the API — CSS above is ready. */
 	experimental: {

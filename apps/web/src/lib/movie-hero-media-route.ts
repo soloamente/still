@@ -21,7 +21,11 @@ export async function fetchMovieDetailTmdbJson(
 		const tmdbJson = data.tmdbJson;
 		if (!tmdbJson || typeof tmdbJson !== "object") return null;
 		return tmdbJson as Record<string, unknown>;
-	} catch {
+	} catch (error) {
+		console.error("[movie-hero-media] failed to load movie detail", {
+			id,
+			error,
+		});
 		return null;
 	}
 }
