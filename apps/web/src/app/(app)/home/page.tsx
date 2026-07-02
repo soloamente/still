@@ -74,6 +74,7 @@ import {
 	parseHomeLobbyHrefCookie,
 } from "@/lib/home-lobby-cookie";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+import { HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME } from "@/lib/home-taste-hero-layout";
 import { parseHomeVenue, parseTvLobbyVenue } from "@/lib/home-venue";
 import {
 	OG_HOME_PATH,
@@ -863,19 +864,28 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 								</Suspense>
 							) : null}
 
-							<HomeLobbyFilterRow
-								leadingScrollKey={`${browse}-${sort}-${catalogRun ?? ""}`}
-								leading={
-									<Suspense fallback={<LobbyCatalogChipFallback />}>
-										<HomeCatalogSortChips catalogBrowse={browse} />
-									</Suspense>
-								}
-								trailing={
-									<Suspense fallback={<LobbyVenueChipFallback />}>
-										<HomeCatalogViewModeToolbar />
-									</Suspense>
-								}
-							/>
+							<div
+								className={cn(
+									!catalogueSearchActive &&
+										session &&
+										browse === "movies" &&
+										HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME,
+								)}
+							>
+								<HomeLobbyFilterRow
+									leadingScrollKey={`${browse}-${sort}-${catalogRun ?? ""}`}
+									leading={
+										<Suspense fallback={<LobbyCatalogChipFallback />}>
+											<HomeCatalogSortChips catalogBrowse={browse} />
+										</Suspense>
+									}
+									trailing={
+										<Suspense fallback={<LobbyVenueChipFallback />}>
+											<HomeCatalogViewModeToolbar />
+										</Suspense>
+									}
+								/>
+							</div>
 
 							{!catalogueSearchActive &&
 							session &&

@@ -16,7 +16,7 @@ import IconBell from "@still/ui/icons/bell";
 import IconBellFilled from "@still/ui/icons/bell-filled";
 import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { accountMenuContentClassName } from "@/components/app/app-user-account-menu";
@@ -46,7 +46,12 @@ export function NotificationsBellMenu({
 	const router = useRouter();
 	const { rows, unreadCount, loading, refresh, markOneRead, markAllRead } =
 		useNotificationsInbox();
-	const hasUnread = unreadCount > 0;
+	// Inbox unread hydrates client-side — gate chrome so SSR matches first paint.
+	const [unreadChromeReady, setUnreadChromeReady] = useState(false);
+	useEffect(() => {
+		setUnreadChromeReady(true);
+	}, []);
+	const hasUnread = unreadChromeReady && unreadCount > 0;
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [filter, setFilter] = useState<NotificationsInboxFilter>("unread");
 	const menuActionsRef = useRef<DropdownMenuActions | null>(null);

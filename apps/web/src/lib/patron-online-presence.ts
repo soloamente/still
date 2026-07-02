@@ -28,3 +28,15 @@ export function normalizePatronPresenceSnapshot(
 	}
 	return map;
 }
+
+/** Skip React updates when a refetched `/online` batch matches the last snapshot. */
+export function arePatronPresenceMapsEqual(
+	left: ReadonlyMap<string, PatronPresenceRow["state"]>,
+	right: ReadonlyMap<string, PatronPresenceRow["state"]>,
+): boolean {
+	if (left.size !== right.size) return false;
+	for (const [handle, state] of left) {
+		if (right.get(handle) !== state) return false;
+	}
+	return true;
+}

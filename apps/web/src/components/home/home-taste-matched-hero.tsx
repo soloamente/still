@@ -1,5 +1,6 @@
 "use client";
 
+import { env } from "@still/env/web";
 import { TooltipProvider } from "@still/ui/components/tooltip";
 import IconPatronScoreLeafLeft from "@still/ui/icons/patron-score-leaf-left";
 import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
@@ -24,9 +25,17 @@ import {
 } from "@/lib/detail-action-motion";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
+	HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
+	HOME_TASTE_HERO_POSTER_RAIL_EDGE_FADE_WIDTH_PX,
+	HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME,
+	HOME_TASTE_HERO_POSTER_RAIL_SCROLL_CLASSNAME,
+	HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
+	HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
+	HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
 import { buildTasteHeroTrailerBackgroundSrc } from "@/lib/home-taste-hero-trailer-src";
 import {
@@ -108,11 +117,15 @@ export function HomeTasteMatchedHero({
 	} | null>(null);
 	const posterRailRef = useRef<HTMLDivElement>(null);
 	const posterRailContentKey = movies.map((film) => film.tmdbId).join(",");
-	// Posters lose opacity at clipped edges — no horizontal blur/gradient scrim.
+	// Posters lose opacity at clipped edges — long left runway before wrapper clip.
 	useHorizontalRailPosterEdgeOpacity(
 		posterRailRef,
 		movies.length > 1,
 		posterRailContentKey,
+		{
+			fadeWidthPx: HOME_TASTE_HERO_POSTER_RAIL_EDGE_FADE_WIDTH_PX,
+			minOpacity: 0,
+		},
 	);
 
 	const safeActiveIndex = Math.min(activeIndex, Math.max(movies.length - 1, 0));
@@ -383,12 +396,13 @@ export function HomeTasteMatchedHero({
 		spotlight.trailerKey ?? resolvedTrailer?.trailerKey ?? null;
 	const trailerSite =
 		spotlight.trailerSite ?? resolvedTrailer?.trailerSite ?? null;
+	// Stable SSR + client origin — avoids hydration mismatch on iframe `src`.
 	const trailerSrc =
 		trailerKey && !reduceMotion
 			? buildTasteHeroTrailerBackgroundSrc(
 					trailerSite,
 					trailerKey,
-					typeof window !== "undefined" ? window.location.origin : undefined,
+					env.NEXT_PUBLIC_SERVER_URL,
 				)
 			: null;
 	const titleLogoUrl = tmdbLogoUrlFromPath(
@@ -412,6 +426,7 @@ export function HomeTasteMatchedHero({
 			aria-label="Films matched to your taste"
 			className={cn(
 				"relative isolate w-full min-w-0",
+				HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME,
 				HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 			)}
 		>
@@ -432,6 +447,7 @@ export function HomeTasteMatchedHero({
 						className={cn(
 							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-2 overflow-visible px-3 pb-1 sm:mt-0",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+							HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 							"sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6",
 						)}
 					>
@@ -591,13 +607,18 @@ export function HomeTasteMatchedHero({
 						</div>
 
 						{movies.length > 0 ? (
-							<div className="relative w-full min-w-0 sm:max-w-[min(52%,26rem)] lg:max-w-[min(46%,30rem)]">
+							<div
+								className={cn(
+									HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
+									HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME,
+								)}
+							>
 								<div
 									ref={posterRailRef}
 									data-lenis-prevent-wheel
 									className={cn(
 										HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
-										"items-end gap-2 py-1 pr-3 pl-1 sm:gap-3 sm:py-2 sm:pr-4 sm:pl-2",
+										HOME_TASTE_HERO_POSTER_RAIL_SCROLL_CLASSNAME,
 									)}
 									role="listbox"
 									aria-label="Browse taste-matched films"
@@ -613,10 +634,16 @@ export function HomeTasteMatchedHero({
 												aria-selected={isActive}
 												aria-label={`Show ${film.title}`}
 												className={cn(
-													"shrink-0 rounded-xl bg-background shadow-[0_18px_48px_-20px_rgba(0,0,0,0.75)] transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
+													"shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
 													isActive
-														? "w-[4.25rem] scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85 sm:w-26"
-														: "w-[3.75rem] opacity-[calc(0.8*var(--edge-opacity))] sm:w-22 [@media(hover:hover)]:opacity-(--edge-opacity) [@media(hover:hover)]:hover:scale-[1.02]",
+														? cn(
+																HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
+																"scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
+															)
+														: cn(
+																HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
+																"opacity-[calc(0.8*var(--edge-opacity))] [@media(hover:hover)]:opacity-(--edge-opacity) [@media(hover:hover)]:hover:scale-[1.02]",
+															),
 												)}
 												onClick={() => setActiveIndex(index)}
 											>

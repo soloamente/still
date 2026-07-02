@@ -27,6 +27,11 @@ import {
 	normalizePatronPresenceSnapshot,
 	touchPatronAppPresenceClient,
 } from "@/lib/fetch-patron-online";
+import {
+	arePatronPresenceMapsEqual,
+	type PatronPresenceRow,
+} from "@/lib/patron-online-presence";
+import { createPatronOnlineRefreshScheduler } from "@/lib/patron-online-refresh-scheduler";
 import { createPresenceHeartbeatScheduler } from "@/lib/presence-heartbeat-scheduler";
 
 const HEARTBEAT_MS = 25_000;
@@ -53,6 +58,9 @@ type PatronOnlineContextValue = {
 const PatronOnlineContext = createContext<PatronOnlineContextValue | null>(
 	null,
 );
+
+/** Bumps when snapshot content changes so portraits re-render without unstable context. */
+const PatronOnlineVersionContext = createContext(0);
 
 function realtimeClientEnabled(): boolean {
 	return process.env.NEXT_PUBLIC_REALTIME_ENABLED !== "false";
@@ -91,10 +99,23 @@ export function PatronOnlineProvider({
 		null,
 	);
 	const lastPresenceRefreshRef = useRef(0);
-	const [presenceByHandle, setPresenceByHandle] = useState<
-		ReadonlyMap<string, "active" | "away">
-	>(() => new Map());
+	// Ref holds the latest map so context callbacks stay stable across SSE updates.
+	const presenceByHandleRef = useRef<
+		ReadonlyMap<string, PatronPresenceRow["state"]>
+	>(new Map());
+	const [presenceVersion, setPresenceVersion] = useState(0);
 	const leftRef = useRef(false);
+
+	const applyPresenceSnapshot = useCallback(
+		(snapshot: ReadonlyMap<string, PatronPresenceRow["state"]>) => {
+			if (arePatronPresenceMapsEqual(presenceByHandleRef.current, snapshot)) {
+				return;
+			}
+			presenceByHandleRef.current = snapshot;
+			setPresenceVersion((version) => version + 1);
+		},
+		[],
+	);
 
 	const scheduleRegisterRefresh = useCallback(() => {
 		if (registerRefreshTimerRef.current) {
@@ -141,11 +162,6 @@ export function PatronOnlineProvider({
 			registeredRef.current.add(handle);
 			if (!alreadyRegistered) {
 				scheduleRegisterRefresh();
-				// Portraits mount after this provider's effects — nudge an immediate
-				// batch lookup instead of waiting for the debounce/poll window.
-				queueMicrotask(() => {
-					refreshOnlineHandlesRef.current?.();
-				});
 			}
 			return () => {
 				registeredRef.current.delete(handle);
@@ -159,7 +175,7 @@ export function PatronOnlineProvider({
 			if (!rawHandle) return null;
 			const handle = normalizePatronOnlineHandle(rawHandle);
 			if (!handle) return null;
-			const serverState = presenceByHandle.get(handle);
+			const serverState = presenceByHandleRef.current.get(handle);
 			if (serverState) return serverState;
 			// Self dot: show local active/away immediately while the server mirror
 			// catches up after the first heartbeat (avoids mount race with /online).
@@ -168,7 +184,7 @@ export function PatronOnlineProvider({
 			}
 			return null;
 		},
-		[presenceByHandle, viewerHandleKey, aggregateActivityState],
+		[viewerHandleKey, aggregateActivityState],
 	);
 
 	const isOnline = useCallback(
@@ -205,20 +221,11 @@ export function PatronOnlineProvider({
 				if (transport === "ws" && !opts?.keepalive) {
 					sendHeartbeat(patronAppRoomId(), state);
 				}
-				const ok = await touchPatronAppPresenceClient(state, opts);
-				if (ok) {
-					refreshOnlineHandlesRef.current?.();
-				}
-				return ok;
+				return touchPatronAppPresenceClient(state, opts);
 			},
 		);
 		heartbeatSchedulerRef.current = scheduler;
-		void (async () => {
-			await scheduler.tick();
-			if (!unmounted) {
-				refreshOnlineHandlesRef.current?.();
-			}
-		})();
+		void scheduler.tick();
 
 		const heartbeatTimer = setInterval(() => {
 			if (!unmounted) void scheduler.tick();
@@ -259,7 +266,8 @@ export function PatronOnlineProvider({
 	// Batch-resolve online handles for every portrait that registered interest.
 	useEffect(() => {
 		if (!active) {
-			setPresenceByHandle(new Map());
+			presenceByHandleRef.current = new Map();
+			setPresenceVersion((version) => version + 1);
 			refreshOnlineHandlesRef.current = null;
 			return;
 		}
@@ -278,19 +286,22 @@ export function PatronOnlineProvider({
 			try {
 				const snapshot = await fetchPatronOnlineHandles(handles, abort.signal);
 				if (!snapshot || unmounted) return;
-				setPresenceByHandle(normalizePatronPresenceSnapshot(snapshot));
+				applyPresenceSnapshot(normalizePatronPresenceSnapshot(snapshot));
 			} catch {
 				// Presence is best-effort — keep the last known snapshot on failure.
 			}
 		};
 
+		const refreshScheduler =
+			createPatronOnlineRefreshScheduler(refreshOnlineHandles);
+
 		refreshOnlineHandlesRef.current = () => {
-			void refreshOnlineHandles();
+			refreshScheduler.refresh();
 		};
 
-		void refreshOnlineHandles();
+		refreshScheduler.refresh();
 		const pollTimer = setInterval(() => {
-			void refreshOnlineHandles();
+			refreshScheduler.refresh();
 		}, POLL_MS);
 
 		return () => {
@@ -307,7 +318,7 @@ export function PatronOnlineProvider({
 			abort.abort();
 			clearInterval(pollTimer);
 		};
-	}, [active]);
+	}, [active, applyPresenceSnapshot]);
 
 	const value = useMemo(
 		() => ({
@@ -320,10 +331,27 @@ export function PatronOnlineProvider({
 	);
 
 	return (
-		<PatronOnlineContext.Provider value={value}>
-			{children}
-		</PatronOnlineContext.Provider>
+		<PatronOnlineVersionContext.Provider value={presenceVersion}>
+			<PatronOnlineContext.Provider value={value}>
+				{children}
+			</PatronOnlineContext.Provider>
+		</PatronOnlineVersionContext.Provider>
 	);
+}
+
+function usePatronOnlineRegistration(
+	handle: string | null | undefined,
+	enabled: boolean,
+): PatronOnlineContextValue | null {
+	const context = useContext(PatronOnlineContext);
+	const registerHandle = context?.registerHandle;
+
+	useEffect(() => {
+		if (!registerHandle || !enabled || !handle?.trim()) return;
+		return registerHandle(handle);
+	}, [registerHandle, enabled, handle]);
+
+	return context;
 }
 
 /** Register a portrait handle and read whether it is online for the viewer. */
@@ -331,12 +359,9 @@ export function usePatronOnlineStatus(
 	handle: string | null | undefined,
 	enabled = true,
 ): boolean {
-	const context = useContext(PatronOnlineContext);
-
-	useEffect(() => {
-		if (!context || !enabled || !handle?.trim()) return;
-		return context.registerHandle(handle);
-	}, [context, enabled, handle]);
+	const context = usePatronOnlineRegistration(handle, enabled);
+	// Subscribe to snapshot bumps without depending on the full context object.
+	void useContext(PatronOnlineVersionContext);
 
 	if (!context || !enabled || !handle?.trim()) return false;
 	return context.isOnline(handle);
@@ -347,12 +372,9 @@ export function usePatronPresenceState(
 	handle: string | null | undefined,
 	enabled = true,
 ): "active" | "away" | null {
-	const context = useContext(PatronOnlineContext);
-
-	useEffect(() => {
-		if (!context || !enabled || !handle?.trim()) return;
-		return context.registerHandle(handle);
-	}, [context, enabled, handle]);
+	const context = usePatronOnlineRegistration(handle, enabled);
+	// Subscribe to snapshot bumps without depending on the full context object.
+	void useContext(PatronOnlineVersionContext);
 
 	if (!context || !enabled || !handle?.trim()) return null;
 	return context.getPresenceState(handle);

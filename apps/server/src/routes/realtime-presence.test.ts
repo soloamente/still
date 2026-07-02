@@ -30,12 +30,16 @@ const resolveOnlinePresenceForViewerMock = mock(async () => [
 
 const publishRealtimeEventMock = mock(async () => {});
 
+let presenceOnlineRateLimitOk = true;
+
 mock.module("../lib/realtime-publish", () => ({
 	publishRealtimeEvent: publishRealtimeEventMock,
 }));
 
 mock.module("../lib/rate-limit", () => ({
-	hit: () => ({ ok: true }),
+	hit: (key: string) => ({
+		ok: key.startsWith("presence-online:") ? presenceOnlineRateLimitOk : true,
+	}),
 }));
 
 mock.module("../lib/presence-redis", () => ({
@@ -248,6 +252,7 @@ describe("DELETE /api/realtime/presence", () => {
 describe("GET /api/realtime/presence/online", () => {
 	beforeEach(() => {
 		resolveOnlinePresenceForViewerMock.mockClear();
+		presenceOnlineRateLimitOk = true;
 	});
 
 	test("requires sign-in", async () => {
@@ -276,6 +281,20 @@ describe("GET /api/realtime/presence/online", () => {
 			{},
 			null,
 		);
+	});
+
+	test("rate limits runaway /online polling", async () => {
+		presenceOnlineRateLimitOk = false;
+		const url = new URL("http://localhost/api/realtime/presence/online");
+		url.searchParams.set("handles", "friend");
+		const response = await makeApp().handle(
+			new Request(url, {
+				headers: { "x-user-id": "usr_a" },
+			}),
+		);
+
+		expect(response.status).toBe(429);
+		expect(resolveOnlinePresenceForViewerMock).not.toHaveBeenCalled();
 	});
 });
 

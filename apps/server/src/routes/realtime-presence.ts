@@ -126,6 +126,15 @@ export const realtimePresenceRoute = new Elysia({
 		"/online",
 		async ({ query, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			// Healthy clients: ~6 SSE-throttled + ~2 poll/min — cap runaway loops.
+			if (
+				!hit(`presence-online:${user.id}`, {
+					limit: 12,
+					windowMs: 60_000,
+				}).ok
+			) {
+				return status(429, "Slow down");
+			}
 
 			const handles = query.handles
 				.split(",")
