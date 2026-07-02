@@ -15,7 +15,10 @@ export async function fetchMovieDetailTmdbJson(
 	try {
 		const api = await serverApi();
 		const res = await api.api.movies({ id }).get();
-		const tmdbJson = res.data?.tmdbJson;
+		const data = res.data;
+		// Eden types include an adult-blocked stub without `tmdbJson`.
+		if (!data || !("tmdbJson" in data)) return null;
+		const tmdbJson = data.tmdbJson;
 		if (!tmdbJson || typeof tmdbJson !== "object") return null;
 		return tmdbJson as Record<string, unknown>;
 	} catch {
