@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { StaffAuditTab } from "@/components/staff/staff-audit-tab";
+import { StaffFeedbackPanel } from "@/components/staff/staff-feedback-panel";
 import { StaffJournalPanel } from "@/components/staff/staff-journal-panel";
 import { StaffQuotesPanel } from "@/components/staff/staff-quotes-panel";
 import { StaffUsersTab } from "@/components/staff/staff-users-tab";
@@ -40,6 +41,7 @@ export default async function StaffPage() {
 			<StaffUsersTab currentRole={role} />
 			<StaffJournalPanel />
 			<StaffQuotesPanel />
+			<StaffFeedbackPanel currentRole={role} />
 			{canReadAudit ? <StaffAuditTab /> : null}
 		</div>
 	);
