@@ -1,5 +1,9 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Taste queue — non-interrupting backfill (2026-07-03)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Next:** human spec review → `writing-plans` implementation plan.
+
 ## Month recap dialog — community winners (2026-06-30)
 
 **Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-30-month-recap-dialog-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-06-30-month-recap-dialog.md`. **Locked:** first signed-in visit each calendar month (patron TZ) celebrates prior month; slides = most film logs · most TV logs · most reviews; skip empty categories; all signed-in patrons; What's New first then recap; localStorage seen per `YYYY-MM`; new files only + `app-shell.tsx` mount (no person-detail overlap). **Executor Task 1 done:** `resolvePreviousCalendarMonthWindow`, `celebratedMonthKeyFromWindow`, `celebratedMonthLabel` + tests **9/9** pass. **Executor Task 2 done:** optional `window` + `limit` on `fetchLeaderboard`; optional `window` on `fetchMembersLeaderboard`; tests **15/15** pass. **Executor Task 3 done:** `fetchMonthRecap`, `buildMonthRecapCategories`, `GET /api/community/month-recap`; tests **11/11** pass. **Executor Task 4 done:** `month-recap-seen`, `month-recap-month-key`, `month-recap-types`, `fetch-month-recap-client`; tests **4/4** pass. **Executor Task 5 done:** `MonthRecapPodium` + `MonthRecapDialog` (What's New carousel shell). **Executor Task 6 done:** `MonthRecapDialogRoot` in `app-shell.tsx` (What's New gate, fetch, defer timing). **Next:** Task 7 (verification + typecheck).
