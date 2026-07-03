@@ -44,7 +44,7 @@ export function useProfileActivitySignatureInfinite(handle: string) {
 				.profiles({ handle: normalizedHandle })
 				["activity-signature"].get({
 					query: {
-						weeks: String(query.weeks),
+						weeks: query.weeks,
 						...(query.before ? { before: query.before } : {}),
 					},
 				});
