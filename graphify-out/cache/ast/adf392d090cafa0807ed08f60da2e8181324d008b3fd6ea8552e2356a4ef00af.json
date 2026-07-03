@@ -1,0 +1,335 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_03_taste_queue_non_interrupting_backfill_design_md",
+			"label": "2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"label": "Taste Queue \u2014 Non-Interrupting Backfill",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_decisions_locked",
+			"label": "Decisions (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_shared_client_module",
+			"label": "Shared client module",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_codeblock_1",
+			"label": "code:ts (export const TASTE_MATCH_TARGET_RESULTS = 24; // mirrors ser)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_queue_mutation_flow",
+			"label": "Queue mutation flow",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_codeblock_2",
+			"label": "code:block2 (Patron action (log / watchlist / not interested / taste-titl)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L73"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_backfill_merge_rules",
+			"label": "Backfill merge rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L97"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_hero_spotlight_index_locked",
+			"label": "Hero spotlight index (locked)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_ui_motion",
+			"label": "UI & motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L116"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_hero_poster_rail",
+			"label": "Hero poster rail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_matched_rail",
+			"label": "Taste matched rail",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L126"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_reduced_motion",
+			"label": "Reduced motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L132"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L136"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_edge_cases",
+			"label": "Edge cases",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_files_implementation",
+			"label": "Files (implementation)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L157"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_verification",
+			"label": "Verification",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_references",
+			"label": "References",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L180"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_03_taste_queue_non_interrupting_backfill_design_md",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_decisions_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_shared_client_module",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_shared_client_module",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_queue_mutation_flow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_queue_mutation_flow",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_backfill_merge_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L97",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_architecture",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_hero_spotlight_index_locked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_ui_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L116",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_ui_motion",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_hero_poster_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_ui_motion",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_matched_rail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L126",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_ui_motion",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_reduced_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L132",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L136",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_edge_cases",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_files_implementation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L157",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_verification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_taste_queue_non_interrupting_backfill",
+			"target": "specs_2026_07_03_taste_queue_non_interrupting_backfill_design_references",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-taste-queue-non-interrupting-backfill-design.md",
+			"source_location": "L180",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

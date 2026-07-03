@@ -1,0 +1,102 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"label": "route.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "trailer_route_get",
+			"label": "GET()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L10"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "server",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_movie_hero_media_route_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "lib_movie_hero_media_route_fetchmoviedetailtmdbjson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_tmdb_trailer_pick_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "lib_tmdb_trailer_pick_picktrailerfromtmdbjson",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_app_api_movies_id_trailer_route_ts",
+			"target": "trailer_route_get",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "trailer_route_get",
+			"callee": "fetchMovieDetailTmdbJson",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "trailer_route_get",
+			"callee": "pickTrailerFromTmdbJson",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L16"
+		},
+		{
+			"caller_nid": "trailer_route_get",
+			"callee": "json",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\app\\api\\movies\\[id]\\trailer\\route.ts",
+			"source_location": "L17"
+		}
+	]
+}

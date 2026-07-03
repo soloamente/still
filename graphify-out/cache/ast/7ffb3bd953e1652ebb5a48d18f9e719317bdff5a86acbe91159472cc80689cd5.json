@@ -1,0 +1,89 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_next_handled_api_paths_ts",
+			"label": "next-handled-api-paths.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_next_handled_api_paths_isnexthandledapipath",
+			"label": "isNextHandledApiPath()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L5"
+		},
+		{
+			"id": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"label": "resolveApiRewriteOrigin()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L34"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_next_handled_api_paths_ts",
+			"target": "lib_next_handled_api_paths_isnexthandledapipath",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_next_handled_api_paths_ts",
+			"target": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L34",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_next_handled_api_paths_isnexthandledapipath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_next_handled_api_paths_isnexthandledapipath",
+			"callee": "test",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L35"
+		},
+		{
+			"caller_nid": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L38"
+		},
+		{
+			"caller_nid": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"callee": "includes",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L42"
+		},
+		{
+			"caller_nid": "lib_next_handled_api_paths_resolveapirewriteorigin",
+			"callee": "replace",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\next-handled-api-paths.ts",
+			"source_location": "L43"
+		}
+	]
+}

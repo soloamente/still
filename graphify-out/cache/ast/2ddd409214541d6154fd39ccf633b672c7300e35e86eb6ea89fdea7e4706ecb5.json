@@ -1,0 +1,207 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_home_taste_hero_media_fix_design_md",
+			"label": "2026-07-02-home-taste-hero-media-fix-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"label": "Home Taste Hero Media Fix \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_root_causes",
+			"label": "Root causes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"label": "Solution",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_a_media_shell_full_bleed",
+			"label": "A \u2014 Media shell full bleed",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_b_trailer_iframe_object_cover",
+			"label": "B \u2014 Trailer iframe object-cover",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_c_stable_trailer_origin",
+			"label": "C \u2014 Stable trailer origin",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L33"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_d_notifications_bell_hydration",
+			"label": "D \u2014 Notifications bell hydration",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_e_production_deploy_note",
+			"label": "E \u2014 Production deploy note",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L41"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_files",
+			"label": "Files",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L45"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "specs_2026_07_02_home_taste_hero_media_fix_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L61"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_home_taste_hero_media_fix_design_md",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_root_causes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_a_media_shell_full_bleed",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_b_trailer_iframe_object_cover",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_c_stable_trailer_origin",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L33",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_d_notifications_bell_hydration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_solution",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_e_production_deploy_note",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L41",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_files",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L45",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_home_taste_hero_media_fix_design_home_taste_hero_media_fix_design",
+			"target": "specs_2026_07_02_home_taste_hero_media_fix_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-home-taste-hero-media-fix-design.md",
+			"source_location": "L61",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

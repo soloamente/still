@@ -1,0 +1,111 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_presence_online_spike_fix_md",
+			"label": "2026-07-02-presence-online-spike-fix.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"label": "Presence `/online` spike fix \u2014 Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_task_1_presence_snapshot_equality_helper",
+			"label": "Task 1: Presence snapshot equality helper",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_task_2_coalesced_refresh_scheduler",
+			"label": "Task 2: Coalesced refresh scheduler",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_task_3_patrononlineprovider_loop_fix",
+			"label": "Task 3: PatronOnlineProvider loop fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_task_4_server_rate_limit",
+			"label": "Task 4: Server rate limit",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L44"
+		},
+		{
+			"id": "plans_2026_07_02_presence_online_spike_fix_task_5_verify",
+			"label": "Task 5: Verify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L54"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_presence_online_spike_fix_md",
+			"target": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"target": "plans_2026_07_02_presence_online_spike_fix_task_1_presence_snapshot_equality_helper",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"target": "plans_2026_07_02_presence_online_spike_fix_task_2_coalesced_refresh_scheduler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"target": "plans_2026_07_02_presence_online_spike_fix_task_3_patrononlineprovider_loop_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"target": "plans_2026_07_02_presence_online_spike_fix_task_4_server_rate_limit",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L44",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_presence_online_spike_fix_presence_online_spike_fix_implementation_plan",
+			"target": "plans_2026_07_02_presence_online_spike_fix_task_5_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-presence-online-spike-fix.md",
+			"source_location": "L54",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

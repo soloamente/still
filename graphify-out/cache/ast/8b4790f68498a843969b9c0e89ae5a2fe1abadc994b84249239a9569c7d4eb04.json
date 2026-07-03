@@ -1,0 +1,127 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_production_taste_hero_api_routes_md",
+			"label": "2026-07-02-production-taste-hero-api-routes.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"label": "Production Taste Hero API Routes Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_task_1_api_redeploy_ops_human",
+			"label": "Task 1: API redeploy (ops \u2014 human)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_codeblock_1",
+			"label": "code:bash (curl.exe -sS \"https://cinema.sense.fans/api/movies/76/title-)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L40"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_task_2_elysia_onerror_http_status_codes",
+			"label": "Task 2: Elysia `onError` HTTP status codes",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L53"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_codeblock_2",
+			"label": "code:typescript (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L61"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_task_3_client_rejects_elysia_error_json",
+			"label": "Task 3: Client rejects Elysia error JSON",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "plans_2026_07_02_production_taste_hero_api_routes_task_4_mark_spec_approved_graphify",
+			"label": "Task 4: Mark spec approved + graphify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L109"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_02_production_taste_hero_api_routes_md",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_task_1_api_redeploy_ops_human",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_task_1_api_redeploy_ops_human",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L40",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_task_2_elysia_onerror_http_status_codes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L53",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_task_2_elysia_onerror_http_status_codes",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L61",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_task_3_client_rejects_elysia_error_json",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_02_production_taste_hero_api_routes_production_taste_hero_api_routes_implementation_plan",
+			"target": "plans_2026_07_02_production_taste_hero_api_routes_task_4_mark_spec_approved_graphify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-02-production-taste-hero-api-routes.md",
+			"source_location": "L109",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

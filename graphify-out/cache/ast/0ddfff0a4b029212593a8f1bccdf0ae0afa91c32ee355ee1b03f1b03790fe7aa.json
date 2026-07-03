@@ -1,0 +1,722 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"label": "patron-online-provider.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "realtime_patron_online_provider_patrononlinecontextvalue",
+			"label": "PatronOnlineContextValue",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L49"
+		},
+		{
+			"id": "realtime_patron_online_provider_patrononlinecontext",
+			"label": "PatronOnlineContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L58"
+		},
+		{
+			"id": "realtime_patron_online_provider_patrononlineversioncontext",
+			"label": "PatronOnlineVersionContext",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L63"
+		},
+		{
+			"id": "realtime_patron_online_provider_realtimeclientenabled",
+			"label": "realtimeClientEnabled()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L65"
+		},
+		{
+			"id": "realtime_patron_online_provider_patrononlineprovider",
+			"label": "PatronOnlineProvider()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L73"
+		},
+		{
+			"id": "realtime_patron_online_provider_usepatrononlineregistration",
+			"label": "usePatronOnlineRegistration()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L342"
+		},
+		{
+			"id": "realtime_patron_online_provider_usepatrononlinestatus",
+			"label": "usePatronOnlineStatus()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L358"
+		},
+		{
+			"id": "realtime_patron_online_provider_usepatronpresencestate",
+			"label": "usePatronPresenceState()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L371"
+		},
+		{
+			"id": "realtime_patron_online_provider_useviewerhandleforpresence",
+			"label": "useViewerHandleForPresence()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L384"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_realtime_realtime_root_provider_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_realtime_root_provider_useregisterrealtimeroom",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_patron_activity_tracker_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "hooks_use_patron_activity_tracker_useaggregatepatronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "hooks_use_patron_activity_tracker_usepatronactivityflipheartbeat",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "hooks_use_patron_activity_tracker_usereadaggregatepatronactivitystate",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_connection_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "hooks_use_realtime_connection_userealtimeheartbeat",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L20",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_hooks_use_realtime_subscription_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "hooks_use_realtime_subscription_userealtimesubscription",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_patron_online_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_fetchpatrononlinehandles",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_ispatronpresencehandle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_leavepatronapppresenceclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_normalizepatrononlinehandle",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_normalizepatronpresencesnapshot",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_fetch_patron_online_touchpatronapppresenceclient",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L22",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_online_presence_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_patron_online_presence_arepatronpresencemapsequal",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_patron_online_presence_patronpresencerow",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L30",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_patron_online_refresh_scheduler_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_patron_online_refresh_scheduler_createpatrononlinerefreshscheduler",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L34",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_presence_heartbeat_scheduler_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "lib_presence_heartbeat_scheduler_createpresenceheartbeatscheduler",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_patrononlinecontextvalue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_patrononlinecontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L58",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_patrononlineversioncontext",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_realtimeclientenabled",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L65",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_patrononlineprovider",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L73",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_usepatrononlineregistration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_usepatrononlinestatus",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L358",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_usepatronpresencestate",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L371",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_realtime_patron_online_provider_tsx",
+			"target": "realtime_patron_online_provider_useviewerhandleforpresence",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L384",
+			"weight": 1.0
+		},
+		{
+			"source": "realtime_patron_online_provider_patrononlineprovider",
+			"target": "realtime_patron_online_provider_realtimeclientenabled",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L81",
+			"weight": 1.0
+		},
+		{
+			"source": "realtime_patron_online_provider_usepatrononlinestatus",
+			"target": "realtime_patron_online_provider_usepatrononlineregistration",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L362",
+			"weight": 1.0
+		},
+		{
+			"source": "realtime_patron_online_provider_usepatronpresencestate",
+			"target": "realtime_patron_online_provider_usepatrononlineregistration",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L375",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRealtimeHeartbeat",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L82"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useAggregatePatronActivityState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useReadAggregatePatronActivityState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L85"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "normalizePatronOnlineHandle",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L90"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L93"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L94"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L98"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L101"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L103"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L106"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L107"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L109"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L120"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L134"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRegisterRealtimeRoom",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L145"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useRealtimeSubscription",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L147"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "patronAppRoomId",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L148"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L173"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L190"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L197"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "usePatronActivityFlipHeartbeat",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L204"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L210"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L249"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L261"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L267"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_patrononlineprovider",
+			"callee": "useMemo",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L323"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatrononlineregistration",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L346"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatrononlineregistration",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L349"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatrononlinestatus",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L364"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatrononlinestatus",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L366"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatrononlinestatus",
+			"callee": "isOnline",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L367"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatronpresencestate",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L377"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatronpresencestate",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L379"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_usepatronpresencestate",
+			"callee": "getPresenceState",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L380"
+		},
+		{
+			"caller_nid": "realtime_patron_online_provider_useviewerhandleforpresence",
+			"callee": "useContext",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\realtime\\patron-online-provider.tsx",
+			"source_location": "L385"
+		}
+	]
+}

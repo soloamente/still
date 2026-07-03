@@ -1,0 +1,191 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_03_review_spoiler_preview_design_md",
+			"label": "2026-07-03-review-spoiler-preview-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"label": "Review spoiler preview masking (app-wide)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_goal",
+			"label": "Goal",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_masking_rules",
+			"label": "Masking rules",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_what_is_masked",
+			"label": "What is masked",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L21"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_surfaces_in_scope",
+			"label": "Surfaces in scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L25"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_architecture",
+			"label": "Architecture",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_data_plumbing",
+			"label": "Data plumbing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_interaction",
+			"label": "Interaction",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L63"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_07_03_review_spoiler_preview_design_non_goals_v1",
+			"label": "Non-goals (v1)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L73"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_03_review_spoiler_preview_design_md",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_goal",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_masking_rules",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_what_is_masked",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L21",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_surfaces_in_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L25",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_architecture",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_data_plumbing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_interaction",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L63",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_03_review_spoiler_preview_design_review_spoiler_preview_masking_app_wide",
+			"target": "specs_2026_07_03_review_spoiler_preview_design_non_goals_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-03-review-spoiler-preview-design.md",
+			"source_location": "L73",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

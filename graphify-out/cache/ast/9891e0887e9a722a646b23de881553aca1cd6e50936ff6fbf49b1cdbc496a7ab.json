@@ -1,0 +1,87 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_server_src_lib_tmdb_trailer_pick_ts",
+			"label": "tmdb-trailer-pick.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tmdb_trailer_pick_tmdbtrailerrow",
+			"label": "TmdbTrailerRow",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_tmdb_trailer_pick_picktrailerfromvideoresults",
+			"label": "pickTrailerFromVideoResults()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L8"
+		},
+		{
+			"id": "lib_tmdb_trailer_pick_picktrailerfromtmdbjson",
+			"label": "pickTrailerFromTmdbJson()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L24"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_trailer_pick_ts",
+			"target": "lib_tmdb_trailer_pick_tmdbtrailerrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_trailer_pick_ts",
+			"target": "lib_tmdb_trailer_pick_picktrailerfromvideoresults",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_server_src_lib_tmdb_trailer_pick_ts",
+			"target": "lib_tmdb_trailer_pick_picktrailerfromtmdbjson",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "lib_tmdb_trailer_pick_picktrailerfromtmdbjson",
+			"target": "lib_tmdb_trailer_pick_picktrailerfromvideoresults",
+			"relation": "calls",
+			"context": "call",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L30",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_tmdb_trailer_pick_picktrailerfromvideoresults",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L14"
+		},
+		{
+			"caller_nid": "lib_tmdb_trailer_pick_picktrailerfromvideoresults",
+			"callee": "find",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\server\\src\\lib\\tmdb-trailer-pick.ts",
+			"source_location": "L18"
+		}
+	]
+}

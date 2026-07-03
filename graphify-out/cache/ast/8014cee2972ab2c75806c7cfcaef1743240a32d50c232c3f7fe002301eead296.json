@@ -1,0 +1,46 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_still_api_error_payload_ts",
+			"label": "still-api-error-payload.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-error-payload.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_still_api_error_payload_stillapierrorpayload",
+			"label": "StillApiErrorPayload",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-error-payload.ts",
+			"source_location": "L2"
+		},
+		{
+			"id": "lib_still_api_error_payload_isstillapierrorpayload",
+			"label": "isStillApiErrorPayload()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-error-payload.ts",
+			"source_location": "L8"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_error_payload_ts",
+			"target": "lib_still_api_error_payload_stillapierrorpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-error-payload.ts",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_still_api_error_payload_ts",
+			"target": "lib_still_api_error_payload_isstillapierrorpayload",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\still-api-error-payload.ts",
+			"source_location": "L8",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": []
+}

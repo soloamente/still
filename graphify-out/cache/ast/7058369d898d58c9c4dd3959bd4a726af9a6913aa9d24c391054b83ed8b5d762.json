@@ -1,0 +1,239 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_production_taste_hero_api_routes_design_md",
+			"label": "2026-07-02-production-taste-hero-api-routes-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"label": "Production Taste Hero API Routes \u2014 Design",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_problem",
+			"label": "Problem",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L6"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_root_cause",
+			"label": "Root cause",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"label": "Solution (Approach A \u2014 deploy + verify)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L35"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_1_redeploy_the_api_project",
+			"label": "1. Redeploy the API project",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L37"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_2_verify_environment_on_the_api_project",
+			"label": "2. Verify environment on the API project",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L50"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_3_production_smoke_tests",
+			"label": "3. Production smoke tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_1",
+			"label": "code:bash (# Must NOT return NOT_FOUND)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_2",
+			"label": "code:bash (curl -sS \"https://cinema.sense.fans/api/community/month-reca)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L90"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_4_out_of_scope_this_spec",
+			"label": "4. Out of scope (this spec)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L95"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_architecture_unchanged",
+			"label": "Architecture (unchanged)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_3",
+			"label": "code:block3 (Browser \u2192 cinema.sense.fans/api/movies/:id/title-logo)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_07_02_production_taste_hero_api_routes_design_rollback",
+			"label": "Rollback",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L118"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_production_taste_hero_api_routes_design_md",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_problem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_root_cause",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L35",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_1_redeploy_the_api_project",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L37",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_2_verify_environment_on_the_api_project",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L50",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_3_production_smoke_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_3_production_smoke_tests",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_3_production_smoke_tests",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L90",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_solution_approach_a_deploy_verify",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_4_out_of_scope_this_spec",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L95",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_architecture_unchanged",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_architecture_unchanged",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_production_taste_hero_api_routes_design_production_taste_hero_api_routes_design",
+			"target": "specs_2026_07_02_production_taste_hero_api_routes_design_rollback",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-production-taste-hero-api-routes-design.md",
+			"source_location": "L118",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,0 +1,492 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"label": "movie-detail-engagement-drawer-rows.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "movie_movie_detail_engagement_drawer_rows_patronavatarrow",
+			"label": "PatronAvatarRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L28"
+		},
+		{
+			"id": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"label": "ListingEngagementWatchRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L66"
+		},
+		{
+			"id": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"label": "ListingEngagementListRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L151"
+		},
+		{
+			"id": "movie_movie_detail_engagement_drawer_rows_listingengagementpatronrow",
+			"label": "ListingEngagementPatronRow()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L217"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_icons_heart_filled_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lucide_react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "image",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "link",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_movie_detail_motion_pressable_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "movie_detail_motion_pressable_detailmotionbutton",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_patron_portrait_with_metal_tier_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "profile_patron_portrait_with_metal_tier_patronportraitwithmetaltier",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_review_review_detail_sheet_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "review_review_detail_sheet_usereviewdetail",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_preview_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "review_review_spoiler_preview_reviewspoilerpreview",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_fetch_listing_engagement_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_fetch_listing_engagement_listingengagementlistitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_fetch_listing_engagement_listingengagementpatronitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_fetch_listing_engagement_listingengagementwatchitem",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_format_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_format_formatdistancetonowstrict",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_format_formattimeagolabel",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_list_cover_image_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_list_cover_image_islistcoverproxysrc",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_list_cover_image_listboardrowposterurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_log_rating_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_log_rating_formatstoredlogratingdisplay",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_media_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "lib_profile_media_inferanimatedfromprofileurl",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L24",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "movie_movie_detail_engagement_drawer_rows_patronavatarrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_movie_movie_detail_engagement_drawer_rows_tsx",
+			"target": "movie_movie_detail_engagement_drawer_rows_listingengagementpatronrow",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L217",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_patronavatarrow",
+			"callee": "inferAnimatedFromProfileUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L44"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "useReviewDetail",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L73"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "formatStoredLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L76"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L77"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L78"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "push",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "formatTimeAgoLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L79"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L83"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L86"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementwatchrow",
+			"callee": "join",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L92"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"callee": "listBoardRowPosterUrl",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L156"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L168"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"callee": "isListCoverProxySrc",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L185"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementlistrow",
+			"callee": "formatDistanceToNowStrict",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L203"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementpatronrow",
+			"callee": "formatStoredLogRatingDisplay",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L222"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementpatronrow",
+			"callee": "formatTimeAgoLabel",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L223"
+		},
+		{
+			"caller_nid": "movie_movie_detail_engagement_drawer_rows_listingengagementpatronrow",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\movie\\movie-detail-engagement-drawer-rows.tsx",
+			"source_location": "L226"
+		}
+	]
+}

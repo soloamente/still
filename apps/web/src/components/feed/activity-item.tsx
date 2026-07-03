@@ -13,6 +13,7 @@ import {
 	FeedListingThumb,
 	FeedListPlaceholderFrame,
 } from "@/components/feed/feed-listing-thumb";
+import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
 import { ReviewActivityCopy } from "@/components/feed/review-activity-copy";
 import { isFeedRatingDivergencePayload } from "@/lib/feed-rating-divergence";
 import {

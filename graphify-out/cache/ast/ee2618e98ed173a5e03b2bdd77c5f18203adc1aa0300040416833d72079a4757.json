@@ -1,0 +1,319 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_presence_online_spike_fix_design_md",
+			"label": "2026-07-02-presence-online-spike-fix-design.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"label": "Sense \u2014 Presence `/online` spike fix",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_summary",
+			"label": "Summary",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L8"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_incident_locked_facts",
+			"label": "Incident (locked facts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L14"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_root_cause",
+			"label": "Root cause",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L27"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_codeblock_1",
+			"label": "code:text (/online response)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L29"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_locked_decisions_brainstorm",
+			"label": "Locked decisions (brainstorm)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L49"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_client_architecture_after_fix",
+			"label": "Client architecture (after fix)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L64"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_stable_context",
+			"label": "Stable context",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L66"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_refresh_scheduler",
+			"label": "Refresh scheduler",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L72"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_triggers_unchanged_cadence_fixed_behavior",
+			"label": "Triggers (unchanged cadence, fixed behavior)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L80"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_server_architecture_after_fix",
+			"label": "Server architecture (after fix)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L89"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_codeblock_2",
+			"label": "code:ts (hit(`presence-online:${user.id}`, { limit: 12, windowMs: 60_)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L93"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_error_handling",
+			"label": "Error handling",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L101"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_testing",
+			"label": "Testing",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_client_unit_tests",
+			"label": "Client unit tests",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_server_route_test",
+			"label": "Server route test",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L118"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_manual",
+			"label": "Manual",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L122"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_out_of_scope",
+			"label": "Out of scope",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L128"
+		},
+		{
+			"id": "specs_2026_07_02_presence_online_spike_fix_design_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L135"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_specs_2026_07_02_presence_online_spike_fix_design_md",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_summary",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L8",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_incident_locked_facts",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L14",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_root_cause",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L27",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_root_cause",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L29",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_locked_decisions_brainstorm",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L49",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_client_architecture_after_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L64",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_client_architecture_after_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_stable_context",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L66",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_client_architecture_after_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_refresh_scheduler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L72",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_client_architecture_after_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_triggers_unchanged_cadence_fixed_behavior",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L80",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_server_architecture_after_fix",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L89",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_server_architecture_after_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L93",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_error_handling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L101",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_testing",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_testing",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_client_unit_tests",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_testing",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_server_route_test",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L118",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_testing",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_manual",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L122",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_out_of_scope",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L128",
+			"weight": 1.0
+		},
+		{
+			"source": "specs_2026_07_02_presence_online_spike_fix_design_sense_presence_online_spike_fix",
+			"target": "specs_2026_07_02_presence_online_spike_fix_design_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\specs\\2026-07-02-presence-online-spike-fix-design.md",
+			"source_location": "L135",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

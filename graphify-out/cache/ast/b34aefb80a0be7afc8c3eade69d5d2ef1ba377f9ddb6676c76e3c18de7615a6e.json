@@ -1,0 +1,119 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"label": "review-spoiler-guard.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "review_review_spoiler_guard_reviewspoilerguard",
+			"label": "ReviewSpoilerGuard()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L19"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_review_spoiler_mask_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "lib_review_spoiler_mask_review_spoiler_reveal_cta",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "lib_review_spoiler_mask_shouldmaskreviewspoilers",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_review_review_spoiler_guard_tsx",
+			"target": "review_review_spoiler_guard_reviewspoilerguard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L19",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "review_review_spoiler_guard_reviewspoilerguard",
+			"callee": "shouldMaskReviewSpoilers",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L43"
+		},
+		{
+			"caller_nid": "review_review_spoiler_guard_reviewspoilerguard",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L65"
+		},
+		{
+			"caller_nid": "review_review_spoiler_guard_reviewspoilerguard",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L74"
+		},
+		{
+			"caller_nid": "review_review_spoiler_guard_reviewspoilerguard",
+			"callee": "cn",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\review\\review-spoiler-guard.tsx",
+			"source_location": "L85"
+		}
+	]
+}

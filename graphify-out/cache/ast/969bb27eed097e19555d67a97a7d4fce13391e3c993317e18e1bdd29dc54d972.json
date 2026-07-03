@@ -1,0 +1,511 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_03_taste_queue_non_interrupting_backfill_md",
+			"label": "2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_taste_queue_non_interrupting_backfill_implementation_plan",
+			"label": "Taste Queue \u2014 Non-Interrupting Backfill Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"label": "Task 1: Pure queue helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_1",
+			"label": "code:ts (/** Mirrors `apps/server/src/lib/taste-matched-discovery.ts`)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L39"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_2",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L46"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_3",
+			"label": "code:ts (export const TASTE_MATCH_TARGET_RESULTS = 24;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L103"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_4",
+			"label": "code:bash (git add apps/web/src/lib/taste-match-queue.ts apps/web/src/l)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L144"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"label": "Task 2: Debounced backfill scheduler",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L151"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_5",
+			"label": "code:ts (describe(\"createTasteQueueBackfillScheduler\", () => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L161"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_6",
+			"label": "code:ts (export const TASTE_QUEUE_BACKFILL_DEBOUNCE_MS = 150;)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L182"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_7",
+			"label": "code:ts (export function buildTasteQueueBackfillRunner(args: {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L211"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_8",
+			"label": "code:bash (git commit -am \"feat(web): debounced taste queue backfill sc)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L233"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"label": "Task 3: Wire `HomeTasteMatchedHero`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L239"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_9",
+			"label": "code:ts (if (index <= activeIndex && activeIndex > 0) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L248"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_10",
+			"label": "code:ts (setActiveIndex((prev) =>)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L256"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_11",
+			"label": "code:ts (const backfillSchedulerRef = useRef()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_12",
+			"label": "code:ts (function removeFromQueue(tmdbId: number) {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L284"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_13",
+			"label": "code:bash (git commit -am \"fix(web): taste hero tail backfill without s)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L307"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_4_hero_poster_enter_exit_motion",
+			"label": "Task 4: Hero poster enter/exit motion",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L313"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_14",
+			"label": "code:ts (const enteringPosterIdsRef = useRef<Set<number>>(new Set());)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L320"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_15",
+			"label": "code:tsx (<AnimatePresence initial={false} mode=\"popLayout\">)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L330"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_16",
+			"label": "code:bash (git commit -am \"feat(web): taste hero poster rail enter/exit)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L353"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_5_wire_hometastematchedrail",
+			"label": "Task 5: Wire `HomeTasteMatchedRail`",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L359"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_17",
+			"label": "code:ts (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L370"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_18",
+			"label": "code:bash (git commit -am \"fix(web): taste rail tail backfill and consu)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L391"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_6_transitions_dev_tokens_optional_polish",
+			"label": "Task 6: transitions.dev tokens (optional polish)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L397"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_7_verification_graphify",
+			"label": "Task 7: Verification + graphify",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L412"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_19",
+			"label": "code:bash (cd apps/web && bun test src/lib/taste-match-queue.test.ts sr)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L416"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_20",
+			"label": "code:bash (cd apps/web && bun run check-types)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L424"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_21",
+			"label": "code:bash (graphify update .)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L440"
+		},
+		{
+			"id": "plans_2026_07_03_taste_queue_non_interrupting_backfill_success_criteria",
+			"label": "Success criteria",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L448"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_03_taste_queue_non_interrupting_backfill_md",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_taste_queue_non_interrupting_backfill_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_taste_queue_non_interrupting_backfill_implementation_plan",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L39",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L46",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L103",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_1_pure_queue_helpers",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L144",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L151",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L161",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L182",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L211",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_2_debounced_backfill_scheduler",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L233",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L239",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L248",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L256",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L284",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_3_wire_hometastematchedhero",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L307",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_4_hero_poster_enter_exit_motion",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L313",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_4_hero_poster_enter_exit_motion",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L320",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_4_hero_poster_enter_exit_motion",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L330",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_4_hero_poster_enter_exit_motion",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L353",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_5_wire_hometastematchedrail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L359",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_5_wire_hometastematchedrail",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L370",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_5_wire_hometastematchedrail",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L391",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_6_transitions_dev_tokens_optional_polish",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L397",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_file_map",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_7_verification_graphify",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L412",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_7_verification_graphify",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L416",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_7_verification_graphify",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_20",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L424",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_task_7_verification_graphify",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_codeblock_21",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L440",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_taste_queue_non_interrupting_backfill_taste_queue_non_interrupting_backfill_implementation_plan",
+			"target": "plans_2026_07_03_taste_queue_non_interrupting_backfill_success_criteria",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-taste-queue-non-interrupting-backfill.md",
+			"source_location": "L448",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}
