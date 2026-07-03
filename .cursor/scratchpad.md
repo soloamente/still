@@ -2,7 +2,7 @@
 
 ## Taste queue — non-interrupting backfill (2026-07-03)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Next:** human spec review → `writing-plans` implementation plan.
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-03-taste-queue-non-interrupting-backfill.md`. **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Next:** Executor Task 1 (human `go` between tasks).
 
 ## Month recap dialog — community winners (2026-06-30)
 
