@@ -7,7 +7,7 @@ import { useProfileLobbyParams } from "@/components/profile/profile-lobby-params
 import type { ProfileLedgerTabId } from "@/lib/profile-lobby-order";
 
 /**
- * Watch-venue rail on profile Movies / TV — **In cinemas** vs **At home** (diary parity).
+ * Watch-venue rail on profile Movies / TV — **In theaters** vs **At home** (diary parity).
  */
 export function ProfileCatalogVenueChips({
 	ledgerTab: _ledgerTab,
@@ -41,7 +41,7 @@ export function ProfileCatalogVenueChips({
 		<div className="flex min-w-0 flex-col gap-1">
 			<p id={toolbarDescId} className="sr-only">
 				Filter this patron&apos;s logged titles by whether they watched in
-				cinemas or at home.
+				theaters or at home.
 			</p>
 			<div
 				className="flex w-fit max-w-full flex-wrap gap-1 rounded-full bg-background p-1 sm:flex-nowrap"
@@ -53,8 +53,8 @@ export function ProfileCatalogVenueChips({
 					type="button"
 					aria-current={theatersActive ? "page" : undefined}
 					className={chipButton(theatersActive)}
-					title="Screenings logged as watched in cinemas"
-					aria-label="In cinemas — theatrical watch logs"
+					title="Screenings logged as watched in theaters"
+					aria-label="In theaters — theatrical watch logs"
 					onClick={() => selectVenue("theaters")}
 				>
 					{theatersActive ? (
@@ -64,7 +64,7 @@ export function ProfileCatalogVenueChips({
 							transition={pillTransition}
 						/>
 					) : null}
-					<span className="relative z-10">In cinemas</span>
+					<span className="relative z-10">In theaters</span>
 				</button>
 				<button
 					type="button"

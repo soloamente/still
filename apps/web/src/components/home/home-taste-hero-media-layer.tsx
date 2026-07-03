@@ -36,7 +36,7 @@ export function HomeTasteHeroMediaLayer({
 							fill
 							priority
 							sizes="100vw"
-							className="object-cover object-[center_32%] sm:object-[center_42%] min-[2000px]:object-[center_48%]"
+							className="object-cover object-[center_52%] sm:object-[center_42%] min-[2000px]:object-[center_48%]"
 							unoptimized={backdropUrl.includes("image.tmdb.org")}
 						/>
 					</div>

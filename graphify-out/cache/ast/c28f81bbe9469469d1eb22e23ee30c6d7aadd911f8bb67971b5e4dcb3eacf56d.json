@@ -1,0 +1,235 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"label": "use-profile-activity-signature-infinite.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_profile_activity_signature_infinite_profileactivitysignaturetotals",
+			"label": "ProfileActivitySignatureTotals",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L18"
+		},
+		{
+			"id": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"label": "useProfileActivitySignatureInfinite()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L26"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_activity_signature_activitysignaturepayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_activity_signature_activitysignatureweek",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_activity_signature_normalizeactivitysignaturepayload",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_merge_weeks_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_activity_signature_merge_weeks_mergeactivitysignatureweeks",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L10",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_use_profile_activity_signature_infinite_profileactivitysignaturetotals",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L18",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"target": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L26",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L27"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L28"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L29"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L30"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L31"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L32"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L33"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useRef",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L37"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "toLowerCase",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "trim",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L39"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L41"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L59"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L95"
+		},
+		{
+			"caller_nid": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature-infinite.ts",
+			"source_location": "L126"
+		}
+	]
+}

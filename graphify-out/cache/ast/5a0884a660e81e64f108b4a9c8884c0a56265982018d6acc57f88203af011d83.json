@@ -1,0 +1,463 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_03_activity_signature_infinite_scroll_md",
+			"label": "2026-07-03-activity-signature-infinite-scroll.md",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_activity_signature_infinite_scroll_implementation_plan",
+			"label": "Activity Signature Infinite Scroll Implementation Plan",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"label": "File map",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L15"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_1_server_chunk_builder",
+			"label": "Task 1: Server chunk builder",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L32"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_1",
+			"label": "code:ts (import {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L42"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_2",
+			"label": "code:bash (git add apps/server/src/lib/activity-signature.ts apps/serve)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"label": "Task 2: API route params and hasOlder",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_3",
+			"label": "code:ts (query: t.Object({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L120"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_4",
+			"label": "code:ts (const weeks = Math.min(52, Math.max(1, Number(query.weeks ??)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L129"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_5",
+			"label": "code:ts (const [older] = await db)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_6",
+			"label": "code:bash (git add apps/server/src/routes/profiles.ts)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L172"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"label": "Task 3: Web types and pure helpers",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L179"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_7",
+			"label": "code:ts (export type ActivitySignaturePayload = {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L190"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_8",
+			"label": "code:ts (import { describe, expect, test } from \"bun:test\";)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L205"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_9",
+			"label": "code:ts (export function mergeActivitySignatureWeeks()",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L222"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_10",
+			"label": "code:ts (import { computeScrollLeftAfterPrepend } from \"./activity-si)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L235"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_11",
+			"label": "code:ts (export function computeScrollLeftAfterPrepend({)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L247"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_12",
+			"label": "code:bash (git add apps/web/src/lib/activity-signature.ts apps/web/src/)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L268"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_4_infinite_fetch_hook",
+			"label": "Task 4: Infinite fetch hook",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L275"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_13",
+			"label": "code:ts (export function useProfileActivitySignatureInfinite(handle: )",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L283"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_14",
+			"label": "code:ts (const res = await api.api.profiles({ handle }).[\"activity-si)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L302"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_15",
+			"label": "code:bash (git add apps/web/src/lib/use-profile-activity-signature-infi)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L322"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"label": "Task 5: ProfileActivitySignature UI",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L329"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_16",
+			"label": "code:ts (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L342"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_17",
+			"label": "code:ts (useEffect(() => {)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L355"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_18",
+			"label": "code:ts (import { useHorizontalScrollFades } from \"@/lib/use-horizont)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L381"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_19",
+			"label": "code:bash (git add apps/web/src/components/profile/profile-activity-sig)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L411"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_task_6_graphify_changelog_optional",
+			"label": "Task 6: graphify + changelog (optional)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L418"
+		},
+		{
+			"id": "plans_2026_07_03_activity_signature_infinite_scroll_plan_self_review_spec_coverage",
+			"label": "Plan self-review (spec coverage)",
+			"file_type": "document",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L426"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_docs_superpowers_plans_2026_07_03_activity_signature_infinite_scroll_md",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_activity_signature_infinite_scroll_implementation_plan",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_activity_signature_infinite_scroll_implementation_plan",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L15",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_1_server_chunk_builder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L32",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_1_server_chunk_builder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L42",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_1_server_chunk_builder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_2",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_3",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L120",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_4",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L129",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_5",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_2_api_route_params_and_hasolder",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_6",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L172",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L179",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_7",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L190",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_8",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L205",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_9",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L222",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_10",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L235",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_11",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L247",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_3_web_types_and_pure_helpers",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_12",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L268",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_4_infinite_fetch_hook",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L275",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_4_infinite_fetch_hook",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_13",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L283",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_4_infinite_fetch_hook",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_14",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L302",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_4_infinite_fetch_hook",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L322",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L329",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_16",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L342",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_17",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L355",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_18",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L381",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_task_5_profileactivitysignature_ui",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_codeblock_19",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L411",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_file_map",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_task_6_graphify_changelog_optional",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L418",
+			"weight": 1.0
+		},
+		{
+			"source": "plans_2026_07_03_activity_signature_infinite_scroll_activity_signature_infinite_scroll_implementation_plan",
+			"target": "plans_2026_07_03_activity_signature_infinite_scroll_plan_self_review_spec_coverage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\docs\\superpowers\\plans\\2026-07-03-activity-signature-infinite-scroll.md",
+			"source_location": "L426",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

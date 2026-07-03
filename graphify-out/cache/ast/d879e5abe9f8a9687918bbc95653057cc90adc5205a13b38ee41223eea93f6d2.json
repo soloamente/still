@@ -1,0 +1,89 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_profile_watch_streak_ts",
+			"label": "use-profile-watch-streak.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"label": "useProfileWatchStreak()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L11"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_watch_streak_ts",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_watch_streak_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_api_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_watch_streak_ts",
+			"target": "lib_api_api",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_watch_streak_ts",
+			"target": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L11",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L12"
+		},
+		{
+			"caller_nid": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"callee": "useState",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L13"
+		},
+		{
+			"caller_nid": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"callee": "useCallback",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L15"
+		},
+		{
+			"caller_nid": "lib_use_profile_watch_streak_useprofilewatchstreak",
+			"callee": "useEffect",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-watch-streak.ts",
+			"source_location": "L42"
+		}
+	]
+}

@@ -62,7 +62,7 @@ export function ProfileFilmographyPanel({
 
 	if (seeds.length === 0) {
 		const label = kind === "tv" ? "TV shows" : "films";
-		const venueLabel = lobbyVenue === "theaters" ? "in cinemas" : "at home";
+		const venueLabel = lobbyVenue === "theaters" ? "in theaters" : "at home";
 		return (
 			<div
 				className="flex min-h-[min(40vh,20rem)] flex-1 flex-col items-center justify-center px-1 py-6 text-center sm:px-4 sm:py-10"
@@ -100,7 +100,7 @@ export function ProfileFilmographyPanel({
 							className="mt-4 inline-flex min-h-10 items-center justify-center rounded-full bg-background px-5 py-2.5 font-medium text-foreground text-sm"
 							onClick={() => navigate(switchVenueHref)}
 						>
-							Show {lobbyVenue === "theaters" ? "at home" : "in cinemas"}{" "}
+							Show {lobbyVenue === "theaters" ? "at home" : "in theaters"}{" "}
 							instead
 						</button>
 					</>

@@ -1,0 +1,65 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_merge_weeks_ts",
+			"label": "activity-signature-merge-weeks.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_activity_signature_merge_weeks_mergeactivitysignatureweeks",
+			"label": "mergeActivitySignatureWeeks()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L6"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_merge_weeks_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_merge_weeks_ts",
+			"target": "lib_activity_signature_activitysignatureweek",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_activity_signature_merge_weeks_ts",
+			"target": "lib_activity_signature_merge_weeks_mergeactivitysignatureweeks",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L6",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_activity_signature_merge_weeks_mergeactivitysignatureweeks",
+			"callee": "map",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L10"
+		},
+		{
+			"caller_nid": "lib_activity_signature_merge_weeks_mergeactivitysignatureweeks",
+			"callee": "filter",
+			"is_member_call": true,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\activity-signature-merge-weeks.ts",
+			"source_location": "L11"
+		}
+	]
+}

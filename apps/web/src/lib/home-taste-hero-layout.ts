@@ -8,9 +8,9 @@ export const HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME =
 	"pointer-events-none absolute -top-4 -right-4 -left-4 -bottom-[4.75rem] z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)]";
 /** Bleed past rounded-corner anti-alias — kills card/iframe edge slivers. */
 export const HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME = "-inset-px";
-/** Background trailer iframe — mobile overscans top; desktop keeps lower focal point. */
+/** Background trailer iframe — mobile keeps a lower focal point; desktop unchanged. */
 export const HOME_TASTE_HERO_TRAILER_IFRAME_CLASSNAME =
-	"absolute top-1/2 left-1/2 z-1 aspect-video h-auto min-h-[104%] w-auto min-w-[104%] -translate-x-1/2 -translate-y-1/2 scale-[1.55] border-0 sm:top-[58%] sm:min-h-full sm:min-w-full sm:scale-[1.32] min-[2000px]:top-[64%] min-[2000px]:scale-[1.26]";
+	"absolute top-[64%] left-1/2 z-1 aspect-video h-auto min-h-[104%] w-auto min-w-[104%] -translate-x-1/2 -translate-y-1/2 scale-[1.48] border-0 sm:top-[58%] sm:min-h-full sm:min-w-full sm:scale-[1.32] min-[2000px]:top-[64%] min-[2000px]:scale-[1.26]";
 /** Full-bleed scrims — long soft ramp anchored low (filters/posters on flat dark). */
 export const HOME_TASTE_HERO_SCRIM_BOTTOM_VERTICAL_CLASSNAME =
 	"absolute inset-0 z-2 bg-[linear-gradient(to_top,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.76)_4%,rgba(0,0,0,0.58)_8%,rgba(0,0,0,0.42)_11%,rgba(0,0,0,0.28)_14%,rgba(0,0,0,0.17)_17%,rgba(0,0,0,0.09)_20%,rgba(0,0,0,0.04)_23%,transparent_26%,transparent_100%)] min-[2000px]:bg-[linear-gradient(to_top,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.72)_5%,rgba(0,0,0,0.54)_9%,rgba(0,0,0,0.38)_12%,rgba(0,0,0,0.24)_15%,rgba(0,0,0,0.14)_18%,rgba(0,0,0,0.07)_21%,rgba(0,0,0,0.03)_24%,transparent_28%,transparent_100%)]";
@@ -37,7 +37,10 @@ export const HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME = "w-[3.75rem] sm:w-28";
 export const HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME = "justify-end";
 export const HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME =
 	"pb-1 sm:pb-2 min-[2000px]:pb-0";
-/** 2K+ only — drop spotlight row; mid/mobile unchanged. */
+/** Mobile only — drop spotlight row toward the filter baseline. */
+export const HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME =
+	"max-sm:translate-y-14";
+/** 2K+ only — drop spotlight row; mid/desktop unchanged. */
 export const HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME =
 	"min-[2000px]:translate-y-16";
 /** 2K+ — reserve layout space so the nudge stays inside the hero section. */

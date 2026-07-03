@@ -25,6 +25,7 @@ import {
 	ilike,
 	isNotNull,
 	isNull,
+	lt,
 	ne,
 	or,
 	sql,
@@ -32,8 +33,11 @@ import {
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import {
-	ACTIVITY_SIGNATURE_DAYS,
-	buildActivitySignature,
+	ACTIVITY_SIGNATURE_WEEKS,
+	addUtcDays,
+	buildActivitySignatureChunk,
+	utcDateKeyFromWatchedAt,
+	utcWeekStartMonday,
 } from "../lib/activity-signature";
 import { patronMeetsAdultAgeGate } from "../lib/adult-content-age-gate";
 import { readShowAdultContentPref } from "../lib/adult-content-policy";
@@ -122,6 +126,7 @@ import {
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 import { ensureFreshTasteSignature } from "../lib/taste-signature-cache";
+import { getWatchStreakSnapshot } from "../lib/watch-streak-sync";
 import {
 	fetchYearInReviewForUser,
 	parseYearInReviewYear,
@@ -916,9 +921,93 @@ export const profilesRoute = new Elysia({
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)
-	/** Diary heatmap for profile — ST.2 activity signature. */
+	/** Diary heatmap for profile — ST.2 activity signature (paginated chunks). */
 	.get(
 		"/:handle/activity-signature",
+		async ({ params, query, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+
+			const isOwner = viewer?.id === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			const weeks = Math.min(
+				ACTIVITY_SIGNATURE_WEEKS,
+				Math.max(
+					1,
+					Math.floor(Number(query.weeks ?? ACTIVITY_SIGNATURE_WEEKS)),
+				),
+			);
+
+			const beforeRaw = query.before?.trim();
+			let beforeExclusive: string;
+			if (beforeRaw) {
+				if (!/^\d{4}-\d{2}-\d{2}$/.test(beforeRaw)) {
+					return status(400, "Invalid before date — use YYYY-MM-DD");
+				}
+				beforeExclusive = beforeRaw;
+			} else {
+				beforeExclusive = addUtcDays(utcDateKeyFromWatchedAt(new Date()), 1);
+			}
+
+			const rangeEnd = addUtcDays(beforeExclusive, -1);
+			const gridEndMonday = utcWeekStartMonday(rangeEnd);
+			const rangeStart = addUtcDays(gridEndMonday, -(weeks - 1) * 7);
+
+			const windowStart = new Date(`${rangeStart}T00:00:00.000Z`);
+			const windowEndExclusive = new Date(`${beforeExclusive}T00:00:00.000Z`);
+
+			const rows = await db
+				.select({ watchedAt: log.watchedAt })
+				.from(log)
+				.where(
+					and(
+						eq(log.userId, row.userId),
+						isNull(log.removedAt),
+						gte(log.watchedAt, windowStart),
+						lt(log.watchedAt, windowEndExclusive),
+					),
+				);
+
+			const chunk = buildActivitySignatureChunk({
+				watchedAtValues: rows.map((r) => r.watchedAt),
+				beforeExclusive,
+				weeks,
+			});
+
+			const [olderRow] = await db
+				.select({ id: log.id })
+				.from(log)
+				.where(
+					and(
+						eq(log.userId, row.userId),
+						isNull(log.removedAt),
+						lt(log.watchedAt, windowStart),
+					),
+				)
+				.limit(1);
+
+			return {
+				...chunk,
+				hasOlder: Boolean(olderRow),
+			};
+		},
+		{
+			params: t.Object({ handle: t.String() }),
+			query: t.Object({
+				weeks: t.Optional(t.Numeric({ minimum: 1, maximum: 52 })),
+				before: t.Optional(t.String()),
+			}),
+		},
+	)
+	/** Public diary streak count for profile header pill — same visibility as activity signature. */
+	.get(
+		"/:handle/streak",
 		async ({ params, user: viewer, status }) => {
 			const handle = params.handle.toLowerCase();
 			const [row] = await db
@@ -931,24 +1020,8 @@ export const profilesRoute = new Elysia({
 			const isOwner = viewer?.id === row.userId;
 			if (row.isPrivate && !isOwner) return status(404, "Not found");
 
-			const windowStart = new Date();
-			windowStart.setUTCDate(
-				windowStart.getUTCDate() - (ACTIVITY_SIGNATURE_DAYS - 1),
-			);
-			windowStart.setUTCHours(0, 0, 0, 0);
-
-			const rows = await db
-				.select({ watchedAt: log.watchedAt })
-				.from(log)
-				.where(
-					and(
-						eq(log.userId, row.userId),
-						isNull(log.removedAt),
-						gte(log.watchedAt, windowStart),
-					),
-				);
-
-			return buildActivitySignature(rows.map((r) => r.watchedAt));
+			const streak = await getWatchStreakSnapshot(row.userId);
+			return { currentStreak: streak.currentStreak };
 		},
 		{ params: t.Object({ handle: t.String() }) },
 	)

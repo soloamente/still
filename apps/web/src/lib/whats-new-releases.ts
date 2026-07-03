@@ -23,18 +23,13 @@ export type WhatsNewRelease = {
 
 /** Active release shown to signed-in patrons. Edit slides + bump `id` on each ship. */
 export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
-	id: "2026-07-02-patron-feedback",
+	id: "2026-07-03-profile-polish",
 	fullReleaseHref: "/changelog",
 	slides: [
 		{
-			title: "Send feedback from your account menu",
+			title: "Improved profile pages",
 			description:
-				"Report a bug, share an idea, or tell us what could be better — without leaving the page you're on. Open the account menu and tap Send feedback.",
-		},
-		{
-			title: "Follow replies in My feedback",
-			description:
-				"Every submission lives in My feedback. When the Sense team responds, you'll get a notification and can read the full thread in one place.",
+				"Profile headers are cleaner and easier to scroll through — on your page and when you visit other patrons.",
 		},
 	],
 };

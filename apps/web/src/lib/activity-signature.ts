@@ -15,6 +15,9 @@ export type ActivitySignaturePayload = {
 	weeks: ActivitySignatureWeek[];
 	totalDaysActive: number;
 	totalLogs: number;
+	rangeStart?: string;
+	rangeEnd?: string;
+	hasOlder?: boolean;
 };
 
 /** Coerce API / RSC date shapes to UTC `YYYY-MM-DD` keys. */
@@ -51,6 +54,13 @@ export function normalizeActivitySignaturePayload(
 	return {
 		totalLogs: Number(raw.totalLogs ?? 0),
 		totalDaysActive: Number(raw.totalDaysActive ?? 0),
+		rangeStart: raw.rangeStart
+			? activityDateKeyFromUnknown(raw.rangeStart)
+			: undefined,
+		rangeEnd: raw.rangeEnd
+			? activityDateKeyFromUnknown(raw.rangeEnd)
+			: undefined,
+		hasOlder: raw.hasOlder === true,
 		weeks: raw.weeks.map((week) => {
 			const dayRows = coerceActivitySignatureDays(week.days);
 			return {

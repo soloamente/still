@@ -27,6 +27,24 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-07-03-profile-polish",
+		versionLabel: "0.3.2",
+		dateLabel: "July 3, 2026",
+		headline: "Improved profile pages",
+		summary:
+			"Cleaner profile headers and smoother browsing when you visit your page or someone else's.",
+		items: [
+			{
+				title: "Profile layout",
+				body: "Stat pills, showcase, and identity details line up more reliably on narrow and wide screens — less overlap and easier scrolling through the page.",
+			},
+			{
+				title: "Visiting other patrons",
+				body: "Public profiles use the same polished header and activity affordances as your own, so browsing friends and curators feels more consistent.",
+			},
+		],
+	},
+	{
 		id: "2026-07-02-patron-feedback",
 		versionLabel: "0.3.1",
 		dateLabel: "July 2, 2026",

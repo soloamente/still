@@ -1,0 +1,58 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_ts",
+			"label": "use-profile-activity-signature.ts",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L1"
+		},
+		{
+			"id": "lib_use_profile_activity_signature_useprofileactivitysignature",
+			"label": "useProfileActivitySignature()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L9"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_ts",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_infinite_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_ts",
+			"target": "lib_use_profile_activity_signature_infinite_useprofileactivitysignatureinfinite",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_lib_use_profile_activity_signature_ts",
+			"target": "lib_use_profile_activity_signature_useprofileactivitysignature",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L9",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "lib_use_profile_activity_signature_useprofileactivitysignature",
+			"callee": "useProfileActivitySignatureInfinite",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\lib\\use-profile-activity-signature.ts",
+			"source_location": "L11"
+		}
+	]
+}

@@ -433,10 +433,6 @@ export function ProfileShowcaseStrip({
 			)}
 			aria-label="Showcase"
 		>
-			<p className="mb-2 text-center font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
-				Showcase
-			</p>
-
 			{tvScopePick ? (
 				<div
 					className="fixed inset-0 z-[250] flex items-end justify-center bg-background/80 p-4 sm:items-center"
@@ -489,7 +485,6 @@ export function ProfileShowcaseStrip({
 				/>
 				<ul
 					ref={scrollRef}
-					data-lenis-prevent-wheel
 					className={cn(
 						"t-avatar-group",
 						HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,

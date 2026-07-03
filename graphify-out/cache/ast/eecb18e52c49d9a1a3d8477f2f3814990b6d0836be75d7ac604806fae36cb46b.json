@@ -1,0 +1,129 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"label": "profile-catalog-venue-chips.tsx",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L1"
+		},
+		{
+			"id": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"label": "ProfileCatalogVenueChips()",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L12"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_packages_ui_src_lib_utils_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "lib_utils_cn",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "react",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_components_profile_profile_lobby_params_context_tsx",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "profile_profile_lobby_params_context_useprofilelobbyparams",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "c_users_utente_documents_still_apps_web_src_lib_profile_lobby_order_ts",
+			"relation": "imports_from",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "lib_profile_lobby_order_profileledgertabid",
+			"relation": "imports",
+			"context": "import",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_apps_web_src_components_profile_profile_catalog_venue_chips_tsx",
+			"target": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L12",
+			"weight": 1.0
+		}
+	],
+	"raw_calls": [
+		{
+			"caller_nid": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"callee": "useProfileLobbyParams",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L17"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"callee": "useReducedMotion",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L18"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"callee": "chipButton",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L55"
+		},
+		{
+			"caller_nid": "profile_profile_catalog_venue_chips_profilecatalogvenuechips",
+			"callee": "chipButton",
+			"is_member_call": false,
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\apps\\web\\src\\components\\profile\\profile-catalog-venue-chips.tsx",
+			"source_location": "L72"
+		}
+	]
+}

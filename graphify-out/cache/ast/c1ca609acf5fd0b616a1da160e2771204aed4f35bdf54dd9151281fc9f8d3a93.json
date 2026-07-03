@@ -1,0 +1,109 @@
+{
+	"nodes": [
+		{
+			"id": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"label": "continual-learning.json",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L1"
+		},
+		{
+			"id": "state_continual_learning_version",
+			"label": "version",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L2"
+		},
+		{
+			"id": "state_continual_learning_lastrunatms",
+			"label": "lastRunAtMs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L3"
+		},
+		{
+			"id": "state_continual_learning_turnssincelastrun",
+			"label": "turnsSinceLastRun",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L4"
+		},
+		{
+			"id": "state_continual_learning_lasttranscriptmtimems",
+			"label": "lastTranscriptMtimeMs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L5"
+		},
+		{
+			"id": "state_continual_learning_lastprocessedgenerationid",
+			"label": "lastProcessedGenerationId",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L6"
+		},
+		{
+			"id": "state_continual_learning_trialstartedatms",
+			"label": "trialStartedAtMs",
+			"file_type": "code",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L7"
+		}
+	],
+	"edges": [
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_version",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L2",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_lastrunatms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_turnssincelastrun",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L4",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_lasttranscriptmtimems",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_lastprocessedgenerationid",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L6",
+			"weight": 1.0
+		},
+		{
+			"source": "c_users_utente_documents_still_cursor_hooks_state_continual_learning_json",
+			"target": "state_continual_learning_trialstartedatms",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "C:\\Users\\Utente\\Documents\\still\\.cursor\\hooks\\state\\continual-learning.json",
+			"source_location": "L7",
+			"weight": 1.0
+		}
+	]
+}

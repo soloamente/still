@@ -5,24 +5,76 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@still/ui/components/popover";
+import {
+	Tooltip,
+	TooltipArrow,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@still/ui/components/tooltip";
 import IconStreakFlameFilled from "@still/ui/icons/streak-flame-filled";
 import { cn } from "@still/ui/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
+import {
+	markProfileStreakHintSeen,
+	readProfileStreakHintSeen,
+} from "@/lib/profile-streak-hint-seen";
+import { useProfileWatchStreak } from "@/lib/use-profile-watch-streak";
 import { useWatchStreak } from "@/lib/use-watch-streak";
 
 /** Shared pill shell — matches `ProfileStatCell` variant="pill". */
 const STREAK_PILL_CLASS =
 	"inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full bg-background px-3 text-sm font-medium text-foreground tabular-nums";
 
+type ProfileStreakStatCellProps = {
+	handle: string;
+	isMe: boolean;
+};
+
 /**
- * Own-profile streak count in the header stat rail — tap opens the 52-week diary heatmap.
+ * Profile header streak pill — tap opens the 52-week diary rhythm heatmap.
+ * Shown on own profile and when visiting other patrons.
  */
-export function ProfileStreakStatCell({ handle }: { handle: string }) {
-	const { streak, loading } = useWatchStreak();
-	const [open, setOpen] = useState(false);
+export function ProfileStreakStatCell({
+	handle,
+	isMe,
+}: ProfileStreakStatCellProps) {
+	return isMe ? (
+		<OwnProfileStreakStatCell handle={handle} />
+	) : (
+		<VisitorProfileStreakStatCell handle={handle} />
+	);
+}
+
+function ProfileStreakStatCellView({
+	handle,
+	count,
+	loading,
+}: {
+	handle: string;
+	count: number;
+	loading: boolean;
+}) {
+	const [popoverOpen, setPopoverOpen] = useState(false);
+	// Default-open hint until dismissed — diary rhythm moved into the streak pill.
+	const [hintPinnedOpen, setHintPinnedOpen] = useState(false);
+
+	useEffect(() => {
+		setHintPinnedOpen(!readProfileStreakHintSeen());
+	}, []);
+
+	const dismissHint = () => {
+		setHintPinnedOpen(false);
+		markProfileStreakHintSeen();
+	};
+
+	const handlePopoverOpenChange = (next: boolean) => {
+		setPopoverOpen(next);
+		if (next) dismissHint();
+	};
 
 	if (loading) {
 		return (
@@ -36,49 +88,99 @@ export function ProfileStreakStatCell({ handle }: { handle: string }) {
 		);
 	}
 
-	const count = streak?.currentStreak ?? 0;
 	const streakLabel =
 		count === 1 ? "1 day streak" : `${count.toLocaleString()} day streak`;
 
+	const tooltipOpen = hintPinnedOpen && !popoverOpen;
+
 	return (
-		<Popover open={open} onOpenChange={setOpen} modal={false}>
-			<PopoverTrigger
-				render={
-					<button
-						type="button"
-						className={cn(
-							STREAK_PILL_CLASS,
-							PROFILE_HEADER_PILL_PRESS_CLASS,
-							"cursor-pointer",
-						)}
-						aria-label={`${streakLabel}. Show diary activity`}
-					>
-						<IconStreakFlameFilled
-							aria-hidden
-							className="size-[18px] shrink-0 text-foreground"
-						/>
-						<span aria-hidden>{count.toLocaleString()}</span>
-					</button>
-				}
-			/>
-			<PopoverContent
-				align="end"
-				side="bottom"
-				sideOffset={8}
-				className="w-[min(calc(100vw-2rem),28rem)] rounded-2xl border-0 bg-background p-4 shadow-mobbin-xl"
+		<TooltipProvider delay={hintPinnedOpen ? 0 : 280} closeDelay={80}>
+			<Popover
+				open={popoverOpen}
+				onOpenChange={handlePopoverOpenChange}
+				modal={false}
 			>
-				<p className="mb-3 font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
-					Diary rhythm
-				</p>
-				{/* Mount heatmap only while open — avoids client fetch on initial profile paint. */}
-				{open ? (
-					<ProfileActivitySignature
-						className="mx-0"
-						handle={handle}
-						variant="embedded"
+				{/* Discoverability hint — pinned open once; hover-only after dismiss. */}
+				<Tooltip
+					open={hintPinnedOpen ? tooltipOpen : undefined}
+					onOpenChange={(next) => {
+						if (hintPinnedOpen && !next) dismissHint();
+					}}
+					disabled={popoverOpen}
+				>
+					<TooltipTrigger
+						render={
+							<PopoverTrigger
+								render={
+									<button
+										type="button"
+										className={cn(
+											STREAK_PILL_CLASS,
+											PROFILE_HEADER_PILL_PRESS_CLASS,
+											"cursor-pointer",
+										)}
+										aria-label={`${streakLabel}. Show diary activity`}
+									>
+										<IconStreakFlameFilled
+											aria-hidden
+											className="size-[18px] shrink-0 text-foreground"
+										/>
+										<span aria-hidden>{count.toLocaleString()}</span>
+									</button>
+								}
+							/>
+						}
 					/>
-				) : null}
-			</PopoverContent>
-		</Popover>
+					<TooltipContent
+						side="top"
+						align="end"
+						className="max-w-none whitespace-nowrap"
+					>
+						Now the diary rhythm is here — click to see
+						<TooltipArrow />
+					</TooltipContent>
+				</Tooltip>
+				<PopoverContent
+					align="end"
+					side="bottom"
+					sideOffset={8}
+					className="w-[min(calc(100vw-2rem),28rem)] rounded-2xl border-0 bg-background p-4 shadow-mobbin-xl"
+				>
+					<p className="mb-3 font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
+						Diary rhythm
+					</p>
+					{/* Mount heatmap only while open — avoids client fetch on initial profile paint. */}
+					{popoverOpen ? (
+						<ProfileActivitySignature
+							className="mx-0"
+							handle={handle}
+							variant="embedded"
+						/>
+					) : null}
+				</PopoverContent>
+			</Popover>
+		</TooltipProvider>
+	);
+}
+
+function OwnProfileStreakStatCell({ handle }: { handle: string }) {
+	const { streak, loading } = useWatchStreak();
+	return (
+		<ProfileStreakStatCellView
+			handle={handle}
+			count={streak?.currentStreak ?? 0}
+			loading={loading}
+		/>
+	);
+}
+
+function VisitorProfileStreakStatCell({ handle }: { handle: string }) {
+	const { currentStreak, loading } = useProfileWatchStreak(handle);
+	return (
+		<ProfileStreakStatCellView
+			handle={handle}
+			count={currentStreak}
+			loading={loading}
+		/>
 	);
 }

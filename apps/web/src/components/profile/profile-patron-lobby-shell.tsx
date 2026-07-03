@@ -184,71 +184,73 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"min-h-0 flex-1 gap-4 overflow-visible p-6 sm:gap-5 sm:p-8",
+					"relative min-h-0 flex-1 overflow-hidden p-6 sm:gap-5 sm:p-8",
 				)}
 			>
-				<ProfilePatronHeader
-					handle={handle}
-					displayName={displayName}
-					pronouns={pronouns}
-					bio={bio}
-					avatarUrl={avatarUrl}
-					initials={profileInitials(displayName)}
-					stats={stats}
-					location={location}
-					website={website}
-					birthdayDisplay={birthdayDisplay}
-					isMe={isMe}
-					targetUserId={targetUserId}
-					bannerUrl={bannerUrl}
-					bannerFrame={bannerFrame}
-					accentColor={accentColor}
-					moviesCount={moviesAllCount}
-					tvCount={tvAllCount}
-					tasteSignature={tasteSignature}
-					pinnedReviews={pinnedReviews}
-					showcaseItems={showcaseItems}
-					savedQuotesPreview={savedQuotesPreview}
-					canCompareTaste={canCompareTaste}
-					initialTasteCompareOpen={initialTasteCompareOpen}
-					avatarIsAnimated={avatarIsAnimated}
-					bannerIsAnimated={bannerIsAnimated}
-					profilePortraitGrayscaleUntilHover={
-						profilePortraitGrayscaleUntilHover
-					}
-					diaryMetalTier={diaryMetalTier}
-				/>
-
-				<ProfilePatronMilestones
-					handle={handle}
-					earnedBadges={earnedBadges}
-					unlockedAchievements={unlockedAchievements}
-					curatorHeadline={curatorHeadline}
-				/>
-
-				<ProfileLobbyChrome socialTabs={socialTabs} />
-
-				<div className="min-h-0 flex-1">
-					<ProfileTabPanels
-						activeTab={contentTab}
+				<div className="relative z-10 flex min-h-0 flex-1 flex-col gap-4 sm:gap-5">
+					<ProfilePatronHeader
 						handle={handle}
 						displayName={displayName}
-						seeds={seeds}
-						totalPages={totalPages}
-						totalResults={totalResults}
-						query={query}
-						moviesAllCount={moviesAllCount}
-						tvAllCount={tvAllCount}
-						venueCountForMedia={venueCountForMedia}
-						favoritesOnly={favoritesOnly}
-						showAllLedgerHref={showAllLedgerHref}
-						lobbyVenue={venue}
-						switchVenueHref={switchVenueHref}
-						lists={lists}
-						catalogueWaveKey={catalogueWaveKey}
-						monochromePeersOnHover={monochromePeersOnHover}
+						pronouns={pronouns}
+						bio={bio}
+						avatarUrl={avatarUrl}
+						initials={profileInitials(displayName)}
+						stats={stats}
+						location={location}
+						website={website}
+						birthdayDisplay={birthdayDisplay}
 						isMe={isMe}
+						targetUserId={targetUserId}
+						bannerUrl={bannerUrl}
+						bannerFrame={bannerFrame}
+						accentColor={accentColor}
+						moviesCount={moviesAllCount}
+						tvCount={tvAllCount}
+						tasteSignature={tasteSignature}
+						pinnedReviews={pinnedReviews}
+						showcaseItems={showcaseItems}
+						savedQuotesPreview={savedQuotesPreview}
+						canCompareTaste={canCompareTaste}
+						initialTasteCompareOpen={initialTasteCompareOpen}
+						avatarIsAnimated={avatarIsAnimated}
+						bannerIsAnimated={bannerIsAnimated}
+						profilePortraitGrayscaleUntilHover={
+							profilePortraitGrayscaleUntilHover
+						}
+						diaryMetalTier={diaryMetalTier}
 					/>
+
+					<ProfilePatronMilestones
+						handle={handle}
+						earnedBadges={earnedBadges}
+						unlockedAchievements={unlockedAchievements}
+						curatorHeadline={curatorHeadline}
+					/>
+
+					<ProfileLobbyChrome socialTabs={socialTabs} />
+
+					<div className="min-h-0 flex-1">
+						<ProfileTabPanels
+							activeTab={contentTab}
+							handle={handle}
+							displayName={displayName}
+							seeds={seeds}
+							totalPages={totalPages}
+							totalResults={totalResults}
+							query={query}
+							moviesAllCount={moviesAllCount}
+							tvAllCount={tvAllCount}
+							venueCountForMedia={venueCountForMedia}
+							favoritesOnly={favoritesOnly}
+							showAllLedgerHref={showAllLedgerHref}
+							lobbyVenue={venue}
+							switchVenueHref={switchVenueHref}
+							lists={lists}
+							catalogueWaveKey={catalogueWaveKey}
+							monochromePeersOnHover={monochromePeersOnHover}
+							isMe={isMe}
+						/>
+					</div>
 				</div>
 			</section>
 		</>

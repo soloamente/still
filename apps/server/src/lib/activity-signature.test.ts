@@ -1,8 +1,10 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	ACTIVITY_SIGNATURE_WEEKS,
 	activityLevelFromCount,
 	buildActivitySignature,
+	buildActivitySignatureChunk,
 	utcDateKeyFromWatchedAt,
 	utcWeekStartMonday,
 } from "./activity-signature";
@@ -64,5 +66,41 @@ describe("utcWeekStartMonday", () => {
 		expect(utcDateKeyFromWatchedAt(new Date("2026-05-25T12:00:00.000Z"))).toBe(
 			"2026-05-25",
 		);
+	});
+});
+
+describe("buildActivitySignatureChunk", () => {
+	test("returns requested week count ending before exclusive date", () => {
+		const payload = buildActivitySignatureChunk({
+			watchedAtValues: ["2026-01-15T12:00:00.000Z", "2025-12-01T12:00:00.000Z"],
+			beforeExclusive: "2026-07-01",
+			weeks: 26,
+			now: new Date("2026-06-30T12:00:00.000Z"),
+		});
+		expect(payload.weeks).toHaveLength(26);
+		expect(payload.rangeEnd).toBe("2026-06-30");
+		expect(payload.rangeStart <= "2026-01-15").toBe(true);
+		const jan15 = payload.weeks
+			.flatMap((w) => w.days)
+			.find((d) => d.date === "2026-01-15");
+		expect(jan15?.count).toBe(1);
+		// Older than this 26-week window — excluded from the chunk grid.
+		const dec1 = payload.weeks
+			.flatMap((w) => w.days)
+			.find((d) => d.date === "2025-12-01");
+		expect(dec1).toBeUndefined();
+	});
+
+	test("default 52-week chunk matches legacy buildActivitySignature window", () => {
+		const now = new Date("2026-05-29T15:00:00.000Z");
+		const logs = ["2026-05-28T08:00:00.000Z"];
+		const legacy = buildActivitySignature(logs, now);
+		const chunked = buildActivitySignatureChunk({
+			watchedAtValues: logs,
+			weeks: ACTIVITY_SIGNATURE_WEEKS,
+			now,
+		});
+		expect(chunked.weeks).toHaveLength(legacy.weeks.length);
+		expect(chunked.totalLogs).toBe(legacy.totalLogs);
 	});
 });

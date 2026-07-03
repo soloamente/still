@@ -48,4 +48,24 @@ function TooltipContent({
 	);
 }
 
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };
+/** Caret that points at the trigger — must live inside `TooltipContent`. */
+function TooltipArrow({ className, ...props }: TooltipPrimitive.Arrow.Props) {
+	return (
+		<TooltipPrimitive.Arrow
+			data-slot="tooltip-arrow"
+			className={cn(
+				"z-50 size-2.5 rotate-45 rounded-[2px] bg-foreground fill-foreground",
+				className,
+			)}
+			{...props}
+		/>
+	);
+}
+
+export {
+	Tooltip,
+	TooltipArrow,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+};

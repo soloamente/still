@@ -10,7 +10,7 @@ type ProfileAboutCollapsibleProps = {
 	website: string | null;
 	birthdayDisplay?: string | null;
 	className?: string;
-	/** Own profile moves the heatmap into the streak pill popover. */
+	/** Diary rhythm renders in the header streak pill popover — hide inline heatmap. */
 	hideActivitySignature?: boolean;
 	/** Meta renders in the profile hero under @handle — skip duplicate row here. */
 	hideMeta?: boolean;
