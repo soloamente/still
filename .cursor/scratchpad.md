@@ -2,7 +2,7 @@
 
 ## Taste queue — non-interrupting backfill (2026-07-03)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-03-taste-queue-non-interrupting-backfill.md`. **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Next:** Executor Task 1 (human `go` between tasks).
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-03-taste-queue-non-interrupting-backfill.md`. **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Executor Task 1 done:** `taste-match-queue.ts` — `activeIndexAfterRemoval`, `mergeTailBackfill`, scheduler + backfill runner; `taste-match-queue.test.ts` **10/10 pass**; `TASTE_MATCH_TARGET_RESULTS` re-exported from `taste-matched-discovery.ts`. **Executor Tasks 2–5 done:** debounce tests; hero + rail wired — tail-only backfill, unified hero index, poster `AnimatePresence`, rail consumed listener. **Shipped (Task 7, human `go` 2026-07-03):** unit tests **12/12** pass; no in-slot splice in hero/rail handlers.
 
 ## Month recap dialog — community winners (2026-06-30)
 

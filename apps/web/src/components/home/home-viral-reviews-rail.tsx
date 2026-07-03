@@ -10,6 +10,7 @@ import {
 	useReviewDetail,
 	useReviewEngagementCounts,
 } from "@/components/review/review-detail-sheet";
+import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import type { HomeCommunityReviewRow } from "@/lib/home-community-core-fetch";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
 import { shouldShowReviewBody } from "@/lib/review-audio-fields";
@@ -57,6 +58,7 @@ function ViralReviewRailCard({ review }: { review: HomeCommunityReviewRow }) {
 						likesCount,
 						commentsCount: review.commentsCount,
 						publishedAt: review.publishedAt,
+						containsSpoilers: review.containsSpoilers,
 						audioUrl: review.audioUrl,
 						audioDurationMs: review.audioDurationMs,
 					},
@@ -92,23 +94,31 @@ function ViralReviewRailCard({ review }: { review: HomeCommunityReviewRow }) {
 			<div className="flex min-h-0 flex-1 flex-col">
 				{/* Headline + body stay grouped; only likes pin to the card foot. */}
 				<div className="flex flex-col gap-1">
-					{headline ? (
-						<p className="line-clamp-3 text-balance font-medium text-foreground text-sm leading-snug">
-							{headline}
-						</p>
-					) : null}
-					{hasBodyCopy ? (
-						<p
-							className={cn(
-								"text-pretty font-editorial leading-relaxed",
-								headline
-									? "line-clamp-2 text-foreground/75 text-xs"
-									: "line-clamp-3 text-foreground/85 text-sm",
-							)}
-						>
-							<ReviewBodyWithMentions body={review.body} />
-						</p>
-					) : null}
+					<ReviewSpoilerPreview
+						containsSpoilers={review.containsSpoilers}
+						movieId={review.movieId}
+						reviewUserId={review.userId}
+						align="start"
+						nestedInInteractive
+					>
+						{headline ? (
+							<p className="line-clamp-3 text-balance font-medium text-foreground text-sm leading-snug">
+								{headline}
+							</p>
+						) : null}
+						{hasBodyCopy ? (
+							<p
+								className={cn(
+									"text-pretty font-editorial leading-relaxed",
+									headline
+										? "line-clamp-2 text-foreground/75 text-xs"
+										: "line-clamp-3 text-foreground/85 text-sm",
+								)}
+							>
+								<ReviewBodyWithMentions body={review.body} />
+							</p>
+						) : null}
+					</ReviewSpoilerPreview>
 				</div>
 				<p className="mt-auto flex items-center gap-1.5 pt-3 font-semibold text-foreground text-sm tabular-nums">
 					<Heart

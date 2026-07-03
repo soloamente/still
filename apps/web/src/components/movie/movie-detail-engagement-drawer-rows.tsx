@@ -9,6 +9,7 @@ import Link from "next/link";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
+import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import type {
 	ListingEngagementListItem,
 	ListingEngagementPatronItem,
@@ -114,6 +115,7 @@ export function ListingEngagementWatchRow({
 								likesCount: review.likesCount,
 								commentsCount: 0,
 								publishedAt: review.publishedAt,
+								containsSpoilers: review.containsSpoilers,
 								author: {
 									handle: item.handle,
 									displayName: item.displayName,
@@ -125,9 +127,17 @@ export function ListingEngagementWatchRow({
 						})
 					}
 				>
-					<p className="line-clamp-3 font-editorial text-foreground/85 text-sm leading-relaxed">
-						{reviewExcerpt}
-					</p>
+					<ReviewSpoilerPreview
+						containsSpoilers={review.containsSpoilers ?? false}
+						movieId={movieId}
+						reviewUserId={item.userId}
+						align="start"
+						nestedInInteractive
+					>
+						<p className="line-clamp-3 font-editorial text-foreground/85 text-sm leading-relaxed">
+							{reviewExcerpt}
+						</p>
+					</ReviewSpoilerPreview>
 					<p className="mt-2 font-medium text-desert-orange text-xs">
 						See full review
 					</p>

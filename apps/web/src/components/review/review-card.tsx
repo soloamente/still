@@ -11,6 +11,7 @@ import {
 	useReviewDetail,
 	useReviewEngagementCounts,
 } from "@/components/review/review-detail-sheet";
+import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import { StaffContentActions } from "@/components/staff/staff-content-actions";
 import { authClient } from "@/lib/auth-client";
 import { formatDistanceToNowStrict } from "@/lib/format";
@@ -84,6 +85,7 @@ export function ReviewCard({ review }: { review: Review }) {
 							likesCount: likesCount,
 							commentsCount: commentsCount,
 							publishedAt: review.publishedAt,
+							containsSpoilers,
 							audioUrl: review.audioUrl,
 							audioDurationMs: review.audioDurationMs,
 						},
@@ -112,22 +114,30 @@ export function ReviewCard({ review }: { review: Review }) {
 							</span>
 						) : null}
 					</header>
-					{review.title ? (
-						<h3 className="mt-3 text-balance font-serif text-foreground text-lg leading-snug tracking-tight group-hover:text-desert-orange">
-							{review.title}
-						</h3>
-					) : null}
-					<ReviewVoiceAttachment
-						audioUrl={review.audioUrl}
-						audioDurationMs={review.audioDurationMs}
-						className="mt-3"
-						stopPropagation
-					/>
-					{showReviewBody ? (
-						<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
-							<ReviewBodyWithMentions body={review.body} />
-						</p>
-					) : null}
+					<ReviewSpoilerPreview
+						containsSpoilers={containsSpoilers}
+						movieId={review.movieId}
+						reviewUserId={review.userId}
+						align="start"
+						nestedInInteractive
+					>
+						{review.title ? (
+							<h3 className="mt-3 text-balance font-serif text-foreground text-lg leading-snug tracking-tight group-hover:text-desert-orange">
+								{review.title}
+							</h3>
+						) : null}
+						<ReviewVoiceAttachment
+							audioUrl={review.audioUrl}
+							audioDurationMs={review.audioDurationMs}
+							className="mt-3"
+							stopPropagation
+						/>
+						{showReviewBody ? (
+							<p className="mt-2 line-clamp-4 text-pretty font-editorial text-foreground/85 text-sm leading-relaxed">
+								<ReviewBodyWithMentions body={review.body} />
+							</p>
+						) : null}
+					</ReviewSpoilerPreview>
 					<footer className="mt-4 flex items-center gap-4 text-muted-foreground text-xs tabular-nums">
 						<span className="inline-flex items-center gap-1.5">
 							<Heart className="size-3.5 opacity-70" aria-hidden />

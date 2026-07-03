@@ -25,6 +25,8 @@ function toPinnedReviewProps(row: ProfileReviewRow) {
 		likesCount: review.likesCount,
 		commentsCount: review.commentsCount,
 		publishedAt: normalizePublishedAt(review.publishedAt),
+		containsSpoilers: review.containsSpoilers ?? false,
+		movieId: review.movieId,
 		audioUrl: review.audioUrl ?? null,
 		audioDurationMs: review.audioDurationMs ?? null,
 		listing: movie

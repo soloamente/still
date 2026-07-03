@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
@@ -12,11 +12,19 @@ import {
 	HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME,
 } from "@/lib/home-taste-matched-rail-layout";
 import {
+	buildTasteQueueBackfillRunner,
+	createTasteQueueBackfillScheduler,
+} from "@/lib/taste-match-queue";
+import {
 	TASTE_MATCH_MIN_RESULTS,
 	type TasteMatchedDiscoveryPayload,
 	type TasteMatchMovie,
 	tasteMatchedRailTitle,
 } from "@/lib/taste-matched-discovery";
+import {
+	TASTE_TITLE_CONSUMED_EVENT,
+	type TasteTitleConsumedDetail,
+} from "@/lib/taste-title-consumed-events";
 import { useTasteRailVisibleCount } from "@/lib/use-taste-rail-visible-count";
 
 const RAIL_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0 bg-background";
@@ -54,6 +62,14 @@ export function HomeTasteMatchedRail({
 	);
 	const [loading, setLoading] = useState(initial === undefined);
 	const { trackRef, visibleCount } = useTasteRailVisibleCount();
+	const moviesRef = useRef(movies);
+	const backfillSchedulerRef = useRef<ReturnType<
+		typeof createTasteQueueBackfillScheduler
+	> | null>(null);
+
+	useEffect(() => {
+		moviesRef.current = movies;
+	}, [movies]);
 
 	useEffect(() => {
 		if (initial === undefined) return;
@@ -97,77 +113,82 @@ export function HomeTasteMatchedRail({
 		};
 	}, [initial]);
 
-	const handleNotInterested = useCallback(
-		async (tmdbId: number) => {
-			const snapshot = movies;
-			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
-			if (index < 0) return;
+	const fetchTasteForYou = useCallback(async () => {
+		try {
+			const res = await api.api.taste["for-you"].get();
+			if (res.error || !res.data) return null;
+			return res.data as TasteMatchedDiscoveryPayload;
+		} catch {
+			return null;
+		}
+	}, []);
 
-			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+	useEffect(() => {
+		const scheduler = createTasteQueueBackfillScheduler({
+			runBackfill: buildTasteQueueBackfillRunner({
+				getMovies: () => moviesRef.current,
+				setMovies,
+				fetchForYou: fetchTasteForYou,
+			}),
+		});
+		backfillSchedulerRef.current = scheduler;
+		return () => {
+			scheduler.cancel();
+			backfillSchedulerRef.current = null;
+		};
+	}, [fetchTasteForYou]);
 
-			try {
-				const res = await api.api.taste.dismiss.post({
-					movieTmdbId: tmdbId,
-					excludeTmdbIds: snapshot.map((film) => film.tmdbId),
-				});
-				if (res.error || !res.data) {
-					throw new Error("dismiss failed");
-				}
+	const removeFromQueue = useCallback((tmdbId: number) => {
+		const snapshot = moviesRef.current;
+		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+		if (index < 0) return false;
 
-				const replacement = res.data.replacement as TasteMatchMovie | null;
-				if (!replacement) return;
+		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+		backfillSchedulerRef.current?.schedule();
+		return true;
+	}, []);
 
-				setMovies((prev) => {
-					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
-						return prev;
-					}
-					const next = [...prev];
-					next.splice(Math.min(index, next.length), 0, replacement);
-					return next;
-				});
-			} catch {
-				setMovies(snapshot);
-				toast.error("Couldn't update suggestions");
+	const handleNotInterested = useCallback(async (tmdbId: number) => {
+		const snapshot = moviesRef.current;
+		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+		if (index < 0) return;
+
+		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+
+		try {
+			const res = await api.api.taste.dismiss.post({
+				movieTmdbId: tmdbId,
+				excludeTmdbIds: snapshot.map((film) => film.tmdbId),
+			});
+			if (res.error || !res.data) {
+				throw new Error("dismiss failed");
 			}
-		},
-		[movies],
-	);
+			backfillSchedulerRef.current?.schedule();
+		} catch {
+			setMovies(snapshot);
+			toast.error("Couldn't update suggestions");
+		}
+	}, []);
 
-	/** After quick log or watchlist add, drop the title and backfill from for-you. */
+	/** After quick log or watchlist add, drop the title and backfill at the tail. */
 	const handleTitleConsumed = useCallback(
-		async (tmdbId: number) => {
-			const snapshot = movies;
-			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
-			if (index < 0) return;
-
-			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
-
-			try {
-				const res = await api.api.taste["for-you"].get();
-				if (res.error || !res.data || res.data.coldStart) return;
-
-				const onScreenIds = new Set(
-					snapshot.map((film) => film.tmdbId).filter((id) => id !== tmdbId),
-				);
-				const replacement = res.data.movies.find(
-					(film) => !onScreenIds.has(film.tmdbId),
-				);
-				if (!replacement) return;
-
-				setMovies((prev) => {
-					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
-						return prev;
-					}
-					const next = [...prev];
-					next.splice(Math.min(index, next.length), 0, replacement);
-					return next;
-				});
-			} catch {
-				// Title is already removed — silent if backfill fails.
-			}
+		(tmdbId: number) => {
+			removeFromQueue(tmdbId);
 		},
-		[movies],
+		[removeFromQueue],
 	);
+
+	useEffect(() => {
+		const onConsumed = (event: Event) => {
+			const detail = (event as CustomEvent<TasteTitleConsumedDetail>).detail;
+			if (detail?.tmdbId != null) {
+				handleTitleConsumed(detail.tmdbId);
+			}
+		};
+		window.addEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
+		return () =>
+			window.removeEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
+	}, [handleTitleConsumed]);
 
 	if (loading) {
 		return <HomeTasteMatchedRailSkeleton />;
@@ -208,7 +229,7 @@ export function HomeTasteMatchedRail({
 								frameClassName={RAIL_POSTER_FRAME_CLASSNAME}
 								hoverEffect="elevation"
 								listingKind="movie"
-								onActionComplete={() => void handleTitleConsumed(film.tmdbId)}
+								onActionComplete={() => handleTitleConsumed(film.tmdbId)}
 								onNotInterested={handleNotInterested}
 								posterUrl={tmdbPosterUrl(film.posterPath)}
 								priority={index < 4}

@@ -52,6 +52,10 @@ export function normalizeProfileReviewRow(
 			commentsCount:
 				typeof review.commentsCount === "number" ? review.commentsCount : 0,
 			publishedAt: normalizePublishedAt(review.publishedAt),
+			containsSpoilers:
+				typeof review.containsSpoilers === "boolean"
+					? review.containsSpoilers
+					: false,
 			visibility:
 				review.visibility === "public" ||
 				review.visibility === "followers" ||

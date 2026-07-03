@@ -9,6 +9,7 @@ import {
 	type ReviewPreview,
 	useReviewDetail,
 } from "@/components/review/review-detail-sheet";
+import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
@@ -17,6 +18,7 @@ import { shouldShowReviewBody } from "@/lib/review-audio-fields";
 
 type ProfilePinnedReview = ReviewPreview & {
 	userId?: string;
+	movieId?: number;
 	listing?: ReviewCardListing;
 };
 
@@ -93,6 +95,7 @@ export function ProfilePinnedReviewCard({
 						likesCount: review.likesCount,
 						commentsCount: review.commentsCount,
 						publishedAt: review.publishedAt,
+						containsSpoilers: review.containsSpoilers,
 						audioUrl: review.audioUrl,
 						audioDurationMs: review.audioDurationMs,
 					},
@@ -120,24 +123,32 @@ export function ProfilePinnedReviewCard({
 					</p>
 				) : null}
 
-				{review.title ? (
-					<h3 className="line-clamp-2 text-balance font-serif text-foreground text-sm leading-snug tracking-tight transition-colors duration-150 [@media(hover:hover)]:group-hover:text-desert-orange">
-						{review.title}
-					</h3>
-				) : null}
+				<ReviewSpoilerPreview
+					containsSpoilers={review.containsSpoilers ?? false}
+					movieId={review.movieId}
+					reviewUserId={review.userId}
+					align="start"
+					nestedInInteractive
+				>
+					{review.title ? (
+						<h3 className="line-clamp-2 text-balance font-serif text-foreground text-sm leading-snug tracking-tight transition-colors duration-150 [@media(hover:hover)]:group-hover:text-desert-orange">
+							{review.title}
+						</h3>
+					) : null}
 
-				<ReviewVoiceAttachment
-					audioUrl={review.audioUrl}
-					audioDurationMs={review.audioDurationMs}
-					className="mt-2"
-					stopPropagation
-				/>
+					<ReviewVoiceAttachment
+						audioUrl={review.audioUrl}
+						audioDurationMs={review.audioDurationMs}
+						className="mt-2"
+						stopPropagation
+					/>
 
-				{showReviewBody ? (
-					<p className="line-clamp-2 text-pretty font-editorial text-[11px] text-foreground/75 leading-relaxed">
-						{review.body}
-					</p>
-				) : null}
+					{showReviewBody ? (
+						<p className="line-clamp-2 text-pretty font-editorial text-[11px] text-foreground/75 leading-relaxed">
+							{review.body}
+						</p>
+					) : null}
+				</ReviewSpoilerPreview>
 
 				<footer className="mt-auto flex items-center gap-2 text-[10px] text-muted-foreground tabular-nums">
 					<span className="inline-flex items-center gap-1">

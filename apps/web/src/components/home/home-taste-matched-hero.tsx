@@ -7,7 +7,7 @@ import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import IconTrashXmarkFill from "@still/ui/icons/trash-xmark-fill";
 import { cn } from "@still/ui/lib/utils";
 import { Plus } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -49,6 +49,11 @@ import {
 	fetchMyLogsForMovie,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
+import {
+	activeIndexAfterRemoval,
+	buildTasteQueueBackfillRunner,
+	createTasteQueueBackfillScheduler,
+} from "@/lib/taste-match-queue";
 import {
 	reconcileTasteMatchMovies,
 	TASTE_MATCH_MIN_RESULTS,
@@ -115,8 +120,76 @@ export function HomeTasteMatchedHero({
 		trailerKey: string;
 		trailerSite: string;
 	} | null>(null);
+	/** Tail poster ids that should play the enter animation after backfill. */
+	const [enteringPosterIds, setEnteringPosterIds] = useState<Set<number>>(
+		() => new Set(),
+	);
 	const posterRailRef = useRef<HTMLDivElement>(null);
+	const moviesRef = useRef(movies);
+	const activeIndexRef = useRef(activeIndex);
+	const backfillSchedulerRef = useRef<ReturnType<
+		typeof createTasteQueueBackfillScheduler
+	> | null>(null);
 	const posterRailContentKey = movies.map((film) => film.tmdbId).join(",");
+
+	useEffect(() => {
+		moviesRef.current = movies;
+	}, [movies]);
+
+	useEffect(() => {
+		activeIndexRef.current = activeIndex;
+	}, [activeIndex]);
+
+	const fetchTasteForYou = useCallback(async () => {
+		try {
+			const res = await api.api.taste["for-you"].get();
+			if (res.error || !res.data) return null;
+			return res.data as TasteMatchedDiscoveryPayload;
+		} catch {
+			return null;
+		}
+	}, []);
+
+	const applyMoviesFromBackfill = useCallback((next: TasteMatchMovie[]) => {
+		const prev = moviesRef.current;
+		const addedIds = next
+			.filter((film) => !prev.some((row) => row.tmdbId === film.tmdbId))
+			.map((film) => film.tmdbId);
+		if (addedIds.length > 0) {
+			setEnteringPosterIds((current) => {
+				const merged = new Set(current);
+				for (const id of addedIds) {
+					merged.add(id);
+				}
+				return merged;
+			});
+		}
+		setMovies(next);
+	}, []);
+
+	useEffect(() => {
+		const scheduler = createTasteQueueBackfillScheduler({
+			runBackfill: buildTasteQueueBackfillRunner({
+				getMovies: () => moviesRef.current,
+				setMovies: applyMoviesFromBackfill,
+				fetchForYou: fetchTasteForYou,
+			}),
+		});
+		backfillSchedulerRef.current = scheduler;
+		return () => {
+			scheduler.cancel();
+			backfillSchedulerRef.current = null;
+		};
+	}, [applyMoviesFromBackfill, fetchTasteForYou]);
+
+	const clearEnteringPosterId = useCallback((tmdbId: number) => {
+		setEnteringPosterIds((current) => {
+			if (!current.has(tmdbId)) return current;
+			const next = new Set(current);
+			next.delete(tmdbId);
+			return next;
+		});
+	}, []);
 	// Posters lose opacity at clipped edges — long left runway before wrapper clip.
 	useHorizontalRailPosterEdgeOpacity(
 		posterRailRef,
@@ -267,79 +340,49 @@ export function HomeTasteMatchedHero({
 		};
 	}, [spotlight]);
 
-	const handleNotInterested = useCallback(
-		async (tmdbId: number) => {
-			const snapshot = movies;
-			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
-			if (index < 0) return;
-			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
-			if (index <= activeIndex && activeIndex > 0) {
-				setActiveIndex((prev) => Math.max(0, prev - 1));
-			}
-			try {
-				const res = await api.api.taste.dismiss.post({
-					movieTmdbId: tmdbId,
-					excludeTmdbIds: snapshot.map((film) => film.tmdbId),
-				});
-				if (res.error || !res.data) throw new Error("dismiss failed");
-				const replacement = res.data.replacement as TasteMatchMovie | null;
-				if (!replacement) return;
-				setMovies((prev) => {
-					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
-						return prev;
-					}
-					const next = [...prev];
-					next.splice(Math.min(index, next.length), 0, replacement);
-					return next;
-				});
-			} catch {
-				setMovies(snapshot);
-				toast.error("Couldn't update suggestions");
-			}
-		},
-		[activeIndex, movies],
-	);
+	const removeFromQueue = useCallback((tmdbId: number) => {
+		const snapshot = moviesRef.current;
+		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+		if (index < 0) return false;
+
+		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+		setActiveIndex((prev) =>
+			activeIndexAfterRemoval(index, prev, snapshot.length - 1),
+		);
+		backfillSchedulerRef.current?.schedule();
+		return true;
+	}, []);
+
+	const handleNotInterested = useCallback(async (tmdbId: number) => {
+		const snapshot = moviesRef.current;
+		const activeSnapshot = activeIndexRef.current;
+		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+		if (index < 0) return;
+
+		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+		setActiveIndex((prev) =>
+			activeIndexAfterRemoval(index, prev, snapshot.length - 1),
+		);
+
+		try {
+			const res = await api.api.taste.dismiss.post({
+				movieTmdbId: tmdbId,
+				excludeTmdbIds: snapshot.map((film) => film.tmdbId),
+			});
+			if (res.error || !res.data) throw new Error("dismiss failed");
+			backfillSchedulerRef.current?.schedule();
+		} catch {
+			setMovies(snapshot);
+			setActiveIndex(activeSnapshot);
+			toast.error("Couldn't update suggestions");
+		}
+	}, []);
 
 	const handleTitleConsumed = useCallback(
-		async (tmdbId: number) => {
-			const snapshot = movies;
-			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
-			if (index < 0) return;
-			const remainingCount = snapshot.length - 1;
-			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
-			if (index < activeIndex) {
-				setActiveIndex((prev) => Math.max(0, prev - 1));
-			} else if (index === activeIndex) {
-				setActiveIndex((prev) =>
-					Math.min(prev, Math.max(0, remainingCount - 1)),
-				);
-			}
-			if (remainingCount >= TASTE_MATCH_MIN_RESULTS) return;
-			try {
-				const res = await api.api.taste["for-you"].get();
-				if (res.error || !res.data || res.data.coldStart) return;
-				const onScreenIds = new Set(
-					snapshot.map((film) => film.tmdbId).filter((id) => id !== tmdbId),
-				);
-				const candidates = reconcileTasteMatchMovies(
-					res.data.movies,
-					res.data.consumedTmdbIds,
-				);
-				const replacement = candidates.find(
-					(film) => !onScreenIds.has(film.tmdbId),
-				);
-				if (!replacement) return;
-				setMovies((prev) => {
-					if (prev.some((film) => film.tmdbId === replacement.tmdbId)) {
-						return prev;
-					}
-					return [...prev, replacement];
-				});
-			} catch {
-				// silent
-			}
+		(tmdbId: number) => {
+			removeFromQueue(tmdbId);
 		},
-		[activeIndex, movies],
+		[removeFromQueue],
 	);
 
 	const handleAddToWatchlist = useCallback(async () => {
@@ -367,7 +410,7 @@ export function HomeTasteMatchedHero({
 			priorLogCount,
 			rewatch: priorLogCount > 0,
 			onSuccess: () => {
-				void handleTitleConsumed(spotlight.tmdbId);
+				handleTitleConsumed(spotlight.tmdbId);
 			},
 		});
 	}, [handleTitleConsumed, openQuickLog, priorLogCount, spotlight]);
@@ -377,7 +420,7 @@ export function HomeTasteMatchedHero({
 	useEffect(() => {
 		const onConsumed = (event: Event) => {
 			const detail = (event as CustomEvent<TasteTitleConsumedDetail>).detail;
-			if (detail?.tmdbId != null) void handleTitleConsumed(detail.tmdbId);
+			if (detail?.tmdbId != null) handleTitleConsumed(detail.tmdbId);
 		};
 		window.addEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
 		return () =>
@@ -623,44 +666,68 @@ export function HomeTasteMatchedHero({
 									role="listbox"
 									aria-label="Browse taste-matched films"
 								>
-									{movies.map((film, index) => {
-										const isActive = index === safeActiveIndex;
-										return (
-											<button
-												key={film.tmdbId}
-												type="button"
-												data-taste-poster-index={index}
-												role="option"
-												aria-selected={isActive}
-												aria-label={`Show ${film.title}`}
-												className={cn(
-													"shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
-													isActive
-														? cn(
-																HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
-																"scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
-															)
-														: cn(
-																HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
-																"opacity-[calc(0.8*var(--edge-opacity))] [@media(hover:hover)]:opacity-(--edge-opacity) [@media(hover:hover)]:hover:scale-[1.02]",
-															),
-												)}
-												onClick={() => setActiveIndex(index)}
-											>
-												<MoviePoster
-													movieId={film.tmdbId}
-													title={film.title}
-													posterUrl={tmdbPosterUrlFromPath(
-														film.posterPath,
-														"w342",
+									<AnimatePresence initial={false} mode="popLayout">
+										{movies.map((film, index) => {
+											const isActive = index === safeActiveIndex;
+											const shouldEnter =
+												!reduceMotion && enteringPosterIds.has(film.tmdbId);
+											return (
+												<motion.button
+													key={film.tmdbId}
+													type="button"
+													data-taste-poster-index={index}
+													role="option"
+													aria-selected={isActive}
+													aria-label={`Show ${film.title}`}
+													layout={!reduceMotion}
+													initial={
+														shouldEnter ? { opacity: 0, scale: 0.96 } : false
+													}
+													animate={{ opacity: 1, scale: 1 }}
+													exit={
+														reduceMotion
+															? undefined
+															: { opacity: 0, scale: 0.96 }
+													}
+													transition={
+														reduceMotion
+															? { duration: 0 }
+															: { duration: 0.15, ease: "easeOut" }
+													}
+													onAnimationComplete={() => {
+														if (shouldEnter) {
+															clearEnteringPosterId(film.tmdbId);
+														}
+													}}
+													className={cn(
+														"shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
+														isActive
+															? cn(
+																	HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
+																	"scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
+																)
+															: cn(
+																	HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
+																	"opacity-[calc(0.8*var(--edge-opacity))] [@media(hover:hover)]:opacity-(--edge-opacity) [@media(hover:hover)]:hover:scale-[1.02]",
+																),
 													)}
-													className="aspect-2/3 w-full overflow-hidden rounded-xl sm:rounded-2xl"
-													frameClassName="rounded-xl border-0 sm:rounded-2xl"
-													linkable={false}
-												/>
-											</button>
-										);
-									})}
+													onClick={() => setActiveIndex(index)}
+												>
+													<MoviePoster
+														movieId={film.tmdbId}
+														title={film.title}
+														posterUrl={tmdbPosterUrlFromPath(
+															film.posterPath,
+															"w342",
+														)}
+														className="aspect-2/3 w-full overflow-hidden rounded-xl sm:rounded-2xl"
+														frameClassName="rounded-xl border-0 sm:rounded-2xl"
+														linkable={false}
+													/>
+												</motion.button>
+											);
+										})}
+									</AnimatePresence>
 								</div>
 							</div>
 						) : null}

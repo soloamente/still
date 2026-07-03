@@ -59,6 +59,7 @@ export type ListingEngagementWatchReview = {
 	rating: number | null;
 	likesCount: number;
 	publishedAt: string;
+	containsSpoilers: boolean;
 };
 
 export type ListingEngagementWatchItem = {
@@ -236,6 +237,7 @@ async function mapWatchRows(
 		reviewRating: number | null;
 		reviewLikesCount: number | null;
 		reviewPublishedAt: Date | null;
+		reviewContainsSpoilers: boolean | null;
 	}[],
 ): Promise<ListingEngagementWatchItem[]> {
 	const logCounts = await fetchDiaryLogCountsForUserIds(
@@ -260,6 +262,7 @@ async function mapWatchRows(
 						rating: row.reviewRating,
 						likesCount: row.reviewLikesCount ?? 0,
 						publishedAt: row.reviewPublishedAt.toISOString(),
+						containsSpoilers: row.reviewContainsSpoilers ?? false,
 					}
 				: null,
 	}));
@@ -347,6 +350,7 @@ async function fetchEngagementWatchesPage(args: {
 			reviewRating: sql<number | null>`${review.rating}`.as("review_rating"),
 			reviewLikesCount: review.likesCount,
 			reviewPublishedAt: review.publishedAt,
+			reviewContainsSpoilers: review.containsSpoilers,
 		})
 		.from(log)
 		.innerJoin(user, eq(log.userId, user.id))
@@ -386,6 +390,7 @@ async function fetchEngagementWatchesPage(args: {
 			reviewRating: deduped.reviewRating,
 			reviewLikesCount: deduped.reviewLikesCount,
 			reviewPublishedAt: deduped.reviewPublishedAt,
+			reviewContainsSpoilers: deduped.reviewContainsSpoilers,
 		})
 		.from(deduped)
 		.orderBy(desc(deduped.watchedAt))

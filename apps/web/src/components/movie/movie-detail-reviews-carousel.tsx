@@ -20,6 +20,7 @@ import {
 	useReviewEngagementCounts,
 } from "@/components/review/review-detail-sheet";
 import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
+import { SPOILER_MASK_POST_CLASS } from "@/components/review/review-spoiler-guard";
 import { authClient } from "@/lib/auth-client";
 import {
 	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS,
@@ -39,9 +40,6 @@ import {
 	shouldMaskReviewSpoilers,
 } from "@/lib/review-spoiler-mask";
 import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
-
-const SPOILER_MASK_POST_CLASS =
-	"opacity-65 blur-[var(--page-blur)] motion-reduce:blur-none motion-reduce:opacity-100";
 
 /** Editorial scene height — slides vertically center inside the rail. */
 const REVIEW_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(32rem,72vh)]";

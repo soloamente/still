@@ -8,6 +8,7 @@ export type ListingEngagementWatchReview = {
 	rating: number | null;
 	likesCount: number;
 	publishedAt: string;
+	containsSpoilers: boolean;
 };
 
 export type ListingEngagementWatchItem = {

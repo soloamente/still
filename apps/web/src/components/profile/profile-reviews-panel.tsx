@@ -9,6 +9,7 @@ import {
 	type ReviewPreview,
 	useReviewDetail,
 } from "@/components/review/review-detail-sheet";
+import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
@@ -91,6 +92,7 @@ export function ProfileReviewTile({
 						likesCount: review.likesCount,
 						commentsCount: review.commentsCount,
 						publishedAt: review.publishedAt,
+						containsSpoilers: review.containsSpoilers,
 					},
 				})
 			}
@@ -128,15 +130,23 @@ export function ProfileReviewTile({
 					) : null}
 				</span>
 
-				{review.title ? (
-					<span className="mt-2.5 block shrink-0 font-medium text-base text-foreground leading-snug tracking-tight [@media(hover:hover)]:group-hover:text-desert-orange">
-						{review.title}
-					</span>
-				) : null}
+				<ReviewSpoilerPreview
+					containsSpoilers={review.containsSpoilers ?? false}
+					movieId={review.movieId}
+					reviewUserId={review.userId}
+					align="start"
+					nestedInInteractive
+				>
+					{review.title ? (
+						<span className="mt-2.5 block shrink-0 font-medium text-base text-foreground leading-snug tracking-tight [@media(hover:hover)]:group-hover:text-desert-orange">
+							{review.title}
+						</span>
+					) : null}
 
-				<span className="mt-2 line-clamp-4 min-h-0 flex-1 font-editorial text-foreground/85 text-sm leading-relaxed">
-					{review.body}
-				</span>
+					<span className="mt-2 line-clamp-4 min-h-0 flex-1 font-editorial text-foreground/85 text-sm leading-relaxed">
+						{review.body}
+					</span>
+				</ReviewSpoilerPreview>
 
 				<span className="mt-4 flex shrink-0 items-center gap-4 pt-0.5 text-muted-foreground text-xs tabular-nums">
 					<span className="inline-flex items-center gap-1.5">

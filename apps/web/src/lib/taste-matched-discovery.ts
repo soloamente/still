@@ -3,6 +3,9 @@
 /** Minimum visible taste-rail titles (ST.4) — hide section below this count. */
 export const TASTE_MATCH_MIN_RESULTS = 6;
 
+/** Maximum in-memory taste queue depth — re-exported from queue helpers. */
+export { TASTE_MATCH_TARGET_RESULTS } from "./taste-match-queue";
+
 export type TasteMatchMovie = {
 	tmdbId: number;
 	title: string;

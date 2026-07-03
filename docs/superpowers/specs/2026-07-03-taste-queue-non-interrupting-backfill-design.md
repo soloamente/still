@@ -1,6 +1,6 @@
 # Taste Queue — Non-Interrupting Backfill
 
-**Status:** Approved (brainstorm 2026-07-03, human `go`)  
+**Status:** Shipped (2026-07-03, human QA `go`)  
 **Date:** 2026-07-03  
 **Scope:** Signed-in **Movies** taste surfaces on `/home?browse=movies` — `HomeTasteMatchedHero` and `HomeTasteMatchedRail` (ST.4)  
 **Out of scope:** TV taste surfaces, main catalogue grids, server scoring changes, Settings “hidden suggestions” UI, undo toast

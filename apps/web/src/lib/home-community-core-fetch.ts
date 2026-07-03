@@ -31,6 +31,7 @@ export type HomeCommunityReviewRow = {
 	likesCount: number;
 	commentsCount: number;
 	publishedAt: string;
+	containsSpoilers: boolean;
 	audioUrl?: string | null;
 	audioDurationMs?: number | null;
 	listing?: {
@@ -58,6 +59,7 @@ export function mapCommunityReviewRow(
 			publishedAt: string | Date;
 			audioUrl?: string | null;
 			audioDurationMs?: number | null;
+			containsSpoilers?: boolean;
 		};
 		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 	};
@@ -74,6 +76,7 @@ export function mapCommunityReviewRow(
 		likesCount: r.likesCount ?? 0,
 		commentsCount: r.commentsCount ?? 0,
 		publishedAt: coerceActivityTimestamp(r.publishedAt),
+		containsSpoilers: r.containsSpoilers ?? false,
 		audioUrl: r.audioUrl ?? null,
 		audioDurationMs: r.audioDurationMs ?? null,
 		listing: movie

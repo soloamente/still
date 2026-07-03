@@ -13,7 +13,7 @@ import {
 	FeedListingThumb,
 	FeedListPlaceholderFrame,
 } from "@/components/feed/feed-listing-thumb";
-import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
+import { ReviewActivityCopy } from "@/components/feed/review-activity-copy";
 import { isFeedRatingDivergencePayload } from "@/lib/feed-rating-divergence";
 import {
 	formatActivityWatchTimestamp,
@@ -84,6 +84,7 @@ type ReviewPayload = Person & {
 		likesCount: number;
 		commentsCount: number;
 		publishedAt: string;
+		containsSpoilers?: boolean;
 	};
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 };
@@ -285,6 +286,7 @@ function ReviewActivity({
 	const detailHref = movie ? `/movies/${movie.tmdbId}` : undefined;
 	const listingTitle = movie?.title ?? "Unknown title";
 	const reviewHref = `/reviews/${review.id}`;
+	const reviewUserId = payload.user?.id ?? "";
 
 	return (
 		<article className={ACTIVITY_ROW_CLASS}>
@@ -311,14 +313,13 @@ function ReviewActivity({
 						{listingTitle}
 					</p>
 				)}
-				{review.title ? (
-					<p className="text-balance font-serif text-base text-foreground/90 leading-snug">
-						{review.title}
-					</p>
-				) : null}
-				<p className="line-clamp-2 text-pretty text-foreground/75 text-sm leading-relaxed">
-					{review.body}
-				</p>
+				<ReviewActivityCopy
+					containsSpoilers={review.containsSpoilers ?? false}
+					movieId={movie?.tmdbId}
+					reviewUserId={reviewUserId}
+					title={review.title}
+					body={review.body}
+				/>
 				<ActivityMetaRow>
 					<DiaryLogRatingLabel stored={review.rating} />
 					<span>{review.likesCount} likes</span>
