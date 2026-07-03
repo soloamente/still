@@ -125,8 +125,9 @@ export async function cropGifToFile(
 	}
 
 	encoder.finish();
+	// Encoder bytes are a Uint8Array; copy into a Blob-safe buffer for TS 6 BlobPart typing.
 	const bytes = encoder.out.getData();
-	const blob = new Blob([bytes], { type: "image/gif" });
+	const blob = new Blob([Uint8Array.from(bytes)], { type: "image/gif" });
 	const fileName = opts.fileName.toLowerCase().endsWith(".gif")
 		? opts.fileName
 		: opts.fileName.replace(/\.webp$/i, ".gif");
