@@ -14,7 +14,7 @@ import {
 } from "@still/ui/components/tooltip";
 import IconStreakFlameFilled from "@still/ui/icons/streak-flame-filled";
 import { cn } from "@still/ui/lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
@@ -59,15 +59,15 @@ function ProfileStreakStatCellView({
 	loading: boolean;
 }) {
 	const [popoverOpen, setPopoverOpen] = useState(false);
-	// Default-open hint until dismissed — diary rhythm moved into the streak pill.
-	const [hintPinnedOpen, setHintPinnedOpen] = useState(false);
-
-	useEffect(() => {
-		setHintPinnedOpen(!readProfileStreakHintSeen());
-	}, []);
+	// Sync read on mount — avoids uncontrolled→controlled flip after useEffect.
+	const [hintPinnedOpen, setHintPinnedOpen] = useState(
+		() => !readProfileStreakHintSeen(),
+	);
+	const [hoverOpen, setHoverOpen] = useState(false);
 
 	const dismissHint = () => {
 		setHintPinnedOpen(false);
+		setHoverOpen(false);
 		markProfileStreakHintSeen();
 	};
 
@@ -91,7 +91,8 @@ function ProfileStreakStatCellView({
 	const streakLabel =
 		count === 1 ? "1 day streak" : `${count.toLocaleString()} day streak`;
 
-	const tooltipOpen = hintPinnedOpen && !popoverOpen;
+	// Pinned hint forces open; after dismiss, hover drives open state.
+	const tooltipOpen = hintPinnedOpen ? !popoverOpen : hoverOpen;
 
 	return (
 		<TooltipProvider delay={hintPinnedOpen ? 0 : 280} closeDelay={80}>
@@ -102,9 +103,13 @@ function ProfileStreakStatCellView({
 			>
 				{/* Discoverability hint — pinned open once; hover-only after dismiss. */}
 				<Tooltip
-					open={hintPinnedOpen ? tooltipOpen : undefined}
+					open={tooltipOpen}
 					onOpenChange={(next) => {
-						if (hintPinnedOpen && !next) dismissHint();
+						if (hintPinnedOpen) {
+							if (!next) dismissHint();
+							return;
+						}
+						setHoverOpen(next);
 					}}
 					disabled={popoverOpen}
 				>

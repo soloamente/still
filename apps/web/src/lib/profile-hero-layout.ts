@@ -4,7 +4,7 @@
  */
 /** Layout band — banner region only; portrait straddles this floor. */
 export const PROFILE_HERO_BAND_HEIGHT_CLASSNAME =
-	"h-[min(22rem,42svh)] sm:h-[min(26rem,44svh)] lg:h-[min(30rem,46svh)]";
+	"h-[min(34rem,52svh)] sm:h-[min(38rem,54svh)] lg:h-[min(42rem,56svh)]";
 
 /** Hero band — banner crop; portrait anchors to `bottom` + straddle offset. */
 export const PROFILE_HERO_BAND_CLASSNAME = `relative w-full shrink-0 ${PROFILE_HERO_BAND_HEIGHT_CLASSNAME}`;

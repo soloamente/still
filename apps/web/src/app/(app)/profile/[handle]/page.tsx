@@ -28,6 +28,10 @@ import {
 } from "@/lib/profile-lobby-order";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import {
+	filterPinnedQuoteLobbyItems,
+	normalizePinnedQuoteSaveIds,
+} from "@/lib/profile-pinned-quotes";
+import {
 	readAvatarIsAnimatedPref,
 	readBannerIsAnimatedPref,
 	readCatalogMonochromePeersOnHoverPref,
@@ -96,6 +100,7 @@ type ProfileData = {
 		isPrivate: boolean;
 		tasteSignature?: unknown;
 		diaryMetalTier?: DiaryMetalTier | null;
+		pinnedQuoteSaveIds?: unknown;
 	};
 	stats: { followers: number; following: number };
 	creator?: { isCurator: boolean; headline: string | null };
@@ -210,10 +215,20 @@ export default async function ProfilePage({
 		favorites: favoritesOnly,
 	});
 
-	const savedQuotesPreviewPage = await fetchProfilePinnedQuotesPreview({
-		handle: profile.handle,
-		limit: 3,
-	});
+	const pinnedQuoteSaveIds = normalizePinnedQuoteSaveIds(
+		profile.pinnedQuoteSaveIds,
+	);
+	const savedQuotesPreviewPage =
+		pinnedQuoteSaveIds.length === 0
+			? { items: [], page: 1, limit: 3, hasMore: false }
+			: await fetchProfilePinnedQuotesPreview({
+					handle: profile.handle,
+					limit: 3,
+				});
+	const savedQuotesPreview = filterPinnedQuoteLobbyItems(
+		savedQuotesPreviewPage.items,
+		pinnedQuoteSaveIds,
+	);
 
 	const socialTabs = PROFILE_TOOLBAR_SOCIAL_ORDER.filter((sec) => {
 		if (sec === "favorites") return counts.likedMovies + counts.likedTv > 0;
@@ -271,7 +286,8 @@ export default async function ProfilePage({
 			filmographyCounts={counts}
 			pinnedReviews={data.pinnedReviews ?? []}
 			showcaseItems={showcaseItems}
-			savedQuotesPreview={savedQuotesPreviewPage.items}
+			savedQuotesPreview={savedQuotesPreview}
+			pinnedQuoteSaveIds={pinnedQuoteSaveIds}
 			lists={data.lists.map((l) => toListBoardRow(l))}
 			socialTabs={socialTabs}
 			earnedBadges={earnedBadges}

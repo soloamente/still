@@ -2,6 +2,7 @@ import { Skeleton } from "@still/ui/components/skeleton";
 import { cn } from "@still/ui/lib/utils";
 
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import { PROFILE_PORTRAIT_SIZE_CLASSNAME } from "@/lib/profile-portrait-shell";
 
 export default function ProfileLoading() {
 	return (
@@ -21,7 +22,12 @@ export default function ProfileLoading() {
 			>
 				<Skeleton className="aspect-[3/1] w-full rounded-2xl" />
 				<div className="mx-auto -mt-12 max-w-md text-center sm:-mt-14">
-					<Skeleton className="mx-auto mb-4 aspect-[2/3] w-24 rounded-2xl" />
+					<Skeleton
+						className={cn(
+							"mx-auto mb-4 rounded-full",
+							PROFILE_PORTRAIT_SIZE_CLASSNAME,
+						)}
+					/>
 					<Skeleton className="mx-auto h-7 w-48" />
 					<Skeleton className="mx-auto mt-2 h-3 w-28" />
 					<Skeleton className="mx-auto mt-4 h-4 w-full max-w-sm" />

@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import { OnboardingLetterReveal } from "@/components/onboarding/onboarding-letter-reveal";
 import type { OnboardingMovie, WizardStep } from "@/lib/onboarding-types";
+import { PROFILE_PORTRAIT_SHELL_CLASSNAME } from "@/lib/profile-portrait-shell";
 
 const PROFILE_BANNER_ACCENT = "#c45c26";
 
@@ -126,7 +127,8 @@ function PreviewPortrait({
 	step: WizardStep;
 }) {
 	const portraitShell = cn(
-		"relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl bg-muted/30 ring-4 ring-card sm:w-24",
+		PROFILE_PORTRAIT_SHELL_CLASSNAME,
+		"bg-muted/30",
 		fieldOpacity(step, "avatar"),
 	);
 
@@ -145,10 +147,10 @@ function PreviewPortrait({
 						<Image
 							alt=""
 							className="size-full object-cover"
-							height={288}
+							height={128}
 							src={avatarPreviewUrl}
 							unoptimized
-							width={192}
+							width={128}
 						/>
 					</motion.div>
 				) : (

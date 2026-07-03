@@ -1,11 +1,10 @@
 "use client";
 
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@still/ui/components/tooltip";
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@still/ui/components/popover";
 import { cn } from "@still/ui/lib/utils";
 
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
@@ -41,51 +40,63 @@ function TasteCategoryPill({
 	}
 
 	return (
-		<Tooltip>
-			<TooltipTrigger
+		<Popover modal={false}>
+			<PopoverTrigger
 				render={
 					<button
 						type="button"
 						className={cn(
 							TASTE_CATEGORY_PILL_CLASS,
 							PROFILE_HEADER_PILL_PRESS_CLASS,
-							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+							"cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 						)}
-						aria-label={`${label} — what does this mean?`}
+						aria-label={`${label}. Show what this means`}
 					>
 						{label}
 					</button>
 				}
 			/>
-			<TooltipContent className="w-fit max-w-[19rem] whitespace-pre-line text-balance text-center">
-				{description}
-			</TooltipContent>
-		</Tooltip>
+			<PopoverContent
+				align="start"
+				side="bottom"
+				sideOffset={8}
+				className="w-[min(calc(100vw-2rem),19rem)] rounded-2xl border-0 bg-background p-4 shadow-mobbin-xl"
+			>
+				<p className="mb-2 font-medium text-[10px] text-muted-foreground uppercase tracking-[0.12em]">
+					{label}
+				</p>
+				{description.split("\n").map((line, index) => (
+					<p
+						key={line}
+						className={cn(
+							"text-balance text-foreground/90 text-sm leading-snug",
+							index > 0 && "mt-2",
+						)}
+					>
+						{line}
+					</p>
+				))}
+			</PopoverContent>
+		</Popover>
 	);
 }
 
 /**
- * Taste archetype as a left-rail pill (genre purist, eclectic, …) — no headline block.
+ * Taste archetype as a left-rail pill (genre purist, eclectic, …) — tap for explainer.
  */
 export function ProfileTasteCategoryPill({
 	tasteSignature,
 	perspective = "visitor",
-	className,
 }: {
 	tasteSignature: TasteSignatureJson | null;
 	perspective?: TastePerspective;
-	className?: string;
 }) {
 	if (!shouldShowTasteArchetypePill(tasteSignature)) return null;
 
 	return (
-		<TooltipProvider delay={280} closeDelay={80}>
-			<div className={className}>
-				<TasteCategoryPill
-					archetype={tasteSignature.archetype}
-					perspective={perspective}
-				/>
-			</div>
-		</TooltipProvider>
+		<TasteCategoryPill
+			archetype={tasteSignature.archetype}
+			perspective={perspective}
+		/>
 	);
 }

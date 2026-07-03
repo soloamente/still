@@ -10,6 +10,10 @@ import { QuoteAttribution } from "@/components/quote/quote-attribution";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import { api } from "@/lib/api";
 import { normalizeSavedQuotesPage } from "@/lib/normalize-saved-quotes-page";
+import {
+	filterPinnedQuoteLobbyItems,
+	normalizePinnedQuoteSaveIds,
+} from "@/lib/profile-pinned-quotes";
 import { QUOTE_PINS_CHANGED_EVENT } from "@/lib/quote-pins-events";
 import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import { savedQuoteListingHref } from "@/lib/quotes-lobby";
@@ -87,29 +91,48 @@ function ProfileSavedQuoteCard({
 export function ProfileSavedQuotesStrip({
 	handle,
 	items: initialItems,
+	pinnedSaveIds: initialPinnedSaveIds,
 	isMe,
 	showViewAll = false,
 	className,
 }: {
 	handle: string;
 	items: SavedQuoteLobbyItem[];
+	pinnedSaveIds: string[];
 	isMe: boolean;
 	showViewAll?: boolean;
 	className?: string;
 }) {
-	const [items, setItems] = useState(initialItems);
+	const [items, setItems] = useState(() =>
+		filterPinnedQuoteLobbyItems(initialItems, initialPinnedSaveIds),
+	);
 
 	useEffect(() => {
-		setItems(initialItems);
-	}, [initialItems]);
+		setItems(filterPinnedQuoteLobbyItems(initialItems, initialPinnedSaveIds));
+	}, [initialItems, initialPinnedSaveIds]);
 
 	const refreshPinnedQuotes = useCallback(async () => {
 		if (!isMe) return;
-		const res = await api.api.profiles({ handle }).quotes.get({
-			query: { page: "1", limit: "3" },
-		});
-		if (res.error != null) return;
-		setItems(normalizeSavedQuotesPage(res.data).items);
+		const [meRes, quotesRes] = await Promise.all([
+			api.api.profiles.me.get(),
+			api.api.profiles({ handle }).quotes.get({
+				query: { page: "1", limit: "3" },
+			}),
+		]);
+		if (meRes.error != null || !meRes.data) return;
+		const nextPinnedSaveIds = normalizePinnedQuoteSaveIds(
+			(meRes.data as { pinnedQuoteSaveIds?: unknown }).pinnedQuoteSaveIds,
+		);
+		if (quotesRes.error != null) {
+			setItems([]);
+			return;
+		}
+		setItems(
+			filterPinnedQuoteLobbyItems(
+				normalizeSavedQuotesPage(quotesRes.data).items,
+				nextPinnedSaveIds,
+			),
+		);
 	}, [handle, isMe]);
 
 	useEffect(() => {

@@ -8,13 +8,25 @@ import { toast } from "sonner";
 import { ImageCropDialog } from "@/components/profile/image-crop-dialog";
 import { useMeAccountSession } from "@/components/profile/me-account-session-context";
 import { MeSecondaryButton } from "@/components/profile/me-secondary-button";
+import { cropGifToFile } from "@/lib/crop-gif";
 import { cropImageToFile } from "@/lib/crop-image";
 import { profilePatronAvatarImageUrl } from "@/lib/profile-avatar";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import {
+	assertAnimatedGifUploadAllowed,
+	isAnimatedGifUpload,
+} from "@/lib/profile-media";
+import {
 	assertProfileMediaUploadSize,
 	profileMediaCacheKey,
 } from "@/lib/profile-media-cache-key";
+import {
+	PROFILE_AVATAR_CROP_ASPECT,
+	PROFILE_AVATAR_CROP_MAX_PX,
+	PROFILE_PORTRAIT_EMPTY_SHELL_CLASSNAME,
+	PROFILE_PORTRAIT_FILLED_SHELL_CLASSNAME,
+	PROFILE_PORTRAIT_SHELL_CLASSNAME,
+} from "@/lib/profile-portrait-shell";
 
 /** Placeholder banner wash when no image — matches `ProfilePatronHeader` default. */
 const PROFILE_BANNER_PLACEHOLDER_ACCENT = "#c45c26";
@@ -57,11 +69,11 @@ export function ProfileMediaCustomizer({
 
 	// Locked crop aspects (width / height) — must match the display slots.
 	const BANNER_ASPECT = 3 / 1;
-	const AVATAR_ASPECT = 2 / 3;
 
 	const [cropState, setCropState] = useState<{
 		src: string;
 		target: "banner" | "avatar";
+		isGif: boolean;
 	} | null>(null);
 
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -87,35 +99,36 @@ export function ProfileMediaCustomizer({
 		(file: File) => {
 			try {
 				assertProfileMediaUploadSize(file);
+				assertAnimatedGifUploadAllowed(file, isPro);
 			} catch (err) {
 				toast.error(err instanceof Error ? err.message : "File too large");
 				return;
 			}
-			// GIFs upload raw to preserve animation (canvas crop would flatten them).
-			if (file.type === "image/gif") {
-				setPendingBanner({ file, previewUrl: URL.createObjectURL(file) });
-				return;
-			}
-			setCropState({ src: URL.createObjectURL(file), target: "banner" });
+			setCropState({
+				src: URL.createObjectURL(file),
+				target: "banner",
+				isGif: isAnimatedGifUpload(file),
+			});
 		},
-		[setPendingBanner],
+		[isPro],
 	);
 
 	const onPickAvatarFile = useCallback(
 		(file: File) => {
 			try {
 				assertProfileMediaUploadSize(file);
+				assertAnimatedGifUploadAllowed(file, isPro);
 			} catch (err) {
 				toast.error(err instanceof Error ? err.message : "File too large");
 				return;
 			}
-			if (file.type === "image/gif") {
-				setPendingAvatar({ file, previewUrl: URL.createObjectURL(file) });
-				return;
-			}
-			setCropState({ src: URL.createObjectURL(file), target: "avatar" });
+			setCropState({
+				src: URL.createObjectURL(file),
+				target: "avatar",
+				isGif: isAnimatedGifUpload(file),
+			});
 		},
-		[setPendingAvatar],
+		[isPro],
 	);
 
 	const closeCrop = useCallback(() => {
@@ -134,13 +147,20 @@ export function ProfileMediaCustomizer({
 		}) => {
 			if (!cropState) return;
 			const isBanner = cropState.target === "banner";
+			const isGif = cropState.isGif;
 			try {
-				const cropped = await cropImageToFile(cropState.src, areaPixels, {
-					maxWidth: isBanner ? 1600 : 800,
-					maxHeight: isBanner ? 533 : 1200,
-					fileName: isBanner ? "banner.webp" : "avatar.webp",
-					quality: 0.9,
-				});
+				const cropped = isGif
+					? await cropGifToFile(cropState.src, areaPixels, {
+							maxWidth: isBanner ? 1600 : PROFILE_AVATAR_CROP_MAX_PX.width,
+							maxHeight: isBanner ? 533 : PROFILE_AVATAR_CROP_MAX_PX.height,
+							fileName: isBanner ? "banner.gif" : "avatar.gif",
+						})
+					: await cropImageToFile(cropState.src, areaPixels, {
+							maxWidth: isBanner ? 1600 : PROFILE_AVATAR_CROP_MAX_PX.width,
+							maxHeight: isBanner ? 533 : PROFILE_AVATAR_CROP_MAX_PX.height,
+							fileName: isBanner ? "banner.webp" : "avatar.webp",
+							quality: 0.9,
+						});
 				assertProfileMediaUploadSize(cropped);
 				const previewUrl = URL.createObjectURL(cropped);
 				if (isBanner) {
@@ -239,8 +259,11 @@ export function ProfileMediaCustomizer({
 					<button
 						type="button"
 						className={cn(
-							"group relative aspect-[2/3] w-[5.5rem] overflow-hidden rounded-2xl shadow-lg ring-4 ring-card sm:w-24",
-							portraitSrc ? "bg-muted/30" : "bg-card",
+							"group relative",
+							PROFILE_PORTRAIT_SHELL_CLASSNAME,
+							portraitSrc
+								? PROFILE_PORTRAIT_FILLED_SHELL_CLASSNAME
+								: PROFILE_PORTRAIT_EMPTY_SHELL_CLASSNAME,
 							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
 							"disabled:pointer-events-none disabled:opacity-50",
 						)}
@@ -318,18 +341,25 @@ export function ProfileMediaCustomizer({
 					e.target.value = "";
 				}}
 			/>
-			<ImageCropDialog
-				open={cropState !== null}
-				src={cropState?.src ?? null}
-				aspect={cropState?.target === "banner" ? BANNER_ASPECT : AVATAR_ASPECT}
-				title={
-					cropState?.target === "banner"
-						? "Position your banner"
-						: "Position your photo"
-				}
-				onCancel={closeCrop}
-				onConfirm={onCropConfirm}
-			/>
+			{cropState ? (
+				<ImageCropDialog
+					open
+					src={cropState.src}
+					aspect={
+						cropState.target === "banner"
+							? BANNER_ASPECT
+							: PROFILE_AVATAR_CROP_ASPECT
+					}
+					cropShape={cropState.target === "avatar" ? "round" : "rect"}
+					title={
+						cropState.target === "banner"
+							? "Position your banner"
+							: "Position your photo"
+					}
+					onCancel={closeCrop}
+					onConfirm={onCropConfirm}
+				/>
+			) : null}
 		</header>
 	);
 }

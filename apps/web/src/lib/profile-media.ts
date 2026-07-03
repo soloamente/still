@@ -1,8 +1,11 @@
 import { readAvatarIsAnimatedPref } from "@/lib/profile-preferences";
 
-/** Shown when a non-Pro patron picks an animated portrait. */
-export const PRO_ANIMATED_PORTRAIT_MESSAGE =
-	"Animated portrait requires Sense Pro.";
+/** Shown when a non-Pro patron picks an animated GIF for banner or portrait. */
+export const PRO_ANIMATED_MEDIA_MESSAGE =
+	"Animated GIF uploads require Sense Pro.";
+
+/** @deprecated Use {@link PRO_ANIMATED_MEDIA_MESSAGE}. */
+export const PRO_ANIMATED_PORTRAIT_MESSAGE = PRO_ANIMATED_MEDIA_MESSAGE;
 
 /**
  * True when the upload should be treated as an animated GIF.
@@ -15,14 +18,22 @@ export function isAnimatedGifUpload(file: File): boolean {
 	return name.endsWith(".gif");
 }
 
+/** Client-side Pro gate — mirrors animated GIF rules on profile media uploads. */
+export function assertAnimatedGifUploadAllowed(
+	file: File,
+	isPro: boolean,
+): void {
+	if (isAnimatedGifUpload(file) && !isPro) {
+		throw new Error(PRO_ANIMATED_MEDIA_MESSAGE);
+	}
+}
+
 /** Client-side Pro gate — mirrors `POST /api/profiles/me/avatar`. */
 export function assertProfilePortraitUploadAllowed(
 	file: File,
 	isPro: boolean,
 ): void {
-	if (isAnimatedGifUpload(file) && !isPro) {
-		throw new Error(PRO_ANIMATED_PORTRAIT_MESSAGE);
-	}
+	assertAnimatedGifUploadAllowed(file, isPro);
 }
 
 /**

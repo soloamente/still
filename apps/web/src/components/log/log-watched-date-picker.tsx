@@ -54,6 +54,10 @@ interface LogWatchedDatePickerProps {
 	popoverSide?: "top" | "bottom" | "left" | "right";
 	/** Raise calendar popover above portaled modals (`APP_MODAL_POPOVER_POSITIONER_CLASS`). */
 	popoverPositionerClassName?: string;
+	/** Override trigger shell — settings birth-date uses `bg-card` like other form fields. */
+	triggerClassName?: string;
+	/** Override calendar popover surface — settings birth-date matches field depth. */
+	popoverContentClassName?: string;
 }
 
 /**
@@ -68,6 +72,8 @@ export function LogWatchedDatePicker({
 	hideTodayShortcut = false,
 	popoverSide = "top",
 	popoverPositionerClassName,
+	triggerClassName,
+	popoverContentClassName,
 }: LogWatchedDatePickerProps) {
 	const monthGridId = useId();
 	const selectedYearRef = useRef<HTMLButtonElement | null>(null);
@@ -156,7 +162,11 @@ export function LogWatchedDatePicker({
 			<PopoverTrigger
 				id={id}
 				type="button"
-				className={cn(triggerClass, DETAIL_CANVAS_ON_CARD_HOVER_CLASS)}
+				className={cn(
+					triggerClass,
+					DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+					triggerClassName,
+				)}
 				aria-haspopup="dialog"
 				aria-expanded={open}
 			>
@@ -180,7 +190,10 @@ export function LogWatchedDatePicker({
 				positionMethod="fixed"
 				positionerClassName={popoverPositionerClassName}
 				initialFocus={false}
-				className="w-[min(100vw-2rem,20rem)] rounded-[1.75rem] p-4 shadow-mobbin-xl"
+				className={cn(
+					"w-[min(100vw-2rem,20rem)] rounded-[1.75rem] p-4 shadow-mobbin-xl",
+					popoverContentClassName,
+				)}
 			>
 				<div className="mb-3 flex items-center justify-between gap-1">
 					{showMonthNav ? (

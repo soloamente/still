@@ -69,6 +69,7 @@ export interface ProfilePatronLobbyShellProps {
 	pinnedReviews?: ProfileReviewRow[];
 	showcaseItems?: ProfileShowcaseTile[];
 	savedQuotesPreview?: SavedQuoteLobbyItem[];
+	pinnedQuoteSaveIds?: string[];
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	curatorHeadline?: string | null;
@@ -109,6 +110,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		pinnedReviews = [],
 		showcaseItems = [],
 		savedQuotesPreview = [],
+		pinnedQuoteSaveIds = [],
 		canCompareTaste,
 		initialTasteCompareOpen,
 		curatorHeadline,
@@ -210,6 +212,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 						pinnedReviews={pinnedReviews}
 						showcaseItems={showcaseItems}
 						savedQuotesPreview={savedQuotesPreview}
+						pinnedQuoteSaveIds={pinnedQuoteSaveIds}
 						canCompareTaste={canCompareTaste}
 						initialTasteCompareOpen={initialTasteCompareOpen}
 						avatarIsAnimated={avatarIsAnimated}

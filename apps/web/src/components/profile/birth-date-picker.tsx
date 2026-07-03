@@ -1,6 +1,7 @@
 "use client";
 
 import { LogWatchedDatePicker } from "@/components/log/log-watched-date-picker";
+import { meFieldControlClass } from "@/components/profile/me-form-field";
 import { APP_MODAL_POPOVER_POSITIONER_CLASS } from "@/lib/app-modal-layer";
 
 /**
@@ -26,6 +27,10 @@ export function BirthDatePicker({
 			hideTodayShortcut
 			popoverSide="bottom"
 			popoverPositionerClassName={APP_MODAL_POPOVER_POSITIONER_CLASS}
+			triggerClassName={meFieldControlClass(
+				"flex w-full min-w-0 items-center justify-between gap-2 rounded-xl px-3 py-2 text-left",
+			)}
+			popoverContentClassName="bg-card"
 		/>
 	);
 }

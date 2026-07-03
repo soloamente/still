@@ -67,6 +67,7 @@ type ProfilePatronHeaderProps = {
 	pinnedReviews?: ProfileReviewRow[];
 	showcaseItems?: ProfileShowcaseTile[];
 	savedQuotesPreview?: SavedQuoteLobbyItem[];
+	pinnedQuoteSaveIds?: string[];
 	canCompareTaste?: boolean;
 	initialTasteCompareOpen?: boolean;
 	avatarIsAnimated?: boolean;
@@ -100,6 +101,7 @@ export function ProfilePatronHeader({
 	pinnedReviews = [],
 	showcaseItems = [],
 	savedQuotesPreview = [],
+	pinnedQuoteSaveIds = [],
 	canCompareTaste,
 	initialTasteCompareOpen,
 	avatarIsAnimated,
@@ -172,11 +174,10 @@ export function ProfilePatronHeader({
 					</div>
 				</div>
 
-				{/* Stat pills — flanking edges; taste chip centered under portrait */}
+				{/* Stat pills — taste chip on the left flank; social stats on the right */}
 				<div
 					className={cn(
 						PROFILE_HERO_LOWER_HALF_SLOT_CLASSNAME,
-						tasteSignature ? "pb-5 sm:pb-6" : undefined,
 						"max-[400px]:h-auto max-[400px]:min-h-14",
 					)}
 				>
@@ -193,6 +194,12 @@ export function ProfilePatronHeader({
 								"max-[400px]:max-w-none max-[400px]:justify-center",
 							)}
 						>
+							{tasteSignature ? (
+								<ProfileTasteCategoryPill
+									tasteSignature={tasteSignature}
+									perspective={isMe ? "self" : "visitor"}
+								/>
+							) : null}
 							<ProfileStatCell
 								variant="pill"
 								value={moviesCount}
@@ -226,16 +233,6 @@ export function ProfilePatronHeader({
 							<ProfileStreakStatCell handle={handle} isMe={isMe} />
 						</div>
 					</div>
-					{tasteSignature ? (
-						<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex translate-y-1/2 justify-center">
-							<div className="pointer-events-auto">
-								<ProfileTasteCategoryPill
-									tasteSignature={tasteSignature}
-									perspective={isMe ? "self" : "visitor"}
-								/>
-							</div>
-						</div>
-					) : null}
 				</div>
 
 				<div className="relative mx-auto max-w-lg px-2 pt-3 text-center sm:px-4">
@@ -281,6 +278,7 @@ export function ProfilePatronHeader({
 					<ProfileSavedQuotesStrip
 						handle={handle}
 						items={savedQuotesPreview}
+						pinnedSaveIds={pinnedQuoteSaveIds}
 						isMe={isMe}
 						showViewAll={isMe}
 					/>

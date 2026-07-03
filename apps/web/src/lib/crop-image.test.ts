@@ -1,15 +1,16 @@
 import { describe, expect, test } from "bun:test";
 
 import { computeOutputSize } from "./crop-image";
+import { PROFILE_AVATAR_CROP_MAX_PX } from "./profile-portrait-shell";
 
 describe("computeOutputSize", () => {
 	test("returns the crop size unchanged when it fits within max", () => {
 		expect(
 			computeOutputSize(
-				{ width: 800, height: 1200 },
-				{ width: 800, height: 1200 },
+				{ width: 800, height: 800 },
+				PROFILE_AVATAR_CROP_MAX_PX,
 			),
-		).toEqual({ width: 800, height: 1200 });
+		).toEqual({ width: 800, height: 800 });
 	});
 
 	test("downscales preserving aspect when the crop exceeds max", () => {
@@ -24,9 +25,9 @@ describe("computeOutputSize", () => {
 	test("never upscales (scale capped at 1)", () => {
 		expect(
 			computeOutputSize(
-				{ width: 100, height: 150 },
-				{ width: 800, height: 1200 },
+				{ width: 100, height: 100 },
+				PROFILE_AVATAR_CROP_MAX_PX,
 			),
-		).toEqual({ width: 100, height: 150 });
+		).toEqual({ width: 100, height: 100 });
 	});
 });
