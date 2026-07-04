@@ -8,6 +8,7 @@ import { PublicShareShell } from "@/components/app/public-share-shell";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
 import { InboxRealtimeSubscriber } from "@/components/notifications/inbox-realtime-subscriber";
 import { NotificationsInboxProvider } from "@/components/notifications/notifications-inbox-provider";
+import { PatronEntitlementsProviderFromProfile } from "@/components/plans/patron-entitlements-provider";
 import { PatronOnlineProvider } from "@/components/realtime/patron-online-provider";
 import { RealtimeRootProvider } from "@/components/realtime/realtime-root-provider";
 import { ImpersonationBanner } from "@/components/staff/impersonation-banner";
@@ -61,26 +62,30 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		session.user.name || session.user.email || "this account";
 
 	return (
-		<AppThemeShell
-			initialAppearance={profile?.preferences ?? null}
-			isPro={Boolean(profile?.isPro)}
-		>
-			{impersonatedBy ? <ImpersonationBanner name={impersonatedName} /> : null}
-			<VerifyEmailBanner session={session} />
-			<AppPatronAudioScope gamificationWatchers>
-				<NotificationsInboxProvider>
-					<AppShell user={buildPatronNavUser(session, profile)}>
-						<RealtimeRootProvider userId={session.user.id}>
-							<InboxRealtimeSubscriber userId={session.user.id} />
-							<PatronActivityProvider>
-								<PatronOnlineProvider viewerHandle={profile?.handle}>
-									{children}
-								</PatronOnlineProvider>
-							</PatronActivityProvider>
-						</RealtimeRootProvider>
-					</AppShell>
-				</NotificationsInboxProvider>
-			</AppPatronAudioScope>
-		</AppThemeShell>
+		<PatronEntitlementsProviderFromProfile profile={profile}>
+			<AppThemeShell
+				initialAppearance={profile?.preferences ?? null}
+				isPro={Boolean(profile?.isPro)}
+			>
+				{impersonatedBy ? (
+					<ImpersonationBanner name={impersonatedName} />
+				) : null}
+				<VerifyEmailBanner session={session} />
+				<AppPatronAudioScope gamificationWatchers>
+					<NotificationsInboxProvider>
+						<AppShell user={buildPatronNavUser(session, profile)}>
+							<RealtimeRootProvider userId={session.user.id}>
+								<InboxRealtimeSubscriber userId={session.user.id} />
+								<PatronActivityProvider>
+									<PatronOnlineProvider viewerHandle={profile?.handle}>
+										{children}
+									</PatronOnlineProvider>
+								</PatronActivityProvider>
+							</RealtimeRootProvider>
+						</AppShell>
+					</NotificationsInboxProvider>
+				</AppPatronAudioScope>
+			</AppThemeShell>
+		</PatronEntitlementsProviderFromProfile>
 	);
 }

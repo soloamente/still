@@ -15,6 +15,7 @@ import {
 	userBadge,
 } from "@still/db";
 import { env } from "@still/env/server";
+import { hasPatronFeatureForTier } from "@still/plans";
 import {
 	and,
 	asc,
@@ -65,6 +66,10 @@ import {
 	grandfatherOnboardedTimestamp,
 	shouldGrandfatherLegacyOnboarding,
 } from "../lib/onboarding-grandfather";
+import {
+	loadPatronEntitlements,
+	type PatronEntitlements,
+} from "../lib/patron-entitlements";
 import {
 	isProfileAccentId,
 	PROFILE_PREF_PROFILE_ACCENT,
@@ -154,6 +159,27 @@ import { HANDLE_RE } from "../lib/handle-re";
 
 export { HANDLE_RE };
 
+/** Merge computed entitlement fields onto GET /api/profiles/me payload. */
+function profileMeResponse(
+	row: typeof profile.$inferSelect,
+	extras: {
+		image: string | null;
+		birthDate: string | null;
+		diaryMetalTier: ReturnType<typeof resolveDiaryMetalTier>;
+	},
+	entitlements: PatronEntitlements,
+) {
+	return {
+		...row,
+		subscriptionTier: entitlements.subscriptionTier,
+		planOverride: entitlements.planOverride,
+		effectiveTier: entitlements.effectiveTier,
+		featureGrants: entitlements.featureGrants,
+		isPro: entitlements.isPro,
+		...extras,
+	};
+}
+
 /**
  * Profile routes. **Order matters:** `/me` and `/check-handle/*` must be
  * registered before `GET /:handle`, or "me" is treated as a handle.
@@ -189,6 +215,8 @@ export const profilesRoute = new Elysia({
 				.where(eq(profile.userId, user.id))
 				.limit(1);
 
+			const entitlements = await loadPatronEntitlements(user.id);
+
 			// Handle availability check (case-insensitive).
 			if (body.handle) {
 				const desired = body.handle.toLowerCase();
@@ -219,7 +247,7 @@ export const profilesRoute = new Elysia({
 			if (mergedPreferences !== undefined) {
 				const appearance = sanitizeAppearancePreferences(
 					mergedPreferences,
-					Boolean(existing?.isPro),
+					entitlements.isPro,
 				);
 				if (appearance.ok === false) {
 					return status(appearance.status, appearance.error);
@@ -407,6 +435,7 @@ export const profilesRoute = new Elysia({
 			.where(eq(profile.userId, authUser.id))
 			.limit(1);
 		if (!row) return null;
+		const entitlements = await loadPatronEntitlements(authUser.id);
 		const [logCountRow] = await db
 			.select({ c: count(log.id) })
 			.from(log)
@@ -421,6 +450,12 @@ export const profilesRoute = new Elysia({
 			.limit(1);
 		const portraitImage = userRow?.image ?? null;
 
+		const meExtras = {
+			image: portraitImage,
+			birthDate: profileBirthDateToIso(row.birthDate),
+			diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
+		};
+
 		// One-time legacy backfill — v3 gate uses onboarded_at; pre-v3 patrons never got it.
 		if (shouldGrandfatherLegacyOnboarding(row, diaryLogCount)) {
 			const [updated] = await db
@@ -431,21 +466,11 @@ export const profilesRoute = new Elysia({
 				.where(eq(profile.userId, authUser.id))
 				.returning();
 			if (updated) {
-				return {
-					...updated,
-					image: portraitImage,
-					birthDate: profileBirthDateToIso(updated.birthDate),
-					diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
-				};
+				return profileMeResponse(updated, meExtras, entitlements);
 			}
 		}
 
-		return {
-			...row,
-			image: portraitImage,
-			birthDate: profileBirthDateToIso(row.birthDate),
-			diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
-		};
+		return profileMeResponse(row, meExtras, entitlements);
 	})
 	.get("/me/creator-analytics", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");
@@ -628,20 +653,29 @@ export const profilesRoute = new Elysia({
 
 		const wantsAnimated = isAnimatedGifUpload(file);
 
-		const [profileRow] = await db
-			.select({ isPro: profile.isPro, preferences: profile.preferences })
-			.from(profile)
-			.where(eq(profile.userId, user.id))
-			.limit(1);
-		if (!profileRow) return status(400, "Profile not found");
+		const entitlements = await loadPatronEntitlements(user.id);
 
-		// Pro gate: animated GIF banners require Sense Pro before blob upload.
-		if (wantsAnimated && !profileRow.isPro) {
+		// Immersed gate: animated GIF banners require profile_customization entitlement.
+		if (
+			wantsAnimated &&
+			!hasPatronFeatureForTier({
+				effectiveTier: entitlements.effectiveTier,
+				grants: entitlements.featureGrants,
+				featureKey: "profile_customization",
+			})
+		) {
 			return status(403, {
 				error: "Animated banner requires Sense Pro",
 				code: PRO_ANIMATED_MEDIA_REQUIRED,
 			});
 		}
+
+		const [profileRow] = await db
+			.select({ preferences: profile.preferences })
+			.from(profile)
+			.where(eq(profile.userId, user.id))
+			.limit(1);
+		if (!profileRow) return status(400, "Profile not found");
 
 		const key = `banners/${user.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		const upload = await putImageAsset(key, file);
@@ -694,20 +728,29 @@ export const profilesRoute = new Elysia({
 
 		const wantsAnimated = isAnimatedGifUpload(file);
 
-		const [profileRow] = await db
-			.select({ isPro: profile.isPro, preferences: profile.preferences })
-			.from(profile)
-			.where(eq(profile.userId, authUser.id))
-			.limit(1);
-		if (!profileRow) return status(400, "Profile not found");
+		const entitlements = await loadPatronEntitlements(authUser.id);
 
-		// Pro gate: animated GIF portraits require Sense Pro before blob upload.
-		if (wantsAnimated && !profileRow.isPro) {
+		// Immersed gate: animated GIF portraits require profile_customization entitlement.
+		if (
+			wantsAnimated &&
+			!hasPatronFeatureForTier({
+				effectiveTier: entitlements.effectiveTier,
+				grants: entitlements.featureGrants,
+				featureKey: "profile_customization",
+			})
+		) {
 			return status(403, {
 				error: "Animated portrait requires Sense Pro",
 				code: PRO_ANIMATED_MEDIA_REQUIRED,
 			});
 		}
+
+		const [profileRow] = await db
+			.select({ preferences: profile.preferences })
+			.from(profile)
+			.where(eq(profile.userId, authUser.id))
+			.limit(1);
+		if (!profileRow) return status(400, "Profile not found");
 
 		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
 		const upload = await putImageAsset(key, file);

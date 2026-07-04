@@ -17,6 +17,7 @@
 		"@polar-sh/better-auth": "catalog:",
 		"@still/api-client": "workspace:*",
 		"@still/env": "workspace:*",
+		"@still/plans": "workspace:*",
 		"@still/realtime": "workspace:*",
 		"@still/ui": "workspace:*",
 		"@tanstack/react-form": "catalog:",

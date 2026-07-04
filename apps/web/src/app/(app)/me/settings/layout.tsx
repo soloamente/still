@@ -1,6 +1,7 @@
 import type { SettingsProfile } from "@/components/profile/settings-form-context";
 import { SettingsFormShell } from "@/components/profile/settings-form-shell";
 import { authServer } from "@/lib/auth-server";
+import { buildPatronEntitlementsFromProfile } from "@/lib/patron-entitlements";
 import { serverApi } from "@/lib/server-api";
 
 export default async function SettingsLayout({
@@ -16,6 +17,11 @@ export default async function SettingsLayout({
 		return null;
 	}
 
+	const entitlements = buildPatronEntitlementsFromProfile({
+		...me.data,
+		isPro: Boolean(me.data.isPro),
+	});
+
 	const profile: SettingsProfile = {
 		handle: me.data.handle,
 		displayName: me.data.displayName,
@@ -24,7 +30,9 @@ export default async function SettingsLayout({
 		location: me.data.location,
 		website: me.data.website,
 		isPrivate: Boolean(me.data.isPrivate),
-		isPro: Boolean(me.data.isPro),
+		isPro: entitlements.isPro,
+		effectiveTier: entitlements.effectiveTier,
+		featureGrants: [...entitlements.featureGrants],
 		accentColor: me.data.accentColor,
 		preferences: me.data.preferences,
 		defaultVisibility: me.data.defaultVisibility,

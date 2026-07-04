@@ -56,6 +56,60 @@ export function hasPatronFeature(input: {
 	return tierRank(input.effectiveTier) >= tierRank(minTier);
 }
 
+/** Minimum purchasable/staff tier required for each feature — canonical gate map. */
+export const MIN_TIER_FOR_FEATURE: Record<PlanFeatureKey, PlanTierId> = {
+	full_stats: "attuned",
+	taste_signature: "attuned",
+	activity_signature: "attuned",
+	streaming_filters: "attuned",
+	watchlist_alerts: "attuned",
+	all_themes: "immersed",
+	profile_customization: "immersed",
+	pinned_reviews: "immersed",
+	list_covers: "immersed",
+	private_lists: "immersed",
+	taste_overlap: "immersed",
+	badge_prestige: "immersed",
+	challenges: "immersed",
+	leaderboard_visibility: "immersed",
+};
+
+/** Convenience wrapper — uses {@link MIN_TIER_FOR_FEATURE} for tier comparison. */
+export function hasPatronFeatureForTier(input: {
+	effectiveTier: PlanTierId;
+	grants: readonly PlanFeatureKey[];
+	featureKey: PlanFeatureKey;
+}): boolean {
+	return hasPatronFeature({
+		effectiveTier: input.effectiveTier,
+		grants: input.grants,
+		featureKey: input.featureKey,
+		minTierFor: MIN_TIER_FOR_FEATURE,
+	});
+}
+
+const PLAN_TIER_ID_SET = new Set<string>(PLAN_TIER_IDS);
+
+/** Coerce unknown DB/API values to a valid tier — invalid values fall back to still. */
+export function parsePlanTierId(value: unknown): PlanTierId {
+	if (typeof value === "string" && PLAN_TIER_ID_SET.has(value)) {
+		return value as PlanTierId;
+	}
+	return "still";
+}
+
+/** True when the string is a known plan feature key. */
+export function isPlanFeatureKey(value: string): value is PlanFeatureKey {
+	return Object.hasOwn(MIN_TIER_FOR_FEATURE, value);
+}
+
+/** Parse grant rows from DB — drops unknown keys. */
+export function parsePlanFeatureKeys(
+	values: readonly string[],
+): PlanFeatureKey[] {
+	return values.filter(isPlanFeatureKey);
+}
+
 /** Referral milestone ladder — config-only v1 */
 export const REFERRAL_MILESTONES = [
 	{ key: "scout_badge", qualifiedCount: 1, label: "Scout badge" },

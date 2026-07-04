@@ -1,5 +1,6 @@
 import "server-only";
 
+import type { PlanFeatureKey, PlanTierId } from "@still/plans";
 import { cache } from "react";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { serverApi } from "@/lib/server-api";
@@ -9,6 +10,11 @@ export type MeProfile = {
 	displayName: string;
 	/** Fresh portrait URL from `user.image` (nav uses this over stale session). */
 	image?: string | null;
+	subscriptionTier?: PlanTierId;
+	planOverride?: PlanTierId | null;
+	effectiveTier?: PlanTierId;
+	featureGrants?: PlanFeatureKey[];
+	/** Computed from API — hasFeature("all_themes") compat shim until Task 15. */
 	isPro: boolean;
 	onboardedAt?: string | Date | null;
 	createdAt?: string | Date | null;

@@ -1,7 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import {
 	hasPatronFeature,
+	hasPatronFeatureForTier,
+	MIN_TIER_FOR_FEATURE,
 	type PlanFeatureKey,
+	parsePlanFeatureKeys,
+	parsePlanTierId,
 	resolveEffectiveTier,
 } from "./index";
 
@@ -70,5 +74,95 @@ describe("hasPatronFeature", () => {
 				minTierFor,
 			}),
 		).toBe(true);
+	});
+});
+
+describe("MIN_TIER_FOR_FEATURE", () => {
+	test("covers all 14 feature keys", () => {
+		const keys: PlanFeatureKey[] = [
+			"full_stats",
+			"taste_signature",
+			"activity_signature",
+			"streaming_filters",
+			"watchlist_alerts",
+			"all_themes",
+			"profile_customization",
+			"pinned_reviews",
+			"list_covers",
+			"private_lists",
+			"taste_overlap",
+			"badge_prestige",
+			"challenges",
+			"leaderboard_visibility",
+		];
+		expect(Object.keys(MIN_TIER_FOR_FEATURE)).toHaveLength(14);
+		for (const key of keys) {
+			expect(MIN_TIER_FOR_FEATURE[key]).toBeDefined();
+		}
+	});
+
+	test("attuned features require attuned tier", () => {
+		for (const key of [
+			"full_stats",
+			"taste_signature",
+			"activity_signature",
+			"streaming_filters",
+			"watchlist_alerts",
+		] as const) {
+			expect(MIN_TIER_FOR_FEATURE[key]).toBe("attuned");
+		}
+	});
+
+	test("immersed features require immersed tier", () => {
+		for (const key of [
+			"all_themes",
+			"profile_customization",
+			"pinned_reviews",
+			"list_covers",
+			"private_lists",
+			"taste_overlap",
+			"badge_prestige",
+			"challenges",
+			"leaderboard_visibility",
+		] as const) {
+			expect(MIN_TIER_FOR_FEATURE[key]).toBe("immersed");
+		}
+	});
+});
+
+describe("hasPatronFeatureForTier", () => {
+	test("uses MIN_TIER_FOR_FEATURE for tier gates", () => {
+		expect(
+			hasPatronFeatureForTier({
+				effectiveTier: "still",
+				grants: [],
+				featureKey: "all_themes",
+			}),
+		).toBe(false);
+		expect(
+			hasPatronFeatureForTier({
+				effectiveTier: "immersed",
+				grants: [],
+				featureKey: "all_themes",
+			}),
+		).toBe(true);
+	});
+});
+
+describe("parsePlanTierId", () => {
+	test("accepts valid tiers", () => {
+		expect(parsePlanTierId("attuned")).toBe("attuned");
+	});
+	test("invalid values default to still", () => {
+		expect(parsePlanTierId("invalid")).toBe("still");
+		expect(parsePlanTierId(null)).toBe("still");
+	});
+});
+
+describe("parsePlanFeatureKeys", () => {
+	test("filters unknown grant keys", () => {
+		expect(parsePlanFeatureKeys(["all_themes", "bogus"])).toEqual([
+			"all_themes",
+		]);
 	});
 });

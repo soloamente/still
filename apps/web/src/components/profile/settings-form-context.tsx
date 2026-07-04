@@ -1,5 +1,11 @@
 "use client";
 
+import type { PlanFeatureKey, PlanTierId } from "@still/plans";
+import {
+	hasPatronFeatureForTier,
+	parsePlanFeatureKeys,
+	parsePlanTierId,
+} from "@still/plans";
 import { useRouter } from "next/navigation";
 import {
 	createContext,
@@ -95,6 +101,8 @@ export type SettingsProfile = {
 	hasAvatar?: boolean;
 	isPrivate: boolean;
 	isPro?: boolean;
+	effectiveTier?: PlanTierId;
+	featureGrants?: readonly PlanFeatureKey[];
 	accentColor?: string | null;
 	preferences?: Record<string, unknown> | null;
 	defaultVisibility?: ContentVisibility | null;
@@ -112,6 +120,9 @@ function initialProfileAccent(
 type SettingsFormContextValue = {
 	profile: SettingsProfile;
 	isPro: boolean;
+	effectiveTier: PlanTierId;
+	featureGrants: readonly PlanFeatureKey[];
+	hasFeature: (featureKey: PlanFeatureKey) => boolean;
 	formRef: RefObject<HTMLFormElement | null>;
 	displayName: string;
 	setDisplayName: (value: string) => void;
@@ -181,6 +192,17 @@ export function SettingsFormProvider({
 }) {
 	const router = useRouter();
 	const isPro = Boolean(profile.isPro);
+	const effectiveTier = parsePlanTierId(profile.effectiveTier ?? "still");
+	const featureGrants = parsePlanFeatureKeys(profile.featureGrants ?? []);
+	const hasFeature = useCallback(
+		(featureKey: PlanFeatureKey) =>
+			hasPatronFeatureForTier({
+				effectiveTier,
+				grants: featureGrants,
+				featureKey,
+			}),
+		[effectiveTier, featureGrants],
+	);
 	const { setAudioPreferences } = useCinematicAudio();
 	const { setSmoothScrollEnabled } = useSmoothScrollPreference();
 	const {
@@ -863,6 +885,9 @@ export function SettingsFormProvider({
 		(): SettingsFormContextValue => ({
 			profile,
 			isPro,
+			effectiveTier,
+			featureGrants,
+			hasFeature,
 			formRef,
 			displayName,
 			setDisplayName,
@@ -921,6 +946,9 @@ export function SettingsFormProvider({
 		[
 			profile,
 			isPro,
+			effectiveTier,
+			featureGrants,
+			hasFeature,
 			displayName,
 			bio,
 			pronouns,
