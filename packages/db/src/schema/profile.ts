@@ -122,6 +122,24 @@ export const profile = pgTable(
 			.default("public")
 			.notNull(),
 		isPrivate: boolean("is_private").default(false).notNull(),
+		/** Polar-synced tier — defaults to free Still. */
+		subscriptionTier: text("subscription_tier").default("still").notNull(),
+		/** Staff-assigned tier override; wins over subscriptionTier. */
+		planOverride: text("plan_override"),
+		polarCustomerId: text("polar_customer_id"),
+		polarSubscriptionId: text("polar_subscription_id"),
+		/** Billing cadence from Polar — month | year. */
+		subscriptionInterval: text("subscription_interval"),
+		/** Polar subscription lifecycle — active | past_due | canceled. */
+		subscriptionStatus: text("subscription_status"),
+		referredByUserId: text("referred_by_user_id").references(() => user.id, {
+			onDelete: "set null",
+		}),
+		referralDiscountRedeemed: boolean("referral_discount_redeemed")
+			.default(false)
+			.notNull(),
+		/** Shareable invite code — unique per patron when assigned. */
+		referralCode: text("referral_code").unique(),
 		isPro: boolean("is_pro").default(false).notNull(),
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */
 		pinnedReviewIds: jsonb("pinned_review_ids")
@@ -151,6 +169,7 @@ export const profile = pgTable(
 	(table) => [
 		uniqueIndex("profile_handle_lower_idx").on(table.handle),
 		index("profile_display_name_idx").on(table.displayName),
+		index("profile_referred_by_user_idx").on(table.referredByUserId),
 	],
 );
 

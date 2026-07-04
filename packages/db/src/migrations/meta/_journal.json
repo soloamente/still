@@ -274,6 +274,13 @@
 			"when": 1779203400000,
 			"tag": "0038_patron_feedback",
 			"breakpoints": true
+		},
+		{
+			"idx": 39,
+			"version": "7",
+			"when": 1779203500000,
+			"tag": "0039_subscriptions",
+			"breakpoints": true
 		}
 	]
 }

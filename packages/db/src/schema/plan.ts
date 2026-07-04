@@ -20,6 +20,8 @@ export const planTier = pgTable("plan_tier", {
 
 export const planFeature = pgTable("plan_feature", {
 	id: text("id").primaryKey(),
+	/** Stable slug for entitlement gates — mirrors @still/plans PlanFeatureKey. */
+	key: text("key").notNull().unique(),
 	name: text("name").notNull(),
 	description: text("description").notNull(),
 	buildStatus: text("build_status").notNull().default("planned"), // "exists" | "planned"

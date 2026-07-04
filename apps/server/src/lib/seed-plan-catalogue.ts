@@ -1,5 +1,5 @@
 import { db, planFeature, planFeatureTier, planTier } from "@still/db";
-import { makeId } from "./cuid";
+import { eq } from "drizzle-orm";
 
 const TIERS = [
 	{
@@ -37,6 +37,7 @@ const TIERS = [
 ] as const;
 
 type FeatureSeed = {
+	key: string;
 	name: string;
 	description: string;
 	buildStatus: "exists" | "planned";
@@ -46,6 +47,7 @@ type FeatureSeed = {
 const FEATURES: FeatureSeed[] = [
 	// ── Still ──
 	{
+		key: "log_movies_tv",
 		name: "Log movies, TV & anime",
 		description:
 			"Mark anything as watched. Movies pull from TMDB. TV tracks episode by episode. Anime works the same way. You can log something multiple times (rewatches).",
@@ -53,6 +55,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "watchlist_ratings",
 		name: "Watchlist & ratings",
 		description:
 			"Save things you want to watch. Rate anything on a 0–10 scale. Ratings are stored to the tenth (e.g. 8.5). You can also mark things you own.",
@@ -60,6 +63,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "reviews_lists",
 		name: "Reviews & lists",
 		description:
 			"Write reviews tied to a log entry. Create public lists — curated collections of any movies/TV/anime. Lists have titles, descriptions, and covers.",
@@ -67,6 +71,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "follow_feed",
 		name: "Follow & social feed",
 		description:
 			"Follow other users. Your feed shows what people you follow are watching, rating, and reviewing. Feed supports real-time presence and shows rating divergence.",
@@ -74,6 +79,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "import_services",
 		name: "Import from Letterboxd, AniList, MAL",
 		description:
 			"Bring your entire watch history over. Letterboxd via CSV. AniList and MyAnimeList via API. Imports match titles to TMDB, map episodes, and preserve ratings.",
@@ -81,6 +87,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "tv_episode_progress",
 		name: "TV episode progress tracking",
 		description:
 			"Track progress at the episode level. The server syncs new episodes as they air. Mark episodes watched in bulk or one by one.",
@@ -88,6 +95,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "basic_streaks_badges",
 		name: "Basic streaks & starter badges",
 		description:
 			"A running count of consecutive days you've logged something. Volume milestone badges — watched 10, 100, 1000 things. These appear in your Achievements section.",
@@ -95,6 +103,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	{
+		key: "year_in_review",
 		name: "Year in review (annual snapshot)",
 		description:
 			"An annual summary generated once per year: how many things you watched, top genres, highest-rated, most active month. Free users get this once a year.",
@@ -103,6 +112,7 @@ const FEATURES: FeatureSeed[] = [
 	},
 	// ── Attuned ──
 	{
+		key: "full_stats",
 		name: "Full stats",
 		description:
 			"All-time & per-year breakdowns: genres, media types, average rating, most active periods. Attuned users get on-demand access across any time range — free tier gets the annual snapshot only.",
@@ -110,6 +120,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "taste_signature",
 		name: "Taste signature",
 		description:
 			"Rule-based archetype auto-generated from your diary: Contrarian, Curator, Genre Purist, Dual Affinity, Generous, Selective, Genre-Led, Eclectic. A one-line headline shows on your profile and updates as you log more.",
@@ -117,6 +128,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "activity_signature",
 		name: "Activity signature",
 		description:
 			"GitHub-style 52-week heatmap on your profile. Darker squares = more activity that day. Shows whether you're a weekend binger, daily watcher, or seasonal burst viewer.",
@@ -124,6 +136,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "streaming_filters",
 		name: "Streaming filters",
 		description:
 			"Filter the catalogue by what's actually available on your streaming services right now in your country. Start from what you can already watch.",
@@ -131,6 +144,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "watchlist_alerts",
 		name: "Watchlist alerts",
 		description:
 			"Get notified when something on your watchlist becomes available on a streaming service in your region. Works by periodically diffing TMDB streaming availability against your preferences.",
@@ -138,6 +152,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "theater_listings",
 		name: "Theater listings",
 		description:
 			"Shows what's currently playing in cinemas near you. Pulls from TMDB theatrical release data filtered by your region.",
@@ -145,6 +160,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["attuned", "immersed", "devoted"],
 	},
 	{
+		key: "advanced_feed_filters",
 		name: "Advanced feed filters",
 		description:
 			"Filter your social feed by type — only reviews, only logs, only ratings, only a specific person. Free users see everything chronologically.",
@@ -153,6 +169,7 @@ const FEATURES: FeatureSeed[] = [
 	},
 	// ── Immersed ──
 	{
+		key: "all_themes",
 		name: "All themes unlocked",
 		description:
 			"Ember and Midnight themes unlocked (currently gated as 'pro' in app-themes.ts — gate renamed to 'immersed'). All future themes included automatically.",
@@ -160,6 +177,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "profile_customization",
 		name: "Profile customization",
 		description:
 			"Choose an accent color (Desert, Copper, Rose, Slate) and banner frame (None, Cinema, Editorial). These change how your profile looks to visitors.",
@@ -167,6 +185,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "pinned_reviews",
 		name: "Pinned reviews & custom list covers",
 		description:
 			"Pin your best reviews to the top of your profile. Custom list covers let you pick which poster represents a list instead of the auto-generated one.",
@@ -174,6 +193,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "private_lists",
 		name: "Private lists & collaboration",
 		description:
 			"Make a list private so only you and invited collaborators can see it. Invite specific users to co-curate before making it public.",
@@ -181,6 +201,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "taste_overlap",
 		name: "Taste overlap scores",
 		description:
 			"See how much your taste overlaps with anyone you follow. Compares shared watches, finds titles you both rated, and shows where you agree vs. diverge.",
@@ -188,6 +209,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "rivalry_mode",
 		name: "Rivalry mode",
 		description:
 			"Send a head-to-head taste challenge to someone — compatibility score, biggest disagreements, shared obsessions. Shareable card for social media. Builds on the existing taste overlap engine.",
@@ -195,6 +217,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "badge_prestige",
 		name: "Full badge collection & prestige unlocks",
 		description:
 			"Beyond volume milestones: prestige badges earned by completing director filmographies, developing a contrarian taste signature, writing high-engagement reviews. Tiers: Bronze → Silver → Gold → Platinum → Legendary.",
@@ -202,6 +225,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "challenges",
 		name: "Completionist challenges",
 		description:
 			"Structured watchlists with a goal attached. Current: Nolan Essentials, Horror Canon, Ghibli Magic, A24 Highlights. Completing one earns a permanent prestige badge.",
@@ -209,6 +233,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["immersed", "devoted"],
 	},
 	{
+		key: "leaderboard_visibility",
 		name: "Leaderboard visibility",
 		description:
 			"Appear on the community leaderboard ranked by activity, reviews, list quality, and engagement. Free and Attuned users can view it but aren't listed.",
@@ -217,6 +242,7 @@ const FEATURES: FeatureSeed[] = [
 	},
 	// ── Devoted ──
 	{
+		key: "vote_on_features",
 		name: "Vote on upcoming features",
 		description:
 			"Access to a private roadmap board where Devoted members can upvote and comment on what gets built next. Votes are tracked and used to prioritize.",
@@ -224,6 +250,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "beta_access",
 		name: "Beta access",
 		description:
 			"New features before they're released to anyone else. Polished betas close to shipping — you're the first to see what's coming.",
@@ -231,6 +258,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "direct_feedback_channel",
 		name: "Direct feedback channel to team",
 		description:
 			"A direct line to the team — not a support ticket queue. Closer to a private Discord channel where your feedback is seen and responded to personally.",
@@ -238,6 +266,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "inner_circle_community",
 		name: "Inner circle community",
 		description:
 			"A private space for Devoted members only to talk about the platform, share opinions on features, and be part of the conversation that shapes Sense.",
@@ -245,6 +274,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "app_credits",
 		name: "Name in app credits",
 		description:
 			"Your name or username appears in a dedicated supporters page in the app — permanent and visible to all users. Accumulates as long as you're Devoted.",
@@ -252,6 +282,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "devoted_badge",
 		name: "Devoted badge on profile",
 		description:
 			"A visible marker on your profile that signals to everyone that you're a Devoted supporter. Designed to be noticed — other users will know you believe in the platform.",
@@ -259,6 +290,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "supporters_page",
 		name: "Public supporters page listing",
 		description:
 			"A page on Sense listing all Devoted members with profile links. Part recognition, part community — the people who love the platform most, celebrated.",
@@ -266,6 +298,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "seasonal_themes",
 		name: "Seasonal exclusive themes",
 		description:
 			"Themes released for specific moments — a film festival season, a Sense anniversary — available only to Devoted members, never sold or released to other tiers.",
@@ -273,6 +306,7 @@ const FEATURES: FeatureSeed[] = [
 		tiers: ["devoted"],
 	},
 	{
+		key: "devoted_badges",
 		name: "Rare Devoted-only badges",
 		description:
 			"Special badges that can only ever exist on Devoted member profiles. Not earnable by anyone else regardless of watch history. Permanent identity markers.",
@@ -288,20 +322,28 @@ export async function seedPlanCatalogue() {
 	console.log("Seeding plan features…");
 	for (let i = 0; i < FEATURES.length; i++) {
 		const f = FEATURES[i];
-		const id = makeId("feat");
+		// Stable slug id for new installs; existing rows keep legacy ids after key backfill.
+		const id = f.key;
 		await db
 			.insert(planFeature)
 			.values({
 				id,
+				key: f.key,
 				name: f.name,
 				description: f.description,
 				buildStatus: f.buildStatus,
 				sortOrder: i,
 			})
-			.onConflictDoNothing();
+			.onConflictDoNothing({ target: planFeature.key });
+		const [existing] = await db
+			.select({ id: planFeature.id })
+			.from(planFeature)
+			.where(eq(planFeature.key, f.key))
+			.limit(1);
+		const featureId = existing?.id ?? id;
 		await db
 			.insert(planFeatureTier)
-			.values(f.tiers.map((tierId) => ({ featureId: id, tierId })))
+			.values(f.tiers.map((tierId) => ({ featureId, tierId })))
 			.onConflictDoNothing();
 	}
 	console.log("Done.");
