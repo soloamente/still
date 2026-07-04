@@ -8,6 +8,7 @@ import {
 	APP_THEME_CLASS_THEATER,
 	APP_THEMES,
 	appThemeSearchBorderBeamColor,
+	appThemeTierLabel,
 	resolveAppTheme,
 	resolveAppThemeForPatron,
 } from "./app-themes";
@@ -51,12 +52,19 @@ describe("resolveAppTheme", () => {
 		expect(resolveAppTheme(APP_THEME_CLASS_NOIR)).toBe(APP_THEME_CLASS_NOIR);
 	});
 
-	test("resolveAppThemeForPatron strips Pro palettes for non-Pro", () => {
+	test("resolveAppThemeForPatron strips Immersed palettes without entitlement", () => {
 		expect(resolveAppThemeForPatron(APP_THEME_CLASS_EMBER, false)).toBe(
 			APP_THEME_CLASS_THEATER,
 		);
 		expect(resolveAppThemeForPatron(APP_THEME_CLASS_EMBER, true)).toBe(
 			APP_THEME_CLASS_EMBER,
 		);
+	});
+});
+
+describe("appThemeTierLabel", () => {
+	test("maps internal pro tier to Immersed", () => {
+		expect(appThemeTierLabel("pro")).toBe("Immersed");
+		expect(appThemeTierLabel("free")).toBe("Free");
 	});
 });

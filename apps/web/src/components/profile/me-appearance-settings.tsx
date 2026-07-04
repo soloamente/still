@@ -1,15 +1,18 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useCallback, useMemo } from "react";
 
 import { useAppThemeShell } from "@/components/app/app-theme-shell";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { MeProfileExpressionSettings } from "@/components/profile/me-profile-expression-settings";
 import {
 	APP_THEME_LIST,
 	type AppThemeClass,
 	appThemeTier,
+	appThemeTierLabel,
 	resolveAppTheme,
 } from "@/lib/app-themes";
 import type {
@@ -18,7 +21,7 @@ import type {
 } from "@/lib/profile-appearance";
 
 export function MeAppearanceSettings({
-	isPro,
+	isPro: _isPro,
 	appTheme,
 	onAppThemeChange,
 	profileAccent,
@@ -28,6 +31,7 @@ export function MeAppearanceSettings({
 	profilePortraitGrayscaleUntilHover,
 	onProfilePortraitGrayscaleUntilHoverChange,
 }: {
+	/** @deprecated use entitlements — kept for caller compat */
 	isPro: boolean;
 	appTheme: AppThemeClass;
 	onAppThemeChange: (next: AppThemeClass) => void;
@@ -38,6 +42,8 @@ export function MeAppearanceSettings({
 	profilePortraitGrayscaleUntilHover: boolean;
 	onProfilePortraitGrayscaleUntilHoverChange: (next: boolean) => void;
 }) {
+	const { hasFeature } = usePatronEntitlements();
+	const hasAllThemes = hasFeature("all_themes");
 	const { theme } = useTheme();
 	const { applyThemeSelection } = useAppThemeShell();
 	const activeTheme = useMemo(
@@ -47,11 +53,11 @@ export function MeAppearanceSettings({
 
 	const handleThemePick = useCallback(
 		(next: AppThemeClass) => {
-			if (appThemeTier(next) === "pro" && !isPro) return;
+			if (appThemeTier(next) === "pro" && !hasAllThemes) return;
 			applyThemeSelection(next);
 			onAppThemeChange(next);
 		},
-		[applyThemeSelection, isPro, onAppThemeChange],
+		[applyThemeSelection, hasAllThemes, onAppThemeChange],
 	);
 
 	return (
@@ -69,7 +75,7 @@ export function MeAppearanceSettings({
 					<legend className="sr-only">Color theme</legend>
 					{APP_THEME_LIST.map((def) => {
 						const selected = activeTheme === def.className;
-						const locked = def.tier === "pro" && !isPro;
+						const locked = def.tier === "pro" && !hasAllThemes;
 						const inputId = `app-theme-${def.className}`;
 						return (
 							<label
@@ -107,12 +113,23 @@ export function MeAppearanceSettings({
 										style={{ background: def.preview.accent }}
 									/>
 								</span>
-								<span className="flex items-center gap-2 font-medium text-sm">
-									{def.label}
-									{def.tier === "pro" ? (
-										<span className="rounded-full bg-muted px-2 py-0.5 font-medium text-[11px] text-muted-foreground uppercase tracking-wide">
-											Pro
-										</span>
+								<span className="flex flex-col gap-1">
+									<span className="flex items-center gap-2 font-medium text-sm">
+										{def.label}
+										{def.tier === "pro" ? (
+											<span className="rounded-full bg-muted px-2 py-0.5 font-medium text-[11px] text-muted-foreground uppercase tracking-wide">
+												{appThemeTierLabel(def.tier)}
+											</span>
+										) : null}
+									</span>
+									{locked ? (
+										<Link
+											href="/pricing#immersed"
+											className="w-fit font-medium text-foreground text-xs underline-offset-4 [@media(hover:hover)]:hover:underline"
+											onClick={(event) => event.stopPropagation()}
+										>
+											Upgrade
+										</Link>
 									) : null}
 								</span>
 							</label>
@@ -122,7 +139,6 @@ export function MeAppearanceSettings({
 			</div>
 
 			<MeProfileExpressionSettings
-				isPro={isPro}
 				profileAccent={profileAccent}
 				bannerFrame={bannerFrame}
 				onProfileAccentChange={onProfileAccentChange}

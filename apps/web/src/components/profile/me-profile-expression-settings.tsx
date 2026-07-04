@@ -1,7 +1,9 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import Link from "next/link";
 
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { MePreferenceToggle } from "@/components/profile/me-preference-toggle";
 import {
 	PROFILE_ACCENT_PRESETS,
@@ -11,7 +13,6 @@ import {
 } from "@/lib/profile-appearance";
 
 export function MeProfileExpressionSettings({
-	isPro,
 	profileAccent,
 	bannerFrame,
 	onProfileAccentChange,
@@ -19,7 +20,6 @@ export function MeProfileExpressionSettings({
 	profilePortraitGrayscaleUntilHover,
 	onProfilePortraitGrayscaleUntilHoverChange,
 }: {
-	isPro: boolean;
 	profileAccent: ProfileAccentId | null;
 	bannerFrame: ProfileBannerFrameId;
 	onProfileAccentChange: (next: ProfileAccentId) => void;
@@ -27,6 +27,8 @@ export function MeProfileExpressionSettings({
 	profilePortraitGrayscaleUntilHover: boolean;
 	onProfilePortraitGrayscaleUntilHoverChange: (next: boolean) => void;
 }) {
+	const { hasFeature } = usePatronEntitlements();
+	const hasProfileCustomization = hasFeature("profile_customization");
 	const accentEntries = Object.entries(PROFILE_ACCENT_PRESETS) as [
 		ProfileAccentId,
 		(typeof PROFILE_ACCENT_PRESETS)[ProfileAccentId],
@@ -43,10 +45,18 @@ export function MeProfileExpressionSettings({
 					Profile expression
 				</p>
 				<p className="max-w-prose text-muted-foreground text-sm leading-relaxed">
-					{isPro
+					{hasProfileCustomization
 						? "Accent and banner frame show on your public profile. Pick a frame, then Save — accent is optional."
-						: "Sense Pro unlocks accent presets and banner frames. Your account is not Pro yet, so these controls stay off."}
+						: "Immersed unlocks accent presets and banner frames. Upgrade to customize how your profile looks."}
 				</p>
+				{!hasProfileCustomization ? (
+					<Link
+						href="/pricing#immersed"
+						className="inline-block font-medium text-foreground text-sm underline-offset-4 [@media(hover:hover)]:hover:underline"
+					>
+						View Immersed plans
+					</Link>
+				) : null}
 			</div>
 
 			<div className="space-y-3">
@@ -62,7 +72,7 @@ export function MeProfileExpressionSettings({
 								htmlFor={inputId}
 								className={cn(
 									"flex cursor-pointer items-center gap-3 rounded-2xl bg-background p-3 text-left transition-colors duration-200 ease-out motion-reduce:transition-none",
-									!isPro && "cursor-not-allowed opacity-50",
+									!hasProfileCustomization && "cursor-not-allowed opacity-50",
 									selected
 										? "text-foreground"
 										: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -74,7 +84,7 @@ export function MeProfileExpressionSettings({
 									name="profile-accent"
 									className="sr-only"
 									checked={selected}
-									disabled={!isPro}
+									disabled={!hasProfileCustomization}
 									onChange={() => onProfileAccentChange(id)}
 								/>
 								<span
@@ -102,7 +112,7 @@ export function MeProfileExpressionSettings({
 								htmlFor={inputId}
 								className={cn(
 									"flex cursor-pointer flex-col gap-1 rounded-2xl bg-background p-4 text-left transition-colors duration-200 ease-out motion-reduce:transition-none",
-									!isPro && "cursor-not-allowed opacity-50",
+									!hasProfileCustomization && "cursor-not-allowed opacity-50",
 									selected
 										? "text-foreground"
 										: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -114,7 +124,7 @@ export function MeProfileExpressionSettings({
 									name="banner-frame"
 									className="sr-only"
 									checked={selected}
-									disabled={!isPro}
+									disabled={!hasProfileCustomization}
 									onChange={() => onBannerFrameChange(id)}
 								/>
 								<span className="font-medium text-sm">{def.label}</span>

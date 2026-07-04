@@ -152,7 +152,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 			</div>
 
 			<div className={cn(accountMenuBackgroundGroupClassName, "mt-1")}>
-				<AccountMenuThemePicker className="pb-1" isPro={Boolean(user.isPro)} />
+				<AccountMenuThemePicker className="pb-1" />
 				<DropdownMenuGroup className="p-0">
 					<DropdownMenuItem
 						className={accountMenuPrimaryOnBackgroundClassName}

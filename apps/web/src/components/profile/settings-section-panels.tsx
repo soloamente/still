@@ -334,7 +334,7 @@ export function SettingsCatalogueSection() {
 export function SettingsAppearanceSection() {
 	const {
 		profile,
-		isPro,
+		hasFeature,
 		appTheme,
 		setAppTheme,
 		profileAccent,
@@ -344,16 +344,18 @@ export function SettingsAppearanceSection() {
 		profilePortraitGrayscaleUntilHover,
 		setProfilePortraitGrayscaleUntilHover,
 	} = useSettingsForm();
+	const hasProfileCustomization = hasFeature("profile_customization");
+	const hasAllThemes = hasFeature("all_themes");
 
 	return (
 		<SettingsSectionPage>
 			<MeSettingsSection
 				title="Appearance"
-				description="App palette plus Pro profile expression on your public page."
+				description="App palette plus Immersed profile expression on your public page."
 			>
 				<MeSettingsPanel>
 					<MeAppearanceSettings
-						isPro={isPro}
+						isPro={hasAllThemes}
 						appTheme={appTheme}
 						onAppThemeChange={setAppTheme}
 						profileAccent={profileAccent}
@@ -361,7 +363,11 @@ export function SettingsAppearanceSection() {
 						onProfileAccentChange={setProfileAccent}
 						onBannerFrameChange={(next) => {
 							setBannerFrame(next);
-							if (isPro && next !== "none" && profileAccent == null) {
+							if (
+								hasProfileCustomization &&
+								next !== "none" &&
+								profileAccent == null
+							) {
 								setProfileAccent(
 									inferProfileAccentFromHex(profile.accentColor) ?? "desert",
 								);

@@ -178,7 +178,7 @@ export function resolveAppTheme(raw: unknown): AppThemeClass {
 	return DEFAULT_APP_THEME_CLASS;
 }
 
-/** Non-Pro patrons cannot keep Pro palette classes — fall back to Calm (`theme-theater`). */
+/** Non-Immersed patrons cannot keep Immersed palette classes — fall back to Calm. */
 export function resolveAppThemeForPatron(
 	raw: unknown,
 	isPro: boolean,
@@ -188,6 +188,20 @@ export function resolveAppThemeForPatron(
 		return DEFAULT_APP_THEME_CLASS;
 	}
 	return theme;
+}
+
+/** Patron-facing tier badge label — internal registry still uses `"pro"`. */
+export function appThemeTierLabel(tier: AppThemeTier): string {
+	switch (tier) {
+		case "free":
+			return "Free";
+		case "pro":
+			return "Immersed";
+		default: {
+			const _exhaustive: never = tier;
+			return _exhaustive;
+		}
+	}
 }
 
 export function isAppThemeLight(theme: AppThemeClass): boolean {

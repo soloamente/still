@@ -37,7 +37,7 @@ export function sanitizeAppearancePreferences(
 		}
 		const tier = appThemeTier(raw as AppThemeId);
 		if (tier === "pro" && !isPro) {
-			return { ok: false, error: "Theme requires Pro", status: 403 };
+			return { ok: false, error: "Theme requires Immersed", status: 403 };
 		}
 	}
 
@@ -46,7 +46,11 @@ export function sanitizeAppearancePreferences(
 			return { ok: false, error: "Invalid profile accent", status: 400 };
 		}
 		if (!isPro) {
-			return { ok: false, error: "Profile accent requires Pro", status: 403 };
+			return {
+				ok: false,
+				error: "Profile accent requires Immersed",
+				status: 403,
+			};
 		}
 	}
 
@@ -55,7 +59,11 @@ export function sanitizeAppearancePreferences(
 			return { ok: false, error: "Invalid banner frame", status: 400 };
 		}
 		if (!isPro) {
-			return { ok: false, error: "Banner frame requires Pro", status: 403 };
+			return {
+				ok: false,
+				error: "Banner frame requires Immersed",
+				status: 403,
+			};
 		}
 	}
 

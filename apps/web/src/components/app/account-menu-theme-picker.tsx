@@ -7,6 +7,7 @@ import { useCallback, useMemo } from "react";
 import { toast } from "sonner";
 
 import { useAppThemeShell } from "@/components/app/app-theme-shell";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { api } from "@/lib/api";
 import {
 	APP_THEME_LIST,
@@ -20,19 +21,15 @@ import { PROFILE_PREF_APP_THEME } from "@/lib/profile-preferences";
  * Home-style filter chips for palette switching inside the account menu's
  * `bg-background` inset group. Persists to profile on pick (no Settings Save).
  */
-export function AccountMenuThemePicker({
-	className,
-	isPro = false,
-}: {
-	className?: string;
-	isPro?: boolean;
-}) {
+export function AccountMenuThemePicker({ className }: { className?: string }) {
+	const { hasFeature } = usePatronEntitlements();
+	const hasAllThemes = hasFeature("all_themes");
 	const menuThemes = useMemo(
 		() =>
 			APP_THEME_LIST.filter(
-				(def) => def.tier === "free" || (def.tier === "pro" && isPro),
+				(def) => def.tier === "free" || (def.tier === "pro" && hasAllThemes),
 			),
-		[isPro],
+		[hasAllThemes],
 	);
 	const { theme, resolvedTheme } = useTheme();
 	const { applyThemeSelection } = useAppThemeShell();
@@ -64,7 +61,7 @@ export function AccountMenuThemePicker({
 	const handlePick = useCallback(
 		async (next: AppThemeClass) => {
 			if (next === activeTheme) return;
-			if (appThemeTier(next) === "pro" && !isPro) return;
+			if (appThemeTier(next) === "pro" && !hasAllThemes) return;
 			applyThemeSelection(next);
 			try {
 				await api.api.profiles.me.patch({
@@ -77,21 +74,15 @@ export function AccountMenuThemePicker({
 				toast.error("Couldn't save theme");
 			}
 		},
-		[activeTheme, applyThemeSelection, isPro],
+		[activeTheme, applyThemeSelection, hasAllThemes],
 	);
 
 	return (
 		<div className={className}>
-			{/* <p
-				id="account-menu-theme-label"
-				className="px-2 font-medium text-foreground text-sm"
-			>
-				Theme
-			</p> */}
 			<div
 				className={cn(
 					"grid w-full gap-1 bg-card p-1",
-					/* Three columns — five Pro moods wrap to 3+2 inside the narrow menu. */
+					/* Three columns — Immersed moods wrap to 3+2 inside the narrow menu. */
 					denseMenu
 						? "grid-cols-3 rounded-[1.5rem]"
 						: "grid-cols-3 rounded-full",

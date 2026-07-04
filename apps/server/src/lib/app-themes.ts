@@ -1,5 +1,5 @@
 /**
- * Server-side theme registry — ids and Pro tier only (no web imports).
+ * Server-side theme registry — ids and Immersed tier only (no web imports).
  */
 
 export const APP_THEME_IDS = [

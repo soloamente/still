@@ -211,10 +211,7 @@ export function MobileYouSheet({
 
 						{/* Theme + settings */}
 						<div className={cn("mt-3", insetGroupClassName)}>
-							<AccountMenuThemePicker
-								className="pb-1"
-								isPro={Boolean(user.isPro)}
-							/>
+							<AccountMenuThemePicker className="pb-1" />
 							<button
 								type="button"
 								className={rowClass}
