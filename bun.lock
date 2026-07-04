@@ -254,6 +254,15 @@
         "typescript": "^6",
       },
     },
+    "packages/plans": {
+      "name": "@still/plans",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@still/config": "workspace:*",
+        "@types/bun": "catalog:",
+        "typescript": "^6",
+      },
+    },
     "packages/realtime": {
       "name": "@still/realtime",
       "version": "0.0.0",
@@ -1092,6 +1101,8 @@
     "@still/db": ["@still/db@workspace:packages/db"],
 
     "@still/env": ["@still/env@workspace:packages/env"],
+
+    "@still/plans": ["@still/plans@workspace:packages/plans"],
 
     "@still/realtime": ["@still/realtime@workspace:packages/realtime"],
 
