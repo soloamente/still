@@ -1,13 +1,13 @@
 # Sense Subscriptions & Referrals — Design Spec
 
 **Date:** 2026-07-04  
-**Status:** Draft — pending human review
+**Status:** Approved (2026-07-05 — billing provider: **Polar**)
 
 ---
 
 ## Overview
 
-Ship full patron monetization for Sense: **Stripe Checkout + Customer Portal**, tier-aware feature enforcement reading from the existing plan catalogue (`/staff/plans`), a public **pricing page**, **Settings → Subscription** billing management, staff **plan overrides** and **grant-only feature extras**, and a Mobbin-style **Invite & earn** program (header button → dialog).
+Ship full patron monetization for Sense: **Polar** (Merchant of Record) via the existing **`@polar-sh/better-auth`** integration — checkout + customer portal, tier-aware feature enforcement reading from the existing plan catalogue (`/staff/plans`), a public **pricing page**, **Settings → Subscription** billing management, staff **plan overrides** and **grant-only feature extras**, and a Mobbin-style **Invite & earn** program (header button → dialog).
 
 **Purchasable at launch:** **Attuned** ($3/mo · $24/yr) and **Immersed** ($6/mo · $48/yr).  
 **Devoted** ($12/mo · $100/yr) is **not** checkout-enabled — patrons **Request invite** with copy explaining some perks are still in development. Staff grant Devoted via `planOverride`.
@@ -20,15 +20,15 @@ Ship full patron monetization for Sense: **Stripe Checkout + Customer Portal**, 
 
 | Topic | Choice |
 |-------|--------|
-| Billing integration | Stripe Checkout + Customer Portal (Approach 1) |
+| Billing integration | **Polar** via `@polar-sh/better-auth` (checkout + portal); MoR handles global tax |
 | Purchasable tiers | Attuned + Immersed only |
 | Devoted | Request-invite CTA; staff grant |
 | Feature gates | Full enforcement for every catalogue feature with `buildStatus: "exists"` |
-| Staff tier override | `planOverride` nullable enum; **wins** over Stripe |
+| Staff tier override | `planOverride` nullable enum; **wins** over Polar subscription |
 | `isPro` | Deprecated; migrate `is_pro = true` → `plan_override = 'immersed'` |
 | Staff feature control | **Grant-only extras** via `plan_feature_grant`; cannot deny tier-included features |
 | Referral success | Sign up + **verify email** + **complete onboarding** (`onboardedAt` set) |
-| Referee reward | **10% off first** Attuned or Immersed subscription (Stripe at checkout) |
+| Referee reward | **10% off first** Attuned or Immersed subscription (Polar discount code at checkout) |
 | Referrer rewards | **Digital + Sense identity perks** (free months + badges/frames) |
 | Invite UI | **Invite & earn** pill button in sticky header (right cluster), opens centered dialog — Mobbin parity |
 
@@ -37,22 +37,29 @@ Ship full patron monetization for Sense: **Stripe Checkout + Customer Portal**, 
 ## Architecture
 
 ```
-┌─────────────────┐     Checkout/Portal      ┌──────────────┐
-│  apps/web       │ ◄──────────────────────► │    Stripe    │
-│  /pricing       │                          └──────┬───────┘
-│  /me/settings/  │                                 │ webhooks
-│  subscription   │                                 ▼
-│  Invite dialog  │     GET /api/plans        ┌──────────────┐
-└────────┬────────┘     POST /api/billing/*  │ apps/server  │
-         │                                    │ billing.ts   │
-         │         @still/plans               │ webhooks     │
-         └──────────────────────────────────► │ entitlements │
-                                              └──────┬───────┘
-                                                     │
-                     plan_tier / plan_feature /      ▼
-                     plan_feature_tier (catalogue)  profile
-                     plan_feature_grant (extras)   patron_referral
+┌─────────────────┐   Better Auth Polar plugin   ┌──────────────┐
+│  apps/web       │ ◄──────────────────────────► │    Polar     │
+│  /pricing       │   checkout + customer portal │    (MoR)     │
+│  /me/settings/  │                              └──────┬───────┘
+│  subscription   │                                     │ webhooks
+│  Invite dialog  │     GET /api/plans                  ▼
+└────────┬────────┘     POST /api/polar/webhook  ┌──────────────┐
+         │              referrals, devoted        │ apps/server  │
+         │         @still/plans                   │ + packages/  │
+         └──────────────────────────────────────► │    auth      │
+                                                  └──────┬───────┘
+                                                         │
+                     plan_tier / plan_feature /          ▼
+                     plan_feature_tier (catalogue)      profile
+                     plan_feature_grant (extras)        patron_referral
 ```
+
+**Existing scaffold** (do not rip out):
+
+- `packages/auth/src/index.ts` — `polar()`, `checkout()`, `portal()` plugins; opt-in when `POLAR_ACCESS_TOKEN` + `POLAR_SUCCESS_URL` set
+- `packages/auth/src/lib/payments.ts` — `polarClient` (fix hardcoded `server: "sandbox"` → env-driven)
+- `createCustomerOnSignUp: true` — Polar customer created on sign-up
+- Checkout `products: []` today — replace with four Polar product IDs (Attuned/Immersed × month/year)
 
 Shared package **`@still/plans`** (new `packages/plans/`):
 
@@ -76,8 +83,8 @@ Server owns catalogue cache (~5 min TTL). Web imports resolver for client gates;
 |--------|------|-------|
 | `subscription_tier` | text | `still \| attuned \| immersed \| devoted`; default `still` |
 | `plan_override` | text nullable | Staff tier; **wins** over subscription |
-| `stripe_customer_id` | text nullable | |
-| `stripe_subscription_id` | text nullable | |
+| `polar_customer_id` | text nullable | Linked on sign-up via Better Auth Polar plugin |
+| `polar_subscription_id` | text nullable | Active subscription id from Polar webhooks |
 | `subscription_interval` | text nullable | `month \| year` |
 | `subscription_status` | text nullable | `active \| past_due \| canceled` |
 | `referred_by_user_id` | text nullable FK → user | Set at signup from referral link |
@@ -197,36 +204,96 @@ Animated GIF uploads map to **`profile_customization`** (immersed).
 
 ---
 
-## Stripe integration
+## Polar integration
+
+### Why Polar (decided 2026-07-05)
+
+- Repo scaffolded with `--payments polar`; `@polar-sh/better-auth` already mounted in `packages/auth`
+- **Merchant of Record** — global VAT/GST/sales tax handled by Polar (fits international patron base)
+- Checkout + customer portal ship via Better Auth plugin — less custom billing code than Stripe-from-scratch
+
+### Polar dashboard setup (manual, pre-implementation)
+
+Create **four subscription products** in Polar (sandbox first, then production org):
+
+| Product | Tier | Interval | Price |
+|---------|------|----------|-------|
+| Attuned Monthly | attuned | month | $3 |
+| Attuned Annual | attuned | year | $24 |
+| Immersed Monthly | immersed | month | $6 |
+| Immersed Annual | immersed | year | $48 |
+
+Create Polar **discount code** `REFERRAL10` (10% off, single use per customer) for referred patrons.
+
+Configure Polar **webhook** endpoint → `POST /api/polar/webhook` on the server.
 
 ### Environment (`packages/env`)
 
-- `STRIPE_SECRET_KEY`
-- `STRIPE_WEBHOOK_SECRET`
-- `STRIPE_PRICE_ATTUNED_MONTHLY`, `STRIPE_PRICE_ATTUNED_YEARLY`
-- `STRIPE_PRICE_IMMERSED_MONTHLY`, `STRIPE_PRICE_IMMERSED_YEARLY`
-- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (if needed)
+Existing:
 
-Create Stripe Coupon **`REFERRAL_10`** (10% once) applied when `referred_by_user_id` set and `referral_discount_redeemed = false`.
+- `POLAR_ACCESS_TOKEN` — org access token
+- `POLAR_SUCCESS_URL` — post-checkout redirect (e.g. `{WEB_ORIGIN}/me/settings/subscription?checkout=success`)
 
-### Routes (Elysia)
+Add:
+
+- `POLAR_WEBHOOK_SECRET` — webhook signature verification
+- `POLAR_SERVER` — `sandbox` | `production` (replaces hardcoded sandbox in `payments.ts`)
+- `POLAR_PRODUCT_ATTUNED_MONTHLY` — Polar product UUID
+- `POLAR_PRODUCT_ATTUNED_YEARLY`
+- `POLAR_PRODUCT_IMMERSED_MONTHLY`
+- `POLAR_PRODUCT_IMMERSED_YEARLY`
+- `POLAR_DISCOUNT_REFERRAL10` — optional discount id for auto-apply at checkout
+
+### Better Auth plugin (`packages/auth/src/index.ts`)
+
+Update existing `buildPolarPlugin()`:
+
+```ts
+checkout({
+  products: [
+    { productId: env.POLAR_PRODUCT_ATTUNED_MONTHLY, slug: "attuned-monthly" },
+    { productId: env.POLAR_PRODUCT_ATTUNED_YEARLY, slug: "attuned-yearly" },
+    { productId: env.POLAR_PRODUCT_IMMERSED_MONTHLY, slug: "immersed-monthly" },
+    { productId: env.POLAR_PRODUCT_IMMERSED_YEARLY, slug: "immersed-yearly" },
+  ],
+  successUrl: env.POLAR_SUCCESS_URL,
+  authenticatedUsersOnly: true,
+}),
+portal(), // already enabled — patron manage/cancel/update card
+```
+
+Web client calls Better Auth client helpers (or Polar-exposed auth routes) for checkout/portal — no custom payment form.
+
+### Routes
 
 | Method | Path | Auth | Purpose |
 |--------|------|------|---------|
-| GET | `/api/plans` | Public | Tiers, features, prices, `purchasable` flag |
-| POST | `/api/billing/checkout` | Session | `{ tier, interval }` → Checkout URL |
-| POST | `/api/billing/portal` | Session | Customer Portal URL |
-| POST | `/api/billing/webhook` | Stripe sig | Sync subscription state |
+| GET | `/api/plans` | Public | Tiers, features, prices, `purchasable` flag, Polar product slugs |
+| — | Better Auth Polar routes | Session | Checkout + portal (via `@polar-sh/better-auth`) |
+| POST | `/api/polar/webhook` | Polar sig | Sync `subscription_tier`, status, Polar ids on profile |
 | POST | `/api/plans/devoted-request` | Session | Devoted invite request → staff notification |
 | GET | `/api/referrals/me` | Session | Link, counts, milestone progress, rewards earned |
-| POST | `/api/referrals/qualify` | Internal/cron | Called when onboarding completes (or inline in onboarding flow) |
+| POST | `/api/referrals/qualify` | Internal | Called when onboarding completes |
 
-### Webhook events
+**Product → tier mapping** (server constant):
 
-- `checkout.session.completed` → set customer/subscription IDs, tier from price map, `subscription_status = active`, mark `referral_discount_redeemed` if coupon used
-- `customer.subscription.updated` → tier + status sync
-- `customer.subscription.deleted` → `subscription_tier = still`, clear subscription fields (keep `plan_override` if staff-set)
-- `invoice.payment_failed` → `past_due`
+```ts
+const POLAR_PRODUCT_TIER: Record<string, { tier: PlanTierId; interval: "month" | "year" }> = {
+  [env.POLAR_PRODUCT_ATTUNED_MONTHLY]: { tier: "attuned", interval: "month" },
+  // …
+};
+```
+
+### Webhook events (Polar)
+
+Handle (exact event names per Polar SDK docs):
+
+- **Subscription created / active** → set `polar_subscription_id`, map product → `subscription_tier` + `subscription_interval`, `subscription_status = active`
+- **Subscription updated** (plan change Attuned ↔ Immersed) → re-map tier from product id
+- **Subscription canceled / revoked** → `subscription_tier = still`, clear subscription fields (keep `plan_override`)
+- **Subscription past_due** → `subscription_status = past_due` (grace until Polar cancels)
+
+On first paid checkout with referral eligibility: apply `REFERRAL10` discount; set `referral_discount_redeemed = true`.
 
 **Precedence:** Webhooks never overwrite `plan_override`. Effective tier always uses override when present.
 
@@ -234,10 +301,10 @@ Create Stripe Coupon **`REFERRAL_10`** (10% once) applied when `referred_by_user
 
 Milestone rewards that grant subscription time:
 
-- Prefer **Stripe Customer Balance** credit OR extend subscription via Stripe API when referrer has active sub
-- Fallback: set time-limited `plan_override` with expiry metadata in `patron_referral_reward.metadata` for users without Stripe customer
+- **Preferred:** Polar subscription benefit / comp via Polar API or `plan_override` with documented expiry in `patron_referral_reward.metadata`
+- **Fallback:** time-limited `plan_override` (Attuned/Immersed) for referrers without active Polar subscription
 
-Identity perks (badges, frames): grant via `plan_feature_grant` or dedicated `preferences.referralRewards` + profile badge slot.
+Identity perks (badges, frames): grant via `plan_feature_grant` or `preferences.referralRewards` + profile badge slot.
 
 ---
 
@@ -299,7 +366,7 @@ Copy in dialog: *"Give friends 10% off their first Attuned or Immersed plan when
 
 - New sidebar item in `ME_ACCOUNT_NAV_ITEMS` (after Appearance)
 - Current effective tier, interval, status badge
-- **Manage subscription** → Stripe Portal
+- **Manage subscription** → Polar customer portal (Better Auth `portal()` plugin)
 - Upgrade CTA when below Immersed
 - Compact referral summary + "Invite friends" opens same dialog
 
@@ -372,7 +439,7 @@ Replace **Pro toggle** with:
 
 ### Launch
 
-Stripe **test mode** until QA pass, then live keys.
+Polar **sandbox** until QA pass (`POLAR_SERVER=sandbox`), then production org + tokens.
 
 ---
 
@@ -383,7 +450,7 @@ Stripe **test mode** until QA pass, then live keys.
 - Per-feature **deny** toggles for staff
 - Global feature kill-switch in `/staff/plans`
 - Native app billing
-- Tax/VAT automation beyond Stripe defaults
+- Custom tax filing (Polar MoR handles remittance)
 - Referral fraud ML (manual void only)
 - Movie/TV detail header invite button (unless trivial extract)
 
@@ -395,7 +462,8 @@ Stripe **test mode** until QA pass, then live keys.
 |------|------|
 | Shared entitlements | `packages/plans/` |
 | DB schema | `packages/db/src/schema/profile.ts`, `plan.ts`, new referral tables |
-| Billing routes | `apps/server/src/routes/billing.ts` |
+| Polar webhooks | `apps/server/src/routes/polar-webhook.ts` |
+| Auth Polar plugin | `packages/auth/src/index.ts`, `packages/auth/src/lib/payments.ts` |
 | Public plans API | `apps/server/src/routes/plans-public.ts` |
 | Referrals | `apps/server/src/routes/referrals.ts`, `lib/referral-qualify.ts` |
 | Pricing page | `apps/web/src/app/pricing/page.tsx` |
