@@ -25,6 +25,7 @@ import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
 import { peopleRoute } from "../routes/people";
 import { planFeaturesRoute } from "../routes/plan-features";
+import { polarWebhookRoute } from "../routes/polar-webhook";
 import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
 import { profilesRoute } from "../routes/profiles";
@@ -147,6 +148,7 @@ export const app = new Elysia({ aot: false })
 	.use(staffFeedbackRoute)
 	.use(adminAssetsRoute)
 	.use(planFeaturesRoute)
+	.use(polarWebhookRoute)
 	.onError(({ error, code, set }) => {
 		console.error(`[server] error code=${code}`, error);
 		// Map Elysia codes to HTTP status so clients do not treat NOT_FOUND as 200 OK.
