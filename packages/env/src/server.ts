@@ -27,6 +27,13 @@ const serverEnv = {
 	BETTER_AUTH_URL: z.url(),
 	POLAR_ACCESS_TOKEN: optionalNonEmptyString(),
 	POLAR_SUCCESS_URL: optionalUrl(),
+	POLAR_WEBHOOK_SECRET: optionalNonEmptyString(),
+	POLAR_SERVER: z.enum(["sandbox", "production"]).default("sandbox"),
+	POLAR_PRODUCT_ATTUNED_MONTHLY: optionalNonEmptyString(),
+	POLAR_PRODUCT_ATTUNED_YEARLY: optionalNonEmptyString(),
+	POLAR_PRODUCT_IMMERSED_MONTHLY: optionalNonEmptyString(),
+	POLAR_PRODUCT_IMMERSED_YEARLY: optionalNonEmptyString(),
+	POLAR_DISCOUNT_REFERRAL10: optionalNonEmptyString(),
 	CORS_ORIGIN: z.url(),
 	NODE_ENV: z
 		.enum(["development", "production", "test"])

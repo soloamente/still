@@ -14,6 +14,7 @@ import { ResetPasswordEmail } from "./emails/reset-password";
 import { VerifyEmail } from "./emails/verify-email";
 import { deleteUserBlobAssets } from "./lib/delete-user-cleanup";
 import { polarClient } from "./lib/payments";
+import { buildPolarCheckoutProducts } from "./lib/polar-checkout-products";
 import { sendEmail } from "./lib/send-email";
 import { ac, roles } from "./permissions";
 
@@ -39,17 +40,16 @@ async function sendAuthEmail(
  * mount it when both required env vars are present.
  */
 function buildPolarPlugin(): BetterAuthPlugin | null {
-	if (!env.POLAR_ACCESS_TOKEN || !env.POLAR_SUCCESS_URL) return null;
+	if (!env.POLAR_ACCESS_TOKEN || !env.POLAR_SUCCESS_URL || !polarClient) {
+		return null;
+	}
 	return polar({
 		client: polarClient,
 		createCustomerOnSignUp: true,
 		enableCustomerPortal: true,
 		use: [
 			checkout({
-				// TODO: replace with the real Polar product id once the Pro tier is
-				// provisioned. Until then we still register the plugin (so the
-				// customer-creation hook fires) but expose no purchasable products.
-				products: [],
+				products: buildPolarCheckoutProducts(),
 				successUrl: env.POLAR_SUCCESS_URL,
 				authenticatedUsersOnly: true,
 			}),
