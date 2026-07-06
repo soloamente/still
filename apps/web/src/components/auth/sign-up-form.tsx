@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import z from "zod";
 import { AuthSubmitButton } from "@/components/auth/auth-submit-button";
 import { authClient } from "@/lib/auth-client";
+import { clearReferralCookie, readReferralCookie } from "@/lib/referral-cookie";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 
 import { Field } from "./field";
 
@@ -38,6 +40,21 @@ export function SignUpForm() {
 				},
 				{
 					onSuccess: async () => {
+						const referralCode = readReferralCookie();
+						if (referralCode) {
+							try {
+								await fetch(`${stillApiOrigin()}/api/referrals/capture`, {
+									method: "POST",
+									credentials: "include",
+									headers: { "Content-Type": "application/json" },
+									body: JSON.stringify({ referralCode }),
+								});
+							} catch (err) {
+								console.error("[sign-up] referral capture failed", err);
+							} finally {
+								clearReferralCookie();
+							}
+						}
 						toast.success(
 							"Check your inbox to verify before sharing publicly.",
 						);

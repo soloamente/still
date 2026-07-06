@@ -4,8 +4,18 @@ import {
 	isNextHandledApiPath,
 	resolveApiRewriteOrigin,
 } from "@/lib/next-handled-api-paths";
+import { applyReferralCookieToResponse } from "@/lib/referral-cookie";
 import { retiredCatalogueRedirectUrl } from "@/lib/retired-catalogue-redirect";
 import { SESSION_COOKIE_NAMES } from "@/lib/session-cookie";
+
+/** Persist `?ref=` on any page response — survives auth redirects before sign-up. */
+function withReferralCapture(
+	req: NextRequest,
+	res: NextResponse,
+): NextResponse {
+	applyReferralCookieToResponse(res, req.nextUrl.searchParams.get("ref"));
+	return res;
+}
 
 /**
  * Lightweight gate: redirects to /sign-in when accessing an authenticated
@@ -51,7 +61,7 @@ export function proxy(req: NextRequest) {
 		const target = new URL(catalogueRedirect, req.nextUrl.origin);
 		url.pathname = target.pathname;
 		url.search = target.search;
-		return NextResponse.redirect(url);
+		return withReferralCapture(req, NextResponse.redirect(url));
 	}
 
 	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
@@ -69,7 +79,7 @@ export function proxy(req: NextRequest) {
 		const url = req.nextUrl.clone();
 		url.pathname = "/sign-in";
 		url.searchParams.set("from", pathname);
-		return NextResponse.redirect(url);
+		return withReferralCapture(req, NextResponse.redirect(url));
 	}
 	// Do not redirect `/sign-in` → `/home` on cookie presence alone: after account
 	// deletion (or ban/revoke) the token can remain in the browser while the
@@ -77,9 +87,12 @@ export function proxy(req: NextRequest) {
 	// Auth routes use `AuthSessionRedirect` for valid sessions instead.
 	const requestHeaders = new Headers(req.headers);
 	requestHeaders.set("x-still-pathname", pathname);
-	return NextResponse.next({
-		request: { headers: requestHeaders },
-	});
+	return withReferralCapture(
+		req,
+		NextResponse.next({
+			request: { headers: requestHeaders },
+		}),
+	);
 }
 
 export const config = {

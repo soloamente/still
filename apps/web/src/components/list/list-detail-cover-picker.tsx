@@ -12,6 +12,8 @@ import { toast } from "sonner";
 
 import type { ListDetailFilmRow } from "@/components/list/list-detail-films-grid";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { ModalSheetScrollScrims } from "@/components/ui/modal-sheet-scroll-scrims";
 import { api } from "@/lib/api";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
@@ -49,6 +51,8 @@ export function ListDetailCoverPicker({
 }) {
 	const router = useRouter();
 	const reduceMotion = useReducedMotion();
+	const { hasFeature } = usePatronEntitlements();
+	const hasListCovers = hasFeature("list_covers");
 	const fileInputId = useId();
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -283,44 +287,55 @@ export function ListDetailCoverPicker({
 											<p className="mb-2 text-center font-medium text-foreground text-sm">
 												From your device
 											</p>
-											<button
-												type="button"
-												disabled={isSaving}
-												onClick={() => fileInputRef.current?.click()}
-												className={cn(
-													"relative mx-auto flex aspect-2/3 w-28 flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl border border-border/60 border-dashed bg-muted/20 px-3 py-4 text-center font-medium text-foreground text-sm",
-													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-													deviceCoverSrc && "border-solid",
-													hasCustomCover &&
-														"ring-2 ring-foreground ring-offset-2 ring-offset-card",
-												)}
-												aria-pressed={hasCustomCover}
-											>
-												{deviceCoverSrc ? (
-													<>
-														{/* biome-ignore lint/performance/noImgElement: current list cover preview */}
-														<img
-															src={deviceCoverSrc}
-															alt=""
-															className="absolute inset-0 size-full object-cover"
-														/>
-														<span className="absolute inset-0 bg-background/45" />
-													</>
-												) : null}
-												<span className="relative z-10 flex flex-col items-center gap-2">
-													{saving === "upload" ? (
-														<Loader2
-															className="size-5 animate-spin"
-															aria-hidden
-														/>
-													) : (
-														<Upload className="size-5 opacity-80" aria-hidden />
+											{hasListCovers ? (
+												<button
+													type="button"
+													disabled={isSaving}
+													onClick={() => fileInputRef.current?.click()}
+													className={cn(
+														"relative mx-auto flex aspect-2/3 w-28 flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl border border-border/60 border-dashed bg-muted/20 px-3 py-4 text-center font-medium text-foreground text-sm",
+														DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+														deviceCoverSrc && "border-solid",
+														hasCustomCover &&
+															"ring-2 ring-foreground ring-offset-2 ring-offset-card",
 													)}
-													<span>
-														{deviceCoverSrc ? "Replace image" : "Upload image"}
+													aria-pressed={hasCustomCover}
+												>
+													{deviceCoverSrc ? (
+														<>
+															{/* biome-ignore lint/performance/noImgElement: current list cover preview */}
+															<img
+																src={deviceCoverSrc}
+																alt=""
+																className="absolute inset-0 size-full object-cover"
+															/>
+															<span className="absolute inset-0 bg-background/45" />
+														</>
+													) : null}
+													<span className="relative z-10 flex flex-col items-center gap-2">
+														{saving === "upload" ? (
+															<Loader2
+																className="size-5 animate-spin"
+																aria-hidden
+															/>
+														) : (
+															<Upload
+																className="size-5 opacity-80"
+																aria-hidden
+															/>
+														)}
+														<span>
+															{deviceCoverSrc
+																? "Replace image"
+																: "Upload image"}
+														</span>
 													</span>
-												</span>
-											</button>
+												</button>
+											) : (
+												<PlanFeatureGate featureKey="list_covers">
+													<span className="sr-only">Upload list cover</span>
+												</PlanFeatureGate>
+											)}
 										</div>
 
 										{films.length > 0 ? (

@@ -11,6 +11,11 @@ import {
 import { and, eq, sql } from "drizzle-orm";
 
 import { deliverNotification } from "./notification-delivery";
+import {
+	loadPatronEntitlements,
+	type PatronEntitlements,
+} from "./patron-entitlements";
+import { patronHasPlanFeature } from "./plan-feature-access";
 import { recordProductEvent } from "./record-product-event";
 
 /** Stored under `profile.preferences` — Task 18 adds the Settings toggle UI. */
@@ -191,6 +196,15 @@ export function buildWatchlistStreamingAlertEmailContent(args: {
 	return { subject, text, html };
 }
 
+/** Patron pref + Attuned entitlement — both required before alerts fire. */
+export function shouldProcessWatchlistStreamingAlerts(
+	preferences: Record<string, unknown> | null,
+	entitlements: Pick<PatronEntitlements, "effectiveTier" | "featureGrants">,
+): boolean {
+	if (!readWatchlistStreamingAlertsPref(preferences)) return false;
+	return patronHasPlanFeature(entitlements, "watchlist_alerts");
+}
+
 async function sendProWatchlistStreamingEmail(args: {
 	userId: string;
 	title: string;
@@ -200,12 +214,15 @@ async function sendProWatchlistStreamingEmail(args: {
 }): Promise<void> {
 	try {
 		const [row] = await db
-			.select({ email: user.email, isPro: profile.isPro })
+			.select({ email: user.email })
 			.from(profile)
 			.innerJoin(user, eq(user.id, profile.userId))
 			.where(eq(profile.userId, args.userId))
 			.limit(1);
-		if (!row?.isPro || !row.email?.trim()) return;
+		if (!row?.email?.trim()) return;
+
+		const entitlements = await loadPatronEntitlements(args.userId);
+		if (!patronHasPlanFeature(entitlements, "watchlist_alerts")) return;
 
 		const { sendEmail } = await import("@still/auth/lib/send-email");
 		const appOrigin = process.env.WEB_APP_ORIGIN?.trim() || "https://sense.app";
@@ -409,7 +426,8 @@ export type WatchlistStreamingRow = {
 export async function processWatchlistStreamingRow(
 	row: WatchlistStreamingRow,
 ): Promise<{ notified: number; baselined: boolean }> {
-	if (!readWatchlistStreamingAlertsPref(row.preferences)) {
+	const entitlements = await loadPatronEntitlements(row.userId);
+	if (!shouldProcessWatchlistStreamingAlerts(row.preferences, entitlements)) {
 		return { notified: 0, baselined: false };
 	}
 

@@ -52,6 +52,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	const profileResult = await fetchMeProfile();
 	const profileFetchFailed = profileResult === PROFILE_FETCH_FAILED;
 	const profile: MeProfile = profileFetchFailed ? null : profileResult;
+	// Only gate when /profiles/me succeeded — API failures must not replay onboarding.
 	if (!profileFetchFailed && patronNeedsOnboarding(profile)) {
 		redirect("/onboarding");
 	}

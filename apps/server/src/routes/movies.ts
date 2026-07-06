@@ -41,6 +41,11 @@ import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { resolveMovieTitleLogoPath } from "../lib/movie-title-logo-resolve";
 import { resolveMovieTrailer } from "../lib/movie-trailer-resolve";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	isPremiumStreamingMonetizationFilter,
+	patronHasPlanFeature,
+} from "../lib/plan-feature-access";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
@@ -566,7 +571,7 @@ export const moviesRoute = new Elysia({
 	})
 	.get(
 		"/discover",
-		async ({ query, user }) => {
+		async ({ query, user, status }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
@@ -598,6 +603,20 @@ export const moviesRoute = new Elysia({
 			)
 				? monetizationRaw
 				: undefined;
+			if (
+				isPremiumStreamingMonetizationFilter(withWatchMonetizationTypes) &&
+				(!user ||
+					!patronHasPlanFeature(
+						await loadPatronEntitlements(user.id),
+						"streaming_filters",
+					))
+			) {
+				return status(403, {
+					error: "Streaming filters require Attuned",
+					code: "PLAN_FEATURE_REQUIRED",
+					featureKey: "streaming_filters",
+				});
+			}
 			const withReleaseTypesResolved =
 				withReleaseTypes ??
 				(withWatchMonetizationTypes !== undefined ? "4" : undefined);

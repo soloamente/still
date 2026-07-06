@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
+import { computePatronEntitlements } from "./patron-entitlements";
 import {
 	buildWatchlistStreamingAlertEmailContent,
 	diffWatchlistStreamingProviders,
@@ -8,6 +9,7 @@ import {
 	formatWatchlistStreamingPill,
 	readCatalogWatchRegionPref,
 	readWatchlistStreamingAlertsPref,
+	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
 } from "./watchlist-streaming-alerts";
 
@@ -30,6 +32,26 @@ describe("readWatchlistStreamingAlertsPref", () => {
 		expect(
 			readWatchlistStreamingAlertsPref({ watchlistStreamingAlerts: false }),
 		).toBe(false);
+	});
+});
+
+describe("shouldProcessWatchlistStreamingAlerts", () => {
+	test("skips Still patrons even when pref is on", () => {
+		const still = computePatronEntitlements({
+			subscriptionTier: "still",
+			planOverride: null,
+			featureGrantKeys: [],
+		});
+		expect(shouldProcessWatchlistStreamingAlerts({}, still)).toBe(false);
+	});
+
+	test("runs for Attuned patrons with pref enabled", () => {
+		const attuned = computePatronEntitlements({
+			subscriptionTier: "attuned",
+			planOverride: null,
+			featureGrantKeys: [],
+		});
+		expect(shouldProcessWatchlistStreamingAlerts({}, attuned)).toBe(true);
 	});
 });
 

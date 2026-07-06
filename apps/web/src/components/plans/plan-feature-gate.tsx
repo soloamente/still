@@ -34,6 +34,9 @@ export function requiredTierLabelForFeature(
 ): "Attuned" | "Immersed" | "Devoted" {
 	const tier = MIN_TIER_FOR_FEATURE[featureKey];
 	switch (tier) {
+		case "still":
+			// MIN_TIER_FOR_FEATURE never maps to Still — satisfy PlanTierId exhaustiveness.
+			return "Attuned";
 		case "attuned":
 			return "Attuned";
 		case "immersed":

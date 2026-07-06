@@ -1,170 +1,737 @@
-{
+﻿{
 	"version": 1,
 	"transcripts": {
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\47ab69ba-24dc-4ae6-b090-da5c65159229\\47ab69ba-24dc-4ae6-b090-da5c65159229.jsonl": {
-			"mtimeMs": 1781682331201
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ac0fe5eb-1860-42a7-8ee5-2f47c1d0dec8\\ac0fe5eb-1860-42a7-8ee5-2f47c1d0dec8.jsonl": {
+			"mtimeMs": 1782221773979
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\aff0a659-8829-448a-982a-b78bf9822c2e\\aff0a659-8829-448a-982a-b78bf9822c2e.jsonl": {
-			"mtimeMs": 1779463714864
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a41a2666-2e58-4883-8b7a-9c3c0f646400\\subagents\\3420a3bf-094f-40ca-b474-34361b44456f.jsonl": {
+			"mtimeMs": 1780701604858
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\67e4a492-7f7d-42af-92c9-d629db8d33d4\\67e4a492-7f7d-42af-92c9-d629db8d33d4.jsonl": {
-			"mtimeMs": 1780661625330
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\12d5949f-6229-4524-bea0-3f549bf2272f\\12d5949f-6229-4524-bea0-3f549bf2272f.jsonl": {
+			"mtimeMs": 1779491844014
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\0881a535-8ddb-465c-8ce1-91e1983e0825\\0881a535-8ddb-465c-8ce1-91e1983e0825.jsonl": {
-			"mtimeMs": 1779294468389
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\e1add005-3dc4-414e-a08c-2d89f01d9f5b\\e1add005-3dc4-414e-a08c-2d89f01d9f5b.jsonl": {
+			"mtimeMs": 1781640312732
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\a9b0293a-0664-41fa-a722-a7ce596c1dd1\\subagents\\ac71241f-a37d-4b68-a58d-3c8316361c32.jsonl": {
-			"mtimeMs": 1780493292541
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\88aa3cb6-80c0-4bdd-9524-d980c192e9ea\\subagents\\2c3da59c-c469-4169-825a-68703eb3b9a9.jsonl": {
+			"mtimeMs": 1783036253602
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\cc94a441-5595-4f0f-979c-e37756fa8040\\cc94a441-5595-4f0f-979c-e37756fa8040.jsonl": {
-			"mtimeMs": 1779980067876
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\9db979af-7c72-49a4-b44c-d1e77e76f28f.jsonl": {
+			"mtimeMs": 1781051595327
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\978a93c5-e390-4e00-b313-6bfed55bb943\\978a93c5-e390-4e00-b313-6bfed55bb943.jsonl": {
-			"mtimeMs": 1780750508380
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\d6d0f57c-1278-43e6-b4c1-27b608960001.jsonl": {
+			"mtimeMs": 1781082465315
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\6ddc9a5c-fcb3-4a56-9bc0-5f9d6db0e645\\6ddc9a5c-fcb3-4a56-9bc0-5f9d6db0e645.jsonl": {
-			"mtimeMs": 1779019074878
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\6cdf7b8c-1c67-4489-9dc7-7eb24956e77b\\6cdf7b8c-1c67-4489-9dc7-7eb24956e77b.jsonl": {
+			"mtimeMs": 1781079439056
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\bc859443-9dec-4fb1-a9d8-f69ba5bf4c29\\bc859443-9dec-4fb1-a9d8-f69ba5bf4c29.jsonl": {
-			"mtimeMs": 1779018619479
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\39e82990-fdfa-46b8-8c1d-a73aa3240979.jsonl": {
+			"mtimeMs": 1781042414805
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\6bfc34f7-078f-43b2-9efa-afaa5992ddbb\\subagents\\8463046a-d958-4295-9c29-731b34c3465b.jsonl": {
-			"mtimeMs": 1780674994670
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9fdef040-f74d-4d13-925e-b7ff5b7f9207\\9fdef040-f74d-4d13-925e-b7ff5b7f9207.jsonl": {
+			"mtimeMs": 1780936585431
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\cf70fc70-f8c3-455d-aae6-fd152eef03e6\\cf70fc70-f8c3-455d-aae6-fd152eef03e6.jsonl": {
-			"mtimeMs": 1779287112619
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e885828-e997-4ce3-9082-3925dc82bb98\\8e885828-e997-4ce3-9082-3925dc82bb98.jsonl": {
+			"mtimeMs": 1779237810016
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\c5136d41-cf4e-40b6-ad54-890858ceb879\\c5136d41-cf4e-40b6-ad54-890858ceb879.jsonl": {
-			"mtimeMs": 1780742312056
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\b82bdf11-4575-4189-ab2e-120145994121\\b82bdf11-4575-4189-ab2e-120145994121.jsonl": {
+			"mtimeMs": 1781518235535
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\6bfc34f7-078f-43b2-9efa-afaa5992ddbb\\6bfc34f7-078f-43b2-9efa-afaa5992ddbb.jsonl": {
-			"mtimeMs": 1780676775290
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\457159db-037f-486a-957e-c61f2d863318\\457159db-037f-486a-957e-c61f2d863318.jsonl": {
+			"mtimeMs": 1779233475730
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\75dad37d-9ae6-40ca-a4f5-d24a089f777b\\75dad37d-9ae6-40ca-a4f5-d24a089f777b.jsonl": {
-			"mtimeMs": 1783082768019
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\62e9a5cf-b432-4908-8a47-93ff2ee7de26\\subagents\\fdab20a7-bd4a-4dcc-89a0-8cb4fa5051c4.jsonl": {
+			"mtimeMs": 1780325493781
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\30b60830-0933-4c0a-b5ea-9012b8cb4553\\subagents\\f5993f55-4aab-4e93-88c2-9d17141dd59f.jsonl": {
-			"mtimeMs": 1783003353304
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\0fa555d8-921a-4256-80f8-fa4aa07461b8.jsonl": {
+			"mtimeMs": 1781053083658
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\19bcca0d-69b8-4339-a7c2-9f2706115f3a\\19bcca0d-69b8-4339-a7c2-9f2706115f3a.jsonl": {
-			"mtimeMs": 1779985816428
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ac1e2618-6c98-4b3f-9f51-87e5ce8159f6\\ac1e2618-6c98-4b3f-9f51-87e5ce8159f6.jsonl": {
+			"mtimeMs": 1780717002411
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\45fb1a6a-0bf0-4731-b5a4-84261a107dcd\\45fb1a6a-0bf0-4731-b5a4-84261a107dcd.jsonl": {
-			"mtimeMs": 1780661845820
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\1dacf7ff-eae4-4e6f-93e5-e392d18c10cb.jsonl": {
+			"mtimeMs": 1781039711795
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\97082855-deb0-4a4d-aa6a-4e947a542aab\\97082855-deb0-4a4d-aa6a-4e947a542aab.jsonl": {
-			"mtimeMs": 1781523725254
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\466c9a2a-af9a-465a-8115-db321010ef3d.jsonl": {
+			"mtimeMs": 1781039691957
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\ecde5240-eff6-47c0-8296-23b0e7918803\\ecde5240-eff6-47c0-8296-23b0e7918803.jsonl": {
-			"mtimeMs": 1780650673920
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c1c37a7c-c46b-4e55-85a7-cbf6beed358f\\c1c37a7c-c46b-4e55-85a7-cbf6beed358f.jsonl": {
+			"mtimeMs": 1779914134165
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2291274a-5373-4728-8d3a-32f11c049100\\subagents\\f79a4154-9857-4c0c-a6c3-dc68ab5c9d65.jsonl": {
-			"mtimeMs": 1779972454470
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\b9840178-23da-4f65-9912-3e3a7cfaa1c8.jsonl": {
+			"mtimeMs": 1781051164094
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\40f3935a-da1e-4905-9cb0-d847d286e68e\\40f3935a-da1e-4905-9cb0-d847d286e68e.jsonl": {
-			"mtimeMs": 1783001917056
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3f12d9e2-7e86-411e-b56d-b8ef62408f9c\\subagents\\3a68bc47-d218-4409-9ae8-011714c0bc1e.jsonl": {
+			"mtimeMs": 1780936935755
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\03f53769-eaa9-4101-974a-564216c1ab93\\03f53769-eaa9-4101-974a-564216c1ab93.jsonl": {
-			"mtimeMs": 1779467244667
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5eaa55d6-db56-436f-8f18-0d2bd34b7547\\5eaa55d6-db56-436f-8f18-0d2bd34b7547.jsonl": {
+			"mtimeMs": 1779154139176
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\744a0e90-b009-4601-a3ae-4dfc418ad4da\\744a0e90-b009-4601-a3ae-4dfc418ad4da.jsonl": {
-			"mtimeMs": 1780672476813
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\965714f0-f216-4c34-ad07-ee6afb5e00c7\\965714f0-f216-4c34-ad07-ee6afb5e00c7.jsonl": {
+			"mtimeMs": 1779237722899
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\fc7c3da5-dbc9-4fa8-8397-67d775333a2d\\fc7c3da5-dbc9-4fa8-8397-67d775333a2d.jsonl": {
-			"mtimeMs": 1780494679700
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\da6bb32b-be6a-45fb-ab32-eade98b44019\\subagents\\036fe1ee-0074-4717-ac21-e80918f2223f.jsonl": {
+			"mtimeMs": 1781622563322
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\62e75a8f-1e95-4db1-80a7-b476ef6d24a5\\62e75a8f-1e95-4db1-80a7-b476ef6d24a5.jsonl": {
-			"mtimeMs": 1779295443270
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90badba6-0c2e-462f-9f23-4d470bd3ebd8\\90badba6-0c2e-462f-9f23-4d470bd3ebd8.jsonl": {
+			"mtimeMs": 1778985714562
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\dfc6a244-2cd4-47aa-9ae1-c3bbf8d56614\\dfc6a244-2cd4-47aa-9ae1-c3bbf8d56614.jsonl": {
-			"mtimeMs": 1779289684180
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\875524be-e5fa-4ce6-a9f5-c00173e3d683\\875524be-e5fa-4ce6-a9f5-c00173e3d683.jsonl": {
+			"mtimeMs": 1779784437974
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2f43a4bc-c2e5-49a0-b494-82ef4d594a8e\\2f43a4bc-c2e5-49a0-b494-82ef4d594a8e.jsonl": {
-			"mtimeMs": 1779450164842
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\4893ead4-c840-4059-8f9b-2a02ad0a1db3.jsonl": {
+			"mtimeMs": 1781037607146
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\86284db7-57c5-491f-badc-66320762fae3\\86284db7-57c5-491f-badc-66320762fae3.jsonl": {
-			"mtimeMs": 1779451071264
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d23f0287-67f0-487f-a4e4-505be3c47c28\\d23f0287-67f0-487f-a4e4-505be3c47c28.jsonl": {
+			"mtimeMs": 1779499188188
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\3fcaec8a-a3a8-498e-a026-3dcc533eb574\\3fcaec8a-a3a8-498e-a026-3dcc533eb574.jsonl": {
-			"mtimeMs": 1779441722893
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\a4b96b51-cd51-4dca-b576-81ba75e11c12.jsonl": {
+			"mtimeMs": 1781165047511
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\8cf5ed20-202d-44fb-b106-9efafe3d8cec\\8cf5ed20-202d-44fb-b106-9efafe3d8cec.jsonl": {
-			"mtimeMs": 1779267472717
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ee28beb5-51a0-490b-854d-970b2410d231\\subagents\\cf1d1573-17d0-476a-9f5b-53dd12417c28.jsonl": {
+			"mtimeMs": 1780771360871
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\fc7c3da5-dbc9-4fa8-8397-67d775333a2d\\subagents\\ad188e78-869d-4111-8a98-38dafce62d0a.jsonl": {
-			"mtimeMs": 1780494448500
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\f2f6a61f-c2aa-4fdf-a5b4-c9208f491264.jsonl": {
+			"mtimeMs": 1779352239409
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\d94381ab-0858-42e8-a8a0-c7570fb5fb10\\d94381ab-0858-42e8-a8a0-c7570fb5fb10.jsonl": {
-			"mtimeMs": 1782977962580
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\09772f33-199e-4bb4-a068-7a598481ebb5\\09772f33-199e-4bb4-a068-7a598481ebb5.jsonl": {
+			"mtimeMs": 1781349918603
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\bcc475dc-276f-4003-a3bd-56778788ed84\\bcc475dc-276f-4003-a3bd-56778788ed84.jsonl": {
-			"mtimeMs": 1781273386892
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\da6bb32b-be6a-45fb-ab32-eade98b44019\\da6bb32b-be6a-45fb-ab32-eade98b44019.jsonl": {
+			"mtimeMs": 1781636820189
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\fbf9ae49-2544-4d3b-9172-05ac8be9a2f2\\subagents\\72d44f0a-ba7e-4028-a322-4dccbd5744cd.jsonl": {
-			"mtimeMs": 1783068114602
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\55de2f67-5531-402b-8726-a314905a3502\\55de2f67-5531-402b-8726-a314905a3502.jsonl": {
+			"mtimeMs": 1779216800590
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\30b60830-0933-4c0a-b5ea-9012b8cb4553\\30b60830-0933-4c0a-b5ea-9012b8cb4553.jsonl": {
-			"mtimeMs": 1783008061098
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\e3b3e343-623f-438e-abe5-c67dfa8ad96b.jsonl": {
+			"mtimeMs": 1781037355640
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2357a649-b862-45d5-8c24-eec5f7a66ab9\\2357a649-b862-45d5-8c24-eec5f7a66ab9.jsonl": {
-			"mtimeMs": 1780746256336
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d19d0c90-271b-439d-85b8-87c277297d21\\subagents\\74e18f89-d7a0-4e60-8220-4b1825973af7.jsonl": {
+			"mtimeMs": 1779430057387
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\bdc138b9-f7d4-4489-90d0-d4bec3be7d9c\\bdc138b9-f7d4-4489-90d0-d4bec3be7d9c.jsonl": {
-			"mtimeMs": 1779969802928
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ee51eea3-7f70-4cce-a9be-3cab8685ca98\\subagents\\7f7183f6-0299-40bf-85c0-89c23c208295.jsonl": {
+			"mtimeMs": 1779908985854
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\75dad37d-9ae6-40ca-a4f5-d24a089f777b\\subagents\\629a33e4-5abb-47f4-ac5e-a3b00d7de206.jsonl": {
-			"mtimeMs": 1783082809559
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\35b9815f-9075-4a7b-ae21-453577d1fac0\\subagents\\5e6586c9-38e9-45c5-99ca-7afa75c597d1.jsonl": {
+			"mtimeMs": 1780779790164
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2291274a-5373-4728-8d3a-32f11c049100\\2291274a-5373-4728-8d3a-32f11c049100.jsonl": {
-			"mtimeMs": 1779977138079
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3022c45f-e462-4dfd-8ed6-479916fab853\\3022c45f-e462-4dfd-8ed6-479916fab853.jsonl": {
+			"mtimeMs": 1781091596636
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\78229bb2-7d14-49ca-895b-055c045f7ab2\\78229bb2-7d14-49ca-895b-055c045f7ab2.jsonl": {
-			"mtimeMs": 1783069949440
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2e333707-4f5b-49f8-99ed-1e86847c7076\\2e333707-4f5b-49f8-99ed-1e86847c7076.jsonl": {
+			"mtimeMs": 1781084104448
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\fbf9ae49-2544-4d3b-9172-05ac8be9a2f2\\fbf9ae49-2544-4d3b-9172-05ac8be9a2f2.jsonl": {
-			"mtimeMs": 1783068142021
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\f2ff2dc6-fc43-437d-bd73-e186428c1621.jsonl": {
+			"mtimeMs": 1780237736677
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\e0ae32a6-9388-43e3-80df-f716cdc06e4f\\e0ae32a6-9388-43e3-80df-f716cdc06e4f.jsonl": {
-			"mtimeMs": 1779295348951
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\6fbeb92c-4a11-4413-9e20-e59a6254ec11.jsonl": {
+			"mtimeMs": 1781082564738
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\eb7ca80b-9a46-4389-890a-f2b1fe03a4b5\\eb7ca80b-9a46-4389-890a-f2b1fe03a4b5.jsonl": {
-			"mtimeMs": 1779440708342
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ad702f4e-1a0c-4514-a66b-fb34e2221b08\\ad702f4e-1a0c-4514-a66b-fb34e2221b08.jsonl": {
+			"mtimeMs": 1779198018582
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\7b2279fb-abe6-44a7-9aae-e9026596ad52\\7b2279fb-abe6-44a7-9aae-e9026596ad52.jsonl": {
-			"mtimeMs": 1781525836372
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0e3546ef-f29b-4ac9-b10b-5904fb72c67e\\subagents\\0132fc54-f7df-45a0-ab32-e12e417a6b35.jsonl": {
+			"mtimeMs": 1779137975245
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\a2cd3631-9fd4-4404-a5a2-91a83447bc29\\a2cd3631-9fd4-4404-a5a2-91a83447bc29.jsonl": {
-			"mtimeMs": 1781277412179
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8f0b60e8-5978-48b4-ba8f-fb72cc674c14\\8f0b60e8-5978-48b4-ba8f-fb72cc674c14.jsonl": {
+			"mtimeMs": 1781385158670
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\6bfc34f7-078f-43b2-9efa-afaa5992ddbb\\subagents\\6275d43f-29b5-47dc-8533-56fcebbfa220.jsonl": {
-			"mtimeMs": 1780674742617
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\050e6d91-23a9-44d3-b4b9-f633d837c652\\subagents\\e8ec47a3-4515-4ec5-a30a-c342a105fb36.jsonl": {
+			"mtimeMs": 1778799428709
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\a9b0293a-0664-41fa-a722-a7ce596c1dd1\\a9b0293a-0664-41fa-a722-a7ce596c1dd1.jsonl": {
-			"mtimeMs": 1780493434288
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8a92c96a-e20a-488e-b1c2-2d8c1322f431\\8a92c96a-e20a-488e-b1c2-2d8c1322f431.jsonl": {
+			"mtimeMs": 1781089439315
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\d94381ab-0858-42e8-a8a0-c7570fb5fb10\\subagents\\2254fd33-c5ec-4de4-9510-c69fa34bae70.jsonl": {
-			"mtimeMs": 1782977408564
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\13feab68-76f5-4e02-808a-66172094de1f.jsonl": {
+			"mtimeMs": 1781081712501
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\f2cca4cf-fb44-4a34-91b7-b5dba8fc5cfe\\f2cca4cf-fb44-4a34-91b7-b5dba8fc5cfe.jsonl": {
-			"mtimeMs": 1779269492691
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\1b0b6c7d-f454-4adb-b123-26c3e64303a7\\1b0b6c7d-f454-4adb-b123-26c3e64303a7.jsonl": {
+			"mtimeMs": 1783112875783
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\042fa713-5772-4a7a-a028-cb86f7cbba35\\042fa713-5772-4a7a-a028-cb86f7cbba35.jsonl": {
-			"mtimeMs": 1779279760499
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f5a93989-17d3-48b6-a754-65f90b04cb3a\\f5a93989-17d3-48b6-a754-65f90b04cb3a.jsonl": {
+			"mtimeMs": 1779151796154
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\c9d40f18-23a2-4581-ab01-118710068159\\c9d40f18-23a2-4581-ab01-118710068159.jsonl": {
-			"mtimeMs": 1781247078408
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a4cf2386-c37f-42d2-951f-48c1fa322622\\subagents\\d9141a05-5f35-45f2-9122-e2ea522122cf.jsonl": {
+			"mtimeMs": 1779130243205
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\f7e021bd-924d-4883-8595-8f91e3a7091d\\f7e021bd-924d-4883-8595-8f91e3a7091d.jsonl": {
-			"mtimeMs": 1780659586385
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f1262f06-f0c6-4c1c-8aed-724a0a1e8ee9\\subagents\\5be5de5b-9d0e-4bb0-8eb3-0a8421d3b12b.jsonl": {
+			"mtimeMs": 1781034239685
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2291274a-5373-4728-8d3a-32f11c049100\\subagents\\14480912-9564-41c1-aa3e-0cd1d8204920.jsonl": {
-			"mtimeMs": 1779972164493
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\55de2f67-5531-402b-8726-a314905a3502\\subagents\\df2b6ac1-fe12-4284-8075-2639e2c20e71.jsonl": {
+			"mtimeMs": 1779213790713
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\2291274a-5373-4728-8d3a-32f11c049100\\subagents\\5168d19b-330d-4af7-88a3-78a9dc96dfc9.jsonl": {
-			"mtimeMs": 1779972816541
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\897c20b3-968b-45c7-add0-a78f600020e2.jsonl": {
+			"mtimeMs": 1781165269324
 		},
-		"C:\\Users\\Utente\\.cursor\\projects\\c-Users-Utente-Documents-still\\agent-transcripts\\aea0dda0-879c-42e8-8b1c-befccd02a57e\\aea0dda0-879c-42e8-8b1c-befccd02a57e.jsonl": {
-			"mtimeMs": 1780673279944
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3f12d9e2-7e86-411e-b56d-b8ef62408f9c\\3f12d9e2-7e86-411e-b56d-b8ef62408f9c.jsonl": {
+			"mtimeMs": 1781018757914
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3f12d9e2-7e86-411e-b56d-b8ef62408f9c\\subagents\\de964d2f-e4bb-41a9-a204-c7186e9c1bf7.jsonl": {
+			"mtimeMs": 1780944499546
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0b07d146-bb7a-4746-b339-5eb26d5b963f\\0b07d146-bb7a-4746-b339-5eb26d5b963f.jsonl": {
+			"mtimeMs": 1780525318554
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\1321f9d7-1227-4b05-8122-48e7efaeed91\\subagents\\86c039d4-1e01-4cd0-8251-ddcb88759a74.jsonl": {
+			"mtimeMs": 1781019462130
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\8b717764-b4d0-4679-bd16-9905808fd6fd.jsonl": {
+			"mtimeMs": 1781038836992
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4f5e3eb4-028e-421b-8f9b-24cc16a4bec2\\4f5e3eb4-028e-421b-8f9b-24cc16a4bec2.jsonl": {
+			"mtimeMs": 1779238565730
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\fcbf75f4-79de-46bf-8c92-1617ed302d4d\\fcbf75f4-79de-46bf-8c92-1617ed302d4d.jsonl": {
+			"mtimeMs": 1782900354133
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c417dc57-4d64-493f-ba70-e0dca8a26aa7\\subagents\\440e5538-3707-473c-b14c-df36feb7120f.jsonl": {
+			"mtimeMs": 1782901934559
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\970b74e5-3d89-4bf1-96ba-f9228bfc604a\\970b74e5-3d89-4bf1-96ba-f9228bfc604a.jsonl": {
+			"mtimeMs": 1779152117341
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\7eef5e8f-c2c2-4d08-bf41-58fed618c521.jsonl": {
+			"mtimeMs": 1781165305722
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d516b9a0-f7fe-4898-83b1-301403518cde\\d516b9a0-f7fe-4898-83b1-301403518cde.jsonl": {
+			"mtimeMs": 1780359750088
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4399969c-ed3e-4178-b00f-a12108f8b038\\4399969c-ed3e-4178-b00f-a12108f8b038.jsonl": {
+			"mtimeMs": 1780910364002
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a41a2666-2e58-4883-8b7a-9c3c0f646400\\a41a2666-2e58-4883-8b7a-9c3c0f646400.jsonl": {
+			"mtimeMs": 1780708791283
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\90657bd6-daf5-44f6-978c-031eecb6a3e4.jsonl": {
+			"mtimeMs": 1781046246288
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\ef7b574f-81ce-4022-92bf-a5db2f44fb20.jsonl": {
+			"mtimeMs": 1781165438787
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\243a102f-d09e-47d1-8ab8-0389419cef9a\\243a102f-d09e-47d1-8ab8-0389419cef9a.jsonl": {
+			"mtimeMs": 1783203636873
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\0c2faf99-6678-4c12-b8e1-65114f6ad4c1.jsonl": {
+			"mtimeMs": 1779367800831
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\98478977-b2d1-49c3-a43d-b4b91543ba8d.jsonl": {
+			"mtimeMs": 1781052863460
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9dc0bcb1-5b82-4a43-8457-7f45fe2977d6\\9dc0bcb1-5b82-4a43-8457-7f45fe2977d6.jsonl": {
+			"mtimeMs": 1779409975728
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\70a240b1-e92d-4adf-a31f-69292ed53295.jsonl": {
+			"mtimeMs": 1781164940257
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\327c15f2-319f-4594-b990-c6db40012d74.jsonl": {
+			"mtimeMs": 1780048529751
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\13108fb3-cb88-40d1-bd7a-26153b2e9bfa\\13108fb3-cb88-40d1-bd7a-26153b2e9bfa.jsonl": {
+			"mtimeMs": 1783019521099
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\f7008e28-9f66-48e7-bf18-647a5dab8f31.jsonl": {
+			"mtimeMs": 1781082320286
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\458ab252-3f72-4dca-88bc-0fb5edbe53c2\\subagents\\f6db893a-3a5d-465b-9972-567c341544a8.jsonl": {
+			"mtimeMs": 1782928276509
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\911b1ff2-f1f7-42fb-b873-7ae72df8f886\\911b1ff2-f1f7-42fb-b873-7ae72df8f886.jsonl": {
+			"mtimeMs": 1781562312265
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\e3b3e343-623f-438e-abe5-c67dfa8ad96b\\e3b3e343-623f-438e-abe5-c67dfa8ad96b.jsonl": {
+			"mtimeMs": 1781037362694
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\35b9815f-9075-4a7b-ae21-453577d1fac0\\35b9815f-9075-4a7b-ae21-453577d1fac0.jsonl": {
+			"mtimeMs": 1780854667914
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\70dedec4-9c02-42b7-973c-4eda43bd754d.jsonl": {
+			"mtimeMs": 1781083049933
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a9cd7e0e-f689-4724-8d8c-3a8343aadc42\\a9cd7e0e-f689-4724-8d8c-3a8343aadc42.jsonl": {
+			"mtimeMs": 1781082166338
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8f0b60e8-5978-48b4-ba8f-fb72cc674c14\\subagents\\cdc374aa-9e94-41d8-baf7-2bca9a4a169c.jsonl": {
+			"mtimeMs": 1781383259109
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0e3546ef-f29b-4ac9-b10b-5904fb72c67e\\0e3546ef-f29b-4ac9-b10b-5904fb72c67e.jsonl": {
+			"mtimeMs": 1779147762775
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\27391632-1281-46f7-950c-69c0d2190e22\\27391632-1281-46f7-950c-69c0d2190e22.jsonl": {
+			"mtimeMs": 1781363181099
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\435270f8-1bfe-4c6b-a3a6-fbcccef9422f\\subagents\\60ad7d0f-2ac7-42e9-9742-a7489e9e4ef2.jsonl": {
+			"mtimeMs": 1781204701632
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2740032e-f3a7-4989-a95b-010c5ada2ba9\\2740032e-f3a7-4989-a95b-010c5ada2ba9.jsonl": {
+			"mtimeMs": 1781038768973
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\1f7d6eda-0b3e-49ca-a6d7-32aea42587ea.jsonl": {
+			"mtimeMs": 1781082357576
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8f0b60e8-5978-48b4-ba8f-fb72cc674c14\\subagents\\4ab5507e-08be-4f09-a367-e735eb978d1f.jsonl": {
+			"mtimeMs": 1781368160499
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\61aacf73-b901-4355-b0ae-5f99f7adbc2e\\61aacf73-b901-4355-b0ae-5f99f7adbc2e.jsonl": {
+			"mtimeMs": 1779150062598
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c1727ecc-a84a-4920-b1f9-f7f24ecbbb93\\c1727ecc-a84a-4920-b1f9-f7f24ecbbb93.jsonl": {
+			"mtimeMs": 1779363746003
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\63993f3a-97c1-4375-9196-9586cbd01d5d\\63993f3a-97c1-4375-9196-9586cbd01d5d.jsonl": {
+			"mtimeMs": 1781092019725
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\84d48251-55a2-40e9-ab65-4fdee9df6477\\subagents\\9d0b595e-a2a3-47b7-a496-40923c239eed.jsonl": {
+			"mtimeMs": 1780012458103
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\82685e90-445e-4f30-8c79-14785e104ec4\\subagents\\5080d018-a621-4fe6-aecb-ca224998ca43.jsonl": {
+			"mtimeMs": 1779221486424
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\d428b9b4-f2ee-43db-8459-a80d05167fb4.jsonl": {
+			"mtimeMs": 1781051478233
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\023fc8ec-36b0-4a7c-8c22-b9e1d0d109af.jsonl": {
+			"mtimeMs": 1781052661073
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\4180c8b3-541a-441a-9a4c-c7754ff6e0f4.jsonl": {
+			"mtimeMs": 1781052958525
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e4ad9dd-3f34-43d2-ad50-1355893e5e17\\8e4ad9dd-3f34-43d2-ad50-1355893e5e17.jsonl": {
+			"mtimeMs": 1779148930680
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\d9bb2312-7aea-4cf7-b55b-80d69b08b5a1.jsonl": {
+			"mtimeMs": 1781051115284
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5c8b36ff-a32c-4929-bb58-08282fa0e518\\5c8b36ff-a32c-4929-bb58-08282fa0e518.jsonl": {
+			"mtimeMs": 1779238132511
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d7d3d51c-d99d-400f-8c10-4b9d6a7ef884\\d7d3d51c-d99d-400f-8c10-4b9d6a7ef884.jsonl": {
+			"mtimeMs": 1779061723826
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\ac94400a-762f-4ffa-8221-23bfa1f74ba4.jsonl": {
+			"mtimeMs": 1780102548420
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4b286ff1-605e-47ee-892f-973795e368b2\\4b286ff1-605e-47ee-892f-973795e368b2.jsonl": {
+			"mtimeMs": 1781302258571
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2b35c828-e06a-4b13-b127-32041f49e5cb\\2b35c828-e06a-4b13-b127-32041f49e5cb.jsonl": {
+			"mtimeMs": 1781454272913
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8aac5a0c-b059-4cae-ae48-7f53280c498a\\subagents\\33b3d200-51a9-4d4f-80d4-8ddc52ecf8d1.jsonl": {
+			"mtimeMs": 1778875625866
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\adda0eb2-4678-491a-9188-8e2255b921f7.jsonl": {
+			"mtimeMs": 1781082993173
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\505dcc3b-bbc2-4580-a218-91ca418a8483\\505dcc3b-bbc2-4580-a218-91ca418a8483.jsonl": {
+			"mtimeMs": 1780718407641
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3f12d9e2-7e86-411e-b56d-b8ef62408f9c\\subagents\\2de0e1d3-3ef0-4dae-9760-746978169f32.jsonl": {
+			"mtimeMs": 1780978394422
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\083a20ad-febd-4ff9-bc63-8607f42f261f\\083a20ad-febd-4ff9-bc63-8607f42f261f.jsonl": {
+			"mtimeMs": 1781314747936
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\08cb9766-bb03-4a11-b6eb-eb93bd2d8962\\08cb9766-bb03-4a11-b6eb-eb93bd2d8962.jsonl": {
+			"mtimeMs": 1781097683520
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\a3e05e48-8cc7-49ba-80ea-d440cae9dac1.jsonl": {
+			"mtimeMs": 1779315471256
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a01d5f2a-2f4a-4c21-aa54-0d6477d61c7d\\subagents\\721e4942-33a0-421f-a59c-538473aae6c9.jsonl": {
+			"mtimeMs": 1781553330964
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\458ab252-3f72-4dca-88bc-0fb5edbe53c2\\458ab252-3f72-4dca-88bc-0fb5edbe53c2.jsonl": {
+			"mtimeMs": 1782940323252
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\9c983164-c920-4099-be19-fdd46762f237.jsonl": {
+			"mtimeMs": 1783208203161
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ee28beb5-51a0-490b-854d-970b2410d231\\subagents\\e5f4f008-47bb-4c55-acf3-fa0014bd4531.jsonl": {
+			"mtimeMs": 1780773529842
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d537fd57-dda7-46a5-bee9-4ffd9fd2b90d\\d537fd57-dda7-46a5-bee9-4ffd9fd2b90d.jsonl": {
+			"mtimeMs": 1783037983421
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\42507825-44a5-4d32-a658-65f8aa02b0af\\42507825-44a5-4d32-a658-65f8aa02b0af.jsonl": {
+			"mtimeMs": 1781318204341
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\8c524b5b-d169-4797-8a9b-9f8d70577d36.jsonl": {
+			"mtimeMs": 1783203246989
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\035c652e-7ae0-48b7-8c4a-63fcbe4e1a1a\\035c652e-7ae0-48b7-8c4a-63fcbe4e1a1a.jsonl": {
+			"mtimeMs": 1778978356358
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\b67f00c7-f994-4191-bc19-e5f15da4fe58\\b67f00c7-f994-4191-bc19-e5f15da4fe58.jsonl": {
+			"mtimeMs": 1779480972348
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\eaccfe11-60af-4e90-ab01-32ec5eea4ba5\\eaccfe11-60af-4e90-ab01-32ec5eea4ba5.jsonl": {
+			"mtimeMs": 1781646860653
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\592ae28e-bd11-47e1-b081-208ba666a424\\592ae28e-bd11-47e1-b081-208ba666a424.jsonl": {
+			"mtimeMs": 1783026236239
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\6b8104c0-0cf0-47cc-b1bd-2d5a0bd44eca\\6b8104c0-0cf0-47cc-b1bd-2d5a0bd44eca.jsonl": {
+			"mtimeMs": 1782953836403
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a7192c03-c24a-42b6-bb94-409ae46e1d84\\subagents\\b0a3771f-b35f-4f0a-83ab-2f52dee8dab1.jsonl": {
+			"mtimeMs": 1779403689762
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c.jsonl": {
+			"mtimeMs": 1781053452680
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\60e7e9b5-adcd-40c9-ac56-d879422e7b63\\60e7e9b5-adcd-40c9-ac56-d879422e7b63.jsonl": {
+			"mtimeMs": 1781080933923
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\35b9815f-9075-4a7b-ae21-453577d1fac0\\subagents\\da7da235-4a01-4c3b-98c7-bbeda1fdb438.jsonl": {
+			"mtimeMs": 1780787028769
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d953d37f-12d7-4a69-9e97-20f2fdf537ce\\d953d37f-12d7-4a69-9e97-20f2fdf537ce.jsonl": {
+			"mtimeMs": 1779920472611
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\13e3c71b-a29b-48c3-b85a-22617705509f\\13e3c71b-a29b-48c3-b85a-22617705509f.jsonl": {
+			"mtimeMs": 1778979109370
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8aac5a0c-b059-4cae-ae48-7f53280c498a\\8aac5a0c-b059-4cae-ae48-7f53280c498a.jsonl": {
+			"mtimeMs": 1778876568928
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a7192c03-c24a-42b6-bb94-409ae46e1d84\\a7192c03-c24a-42b6-bb94-409ae46e1d84.jsonl": {
+			"mtimeMs": 1779404964488
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d5cf795e-fee0-490a-aaf6-bbd1e5d81c80\\d5cf795e-fee0-490a-aaf6-bbd1e5d81c80.jsonl": {
+			"mtimeMs": 1781034285792
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c5374d8c-23dc-4ed3-9391-9efb62f1f08f\\c5374d8c-23dc-4ed3-9391-9efb62f1f08f.jsonl": {
+			"mtimeMs": 1780510727922
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a4cf2386-c37f-42d2-951f-48c1fa322622\\a4cf2386-c37f-42d2-951f-48c1fa322622.jsonl": {
+			"mtimeMs": 1779130999373
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\e93c8529-3b8c-4fa2-963b-073fd5f56340\\e93c8529-3b8c-4fa2-963b-073fd5f56340.jsonl": {
+			"mtimeMs": 1778983229905
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4e59bb53-7b8b-457f-be2e-5e4873a9d9a4\\4e59bb53-7b8b-457f-be2e-5e4873a9d9a4.jsonl": {
+			"mtimeMs": 1782848841292
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\452d3f63-9807-41c3-9a52-b0fb25002b1c\\452d3f63-9807-41c3-9a52-b0fb25002b1c.jsonl": {
+			"mtimeMs": 1779406769757
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f18c939d-7275-47c8-b6e2-fc0533b966fa\\f18c939d-7275-47c8-b6e2-fc0533b966fa.jsonl": {
+			"mtimeMs": 1781350943101
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\1be113e1-0533-4d5f-ba64-79ed4fbc474f\\1be113e1-0533-4d5f-ba64-79ed4fbc474f.jsonl": {
+			"mtimeMs": 1782778679138
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\subagents\\bdd1cf6f-2acb-423d-9172-bdcbde4af9aa.jsonl": {
+			"mtimeMs": 1781165097736
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\fcbf75f4-79de-46bf-8c92-1617ed302d4d\\subagents\\9094002c-ecfc-49a6-bb13-b9873b00ad2a.jsonl": {
+			"mtimeMs": 1782856992650
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\1c619955-ebc1-4f51-a813-fbf38e0a18cb\\1c619955-ebc1-4f51-a813-fbf38e0a18cb.jsonl": {
+			"mtimeMs": 1779479236186
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5a2ef151-2dae-45d3-ae9d-f24a4d7e0831\\5a2ef151-2dae-45d3-ae9d-f24a4d7e0831.jsonl": {
+			"mtimeMs": 1780002889950
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\86d13b96-ef11-4a0d-8220-b3d90c123cd7\\86d13b96-ef11-4a0d-8220-b3d90c123cd7.jsonl": {
+			"mtimeMs": 1783204200453
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0e3546ef-f29b-4ac9-b10b-5904fb72c67e\\subagents\\cf8ab720-275e-4959-919e-b8b25e5189db.jsonl": {
+			"mtimeMs": 1779145611865
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ee28beb5-51a0-490b-854d-970b2410d231\\ee28beb5-51a0-490b-854d-970b2410d231.jsonl": {
+			"mtimeMs": 1780773630484
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\98ff6b0c-d62c-45f6-8459-f845f07775d3\\98ff6b0c-d62c-45f6-8459-f845f07775d3.jsonl": {
+			"mtimeMs": 1783109524038
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5edfd324-7e2b-4864-8301-4cfbb800d4b1\\5edfd324-7e2b-4864-8301-4cfbb800d4b1.jsonl": {
+			"mtimeMs": 1780532068147
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8a92c96a-e20a-488e-b1c2-2d8c1322f431\\subagents\\94987d58-19aa-4589-956b-631ddc79a6ee.jsonl": {
+			"mtimeMs": 1781087018860
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4e59bb53-7b8b-457f-be2e-5e4873a9d9a4\\subagents\\3ac26d09-a07b-4876-ba00-a6cac951ffb3.jsonl": {
+			"mtimeMs": 1782848403973
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c417dc57-4d64-493f-ba70-e0dca8a26aa7\\subagents\\11d8c3f8-bb3c-4b98-af4f-a32928367fc2.jsonl": {
+			"mtimeMs": 1782909195823
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\f01db498-d6af-41b8-af3d-d04a95c641b4.jsonl": {
+			"mtimeMs": 1781039546731
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b\\3d8daca3-64e4-4e9d-b476-bb8ef7c6844b.jsonl": {
+			"mtimeMs": 1781166987958
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\05c45117-f661-494a-9973-dffce3463ee6.jsonl": {
+			"mtimeMs": 1783203154904
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\597dd9fd-ea4e-4c18-92a6-2e851868626e.jsonl": {
+			"mtimeMs": 1783208171808
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\6cfbdd06-e5e5-4ce3-8ca6-42e0620f5633\\6cfbdd06-e5e5-4ce3-8ca6-42e0620f5633.jsonl": {
+			"mtimeMs": 1780909916217
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\203826f1-64e9-42c7-b345-0ff822bb8ab1.jsonl": {
+			"mtimeMs": 1780069875617
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\8218e60b-7a63-4efd-b56b-16946437155b.jsonl": {
+			"mtimeMs": 1781051520856
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\62e9a5cf-b432-4908-8a47-93ff2ee7de26\\62e9a5cf-b432-4908-8a47-93ff2ee7de26.jsonl": {
+			"mtimeMs": 1780346384824
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c719f633-e7a7-4a87-bb0a-d27280e7d558\\c719f633-e7a7-4a87-bb0a-d27280e7d558.jsonl": {
+			"mtimeMs": 1779075124986
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\7b460984-bdad-4916-a6a6-bf6dfab9a6d8\\7b460984-bdad-4916-a6a6-bf6dfab9a6d8.jsonl": {
+			"mtimeMs": 1779153796604
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\9f59ff2a-e466-4d85-8577-82fa59a035ef.jsonl": {
+			"mtimeMs": 1780320785894
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2f820e5c-a0b2-428c-936b-36fbefb91583\\2f820e5c-a0b2-428c-936b-36fbefb91583.jsonl": {
+			"mtimeMs": 1782956804225
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\050e6d91-23a9-44d3-b4b9-f633d837c652\\subagents\\362daf98-a15b-488e-aefe-1f36352d1942.jsonl": {
+			"mtimeMs": 1778838458666
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\243a102f-d09e-47d1-8ab8-0389419cef9a.jsonl": {
+			"mtimeMs": 1783203624116
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\3fdb2d25-820e-4a9a-b785-c2c24d54f17f.jsonl": {
+			"mtimeMs": 1780319976690
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8be59a58-49ff-4d0c-a6f4-2b44707bedd8\\8be59a58-49ff-4d0c-a6f4-2b44707bedd8.jsonl": {
+			"mtimeMs": 1782780126367
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\359a5e0d-9a6f-4c5d-b1b4-3e2f3b2c32a7\\359a5e0d-9a6f-4c5d-b1b4-3e2f3b2c32a7.jsonl": {
+			"mtimeMs": 1779136541967
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\84d48251-55a2-40e9-ab65-4fdee9df6477\\subagents\\e0a6812a-21fc-4700-afd3-0ad5b593e82a.jsonl": {
+			"mtimeMs": 1780040816780
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\035905ee-14dd-4522-9c8f-2dbab399290d.jsonl": {
+			"mtimeMs": 1780066815105
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\39ec8ef8-30b2-4ac5-b5a2-76ae35339ca5.jsonl": {
+			"mtimeMs": 1781038967756
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\7e0ddcb9-89c6-431f-9326-7e650a5d4f94.jsonl": {
+			"mtimeMs": 1783200591137
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\050e6d91-23a9-44d3-b4b9-f633d837c652\\050e6d91-23a9-44d3-b4b9-f633d837c652.jsonl": {
+			"mtimeMs": 1778855783122
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\2740032e-f3a7-4989-a95b-010c5ada2ba9.jsonl": {
+			"mtimeMs": 1781038761166
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2a3074b8-aca7-44dc-9f9a-e0086ebacace\\2a3074b8-aca7-44dc-9f9a-e0086ebacace.jsonl": {
+			"mtimeMs": 1778765772854
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d953d37f-12d7-4a69-9e97-20f2fdf537ce\\subagents\\43d81c6f-6bb1-47e0-9ba0-d932e9fd7516.jsonl": {
+			"mtimeMs": 1779916419942
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\435270f8-1bfe-4c6b-a3a6-fbcccef9422f\\435270f8-1bfe-4c6b-a3a6-fbcccef9422f.jsonl": {
+			"mtimeMs": 1781300690127
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ceeaacf6-0444-42b3-b939-bd91be35ec6a\\ceeaacf6-0444-42b3-b939-bd91be35ec6a.jsonl": {
+			"mtimeMs": 1779111460002
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\42507825-44a5-4d32-a658-65f8aa02b0af\\subagents\\ac980329-5955-4565-978c-820833d08b9c.jsonl": {
+			"mtimeMs": 1781304432882
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\e8154a0b-884f-459f-bccf-27985f7bc7f0.jsonl": {
+			"mtimeMs": 1783204349620
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\a0b95086-2894-460d-8f67-3ae5135a3670.jsonl": {
+			"mtimeMs": 1781082422728
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a2f61065-aac7-41b5-8bd0-49883f879deb\\a2f61065-aac7-41b5-8bd0-49883f879deb.jsonl": {
+			"mtimeMs": 1782901276869
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f00a9593-6a25-40f1-b584-40d1e36c88d4\\f00a9593-6a25-40f1-b584-40d1e36c88d4.jsonl": {
+			"mtimeMs": 1779151271254
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\98b696ca-7676-4aa4-9b56-1aad5ba0cc57\\98b696ca-7676-4aa4-9b56-1aad5ba0cc57.jsonl": {
+			"mtimeMs": 1778857080820
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\ddda48cc-9219-451f-86ef-5485486f939b.jsonl": {
+			"mtimeMs": 1781038400644
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d7d3d51c-d99d-400f-8c10-4b9d6a7ef884\\subagents\\86d8c19e-0755-4868-9ccf-53ca2d3941e8.jsonl": {
+			"mtimeMs": 1779061408772
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\96323a78-33dc-44e9-a0de-2721d1351bb3.jsonl": {
+			"mtimeMs": 1781039091032
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\f4494759-fd45-4fef-b87e-62ed53117ff1.jsonl": {
+			"mtimeMs": 1780240436086
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\06b2489b-77e5-40fa-8d92-448236055c44\\06b2489b-77e5-40fa-8d92-448236055c44.jsonl": {
+			"mtimeMs": 1781080483955
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\b82bdf11-4575-4189-ab2e-120145994121\\subagents\\b5a03bf9-a8dd-4ebe-ac39-07bc23018683.jsonl": {
+			"mtimeMs": 1781470606155
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\70dedec4-9c02-42b7-973c-4eda43bd754d\\subagents\\0f4dd652-7de4-4218-94a2-443d755a712b.jsonl": {
+			"mtimeMs": 1781082234591
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\67fd01d8-d687-4060-a71c-3a5a73eb1930\\67fd01d8-d687-4060-a71c-3a5a73eb1930.jsonl": {
+			"mtimeMs": 1781176208117
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0ac7f510-4b12-485d-a440-9b91347336e5\\0ac7f510-4b12-485d-a440-9b91347336e5.jsonl": {
+			"mtimeMs": 1779493729490
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\083a20ad-febd-4ff9-bc63-8607f42f261f\\subagents\\33921a1b-dc3d-4035-b961-e65dc7ef1f17.jsonl": {
+			"mtimeMs": 1781314736242
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f1262f06-f0c6-4c1c-8aed-724a0a1e8ee9\\f1262f06-f0c6-4c1c-8aed-724a0a1e8ee9.jsonl": {
+			"mtimeMs": 1781034246242
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0fedd02b-e464-49d7-bd63-6028c2c97c89\\0fedd02b-e464-49d7-bd63-6028c2c97c89.jsonl": {
+			"mtimeMs": 1779074953515
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\88aa3cb6-80c0-4bdd-9524-d980c192e9ea\\88aa3cb6-80c0-4bdd-9524-d980c192e9ea.jsonl": {
+			"mtimeMs": 1783036559679
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\e1add005-3dc4-414e-a08c-2d89f01d9f5b\\subagents\\c4701f4c-6b6e-4f09-a10c-bb5765c29e1c.jsonl": {
+			"mtimeMs": 1781640232098
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c7eb2ce6-535d-4e50-a401-0d8b522710cf\\c7eb2ce6-535d-4e50-a401-0d8b522710cf.jsonl": {
+			"mtimeMs": 1779408087878
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4ee43b2c-3202-4cc6-aa9b-84a91227ee71\\4ee43b2c-3202-4cc6-aa9b-84a91227ee71.jsonl": {
+			"mtimeMs": 1781622047616
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ad702f4e-1a0c-4514-a66b-fb34e2221b08\\subagents\\d3342afd-bc0e-4d27-b7d1-05446f1aa60c.jsonl": {
+			"mtimeMs": 1779196846295
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\592ae28e-bd11-47e1-b081-208ba666a424\\subagents\\3f565f84-8a7c-4b93-b830-3138ae3a3205.jsonl": {
+			"mtimeMs": 1783019991981
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\ee51eea3-7f70-4cce-a9be-3cab8685ca98\\ee51eea3-7f70-4cce-a9be-3cab8685ca98.jsonl": {
+			"mtimeMs": 1779912152740
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d4c7f14f-86c1-431f-9890-a21a305609c3\\d4c7f14f-86c1-431f-9890-a21a305609c3.jsonl": {
+			"mtimeMs": 1780771570878
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5a2ef151-2dae-45d3-ae9d-f24a4d7e0831\\subagents\\9aea9cea-8bda-475f-88d9-5fe8ed1a8a62.jsonl": {
+			"mtimeMs": 1780002880748
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\fcbf75f4-79de-46bf-8c92-1617ed302d4d\\subagents\\602cb236-2b2c-4651-b824-691b6780be05.jsonl": {
+			"mtimeMs": 1782866868016
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e9cca3e-0c28-4256-a10a-99d30cd01d5c\\subagents\\b6ed4eb0-d4fb-40c7-add9-0fc1b24d1ec1.jsonl": {
+			"mtimeMs": 1781052821237
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\d75bd145-e555-4cec-93a3-0456ae818e1d.jsonl": {
+			"mtimeMs": 1780059438097
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\9b2ae6a0-934a-4983-913a-2b28c35b1ba0.jsonl": {
+			"mtimeMs": 1779360597133
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5db8ceb2-9a92-4a46-80e4-a39e2c583621\\subagents\\146c22b2-2420-4469-9cdc-2ce1f3cc99fd.jsonl": {
+			"mtimeMs": 1779113537453
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\4921499b-6277-494d-aa8e-b4d91a770be8\\4921499b-6277-494d-aa8e-b4d91a770be8.jsonl": {
+			"mtimeMs": 1779131894992
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\435270f8-1bfe-4c6b-a3a6-fbcccef9422f\\subagents\\837f4fdc-818f-42af-8c36-c3ae57c2d5b3.jsonl": {
+			"mtimeMs": 1781215903668
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\98995f81-ab7e-4932-989d-6028d88bc538.jsonl": {
+			"mtimeMs": 1779385385396
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\c6a8b4bc-0970-4ecf-853c-3bf4fd287e5f.jsonl": {
+			"mtimeMs": 1779299333287
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\2db61a6a-1975-48ba-9fe3-063193f48de5\\2db61a6a-1975-48ba-9fe3-063193f48de5.jsonl": {
+			"mtimeMs": 1779106433233
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a88ebeba-9197-4cc9-93d1-1e9fc5326a08\\a88ebeba-9197-4cc9-93d1-1e9fc5326a08.jsonl": {
+			"mtimeMs": 1780716673646
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\d19d0c90-271b-439d-85b8-87c277297d21\\d19d0c90-271b-439d-85b8-87c277297d21.jsonl": {
+			"mtimeMs": 1779430179819
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\08cb9766-bb03-4a11-b6eb-eb93bd2d8962\\subagents\\30749c52-49ec-4546-9bf9-6a000c567230.jsonl": {
+			"mtimeMs": 1781097672002
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\86d13b96-ef11-4a0d-8220-b3d90c123cd7.jsonl": {
+			"mtimeMs": 1783204186902
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90badba6-0c2e-462f-9f23-4d470bd3ebd8\\subagents\\7e676e08-0974-45f5-98ab-2b9d2187ae45.jsonl": {
+			"mtimeMs": 1778984567837
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0fedd02b-e464-49d7-bd63-6028c2c97c89\\subagents\\a7501a42-6f52-4972-ad7d-70c0f4f3c6ac.jsonl": {
+			"mtimeMs": 1779073214731
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\c4d95336-252f-48d9-8f8b-de47d194f179.jsonl": {
+			"mtimeMs": 1781038202640
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\35b9815f-9075-4a7b-ae21-453577d1fac0\\subagents\\3b941943-bdf2-42fc-884f-3e79c88e90f5.jsonl": {
+			"mtimeMs": 1780816429477
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\1321f9d7-1227-4b05-8122-48e7efaeed91\\1321f9d7-1227-4b05-8122-48e7efaeed91.jsonl": {
+			"mtimeMs": 1781022535216
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8be59a58-49ff-4d0c-a6f4-2b44707bedd8\\subagents\\4499924a-34bd-4a0f-9577-85d2cc20650c.jsonl": {
+			"mtimeMs": 1782779993971
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\c417dc57-4d64-493f-ba70-e0dca8a26aa7\\c417dc57-4d64-493f-ba70-e0dca8a26aa7.jsonl": {
+			"mtimeMs": 1782911215797
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\90657bd6-daf5-44f6-978c-031eecb6a3e4\\subagents\\59bb04d8-1c11-4793-9a76-789c113f91cf.jsonl": {
+			"mtimeMs": 1781037474281
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0b07d146-bb7a-4746-b339-5eb26d5b963f\\subagents\\e7568266-495e-464a-9595-55fe917883e1.jsonl": {
+			"mtimeMs": 1780512229660
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\dc75bb80-3d51-446c-8867-1ccb69ea788e.jsonl": {
+			"mtimeMs": 1780095206051
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\84d48251-55a2-40e9-ab65-4fdee9df6477\\84d48251-55a2-40e9-ab65-4fdee9df6477.jsonl": {
+			"mtimeMs": 1780043084695
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\2628756f-7149-4690-93f4-42ee9cb136c6.jsonl": {
+			"mtimeMs": 1779308174893
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\82685e90-445e-4f30-8c79-14785e104ec4\\82685e90-445e-4f30-8c79-14785e104ec4.jsonl": {
+			"mtimeMs": 1779225719318
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\9f59ff2a-e466-4d85-8577-82fa59a035ef\\subagents\\b123894f-2582-4ec2-a573-b6ee7351065f.jsonl": {
+			"mtimeMs": 1780245200731
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\a01d5f2a-2f4a-4c21-aa54-0d6477d61c7d\\a01d5f2a-2f4a-4c21-aa54-0d6477d61c7d.jsonl": {
+			"mtimeMs": 1781613601247
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\f95fc8bb-cad4-4d60-bb32-eadd639b9f04\\f95fc8bb-cad4-4d60-bb32-eadd639b9f04.jsonl": {
+			"mtimeMs": 1780717428221
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\subagents\\6630c62c-fff7-4e98-bbef-5710cfda4a8e.jsonl": {
+			"mtimeMs": 1779322853368
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\597dd9fd-ea4e-4c18-92a6-2e851868626e\\subagents\\95c74c84-ed0f-47a0-a9dc-efc0e5662341.jsonl": {
+			"mtimeMs": 1783203025054
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e1d1282-df3d-4256-b631-bdcbf11f88bd\\8e1d1282-df3d-4256-b631-bdcbf11f88bd.jsonl": {
+			"mtimeMs": 1779388266563
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\5db8ceb2-9a92-4a46-80e4-a39e2c583621\\5db8ceb2-9a92-4a46-80e4-a39e2c583621.jsonl": {
+			"mtimeMs": 1779113999147
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\0b07d146-bb7a-4746-b339-5eb26d5b963f\\subagents\\8d80adcd-8318-4738-a404-16c5676d2835.jsonl": {
+			"mtimeMs": 1780525307705
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\62c4fe31-da64-489d-8f8a-ad5a445ee1e0\\62c4fe31-da64-489d-8f8a-ad5a445ee1e0.jsonl": {
+			"mtimeMs": 1781655059622
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8e2fe27e-6073-4e70-a7e9-8d7a668761e5\\8e2fe27e-6073-4e70-a7e9-8d7a668761e5.jsonl": {
+			"mtimeMs": 1780871613834
+		},
+		"C:\\Users\\adgv\\.cursor\\projects\\c-Users-adgv-Documents-Projects-still\\agent-transcripts\\8f0b60e8-5978-48b4-ba8f-fb72cc674c14\\subagents\\75adcca6-f2c8-40c1-a7e5-8854166e19ca.jsonl": {
+			"mtimeMs": 1781368027941
 		}
 	}
 }

@@ -2,6 +2,7 @@
 
 import { Lock } from "lucide-react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
+import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardLogItem } from "@/lib/home-leaderboard-types";
 import { patronWatchLedgerPosterLabels } from "@/lib/patron-watch-ledger-poster-labels";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
@@ -15,10 +16,12 @@ const LEDGER_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0";
 export function PatronWatchLedgerGrid({
 	items,
 	kind,
+	period,
 	hiddenCount = 0,
 }: {
 	items: LeaderboardLogItem[];
 	kind: "films" | "tv";
+	period: HomeLeaderboardPeriod;
 	hiddenCount?: number;
 }) {
 	if (!items.length && hiddenCount === 0) {
@@ -40,7 +43,7 @@ export function PatronWatchLedgerGrid({
 
 				const listingKind = item.tvId != null ? "tv" : "movie";
 				const { posterCaption, posterCaptionSubline, metaLine } =
-					patronWatchLedgerPosterLabels(item);
+					patronWatchLedgerPosterLabels(item, period);
 
 				return (
 					<div key={item.logId} className="min-w-0 text-center">

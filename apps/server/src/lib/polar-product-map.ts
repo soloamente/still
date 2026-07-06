@@ -1,6 +1,6 @@
 import { env } from "@still/env/server";
 
-export type PolarProductTier = "attuned" | "immersed";
+export type PolarProductTier = "attuned" | "immersed" | "devoted";
 export type PolarProductInterval = "month" | "year";
 
 export type PolarProductMapping = {
@@ -23,6 +23,8 @@ export function resolveTierFromPolarProduct(
 			{ tier: "immersed", interval: "month" },
 		],
 		[env.POLAR_PRODUCT_IMMERSED_YEARLY, { tier: "immersed", interval: "year" }],
+		[env.POLAR_PRODUCT_DEVOTED_MONTHLY, { tier: "devoted", interval: "month" }],
+		[env.POLAR_PRODUCT_DEVOTED_YEARLY, { tier: "devoted", interval: "year" }],
 	];
 
 	for (const [configuredId, mapping] of mappings) {

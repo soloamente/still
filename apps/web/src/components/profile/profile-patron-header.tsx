@@ -74,6 +74,8 @@ type ProfilePatronHeaderProps = {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
+	/** Profile owner has Attuned activity signature entitlement. */
+	activitySignatureEnabled?: boolean;
 };
 
 /**
@@ -108,6 +110,7 @@ export function ProfilePatronHeader({
 	bannerIsAnimated,
 	profilePortraitGrayscaleUntilHover,
 	diaryMetalTier = null,
+	activitySignatureEnabled = true,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -230,7 +233,11 @@ export function ProfilePatronHeader({
 									openProfileFollows({ targetUserId, tab: "following" })
 								}
 							/>
-							<ProfileStreakStatCell handle={handle} isMe={isMe} />
+							<ProfileStreakStatCell
+								handle={handle}
+								isMe={isMe}
+								activitySignatureEnabled={activitySignatureEnabled}
+							/>
 						</div>
 					</div>
 				</div>

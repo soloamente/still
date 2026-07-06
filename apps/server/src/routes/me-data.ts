@@ -5,6 +5,8 @@ import { context } from "../context";
 import { clearUserLibrary } from "../lib/clear-user-library";
 import { fetchMySavedQuotes } from "../lib/listing-quote-saves-query";
 import { assembleExportFiles, fetchExportInput } from "../lib/me-export-data";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import { canAccessYearInReviewYear } from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 import {
 	fetchYearInReviewForUser,
@@ -85,6 +87,14 @@ export function buildMeDataRoute(options: MeDataRouteOptions = {}): Elysia {
 			if (!user) return status(401, "Sign in");
 			const year = parseYearInReviewYear(params.year);
 			if (year == null) return status(400, "Invalid year");
+			const entitlements = await loadPatronEntitlements(user.id);
+			if (!canAccessYearInReviewYear(year, entitlements)) {
+				return status(403, {
+					error: "Full stats for prior years require Attuned",
+					code: "PLAN_FEATURE_REQUIRED",
+					featureKey: "full_stats",
+				});
+			}
 			return fetchYearInReviewForUser(user.id, year);
 		})
 		.get(

@@ -1,8 +1,9 @@
 import type { SettingsProfile } from "@/components/profile/settings-form-context";
 import { SettingsFormShell } from "@/components/profile/settings-form-shell";
+import type { ContentVisibility } from "@/components/review/visibility-select";
 import { authServer } from "@/lib/auth-server";
+import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { buildPatronEntitlementsFromProfile } from "@/lib/patron-entitlements";
-import { serverApi } from "@/lib/server-api";
 
 export default async function SettingsLayout({
 	children,
@@ -10,34 +11,52 @@ export default async function SettingsLayout({
 	children: React.ReactNode;
 }) {
 	const session = await authServer();
-	const api = await serverApi();
-	const me = await api.api.profiles.me.get().catch(() => ({ data: null }));
+	const me = await fetchMeProfile();
 
-	if (!me.data) {
+	if (!me || me === PROFILE_FETCH_FAILED) {
 		return null;
 	}
 
-	const entitlements = buildPatronEntitlementsFromProfile({
-		...me.data,
-		isPro: Boolean(me.data.isPro),
-	});
+	const entitlements = buildPatronEntitlementsFromProfile(me);
 
 	const profile: SettingsProfile = {
-		handle: me.data.handle,
-		displayName: me.data.displayName,
-		bio: me.data.bio,
-		pronouns: me.data.pronouns,
-		location: me.data.location,
-		website: me.data.website,
-		isPrivate: Boolean(me.data.isPrivate),
+		handle: me.handle,
+		displayName: me.displayName,
+		bio: me.bio ?? null,
+		pronouns: me.pronouns ?? null,
+		location: me.location ?? null,
+		website: me.website ?? null,
+		isPrivate: Boolean(me.isPrivate),
 		isPro: entitlements.isPro,
 		effectiveTier: entitlements.effectiveTier,
 		featureGrants: [...entitlements.featureGrants],
-		accentColor: me.data.accentColor,
-		preferences: me.data.preferences,
-		defaultVisibility: me.data.defaultVisibility,
-		birthDate: typeof me.data.birthDate === "string" ? me.data.birthDate : null,
-		bannerUrl: me.data.bannerUrl ?? null,
+		subscriptionTier: entitlements.subscriptionTier,
+		planOverride: entitlements.planOverride,
+		subscriptionInterval:
+			me.subscriptionInterval === "month" || me.subscriptionInterval === "year"
+				? me.subscriptionInterval
+				: null,
+		subscriptionStatus:
+			me.subscriptionStatus === "active" ||
+			me.subscriptionStatus === "past_due" ||
+			me.subscriptionStatus === "canceled"
+				? me.subscriptionStatus
+				: null,
+		polarSubscriptionId:
+			typeof me.polarSubscriptionId === "string"
+				? me.polarSubscriptionId
+				: null,
+		accentColor: me.accentColor ?? null,
+		preferences: me.preferences,
+		defaultVisibility:
+			me.defaultVisibility === "public" ||
+			me.defaultVisibility === "followers" ||
+			me.defaultVisibility === "friends" ||
+			me.defaultVisibility === "private"
+				? (me.defaultVisibility as ContentVisibility)
+				: null,
+		birthDate: typeof me.birthDate === "string" ? me.birthDate : null,
+		bannerUrl: me.bannerUrl ?? null,
 		hasAvatar: Boolean(session?.user.image?.trim()),
 	};
 

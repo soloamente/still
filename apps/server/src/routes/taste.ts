@@ -5,6 +5,11 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { fetchOverlapDiarySlices } from "../lib/fetch-overlap-diary-slices";
 import { deliverNotification } from "../lib/notification-delivery";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	patronHasPlanFeature,
+	planFeatureRequiredBody,
+} from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 import { recordProductEvent } from "../lib/record-product-event";
 import {
@@ -140,6 +145,17 @@ export const tasteRoute = new Elysia({
 		async ({ params, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in to compare tastes");
 
+			const viewerEntitlements = await loadPatronEntitlements(viewer.id);
+			if (!patronHasPlanFeature(viewerEntitlements, "taste_overlap")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"taste_overlap",
+						"Compare taste requires Immersed",
+					),
+				);
+			}
+
 			const targetRow = await resolveProfileByHandle(params.handle);
 			if (!targetRow) return status(404, "Profile not found");
 			if (targetRow.user.id === viewer.id)
@@ -252,6 +268,16 @@ export const tasteRoute = new Elysia({
 		"/challenge/:handle",
 		async ({ params, user: viewer, status }) => {
 			if (!viewer) return status(401, "Sign in to send a taste challenge");
+			const viewerEntitlements = await loadPatronEntitlements(viewer.id);
+			if (!patronHasPlanFeature(viewerEntitlements, "taste_overlap")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"taste_overlap",
+						"Compare taste requires Immersed",
+					),
+				);
+			}
 			if (
 				!hit(`taste-challenge:${viewer.id}`, { limit: 20, windowMs: 60_000 }).ok
 			) {

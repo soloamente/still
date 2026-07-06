@@ -8,7 +8,7 @@ import { Elysia } from "elysia";
 type TestState = {
 	// Map of userId -> role, used by the user-lookup select in ban / set-role.
 	users: Record<string, { id: string; role: string }>;
-	// Map of userId -> profile row, used by GET/POST /users/:id and /edit /pro.
+	// Map of userId -> profile row, used by GET/PATCH /users/:id and /edit /plan.
 	profiles: Record<
 		string,
 		{
@@ -17,9 +17,17 @@ type TestState = {
 			displayName: string;
 			isPro: boolean;
 			isPrivate: boolean;
+			subscriptionTier?: string;
+			planOverride?: string | null;
 			statsCache: Record<string, number>;
 		}
 	>;
+	grants: Record<string, string[]>;
+	planApplies: Array<{
+		userId: string;
+		planOverride: string | null;
+		featureGrants: string[];
+	}>;
 	// Notes recorded via POST /users/:id/notes, keyed implicitly by userId.
 	notes: Array<{
 		id: string;
@@ -57,6 +65,8 @@ type TestState = {
 const state: TestState = {
 	users: {},
 	profiles: {},
+	grants: {},
+	planApplies: [],
 	notes: [],
 	content: {},
 	updates: [],
@@ -419,6 +429,81 @@ mock.module("../lib/staff-user-stats", () => ({
 	},
 }));
 
+mock.module("../lib/patron-entitlements", () => {
+	const plans = require("@still/plans") as typeof import("@still/plans");
+	function snapshot(userId: string) {
+		const profileRow = state.profiles[userId];
+		const subscriptionTier = plans.parsePlanTierId(
+			profileRow?.subscriptionTier ?? "still",
+		);
+		const planOverride =
+			profileRow?.planOverride == null
+				? null
+				: plans.parsePlanTierId(profileRow.planOverride);
+		const featureGrants = plans.parsePlanFeatureKeys(
+			state.grants[userId] ?? [],
+		);
+		const effectiveTier = plans.resolveEffectiveTier({
+			subscriptionTier,
+			planOverride,
+		});
+		return {
+			subscriptionTier,
+			planOverride,
+			effectiveTier,
+			featureGrants,
+			isPro: plans.hasPatronFeatureForTier({
+				effectiveTier,
+				grants: featureGrants,
+				featureKey: "all_themes",
+			}),
+		};
+	}
+	return {
+		loadPatronEntitlements: async (userId: string) => snapshot(userId),
+		loadPatronEntitlementsForUserIds: async (userIds: readonly string[]) => {
+			const map = new Map<string, ReturnType<typeof snapshot>>();
+			for (const userId of userIds) {
+				map.set(userId, snapshot(userId));
+			}
+			return map;
+		},
+		computePatronEntitlements: snapshot,
+	};
+});
+
+mock.module("../lib/staff-apply-patron-plan", () => {
+	const plans = require("@still/plans") as typeof import("@still/plans");
+	return {
+		readPatronFeatureGrantKeys: async (userId: string) =>
+			plans.parsePlanFeatureKeys(state.grants[userId] ?? []),
+		applyStaffPatronPlan: async (args: {
+			userId: string;
+			grantedBy: string;
+			planOverride: plans.PlanTierId | null;
+			featureGrants: readonly plans.PlanFeatureKey[];
+		}) => {
+			const profileRow = state.profiles[args.userId];
+			if (!profileRow) throw new Error("PROFILE_NOT_FOUND");
+			const previousPlanOverride =
+				profileRow.planOverride == null
+					? null
+					: plans.parsePlanTierId(profileRow.planOverride);
+			const previousGrants = plans.parsePlanFeatureKeys(
+				state.grants[args.userId] ?? [],
+			);
+			profileRow.planOverride = args.planOverride;
+			state.grants[args.userId] = [...args.featureGrants];
+			state.planApplies.push({
+				userId: args.userId,
+				planOverride: args.planOverride,
+				featureGrants: [...args.featureGrants],
+			});
+			return { previousPlanOverride, previousGrants };
+		},
+	};
+});
+
 const { staffRoute } = await import("./staff");
 
 function makeApp() {
@@ -436,6 +521,8 @@ function authHeaders(id: string, role: string): Record<string, string> {
 beforeEach(() => {
 	state.users = {};
 	state.profiles = {};
+	state.grants = {};
+	state.planApplies = [];
 	state.notes = [];
 	state.content = {};
 	state.updates = [];
@@ -486,6 +573,8 @@ describe("GET /api/staff/users/:id", () => {
 				displayName: "Cinephile",
 				isPro: true,
 				isPrivate: false,
+				planOverride: "immersed",
+				subscriptionTier: "still",
 				statsCache: { filmsLogged: 42, followers: 3 },
 			},
 		};
@@ -526,6 +615,7 @@ describe("GET /api/staff/users/:id", () => {
 		expect(body.permissions.map((p) => `${p.resource}:${p.action}`)).toEqual([
 			"user:list",
 			"content:hide",
+			"feedback:read",
 		]);
 	});
 
@@ -692,8 +782,8 @@ describe("POST /api/staff/users/:id/edit", () => {
 	});
 });
 
-describe("POST /api/staff/users/:id/pro", () => {
-	test("admin grants Pro -> 200, updates profile.isPro, audits user.pro.grant", async () => {
+describe("PATCH /api/staff/users/:id/plan", () => {
+	test("admin sets immersed override + grant -> 200, audits override and grant", async () => {
 		state.users = { "u-1": { id: "u-1", role: "user" } };
 		state.profiles = {
 			"u-1": {
@@ -702,25 +792,38 @@ describe("POST /api/staff/users/:id/pro", () => {
 				displayName: "H",
 				isPro: false,
 				isPrivate: false,
+				subscriptionTier: "still",
+				planOverride: null,
 				statsCache: {},
 			},
 		};
+		state.grants = { "u-1": [] };
 		const res = await makeApp().handle(
-			new Request("http://localhost/api/staff/users/u-1/pro", {
-				method: "POST",
+			new Request("http://localhost/api/staff/users/u-1/plan", {
+				method: "PATCH",
 				headers: authHeaders("admin-1", "admin"),
-				body: JSON.stringify({ isPro: true }),
+				body: JSON.stringify({
+					planOverride: "immersed",
+					featureGrants: ["taste_overlap"],
+				}),
 			}),
 		);
 		expect(res.status).toBe(200);
-		const upd = state.updates.find((u) => u.table === "profile");
-		expect(upd?.set.isPro).toBe(true);
+		expect(state.profiles["u-1"]?.planOverride).toBe("immersed");
+		expect(state.grants["u-1"]).toEqual(["taste_overlap"]);
 		expect(
-			state.audits.find((a) => a.action === "user.pro.grant"),
-		).toBeDefined();
+			state.audits.find((a) => a.action === "user.plan.override"),
+		).toMatchObject({
+			metadata: { from: null, to: "immersed" },
+		});
+		expect(
+			state.audits.find((a) => a.action === "user.plan.grant"),
+		).toMatchObject({
+			metadata: { featureKey: "taste_overlap" },
+		});
 	});
 
-	test("admin revokes Pro -> 200, audits user.pro.revoke", async () => {
+	test("admin clears override -> audits user.plan.override with null to", async () => {
 		state.users = { "u-1": { id: "u-1", role: "user" } };
 		state.profiles = {
 			"u-1": {
@@ -729,43 +832,57 @@ describe("POST /api/staff/users/:id/pro", () => {
 				displayName: "H",
 				isPro: true,
 				isPrivate: false,
+				subscriptionTier: "still",
+				planOverride: "immersed",
 				statsCache: {},
 			},
 		};
+		state.grants = { "u-1": ["taste_overlap"] };
 		const res = await makeApp().handle(
-			new Request("http://localhost/api/staff/users/u-1/pro", {
-				method: "POST",
+			new Request("http://localhost/api/staff/users/u-1/plan", {
+				method: "PATCH",
 				headers: authHeaders("admin-1", "admin"),
-				body: JSON.stringify({ isPro: false }),
+				body: JSON.stringify({
+					planOverride: null,
+					featureGrants: [],
+				}),
 			}),
 		);
 		expect(res.status).toBe(200);
 		expect(
-			state.audits.find((a) => a.action === "user.pro.revoke"),
-		).toBeDefined();
+			state.audits.find((a) => a.action === "user.plan.revoke-grant"),
+		).toMatchObject({
+			metadata: { featureKey: "taste_overlap" },
+		});
 	});
 
 	test("admin acting on an owner -> 403 from outranks", async () => {
 		state.users = { "owner-1": { id: "owner-1", role: "owner" } };
 		const res = await makeApp().handle(
-			new Request("http://localhost/api/staff/users/owner-1/pro", {
-				method: "POST",
+			new Request("http://localhost/api/staff/users/owner-1/plan", {
+				method: "PATCH",
 				headers: authHeaders("admin-1", "admin"),
-				body: JSON.stringify({ isPro: true }),
+				body: JSON.stringify({
+					planOverride: "immersed",
+					featureGrants: [],
+				}),
 			}),
 		);
 		expect(res.status).toBe(403);
-		expect(state.updates).toHaveLength(0);
+		expect(state.planApplies).toHaveLength(0);
 		expect(state.audits).toHaveLength(0);
 	});
 
 	test("moderator lacks user:pro -> 403", async () => {
 		state.users = { "u-1": { id: "u-1", role: "user" } };
 		const res = await makeApp().handle(
-			new Request("http://localhost/api/staff/users/u-1/pro", {
-				method: "POST",
+			new Request("http://localhost/api/staff/users/u-1/plan", {
+				method: "PATCH",
 				headers: authHeaders("mod-1", "moderator"),
-				body: JSON.stringify({ isPro: true }),
+				body: JSON.stringify({
+					planOverride: "immersed",
+					featureGrants: [],
+				}),
 			}),
 		);
 		expect(res.status).toBe(403);

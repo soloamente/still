@@ -11,6 +11,7 @@ export type PlanTier = {
 
 export type PlanFeature = {
 	id: string;
+	key: string | null;
 	name: string;
 	description: string;
 	buildStatus: "exists" | "planned";

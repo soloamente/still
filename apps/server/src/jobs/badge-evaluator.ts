@@ -15,6 +15,8 @@ import { and, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 
 import { shouldNotifyBadgeAward } from "../lib/badge-prestige";
 import { deliverNotification } from "../lib/notification-delivery";
+import { loadPatronEntitlementsForUserIds } from "../lib/patron-entitlements";
+import { patronHasPlanFeature } from "../lib/plan-feature-access";
 
 type Criteria = Record<string, unknown> & { kind: string };
 
@@ -229,15 +231,32 @@ export async function runEvaluator() {
 		.limit(500);
 	if (unprocessed.length === 0) return;
 
-	const usersToCheck = new Set(unprocessed.map((e) => e.userId));
+	const usersToCheck = [...new Set(unprocessed.map((e) => e.userId))];
 	const badgeRows = await db.select().from(badge);
 	const achievementRows = await db.select().from(achievement);
+	const entitlementsByUser =
+		await loadPatronEntitlementsForUserIds(usersToCheck);
 
 	for (const userId of usersToCheck) {
 		const s = await snapshot(userId);
+		// Batch loader always includes every userId from usersToCheck.
+		const entitlements = entitlementsByUser.get(userId);
+		if (!entitlements) continue;
 
 		for (const b of badgeRows) {
 			if (meetsCriteria(b.criteria as Criteria, s)) {
+				const isPrestige = shouldNotifyBadgeAward({
+					id: b.id,
+					category: b.category,
+					tier: b.tier,
+					points: b.points,
+				});
+				if (
+					isPrestige &&
+					!patronHasPlanFeature(entitlements, "badge_prestige")
+				) {
+					continue;
+				}
 				const [existing] = await db
 					.select()
 					.from(userBadge)

@@ -140,7 +140,6 @@ export const profile = pgTable(
 			.notNull(),
 		/** Shareable invite code — unique per patron when assigned. */
 		referralCode: text("referral_code").unique(),
-		isPro: boolean("is_pro").default(false).notNull(),
 		/** Ordered review ids (max 3) shown on profile hero — ST.3 signature reviews. */
 		pinnedReviewIds: jsonb("pinned_review_ids")
 			.$type<string[]>()

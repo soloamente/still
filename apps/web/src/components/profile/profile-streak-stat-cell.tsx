@@ -15,7 +15,7 @@ import {
 import IconStreakFlameFilled from "@still/ui/icons/streak-flame-filled";
 import { cn } from "@still/ui/lib/utils";
 import { useState } from "react";
-
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
 import { ProfileActivitySignature } from "@/components/profile/profile-activity-signature";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import {
@@ -32,6 +32,8 @@ const STREAK_PILL_CLASS =
 type ProfileStreakStatCellProps = {
 	handle: string;
 	isMe: boolean;
+	/** Profile owner has Attuned activity signature — heatmap hidden when false. */
+	activitySignatureEnabled?: boolean;
 };
 
 /**
@@ -41,11 +43,18 @@ type ProfileStreakStatCellProps = {
 export function ProfileStreakStatCell({
 	handle,
 	isMe,
+	activitySignatureEnabled = true,
 }: ProfileStreakStatCellProps) {
 	return isMe ? (
-		<OwnProfileStreakStatCell handle={handle} />
+		<OwnProfileStreakStatCell
+			handle={handle}
+			activitySignatureEnabled={activitySignatureEnabled}
+		/>
 	) : (
-		<VisitorProfileStreakStatCell handle={handle} />
+		<VisitorProfileStreakStatCell
+			handle={handle}
+			activitySignatureEnabled={activitySignatureEnabled}
+		/>
 	);
 }
 
@@ -53,10 +62,14 @@ function ProfileStreakStatCellView({
 	handle,
 	count,
 	loading,
+	isMe,
+	activitySignatureEnabled,
 }: {
 	handle: string;
 	count: number;
 	loading: boolean;
+	isMe: boolean;
+	activitySignatureEnabled: boolean;
 }) {
 	const [popoverOpen, setPopoverOpen] = useState(false);
 	// Sync read on mount — avoids uncontrolled→controlled flip after useEffect.
@@ -90,6 +103,20 @@ function ProfileStreakStatCellView({
 
 	const streakLabel =
 		count === 1 ? "1 day streak" : `${count.toLocaleString()} day streak`;
+
+	// Visitors without Attuned activity signature see the count only — no heatmap popover.
+	if (!isMe && !activitySignatureEnabled) {
+		return (
+			<span className={cn(STREAK_PILL_CLASS, "text-foreground")}>
+				<IconStreakFlameFilled
+					aria-hidden
+					className="size-[18px] shrink-0 text-foreground"
+				/>
+				<span aria-hidden>{count.toLocaleString()}</span>
+				<span className="sr-only">{streakLabel}</span>
+			</span>
+		);
+	}
 
 	// Pinned hint forces open; after dismiss, hover drives open state.
 	const tooltipOpen = hintPinnedOpen ? !popoverOpen : hoverOpen;
@@ -156,11 +183,17 @@ function ProfileStreakStatCellView({
 					</p>
 					{/* Mount heatmap only while open — avoids client fetch on initial profile paint. */}
 					{popoverOpen ? (
-						<ProfileActivitySignature
-							className="mx-0"
-							handle={handle}
-							variant="embedded"
-						/>
+						activitySignatureEnabled ? (
+							<ProfileActivitySignature
+								className="mx-0"
+								handle={handle}
+								variant="embedded"
+							/>
+						) : (
+							<PlanFeatureGate featureKey="activity_signature">
+								<span className="sr-only">Activity signature</span>
+							</PlanFeatureGate>
+						)
 					) : null}
 				</PopoverContent>
 			</Popover>
@@ -168,24 +201,40 @@ function ProfileStreakStatCellView({
 	);
 }
 
-function OwnProfileStreakStatCell({ handle }: { handle: string }) {
+function OwnProfileStreakStatCell({
+	handle,
+	activitySignatureEnabled,
+}: {
+	handle: string;
+	activitySignatureEnabled: boolean;
+}) {
 	const { streak, loading } = useWatchStreak();
 	return (
 		<ProfileStreakStatCellView
 			handle={handle}
 			count={streak?.currentStreak ?? 0}
 			loading={loading}
+			isMe
+			activitySignatureEnabled={activitySignatureEnabled}
 		/>
 	);
 }
 
-function VisitorProfileStreakStatCell({ handle }: { handle: string }) {
+function VisitorProfileStreakStatCell({
+	handle,
+	activitySignatureEnabled,
+}: {
+	handle: string;
+	activitySignatureEnabled: boolean;
+}) {
 	const { currentStreak, loading } = useProfileWatchStreak(handle);
 	return (
 		<ProfileStreakStatCellView
 			handle={handle}
 			count={currentStreak}
 			loading={loading}
+			isMe={false}
+			activitySignatureEnabled={activitySignatureEnabled}
 		/>
 	);
 }

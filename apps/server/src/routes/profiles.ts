@@ -8,7 +8,6 @@ import {
 	log,
 	movie,
 	profile,
-	review,
 	tv,
 	user,
 	userAchievement,
@@ -71,6 +70,12 @@ import {
 	type PatronEntitlements,
 } from "../lib/patron-entitlements";
 import {
+	canAccessYearInReviewYear,
+	patronHasPlanFeature,
+	planFeatureRequiredBody,
+	sanitizeWatchlistStreamingAlertsPreference,
+} from "../lib/plan-feature-access";
+import {
 	isProfileAccentId,
 	PROFILE_PREF_PROFILE_ACCENT,
 	profileAccentHex,
@@ -122,6 +127,8 @@ import {
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
+import { syncProfileReferrerFromCapture } from "../lib/referral-capture";
+import { qualifyReferralForUser } from "../lib/referral-qualify";
 import { formField } from "../lib/request-form";
 import {
 	assertEmailVerified,
@@ -255,6 +262,13 @@ export const profilesRoute = new Elysia({
 				preferencesForUpdate = appearance.preferences;
 			}
 
+			if (preferencesForUpdate !== undefined) {
+				preferencesForUpdate = sanitizeWatchlistStreamingAlertsPreference(
+					preferencesForUpdate,
+					entitlements,
+				);
+			}
+
 			const existingPreferences =
 				(existing?.preferences as Record<string, unknown> | undefined) ?? {};
 
@@ -371,6 +385,9 @@ export const profilesRoute = new Elysia({
 						void recordProductEvent(user.id, "onboarding.completed", {
 							source: "profiles.me.patch",
 						});
+						void qualifyReferralForUser(user.id).catch((err) => {
+							console.error("[profiles/me] referral qualify failed", err);
+						});
 					}
 				}
 				return {
@@ -400,7 +417,13 @@ export const profilesRoute = new Elysia({
 				void recordProductEvent(user.id, "onboarding.completed", {
 					source: "profiles.me.insert",
 				});
+				void qualifyReferralForUser(user.id).catch((err) => {
+					console.error("[profiles/me] referral qualify failed", err);
+				});
 			}
+			void syncProfileReferrerFromCapture(user.id).catch((err) => {
+				console.error("[profiles/me] referral profile sync failed", err);
+			});
 			return {
 				...row,
 				birthDate: profileBirthDateToIso(row?.birthDate),
@@ -503,6 +526,16 @@ export const profilesRoute = new Elysia({
 			}
 			if (!hit(`profile:pins:${user.id}`, { limit: 30, windowMs: 60_000 }).ok) {
 				return status(429, "Slow down");
+			}
+			const entitlements = await loadPatronEntitlements(user.id);
+			if (!patronHasPlanFeature(entitlements, "pinned_reviews")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"pinned_reviews",
+						"Pinned reviews require Immersed",
+					),
+				);
 			}
 			const body = routeBody<{ reviewIds: string[] }>(rawBody);
 			const validated = await validatePinnedReviewIdsForUser(
@@ -979,6 +1012,15 @@ export const profilesRoute = new Elysia({
 			const isOwner = viewer?.id === row.userId;
 			if (row.isPrivate && !isOwner) return status(404, "Not found");
 
+			const targetEntitlements = await loadPatronEntitlements(row.userId);
+			if (!patronHasPlanFeature(targetEntitlements, "activity_signature")) {
+				return status(403, {
+					error: "Activity signature requires Attuned",
+					code: "PLAN_FEATURE_REQUIRED",
+					featureKey: "activity_signature",
+				});
+			}
+
 			const weeks = Math.min(
 				ACTIVITY_SIGNATURE_WEEKS,
 				Math.max(
@@ -1328,6 +1370,15 @@ export const profilesRoute = new Elysia({
 			const isOwner = viewerId === row.userId;
 			if (row.isPrivate && !isOwner) return status(404, "Not found");
 
+			const ownerEntitlements = await loadPatronEntitlements(row.userId);
+			if (!canAccessYearInReviewYear(year, ownerEntitlements)) {
+				return status(403, {
+					error: "Full stats for prior years require Attuned",
+					code: "PLAN_FEATURE_REQUIRED",
+					featureKey: "full_stats",
+				});
+			}
+
 			return fetchYearInReviewForUser(row.userId, year);
 		},
 		{
@@ -1420,9 +1471,10 @@ export const profilesRoute = new Elysia({
 				curator,
 				earnedBadges,
 				unlockedAchievements,
+				targetEntitlements,
 			] = await Promise.all([
-				hasCachedFollowCounts
-					? Promise.resolve({ followers: cachedStats!.followers! })
+				hasCachedFollowCounts && cachedStats?.followers != null
+					? Promise.resolve({ followers: cachedStats.followers })
 					: db
 							.select({
 								followers: sql<number>`count(distinct ${follow.followerId})`,
@@ -1430,8 +1482,8 @@ export const profilesRoute = new Elysia({
 							.from(follow)
 							.where(eq(follow.followingId, targetUserId))
 							.then((r) => r[0]),
-				hasCachedFollowCounts
-					? Promise.resolve({ following: cachedStats!.following! })
+				hasCachedFollowCounts && cachedStats?.following != null
+					? Promise.resolve({ following: cachedStats.following })
 					: db
 							.select({
 								following: sql<number>`count(distinct ${follow.followingId})`,
@@ -1503,12 +1555,26 @@ export const profilesRoute = new Elysia({
 						),
 					)
 					.orderBy(desc(userAchievement.unlockedAt)),
+				loadPatronEntitlements(targetUserId),
 			]);
 
 			// Legacy taste rows only stored second-person headline — refresh before paint.
 			const freshTasteSignature = await ensureFreshTasteSignature(
 				targetUserId,
 				row.profile.tasteSignature,
+			);
+
+			const tasteSignatureEnabled = patronHasPlanFeature(
+				targetEntitlements,
+				"taste_signature",
+			);
+			const activitySignatureEnabled = patronHasPlanFeature(
+				targetEntitlements,
+				"activity_signature",
+			);
+			const pinnedReviewsEnabled = patronHasPlanFeature(
+				targetEntitlements,
+				"pinned_reviews",
 			);
 
 			const cachedLogCount =
@@ -1550,7 +1616,7 @@ export const profilesRoute = new Elysia({
 				profile: {
 					...publicProfile,
 					diaryMetalTier,
-					...(freshTasteSignature
+					...(freshTasteSignature && tasteSignatureEnabled
 						? { tasteSignature: freshTasteSignature }
 						: {}),
 					...(birthdayDisplay ? { birthdayDisplay } : {}),
@@ -1559,10 +1625,14 @@ export const profilesRoute = new Elysia({
 					followers: Number(followCount?.followers ?? 0),
 					following: Number(followingCount?.following ?? 0),
 				},
+				capabilities: {
+					activitySignature: activitySignatureEnabled,
+					pinnedReviews: pinnedReviewsEnabled,
+				},
 				creator: curator,
 				isFollowing,
 				filmographyCounts,
-				pinnedReviews,
+				pinnedReviews: pinnedReviewsEnabled ? pinnedReviews : [],
 				showcaseResolved,
 				lists,
 				pinnedBadges: pinned,

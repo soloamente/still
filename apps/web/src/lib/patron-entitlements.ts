@@ -52,7 +52,11 @@ export function buildPatronEntitlementsFromProfile(
 		profile.effectiveTier != null
 			? parsePlanTierId(profile.effectiveTier)
 			: resolveEffectiveTier({ subscriptionTier, planOverride });
-	const isPro = Boolean(profile.isPro);
+	const isPro = hasPatronFeatureForTier({
+		effectiveTier,
+		grants: featureGrants,
+		featureKey: "all_themes",
+	});
 
 	const hasFeature = (featureKey: PlanFeatureKey) =>
 		hasPatronFeatureForTier({

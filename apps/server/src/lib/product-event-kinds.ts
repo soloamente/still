@@ -19,6 +19,7 @@ export const PRODUCT_EVENT_KINDS = [
 	"quote.save",
 	"quote.unsave",
 	"quote.submit",
+	"devoted.request",
 	"realtime.presence.join",
 	"realtime.presence.leave",
 	"realtime.list.coedit",

@@ -32,6 +32,7 @@ import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
+import { InviteEarnHeaderButton } from "@/components/referrals/invite-earn-header-button";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import {
 	type HomeBrowseSurface,
@@ -408,6 +409,7 @@ export function HomeStickyChrome({
 								</TooltipContent>
 							</Tooltip>
 							<HomeNotificationsMenu authenticated={Boolean(user)} />
+							{user ? <InviteEarnHeaderButton /> : null}
 							{user ? (
 								<DropdownMenu
 									open={accountMenuOpen}

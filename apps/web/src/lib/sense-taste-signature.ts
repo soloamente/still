@@ -13,12 +13,33 @@ export type TasteArchetype =
 
 export type TastePerspective = "self" | "visitor";
 
+/** Capitalized genre names for pill popover copy (version-4 taste signatures). */
+export type TastePillGenres = {
+	primary: string;
+	secondary?: string;
+	tertiary?: string;
+};
+
+/** Genre-led rotation line when pillGenres names the top tags from the diary. */
+function genreLedRotationLine(pillGenres: TastePillGenres): string {
+	const { primary, secondary, tertiary } = pillGenres;
+	if (secondary && tertiary) {
+		return `${primary} leads, with ${secondary} and ${tertiary} in steady rotation.`;
+	}
+	if (secondary) {
+		return `${primary} leads, with ${secondary} in steady rotation.`;
+	}
+	return `${primary} leads.`;
+}
+
 /** Plain-language explainer for the archetype pill tooltip. */
 export function tasteArchetypeDescription(
 	archetype: TasteArchetype,
 	perspective: TastePerspective = "visitor",
+	pillGenres?: TastePillGenres,
 ): string | null {
 	const diary = perspective === "self" ? "your diary" : "their diary";
+	const logs = perspective === "self" ? "your logs" : "their logs";
 	const watchHistory =
 		perspective === "self" ? "your watch history" : "their watch history";
 	const spread =
@@ -30,14 +51,25 @@ export function tasteArchetypeDescription(
 
 	switch (archetype) {
 		case "genre-purist":
+			if (pillGenres?.primary) {
+				return perspective === "self"
+					? `Most of your diary lives in ${pillGenres.primary}.\nSense reads genre tags from ${logs}.`
+					: `Most of their diary lives in ${pillGenres.primary}.\nSense reads genre tags from ${logs}.`;
+			}
 			return perspective === "self"
 				? `Most of what you log lives in one genre.\nSense reads genre tags from ${diary}.`
 				: `Most of what they log lives in one genre.\nSense reads genre tags from ${diary}.`;
 		case "dual-affinity":
+			if (pillGenres?.primary && pillGenres.secondary) {
+				return `${pillGenres.primary} and ${pillGenres.secondary} show up together more than any other pairing.\nThat duo defines ${watchHistory}.`;
+			}
 			return perspective === "self"
 				? `Two genres show up together more than any other pairing.\nThat duo defines ${watchHistory}.`
 				: `Two genres show up together more than any other pairing.\nThat duo defines ${watchHistory}.`;
 		case "genre-led":
+			if (pillGenres?.primary) {
+				return `${genreLedRotationLine(pillGenres)}\nA favorite lane, not a single-genre diary.`;
+			}
 			return perspective === "self"
 				? "One genre leads, with a few others in steady rotation.\nA favorite lane, not a single-genre diary."
 				: "One genre leads, with a few others in steady rotation.\nA favorite lane, not a single-genre diary.";
@@ -50,6 +82,18 @@ export function tasteArchetypeDescription(
 		case "curator":
 			return null;
 	}
+}
+
+/**
+ * Patron-facing pill label — prefers stored persona name (v4), else legacy archetype label.
+ */
+export function tasteSignaturePillLabel(
+	signature: Pick<TasteSignatureJson, "pillLabel" | "archetype">,
+): string {
+	const trimmed = signature.pillLabel?.trim();
+	if (trimmed) return trimmed;
+	if (signature.archetype) return tasteArchetypeLabel(signature.archetype);
+	return tasteArchetypeLabel("forming");
 }
 
 /** Short patron-facing label for the detected taste archetype. */
@@ -100,6 +144,27 @@ export interface TasteSignatureJson {
 	/** Backward compat — mirrors headlineSelf when dual fields exist */
 	headline: string;
 	confidence: TasteSignatureConfidence;
+	/** Patron-facing persona pill — e.g. Dramatist, Dramatist & Toonist */
+	pillLabel?: string;
+	/** Capitalized genre names for pill popover copy */
+	pillGenres?: TastePillGenres;
+}
+
+function parsePillGenres(value: unknown): TastePillGenres | undefined {
+	if (!value || typeof value !== "object") return undefined;
+	const o = value as Record<string, unknown>;
+	const primary =
+		typeof o.primary === "string" && o.primary.trim() ? o.primary.trim() : null;
+	if (!primary) return undefined;
+	const secondary =
+		typeof o.secondary === "string" && o.secondary.trim()
+			? o.secondary.trim()
+			: undefined;
+	const tertiary =
+		typeof o.tertiary === "string" && o.tertiary.trim()
+			? o.tertiary.trim()
+			: undefined;
+	return { primary, secondary, tertiary };
 }
 
 function capitalizeHeadline(text: string): string {
@@ -214,12 +279,20 @@ export function parseTasteSignatureJson(
 			? archetype
 			: undefined;
 
+	const pillLabel =
+		typeof o.pillLabel === "string" && o.pillLabel.trim()
+			? o.pillLabel.trim()
+			: undefined;
+	const pillGenres = parsePillGenres(o.pillGenres);
+
 	return {
 		archetype: parsedArchetype,
 		headlineSelf: headlineSelfRaw,
 		headlineVisitor: capitalizeHeadline(headlineVisitorRaw),
 		headline: headlineSelfRaw,
 		confidence: parsedConfidence,
+		...(pillLabel != null ? { pillLabel } : {}),
+		...(pillGenres != null ? { pillGenres } : {}),
 	};
 }
 

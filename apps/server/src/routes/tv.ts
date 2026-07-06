@@ -32,6 +32,11 @@ import {
 	syncTvMalIdFromDetail,
 } from "../lib/mal-anime-enrichment";
 import { fetchFollowingRatingsForTv } from "../lib/movie-following-ratings";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	isPremiumStreamingMonetizationFilter,
+	patronHasPlanFeature,
+} from "../lib/plan-feature-access";
 import { type TmdbTvSummary, tmdbApi, tmdbImg } from "../lib/tmdb";
 import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
@@ -292,7 +297,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 	)
 	.get(
 		"/discover",
-		async ({ query, user }) => {
+		async ({ query, user, status }) => {
 			const page = Number(query.page ?? 1) || 1;
 			if (!env.TMDB_API_KEY) return tmdbUnconfiguredPaged(page);
 			const language = await getTmdbLanguageForUser(user?.id);
@@ -319,6 +324,20 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			)
 				? monetizationRaw
 				: undefined;
+			if (
+				isPremiumStreamingMonetizationFilter(withWatchMonetizationTypes) &&
+				(!user ||
+					!patronHasPlanFeature(
+						await loadPatronEntitlements(user.id),
+						"streaming_filters",
+					))
+			) {
+				return status(403, {
+					error: "Streaming filters require Attuned",
+					code: "PLAN_FEATURE_REQUIRED",
+					featureKey: "streaming_filters",
+				});
+			}
 			const regionRaw = (query.watch_region ?? "").trim().toUpperCase();
 			const watchRegionAll =
 				regionRaw === "ALL" || regionRaw === "ANY" || regionRaw === "WORLD";

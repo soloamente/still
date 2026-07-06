@@ -29,6 +29,7 @@ import {
 import { toast } from "sonner";
 import { ListLobbyDeleteConfirmDialog } from "@/components/list/list-lobby-delete-confirm-dialog";
 import { ListLobbyEditDialog } from "@/components/list/list-lobby-edit-dialog";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { api } from "@/lib/api";
 import {
 	isListCoverProxySrc,
@@ -53,6 +54,9 @@ export function ListLobbyPoster({
 	frameClassName?: string;
 }) {
 	const router = useRouter();
+	const { hasFeature } = usePatronEntitlements();
+	const hasListCovers = hasFeature("list_covers");
+	const hasPrivateLists = hasFeature("private_lists");
 	const coverInputId = useId();
 	const coverInputRef = useRef<HTMLInputElement>(null);
 	const { open, anchor, onContextMenu, onPointerDown, onOpenChange } =
@@ -228,7 +232,7 @@ export function ListLobbyPoster({
 			},
 		];
 
-		if (!isSharedList) {
+		if (!isSharedList && hasListCovers) {
 			items.push({
 				id: "cover",
 				label: "Change cover",
@@ -251,18 +255,28 @@ export function ListLobbyPoster({
 						setEditOpen(true);
 					},
 				},
-				{
-					id: "privacy",
-					label: isPublic ? "Make private" : "Make public",
-					shortcut: "P",
-					disabled: togglingPrivacy,
-					icon: isPublic ? (
-						<IconLockFill className="opacity-90" aria-hidden />
-					) : (
-						<IconGlobePointerFill className="opacity-90" aria-hidden />
-					),
-					onSelect: () => void handleTogglePrivacy(),
-				},
+				...(isPublic || hasPrivateLists
+					? [
+							{
+								id: "privacy",
+								label: isPublic ? "Make private" : "Make public",
+								shortcut: "P",
+								disabled: togglingPrivacy || (isPublic && !hasPrivateLists),
+								icon: isPublic ? (
+									<IconLockFill className="opacity-90" aria-hidden />
+								) : (
+									<IconGlobePointerFill className="opacity-90" aria-hidden />
+								),
+								onSelect: () => {
+									if (isPublic && !hasPrivateLists) {
+										toast.error("Private lists require Immersed");
+										return;
+									}
+									void handleTogglePrivacy();
+								},
+							} satisfies RadialToolkitItem,
+						]
+					: []),
 				{
 					id: "delete",
 					label: "Delete list",
@@ -283,6 +297,8 @@ export function ListLobbyPoster({
 		deleting,
 		handleCopyLink,
 		handleTogglePrivacy,
+		hasListCovers,
+		hasPrivateLists,
 		isFavoritesList,
 		isSharedList,
 		isPublic,

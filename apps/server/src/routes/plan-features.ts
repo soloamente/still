@@ -5,8 +5,43 @@ import { Elysia, t } from "elysia";
 import { context, requirePermission } from "../context";
 import { makeId } from "../lib/cuid";
 
+/** Stable slug for plan_feature.key — staff-created rows are display-only, not entitlement gates. */
+function featureKeyFromName(name: string): string {
+	const base = name
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9]+/g, "_")
+		.replace(/^_+|_+$/g, "")
+		.slice(0, 48);
+	return base.length > 0 ? base : "feature";
+}
+
+async function uniqueFeatureKey(name: string): Promise<string> {
+	const base = featureKeyFromName(name);
+	const existing = await db
+		.select({ key: planFeature.key })
+		.from(planFeature)
+		.where(eq(planFeature.key, base))
+		.limit(1);
+	if (existing.length === 0) return base;
+
+	let suffix = 2;
+	while (suffix < 100) {
+		const candidate = `${base}_${suffix}`.slice(0, 64);
+		const clash = await db
+			.select({ key: planFeature.key })
+			.from(planFeature)
+			.where(eq(planFeature.key, candidate))
+			.limit(1);
+		if (clash.length === 0) return candidate;
+		suffix += 1;
+	}
+	return `${base}_${makeId("feat").slice(-8)}`;
+}
+
 type PlanFeatureRow = {
 	id: string;
+	key: string | null;
 	name: string;
 	description: string;
 	buildStatus: string;
@@ -30,6 +65,7 @@ async function listFeaturesWithTiers(): Promise<PlanFeatureRow[]> {
 
 	return features.map((f) => ({
 		id: f.id,
+		key: f.key,
 		name: f.name,
 		description: f.description,
 		buildStatus: f.buildStatus,
@@ -65,6 +101,7 @@ export const planFeaturesRoute = new Elysia({
 			try {
 				await requirePermission({ user: viewer }, { user: ["list"] });
 				const id = makeId("feat");
+				const key = await uniqueFeatureKey(body.name);
 				const existing = await db
 					.select({ o: planFeature.sortOrder })
 					.from(planFeature)
@@ -72,6 +109,7 @@ export const planFeaturesRoute = new Elysia({
 				const sortOrder = existing.length;
 				await db.insert(planFeature).values({
 					id,
+					key,
 					name: body.name,
 					description: body.description,
 					buildStatus: body.buildStatus,

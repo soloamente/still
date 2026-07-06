@@ -9,6 +9,7 @@ import { achievementsRoute, badgesRoute } from "../routes/badges";
 import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
+import { devotedRequestRoute } from "../routes/devoted-request";
 import { feedRoute } from "../routes/feed";
 import { feedbackRoute } from "../routes/feedback";
 import { followsRoute } from "../routes/follows";
@@ -25,6 +26,7 @@ import { newsRoute } from "../routes/news";
 import { notificationsRoute } from "../routes/notifications";
 import { peopleRoute } from "../routes/people";
 import { planFeaturesRoute } from "../routes/plan-features";
+import { plansPublicRoute } from "../routes/plans-public";
 import { polarWebhookRoute } from "../routes/polar-webhook";
 import { postsRoute } from "../routes/posts";
 import { productEventsRoute } from "../routes/product-events";
@@ -32,6 +34,7 @@ import { profilesRoute } from "../routes/profiles";
 import { quotesRoute } from "../routes/quotes";
 import { realtimeConnectRoute } from "../routes/realtime-connect";
 import { realtimePresenceRoute } from "../routes/realtime-presence";
+import { referralsRoute } from "../routes/referrals";
 import { reviewsRoute } from "../routes/reviews";
 import { staffRoute } from "../routes/staff";
 import { staffFeedbackRoute } from "../routes/staff-feedback";
@@ -148,6 +151,9 @@ export const app = new Elysia({ aot: false })
 	.use(staffFeedbackRoute)
 	.use(adminAssetsRoute)
 	.use(planFeaturesRoute)
+	.use(plansPublicRoute)
+	.use(devotedRequestRoute)
+	.use(referralsRoute)
 	.use(polarWebhookRoute)
 	.onError(({ error, code, set }) => {
 		console.error(`[server] error code=${code}`, error);

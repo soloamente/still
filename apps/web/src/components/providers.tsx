@@ -1,9 +1,11 @@
 "use client";
 
 import { Toaster } from "@still/ui/components/sonner";
+import { Suspense } from "react";
 import { RootHtmlClassSync } from "@/components/app/root-html-class-sync";
 import { RootHtmlFontClassProvider } from "@/components/app/root-html-font-class-context";
 import { LenisProvider } from "@/components/lenis-provider";
+import { ReferralRefUrlListener } from "@/components/referrals/referral-ref-url-listener";
 import {
 	APP_THEME_CLASS_EMBER,
 	APP_THEME_CLASS_LOBBY_LIGHT,
@@ -56,6 +58,9 @@ export default function Providers({
 			>
 				{/* Lenis: opt-in smooth wheel via Settings; native scroll by default. */}
 				<LenisProvider>
+					<Suspense fallback={null}>
+						<ReferralRefUrlListener />
+					</Suspense>
 					<RootHtmlClassSync />
 					{children}
 				</LenisProvider>

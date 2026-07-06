@@ -4,7 +4,7 @@ import { Input } from "@still/ui/components/input";
 import { Textarea } from "@still/ui/components/textarea";
 import type { ReactNode } from "react";
 import { useState } from "react";
-
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
 import { AdultContentEnableDialog } from "@/components/profile/adult-content-enable-dialog";
 import { BirthDatePicker } from "@/components/profile/birth-date-picker";
 import {
@@ -276,13 +276,15 @@ export function SettingsCatalogueSection() {
 							onChange={setCatalogTmdbWatchRegion}
 						/>
 					</MeFormField>
-					<MePreferenceToggle
-						id="watchlist-streaming-alerts"
-						checked={watchlistStreamingAlerts}
-						onChange={setWatchlistStreamingAlerts}
-						title="Notify when watchlisted titles stream near me"
-						description="Uses your watch region above. Sense checks cached streaming data daily and pings your inbox when a saved title lands on a new service."
-					/>
+					<PlanFeatureGate featureKey="watchlist_alerts">
+						<MePreferenceToggle
+							id="watchlist-streaming-alerts"
+							checked={watchlistStreamingAlerts}
+							onChange={setWatchlistStreamingAlerts}
+							title="Notify when watchlisted titles stream near me"
+							description="Uses your watch region above. Sense checks cached streaming data daily and pings your inbox when a saved title lands on a new service."
+						/>
+					</PlanFeatureGate>
 					<MeFormField
 						id="catalogTmdbLanguage"
 						label="Catalogue language"

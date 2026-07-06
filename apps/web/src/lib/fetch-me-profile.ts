@@ -10,12 +10,24 @@ export type MeProfile = {
 	displayName: string;
 	/** Fresh portrait URL from `user.image` (nav uses this over stale session). */
 	image?: string | null;
+	bio?: string | null;
+	pronouns?: string | null;
+	location?: string | null;
+	website?: string | null;
+	isPrivate?: boolean;
+	accentColor?: string | null;
+	defaultVisibility?: string | null;
+	birthDate?: string | null;
+	bannerUrl?: string | null;
 	subscriptionTier?: PlanTierId;
 	planOverride?: PlanTierId | null;
 	effectiveTier?: PlanTierId;
 	featureGrants?: PlanFeatureKey[];
-	/** Computed from API — hasFeature("all_themes") compat shim until Task 15. */
+	/** Computed from tier + grants — immersed themes (`all_themes`). */
 	isPro: boolean;
+	polarSubscriptionId?: string | null;
+	subscriptionStatus?: string | null;
+	subscriptionInterval?: "month" | "year" | null;
 	onboardedAt?: string | Date | null;
 	createdAt?: string | Date | null;
 	tasteSignatureComputedAt?: string | Date | null;
@@ -36,7 +48,9 @@ export const fetchMeProfile = cache(
 		try {
 			const api = await serverApi();
 			const res = await api.api.profiles.me.get();
-			if (res.error || !res.data) return null;
+			// API errors (401 host/cookie mismatch, 5xx) must not masquerade as "needs onboarding".
+			if (res.error) return PROFILE_FETCH_FAILED;
+			if (!res.data) return null;
 			return res.data as MeProfile;
 		} catch {
 			return PROFILE_FETCH_FAILED;

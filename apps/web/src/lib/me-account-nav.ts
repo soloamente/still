@@ -4,6 +4,7 @@ export const ME_ACCOUNT_NAV_ITEMS = [
 	{ href: "/me/settings/notifications", label: "Notifications" },
 	{ href: "/me/settings/catalogue", label: "Catalogue" },
 	{ href: "/me/settings/appearance", label: "Appearance" },
+	{ href: "/me/settings/subscription", label: "Subscription" },
 	{ href: "/me/settings/data", label: "Data" },
 	{ href: "/me/settings/experience", label: "Experience" },
 ] as const;

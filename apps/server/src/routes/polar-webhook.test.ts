@@ -138,4 +138,49 @@ describe("polarWebhookRoute", () => {
 		expect(clearProfileSubscription).toHaveBeenCalledWith("cust_test_1");
 		expect(syncProfileFromPolarSubscription).not.toHaveBeenCalled();
 	});
+
+	test("customer.state_changed syncs active subscription from nested payload", async () => {
+		validateEvent.mockImplementationOnce(() => ({
+			type: "customer.state_changed",
+			data: {
+				id: "cust_test_1",
+				external_id: "user_test_1",
+				active_subscriptions: [
+					{
+						id: "sub_test_1",
+						status: "active",
+						product_id: ATTUNED_MONTHLY_PRODUCT_ID,
+						discount_id: null,
+					},
+				],
+			},
+		}));
+
+		const res = await call("{}");
+		expect(res.status).toBe(202);
+		expect(syncProfileFromPolarSubscription).toHaveBeenCalledWith({
+			polarCustomerId: "cust_test_1",
+			polarSubscriptionId: "sub_test_1",
+			productId: ATTUNED_MONTHLY_PRODUCT_ID,
+			status: "active",
+			referralDiscountUsed: false,
+			customerExternalId: "user_test_1",
+		});
+	});
+
+	test("customer.state_changed with no active subscriptions clears profile", async () => {
+		validateEvent.mockImplementationOnce(() => ({
+			type: "customer.state_changed",
+			data: {
+				id: "cust_test_1",
+				external_id: "user_test_1",
+				active_subscriptions: [],
+			},
+		}));
+
+		const res = await call("{}");
+		expect(res.status).toBe(202);
+		expect(clearProfileSubscription).toHaveBeenCalledWith("cust_test_1");
+		expect(syncProfileFromPolarSubscription).not.toHaveBeenCalled();
+	});
 });

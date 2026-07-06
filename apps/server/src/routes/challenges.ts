@@ -13,6 +13,11 @@ import {
 	getCompletionistChallengeById,
 	toChallengeListItem,
 } from "../lib/completionist-challenges";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	patronHasPlanFeature,
+	planFeatureRequiredBody,
+} from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 
 /** Static catalog + optional enrollment — always returns rows even if migration lags. */
@@ -128,6 +133,16 @@ export const challengesRoute = new Elysia({
 		"/:id/enroll",
 		async ({ params, user, status }) => {
 			if (!user) return status(401, "Sign in to join a challenge");
+			const entitlements = await loadPatronEntitlements(user.id);
+			if (!patronHasPlanFeature(entitlements, "challenges")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"challenges",
+						"Completionist challenges require Immersed",
+					),
+				);
+			}
 			if (
 				!hit(`challenge-enroll:${user.id}`, { limit: 30, windowMs: 60_000 }).ok
 			) {

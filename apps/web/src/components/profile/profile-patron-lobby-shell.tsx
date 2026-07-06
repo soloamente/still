@@ -77,6 +77,7 @@ export interface ProfilePatronLobbyShellProps {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
+	activitySignatureEnabled?: boolean;
 }
 
 function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
@@ -118,6 +119,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		bannerIsAnimated,
 		profilePortraitGrayscaleUntilHover,
 		diaryMetalTier = null,
+		activitySignatureEnabled = true,
 	} = props;
 
 	const {
@@ -221,6 +223,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 							profilePortraitGrayscaleUntilHover
 						}
 						diaryMetalTier={diaryMetalTier}
+						activitySignatureEnabled={activitySignatureEnabled}
 					/>
 
 					<ProfilePatronMilestones

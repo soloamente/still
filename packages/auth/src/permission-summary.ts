@@ -25,7 +25,7 @@ export const ACTION_LABELS: Record<string, Record<string, string>> = {
 		"impersonate-admins": "Impersonate owner and admin accounts",
 		edit: "Edit a user's profile",
 		note: "Leave internal notes on a user",
-		pro: "Grant or revoke complimentary Pro",
+		pro: "Grant plan override and feature extras",
 	},
 	content: {
 		hide: "Hide content",

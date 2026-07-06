@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { YearInReviewPageContent } from "@/components/achievements/year-in-review-page-content";
+import { YearInReviewPlanGate } from "@/components/achievements/year-in-review-plan-gate";
 import { APP_NAME } from "@/lib/app-brand";
 import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchMyYearInReviewServer } from "@/lib/fetch-year-in-review-server";
@@ -77,11 +78,15 @@ export default async function YearInReviewPage({
 	const year = yearFromRouteSegment(segment);
 	if (year == null) notFound();
 
-	const [profileResult, payload] = await Promise.all([
+	const [profileResult, yearResult] = await Promise.all([
 		fetchMeProfile(),
 		fetchMyYearInReviewServer(year),
 	]);
-	if (!payload) notFound();
+	if (yearResult.forbidden) {
+		return <YearInReviewPlanGate year={year} />;
+	}
+	if (!yearResult.payload) notFound();
+	const payload = yearResult.payload;
 	const profile = profileResult === PROFILE_FETCH_FAILED ? null : profileResult;
 	if (!profile?.handle) notFound();
 

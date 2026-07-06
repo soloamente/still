@@ -33,6 +33,8 @@ const serverEnv = {
 	POLAR_PRODUCT_ATTUNED_YEARLY: optionalNonEmptyString(),
 	POLAR_PRODUCT_IMMERSED_MONTHLY: optionalNonEmptyString(),
 	POLAR_PRODUCT_IMMERSED_YEARLY: optionalNonEmptyString(),
+	POLAR_PRODUCT_DEVOTED_MONTHLY: optionalNonEmptyString(),
+	POLAR_PRODUCT_DEVOTED_YEARLY: optionalNonEmptyString(),
 	POLAR_DISCOUNT_REFERRAL10: optionalNonEmptyString(),
 	CORS_ORIGIN: z.url(),
 	NODE_ENV: z

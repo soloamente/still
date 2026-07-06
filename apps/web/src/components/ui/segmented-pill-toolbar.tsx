@@ -21,6 +21,7 @@ export function SegmentedPillToolbar<T extends string>({
 	onChange,
 	options,
 	className,
+	indicatorClassName,
 	compact = false,
 	disabled = false,
 }: {
@@ -30,7 +31,10 @@ export function SegmentedPillToolbar<T extends string>({
 	value: T;
 	onChange: (next: T) => void;
 	options: readonly { id: T; label: string; title?: string }[];
+	/** Extra track classes — `bg-background` is always applied on the shell. */
 	className?: string;
+	/** Sliding active segment — defaults to `bg-card`. */
+	indicatorClassName?: string;
 	/** Tighter chips when many segments (e.g. five watching statuses). */
 	compact?: boolean;
 	disabled?: boolean;
@@ -97,7 +101,10 @@ export function SegmentedPillToolbar<T extends string>({
 			{indicator ? (
 				<motion.span
 					aria-hidden
-					className="pointer-events-none absolute top-1 bottom-1 z-0 rounded-full bg-card"
+					className={cn(
+						"pointer-events-none absolute top-1 bottom-1 z-0 rounded-full",
+						indicatorClassName ?? "bg-card",
+					)}
 					initial={false}
 					animate={{
 						left: indicator.left,

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { api } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -36,6 +37,7 @@ export function ReviewPinToProfileButton({
 }) {
 	const router = useRouter();
 	const { data: session } = authClient.useSession();
+	const { hasFeature } = usePatronEntitlements();
 	const [pinnedIds, setPinnedIds] = useState<string[]>([]);
 	const [loadingPins, setLoadingPins] = useState(false);
 	const [busy, setBusy] = useState(false);
@@ -98,6 +100,7 @@ export function ReviewPinToProfileButton({
 	}, [isPinned, pinnedIds, reviewId, router]);
 
 	if (!isOwner) return null;
+	if (!hasFeature("pinned_reviews")) return null;
 
 	const pinLabel = isPinned ? "Unpin from profile" : "Pin to profile";
 

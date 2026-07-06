@@ -103,6 +103,11 @@ export type SettingsProfile = {
 	isPro?: boolean;
 	effectiveTier?: PlanTierId;
 	featureGrants?: readonly PlanFeatureKey[];
+	subscriptionTier?: PlanTierId;
+	planOverride?: PlanTierId | null;
+	subscriptionInterval?: "month" | "year" | null;
+	subscriptionStatus?: "active" | "past_due" | "canceled" | null;
+	polarSubscriptionId?: string | null;
 	accentColor?: string | null;
 	preferences?: Record<string, unknown> | null;
 	defaultVisibility?: ContentVisibility | null;
@@ -956,6 +961,7 @@ export function SettingsFormProvider({
 			website,
 			birthDate,
 			showBirthDateOnProfile,
+			presenceVisibility,
 			isPrivate,
 			profileAudio,
 			smoothScroll,

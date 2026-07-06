@@ -1,5 +1,5 @@
 import { badge, db, log, userCompletionistChallenge } from "@still/db";
-import { and, eq, inArray, isNull } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import { awardBadgeToUser } from "../jobs/badge-evaluator";
 import {
 	COMPLETIONIST_CHALLENGES,
@@ -7,6 +7,8 @@ import {
 	getCompletionistChallengeById,
 } from "./completionist-challenges";
 import { deliverNotification } from "./notification-delivery";
+import { loadPatronEntitlements } from "./patron-entitlements";
+import { patronHasPlanFeature } from "./plan-feature-access";
 
 /** Distinct TMDB ids the patron has logged as films. */
 export async function fetchWatchedMovieIds(
@@ -66,10 +68,13 @@ export async function syncCompletionistChallengesForUser(
 			.where(eq(badge.id, def.badgeId))
 			.limit(1);
 		if (badgeRow) {
-			await awardBadgeToUser(userId, badgeRow, {
-				challengeId: def.id,
-				watched: progress.watched,
-			});
+			const entitlements = await loadPatronEntitlements(userId);
+			if (patronHasPlanFeature(entitlements, "badge_prestige")) {
+				await awardBadgeToUser(userId, badgeRow, {
+					challengeId: def.id,
+					watched: progress.watched,
+				});
+			}
 		}
 
 		await deliverNotification({

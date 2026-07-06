@@ -55,6 +55,11 @@ import {
 	LIST_ITEM_NOTE_MAX_CHARS,
 } from "../lib/list-quality";
 import { canViewList } from "../lib/list-view-access";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	patronHasPlanFeature,
+	planFeatureRequiredBody,
+} from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
 import { formField } from "../lib/request-form";
@@ -315,6 +320,18 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (!hit(`list:create:${user.id}`, { limit: 8, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 			const body = routeBody<CreateListBody>(rawBody);
+			if (body.isPublic === false) {
+				const entitlements = await loadPatronEntitlements(user.id);
+				if (!patronHasPlanFeature(entitlements, "private_lists")) {
+					return status(
+						403,
+						planFeatureRequiredBody(
+							"private_lists",
+							"Private lists require Immersed",
+						),
+					);
+				}
+			}
 			const effectiveIsPublic = body.isPublic ?? true;
 			if (effectiveIsPublic) {
 				try {
@@ -474,6 +491,16 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 		"/:id/collaborators",
 		async ({ params, body: rawBody, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			const entitlements = await loadPatronEntitlements(user.id);
+			if (!patronHasPlanFeature(entitlements, "private_lists")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"private_lists",
+						"List collaboration requires Immersed",
+					),
+				);
+			}
 			const body = routeBody<{ handle: string }>(rawBody);
 			const result = await inviteListCollaboratorByHandle({
 				listId: params.id,
@@ -521,6 +548,18 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+			if (body.isPublic === false && existing.isPublic) {
+				const entitlements = await loadPatronEntitlements(user.id);
+				if (!patronHasPlanFeature(entitlements, "private_lists")) {
+					return status(
+						403,
+						planFeatureRequiredBody(
+							"private_lists",
+							"Private lists require Immersed",
+						),
+					);
+				}
+			}
 			const effectiveIsPublic = body.isPublic ?? existing.isPublic;
 			if (effectiveIsPublic) {
 				try {
@@ -578,6 +617,18 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				}
 			}
 			if (body.coverImageUrl !== undefined) {
+				if (body.coverImageUrl !== null) {
+					const entitlements = await loadPatronEntitlements(user.id);
+					if (!patronHasPlanFeature(entitlements, "list_covers")) {
+						return status(
+							403,
+							planFeatureRequiredBody(
+								"list_covers",
+								"Custom list covers require Immersed",
+							),
+						);
+					}
+				}
 				coverPatch.coverImageUrl = body.coverImageUrl;
 				if (body.coverImageUrl !== null) {
 					coverPatch.coverMovieId = null;
@@ -633,6 +684,16 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.limit(1);
 			if (!existing || existing.userId !== user.id)
 				return status(404, "Not found");
+			const entitlements = await loadPatronEntitlements(user.id);
+			if (!patronHasPlanFeature(entitlements, "list_covers")) {
+				return status(
+					403,
+					planFeatureRequiredBody(
+						"list_covers",
+						"Custom list covers require Immersed",
+					),
+				);
+			}
 			if (!hit(`list:cover:${user.id}`, { limit: 10, windowMs: 60_000 }).ok)
 				return status(429, "Slow down");
 

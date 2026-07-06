@@ -78,6 +78,12 @@
 			"sourceType": "github",
 			"skillPath": "skills/stitch-skill/SKILL.md",
 			"computedHash": "acf2921a7e50c06e637f072ba52e36a994cbb44ecbe6e31435bc113b894f5499"
+		},
+		"web-haptics": {
+			"source": "lochie/web-haptics",
+			"sourceType": "github",
+			"skillPath": "SKILL.md",
+			"computedHash": "eb824d6262dde0264680c8796ffcd651ce065ab3f1e0d1fb12bbd7171ab3ccfb"
 		}
 	}
 }

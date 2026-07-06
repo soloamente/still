@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { ReferralRefCapture } from "@/components/auth/referral-ref-capture";
 import { SignUpForm } from "@/components/auth/sign-up-form";
 import { APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
@@ -11,8 +12,13 @@ export const metadata: Metadata = {
 	description: `Join ${APP_NAME} — log films and TV, build lists, and follow friends.`,
 };
 
-export default async function SignUpPage() {
+type SignUpPageProps = {
+	searchParams: Promise<{ ref?: string }>;
+};
+
+export default async function SignUpPage({ searchParams }: SignUpPageProps) {
 	const session = await authServer();
+	const { ref: referralCode } = await searchParams;
 	if (session) {
 		const profileResult = await fetchMeProfile();
 		if (
@@ -24,5 +30,10 @@ export default async function SignUpPage() {
 		redirect("/home");
 	}
 
-	return <SignUpForm />;
+	return (
+		<>
+			<ReferralRefCapture referralCode={referralCode} />
+			<SignUpForm />
+		</>
+	);
 }

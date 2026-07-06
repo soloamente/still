@@ -1,7 +1,7 @@
 "use client";
 
+import type { PlanFeatureKey, PlanTierId } from "@still/plans";
 import { Button } from "@still/ui/components/button";
-import { Checkbox } from "@still/ui/components/checkbox";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
@@ -13,6 +13,7 @@ import {
 	StaffUserEditForm,
 } from "./staff-user-edit-form";
 import { type StaffUserNote, StaffUserNotes } from "./staff-user-notes";
+import { StaffUserPlanForm } from "./staff-user-plan-form";
 
 type StaffUserDetailData = {
 	user: {
@@ -27,6 +28,10 @@ type StaffUserDetailData = {
 	profile:
 		| (StaffEditableProfile & {
 				userId: string;
+				subscriptionTier: PlanTierId;
+				planOverride: PlanTierId | null;
+				effectiveTier: PlanTierId;
+				featureGrants: PlanFeatureKey[];
 				isPro: boolean;
 				isPrivate: boolean;
 				statsCache?: {
@@ -40,6 +45,13 @@ type StaffUserDetailData = {
 		  })
 		| null;
 	permissions: Array<{ resource: string; action: string; label: string }>;
+};
+
+const TIER_LABELS: Record<PlanTierId, string> = {
+	still: "Still",
+	attuned: "Attuned",
+	immersed: "Immersed",
+	devoted: "Devoted",
 };
 
 function formatDate(value?: string | null): string {
@@ -70,7 +82,6 @@ export function StaffUserDetail({
 	const [notes, setNotes] = useState<StaffUserNote[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [editing, setEditing] = useState(false);
-	const [proSaving, setProSaving] = useState(false);
 	const [impersonating, setImpersonating] = useState(false);
 
 	useEffect(() => {
@@ -109,31 +120,6 @@ export function StaffUserDetail({
 			cancelled = true;
 		};
 	}, [userId, canNote]);
-
-	async function handleProToggle(next: boolean) {
-		setProSaving(true);
-		try {
-			const res = await api.api.staff.users({ id: userId }).pro.post({
-				isPro: next,
-			});
-			if (res.error) {
-				toast.error(
-					errorMessage(res.error.value, "Could not update Pro status"),
-				);
-				return;
-			}
-			setData((prev) =>
-				prev?.profile
-					? { ...prev, profile: { ...prev.profile, isPro: next } }
-					: prev,
-			);
-			toast.success(next ? "Granted Pro" : "Revoked Pro");
-		} catch (err) {
-			toast.error(errorMessage(err, "Could not update Pro status"));
-		} finally {
-			setProSaving(false);
-		}
-	}
 
 	async function handleImpersonate() {
 		setImpersonating(true);
@@ -210,9 +196,12 @@ export function StaffUserDetail({
 								</a>
 							</p>
 							<p className="flex flex-wrap gap-1.5">
-								{profile.isPro ? (
+								<span className="rounded-full border border-border px-2 py-0.5 text-xs">
+									{TIER_LABELS[profile.effectiveTier]}
+								</span>
+								{profile.planOverride ? (
 									<span className="rounded-full border border-border px-2 py-0.5 text-xs">
-										Pro
+										Override
 									</span>
 								) : null}
 								{profile.isPrivate ? (
@@ -249,14 +238,26 @@ export function StaffUserDetail({
 			</section>
 
 			{canPro && profile ? (
-				<section className="flex items-center gap-2">
-					<Checkbox
-						checked={profile.isPro}
-						disabled={proSaving}
-						onCheckedChange={(checked) => handleProToggle(checked === true)}
-					/>
-					<span className="text-sm">Pro override (manually granted)</span>
-				</section>
+				<StaffUserPlanForm
+					userId={userId}
+					subscriptionTier={profile.subscriptionTier}
+					planOverride={profile.planOverride}
+					effectiveTier={profile.effectiveTier}
+					featureGrants={profile.featureGrants}
+					onSaved={(entitlements) => {
+						setData((prev) =>
+							prev?.profile
+								? {
+										...prev,
+										profile: {
+											...prev.profile,
+											...entitlements,
+										},
+									}
+								: prev,
+						);
+					}}
+				/>
 			) : null}
 
 			{canEdit && profile ? (

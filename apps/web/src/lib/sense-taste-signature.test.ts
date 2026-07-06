@@ -2,9 +2,11 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	legacyVisitorHeadlineFromSelf,
+	parseTasteSignatureJson,
 	resolveTasteHeadline,
 	shouldShowTasteArchetypePill,
 	tasteArchetypeDescription,
+	tasteSignaturePillLabel,
 } from "./sense-taste-signature";
 
 describe("legacyVisitorHeadlineFromSelf", () => {
@@ -22,6 +24,18 @@ describe("legacyVisitorHeadlineFromSelf", () => {
 		const description = tasteArchetypeDescription("genre-led");
 		expect(description).toContain("One genre leads");
 		expect(description).not.toContain("crowd");
+	});
+
+	test("genre-led tooltip names genres when pillGenres present", () => {
+		const description = tasteArchetypeDescription("genre-led", "self", {
+			primary: "Drama",
+			secondary: "Comedy",
+			tertiary: "Thriller",
+		});
+		expect(description).toContain("Drama leads");
+		expect(description).toContain("Comedy");
+		expect(description).toContain("Thriller");
+		expect(description).not.toContain("One genre leads");
 	});
 
 	test("capitalizes visitor headline from resolveTasteHeadline", () => {
@@ -53,5 +67,42 @@ describe("shouldShowTasteArchetypePill", () => {
 				confidence: "high",
 			}),
 		).toBe(false);
+	});
+});
+
+describe("tasteSignaturePillLabel", () => {
+	test("prefers pillLabel from JSON", () => {
+		expect(
+			tasteSignaturePillLabel({
+				archetype: "genre-led",
+				pillLabel: "Dramatist",
+			}),
+		).toBe("Dramatist");
+	});
+
+	test("falls back to legacy archetype label", () => {
+		expect(
+			tasteSignaturePillLabel({
+				archetype: "genre-led",
+			}),
+		).toBe("Genre-led");
+	});
+});
+
+describe("parseTasteSignatureJson", () => {
+	test("parses pillLabel and pillGenres", () => {
+		const parsed = parseTasteSignatureJson({
+			archetype: "dual-affinity",
+			headlineSelf: "Drama and animation run the show.",
+			confidence: "high",
+			pillLabel: "Dramatist & Toonist",
+			pillGenres: {
+				primary: "Drama",
+				secondary: "Animation",
+			},
+		});
+		expect(parsed?.pillLabel).toBe("Dramatist & Toonist");
+		expect(parsed?.pillGenres?.primary).toBe("Drama");
+		expect(parsed?.pillGenres?.secondary).toBe("Animation");
 	});
 });

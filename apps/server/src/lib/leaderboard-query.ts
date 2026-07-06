@@ -7,6 +7,7 @@ import {
 	eq,
 	gt,
 	gte,
+	inArray,
 	isNotNull,
 	isNull,
 	lt,
@@ -24,6 +25,11 @@ import {
 import { clampHiddenCount } from "./leaderboard-hidden-count";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
+import {
+	loadPatronEntitlements,
+	loadPatronEntitlementsForUserIds,
+} from "./patron-entitlements";
+import { patronHasPlanFeature } from "./plan-feature-access";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type LeaderboardKind = "films" | "tv";
@@ -61,6 +67,10 @@ export type LeaderboardLogItem = {
 	watchIndexInPeriod: number;
 	/** How many logs this patron filed for the same title in the period. */
 	watchCountInPeriod: number;
+	/** 1-based lifetime watch index for this title (all diary logs, chronological). */
+	watchIndexLifetime: number;
+	/** Total diary logs this patron has for this title (all time). */
+	watchCountLifetime: number;
 };
 
 type LeaderboardLogItemRow = {
@@ -108,11 +118,141 @@ export function annotateLeaderboardLogItems(
 				rewatch: item.rewatch,
 				watchIndexInPeriod: index + 1,
 				watchCountInPeriod: count,
+				watchIndexLifetime: 1,
+				watchCountLifetime: 1,
 			});
 		});
 	}
 
 	return annotated;
+}
+
+type LifetimeWatchRow = {
+	logId: string;
+	watchedAt: string | Date;
+	movieId: number | null;
+	tvId: number | null;
+};
+
+/** All-time watch ordinals per title — used for ledger poster labels (not period-only). */
+export function buildLifetimeWatchIndexMap(
+	rows: LifetimeWatchRow[],
+): Map<string, { watchIndexLifetime: number; watchCountLifetime: number }> {
+	const groups = new Map<string, LifetimeWatchRow[]>();
+
+	for (const item of rows) {
+		const key =
+			item.movieId != null
+				? `movie:${item.movieId}`
+				: item.tvId != null
+					? `tv:${item.tvId}`
+					: item.logId;
+		const bucket = groups.get(key);
+		if (bucket) bucket.push(item);
+		else groups.set(key, [item]);
+	}
+
+	const result = new Map<
+		string,
+		{ watchIndexLifetime: number; watchCountLifetime: number }
+	>();
+
+	for (const bucket of groups.values()) {
+		const sorted = bucket.slice().sort((a, b) => {
+			const at = new Date(a.watchedAt).getTime();
+			const bt = new Date(b.watchedAt).getTime();
+			if (at !== bt) return at - bt;
+			return a.logId.localeCompare(b.logId);
+		});
+		const count = sorted.length;
+		sorted.forEach((item, index) => {
+			result.set(item.logId, {
+				watchIndexLifetime: index + 1,
+				watchCountLifetime: count,
+			});
+		});
+	}
+
+	return result;
+}
+
+export function mergeLifetimeWatchCounts(
+	items: LeaderboardLogItem[],
+	lifetimeByLogId: Map<
+		string,
+		{ watchIndexLifetime: number; watchCountLifetime: number }
+	>,
+): LeaderboardLogItem[] {
+	return items.map((item) => {
+		const lifetime = lifetimeByLogId.get(item.logId);
+		return {
+			...item,
+			watchIndexLifetime: lifetime?.watchIndexLifetime ?? 1,
+			watchCountLifetime: lifetime?.watchCountLifetime ?? 1,
+		};
+	});
+}
+
+async function fetchLifetimeWatchRowsForTitles(
+	userId: string,
+	movieIds: number[],
+	tvIds: number[],
+): Promise<LifetimeWatchRow[]> {
+	if (movieIds.length === 0 && tvIds.length === 0) return [];
+
+	const titleFilters = [];
+	if (movieIds.length > 0) {
+		titleFilters.push(
+			and(inArray(log.movieId, movieIds), isNotNull(log.movieId)),
+		);
+	}
+	if (tvIds.length > 0) {
+		titleFilters.push(and(inArray(log.tvId, tvIds), isNotNull(log.tvId)));
+	}
+
+	const rows = await db
+		.select({
+			logId: log.id,
+			watchedAt: log.watchedAt,
+			movieId: log.movieId,
+			tvId: log.tvId,
+		})
+		.from(log)
+		.where(
+			and(
+				eq(log.userId, userId),
+				isNull(log.removedAt),
+				titleFilters.length === 1 ? titleFilters[0] : or(...titleFilters),
+			),
+		);
+
+	return rows;
+}
+
+async function annotateLeaderboardLogsWithLifetimeCounts(
+	userId: string,
+	items: LeaderboardLogItem[],
+): Promise<LeaderboardLogItem[]> {
+	const movieIds = [
+		...new Set(
+			items
+				.map((item) => item.movieId)
+				.filter((id): id is number => id != null),
+		),
+	];
+	const tvIds = [
+		...new Set(
+			items.map((item) => item.tvId).filter((id): id is number => id != null),
+		),
+	];
+
+	const lifetimeRows = await fetchLifetimeWatchRowsForTitles(
+		userId,
+		movieIds,
+		tvIds,
+	);
+	const lifetimeMap = buildLifetimeWatchIndexMap(lifetimeRows);
+	return mergeLifetimeWatchCounts(items, lifetimeMap);
 }
 
 /** Patron ids the viewer must not see on the board. */
@@ -170,6 +310,8 @@ export async function fetchLeaderboard(opts: {
 	limit?: number;
 }): Promise<LeaderboardResult> {
 	const limit = opts.limit ?? 50;
+	/** Over-fetch so Immersed-only filtering still fills the board. */
+	const fetchLimit = Math.min(limit * 4, 200);
 	const { start, end } =
 		opts.window ?? resolveLeaderboardWindow(opts.period, opts.tz, opts.now);
 	const blockedIds = opts.viewerId
@@ -201,13 +343,24 @@ export async function fetchLeaderboard(opts: {
 			asc(sql`max(${log.watchedAt})`),
 			asc(profile.handle),
 		)
-		.limit(limit);
+		.limit(fetchLimit);
 
-	const logCounts = await fetchDiaryLogCountsForUserIds(
+	const entitlementsByUser = await loadPatronEntitlementsForUserIds(
 		rows.map((row) => row.userId),
 	);
+	const visibleRows = rows
+		.filter((row) => {
+			const entitlements = entitlementsByUser.get(row.userId);
+			if (!entitlements) return false;
+			return patronHasPlanFeature(entitlements, "leaderboard_visibility");
+		})
+		.slice(0, limit);
 
-	const entries: LeaderboardEntry[] = rows.map((row, index) => ({
+	const logCounts = await fetchDiaryLogCountsForUserIds(
+		visibleRows.map((row) => row.userId),
+	);
+
+	const entries: LeaderboardEntry[] = visibleRows.map((row, index) => ({
 		rank: index + 1,
 		userId: row.userId,
 		handle: row.handle,
@@ -222,17 +375,20 @@ export async function fetchLeaderboard(opts: {
 
 	let viewer: { rank: number; count: number } | null = null;
 	if (opts.viewerId) {
-		const inList = entries.find((e) => e.userId === opts.viewerId);
-		if (inList) {
-			viewer = { rank: inList.rank, count: inList.count };
-		} else {
-			viewer = await fetchViewerRank({
-				kind: opts.kind,
-				viewerId: opts.viewerId,
-				start,
-				end,
-				blockedIds,
-			});
+		const viewerEntitlements = await loadPatronEntitlements(opts.viewerId);
+		if (patronHasPlanFeature(viewerEntitlements, "leaderboard_visibility")) {
+			const inList = entries.find((e) => e.userId === opts.viewerId);
+			if (inList) {
+				viewer = { rank: inList.rank, count: inList.count };
+			} else {
+				viewer = await fetchViewerRank({
+					kind: opts.kind,
+					viewerId: opts.viewerId,
+					start,
+					end,
+					blockedIds,
+				});
+			}
 		}
 	}
 
@@ -408,17 +564,20 @@ export async function fetchLeaderboardLogs(opts: {
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
 			hiddenCount,
-			items: annotateLeaderboardLogItems(
-				logs.map((l) => ({
-					logId: l.logId,
-					watchedAt: l.watchedAt.toISOString(),
-					movieId: l.movieId,
-					tvId: null,
-					title: l.title,
-					posterPath: l.posterPath,
-					rating: l.rating,
-					rewatch: l.rewatch,
-				})),
+			items: await annotateLeaderboardLogsWithLifetimeCounts(
+				opts.userId,
+				annotateLeaderboardLogItems(
+					logs.map((l) => ({
+						logId: l.logId,
+						watchedAt: l.watchedAt.toISOString(),
+						movieId: l.movieId,
+						tvId: null,
+						title: l.title,
+						posterPath: l.posterPath,
+						rating: l.rating,
+						rewatch: l.rewatch,
+					})),
+				),
 			),
 		};
 	}
@@ -481,17 +640,20 @@ export async function fetchLeaderboardLogs(opts: {
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
 		hiddenCount: tvHiddenCount,
-		items: annotateLeaderboardLogItems(
-			logs.map((l) => ({
-				logId: l.logId,
-				watchedAt: l.watchedAt.toISOString(),
-				movieId: null,
-				tvId: l.tvId,
-				title: l.title,
-				posterPath: l.posterPath,
-				rating: l.rating,
-				rewatch: l.rewatch,
-			})),
+		items: await annotateLeaderboardLogsWithLifetimeCounts(
+			opts.userId,
+			annotateLeaderboardLogItems(
+				logs.map((l) => ({
+					logId: l.logId,
+					watchedAt: l.watchedAt.toISOString(),
+					movieId: null,
+					tvId: l.tvId,
+					title: l.title,
+					posterPath: l.posterPath,
+					rating: l.rating,
+					rewatch: l.rewatch,
+				})),
+			),
 		),
 	};
 }

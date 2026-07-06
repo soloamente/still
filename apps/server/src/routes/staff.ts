@@ -11,14 +11,22 @@ import {
 	staffAuditLog,
 	user,
 } from "@still/db";
+import {
+	type PlanFeatureKey,
+	type PlanTierId,
+	parsePlanFeatureKeys,
+	parsePlanTierId,
+} from "@still/plans";
 import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context, requirePermission } from "../context";
 import { forwardAuthSetCookies } from "../lib/forward-auth-set-cookies";
 import { HANDLE_RE } from "../lib/handle-re";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import { hit } from "../lib/rate-limit";
 import { notifyRoleChanged } from "../lib/role-change-notification";
+import { applyStaffPatronPlan } from "../lib/staff-apply-patron-plan";
 import { type AuditTargetType, writeAuditLog } from "../lib/staff-audit";
 import { outranks } from "../lib/staff-rank";
 import { addStaffUserNote, listStaffUserNotes } from "../lib/staff-user-notes";
@@ -121,7 +129,6 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 				website: profile.website,
 				bannerUrl: profile.bannerUrl,
 				accentColor: profile.accentColor,
-				isPro: profile.isPro,
 				isPrivate: profile.isPrivate,
 			})
 			.from(profile)
@@ -131,11 +138,23 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			? await fetchStaffUserActivityStats(params.id)
 			: null;
 
+		const entitlements = targetProfile
+			? await loadPatronEntitlements(params.id)
+			: null;
+
 		const role = (target.role ?? "user") as AppRole;
 		return {
 			user: target,
 			profile: targetProfile
-				? { ...targetProfile, statsCache: activityStats }
+				? {
+						...targetProfile,
+						subscriptionTier: entitlements?.subscriptionTier ?? "still",
+						planOverride: entitlements?.planOverride ?? null,
+						effectiveTier: entitlements?.effectiveTier ?? "still",
+						featureGrants: entitlements?.featureGrants ?? [],
+						isPro: entitlements?.isPro ?? false,
+						statsCache: activityStats,
+					}
 				: null,
 			permissions: permissionSummary(role),
 		};
@@ -346,8 +365,8 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 			}),
 		},
 	)
-	.post(
-		"/users/:id/pro",
+	.patch(
+		"/users/:id/plan",
 		async ({ user: viewer, params, body, status }) => {
 			try {
 				await requirePermission({ user: viewer }, { user: ["pro"] });
@@ -366,22 +385,84 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 					"Cannot act on a peer or higher-ranked staff member",
 				);
 			}
-			const updated = await db
-				.update(profile)
-				.set({ isPro: body.isPro, updatedAt: new Date() })
-				.where(eq(profile.userId, params.id))
-				.returning({ userId: profile.userId });
-			if (updated.length === 0) return status(404, "Profile not found");
 
-			await writeAuditLog({
-				actorId: viewer.id,
-				action: body.isPro ? "user.pro.grant" : "user.pro.revoke",
-				targetType: "user",
-				targetId: params.id,
-			});
-			return { ok: true };
+			const planOverride =
+				body.planOverride == null ? null : parsePlanTierId(body.planOverride);
+			const featureGrants = parsePlanFeatureKeys(body.featureGrants);
+
+			let previous: {
+				previousPlanOverride: PlanTierId | null;
+				previousGrants: PlanFeatureKey[];
+			};
+			try {
+				previous = await applyStaffPatronPlan({
+					userId: params.id,
+					grantedBy: viewer.id,
+					planOverride,
+					featureGrants,
+				});
+			} catch (e) {
+				const msg = e instanceof Error ? e.message : String(e);
+				if (msg === "PROFILE_NOT_FOUND")
+					return status(404, "Profile not found");
+				throw e;
+			}
+
+			if (previous.previousPlanOverride !== planOverride) {
+				await writeAuditLog({
+					actorId: viewer.id,
+					action: "user.plan.override",
+					targetType: "user",
+					targetId: params.id,
+					metadata: {
+						from: previous.previousPlanOverride,
+						to: planOverride,
+					},
+				});
+			}
+
+			const removedGrants = previous.previousGrants.filter(
+				(key) => !featureGrants.includes(key),
+			);
+			for (const featureKey of removedGrants) {
+				await writeAuditLog({
+					actorId: viewer.id,
+					action: "user.plan.revoke-grant",
+					targetType: "user",
+					targetId: params.id,
+					metadata: { featureKey },
+				});
+			}
+
+			const addedGrants = featureGrants.filter(
+				(key) => !previous.previousGrants.includes(key),
+			);
+			for (const featureKey of addedGrants) {
+				await writeAuditLog({
+					actorId: viewer.id,
+					action: "user.plan.grant",
+					targetType: "user",
+					targetId: params.id,
+					metadata: { featureKey },
+				});
+			}
+
+			const entitlements = await loadPatronEntitlements(params.id);
+			return { ok: true, entitlements };
 		},
-		{ body: t.Object({ isPro: t.Boolean() }) },
+		{
+			body: t.Object({
+				planOverride: t.Nullable(
+					t.Union([
+						t.Literal("still"),
+						t.Literal("attuned"),
+						t.Literal("immersed"),
+						t.Literal("devoted"),
+					]),
+				),
+				featureGrants: t.Array(t.String()),
+			}),
+		},
 	)
 	.get("/users/:id/notes", async ({ user: viewer, params, status }) => {
 		try {

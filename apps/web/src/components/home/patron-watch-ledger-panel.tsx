@@ -12,7 +12,7 @@ import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
 import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
-	leaderboardPeriodLabel,
+	leaderboardWatchLedgerSummaryLabel,
 	readViewerTimeZone,
 } from "@/lib/home-leaderboard-period";
 import type { LeaderboardLogsPayload } from "@/lib/home-leaderboard-types";
@@ -106,32 +106,32 @@ export function PatronWatchLedgerPanel({
 	);
 	const hiddenCount = payload?.hiddenCount ?? 0;
 	const titleCount = items.length + hiddenCount;
-	const periodLabel = leaderboardPeriodLabel(seed.period);
-	const kindLabel = seed.kind === "tv" ? "Shows" : "Films";
 
 	return (
 		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
 			<DetailDrawerScrollBody scrollRef={scrollRef}>
 				<div className="mx-auto w-full max-w-4xl">
 					<header className="mx-auto mb-8 max-w-md text-center">
-						<div className="mx-auto mb-4 flex justify-center">
-							<div className="relative aspect-2/3 w-22 sm:w-24">
-								<div
-									className="pointer-events-none absolute inset-0 rounded-2xl bg-muted/30 shadow-lg"
-									aria-hidden
-								/>
+						<div className="mx-auto mb-2 flex justify-center">
+							<Link
+								href={`/profile/${handle}`}
+								className="relative overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+								title={`Open @${handle}'s profile`}
+							>
 								<PatronPortraitWithMetalTier
 									handle={handle}
 									avatarUrl={avatarImage}
 									name={displayName}
-									className="size-full rounded-2xl"
+									className="size-24 rounded-full bg-card object-cover sm:size-28"
+									width={112}
+									height={112}
 									isAnimated={inferAnimatedFromProfileUrl(
 										avatarImage,
 										avatarIsAnimated,
 									)}
 									diaryMetalTier={diaryMetalTier}
 								/>
-							</div>
+							</Link>
 						</div>
 						<div className="flex flex-col items-center">
 							<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
@@ -147,17 +147,15 @@ export function PatronWatchLedgerPanel({
 								@{handle}
 							</Link>
 						</div>
-						<div className="mt-2 flex flex-col gap-1">
-							<p className="text-balance font-editorial text-muted-foreground text-sm leading-snug">
-								{periodLabel}
+						{!loading && !error && titleCount > 0 ? (
+							<p className="mt-1.5 text-balance font-editorial text-muted-foreground text-sm leading-snug">
+								{leaderboardWatchLedgerSummaryLabel(
+									titleCount,
+									seed.kind,
+									seed.period,
+								)}
 							</p>
-							{!loading && !error && titleCount > 0 ? (
-								<p className="text-muted-foreground text-sm leading-snug">
-									{titleCount} {kindLabel.toLowerCase()} log
-									{titleCount === 1 ? "" : "s"} in this period
-								</p>
-							) : null}
-						</div>
+						) : null}
 					</header>
 
 					{loading ? (
@@ -190,6 +188,7 @@ export function PatronWatchLedgerPanel({
 						<PatronWatchLedgerGrid
 							items={sortedItems}
 							kind={seed.kind}
+							period={seed.period}
 							hiddenCount={payload?.hiddenCount ?? 0}
 						/>
 					) : null}

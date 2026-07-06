@@ -7,7 +7,7 @@ import {
 } from "@still/ui/components/popover";
 import { cn } from "@still/ui/lib/utils";
 import { type ReactElement, useMemo, useRef, useState } from "react";
-
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
 import {
 	FilterChipRow,
 	filterChipBaseClass,
@@ -273,22 +273,24 @@ export function HomeCatalogFiltersPopover({
 							{showWatchType ? (
 								<div className="mb-1">
 									{sectionLabel("Watch type")}
-									<SegmentedPillToolbar
-										layoutId={`home-catalog-filter-monetization-${browse}`}
-										aria-label="Watch type"
-										value={activeMonetization}
-										onChange={(next) =>
-											navigateFilters({
-												...filters,
-												monetization: next === "flatrate" ? null : next,
-											})
-										}
-										options={MONETIZATION_OPTIONS.map((opt) => ({
-											id: opt.id,
-											label: opt.label,
-										}))}
-										compact
-									/>
+									<PlanFeatureGate featureKey="streaming_filters">
+										<SegmentedPillToolbar
+											layoutId={`home-catalog-filter-monetization-${browse}`}
+											aria-label="Watch type"
+											value={activeMonetization}
+											onChange={(next) =>
+												navigateFilters({
+													...filters,
+													monetization: next === "flatrate" ? null : next,
+												})
+											}
+											options={MONETIZATION_OPTIONS.map((opt) => ({
+												id: opt.id,
+												label: opt.label,
+											}))}
+											compact
+										/>
+									</PlanFeatureGate>
 								</div>
 							) : null}
 						</div>

@@ -33,6 +33,10 @@ export type LeaderboardLogItem = {
 	rewatch: boolean;
 	watchIndexInPeriod: number;
 	watchCountInPeriod: number;
+	/** All-time watch ordinal for this title (1 = first watch ever). */
+	watchIndexLifetime: number;
+	/** Total diary logs for this title (all time). */
+	watchCountLifetime: number;
 };
 
 export type LeaderboardLogsPayload = {

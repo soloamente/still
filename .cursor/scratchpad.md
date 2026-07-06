@@ -1,5 +1,9 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Sense subscriptions & referrals — Polar (2026-07-05)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-04-sense-subscriptions-design.md` (**Approved**, billing provider **Polar**). Plan: `docs/superpowers/plans/2026-07-05-sense-subscriptions-polar.md`. **Shipped + human verified (Task 16, 2026-07-06):** Polar checkout/portal/sync, `/pricing`, feature gates, staff grants, referrals, Invite & earn, Devoted purchasable + confirm dialog. **Next track:** Phase 8 polish + Launch readiness (see below).
+
 ## Taste queue — non-interrupting backfill (2026-07-03)
 
 **Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-03-taste-queue-non-interrupting-backfill-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-03-taste-queue-non-interrupting-backfill.md`. **Locked:** hero + rail; append-only tail backfill; maintain 24-title depth via debounced `GET /api/taste/for-you`; unified hero `activeIndex` on remove; poster tail enter animation (`motion/react`). **Executor Task 1 done:** `taste-match-queue.ts` — `activeIndexAfterRemoval`, `mergeTailBackfill`, scheduler + backfill runner; `taste-match-queue.test.ts` **10/10 pass**; `TASTE_MATCH_TARGET_RESULTS` re-exported from `taste-matched-discovery.ts`. **Executor Tasks 2–5 done:** debounce tests; hero + rail wired — tail-only backfill, unified hero index, poster `AnimatePresence`, rail consumed listener. **Shipped (Task 7, human `go` 2026-07-03):** unit tests **12/12** pass; no in-slot splice in hero/rail handlers.
@@ -601,28 +605,44 @@ existing cinematic identity rather than replacing it.
 
 **Manual QA playbooks:** **8.1**, **8.3**, and **8.4** have Executor-written checklists in **`### Phase 8.1 prep`**, **`### Phase 8.3 prep`**, and **`### Phase 8.4 prep`** (same file, below this list).
 
-- [ ] 8.1 Cross-browser smoke _(**Phase 8.1 prep** — Chrome · Safari · Firefox · iOS Safari)_
+- [x] 8.1 Cross-browser smoke _(**Phase 8.1 prep** — Chrome · Safari · Firefox · iOS Safari; human **`ok` 2026-07-06**)_
 - [x] 8.2 Reduced-motion audit — code sweep (globals + `cinema-ticket-link` + loaders)
 - [ ] 8.3 Lighthouse perf _(**Phase 8.3 prep** — mobile vs last tagged release, like-for-like build mode)_
 - [ ] 8.4 a11y contrast on per‑film palette _(**Phase 8.4 prep** — `.movie-themed` extremes + WCAG probe)_
 - [x] 8.5 `globals.css` token map prose + stray path cleanup + button focus parity
 - [x] 8.6 `next build` green: Suspense shells for `/sign-in` + `/search`; `prefers-contrast` focus boost on `.movie-themed` controls _(Executor verified `bun run build` in `apps/web/`)_
 
-### Phase 8.1 prep — Cross-browser smoke checklist _(Executor 2026-05-16)_
+### Phase 8.1 prep — Cross-browser smoke checklist _(Executor 2026-05-16; refreshed 2026-07-06)_
 
 **Browsers:** Chrome · Safari · Firefox · iOS Safari — same signed-in account (staging or local).
 
-**Per browser (ordered pass)**
+**Per browser (ordered pass) — 2026-07 product IA**
 
-1. **`/home`** — feed scrolls; at **`lg+`**, friend-activity rail expands/collapses; no horizontal overflow around **390px** width.
-2. **`/movies/popular` → `/movies/upcoming` → `/movies/discover`** (chips) — on Discover, exercise genre + sort + scroll; **← Lobby** returns home; confirm infinite footer still sane.
-3. **`/movies/[id]`** (pick a real id) — hero legible; sticky dock clears bottom **`AppNav`**; switch among **Reviews / Lists / Related** once each.
-4. **⌘K / Ctrl+K** — palette opens; choose **Discover films** shortcut (lands on **`/movies/discover`**).
-5. **`/notifications`** on a **narrow** viewport — bell visible in **`AppNav`**; list scrolls; one row interaction if you have data.
-6. **`/me/settings` ↔ `/me/customization`** — mobile tab strip vs **`md+`** left rail; **`aria-current`** / active chrome reads correctly.
-7. **`/achievements`** — **Badges** / **Goals** tab chips; back pill returns to last browse context; no horizontal overflow at **390px**.
+1. **`/home`** — Movies · TV · Community browse rail; sticky search + chips; no horizontal overflow at **390px**; **Movies ↔ Community** pill moves without full-page freeze.
+2. **`/home?browse=tv`** — run chips (Ongoing · Completed · Upcoming); **Continue watching** rail when applicable.
+3. **`/home?browse=community`** — Lists · Reviews · Activity · Film/TV ranks; period chips (Week · Month · Year · All time).
+4. **`/movies/[id]`** — hero legible; **About · Community · Quotes · Streaming** tabs; bottom **`MobileTabBar`** clears content; switch tabs once each.
+5. **⌘K / Ctrl+K** — search dialog opens viewport-fixed; token pills + infinite results scroll; **People** row when signed in.
+6. **`/profile/[handle]`** — taste persona pill (*Dramatist*, not *Genre-led*); popover genres; **`/diary`** + **`/watchlist`** lobby chips.
+7. **`HomeStickyChrome` notifications** — bell menu on home/diary/watchlist/lists/profile (not movie/TV detail); one row tap if data.
+8. **`/me/settings` ↔ `/me/settings/subscription`** — sidebar vs mobile; **Invite friends** opens Invite & earn dialog.
+9. **`/achievements`** — Badges · Goals · Challenges; back pill; no overflow at **390px**.
+10. **`/pricing`** — tier cards + compare table at **390px** (watch horizontal overflow on compare grid).
 
-**Pass criteria:** no blank shell, no stuck modal/palette, bottom **`AppNav`** remains tappable (≥ ~44px targets), **Firefox** tolerates absent **View Transitions** (instant nav is OK).
+**Pass criteria:** no blank shell, no stuck modal/palette, bottom nav tappable (≥ ~44px), **Firefox** tolerates absent **View Transitions** (instant nav OK), no console **errors** on critical paths.
+
+**Chrome partial smoke (Executor 2026-07-06, unsigned, 390×844):**
+
+| Route | Result | Notes |
+|-------|--------|-------|
+| `/sign-in` | ☑ | Form renders; auth shell visible |
+| `/movies/550` | ☑ | Detail shell + tabs; **no** horizontal overflow |
+| `/pricing` | ⚠ | Compare section **overflows** at 390px (705px scroll width) — verify signed-out + signed-in |
+| `/home` | — | Redirects to sign-in (needs session) |
+
+**Signed-in matrix (human):** run rows 1–10 above in **Chrome · Safari · Firefox · iOS Safari**. **Human `ok` 2026-07-06 — 8.1 closed.**
+
+**Known dev note:** if profile taste pill throws `tasteArchetypeLabel is not defined`, hard-refresh — source uses `tasteSignaturePillLabel` (stale HMR).
 
 ### Phase 8.3 prep — Lighthouse mobile perf _(Executor 2026-05-16)_
 
@@ -2498,8 +2518,8 @@ Symptom **B** (frozen full page) on chip taps — root cause is `<Link>` + `forc
 
 - [x] **LR.1** Patron-facing **Sense** rebrand sweep — **code shipped** (2026-05-29): `APP_NAME` / `APP_MEMBER_LABEL` / `APP_COMMUNITY_AVERAGE_LABEL` in `app-brand.ts`; ~30 patron surfaces updated (nav, auth, marketing, detail, community copy). **Email domain** `hello@still.app` unchanged until domain cutover.
 - [ ] **LR.1 QA** — human: no “Still” in signed-in UI, auth, marketing, movie/TV detail, account menu
-- [x] **LR.2 prep** — production build green + automated taste/import/rebrand tests pass (2026-06-15)
-- [ ] **LR.2** Launch gate QA — roadmap §Testing “Launch blockers QA” (7 scenarios — human)
+- [x] **LR.2 prep** — production build green + automated taste/import/rebrand tests pass (refreshed **2026-07-06** after Polar/settings type fixes)
+- [x] **LR.2** Launch gate QA — roadmap §Testing “Launch blockers QA” (7 scenarios — human **`ok`** 2026-07-06)
 - [ ] **SN.12.5** Human: `bun run db:migrate`; verify `product_event` rows
 - [ ] **SN.14.6** Human: Pro themes on profile (needs `is_pro` in DB)
 
@@ -2617,3 +2637,165 @@ Reply **`ok`** when signed off, or report counts / missing titles.
 **Executor (2026-07-01, home load perf):** `/home` Movies refresh blocked on slow `/api/taste/for-you` inside `HomeLobbyBody` `Promise.all` (taste scoring + up to 4× TMDb `movieImages` + community stats). **Fix:** `HomeTasteMatchedHeroRsc` in its own `Suspense` + skeleton so catalogue chips/grid stream without waiting on taste; `enrichTasteMatchMovies` now full-enriches **spotlight only** (index 0) — poster stack rows get backdrop only. **Pending human QA:** hard refresh `/home?browse=movies` — grid/chips should appear in ~2–4s; hero skeleton then fills; total wall-clock may still include hero stream but main lobby no longer blocked 10s+.
 
 **Executor (2026-07-02, patron feedback — Task 10):** Changelog **0.3.1** `2026-07-02-patron-feedback` + What's New slides bumped. Test sweep: server patron-feedback **23/23**, web notification-href **7/7**, auth permissions **12/12** pass. `graphify update .` skipped — `graphify` not on PATH / `bunx graphify` has no executable on Windows (run locally when available). **Patron feedback plan Tasks 1–10 complete** — pending Planner/human sign-off on E2E QA. Commits through **`a611d26`** + Task 10 changelog commit pending.
+
+**Executor (2026-07-05, subscriptions — Task 12):** Referral capture + qualification shipped. **Web:** `referral-cookie.ts`, `ReferralRefCapture` on `/sign-up?ref=`, sign-up form calls `POST /api/referrals/capture` after account creation. **Server:** `referral-capture.ts`, `referral-qualify.ts`, `referral-milestones.ts`, `referrals.ts` (`GET /me`, `POST /capture`, `POST /qualify`); hooks in `profiles.ts` on first `markOnboarded`; notification kinds `referral.qualified` + `referral.milestone`. Tests **17/17 pass**. **Manual QA:** (1) signed-in patron opens `GET /api/referrals/me` — referral link + milestones; (2) new account via `/sign-up?ref={code}` → verify email → finish onboarding → referrer gets inbox notification + Scout badge at 1 qualified; (3) self-referral rejected; (4) restart `bun dev` if API was down. Reply **`go`** for Task 13 (Invite & earn dialog).
+
+**Executor (2026-07-05, subscriptions — Task 13 + root referral link):** Invite & earn dialog + header pill shipped (`invite-earn-dialog.tsx`, `HomeStickyChrome`, Settings → Subscription). **Mobbin-style share link:** primary `referralUrl` is **`/?ref={code}`** (marketing landing); `referralSignUpUrl` kept for direct join. **Capture path:** proxy `withReferralCapture` sets cookie on any page (incl. auth redirects); client `ReferralRefUrlListener` in `providers.tsx` (Suspense); `/sign-up?ref=` still works via `ReferralRefCapture`. Server `referral-share-url.ts` + tests **2/2 pass**. **Manual QA:** (1) Invite & earn — copy link shows `/?ref=`; (2) incognito `/?ref={code}` → cookie → sign up → capture; (3) `/home?ref=` while signed out still sets cookie before `/sign-in` redirect. Reply **`go`** for Task 14 (Devoted request + referee checkout discount).
+
+**Executor (2026-07-05, subscriptions — Task 14):** Devoted invite + referral checkout discount shipped. **Server:** `POST /api/plans/devoted-request` (product_event `devoted.request`, owner/admin inbox `devoted.request` notifications), `GET /api/plans/checkout-discount` (returns `POLAR_DISCOUNT_REFERRAL10` when `referredByUserId && !referralDiscountRedeemed`); webhook already sets `referralDiscountRedeemed` on discount use. **Web:** pricing Devoted **Request invite** wired; `startPolarCheckout` passes `discountId` to `authClient.checkout`. Tests **12/12 pass** (`referral-checkout-discount`, `devoted-request`, product-event kinds). **Manual QA:** (1) signed-in Still patron on `/pricing#devoted` → Request invite → staff owner/admin inbox row; (2) referred patron subscribes Attuned/Immersed → Polar checkout shows 10% off (sandbox + `POLAR_DISCOUNT_REFERRAL10` set); (3) repeat Devoted request within 7d → 409 toast. Reply **`go`** for Task 15 (drop `is_pro`).
+
+**Executor (2026-07-06, Task 16 row 3):** Cancel path verified in code + tests (**5/5** `polar-webhook.test.ts`, incl. `subscription.canceled` + empty `customer.state_changed.active_subscriptions`). **`planOverride` never touched** — only `subscriptionTier` / Polar columns reset in `clearProfileSubscription`. **Manual QA steps:**
+
+1. Settings → Subscription → **Manage subscription** (or `/pricing` → **Switch plan** on current tier).
+2. Polar portal → **Cancel subscription** (sandbox may offer immediate vs end-of-period — either is OK; immediate is faster to verify).
+3. Return to Sense → open **Settings → Subscription** (auto-syncs Polar on load).
+4. **Pass:** plan reads **Still**, status **Canceled** or **Free**, pro themes locked, **Manage subscription** hidden.
+5. **Optional staff check:** if you had `planOverride` set, complimentary tier copy still shows and **effective tier** stays override (not Still entitlements).
+6. **Webhook path:** if ngrok is up, Polar dashboard → Webhooks → latest delivery should be **202** (`subscription.canceled` or `customer.state_changed`).
+
+Reply **`ok`** when row 3 passes, or paste what Settings still shows if it sticks on paid tier.
+
+
+Run on dev (**web 3001**, **API 3000**) with Polar sandbox env vars set. Reply **`ok`** per row or note failures.
+
+| # | Scenario | Pass? |
+|---|----------|-------|
+| 1 | Subscribe **Attuned** monthly → webhook sets tier → **taste signature** visible on profile | ☑ |
+| 2 | Upgrade to **Immersed** via customer portal → **pro themes** unlock in Settings → Appearance | ☑ |
+| 3 | Cancel subscription → reverts to **Still** (`planOverride` untouched if staff-set) | ☑ |
+| 4 | Staff grant **`taste_overlap`** to Still user → **Compare taste** works on profile | ☑ |
+| 5 | Referral: new account via `/?ref=` → verify email → finish onboarding → referrer gets **Scout** badge | ☑ |
+| 6 | Referred patron checkout → **10% off** on first Attuned/Immersed sub | ☑ |
+| 7 | **Devoted** on `/pricing#devoted` → confirm dialog → Polar checkout (or billing portal if subscribed) | ☑ |
+| 8 | `/pricing` — tier cards, month/year toggle, **TextMorph** price animation, **Other plans** referral section | ☑ |
+| 9 | **Invite & earn** dialog from home header + Settings → Subscription | ☑ |
+| 10 | `graphify update .` (local only) | ☐ _(run locally — not on PATH in agent env)_ |
+
+**Planner (2026-07-06):** Human signed off Task 16 checklist rows **1–9**. **Subscriptions + Polar sandbox QA complete.** Row **10** optional local housekeeping.
+
+**Session shipped (2026-07-06):** Pricing portal routing for existing subscribers; Devoted purchasable + confirm dialog; Polar sync on pricing load; webhook cancel + `customer.state_changed` tests; referral/Devoted/staff flows verified in sandbox.
+
+**Follow-ups (post-launch, not blocking):** Add `POLAR_PRODUCT_DEVOTED_*` in prod env when Devoted products exist; run `graphify update .` locally; remove legacy `POST /api/plans/devoted-request` when no longer needed.
+
+---
+
+## Next track (Planner — 2026-07-06)
+
+**Subscriptions closed.** Recommended order before production Polar:
+
+| Priority | Track | What | Why |
+|----------|-------|------|-----|
+| **1** | **LR.2** | Launch gate QA (7 scenarios in roadmap §Testing) | End-to-end signed-in journey after billing |
+| **2** | **Phase 8.1** | Cross-browser smoke (`.cursor/scratchpad.md` → Phase 8.1 prep) | Chrome · Safari · Firefox · iOS Safari |
+| **3** | **Phase 8.3** | Lighthouse mobile perf (Phase 8.3 prep) | Perceived speed on `/home`, profile |
+| **4** | **Phase 8.4** | Per-film palette contrast (Phase 8.4 prep) | WCAG on `.movie-themed` pages |
+| **5** | **Prod Polar** | Swap sandbox → production env + webhook URL | Real billing |
+
+**Also open (lower urgency):** Month recap dialog Task 7 verify · Attuned/Immersed feature-gate spot QA (Tasks 8–9) · LR.1 QA rebrand sweep · `graphify update .`
+
+**Next (pre-launch order):** ~~**Phase 8.1**~~ **done** → **8.3** (active) → **8.4** → **Prod Polar**. Reply **`go`** for 8.3 Lighthouse run.
+
+**Executor (2026-07-06, rows 9 → 4 → 5–6):** Referral unit tests **17/17 pass** (`referral-capture`, `qualify`, `checkout-discount`, `share-url`). Invite & earn wired: `InviteEarnHeaderButton` on `HomeStickyChrome`, `Invite friends` in Settings → Subscription, `InviteEarnDialogRoot` in `AppShell` + signed-in `/pricing`.
+
+**Row 9 — verify now (signed in):**
+1. `/home` → header **Invite & earn** (gift icon on mobile) → dialog: headline, `/?ref=` copy field, milestone rail, how-it-works
+2. **Settings → Subscription → Invite friends** → same dialog
+3. **Copy link** → clipboard shows `http://localhost:3001/?ref=…` (or prod origin)
+
+**Row 4 — staff grant (do this now, owner/admin):**
+
+1. Open **`/staff`** → **Users** tab → search the **Still** test account (or your main account if on Still tier).
+2. Expand the row → scroll to **Plan override** section.
+3. **Override tier:** leave **None (use subscription)**.
+4. Under **Grant-only extras**, check **Taste overlap scores** (`taste_overlap`).
+5. **Save plan** → toast “Patron plan updated”.
+6. As that patron (or hard-refresh if same browser): open **any other profile** (not your own).
+7. **Pass:** **Compare taste** pill shows (not locked upsell) → tap → overlap sheet loads.
+
+**Row 9 — if not done yet:** `/home` → **Invite & earn** + Settings → **Invite friends** → same dialog, copy `/?ref=` link.
+
+Reply **`ok 4`** / **`ok 9`** when each passes.
+
+**Row 5 + 6 — referral E2E (do together, ~10 min):**
+
+**Prereqs:** Referrer signed in; `RESEND_API_KEY` + `EMAIL_FROM` set (referee must verify email); `POLAR_DISCOUNT_REFERRAL10` set for row 6.
+
+1. Referrer: **Invite & earn** → copy link (`http://localhost:3001/?ref=yourcode`).
+2. **Incognito** (or another browser) → paste link → lands on `/` or redirects with cookie set.
+3. **Sign up** with a **new email** (not referrer’s) + password.
+4. **Verify email** from inbox → complete link.
+5. Finish **`/onboarding`** wizard (handle + taste steps until `/home` unlocks).
+6. **Row 5 pass (referrer account):** notification **Referral qualified** (or similar) + **Achievements** shows **Scout badge**; Invite & earn milestone rail shows Scout **Earned**.
+7. **Row 6 (still incognito as referee):** `/pricing#attuned` → **Get started** → Polar checkout should show **10% discount** (referral first sub only).
+
+**Skip traps:** same email as referrer fails capture; skipping email verify or onboarding blocks qualification; self-referral rejected.
+
+Reply **`ok 5`**, **`ok 6`**, or note where it stuck.
+
+**Row 1 — Attuned + taste signature (good next if you’re on Still after row 3):**
+
+1. Confirm **Still** in Settings → Subscription (post-cancel).
+2. `/pricing#attuned` → **Get started** → **Attuned monthly** checkout → pay in Polar sandbox.
+3. Return via `/success` or open Settings → Subscription → should read **Attuned** (sync on load if webhook lag).
+4. Open **your profile** — taste category pill under portrait (e.g. **Genre purist**, **Eclectic**) when you have enough rated diary logs + medium/high confidence.
+5. If tier is Attuned but **no pill:** log a few more rated films → **Settings** or onboarding recompute path, or wait for taste recompute after logs.
+
+**Still open:** 4 (staff grant), 5–6 (referral), 7 (Devoted Polar IDs), 9 (Invite & earn), 10 (`graphify update .` — not on PATH in agent env).
+
+Reply **`ok 1`** when Attuned + taste pill show, or **`stuck`** + what Settings shows.
+
+**Row 1:** Still account → `/pricing#attuned` → subscribe monthly → profile **taste signature** visible
+
+**Row 7:** Add `POLAR_PRODUCT_DEVOTED_*` to `.env` → Devoted checkout end-to-end
+
+Reply **`ok 9`**, **`ok 4`**, etc. as you complete each.
+
+**Executor (2026-07-06, pre-launch track — LR.2 start):** Human **`go Recommended order`**. Refreshed automated gates:
+
+- **`bun run build` in `apps/web` — GREEN** (fixes: `sync-polar-checkout.ts` customer fetch; `plan-features.ts` required `key` on insert; settings layout → `fetchMeProfile`; `plan-feature-gate` `still` exhaustiveness; extended `MeProfile` settings fields)
+- Server tests **17/17 pass** (`sense-taste-signature`, `letterboxd-import-apply`, `role-change-notification`)
+
+**LR.2 human QA — run on dev (web 3001, API 3000).** Reply **`ok 1`** … **`ok 7`** per row.
+
+| # | Scenario | How to verify | Pass? |
+|---|----------|---------------|-------|
+| 1 | **New account** | Incognito sign-up → verify email → onboarding quick-rate → profile shows taste pill → `/home?browse=community` not empty | ☑ |
+| 2 | **Letterboxd import 500+** | Settings → Data → import diary CSV(s) → no dupes on re-import; taste signature updates; own profile loads **&lt;3s** | ☑ |
+| 3 | **Zero follows** | Fresh or unfollowed account → Community **Activity** / editorial scroll **30s+** without dead end | ☑ |
+| 4 | **Taste card share** | Own profile → share taste / OG link → preview looks personal; link opens profile | ☑ |
+| 5 | **Log flow** | ⌘K search film → Quick Log rate → appears on **`/diary` in &lt;30s** | ☑ |
+| 6 | **Sense branding** | Spot signed-in UI — no patron-facing **Still** (LR.1; email domain OK) | ☑ |
+| 7 | **Home nav** | `/home` — tap **Movies ↔ Community** pill; no full-page freeze; active pill moves | ☑ |
+
+**Human `ok` 2026-07-06 — LR.2 closed.** **Human `ok` 2026-07-06 — Phase 8.1 closed.**
+
+**Human `ok` 2026-07-06 — taste persona pill closed.** **Active:** Phase **8.3** Lighthouse mobile perf.
+
+**Executor (2026-07-06):** **Fix — mobile prod onboarding loop.** Root cause: RSC `serverApi()` used fixed `NEXT_PUBLIC_SERVER_URL` while `authServer()` uses request `x-forwarded-host`. Files: `resolve-server-api-base-url.ts`, `server-api.ts`, `fetch-me-profile.ts`, `(app)/layout.tsx`.
+
+**Planner (2026-07-06):** **Support campaign + purchase success dialogs** — brainstorm approved (approach 1). Spec: `docs/superpowers/specs/2026-07-06-sense-support-campaign-dialogs-design.md`. Plan: `docs/superpowers/plans/2026-07-06-sense-support-campaign-dialogs.md`. Reply **`go`** on plan to implement Task 1.
+
+**Executor (2026-07-06):** **Support campaign + purchase success dialogs — Tasks 1–5 implemented.** Video at `apps/web/public/campaigns/sense-mobile-teaser.mp4`. Unit tests **5/5** (`sense-support-campaign-seen`, `plan-purchase-success-query`). AppShell gates What's New → `SenseSupportCampaignDialogRoot` when `SENSE_SUPPORT_CAMPAIGN_ENABLED`; `PlanPurchaseSuccessDialogRoot` on `/home`; `/success` → `/home?checkout=success`; Settings strips success query (no duplicate toast); month recap waits for campaign/WN dismiss. **Task 6 — human QA pending:**
+
+| # | Scenario | How to verify | Pass? |
+|---|----------|---------------|-------|
+| 1 | Campaign once-only | Signed-in first visit — split dialog + vertical video; dismiss → does not return on refresh | ☐ |
+| 2 | Video layout | Desktop right column full height; mobile stack; tap-to-play | ☐ |
+| 3 | What's New suppressed | No What's New carousel while campaign enabled | ☐ |
+| 4 | Checkout success | Polar `/success` → `/home` thank-you dialog with tier label | ☐ |
+| 5 | No Settings toast | After checkout, Settings subscription tab has no duplicate success toast | ☐ |
+
+**Executor's Feedback:** Set `SENSE_SUPPORT_CAMPAIGN_ENABLED = false` in `sense-support-campaign.ts` when campaign ends to restore What's New. Optional changelog note deferred unless requested.
+
+**Taste persona pill — manual QA (2026-07-06):**
+
+| # | Scenario | Steps | Pass |
+|---|----------|-------|------|
+| 1 | Genre-led persona | `/profile/jdc` (or drama-led patron) — pill shows *Dramatist* not *Genre-led* | ☑ |
+| 2 | Popover genres | Tap pill — title matches pill; body names *Drama*, *Comedy*, etc. | ☑ |
+| 3 | Self vs visitor | Own profile vs another — popover second vs third person | ☑ |
+| 4 | Dual affinity | Patron with drama + animation duo — *Dramatist & Toonist* on pill | ☑ |
+| 5 | Lazy recompute | Patron with v3 cached taste — visit profile once; pill updates without manual recompute endpoint | ☑ |
+| 6 | Low confidence | Patron with &lt;10 logs / low confidence — no pill | ☑ |
+
+**Executor (2026-07-06):** Task 5 verified — `recomputeUserTasteSignature` persists full `computeTasteSignatureFromLogs` payload (incl. `pillLabel`/`pillGenres`/`version: 4`). `profiles` GET calls `ensureFreshTasteSignature` before paint. Added `taste-signature-cache.test.ts` (v3 stale, v4 fresh).

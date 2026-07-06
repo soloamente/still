@@ -120,3 +120,5 @@ export const REFERRAL_MILESTONES = [
 	{ key: "immersed_3mo", qualifiedCount: 25, label: "3 months Immersed" },
 	{ key: "immersed_life", qualifiedCount: 50, label: "Immersed for life" },
 ] as const;
+
+export type ReferralMilestoneKey = (typeof REFERRAL_MILESTONES)[number]["key"];

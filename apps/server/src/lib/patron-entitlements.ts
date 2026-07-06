@@ -7,7 +7,7 @@ import {
 	parsePlanTierId,
 	resolveEffectiveTier,
 } from "@still/plans";
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 
 /** Resolved subscription entitlements for a patron — shared by profile API and gates. */
 export type PatronEntitlements = {
@@ -74,4 +74,63 @@ export async function loadPatronEntitlements(
 		planOverride: profileRow?.planOverride ?? null,
 		featureGrantKeys: grantRows.map((row) => row.featureKey),
 	});
+}
+
+/** Batch resolver for leaderboard filtering and evaluator passes. */
+export async function loadPatronEntitlementsForUserIds(
+	userIds: readonly string[],
+): Promise<Map<string, PatronEntitlements>> {
+	const unique = [...new Set(userIds.filter(Boolean))];
+	const map = new Map<string, PatronEntitlements>();
+	if (unique.length === 0) return map;
+
+	const profileRows = await db
+		.select({
+			userId: profile.userId,
+			subscriptionTier: profile.subscriptionTier,
+			planOverride: profile.planOverride,
+		})
+		.from(profile)
+		.where(inArray(profile.userId, unique));
+
+	const grantRows = await db
+		.select({
+			userId: planFeatureGrant.userId,
+			featureKey: planFeatureGrant.featureKey,
+		})
+		.from(planFeatureGrant)
+		.where(inArray(planFeatureGrant.userId, unique));
+
+	const grantsByUser = new Map<string, string[]>();
+	for (const row of grantRows) {
+		const existing = grantsByUser.get(row.userId) ?? [];
+		existing.push(row.featureKey);
+		grantsByUser.set(row.userId, existing);
+	}
+
+	for (const row of profileRows) {
+		map.set(
+			row.userId,
+			computePatronEntitlements({
+				subscriptionTier: row.subscriptionTier,
+				planOverride: row.planOverride,
+				featureGrantKeys: grantsByUser.get(row.userId) ?? [],
+			}),
+		);
+	}
+
+	for (const userId of unique) {
+		if (!map.has(userId)) {
+			map.set(
+				userId,
+				computePatronEntitlements({
+					subscriptionTier: "still",
+					planOverride: null,
+					featureGrantKeys: [],
+				}),
+			);
+		}
+	}
+
+	return map;
 }

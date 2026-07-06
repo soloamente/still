@@ -4,6 +4,8 @@ import { DetailReturnCapture } from "@/components/app/detail-return-capture";
 import { GoToDialogRoot } from "@/components/app/go-to-dialog-root";
 import { MobileTabBar } from "@/components/app/mobile-tab-bar";
 import { MonthRecapDialogRoot } from "@/components/app/month-recap-dialog-root";
+import { PlanPurchaseSuccessDialogRoot } from "@/components/app/plan-purchase-success-dialog-root";
+import { SenseSupportCampaignDialogRoot } from "@/components/app/sense-support-campaign-dialog-root";
 import { SoftwareGpuDocumentProbe } from "@/components/app/software-gpu-document-probe";
 import { WhatsNewDialogRoot } from "@/components/app/whats-new-dialog-root";
 import { FeedbackDrawerProvider } from "@/components/feedback/feedback-drawer-provider";
@@ -13,10 +15,12 @@ import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledg
 import { CreateListDrawerRoot } from "@/components/list/create-list-drawer";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
+import { InviteEarnDialogRoot } from "@/components/referrals/invite-earn-dialog-root";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
 
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
@@ -64,6 +68,8 @@ export function AppShell({
 	user: AppShellUser;
 	children: ReactNode;
 }) {
+	const supportCampaign = getActiveSenseSupportCampaign();
+
 	return (
 		<Suspense fallback={null}>
 			<FeedbackDrawerProvider>
@@ -95,9 +101,20 @@ export function AppShell({
 					<CreateListDrawerRoot />
 					<PatronWatchLedgerDrawerRoot />
 					<PatronMembersLedgerDrawerRoot />
-					<WhatsNewDialogRoot userId={user.id} />
+					{supportCampaign ? (
+						<SenseSupportCampaignDialogRoot
+							userId={user.id}
+							campaign={supportCampaign}
+						/>
+					) : (
+						<WhatsNewDialogRoot userId={user.id} />
+					)}
 					<MonthRecapDialogRoot userId={user.id} />
+					<Suspense fallback={null}>
+						<PlanPurchaseSuccessDialogRoot />
+					</Suspense>
 					<RoleChangeDialogRoot />
+					<InviteEarnDialogRoot />
 					<MobileTabBar
 						user={{
 							id: user.id,

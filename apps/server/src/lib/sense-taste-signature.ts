@@ -3,6 +3,8 @@
  * Describes what patrons watch and gravitate toward — not how they score.
  */
 
+import { buildTastePillLabel } from "./taste-persona-lexicon";
+
 export type TasteSignatureConfidence = "low" | "medium" | "high";
 
 export type TasteArchetype =
@@ -17,7 +19,13 @@ export type TasteArchetype =
 	| "curator";
 
 /** Bump when headline logic changes — triggers lazy recompute on profile load. */
-export const TASTE_SIGNATURE_VERSION = 3;
+export const TASTE_SIGNATURE_VERSION = 4;
+
+export type TastePillGenres = {
+	primary: string;
+	secondary?: string;
+	tertiary?: string;
+};
 
 export interface TasteSignaturePayload {
 	archetype: TasteArchetype;
@@ -27,6 +35,10 @@ export interface TasteSignaturePayload {
 	headline: string;
 	confidence: TasteSignatureConfidence;
 	version: typeof TASTE_SIGNATURE_VERSION;
+	/** Patron-facing pill label — e.g. Dramatist, Dramatist & Toonist */
+	pillLabel?: string;
+	/** Capitalized genre names for pill popover copy */
+	pillGenres?: TastePillGenres;
 }
 
 export interface TasteSignatureLogSlice {
@@ -161,6 +173,27 @@ const FORMING_TEMPLATES: TasteTemplatePair[] = [
 
 function genreLabel(id: number): string {
 	return TMDB_GENRE_NAMES[id] ?? "film";
+}
+
+/** Popover-facing genre name — capitalize first letter of TMDb label. */
+function genreDisplayName(id: number): string {
+	const label = genreLabel(id);
+	return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function buildPillGenres(stats: TasteStats): TastePillGenres | undefined {
+	if (stats.primaryGenreId == null) return undefined;
+	return {
+		primary: genreDisplayName(stats.primaryGenreId),
+		secondary:
+			stats.secondaryGenreId != null
+				? genreDisplayName(stats.secondaryGenreId)
+				: undefined,
+		tertiary:
+			stats.tertiaryGenreId != null
+				? genreDisplayName(stats.tertiaryGenreId)
+				: undefined,
+	};
 }
 
 function logCountBucket(count: number): string {
@@ -319,7 +352,16 @@ function buildPayload(
 	headlineSelf: string,
 	headlineVisitor: string,
 	confidence: TasteSignatureConfidence,
+	stats: TasteStats,
 ): TasteSignaturePayload {
+	const pillLabel = buildTastePillLabel(archetype, {
+		primaryGenreId: stats.primaryGenreId,
+		secondaryGenreId: stats.secondaryGenreId,
+		tertiaryGenreId: stats.tertiaryGenreId,
+		logCount: stats.logCount,
+	});
+	const pillGenres = pillLabel != null ? buildPillGenres(stats) : undefined;
+
 	return {
 		archetype,
 		headlineSelf,
@@ -327,6 +369,8 @@ function buildPayload(
 		headline: headlineSelf,
 		confidence,
 		version: TASTE_SIGNATURE_VERSION,
+		...(pillLabel != null ? { pillLabel } : {}),
+		...(pillGenres != null ? { pillGenres } : {}),
 	};
 }
 
@@ -341,5 +385,11 @@ export function computeTasteSignatureFromLogs(
 	const { headlineSelf, headlineVisitor } = renderHeadlines(archetype, stats);
 	const confidence = tasteConfidence(stats.logCount);
 
-	return buildPayload(archetype, headlineSelf, headlineVisitor, confidence);
+	return buildPayload(
+		archetype,
+		headlineSelf,
+		headlineVisitor,
+		confidence,
+		stats,
+	);
 }

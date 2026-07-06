@@ -108,6 +108,27 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		defaultEnabled: true,
 		requiresOptIn: false,
 	},
+	{
+		id: "referral.qualified",
+		label: "Referral qualified",
+		description: "When someone you invited finishes onboarding.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
+		id: "referral.milestone",
+		label: "Referral milestones",
+		description: "When you unlock Invite & earn rewards.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
+		id: "devoted.request",
+		label: "Devoted invite requests",
+		description: "When a patron requests Devoted access (staff only).",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
 ] as const;
 
 export type NotificationKind =

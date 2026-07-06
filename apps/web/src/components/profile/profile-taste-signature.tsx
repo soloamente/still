@@ -10,11 +10,10 @@ import { cn } from "@still/ui/lib/utils";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import {
 	shouldShowTasteArchetypePill,
-	type TasteArchetype,
 	type TastePerspective,
 	type TasteSignatureJson,
 	tasteArchetypeDescription,
-	tasteArchetypeLabel,
+	tasteSignaturePillLabel,
 } from "@/lib/sense-taste-signature";
 
 const TASTE_CATEGORY_PILL_CLASS =
@@ -22,14 +21,20 @@ const TASTE_CATEGORY_PILL_CLASS =
 
 /** Compact taste category chip — matches profile stat pills under the banner. */
 function TasteCategoryPill({
-	archetype,
+	tasteSignature,
 	perspective,
 }: {
-	archetype: TasteArchetype;
+	tasteSignature: TasteSignatureJson & {
+		archetype: NonNullable<TasteSignatureJson["archetype"]>;
+	};
 	perspective: TastePerspective;
 }) {
-	const label = tasteArchetypeLabel(archetype);
-	const description = tasteArchetypeDescription(archetype, perspective);
+	const label = tasteSignaturePillLabel(tasteSignature);
+	const description = tasteArchetypeDescription(
+		tasteSignature.archetype,
+		perspective,
+		tasteSignature.pillGenres,
+	);
 
 	if (!description) {
 		return (
@@ -82,7 +87,7 @@ function TasteCategoryPill({
 }
 
 /**
- * Taste archetype as a left-rail pill (genre purist, eclectic, …) — tap for explainer.
+ * Taste persona pill (Dramatist, Omnivore, …) — tap for genre-grounded explainer.
  */
 export function ProfileTasteCategoryPill({
 	tasteSignature,
@@ -95,7 +100,7 @@ export function ProfileTasteCategoryPill({
 
 	return (
 		<TasteCategoryPill
-			archetype={tasteSignature.archetype}
+			tasteSignature={tasteSignature}
 			perspective={perspective}
 		/>
 	);

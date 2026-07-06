@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { api } from "@/lib/api";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
@@ -114,6 +116,8 @@ function ChallengeCard({
 	const [films, setFilms] = useState<ChallengeFilm[] | null>(null);
 	const [filmsLoading, setFilmsLoading] = useState(false);
 	const [enrollBusy, setEnrollBusy] = useState(false);
+	const { hasFeature } = usePatronEntitlements();
+	const canJoinChallenges = hasFeature("challenges");
 
 	const completed =
 		challenge.completedAt != null || challenge.progress.completed;
@@ -209,14 +213,20 @@ function ChallengeCard({
 
 			<div className="mt-4 flex flex-wrap items-center gap-2">
 				{!challenge.enrolled && !completed ? (
-					<DetailMotionButton
-						type="button"
-						disabled={enrollBusy}
-						className={enrollPillClassName}
-						onClick={() => void handleEnroll()}
-					>
-						{enrollBusy ? "Joining…" : "Join challenge"}
-					</DetailMotionButton>
+					canJoinChallenges ? (
+						<DetailMotionButton
+							type="button"
+							disabled={enrollBusy}
+							className={enrollPillClassName}
+							onClick={() => void handleEnroll()}
+						>
+							{enrollBusy ? "Joining…" : "Join challenge"}
+						</DetailMotionButton>
+					) : (
+						<PlanFeatureGate featureKey="challenges">
+							<span className="sr-only">Join challenge</span>
+						</PlanFeatureGate>
+					)
 				) : null}
 				<DetailMotionButton
 					type="button"

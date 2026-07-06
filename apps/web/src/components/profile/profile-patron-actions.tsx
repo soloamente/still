@@ -8,6 +8,8 @@ import {
 	DetailMotionButton,
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
+import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
+import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import { TasteOverlapDialog } from "@/components/profile/taste-overlap-dialog";
 import { api } from "@/lib/api";
@@ -98,9 +100,13 @@ function ProfileOtherPatronActions({
 	const [compareOpen, setCompareOpen] = useState(
 		Boolean(initialTasteCompareOpen),
 	);
+	const { hasFeature } = usePatronEntitlements();
+	const canUseTasteOverlap = Boolean(
+		canCompareTaste && hasFeature("taste_overlap"),
+	);
 
 	useEffect(() => {
-		if (!canCompareTaste) return;
+		if (!canUseTasteOverlap) return;
 		if (initialTasteCompareOpen) {
 			setCompareOpen(true);
 			return;
@@ -115,23 +121,31 @@ function ProfileOtherPatronActions({
 				(url.searchParams.toString() ? `?${url.searchParams}` : "");
 			window.history.replaceState({}, "", next);
 		}
-	}, [canCompareTaste, initialTasteCompareOpen]);
+	}, [canUseTasteOverlap, initialTasteCompareOpen]);
 
 	return (
 		<>
 			<div className="mt-4 flex flex-wrap justify-center gap-2">
 				<ProfileFollowAction targetUserId={targetUserId} />
 				{canCompareTaste ? (
-					<DetailMotionButton
-						type="button"
-						className={secondaryPill}
-						onClick={() => setCompareOpen(true)}
-					>
-						Compare taste
-					</DetailMotionButton>
+					canUseTasteOverlap ? (
+						<DetailMotionButton
+							type="button"
+							className={secondaryPill}
+							onClick={() => setCompareOpen(true)}
+						>
+							Compare taste
+						</DetailMotionButton>
+					) : (
+						<div className="max-w-xs">
+							<PlanFeatureGate featureKey="taste_overlap">
+								<span className="sr-only">Compare taste</span>
+							</PlanFeatureGate>
+						</div>
+					)
 				) : null}
 			</div>
-			{canCompareTaste ? (
+			{canUseTasteOverlap ? (
 				<TasteOverlapDialog
 					open={compareOpen}
 					onOpenChange={setCompareOpen}

@@ -103,6 +103,7 @@ type ProfileData = {
 		pinnedQuoteSaveIds?: unknown;
 	};
 	stats: { followers: number; following: number };
+	capabilities?: { activitySignature?: boolean };
 	creator?: { isCurator: boolean; headline: string | null };
 	isFollowing: boolean;
 	filmographyCounts: {
@@ -301,6 +302,7 @@ export default async function ProfilePage({
 			bannerIsAnimated={bannerIsAnimated}
 			profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
 			diaryMetalTier={profile.diaryMetalTier ?? null}
+			activitySignatureEnabled={data.capabilities?.activitySignature ?? false}
 		/>
 	);
 }

@@ -281,6 +281,13 @@
 			"when": 1779203500000,
 			"tag": "0039_subscriptions",
 			"breakpoints": true
+		},
+		{
+			"idx": 40,
+			"version": "7",
+			"when": 1779203600000,
+			"tag": "0040_drop_is_pro",
+			"breakpoints": true
 		}
 	]
 }

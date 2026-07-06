@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { MonthRecapDialog } from "@/components/app/month-recap-dialog";
+import { isSenseSupportCampaignBlocking } from "@/components/app/sense-support-campaign-dialog-root";
 import { fetchMonthRecapClient } from "@/lib/fetch-month-recap-client";
 import { isWatchRegionPromptActive } from "@/lib/first-run-prompt-keys";
 import { resolveClientCelebratedMonth } from "@/lib/month-recap-month-key";
@@ -18,6 +19,7 @@ import {
 	shouldShowMonthRecap,
 } from "@/lib/month-recap-seen";
 import type { MonthRecapPayload } from "@/lib/month-recap-types";
+import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
 import { getActiveWhatsNewRelease } from "@/lib/whats-new-releases";
 import { shouldShowWhatsNewRelease } from "@/lib/whats-new-seen";
 
@@ -55,6 +57,13 @@ function isWhatsNewBlocking(userId: string): boolean {
 	const release = getActiveWhatsNewRelease();
 	if (!release) return false;
 	return shouldShowWhatsNewRelease(userId, release.id);
+}
+
+/** True while support campaign or What's New still needs to show. */
+function isPriorModalBlocking(userId: string): boolean {
+	const supportCampaign = getActiveSenseSupportCampaign();
+	if (isSenseSupportCampaignBlocking(userId, supportCampaign)) return true;
+	return isWhatsNewBlocking(userId);
 }
 
 /** One-time per celebrated month — global winners carousel after What's New. */
@@ -96,7 +105,7 @@ export function MonthRecapDialogRoot({ userId }: { userId: string }) {
 				return;
 			}
 
-			if (isWhatsNewBlocking(userId)) {
+			if (isPriorModalBlocking(userId)) {
 				pollId = window.setTimeout(() => {
 					void tryLoadAndOpen();
 				}, REGION_PROMPT_POLL_MS);

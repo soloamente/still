@@ -1,8 +1,26 @@
 import { recomputeUserTasteSignature } from "./recompute-user-taste-signature";
 import {
 	TASTE_SIGNATURE_VERSION,
+	type TasteArchetype,
 	type TasteSignaturePayload,
 } from "./sense-taste-signature";
+
+/** Archetypes that show a persona pill — require stored `pillLabel` (v4 lexicon). */
+const PILL_PERSONA_ARCHETYPES = new Set<TasteArchetype>([
+	"genre-purist",
+	"genre-led",
+	"dual-affinity",
+	"eclectic",
+]);
+
+function tasteArchetypeNeedsPillLabel(
+	archetype: unknown,
+): archetype is TasteArchetype {
+	return (
+		typeof archetype === "string" &&
+		PILL_PERSONA_ARCHETYPES.has(archetype as TasteArchetype)
+	);
+}
 
 /** True when cached JSON predates archetype + dual-headline shape. */
 export function isStaleTasteSignature(value: unknown): boolean {
@@ -16,6 +34,13 @@ export function isStaleTasteSignature(value: unknown): boolean {
 	}
 	if (row.version !== TASTE_SIGNATURE_VERSION) {
 		return true;
+	}
+	// v4 rows saved before persona pills shipped — recompute once for pillLabel.
+	if (tasteArchetypeNeedsPillLabel(row.archetype)) {
+		const pillLabel = row.pillLabel;
+		if (typeof pillLabel !== "string" || !pillLabel.trim()) {
+			return true;
+		}
 	}
 	return false;
 }

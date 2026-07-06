@@ -50,6 +50,8 @@ describe("computeTasteSignatureFromLogs", () => {
 			repeat(12, () => slice({ genreIds: [27] })),
 		);
 		expect(result.archetype).toBe("genre-purist");
+		expect(result.pillLabel).toBe("Nightwatcher");
+		expect(result.pillGenres?.primary).toBe("Horror");
 		expect(result.headlineSelf.toLowerCase()).toContain("horror");
 		assertNoScoringCopy(result.headlineSelf);
 		assertNoSecondPersonVisitor(result.headlineVisitor);
@@ -63,6 +65,9 @@ describe("computeTasteSignatureFromLogs", () => {
 			...repeat(2, () => slice({ genreIds: [35] })),
 		]);
 		expect(result.archetype).toBe("dual-affinity");
+		expect(result.pillLabel).toBe("Dramatist & Toonist");
+		expect(result.pillGenres?.primary).toBe("Drama");
+		expect(result.pillGenres?.secondary).toBe("Animation");
 		expect(result.headlineSelf.toLowerCase()).toContain("drama");
 		expect(result.headlineSelf.toLowerCase()).toContain("animation");
 		assertNoScoringCopy(result.headlineSelf);
@@ -78,6 +83,8 @@ describe("computeTasteSignatureFromLogs", () => {
 			...repeat(1, () => slice({ genreIds: [27] })),
 		]);
 		expect(result.archetype).toBe("genre-led");
+		expect(result.pillLabel).toBe("Dramatist");
+		expect(result.pillGenres?.primary).toBe("Drama");
 		expect(result.headlineSelf.toLowerCase()).toContain("drama");
 		assertNoScoringCopy(result.headlineSelf);
 	});
@@ -105,10 +112,17 @@ describe("computeTasteSignatureFromLogs", () => {
 			genres.map((id) => slice({ genreIds: [id] })),
 		);
 		expect(result.archetype).toBe("eclectic");
+		expect(result.pillLabel).toBeDefined();
 		expect(result.headlineSelf.toLowerCase()).toMatch(
 			/action|adventure|animation/,
 		);
 		assertNoScoringCopy(result.headlineSelf);
+	});
+
+	test("forming omits pill fields", () => {
+		const result = computeTasteSignatureFromLogs([]);
+		expect(result.pillLabel).toBeUndefined();
+		expect(result.pillGenres).toBeUndefined();
 	});
 
 	test("stable headline for identical input", () => {
@@ -116,5 +130,6 @@ describe("computeTasteSignatureFromLogs", () => {
 		const a = computeTasteSignatureFromLogs(slices);
 		const b = computeTasteSignatureFromLogs(slices);
 		expect(a.headlineSelf).toBe(b.headlineSelf);
+		expect(a.pillLabel).toBe(b.pillLabel);
 	});
 });

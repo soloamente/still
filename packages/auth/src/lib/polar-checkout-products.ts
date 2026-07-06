@@ -16,33 +16,45 @@ export function buildPolarCheckoutProducts(): PolarCheckoutProduct[] {
 	const attunedYearly = env.POLAR_PRODUCT_ATTUNED_YEARLY;
 	const immersedMonthly = env.POLAR_PRODUCT_IMMERSED_MONTHLY;
 	const immersedYearly = env.POLAR_PRODUCT_IMMERSED_YEARLY;
+	const devotedMonthly = env.POLAR_PRODUCT_DEVOTED_MONTHLY;
+	const devotedYearly = env.POLAR_PRODUCT_DEVOTED_YEARLY;
 
-	const productIds = [
+	const coreProductIds = [
 		attunedMonthly,
 		attunedYearly,
 		immersedMonthly,
 		immersedYearly,
 	];
-	const configuredCount = productIds.filter(Boolean).length;
+	const configuredCoreCount = coreProductIds.filter(Boolean).length;
 
 	if (attunedMonthly && attunedYearly && immersedMonthly && immersedYearly) {
-		return [
+		const products: PolarCheckoutProduct[] = [
 			{ productId: attunedMonthly, slug: "attuned-monthly" },
 			{ productId: attunedYearly, slug: "attuned-yearly" },
 			{ productId: immersedMonthly, slug: "immersed-monthly" },
 			{ productId: immersedYearly, slug: "immersed-yearly" },
 		];
+
+		// Devoted checkout is optional until both Polar products are configured.
+		if (devotedMonthly && devotedYearly) {
+			products.push(
+				{ productId: devotedMonthly, slug: "devoted-monthly" },
+				{ productId: devotedYearly, slug: "devoted-yearly" },
+			);
+		}
+
+		return products;
 	}
 
 	// Partial config is easy to misconfigure during sandbox setup — warn once in dev.
 	if (
-		configuredCount > 0 &&
+		configuredCoreCount > 0 &&
 		env.NODE_ENV === "development" &&
 		!partialProductsWarned
 	) {
 		partialProductsWarned = true;
 		console.warn(
-			"[polar] Some POLAR_PRODUCT_* env vars are set but not all four — checkout products disabled.",
+			"[polar] Some POLAR_PRODUCT_* env vars are set but not all four core tiers (Attuned/Immersed) — checkout products disabled.",
 		);
 	}
 

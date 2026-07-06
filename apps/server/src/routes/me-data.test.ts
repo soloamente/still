@@ -73,6 +73,28 @@ mock.module("../lib/year-in-review", () => ({
 	},
 }));
 
+const entitlementByUser = new Map<
+	string,
+	{ subscriptionTier: "still" | "attuned"; planOverride?: "attuned" | null }
+>();
+
+mock.module("../lib/patron-entitlements", () => ({
+	loadPatronEntitlements: async (userId: string) => {
+		const row = entitlementByUser.get(userId) ?? {
+			subscriptionTier: "still" as const,
+			planOverride: null,
+		};
+		const { computePatronEntitlements } = await import(
+			"../lib/patron-entitlements"
+		);
+		return computePatronEntitlements({
+			subscriptionTier: row.subscriptionTier,
+			planOverride: row.planOverride ?? null,
+			featureGrantKeys: [],
+		});
+	},
+}));
+
 import { buildMeDataRoute } from "./me-data";
 
 /** Isolated limiter — lists/posts/staff tests mock the shared `rate-limit` module. */
@@ -112,6 +134,7 @@ beforeEach(() => {
 	state.clearCalls = [];
 	state.exportCalls = [];
 	state.yearCalls = [];
+	entitlementByUser.clear();
 });
 
 describe("GET /api/me/export", () => {
@@ -191,8 +214,20 @@ describe("GET /api/me/year/:year", () => {
 		expect(res.status).toBe(400);
 	});
 
-	test("returns wrapped stats for a valid year", async () => {
-		const res = await makeApp({ id: "user_4" }).handle(
+	test("403 for prior years on Still tier", async () => {
+		const res = await makeApp({ id: "user_still" }).handle(
+			new Request("http://test/api/me/year/2024"),
+		);
+		expect(res.status).toBe(403);
+		expect(state.yearCalls).toEqual([]);
+	});
+
+	test("returns wrapped stats for Attuned prior years", async () => {
+		entitlementByUser.set("user_attuned", {
+			subscriptionTier: "attuned",
+			planOverride: null,
+		});
+		const res = await makeApp({ id: "user_attuned" }).handle(
 			new Request("http://test/api/me/year/2024"),
 		);
 		expect(res.status).toBe(200);
@@ -204,6 +239,6 @@ describe("GET /api/me/year/:year", () => {
 		expect(body.year).toBe(2024);
 		expect(body.eligible).toBe(true);
 		expect(body.totalLogs).toBe(12);
-		expect(state.yearCalls).toEqual([{ userId: "user_4", year: 2024 }]);
+		expect(state.yearCalls).toEqual([{ userId: "user_attuned", year: 2024 }]);
 	});
 });
