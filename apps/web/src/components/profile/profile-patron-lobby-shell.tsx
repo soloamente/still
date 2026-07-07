@@ -188,7 +188,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"relative min-h-0 flex-1 overflow-hidden p-6 sm:gap-5 sm:p-8",
+					"relative min-h-0 flex-1 overflow-hidden px-4 py-6 sm:gap-5 sm:p-8",
 				)}
 			>
 				<div className="relative z-10 flex min-h-0 flex-1 flex-col gap-4 sm:gap-5">

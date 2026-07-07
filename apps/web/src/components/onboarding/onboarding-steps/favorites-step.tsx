@@ -13,7 +13,6 @@ import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { OnboardingFieldInput } from "@/components/onboarding/onboarding-form-controls";
 import { OnboardingStepHeader } from "@/components/onboarding/onboarding-steps/onboarding-step-header";
 import {
-	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	ONBOARDING_CATALOGUE_CELL_CLASSNAME,
 	ONBOARDING_CATALOGUE_GRID_CLASSNAME,
 	ONBOARDING_CATALOGUE_TITLE_CLASSNAME,
@@ -24,6 +23,8 @@ import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const MAX_FAVORITES = 8;
+const ONBOARDING_POSTER_FRAME_CLASSNAME =
+	"rounded-2xl border-0 bg-background sm:rounded-[3rem]";
 
 type FavoritesStepActions = {
 	favorites: OnboardingMovie[];
@@ -155,26 +156,20 @@ function FavoritesCatalogueTile({
 	selected,
 	disabled,
 	onToggle,
+	disableMotion = false,
 }: {
 	movie: OnboardingMovie;
 	selected: boolean;
 	disabled: boolean;
 	onToggle: () => void;
+	disableMotion?: boolean;
 }) {
 	const reduceMotion = useReducedMotion();
 	const showHoverAction = selected || !disabled;
 	const actionLabel = selected ? "Remove" : "Add";
 
-	return (
-		<motion.div
-			layout={!reduceMotion}
-			layoutId={reduceMotion ? undefined : `favorites-catalogue-${movie.id}`}
-			className={ONBOARDING_CATALOGUE_CELL_CLASSNAME}
-			initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-			animate={{ opacity: 1, scale: 1 }}
-			exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
-			transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-		>
+	const tileContent = (
+		<>
 			<button
 				aria-label={
 					selected
@@ -184,7 +179,7 @@ function FavoritesCatalogueTile({
 				className={cn(
 					"group/fav-poster relative w-full min-w-0 text-left",
 					showHoverAction &&
-						"cursor-pointer select-none [-webkit-tap-highlight-color:transparent]",
+						"cursor-pointer touch-pan-y select-none [-webkit-tap-highlight-color:transparent]",
 					disabled && !selected && "cursor-not-allowed opacity-50",
 				)}
 				disabled={disabled && !selected}
@@ -196,12 +191,12 @@ function FavoritesCatalogueTile({
 					className={cn(
 						"w-full transition-[opacity,filter] duration-300 ease-out motion-reduce:transition-none",
 						showHoverAction &&
-							"[@media(hover:hover)]:group-hover/fav-poster:opacity-65 [@media(hover:hover)]:group-hover/fav-poster:blur-[var(--page-blur)] [@media(hover:hover)]:group-focus-visible/fav-poster:opacity-65 [@media(hover:hover)]:group-focus-visible/fav-poster:blur-[var(--page-blur)]",
+							"[@media(hover:hover)]:group-hover/fav-poster:opacity-65 [@media(hover:hover)]:group-hover/fav-poster:blur-(--page-blur) [@media(hover:hover)]:group-focus-visible/fav-poster:opacity-65 [@media(hover:hover)]:group-focus-visible/fav-poster:blur-(--page-blur)",
 					)}
 				>
 					<MoviePoster
 						className="w-full"
-						frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
+						frameClassName={ONBOARDING_POSTER_FRAME_CLASSNAME}
 						hoverEffect="elevation"
 						linkable={false}
 						movieId={movie.id}
@@ -229,6 +224,26 @@ function FavoritesCatalogueTile({
 				) : null}
 			</button>
 			<p className={ONBOARDING_CATALOGUE_TITLE_CLASSNAME}>{movie.title}</p>
+		</>
+	);
+
+	if (disableMotion) {
+		return (
+			<div className={ONBOARDING_CATALOGUE_CELL_CLASSNAME}>{tileContent}</div>
+		);
+	}
+
+	return (
+		<motion.div
+			layout={!reduceMotion}
+			layoutId={reduceMotion ? undefined : `favorites-catalogue-${movie.id}`}
+			className={ONBOARDING_CATALOGUE_CELL_CLASSNAME}
+			initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+			animate={{ opacity: 1, scale: 1 }}
+			exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
+			transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+		>
+			{tileContent}
 		</motion.div>
 	);
 }
@@ -237,9 +252,11 @@ function FavoritesCatalogueTile({
 export function FavoritesStepGridPanel({
 	model,
 	className,
+	mobileInline = false,
 }: {
 	model: FavoritesStepModel;
 	className?: string;
+	mobileInline?: boolean;
 }) {
 	const {
 		favorites,
@@ -272,20 +289,34 @@ export function FavoritesStepGridPanel({
 		true,
 		scrollContentKey,
 	);
+	const disableMotion = mobileInline;
 
 	return (
 		<div
 			className={cn(
-				"relative isolate flex min-h-0 w-full flex-1 flex-col overflow-hidden",
+				mobileInline
+					? "relative isolate w-full"
+					: "relative isolate flex min-h-0 w-full flex-1 flex-col overflow-hidden",
 				className,
 			)}
 		>
 			<div
 				ref={scrollRef}
-				className="data-lenis-prevent-wheel min-h-0 flex-1 overflow-y-auto overscroll-contain"
-				data-lenis-prevent-wheel
+				className={cn(
+					mobileInline
+						? "w-full"
+						: "data-lenis-prevent-wheel min-h-0 flex-1 overflow-y-auto overscroll-contain",
+				)}
+				data-lenis-prevent-wheel={mobileInline ? undefined : true}
 			>
-				<div className="flex min-h-full w-full flex-col items-center justify-center px-4 py-8 sm:px-6">
+				<div
+					className={cn(
+						"flex w-full flex-col px-4 py-8 sm:px-6",
+						mobileInline
+							? "items-stretch justify-start"
+							: "min-h-full items-center justify-center",
+					)}
+				>
 					{searchLoading && showSearchSection ? (
 						<p className="text-muted-foreground text-sm" role="status">
 							Searching…
@@ -311,6 +342,7 @@ export function FavoritesStepGridPanel({
 											<FavoritesCatalogueTile
 												key={movie.id}
 												disabled={false}
+												disableMotion={disableMotion}
 												movie={movie}
 												onToggle={() => onToggleFavorite(movie)}
 												selected
@@ -345,6 +377,7 @@ export function FavoritesStepGridPanel({
 											<FavoritesCatalogueTile
 												key={movie.id}
 												disabled={atMaxFavorites}
+												disableMotion={disableMotion}
 												movie={movie}
 												onToggle={() => onToggleFavorite(movie)}
 												selected={false}
@@ -357,11 +390,13 @@ export function FavoritesStepGridPanel({
 					) : null}
 				</div>
 			</div>
-			<SheetScrollScrims
-				footerTone="filmography"
-				showFooterFade={showFooterFade}
-				showHeaderFade={showHeaderFade}
-			/>
+			{mobileInline ? null : (
+				<SheetScrollScrims
+					footerTone="filmography"
+					showFooterFade={showFooterFade}
+					showHeaderFade={showHeaderFade}
+				/>
+			)}
 		</div>
 	);
 }

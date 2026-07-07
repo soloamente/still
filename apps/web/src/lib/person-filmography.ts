@@ -69,3 +69,26 @@ export function sortFilmographyByYearDesc<
 		})
 		.map(({ item }) => item);
 }
+
+/** Client-side filter for the person filmography catalogue (title, role, year, medium). */
+export function filterPersonFilmographyRows(
+	rows: PersonFilmographyRow[],
+	query: string,
+): PersonFilmographyRow[] {
+	const normalized = query.trim().toLowerCase();
+	if (!normalized) return rows;
+
+	return rows.filter((row) => {
+		const year = filmographyReleaseYear(row.releaseDate);
+		const haystack = [
+			row.title,
+			row.roles.join(" "),
+			year,
+			row.mediaKind === "tv" ? "tv show series" : "film movie",
+		]
+			.join(" ")
+			.toLowerCase();
+
+		return haystack.includes(normalized);
+	});
+}

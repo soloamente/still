@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	filterPersonFilmographyRows,
 	type PersonFilmographyRow,
 	sortFilmographyByYearDesc,
 } from "./person-filmography";
@@ -51,5 +52,42 @@ describe("sortFilmographyByYearDesc", () => {
 		const snapshot = input.map((r) => r.title);
 		sortFilmographyByYearDesc(input);
 		expect(input.map((r) => r.title)).toEqual(snapshot);
+	});
+});
+
+describe("filterPersonFilmographyRows", () => {
+	test("returns all rows when query is empty", () => {
+		const rows = [row("2020-01-01", "Tenet"), row("2010-01-01", "Inception")];
+		expect(filterPersonFilmographyRows(rows, "   ")).toEqual(rows);
+	});
+
+	test("matches title, role, year, and medium", () => {
+		const rows: PersonFilmographyRow[] = [
+			{
+				...row("2010-07-16", "Inception"),
+				roles: ["Arthur"],
+			},
+			{
+				tmdbId: 2,
+				mediaKind: "tv",
+				title: "Westworld",
+				posterUrl: null,
+				releaseDate: "2016-10-02",
+				roles: ["Dr. Ford"],
+			},
+		];
+
+		expect(
+			filterPersonFilmographyRows(rows, "inception").map((r) => r.title),
+		).toEqual(["Inception"]);
+		expect(
+			filterPersonFilmographyRows(rows, "arthur").map((r) => r.title),
+		).toEqual(["Inception"]);
+		expect(
+			filterPersonFilmographyRows(rows, "2016").map((r) => r.title),
+		).toEqual(["Westworld"]);
+		expect(filterPersonFilmographyRows(rows, "tv").map((r) => r.title)).toEqual(
+			["Westworld"],
+		);
 	});
 });

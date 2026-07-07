@@ -1,6 +1,6 @@
 /**
  * Profile patron header — full-bleed banner media (parity with home taste hero shell).
- * Bleed matches profile lobby padding (`p-6 sm:p-8`).
+ * Bleed matches profile lobby padding (`px-4 py-6 sm:p-8`).
  */
 /** Layout band — banner region only; portrait straddles this floor. */
 export const PROFILE_HERO_BAND_HEIGHT_CLASSNAME =
@@ -19,13 +19,17 @@ export const PROFILE_HERO_LOWER_HALF_SLOT_CLASSNAME = "relative h-14 sm:h-16";
 export const PROFILE_HERO_STAT_ROW_OVERLAY_CLASSNAME =
 	"pointer-events-none absolute inset-0 z-10 flex items-center justify-between gap-2 sm:gap-3";
 
+/** Mobile — lift pill row toward the banner so long display names stay clear. */
+export const PROFILE_HERO_STAT_ROW_MOBILE_LIFT_CLASSNAME =
+	"max-sm:-translate-y-9";
+
 /** Card-colored ambient shadow — soft glow around the portrait (no ring stroke). */
 export const PROFILE_HERO_PORTRAIT_SHADOW_CLASSNAME =
 	"pointer-events-none absolute inset-0 rounded-full shadow-[0_0_12px_8px_color-mix(in_oklab,var(--card)_78%,transparent),0_0_24px_16px_color-mix(in_oklab,var(--card)_42%,transparent)] sm:shadow-[0_0_14px_9px_color-mix(in_oklab,var(--card)_80%,transparent),0_0_28px_18px_color-mix(in_oklab,var(--card)_44%,transparent)]";
 
 /** Media inside the band — bottom pinned to banner floor; bleeds over lobby padding. */
 export const PROFILE_HERO_SHELL_MEDIA_CLASSNAME =
-	"pointer-events-none absolute -top-6 -right-6 -left-6 bottom-0 z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)] sm:-top-8 sm:-right-8 sm:-left-8";
+	"pointer-events-none absolute -top-4 -right-4 -left-4 bottom-0 z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)] sm:-top-8 sm:-right-8 sm:-left-8";
 
 /** Kill anti-alias slivers on rounded card corners. */
 export const PROFILE_HERO_MEDIA_OVERSCAN_CLASSNAME = "-inset-px";

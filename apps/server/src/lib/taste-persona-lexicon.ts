@@ -3,12 +3,12 @@ import type { TasteArchetype } from "./sense-taste-signature";
 /** Target max characters for profile taste pill labels. */
 export const MAX_PILL_LABEL_LENGTH = 28;
 
-/** Non-genre identities when taste is spread across many lanes. */
+/** Non-genre identities when taste is spread across many lanes — single token for profile pills. */
 export const ECLECTIC_PERSONA_POOL = [
 	"Omnivore",
-	"Restless viewer",
-	"Wide canvas",
-	"Genre rover",
+	"Rover",
+	"Polyglot",
+	"Wanderer",
 ] as const;
 
 type GenrePersonaEntry = {
@@ -106,23 +106,9 @@ export function buildEclecticPillLabel(input: TastePillLabelInput): string {
 	return ECLECTIC_PERSONA_POOL[index] ?? ECLECTIC_PERSONA_POOL[0];
 }
 
-function formatDuoLabel(
-	primaryGenreId: number,
-	secondaryGenreId: number,
-): string {
-	const attempts = [
-		`${personaForGenreId(primaryGenreId)} & ${personaForGenreId(secondaryGenreId)}`,
-		`${personaForGenreId(primaryGenreId)} & ${shortPersonaForGenreId(secondaryGenreId)}`,
-		`${shortPersonaForGenreId(primaryGenreId)} & ${shortPersonaForGenreId(secondaryGenreId)}`,
-		`${shortPersonaForGenreId(primaryGenreId)} & ${personaForGenreId(secondaryGenreId)}`,
-		personaForGenreId(primaryGenreId),
-	];
-
-	for (const label of attempts) {
-		if (label.length <= MAX_PILL_LABEL_LENGTH) return label;
-	}
-
-	return personaForGenreId(primaryGenreId);
+function formatDuoLabel(primaryGenreId: number): string {
+	// Profile pills stay one word — duo detail lives in the popover via pillGenres.
+	return shortPersonaForGenreId(primaryGenreId);
 }
 
 /**
@@ -145,7 +131,7 @@ export function buildTastePillLabel(
 					? personaForGenreId(input.primaryGenreId)
 					: null;
 			}
-			return formatDuoLabel(input.primaryGenreId, input.secondaryGenreId);
+			return formatDuoLabel(input.primaryGenreId);
 		}
 		case "eclectic":
 			return buildEclecticPillLabel(input);

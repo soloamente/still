@@ -659,9 +659,9 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 			: unconfiguredHint
 				? unconfiguredHint
 				: error?.status === 0
-					? `Can't reach ${APP_NAME} right now. Make sure the API is running, then refresh.`
+					? `Couldn't load ${APP_NAME} right now. Please try again in a moment.`
 					: error?.nonJson
-						? `${APP_NAME}'s catalogue API returned an unexpected response. Check the database connection, then refresh.`
+						? `Something went wrong while loading ${APP_NAME}. Please try again in a moment.`
 						: error
 							? "Could not load titles for the lobby right now."
 							: null;

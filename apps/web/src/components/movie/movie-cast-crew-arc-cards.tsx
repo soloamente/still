@@ -53,7 +53,7 @@ export function MovieCastCrewArcRow({
 	return (
 		<ul
 			className={cn(
-				"flex w-full justify-center gap-1.5 px-2 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
+				"flex w-full justify-center gap-1 px-0 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
 				row === "cast"
 					? "items-start pb-[var(--cast-crew-arc-edge)]"
 					: "items-end pt-[var(--cast-crew-arc-edge)]",

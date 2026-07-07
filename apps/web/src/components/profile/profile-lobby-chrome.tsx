@@ -31,7 +31,7 @@ export function ProfileLobbyChrome({
 				</div>
 			) : null}
 
-			<div className="flex min-w-0 justify-center">
+			<div className="flex w-full min-w-0 max-w-full justify-center">
 				<ProfileTabToolbar socialTabs={socialTabs} />
 			</div>
 

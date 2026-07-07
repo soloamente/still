@@ -8,6 +8,7 @@ import {
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 	HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
@@ -43,13 +44,20 @@ export function HomeTasteMatchedHeroSkeleton() {
 						className={cn(
 							"relative z-10 mt-auto flex w-full flex-col justify-end gap-2 px-3 sm:mt-0 sm:px-6",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
-							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
-							HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
+							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
 						)}
 					>
-						<ShimmerBone className="mx-auto h-3.5 w-48 max-w-[70%] rounded-md bg-card sm:mx-0 sm:h-4 sm:w-56" />
-						<ShimmerBone className="mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-[min(100%,14rem)] rounded-lg bg-card sm:mx-0 sm:max-w-[min(100%,16rem)]" />
-						<div className="flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
+						<div
+							className={cn(
+								"flex flex-col gap-2",
+								HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
+								HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
+							)}
+						>
+							<ShimmerBone className="mx-auto h-3.5 w-48 max-w-[70%] rounded-md bg-card sm:mx-0 sm:h-4 sm:w-56" />
+							<ShimmerBone className="mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-[min(100%,14rem)] rounded-lg bg-card sm:mx-0 sm:max-w-[min(100%,16rem)]" />
+						</div>
+						<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
 							<ShimmerBone className="size-10 shrink-0 rounded-full bg-card sm:size-11" />
 							<ShimmerBone className="h-10 w-32 rounded-full bg-card sm:h-11 sm:w-36" />
 							<ShimmerBone className="size-10 shrink-0 rounded-full bg-card sm:hidden" />
@@ -57,6 +65,7 @@ export function HomeTasteMatchedHeroSkeleton() {
 						</div>
 						<div
 							className={cn(
+								"relative z-10",
 								HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
 								HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME,
 								"flex justify-end gap-2 py-1 max-sm:pl-3 sm:gap-2.5 sm:py-2 sm:pl-3",

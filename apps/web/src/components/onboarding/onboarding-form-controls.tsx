@@ -28,6 +28,7 @@ export function OnboardingFieldInput({
 	const reduceMotion = useReducedMotion();
 	return (
 		<AuthMotionInput
+			// Shared auth/onboarding input sizing already enforces mobile-safe 16px.
 			className={className}
 			reduceMotion={reduceMotion}
 			{...props}

@@ -7,19 +7,29 @@ import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
+import { Drawer } from "vaul";
 
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { StillPopoverSelect } from "@/components/ui/still-popover-select";
 import { api } from "@/lib/api";
+import {
+	getAppMobileVaulServerSnapshot,
+	getAppMobileVaulSnapshot,
+	subscribeAppMobileVaul,
+} from "@/lib/app-mobile-vaul";
 import {
 	APP_MODAL_OVERLAY_CLASS,
 	APP_MODAL_POPOVER_POSITIONER_CLASS,
 } from "@/lib/app-modal-layer";
 import { CATALOG_WATCH_REGION_OPTIONS } from "@/lib/catalog-watch-region-options";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import {
+	MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME,
+	MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME,
+} from "@/lib/detail-vaul-drawer";
 import { setWatchRegionPromptActive } from "@/lib/first-run-prompt-keys";
 import { PROFILE_PREF_CATALOG_TMDB_WATCH_REGION } from "@/lib/profile-preferences";
 
@@ -35,6 +45,11 @@ const REGION_SELECT_OPTIONS = CATALOG_WATCH_REGION_OPTIONS.map(
  */
 export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 	const reduceMotion = useReducedMotion();
+	const isMobileVaul = useSyncExternalStore(
+		subscribeAppMobileVaul,
+		getAppMobileVaulSnapshot,
+		getAppMobileVaulServerSnapshot,
+	);
 	const titleId = useId();
 	const descriptionId = useId();
 	const [mounted, setMounted] = useState(false);
@@ -95,6 +110,159 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 
 	if (!mounted) return null;
 
+	const content = (
+		<div
+			className={cn(
+				"flex min-h-0 flex-col items-center px-7 pt-10 text-center sm:px-9 sm:pt-12 sm:pb-12",
+				isMobileVaul ? "pb-4" : "flex-1 pb-10",
+			)}
+		>
+			<div
+				className="mb-6 flex size-14 items-center justify-center rounded-full bg-background text-foreground sm:mb-8 sm:size-16"
+				aria-hidden
+			>
+				<IconEarthPinFill className="opacity-90" size="28px" aria-hidden />
+			</div>
+
+			<h2
+				id={titleId}
+				className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl"
+			>
+				Streaming catalogue region
+			</h2>
+			<p
+				id={descriptionId}
+				className="mx-auto mt-3 w-full max-w-prose text-balance text-muted-foreground text-sm leading-tight sm:text-base"
+			>
+				“At home” rows use subscription streaming availability for a country or
+				region. Pick where you subscribe, or choose all regions for a global
+				slice. You can change this anytime in{" "}
+				<Link
+					href="/me/settings/catalogue"
+					className="font-medium text-foreground underline-offset-4 hover:underline"
+				>
+					Settings
+				</Link>
+				.
+			</p>
+
+			<div className="mt-6 w-full max-w-xs space-y-2 text-left sm:mt-8">
+				<Label
+					htmlFor="catalog-watch-region-select"
+					className="w-full justify-center text-center text-muted-foreground text-xs"
+				>
+					Country / region
+				</Label>
+				{isMobileVaul ? (
+					// Native select inside Vaul avoids touch-scroll conflicts with custom popovers.
+					<select
+						id="catalog-watch-region-select"
+						disabled={pending !== null}
+						value={country}
+						onChange={(event) => setCountry(event.target.value)}
+						className="h-11 w-full rounded-2xl bg-background px-4 text-base text-foreground outline-none"
+					>
+						{REGION_SELECT_OPTIONS.map((option) => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
+				) : (
+					<StillPopoverSelect
+						id="catalog-watch-region-select"
+						disabled={pending !== null}
+						listAriaLabel="Streaming catalogue region"
+						onChange={setCountry}
+						options={REGION_SELECT_OPTIONS}
+						placeholder="Choose a region"
+						popoverPositionerClassName={APP_MODAL_POPOVER_POSITIONER_CLASS}
+						popoverSide="bottom"
+						value={country}
+					/>
+				)}
+			</div>
+
+			<div
+				className={cn(
+					"flex w-full flex-col-reverse gap-2 sm:flex-row sm:justify-center sm:gap-3 sm:pt-10",
+					isMobileVaul ? "pt-5" : "mt-auto pt-8",
+				)}
+			>
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="ghost"
+						size="pill"
+						disabled={pending !== null}
+						className={cn(
+							"h-auto min-h-11 w-full border-transparent bg-background px-5 py-2.5 font-medium text-foreground sm:w-auto sm:min-w-34",
+							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						)}
+						onClick={() => void persist("ALL", "ALL")}
+					>
+						{pending === "ALL" ? (
+							<Loader2 className="size-3.5 animate-spin" aria-hidden />
+						) : null}
+						All regions
+					</Button>
+				</DetailMotionButtonWrap>
+				<DetailMotionButtonWrap>
+					<Button
+						type="button"
+						variant="default"
+						size="pill"
+						disabled={pending !== null}
+						className="hover:!bg-foreground hover:!text-background h-auto min-h-11 w-full bg-foreground px-5 py-2.5 text-background text-base sm:w-auto sm:min-w-34 [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
+						onClick={() => void persist(country, "country")}
+					>
+						{pending === "country" ? (
+							<Loader2 className="size-3.5 animate-spin" aria-hidden />
+						) : null}
+						Save region
+					</Button>
+				</DetailMotionButtonWrap>
+			</div>
+		</div>
+	);
+
+	if (isMobileVaul) {
+		return (
+			<Drawer.Root
+				open={visible}
+				onOpenChange={setVisible}
+				handleOnly
+				shouldScaleBackground={false}
+			>
+				<Drawer.Portal>
+					<Drawer.Overlay className="fixed inset-0 z-60 bg-absolute-black/82 backdrop-blur-sm" />
+					<Drawer.Content
+						data-still-detail-drawer=""
+						className="fixed inset-x-0 bottom-0 z-60 flex max-h-[min(74svh,620px)] flex-col overflow-hidden rounded-t-[2.25rem] bg-card shadow-2xl outline-none"
+					>
+						<Drawer.Handle
+							className={MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME}
+							aria-label="Drag sheet"
+						>
+							<span
+								className={MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME}
+								aria-hidden
+							/>
+						</Drawer.Handle>
+						<Drawer.Title className="sr-only">
+							Streaming catalogue region
+						</Drawer.Title>
+						<Drawer.Description className="sr-only">
+							Pick your streaming catalogue region.
+						</Drawer.Description>
+						<div className="overflow-y-auto px-1 pb-1">{content}</div>
+						<Drawer.Close className="sr-only">Close sheet</Drawer.Close>
+					</Drawer.Content>
+				</Drawer.Portal>
+			</Drawer.Root>
+		);
+	}
+
 	const portal = (
 		<AnimatePresence>
 			{visible ? (
@@ -120,98 +288,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 							"relative flex min-h-[22rem] w-full max-w-md flex-col overflow-visible rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:min-h-[24rem] sm:rounded-[2.25rem]",
 						)}
 					>
-						<div className="flex min-h-0 flex-1 flex-col items-center px-7 pt-10 pb-10 text-center sm:px-9 sm:pt-12 sm:pb-12">
-							<div
-								className="mb-6 flex size-14 items-center justify-center rounded-full bg-background text-foreground sm:mb-8 sm:size-16"
-								aria-hidden
-							>
-								<IconEarthPinFill
-									className="opacity-90"
-									size="28px"
-									aria-hidden
-								/>
-							</div>
-
-							<h2
-								id={titleId}
-								className="text-balance font-semibold text-foreground text-xl tracking-tight sm:text-2xl"
-							>
-								Streaming catalogue region
-							</h2>
-							<p
-								id={descriptionId}
-								className="mx-auto mt-3 w-full max-w-prose text-balance text-muted-foreground text-sm leading-tight sm:text-base"
-							>
-								“At home” rows use subscription streaming availability for a
-								country or region. Pick where you subscribe, or choose all
-								regions for a global slice. You can change this anytime in{" "}
-								<Link
-									href="/me/settings/catalogue"
-									className="font-medium text-foreground underline-offset-4 hover:underline"
-								>
-									Settings
-								</Link>
-								.
-							</p>
-
-							<div className="mt-6 w-full max-w-xs space-y-2 text-left sm:mt-8">
-								<Label
-									htmlFor="catalog-watch-region-select"
-									className="w-full justify-center text-center text-muted-foreground text-xs"
-								>
-									Country / region
-								</Label>
-								<StillPopoverSelect
-									id="catalog-watch-region-select"
-									disabled={pending !== null}
-									listAriaLabel="Streaming catalogue region"
-									onChange={setCountry}
-									options={REGION_SELECT_OPTIONS}
-									placeholder="Choose a region"
-									popoverPositionerClassName={
-										APP_MODAL_POPOVER_POSITIONER_CLASS
-									}
-									popoverSide="bottom"
-									value={country}
-								/>
-							</div>
-
-							<div className="mt-auto flex w-full flex-col-reverse gap-2 pt-8 sm:flex-row sm:justify-center sm:gap-3 sm:pt-10">
-								<DetailMotionButtonWrap>
-									<Button
-										type="button"
-										variant="ghost"
-										size="pill"
-										disabled={pending !== null}
-										className={cn(
-											"h-auto min-h-11 w-full border-transparent bg-background px-5 py-2.5 font-medium text-foreground sm:w-auto sm:min-w-34",
-											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										)}
-										onClick={() => void persist("ALL", "ALL")}
-									>
-										{pending === "ALL" ? (
-											<Loader2 className="size-3.5 animate-spin" aria-hidden />
-										) : null}
-										All regions
-									</Button>
-								</DetailMotionButtonWrap>
-								<DetailMotionButtonWrap>
-									<Button
-										type="button"
-										variant="default"
-										size="pill"
-										disabled={pending !== null}
-										className="hover:!bg-foreground hover:!text-background h-auto min-h-11 w-full bg-foreground px-5 py-2.5 text-background text-base sm:w-auto sm:min-w-34 [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background"
-										onClick={() => void persist(country, "country")}
-									>
-										{pending === "country" ? (
-											<Loader2 className="size-3.5 animate-spin" aria-hidden />
-										) : null}
-										Save region
-									</Button>
-								</DetailMotionButtonWrap>
-							</div>
-						</div>
+						{content}
 					</motion.div>
 				</motion.div>
 			) : null}

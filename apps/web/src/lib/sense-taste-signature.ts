@@ -84,6 +84,62 @@ export function tasteArchetypeDescription(
 	}
 }
 
+/** Legacy multi-word labels → single-word pill copy (stored taste rows + archetype fallback). */
+const LEGACY_TASTE_PILL_DISPLAY: Record<string, string> = {
+	"Genre purist": "Purist",
+	"Dual affinity": "Dualist",
+	"Generous rater": "Generous",
+	"Selective rater": "Selective",
+	"Restless viewer": "Rover",
+	"Wide canvas": "Wanderer",
+	"Genre rover": "Rover",
+};
+
+/** Profile pill copy — one meaningful token; never truncate to a bare "Genre". */
+export function compactTastePillDisplayLabel(label: string): string {
+	const trimmed = label.trim();
+	if (!trimmed) return trimmed;
+
+	const mapped = LEGACY_TASTE_PILL_DISPLAY[trimmed];
+	if (mapped) return mapped;
+
+	if (trimmed.includes(" & ")) {
+		const lead = trimmed.split(" & ")[0]?.trim() ?? trimmed;
+		return compactTastePillDisplayLabel(lead);
+	}
+
+	// Hyphenated personas (Genre-led, Thrill-seeker) and lexicon nouns (Dramatist).
+	if (!trimmed.includes(" ")) return trimmed;
+
+	// Unknown multi-word labels — keep the persona noun (usually the last word).
+	const lastWord = trimmed.split(/\s+/).at(-1) ?? trimmed;
+	return lastWord.charAt(0).toUpperCase() + lastWord.slice(1).toLowerCase();
+}
+
+/** Single-word pill fallback when cached rows lack `pillLabel`. */
+function tasteArchetypePillFallback(archetype: TasteArchetype): string {
+	switch (archetype) {
+		case "forming":
+			return "Forming";
+		case "contrarian":
+			return "Contrarian";
+		case "genre-purist":
+			return "Purist";
+		case "dual-affinity":
+			return "Dualist";
+		case "generous":
+			return "Generous";
+		case "selective":
+			return "Selective";
+		case "genre-led":
+			return "Genre-led";
+		case "eclectic":
+			return "Eclectic";
+		case "curator":
+			return "Curator";
+	}
+}
+
 /**
  * Patron-facing pill label — prefers stored persona name (v4), else legacy archetype label.
  */
@@ -91,9 +147,10 @@ export function tasteSignaturePillLabel(
 	signature: Pick<TasteSignatureJson, "pillLabel" | "archetype">,
 ): string {
 	const trimmed = signature.pillLabel?.trim();
-	if (trimmed) return trimmed;
-	if (signature.archetype) return tasteArchetypeLabel(signature.archetype);
-	return tasteArchetypeLabel("forming");
+	if (trimmed) return compactTastePillDisplayLabel(trimmed);
+	if (signature.archetype)
+		return tasteArchetypePillFallback(signature.archetype);
+	return tasteArchetypePillFallback("forming");
 }
 
 /** Short patron-facing label for the detected taste archetype. */

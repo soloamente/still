@@ -3,7 +3,6 @@ import { describe, expect, test } from "bun:test";
 import {
 	buildTastePillLabel,
 	ECLECTIC_PERSONA_POOL,
-	MAX_PILL_LABEL_LENGTH,
 	personaForGenreId,
 } from "./taste-persona-lexicon";
 
@@ -43,13 +42,13 @@ describe("buildTastePillLabel", () => {
 		expect(buildTastePillLabel("genre-led", stats())).toBe("Dramatist");
 	});
 
-	test("dual uses ampersand duo", () => {
+	test("dual uses primary persona only", () => {
 		expect(
 			buildTastePillLabel(
 				"dual-affinity",
 				stats({ primaryGenreId: 18, secondaryGenreId: 16 }),
 			),
-		).toBe("Dramatist & Toonist");
+		).toBe("Dramatist");
 	});
 
 	test("eclectic picks from pool stably", () => {
@@ -69,13 +68,11 @@ describe("buildTastePillLabel", () => {
 		expect(buildTastePillLabel("forming", stats())).toBeNull();
 	});
 
-	test("duo respects max pill length", () => {
+	test("duo uses short primary persona when needed", () => {
 		const label = buildTastePillLabel(
 			"dual-affinity",
 			stats({ primaryGenreId: 10767, secondaryGenreId: 99 }),
 		);
-		expect(label).not.toBeNull();
-		if (label == null) return;
-		expect(label.length).toBeLessThanOrEqual(MAX_PILL_LABEL_LENGTH);
+		expect(label).toBe("Talk");
 	});
 });

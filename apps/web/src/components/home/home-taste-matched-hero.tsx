@@ -28,6 +28,7 @@ import {
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+	HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
 	HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 	HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
@@ -491,99 +492,110 @@ export function HomeTasteMatchedHero({
 						className={cn(
 							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-2 overflow-visible px-3 pb-1 sm:mt-0",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
-							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
-							HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
+							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
 							"sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6",
 						)}
 					>
-						<div className="mx-auto min-w-0 max-w-[min(100%,34rem)] space-y-2 text-center sm:mx-0 sm:space-y-3 sm:text-left">
-							<p className="inline-flex items-center gap-1.5 text-balance text-[0.6875rem] text-foreground/75 tracking-wide sm:text-sm">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 18 18"
-									width="18"
-									height="18"
-									className="size-4 shrink-0 sm:size-5"
-									aria-hidden
-								>
-									<title>Taste match</title>
-									<path
-										d="m16.6094,7.5176c-.001,0-.001-.0005-.001-.0005-.8115-1.4336-3.1787-4.7671-7.6084-4.7671S2.2031,6.0835,1.3906,7.5176c-.5244.9282-.5244,2.0366.001,2.9653.8125,1.4336,3.1797,4.7671,7.6084,4.7671s6.7959-3.3335,7.6094-4.7676c.5244-.9282.5244-2.0366,0-2.9648Z"
-										fill="rgba(255, 255, 255, 0.4)"
-									/>
-									<path
-										d="m11.9805,8.2861l-1.7139-.5527-.5527-1.7139c-.0996-.3096-.3887-.5195-.7139-.5195s-.6143.21-.7139.5195l-.5527,1.7139-1.7139.5527c-.3096.1001-.5195.3882-.5195.7139s.21.6138.5195.7139l1.7139.5527.5527,1.7139c.0996.3096.3887.5195.7139.5195s.6143-.21.7139-.5195l.5527-1.7139,1.7139-.5527c.3096-.1001.5195-.3882.5195-.7139s-.21-.6138-.5195-.7139Z"
-										fill="rgba(255, 255, 255, 1)"
-									/>
-								</svg>
-								{tasteMatchedRailTitle(genrePhrase)}
-							</p>
-							<Link
-								href={`/movies/${spotlight.tmdbId}`}
-								className="group mx-auto block min-w-0 sm:mx-0"
-							>
-								{titleLogoUrl ? (
-									<div className="relative mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-full max-w-[min(100%,14rem)] sm:mx-0 sm:max-w-[min(100%,32rem)]">
-										{/* biome-ignore lint/performance/noImgElement: TMDb wordmark — native img avoids Next optimizer edge cases on remote logos. */}
-										<img
-											src={titleLogoUrl}
-											alt=""
-											className="mx-auto size-full max-h-full max-w-full object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mx-0 sm:object-left"
-										/>
-										<span className="sr-only">{spotlight.title}</span>
-									</div>
-								) : (
-									<h2 className="text-balance font-sans font-semibold text-[clamp(1.375rem,4.5vw,3.25rem)] text-foreground uppercase leading-[0.95] tracking-[-0.03em] [text-shadow:-1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#ff4d4d_28%),1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#4da3ff_28%)] sm:text-[clamp(1.75rem,5.5vw,3.25rem)]">
-										{spotlight.title}
-									</h2>
+						<div
+							className={cn(
+								"mx-auto flex min-w-0 max-w-[min(100%,34rem)] flex-col gap-2 text-center sm:mx-0 sm:gap-3 sm:text-left",
+							)}
+						>
+							<div
+								className={cn(
+									"space-y-2 sm:space-y-3",
+									HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
+									HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 								)}
-							</Link>
-							<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:justify-start sm:gap-x-4 sm:gap-y-2">
-								{hasAverage && displayAverage != null ? (
-									<div className="flex items-center gap-0.5 sm:gap-1">
-										<IconPatronScoreLeafLeft className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
-										<div className="flex min-w-10 flex-col items-center gap-px text-center leading-none sm:min-w-11">
-											<span className="sr-only">
-												Community score {formatLogRatingDisplay(displayAverage)}{" "}
-												out of 10,{" "}
-												{formatHeroRatingsCountValue(
-													spotlight.communityRatingsCount ?? 0,
-												)}{" "}
-												{formatHeroRatingsCountLabel(
-													spotlight.communityRatingsCount ?? 0,
-												).toLowerCase()}
-											</span>
-											<span className="font-sans font-semibold text-base text-foreground tabular-nums leading-none tracking-tight sm:text-lg">
-												{formatLogRatingDisplay(displayAverage)}
-											</span>
-											<span className="font-sans text-[0.625rem] text-foreground/80 tabular-nums leading-none sm:text-xs">
-												{formatHeroRatingsCountValue(
-													spotlight.communityRatingsCount ?? 0,
-												)}
-											</span>
-											<span className="font-sans text-[0.5625rem] text-foreground/55 leading-none sm:text-[0.625rem]">
-												{formatHeroRatingsCountLabel(
-													spotlight.communityRatingsCount ?? 0,
-												)}
+							>
+								<p className="inline-flex items-center gap-1.5 text-balance text-[0.6875rem] text-foreground/75 tracking-wide sm:text-sm">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 18 18"
+										width="18"
+										height="18"
+										className="size-4 shrink-0 sm:size-5"
+										aria-hidden
+									>
+										<title>Taste match</title>
+										<path
+											d="m16.6094,7.5176c-.001,0-.001-.0005-.001-.0005-.8115-1.4336-3.1787-4.7671-7.6084-4.7671S2.2031,6.0835,1.3906,7.5176c-.5244.9282-.5244,2.0366.001,2.9653.8125,1.4336,3.1797,4.7671,7.6084,4.7671s6.7959-3.3335,7.6094-4.7676c.5244-.9282.5244-2.0366,0-2.9648Z"
+											fill="rgba(255, 255, 255, 0.4)"
+										/>
+										<path
+											d="m11.9805,8.2861l-1.7139-.5527-.5527-1.7139c-.0996-.3096-.3887-.5195-.7139-.5195s-.6143.21-.7139.5195l-.5527,1.7139-1.7139.5527c-.3096.1001-.5195.3882-.5195.7139s.21.6138.5195.7139l1.7139.5527.5527,1.7139c.0996.3096.3887.5195.7139.5195s.6143-.21.7139-.5195l.5527-1.7139,1.7139-.5527c.3096-.1001.5195-.3882.5195-.7139s-.21-.6138-.5195-.7139Z"
+											fill="rgba(255, 255, 255, 1)"
+										/>
+									</svg>
+									{tasteMatchedRailTitle(genrePhrase)}
+								</p>
+								<Link
+									href={`/movies/${spotlight.tmdbId}`}
+									className="group mx-auto block min-w-0 sm:mx-0"
+								>
+									{titleLogoUrl ? (
+										<div className="relative mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-full max-w-[min(100%,14rem)] sm:mx-0 sm:max-w-[min(100%,32rem)]">
+											{/* biome-ignore lint/performance/noImgElement: TMDb wordmark — native img avoids Next optimizer edge cases on remote logos. */}
+											<img
+												src={titleLogoUrl}
+												alt=""
+												className="mx-auto size-full max-h-full max-w-full object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mx-0 sm:object-left"
+											/>
+											<span className="sr-only">{spotlight.title}</span>
+										</div>
+									) : (
+										<h2 className="text-balance font-sans font-semibold text-[clamp(1.375rem,4.5vw,3.25rem)] text-foreground uppercase leading-[0.95] tracking-[-0.03em] [text-shadow:-1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#ff4d4d_28%),1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#4da3ff_28%)] sm:text-[clamp(1.75rem,5.5vw,3.25rem)]">
+											{spotlight.title}
+										</h2>
+									)}
+								</Link>
+								<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:justify-start sm:gap-x-4 sm:gap-y-2">
+									{hasAverage && displayAverage != null ? (
+										<div className="flex items-center gap-0.5 sm:gap-1">
+											<IconPatronScoreLeafLeft className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
+											<div className="flex min-w-10 flex-col items-center gap-px text-center leading-none sm:min-w-11">
+												<span className="sr-only">
+													Community score{" "}
+													{formatLogRatingDisplay(displayAverage)} out of 10,{" "}
+													{formatHeroRatingsCountValue(
+														spotlight.communityRatingsCount ?? 0,
+													)}{" "}
+													{formatHeroRatingsCountLabel(
+														spotlight.communityRatingsCount ?? 0,
+													).toLowerCase()}
+												</span>
+												<span className="font-sans font-semibold text-base text-foreground tabular-nums leading-none tracking-tight sm:text-lg">
+													{formatLogRatingDisplay(displayAverage)}
+												</span>
+												<span className="font-sans text-[0.625rem] text-foreground/80 tabular-nums leading-none sm:text-xs">
+													{formatHeroRatingsCountValue(
+														spotlight.communityRatingsCount ?? 0,
+													)}
+												</span>
+												<span className="font-sans text-[0.5625rem] text-foreground/55 leading-none sm:text-[0.625rem]">
+													{formatHeroRatingsCountLabel(
+														spotlight.communityRatingsCount ?? 0,
+													)}
+												</span>
+											</div>
+											<IconPatronScoreLeafRight className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
+										</div>
+									) : null}
+									{festivalIcon ? (
+										<div className="flex items-center gap-1.5 text-foreground/80 sm:gap-2">
+											<FestivalRecognitionIcon
+												icon={festivalIcon}
+												className="h-7 w-16 sm:h-10 sm:w-24"
+											/>
+											<span className="text-xs sm:text-sm">
+												Official selection
 											</span>
 										</div>
-										<IconPatronScoreLeafRight className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
-									</div>
-								) : null}
-								{festivalIcon ? (
-									<div className="flex items-center gap-1.5 text-foreground/80 sm:gap-2">
-										<FestivalRecognitionIcon
-											icon={festivalIcon}
-											className="h-7 w-16 sm:h-10 sm:w-24"
-										/>
-										<span className="text-xs sm:text-sm">
-											Official selection
-										</span>
-									</div>
-								) : null}
+									) : null}
+								</div>
 							</div>
 							<TooltipProvider delay={0} closeDelay={80}>
-								<div className="flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
+								<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
 									<DetailIconTooltip label={quickLogLabel}>
 										<motion.button
 											type="button"
@@ -654,6 +666,7 @@ export function HomeTasteMatchedHero({
 						{movies.length > 0 ? (
 							<div
 								className={cn(
+									"relative z-10",
 									HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
 									HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME,
 								)}

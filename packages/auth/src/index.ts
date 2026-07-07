@@ -60,6 +60,8 @@ function buildPolarPlugin(): BetterAuthPlugin | null {
 
 export function createAuth() {
 	const polarPlugin = buildPolarPlugin();
+	const isDevelopment = env.NODE_ENV === "development";
+	const shouldSendVerificationEmail = !isDevelopment;
 
 	return betterAuth({
 		database: drizzleAdapter(db, {
@@ -80,7 +82,12 @@ export function createAuth() {
 				: []),
 		],
 		emailVerification: {
-			sendOnSignUp: true,
+			/**
+			 * Local dev often runs on LAN/mobile and doesn't have a convenient way
+			 * to complete email-link verification. Keep verification enabled in
+			 * production while skipping auto-send in development.
+			 */
+			sendOnSignUp: shouldSendVerificationEmail,
 			autoSignInAfterVerification: true,
 			expiresIn: 60 * 60 * 24,
 			sendVerificationEmail: async ({ user, url }) => {
@@ -126,8 +133,14 @@ export function createAuth() {
 		baseURL: env.BETTER_AUTH_URL,
 		advanced: {
 			defaultCookieAttributes: {
-				sameSite: "none",
-				secure: true,
+				/**
+				 * Local mobile QA commonly runs over plain HTTP on a LAN IP
+				 * (e.g. http://192.168.x.x:3001). `SameSite=None` requires
+				 * `Secure=true`, and secure cookies are rejected on HTTP, which
+				 * causes sign-in/sign-up loops because the session never persists.
+				 */
+				sameSite: isDevelopment ? "lax" : "none",
+				secure: !isDevelopment,
 				httpOnly: true,
 			},
 		},

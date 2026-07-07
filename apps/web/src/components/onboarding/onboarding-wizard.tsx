@@ -506,7 +506,7 @@ export function OnboardingWizard({
 					<>
 						<TasteStepControls model={tasteStepModel} />
 						<div className="mt-6 w-full lg:hidden">
-							<TasteStepGridPanel model={tasteStepModel} />
+							<TasteStepGridPanel mobileInline model={tasteStepModel} />
 						</div>
 					</>
 				);
@@ -515,7 +515,7 @@ export function OnboardingWizard({
 					<>
 						<FavoritesStepControls model={favoritesStepModel} />
 						<div className="mt-6 w-full lg:hidden">
-							<FavoritesStepGridPanel model={favoritesStepModel} />
+							<FavoritesStepGridPanel mobileInline model={favoritesStepModel} />
 						</div>
 					</>
 				);

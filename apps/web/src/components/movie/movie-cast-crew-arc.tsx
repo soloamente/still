@@ -1,3 +1,4 @@
+import { cn } from "@still/ui/lib/utils";
 import type { CSSProperties } from "react";
 import { CastCrewViewAllDrawer } from "@/components/movie/cast-crew-view-all-drawer";
 import type { CreditsCastMember } from "@/components/movie/credits-catalog";
@@ -5,6 +6,7 @@ import { MovieCastCrewArcRow } from "@/components/movie/movie-cast-crew-arc-card
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import {
 	type ArcCreditCard,
+	CAST_CREW_ARC_COLUMN_BLEED_CLASSNAME,
 	CAST_CREW_ARC_EDGE_OFFSET_PX,
 	CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX,
 } from "@/lib/movie-cast-crew-arc";
@@ -43,7 +45,10 @@ export function MovieCastCrewArc({
 			contentClassName="mt-8"
 		>
 			<div
-				className="relative flex flex-col items-center gap-5 overflow-x-clip [--cast-crew-arc-edge:var(--cast-crew-arc-edge-mobile)] sm:gap-3 sm:overflow-visible sm:[--cast-crew-arc-edge:var(--cast-crew-arc-edge-desktop)]"
+				className={cn(
+					"relative flex flex-col items-center gap-5 overflow-visible [--cast-crew-arc-edge:var(--cast-crew-arc-edge-mobile)] sm:gap-3 sm:[--cast-crew-arc-edge:var(--cast-crew-arc-edge-desktop)]",
+					CAST_CREW_ARC_COLUMN_BLEED_CLASSNAME,
+				)}
 				style={
 					{
 						"--cast-crew-arc-edge-mobile": `${CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX}px`,

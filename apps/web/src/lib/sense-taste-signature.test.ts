@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	compactTastePillDisplayLabel,
 	legacyVisitorHeadlineFromSelf,
 	parseTasteSignatureJson,
 	resolveTasteHeadline,
@@ -70,6 +71,23 @@ describe("shouldShowTasteArchetypePill", () => {
 	});
 });
 
+describe("compactTastePillDisplayLabel", () => {
+	test("duo labels keep the leading persona", () => {
+		expect(compactTastePillDisplayLabel("Dramatist & Toonist")).toBe(
+			"Dramatist",
+		);
+	});
+
+	test("legacy eclectic labels map to single-word personas", () => {
+		expect(compactTastePillDisplayLabel("Genre rover")).toBe("Rover");
+		expect(compactTastePillDisplayLabel("Restless viewer")).toBe("Rover");
+	});
+
+	test("unknown multi-word labels keep the persona noun", () => {
+		expect(compactTastePillDisplayLabel("Genre purist")).toBe("Purist");
+	});
+});
+
 describe("tasteSignaturePillLabel", () => {
 	test("prefers pillLabel from JSON", () => {
 		expect(
@@ -80,7 +98,21 @@ describe("tasteSignaturePillLabel", () => {
 		).toBe("Dramatist");
 	});
 
-	test("falls back to legacy archetype label", () => {
+	test("compacts stored duo pill labels for display", () => {
+		expect(
+			tasteSignaturePillLabel({
+				archetype: "dual-affinity",
+				pillLabel: "Dramatist & Toonist",
+			}),
+		).toBe("Dramatist");
+	});
+
+	test("falls back to single-word archetype pill label", () => {
+		expect(
+			tasteSignaturePillLabel({
+				archetype: "genre-purist",
+			}),
+		).toBe("Purist");
 		expect(
 			tasteSignaturePillLabel({
 				archetype: "genre-led",

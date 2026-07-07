@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
-import { PersonFilmographyGrid } from "@/components/movie/person-filmography-grid";
 import { PersonDetailHero } from "@/components/people/person-detail-hero";
 import { PersonDetailTmdbButton } from "@/components/people/person-detail-tmdb-button";
 import { PersonDetailViewShell } from "@/components/people/person-detail-view-shell";
+import { PersonFilmographyCatalogue } from "@/components/people/person-filmography-catalogue";
 import { buildPersonDetailInfoCards } from "@/lib/person-detail-facts";
 import { parsePersonDetailViewFromSearchParams } from "@/lib/person-detail-view";
 import type { PersonFilmographyRow } from "@/lib/person-filmography";
@@ -107,7 +106,6 @@ export default async function PersonPage({
 	});
 
 	const filmography = sortFilmographyByYearDesc(data.filmography);
-	const filmographySubtitle = `${filmography.length} film and TV title${filmography.length === 1 ? "" : "s"} with this person in cast or crew.`;
 
 	return (
 		<PersonDetailViewShell
@@ -130,27 +128,7 @@ export default async function PersonPage({
 					<PersonDetailTmdbButton personId={person.id} />
 				</div>
 			}
-			filmography={
-				<div className="mx-auto w-full max-w-7xl px-2.5 pb-10 sm:px-3">
-					<MovieDetailBodySection
-						title="Filmography"
-						subtitle={filmographySubtitle}
-						contentClassName="px-1 sm:px-2"
-					>
-						{filmography.length === 0 ? (
-							<p
-								className="rounded-2xl bg-card/40 p-10 text-center text-muted-foreground text-sm"
-								role="status"
-							>
-								No film credits loaded yet. Try again after the API syncs with
-								TMDb.
-							</p>
-						) : (
-							<PersonFilmographyGrid rows={filmography} />
-						)}
-					</MovieDetailBodySection>
-				</div>
-			}
+			filmography={<PersonFilmographyCatalogue rows={filmography} />}
 		/>
 	);
 }

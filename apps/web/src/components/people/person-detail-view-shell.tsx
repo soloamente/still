@@ -92,7 +92,7 @@ function PersonDetailViewShellBody({
 				)}
 			>
 				<article className="flex flex-1 flex-col">
-					{hero}
+					{view === "about" ? hero : null}
 
 					<div hidden={view !== "about"}>{about}</div>
 					<div hidden={view !== "filmography"}>{filmography}</div>

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 /** icaru input surface — no focus ring/outline; scale feedback lives on `AuthMotionInput`. */
 export const AUTH_INPUT_CLASS =
-	"auth-input w-full rounded-2xl bg-input px-3.75 py-3.25 leading-none transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-0";
+	"auth-input w-full rounded-2xl bg-input px-3.75 py-3.25 text-base leading-none transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-0 md:text-[15px]";
 
 /** Collapsing error line under each field (icaru height + opacity animation). */
 export function AuthFieldErrors({

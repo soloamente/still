@@ -65,7 +65,7 @@ describe("computeTasteSignatureFromLogs", () => {
 			...repeat(2, () => slice({ genreIds: [35] })),
 		]);
 		expect(result.archetype).toBe("dual-affinity");
-		expect(result.pillLabel).toBe("Dramatist & Toonist");
+		expect(result.pillLabel).toBe("Dramatist");
 		expect(result.pillGenres?.primary).toBe("Drama");
 		expect(result.pillGenres?.secondary).toBe("Animation");
 		expect(result.headlineSelf.toLowerCase()).toContain("drama");

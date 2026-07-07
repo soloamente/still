@@ -714,6 +714,33 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-07-07 — Runtime crash fix (`usePatronEntitlements` provider boundary)
+
+**Shipped:** patched `apps/web/src/components/profile/profile-patron-actions.tsx` to avoid a hard crash when profile actions render outside the signed-in entitlement provider tree.
+- Switched `ProfileOtherPatronActions` from `usePatronEntitlements` to `usePatronEntitlementsOptional`
+- Added a defensive fallback: `canUseTasteOverlap` now checks `entitlements?.hasFeature("taste_overlap")`
+- Added an inline comment documenting why this component must handle missing provider context (public-share/profile surfaces)
+
+**Why:** dev runtime repeatedly threw:
+- `usePatronEntitlements must be used within PatronEntitlementsProvider`
+- stack included `ProfileOtherPatronActions`
+
+**Verification status:**
+- `ReadLints` on the touched file: **no linter errors**
+- Local typecheck command attempts:
+  - `bun --filter web check-types` → no matching filter in this workspace
+  - `bun run check-types` in `apps/web` → script not defined
+  - `bunx tsc --noEmit` in `apps/web` → fails on existing `.next/dev/types/validator.ts` generated-file errors, unrelated to this patch
+
+**Manual confirm request (Planner/human):**
+1. Reload the profile page path that previously crashed
+2. Confirm no entitlement-provider runtime error appears in dev logs
+3. Confirm **Compare taste** behavior still gates correctly (visible for entitled viewers, upgrade gate otherwise)
+
+**Follow-up hardening (same task, 2026-07-07):**
+- Guarded `ProfileOtherPatronActions` against a second provider-boundary crash path by rendering `PlanFeatureGate` **only when** entitlements context exists.
+- Reason: `PlanFeatureGate` itself uses strict `usePatronEntitlements`, so showing it while `entitlements` is `null` could still throw on public-share surfaces.
+
 ### 2026-07-02 — Vercel typecheck blocker fix (patron feedback Date vs string)
 
 **Shipped:** patched `apps/web/src/lib/fetch-patron-feedback-client.ts` to remove unsafe API casting and explicitly normalize feedback payloads.

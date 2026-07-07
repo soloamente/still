@@ -26,6 +26,13 @@ export const CAST_CREW_ARC_MOBILE_EDGE_OFFSET_PX = 64;
 /** Scale down edge translate on mobile — larger cards need a shallower curve. */
 export const CAST_CREW_ARC_MOBILE_CURVE_SCALE = 0.82;
 
+/**
+ * Bleed arc rows into About column gutters (`MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME`)
+ * so outer portraits are not clipped on narrow viewports.
+ */
+export const CAST_CREW_ARC_COLUMN_BLEED_CLASSNAME =
+	"-mx-2.5 w-[calc(100%+1.25rem)] sm:-mx-4 sm:w-[calc(100%+2rem)] md:-mx-5 md:w-[calc(100%+2.5rem)]";
+
 /** How many slots to show — always odd when >1 so one card sits on the arc apex. */
 export function arcVisibleSlotCount(
 	length: number,

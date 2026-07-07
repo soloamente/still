@@ -17,7 +17,7 @@ export default function ProfileLoading() {
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"min-h-0 flex-1 gap-4 overflow-visible p-6 sm:gap-5 sm:p-8",
+					"min-h-0 flex-1 gap-4 overflow-visible px-4 py-6 sm:gap-5 sm:p-8",
 				)}
 			>
 				<Skeleton className="aspect-[3/1] w-full rounded-2xl" />

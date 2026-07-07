@@ -17,7 +17,7 @@ import {
 } from "@/lib/sense-taste-signature";
 
 const TASTE_CATEGORY_PILL_CLASS =
-	"inline-flex min-h-9 max-w-full items-center rounded-full bg-background px-3 py-1.5 text-sm font-medium text-foreground";
+	"inline-flex min-h-9 max-w-full items-center whitespace-nowrap rounded-full bg-background px-3 py-1.5 text-sm font-medium text-foreground";
 
 /** Compact taste category chip — matches profile stat pills under the banner. */
 function TasteCategoryPill({

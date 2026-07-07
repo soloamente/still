@@ -18,6 +18,8 @@ export function PersonFilmographyDrawerTrailing({
 	personName: string;
 	onNavigate?: () => void;
 }) {
+	const openFullPageLabel = `Open full page for ${personName}`;
+
 	return (
 		<div className="flex shrink-0 items-center gap-1">
 			<DetailMotionButtonWrap>
@@ -27,16 +29,20 @@ export function PersonFilmographyDrawerTrailing({
 					nativeButton={false}
 					className={cn(
 						"h-12 rounded-full bg-background px-4 text-muted-foreground",
+						"max-sm:size-10 max-sm:justify-center max-sm:gap-0 max-sm:p-0",
 						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 					)}
-					aria-label={`Open full page for ${personName}`}
+					aria-label={openFullPageLabel}
 					render={<Link href={`/people/${personId}`} />}
 					onClick={onNavigate}
 				>
-					<span className="font-medium text-foreground text-sm">
+					<span className="hidden font-medium text-foreground text-sm sm:inline">
 						Open full page
-					</span>{" "}
-					<ArrowUpRight className="size-4 shrink-0 opacity-80" aria-hidden />
+					</span>
+					<ArrowUpRight
+						className="size-4 shrink-0 text-foreground opacity-90"
+						aria-hidden
+					/>
 				</Button>
 			</DetailMotionButtonWrap>
 		</div>

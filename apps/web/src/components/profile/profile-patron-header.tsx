@@ -23,6 +23,7 @@ import {
 	PROFILE_HERO_LOWER_HALF_SLOT_CLASSNAME,
 	PROFILE_HERO_PORTRAIT_SHADOW_CLASSNAME,
 	PROFILE_HERO_PORTRAIT_STRADDLE_CLASSNAME,
+	PROFILE_HERO_STAT_ROW_MOBILE_LIFT_CLASSNAME,
 	PROFILE_HERO_STAT_ROW_OVERLAY_CLASSNAME,
 } from "@/lib/profile-hero-layout";
 import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
@@ -41,8 +42,8 @@ const PROFILE_HERO_PORTRAIT_IMAGE_PX = 128;
 const PROFILE_STAT_FLANK_MAX_WIDTH_CLASSNAME =
 	"max-w-[calc(50%-4rem)] sm:max-w-[calc(50%-4.5rem)]";
 
-/** Horizontal gutters for lobby body content on `bg-card` (matches profile page `p-6 sm:p-8`). */
-export const PROFILE_LOBBY_BODY_GUTTER_CLASSNAME = "px-6 sm:px-8";
+/** Horizontal gutters for lobby body content on `bg-card` (matches profile page `px-4 py-6 sm:p-8`). */
+export const PROFILE_LOBBY_BODY_GUTTER_CLASSNAME = "px-4 sm:px-8";
 
 type ProfilePatronHeaderProps = {
 	handle: string;
@@ -177,10 +178,11 @@ export function ProfilePatronHeader({
 					</div>
 				</div>
 
-				{/* Stat pills — taste chip on the left flank; social stats on the right */}
+				{/* Stat pills — films/shows first, then taste; social stats on the right */}
 				<div
 					className={cn(
 						PROFILE_HERO_LOWER_HALF_SLOT_CLASSNAME,
+						PROFILE_HERO_STAT_ROW_MOBILE_LIFT_CLASSNAME,
 						"max-[400px]:h-auto max-[400px]:min-h-14",
 					)}
 				>
@@ -197,18 +199,18 @@ export function ProfilePatronHeader({
 								"max-[400px]:max-w-none max-[400px]:justify-center",
 							)}
 						>
-							{tasteSignature ? (
-								<ProfileTasteCategoryPill
-									tasteSignature={tasteSignature}
-									perspective={isMe ? "self" : "visitor"}
-								/>
-							) : null}
 							<ProfileStatCell
 								variant="pill"
 								value={moviesCount}
 								label="films"
 							/>
 							<ProfileStatCell variant="pill" value={tvCount} label="shows" />
+							{tasteSignature ? (
+								<ProfileTasteCategoryPill
+									tasteSignature={tasteSignature}
+									perspective={isMe ? "self" : "visitor"}
+								/>
+							) : null}
 						</div>
 						<div
 							className={cn(

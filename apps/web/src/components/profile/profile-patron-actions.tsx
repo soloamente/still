@@ -9,7 +9,7 @@ import {
 	DetailMotionLink,
 } from "@/components/movie/detail-motion-pressable";
 import { PlanFeatureGate } from "@/components/plans/plan-feature-gate";
-import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
+import { usePatronEntitlementsOptional } from "@/components/plans/use-patron-entitlements";
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import { TasteOverlapDialog } from "@/components/profile/taste-overlap-dialog";
 import { api } from "@/lib/api";
@@ -100,9 +100,11 @@ function ProfileOtherPatronActions({
 	const [compareOpen, setCompareOpen] = useState(
 		Boolean(initialTasteCompareOpen),
 	);
-	const { hasFeature } = usePatronEntitlements();
+	// Public-share profile surfaces can render this component outside the signed-in
+	// app shell provider tree, so we must gracefully handle missing entitlements.
+	const entitlements = usePatronEntitlementsOptional();
 	const canUseTasteOverlap = Boolean(
-		canCompareTaste && hasFeature("taste_overlap"),
+		canCompareTaste && entitlements?.hasFeature("taste_overlap"),
 	);
 
 	useEffect(() => {
@@ -136,13 +138,13 @@ function ProfileOtherPatronActions({
 						>
 							Compare taste
 						</DetailMotionButton>
-					) : (
+					) : entitlements ? (
 						<div className="max-w-xs">
 							<PlanFeatureGate featureKey="taste_overlap">
 								<span className="sr-only">Compare taste</span>
 							</PlanFeatureGate>
 						</div>
-					)
+					) : null
 				) : null}
 			</div>
 			{canUseTasteOverlap ? (

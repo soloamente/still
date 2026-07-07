@@ -58,6 +58,19 @@ function subscribeReducedMotion(listener: () => void): () => void {
 	return () => mq.removeEventListener("change", listener);
 }
 
+function prefersMobileViewport(): boolean {
+	if (typeof window === "undefined") return false;
+	// Treat touch-first / narrow viewports as mobile and keep native scroll.
+	return window.matchMedia("(max-width: 1023px), (pointer: coarse)").matches;
+}
+
+function subscribeMobileViewport(listener: () => void): () => void {
+	if (typeof window === "undefined") return () => undefined;
+	const mq = window.matchMedia("(max-width: 1023px), (pointer: coarse)");
+	mq.addEventListener("change", listener);
+	return () => mq.removeEventListener("change", listener);
+}
+
 /** Syncs Settings → Lenis + `html.smooth-scroll-enabled` for in-page anchors. */
 export function useSmoothScrollPreference(): SmoothScrollPreferenceValue {
 	const ctx = useContext(SmoothScrollPreferenceContext);
@@ -80,6 +93,11 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 	const reducedMotion = useSyncExternalStore(
 		subscribeReducedMotion,
 		prefersReducedMotion,
+		() => false,
+	);
+	const mobileViewport = useSyncExternalStore(
+		subscribeMobileViewport,
+		prefersMobileViewport,
 		() => false,
 	);
 
@@ -107,7 +125,9 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 		};
 	}, []);
 
-	const smoothScrollActive = smoothScrollEnabled && !reducedMotion;
+	// Force native scrolling on mobile to avoid gesture conflicts/jank.
+	const smoothScrollActive =
+		smoothScrollEnabled && !reducedMotion && !mobileViewport;
 
 	useEffect(() => {
 		document.documentElement.classList.toggle(
