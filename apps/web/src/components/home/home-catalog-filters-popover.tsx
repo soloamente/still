@@ -8,6 +8,7 @@ import {
 import { cn } from "@still/ui/lib/utils";
 import {
 	cloneElement,
+	type MouseEvent,
 	type ReactElement,
 	useMemo,
 	useRef,
@@ -63,6 +64,10 @@ const panelPillClassName = cn(
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 );
 
+type HomeCatalogFiltersTriggerElement = ReactElement<{
+	onClick?: (event: MouseEvent<HTMLElement>) => void;
+}>;
+
 function sectionLabel(text: string) {
 	return (
 		<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
@@ -117,7 +122,7 @@ export type HomeCatalogFiltersPopoverProps = {
 	currentHref: string;
 	onNavigate: (href: string) => void;
 	onPrefetch?: (href: string) => void;
-	trigger: ReactElement;
+	trigger: HomeCatalogFiltersTriggerElement;
 	/** TV **This season** already pins Animation — hide genre picks. */
 	hideGenreFilter?: boolean;
 	/** Mobile — In cinemas / At home lives in this panel instead of a separate popover. */
@@ -324,7 +329,7 @@ export function HomeCatalogFiltersPopover({
 
 	if (isMobileVaul) {
 		const mobileTrigger = cloneElement(trigger, {
-			onClick: (event: React.MouseEvent<HTMLElement>) => {
+			onClick: (event: MouseEvent<HTMLElement>) => {
 				trigger.props.onClick?.(event);
 				setOpen(true);
 			},
