@@ -6,13 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
-import { parseReviewBodyWithMentions } from "@/lib/review-listing-mentions";
+import {
+	type ContentMentionPart,
+	parseBodyWithMentions,
+} from "@/lib/content-mentions";
 
 const MENTION_LINK_CLASS =
 	"inline-flex max-w-full items-baseline gap-0.5 font-medium text-foreground/90 underline decoration-foreground/25 underline-offset-2 transition-colors [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40";
 
-/** Title + outbound arrow — stored tokens stay `@[Title](…)` but readers never see `@`. */
-function ReviewListingMentionContent({ label }: { label: string }) {
+/** Name + outbound arrow — stored tokens hide `#` / `@` prefixes from readers. */
+function MentionLinkContent({ label }: { label: string }) {
 	return (
 		<>
 			<span>{label}</span>
@@ -24,33 +27,43 @@ function ReviewListingMentionContent({ label }: { label: string }) {
 	);
 }
 
-type ReviewBodyWithMentionsProps = {
+type BodyWithMentionsProps = {
 	body: string;
 	className?: string;
 	/** When set, mention taps call this instead of navigating (e.g. carousel opens drawer). */
 	onMentionClick?: () => void;
 } & Omit<ComponentPropsWithoutRef<"span">, "children">;
 
-/** Renders review copy with clickable film/TV title links. */
-export function ReviewBodyWithMentions({
+function mentionPartHref(part: ContentMentionPart): string | null {
+	if (part.type === "text") return null;
+	return part.href;
+}
+
+function mentionPartKey(part: ContentMentionPart, index: number): string {
+	if (part.type === "text") return `text-${index}-${part.value.length}`;
+	return `${part.type}-${part.href}-${part.label}`;
+}
+
+/** Renders review/comment copy with clickable listing, person, and patron links. */
+export function BodyWithMentions({
 	body,
 	className,
 	onMentionClick,
 	...rest
-}: ReviewBodyWithMentionsProps) {
-	const parts = parseReviewBodyWithMentions(body);
+}: BodyWithMentionsProps) {
+	const parts = parseBodyWithMentions(body);
 
 	return (
 		<span className={className} {...rest}>
 			{parts.map((part, index) => {
-				const partKey =
-					part.type === "text"
-						? `text-${index}-${part.value.length}`
-						: `mention-${part.href}-${part.label}`;
+				const partKey = mentionPartKey(part, index);
 
 				if (part.type === "text") {
 					return <span key={partKey}>{part.value}</span>;
 				}
+
+				const href = mentionPartHref(part);
+				if (!href) return null;
 
 				if (onMentionClick) {
 					return (
@@ -66,7 +79,7 @@ export function ReviewBodyWithMentions({
 								onMentionClick();
 							}}
 						>
-							<ReviewListingMentionContent label={part.label} />
+							<MentionLinkContent label={part.label} />
 						</button>
 					);
 				}
@@ -74,11 +87,11 @@ export function ReviewBodyWithMentions({
 				return (
 					<Link
 						key={partKey}
-						href={part.href}
+						href={href}
 						className={MENTION_LINK_CLASS}
 						onClick={(event) => event.stopPropagation()}
 					>
-						<ReviewListingMentionContent label={part.label} />
+						<MentionLinkContent label={part.label} />
 					</Link>
 				);
 			})}
@@ -86,7 +99,10 @@ export function ReviewBodyWithMentions({
 	);
 }
 
-/** Compact row for the composer `@` picker. */
+/** @deprecated Use `BodyWithMentions` — kept for existing imports. */
+export const ReviewBodyWithMentions = BodyWithMentions;
+
+/** Compact row for the composer `#` listing picker. */
 export function ListingMentionPickerRow({
 	title,
 	subtitle,
