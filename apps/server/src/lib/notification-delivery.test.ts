@@ -12,6 +12,7 @@ describe("notification-delivery", () => {
 		const prefs = readNotificationPrefs(null);
 		expect(prefs["follow.created"]).toBe(true);
 		expect(prefs["review.liked"]).toBe(false);
+		expect(prefs["mention.in_review_or_comment"]).toBe(true);
 	});
 
 	test("readNotificationPrefs merges stored overrides", () => {

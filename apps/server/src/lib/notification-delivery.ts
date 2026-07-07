@@ -32,6 +32,13 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		requiresOptIn: false,
 	},
 	{
+		id: "mention.in_review_or_comment",
+		label: "Mentions",
+		description: "When someone @mentions you in a review or comment.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
 		id: "badge.awarded",
 		label: "Badge unlocks",
 		description: "Prestige badges and milestones worth celebrating.",
