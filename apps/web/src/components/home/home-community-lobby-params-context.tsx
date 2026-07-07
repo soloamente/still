@@ -11,10 +11,7 @@ import {
 } from "react";
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
-import {
-	fetchHomeLeaderboardsByPeriodClient,
-	homeLeaderboardMapsAreEmpty,
-} from "@/lib/fetch-home-leaderboards-client";
+import { fetchHomeLeaderboardsByPeriodClient } from "@/lib/fetch-home-leaderboards-client";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import type {
 	HomeCommunityFeed,
@@ -96,27 +93,22 @@ export function HomeCommunityLobbyParamsProvider({
 		if (!deferLeaderboards) return;
 		setLeaderboardsFailed(false);
 		setLeaderboardsLoading(true);
+		// Clear cached maps so retry can actually refetch (maps were blocking the effect).
+		setFilmLeaderboardsByPeriod({});
+		setTvLeaderboardsByPeriod({});
 		setLeaderboardFetchGeneration((n) => n + 1);
 	}, []);
 
 	useEffect(() => {
 		if (!deferLeaderboards) return;
-		// Retry bumps generation — must stay in the dependency list for a refetch.
+		// Only load rank boards when the patron is viewing Film/TV ranks — refetch on each visit.
+		if (!isHomeLeaderboardFeed(feed)) return;
 		void leaderboardFetchGeneration;
-
-		if (
-			!homeLeaderboardMapsAreEmpty(
-				filmLeaderboardsByPeriod,
-				tvLeaderboardsByPeriod,
-			)
-		) {
-			setLeaderboardsLoading(false);
-			return;
-		}
 
 		const controller = new AbortController();
 		void (async () => {
 			try {
+				setLeaderboardsLoading(true);
 				const [film, tv] = await Promise.all([
 					fetchHomeLeaderboardsByPeriodClient("films", controller.signal),
 					fetchHomeLeaderboardsByPeriodClient("tv", controller.signal),
@@ -136,12 +128,7 @@ export function HomeCommunityLobbyParamsProvider({
 		})();
 
 		return () => controller.abort();
-	}, [
-		deferLeaderboards,
-		leaderboardFetchGeneration,
-		filmLeaderboardsByPeriod,
-		tvLeaderboardsByPeriod,
-	]);
+	}, [deferLeaderboards, leaderboardFetchGeneration, feed]);
 
 	const committed = useMemo<HomeCommunityLobbySnapshot>(
 		() => ({ feed, period, rankKind }),
