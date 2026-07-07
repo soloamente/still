@@ -5,11 +5,14 @@ import { AwsClient } from "aws4fetch";
 
 import type { ImageBody } from "./asset-store";
 
-const SERVER_ROOT = path.resolve(
-	path.dirname(fileURLToPath(import.meta.url)),
-	"../..",
-);
 const DEFAULT_ASSETS_BUCKET = "cue-assets";
+
+/** Bun dev only — `import.meta.url` is undefined during Worker bundle validation. */
+function resolveServerRoot(): string | null {
+	const moduleUrl = import.meta.url;
+	if (!moduleUrl) return null;
+	return path.resolve(path.dirname(fileURLToPath(moduleUrl)), "../..");
+}
 
 /** Short-lived dev cache — wrangler pipe is slow (~3–5s per object). */
 const devCliCache = new Map<
@@ -132,6 +135,9 @@ async function fetchR2AssetViaWranglerCli(
 ): Promise<ImageBody | null> {
 	if (env.NODE_ENV !== "development") return null;
 
+	const serverRoot = resolveServerRoot();
+	if (!serverRoot) return null;
+
 	const bucket = env.R2_ASSETS_BUCKET?.trim() || DEFAULT_ASSETS_BUCKET;
 
 	for (const candidate of r2KeyCandidates(key)) {
@@ -153,7 +159,7 @@ async function fetchR2AssetViaWranglerCli(
 				"--pipe",
 			],
 			{
-				cwd: SERVER_ROOT,
+				cwd: serverRoot,
 				stdout: "pipe",
 				stderr: "pipe",
 			},
