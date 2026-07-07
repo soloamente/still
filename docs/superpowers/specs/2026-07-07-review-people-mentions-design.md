@@ -1,6 +1,6 @@
 # Review & comment mentions — films (#), cast/crew & patrons (@)
 
-**Status:** Approved (brainstorm 2026-07-07; human **go**)  
+**Status:** Approved (brainstorm 2026-07-07; human **go** ×2)  
 **Date:** 2026-07-07  
 **Scope:** Inline mentions in review bodies and review comments — `#` for films/TV, `@` for TMDb people and Sense patrons; patron inbox notifications (SN.9.1)  
 **Out of scope (v1):** List/post/log comments; notifying cast/crew (non-users); push/email delivery; TV reviews (reviews remain movie-only; `listingContext` is extensible)

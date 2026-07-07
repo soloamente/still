@@ -2,7 +2,7 @@
 
 ## Review people mentions — # films · @ cast/crew & patrons (2026-07-07)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**, pending human spec file review). **Locked:** `#` film/TV tags (migrate legacy `@` listings on edit); `@` TMDb people + patrons (handle auto-detect); title cast-first context; `MentionTextarea` in review composer + comments; patron inbox `mention.in_review_or_comment` (SN.9.1). **Next:** human spec review → `writing-plans`.
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV tags (migrate legacy `@` listings on edit); `@` TMDb people + patrons (handle auto-detect); title cast-first context; `MentionTextarea` in review composer + comments; patron inbox `mention.in_review_or_comment` (SN.9.1). **Next:** Executor Task 1 (content-mentions parser) — human picks subagent-driven vs inline execution.
 
 ## Sense subscriptions & referrals — Polar (2026-07-05)
 
