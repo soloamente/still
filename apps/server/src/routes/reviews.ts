@@ -23,6 +23,7 @@ import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import { notifyPatronMentionsInContent } from "../lib/content-mention-notify";
 import {
 	canViewContent,
 	contentVisibilityWhere,
@@ -216,6 +217,26 @@ export const reviewsRoute = new Elysia({
 				kind: "review.created",
 				payload: { reviewId: id, movieId: body.movieId },
 			});
+
+			const [actorProfile] = await db
+				.select({ displayName: profile.displayName })
+				.from(profile)
+				.where(eq(profile.userId, user.id))
+				.limit(1);
+			const [movieRow] = await db
+				.select({ title: movie.title })
+				.from(movie)
+				.where(eq(movie.tmdbId, body.movieId))
+				.limit(1);
+			await notifyPatronMentionsInContent({
+				body: bodyText,
+				actorUserId: user.id,
+				actorDisplayName: actorProfile?.displayName ?? user.name ?? "Someone",
+				reviewId: id,
+				movieId: body.movieId,
+				listingTitle: movieRow?.title ?? null,
+			});
+
 			return row;
 		},
 		{
@@ -394,6 +415,29 @@ export const reviewsRoute = new Elysia({
 				})
 				.where(eq(review.id, params.id))
 				.returning();
+
+			if (body.body !== undefined && existing.movieId != null) {
+				const savedBody = body.body.trim();
+				const [actorProfile] = await db
+					.select({ displayName: profile.displayName })
+					.from(profile)
+					.where(eq(profile.userId, user.id))
+					.limit(1);
+				const [movieRow] = await db
+					.select({ title: movie.title })
+					.from(movie)
+					.where(eq(movie.tmdbId, existing.movieId))
+					.limit(1);
+				await notifyPatronMentionsInContent({
+					body: savedBody,
+					actorUserId: user.id,
+					actorDisplayName: actorProfile?.displayName ?? user.name ?? "Someone",
+					reviewId: params.id,
+					movieId: existing.movieId,
+					listingTitle: movieRow?.title ?? null,
+				});
+			}
+
 			return updated;
 		},
 		{

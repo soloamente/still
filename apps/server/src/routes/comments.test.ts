@@ -3,12 +3,18 @@ import { Elysia } from "elysia";
 
 const commentTable = { __table: "comment" };
 const reviewTable = { __table: "review" };
+const profileTable = { __table: "profile" };
 const eventLogTable = { __table: "eventLog" };
 
 const publishRealtimeEventMock = mock(async () => {});
+const notifyPatronMentionsInContentMock = mock(async () => {});
 
 mock.module("../lib/realtime-publish", () => ({
 	publishRealtimeEvent: publishRealtimeEventMock,
+}));
+
+mock.module("../lib/content-mention-notify", () => ({
+	notifyPatronMentionsInContent: notifyPatronMentionsInContentMock,
 }));
 
 mock.module("../lib/notification-delivery", () => ({
@@ -77,14 +83,28 @@ function createDbMock() {
 			};
 		},
 		select() {
+			let fromTable: { __table?: string } | undefined;
 			return {
-				from() {
+				from(table: { __table?: string }) {
+					fromTable = table;
 					return this;
 				},
 				where() {
 					return this;
 				},
 				limit() {
+					if (fromTable === reviewTable) {
+						return Promise.resolve([
+							{
+								userId: "usr_author",
+								movieId: 9664,
+								title: "Dune: Part Two",
+							},
+						]);
+					}
+					if (fromTable === profileTable) {
+						return Promise.resolve([{ displayName: "Commenter" }]);
+					}
 					return Promise.resolve([]);
 				},
 			};
@@ -97,7 +117,7 @@ mock.module("@still/db", () => ({
 	comment: commentTable,
 	review: reviewTable,
 	eventLog: eventLogTable,
-	profile: {},
+	profile: profileTable,
 	user: {},
 	reaction: {},
 }));
@@ -137,6 +157,7 @@ function postComment(body: Record<string, unknown>, userId?: string) {
 describe("POST /api/comments", () => {
 	beforeEach(() => {
 		publishRealtimeEventMock.mockClear();
+		notifyPatronMentionsInContentMock.mockClear();
 	});
 
 	test("broadcasts comment.created to the review room after insert", async () => {
@@ -170,6 +191,29 @@ describe("POST /api/comments", () => {
 
 		expect(response.status).toBe(200);
 		expect(publishRealtimeEventMock).not.toHaveBeenCalled();
+	});
+
+	test("notifies patron mentions in review comment bodies", async () => {
+		const response = await postComment(
+			{
+				parentType: "review",
+				parentId: "rev_abc",
+				body: "Hey @[Jane](/profile/jane_doe) — thoughts?",
+			},
+			"usr_commenter",
+		);
+
+		expect(response.status).toBe(200);
+		expect(notifyPatronMentionsInContentMock).toHaveBeenCalledTimes(1);
+		expect(notifyPatronMentionsInContentMock).toHaveBeenCalledWith(
+			expect.objectContaining({
+				body: "Hey @[Jane](/profile/jane_doe) — thoughts?",
+				reviewId: "rev_abc",
+				movieId: 9664,
+				commentId: "cmt_test",
+				actorUserId: "usr_commenter",
+			}),
+		);
 	});
 });
 

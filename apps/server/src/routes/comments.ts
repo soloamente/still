@@ -16,6 +16,7 @@ import {
 	readCommentReactionSnapshot,
 	removeViewerCommentReaction,
 } from "../lib/comment-reactions";
+import { notifyPatronMentionsInContent } from "../lib/content-mention-notify";
 import { makeId } from "../lib/cuid";
 import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import { notifyOnReviewComment } from "../lib/notification-delivery";
@@ -105,15 +106,25 @@ export const commentsRoute = new Elysia({
 					.where(eq(profile.userId, viewer.id))
 					.limit(1);
 				if (reviewRow?.movieId != null) {
+					const commenterDisplayName =
+						commenterProfile?.displayName ?? viewer.name ?? "Someone";
 					await notifyOnReviewComment({
 						reviewId: body.parentId,
 						movieId: reviewRow.movieId,
 						reviewAuthorId: reviewRow.userId,
 						commenterId: viewer.id,
-						commenterDisplayName:
-							commenterProfile?.displayName ?? viewer.name ?? "Someone",
+						commenterDisplayName,
 						replyToUserId,
 						reviewTitle: reviewRow.title,
+					});
+					await notifyPatronMentionsInContent({
+						body: body.body,
+						actorUserId: viewer.id,
+						actorDisplayName: commenterDisplayName,
+						reviewId: body.parentId,
+						movieId: reviewRow.movieId,
+						listingTitle: reviewRow.title,
+						commentId: id,
 					});
 				}
 
@@ -183,6 +194,34 @@ export const commentsRoute = new Elysia({
 				.set({ body: trimmed, editedAt: new Date() })
 				.where(eq(comment.id, params.id))
 				.returning();
+
+			if (existing.parentType === "review") {
+				const [reviewRow] = await db
+					.select({
+						movieId: review.movieId,
+						title: review.title,
+					})
+					.from(review)
+					.where(eq(review.id, existing.parentId))
+					.limit(1);
+				if (reviewRow?.movieId != null) {
+					const [editorProfile] = await db
+						.select({ displayName: profile.displayName })
+						.from(profile)
+						.where(eq(profile.userId, viewer.id))
+						.limit(1);
+					await notifyPatronMentionsInContent({
+						body: trimmed,
+						actorUserId: viewer.id,
+						actorDisplayName:
+							editorProfile?.displayName ?? viewer.name ?? "Someone",
+						reviewId: existing.parentId,
+						movieId: reviewRow.movieId,
+						listingTitle: reviewRow.title,
+						commentId: params.id,
+					});
+				}
+			}
 
 			return row;
 		},
