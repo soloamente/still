@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
+import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
 import {
 	type ContentMentionPart,
 	parseBodyWithMentions,
@@ -156,3 +158,108 @@ export function ListingMentionPickerRow({
 		</button>
 	);
 }
+
+/** Compact row for the composer `@` cast/crew picker. */
+export function PersonMentionPickerRow({
+	name,
+	subtitle,
+	profileUrl,
+	active,
+	onSelect,
+	onMouseEnter,
+}: {
+	name: string;
+	subtitle: string;
+	profileUrl: string | null;
+	active: boolean;
+	onSelect: () => void;
+	onMouseEnter?: () => void;
+}) {
+	return (
+		<button
+			type="button"
+			role="option"
+			aria-selected={active}
+			className={cn(
+				"flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors",
+				active ? "bg-foreground/10 text-foreground" : "text-foreground/90",
+			)}
+			onMouseEnter={onMouseEnter}
+			onMouseDown={(event) => {
+				event.preventDefault();
+				onSelect();
+			}}
+		>
+			<div className="relative size-10 shrink-0 overflow-hidden rounded-full bg-muted/40">
+				{profileUrl ? (
+					<Image
+						src={profileUrl}
+						alt=""
+						fill
+						sizes="40px"
+						className="object-cover"
+						unoptimized
+					/>
+				) : null}
+			</div>
+			<span className="min-w-0 flex-1">
+				<span className="block truncate font-medium">{name}</span>
+				<span className="block truncate text-muted-foreground text-xs">
+					{subtitle}
+				</span>
+			</span>
+		</button>
+	);
+}
+
+/** Compact row for the composer `@` patron picker. */
+export function PatronMentionPickerRow({
+	displayName,
+	handle,
+	portraitUrl,
+	active,
+	onSelect,
+	onMouseEnter,
+}: {
+	displayName: string;
+	handle: string;
+	portraitUrl: string | null;
+	active: boolean;
+	onSelect: () => void;
+	onMouseEnter?: () => void;
+}) {
+	return (
+		<button
+			type="button"
+			role="option"
+			aria-selected={active}
+			className={cn(
+				"flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors",
+				active ? "bg-foreground/10 text-foreground" : "text-foreground/90",
+			)}
+			onMouseEnter={onMouseEnter}
+			onMouseDown={(event) => {
+				event.preventDefault();
+				onSelect();
+			}}
+		>
+			<PatronPortraitAvatar
+				handle={handle}
+				avatarUrl={portraitUrl}
+				name={displayName}
+				width={40}
+				height={40}
+				className="size-10 shrink-0"
+			/>
+			<span className="min-w-0 flex-1">
+				<span className="block truncate font-medium">{displayName}</span>
+				<span className="block truncate text-muted-foreground text-xs">
+					@{handle}
+				</span>
+			</span>
+		</button>
+	);
+}
+
+/** Re-export for mention picker subtitles on TMDb search hits. */
+export { castCrewMetaLine };

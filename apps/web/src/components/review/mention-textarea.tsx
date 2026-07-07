@@ -10,14 +10,24 @@ import {
 	useCallback,
 	useEffect,
 	useLayoutEffect,
+	useMemo,
 	useRef,
 	useState,
 } from "react";
 
-import { ListingMentionPickerRow } from "@/components/review/review-body-with-mentions";
+import {
+	ListingMentionPickerRow,
+	PatronMentionPickerRow,
+	PersonMentionPickerRow,
+} from "@/components/review/review-body-with-mentions";
+import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
 import {
 	getActiveListingMentionQuery,
+	getActivePeopleMentionQuery,
 	insertListingMention,
+	insertPatronMention,
+	insertPersonMention,
+	isPatronMentionQuery,
 	listingMentionPickerSubtitle,
 } from "@/lib/content-mentions";
 import {
@@ -26,12 +36,16 @@ import {
 } from "@/lib/textarea-caret-viewport";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useListingMentionSearch } from "@/lib/use-listing-mention-search";
+import { usePatronMentionSearch } from "@/lib/use-patron-mention-search";
+import { usePeopleMentionSearch } from "@/lib/use-people-mention-search";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 export const MENTION_TEXTAREA_DEFAULT_PLACEHOLDER =
 	"Use # for films and @ for people";
 
-/** Top + bottom edge fades on the `#` picker list — matches notifications inbox scrims. */
+type MentionPickerKind = "listing" | "people";
+
+/** Top + bottom edge fades on mention picker lists — matches notifications inbox scrims. */
 function MentionPickerMenuScrims({
 	showHeaderFade,
 	showFooterFade,
@@ -68,7 +82,7 @@ type MentionTextareaProps = {
 	id: string;
 	value: string;
 	onChange: (next: string) => void;
-	/** Title under review — used by `@` people picker (Task 5). */
+	/** Title under review — title cast/crew rail for `@` when set. */
 	listingContext?: MentionTextareaListingContext | null;
 	className?: string;
 	rows?: number;
@@ -77,14 +91,13 @@ type MentionTextareaProps = {
 };
 
 /**
- * Review/comment body field with `#` autocomplete for films and TV shows.
- * Inserts `#[Title](/movies|tv/id)` tokens readers can tap later.
+ * Review/comment body field with `#` film/TV and `@` people/patron autocomplete.
  */
 export function MentionTextarea({
 	id,
 	value,
 	onChange,
-	listingContext: _listingContext,
+	listingContext = null,
 	className,
 	rows = 6,
 	maxLength,
@@ -92,6 +105,7 @@ export function MentionTextarea({
 }: MentionTextareaProps) {
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const listScrollRef = useRef<HTMLDivElement>(null);
+	const [pickerKind, setPickerKind] = useState<MentionPickerKind | null>(null);
 	const [mentionRange, setMentionRange] = useState<{
 		start: number;
 		end: number;
@@ -101,42 +115,108 @@ export function MentionTextarea({
 	const [caretAnchor, setCaretAnchor] =
 		useState<TextareaCaretViewportAnchor | null>(null);
 
-	const { results, loading } = useListingMentionSearch(mentionQuery);
-	const pickerOpen = mentionRange != null;
-	const listContentKey = results
-		.map((hit) => `${hit.listingKind}-${hit.id}`)
-		.join("\0");
+	const pickerOpen = pickerKind != null && mentionRange != null;
+	const patronPicker =
+		pickerKind === "people" && isPatronMentionQuery(mentionQuery);
+
+	const { results: listingResults, loading: listingLoading } =
+		useListingMentionSearch(pickerKind === "listing" ? mentionQuery : "");
+	const { results: peopleResults, loading: peopleLoading } =
+		usePeopleMentionSearch({
+			query: mentionQuery,
+			listingContext,
+			enabled: pickerKind === "people" && !patronPicker,
+		});
+	const { hits: patronResults, loading: patronLoading } =
+		usePatronMentionSearch(
+			mentionQuery,
+			pickerKind === "people" && patronPicker,
+		);
+
+	const resultCount = useMemo(() => {
+		if (pickerKind === "listing") return listingResults.length;
+		if (patronPicker) return patronResults.length;
+		return peopleResults.length;
+	}, [
+		listingResults.length,
+		patronPicker,
+		patronResults.length,
+		peopleResults.length,
+		pickerKind,
+	]);
+
+	const loading =
+		pickerKind === "listing"
+			? listingLoading
+			: patronPicker
+				? patronLoading
+				: peopleLoading;
+
+	const listContentKey = useMemo(() => {
+		if (pickerKind === "listing") {
+			return listingResults
+				.map((hit) => `${hit.listingKind}-${hit.id}`)
+				.join("\0");
+		}
+		if (patronPicker) {
+			return patronResults.map((hit) => hit.userId).join("\0");
+		}
+		return peopleResults
+			.map((hit) =>
+				hit.source === "credit" ? `c-${hit.row.id}` : `s-${hit.row.id}`,
+			)
+			.join("\0");
+	}, [listingResults, patronPicker, patronResults, peopleResults, pickerKind]);
+
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		listScrollRef,
-		pickerOpen && results.length > 0,
+		pickerOpen && resultCount > 0,
 		listContentKey,
 	);
 
-	const mentionHighlightKey = `${mentionQuery}\0${results.length}`;
+	const mentionHighlightKey = `${pickerKind}\0${mentionQuery}\0${resultCount}`;
 	useEffect(() => {
 		void mentionHighlightKey;
 		setHighlightIndex(0);
 	}, [mentionHighlightKey]);
 
-	// Keep keyboard-highlighted row visible inside the faded scrollport.
 	useEffect(() => {
-		if (!pickerOpen || results.length === 0) return;
+		if (!pickerOpen || resultCount === 0) return;
 		const row = listScrollRef.current?.querySelector(
 			`[data-mention-index="${highlightIndex}"]`,
 		);
 		row?.scrollIntoView({ block: "nearest" });
-	}, [highlightIndex, pickerOpen, results.length]);
+	}, [highlightIndex, pickerOpen, resultCount]);
 
-	const syncMentionState = useCallback((body: string, cursor: number) => {
-		const active = getActiveListingMentionQuery(body, cursor);
-		if (!active) {
-			setMentionRange(null);
-			setMentionQuery("");
-			return;
-		}
-		setMentionRange({ start: active.start, end: active.end });
-		setMentionQuery(active.query);
+	const clearPicker = useCallback(() => {
+		setPickerKind(null);
+		setMentionRange(null);
+		setMentionQuery("");
+		setCaretAnchor(null);
 	}, []);
+
+	const syncMentionState = useCallback(
+		(body: string, cursor: number) => {
+			const listingActive = getActiveListingMentionQuery(body, cursor);
+			if (listingActive) {
+				setPickerKind("listing");
+				setMentionRange({ start: listingActive.start, end: listingActive.end });
+				setMentionQuery(listingActive.query);
+				return;
+			}
+
+			const peopleActive = getActivePeopleMentionQuery(body, cursor);
+			if (peopleActive) {
+				setPickerKind("people");
+				setMentionRange({ start: peopleActive.start, end: peopleActive.end });
+				setMentionQuery(peopleActive.query);
+				return;
+			}
+
+			clearPicker();
+		},
+		[clearPicker],
+	);
 
 	const syncCaretAnchor = useCallback(() => {
 		const el = textareaRef.current;
@@ -148,7 +228,7 @@ export function MentionTextarea({
 		setCaretAnchor(measureTextareaCaretViewportAnchor(el, cursor));
 	}, [mentionRange]);
 
-	const caretAnchorKey = `${value.length}\0${mentionQuery}\0${mentionRange?.start ?? ""}:${mentionRange?.end ?? ""}`;
+	const caretAnchorKey = `${value.length}\0${mentionQuery}\0${pickerKind}\0${mentionRange?.start ?? ""}:${mentionRange?.end ?? ""}`;
 	useLayoutEffect(() => {
 		void caretAnchorKey;
 		syncCaretAnchor();
@@ -175,20 +255,41 @@ export function MentionTextarea({
 	};
 
 	const handleSelect = (index: number) => {
-		const hit = results[index];
 		const range = mentionRange;
 		const el = textareaRef.current;
-		if (!hit || !range || !el) return;
+		if (!range || !el || pickerKind == null) return;
 
-		const { nextBody, nextCursor } = insertListingMention(value, range, {
-			title: hit.title,
-			listingKind: hit.listingKind,
-			tmdbId: hit.id,
-		});
+		let nextBody = value;
+		let nextCursor = range.end;
+
+		if (pickerKind === "listing") {
+			const hit = listingResults[index];
+			if (!hit) return;
+			({ nextBody, nextCursor } = insertListingMention(value, range, {
+				title: hit.title,
+				listingKind: hit.listingKind,
+				tmdbId: hit.id,
+			}));
+		} else if (patronPicker) {
+			const hit = patronResults[index];
+			if (!hit) return;
+			({ nextBody, nextCursor } = insertPatronMention(value, range, {
+				displayName: hit.displayName,
+				handle: hit.handle,
+			}));
+		} else {
+			const hit = peopleResults[index];
+			if (!hit) return;
+			const name = hit.source === "credit" ? hit.row.name : hit.row.name;
+			const tmdbPersonId = hit.source === "credit" ? hit.row.id : hit.row.id;
+			({ nextBody, nextCursor } = insertPersonMention(value, range, {
+				name,
+				tmdbPersonId,
+			}));
+		}
+
 		onChange(nextBody);
-		setMentionRange(null);
-		setMentionQuery("");
-		setCaretAnchor(null);
+		clearPicker();
 		requestAnimationFrame(() => {
 			el.focus();
 			el.setSelectionRange(nextCursor, nextCursor);
@@ -196,18 +297,16 @@ export function MentionTextarea({
 	};
 
 	const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-		if (!pickerOpen || results.length === 0) return;
+		if (!pickerOpen || resultCount === 0) return;
 
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
-			setHighlightIndex((current) => (current + 1) % results.length);
+			setHighlightIndex((current) => (current + 1) % resultCount);
 			return;
 		}
 		if (event.key === "ArrowUp") {
 			event.preventDefault();
-			setHighlightIndex(
-				(current) => (current - 1 + results.length) % results.length,
-			);
+			setHighlightIndex((current) => (current - 1 + resultCount) % resultCount);
 			return;
 		}
 		if (event.key === "Enter" || event.key === "Tab") {
@@ -217,11 +316,34 @@ export function MentionTextarea({
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
-			setMentionRange(null);
-			setMentionQuery("");
-			setCaretAnchor(null);
+			clearPicker();
 		}
 	};
+
+	const pickerAriaLabel =
+		pickerKind === "listing"
+			? "Tag a film or show"
+			: patronPicker
+				? "Tag a patron"
+				: "Tag cast or crew";
+
+	const emptyCopy = (() => {
+		if (pickerKind === "listing") {
+			return mentionQuery
+				? `No matches for #${mentionQuery}`
+				: "Type # and a film or TV title to tag it";
+		}
+		if (patronPicker) {
+			return mentionQuery
+				? `No patrons for @${mentionQuery.replace(/^@+/, "")}`
+				: "Type @ and a handle to tag a patron";
+		}
+		return mentionQuery
+			? `No people for @${mentionQuery}`
+			: listingContext
+				? "Type @ to tag cast, crew, or patrons"
+				: "Type @ and a name to tag someone";
+	})();
 
 	return (
 		<Popover open={pickerOpen} modal={false}>
@@ -259,18 +381,16 @@ export function MentionTextarea({
 				positionerClassName="z-[100]"
 				className="w-[min(100vw-2rem,20rem)] overflow-visible rounded-[1.75rem] border-0 bg-popover p-2 text-popover-foreground shadow-mobbin-xl ring-1 ring-foreground/10"
 				role="listbox"
-				aria-label="Tag a film or show"
+				aria-label={pickerAriaLabel}
 			>
 				{loading ? (
 					<div className="flex items-center justify-center gap-2 px-3 py-4 text-muted-foreground text-sm">
 						<Loader2 className="size-4 animate-spin" aria-hidden />
 						Searching…
 					</div>
-				) : results.length === 0 ? (
+				) : resultCount === 0 ? (
 					<p className="px-3 py-4 text-center text-muted-foreground text-sm">
-						{mentionQuery
-							? `No matches for #${mentionQuery}`
-							: "Type # and a film or TV title to tag it"}
+						{emptyCopy}
 					</p>
 				) : (
 					<div className="relative min-h-0 overflow-hidden rounded-2xl">
@@ -282,21 +402,69 @@ export function MentionTextarea({
 							ref={listScrollRef}
 							className="scrollbar-none max-h-56 min-h-0 overflow-y-auto overscroll-y-contain [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
 						>
-							{results.map((hit, index) => (
-								<div
-									key={`${hit.listingKind}-${hit.id}`}
-									data-mention-index={index}
-								>
-									<ListingMentionPickerRow
-										title={hit.title}
-										subtitle={listingMentionPickerSubtitle(hit)}
-										posterUrl={tmdbPosterUrlFromPath(hit.poster_url, "w92")}
-										active={index === highlightIndex}
-										onMouseEnter={() => setHighlightIndex(index)}
-										onSelect={() => handleSelect(index)}
-									/>
-								</div>
-							))}
+							{pickerKind === "listing"
+								? listingResults.map((hit, index) => (
+										<div
+											key={`${hit.listingKind}-${hit.id}`}
+											data-mention-index={index}
+										>
+											<ListingMentionPickerRow
+												title={hit.title}
+												subtitle={listingMentionPickerSubtitle(hit)}
+												posterUrl={tmdbPosterUrlFromPath(hit.poster_url, "w92")}
+												active={index === highlightIndex}
+												onMouseEnter={() => setHighlightIndex(index)}
+												onSelect={() => handleSelect(index)}
+											/>
+										</div>
+									))
+								: null}
+							{pickerKind === "people" && patronPicker
+								? patronResults.map((hit, index) => (
+										<div key={hit.userId} data-mention-index={index}>
+											<PatronMentionPickerRow
+												displayName={hit.displayName}
+												handle={hit.handle}
+												portraitUrl={hit.image}
+												active={index === highlightIndex}
+												onMouseEnter={() => setHighlightIndex(index)}
+												onSelect={() => handleSelect(index)}
+											/>
+										</div>
+									))
+								: null}
+							{pickerKind === "people" && !patronPicker
+								? peopleResults.map((hit, index) => {
+										const name = hit.row.name;
+										const subtitle =
+											hit.source === "credit"
+												? hit.row.role
+												: castCrewMetaLine(hit.row);
+										const profileUrl =
+											hit.source === "credit"
+												? hit.row.profileUrl
+												: hit.row.profileUrl;
+										return (
+											<div
+												key={
+													hit.source === "credit"
+														? `credit-${hit.row.id}`
+														: `search-${hit.row.id}`
+												}
+												data-mention-index={index}
+											>
+												<PersonMentionPickerRow
+													name={name}
+													subtitle={subtitle}
+													profileUrl={profileUrl}
+													active={index === highlightIndex}
+													onMouseEnter={() => setHighlightIndex(index)}
+													onSelect={() => handleSelect(index)}
+												/>
+											</div>
+										);
+									})
+								: null}
 						</div>
 					</div>
 				)}
