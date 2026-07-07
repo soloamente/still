@@ -955,6 +955,14 @@ export function ReviewDetailRoot() {
 										targetKind="review"
 										targetId={detail.review.id}
 										initialComments={threadSeedComments}
+										listingContext={
+											detail.review.movieId
+												? {
+														kind: "movie",
+														tmdbId: detail.review.movieId,
+													}
+												: null
+										}
 										scrollRootRef={scrollRef}
 										liveRefreshSignal={liveCommentSignal}
 										liveRefreshCommentId={liveCommentId}

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
-import { Textarea } from "@still/ui/components/textarea";
 import IconHeart from "@still/ui/icons/heart";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -15,9 +14,15 @@ import {
 	FeedPersonAvatar,
 } from "@/components/feed/feed-person-avatar";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
+import {
+	MentionTextarea,
+	type MentionTextareaListingContext,
+} from "@/components/review/mention-textarea";
+import { BodyWithMentions } from "@/components/review/review-body-with-mentions";
 import { CommentDeleteConfirmDialog } from "@/components/social/comment-delete-confirm-dialog";
 import { api } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
+import { migrateLegacyListingMentions } from "@/lib/content-mentions";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import {
@@ -387,12 +392,15 @@ function CommentListItem({
 	onEditDraftChange,
 	onSaveEdit,
 	onRequestDelete,
+	listingContext = null,
 }: {
 	row: CommentRow;
 	appearance: "default" | "sheet";
 	/** Nested under a parent comment — indented with reply context. */
 	isReply?: boolean;
 	replyTo?: CommentRow | null;
+	/** Review movie/TV context — title cast-first `@` picker in edit mode. */
+	listingContext?: MentionTextareaListingContext | null;
 	viewerUserId: string | null;
 	isEditing?: boolean;
 	editDraft?: string;
@@ -443,12 +451,13 @@ function CommentListItem({
 
 	const bodyBlock = isEditing ? (
 		<div className="mt-2 space-y-2">
-			<Textarea
+			<MentionTextarea
+				id={`comment-edit-${row.comment.id}`}
 				rows={isSheet ? 3 : 2}
 				maxLength={4000}
 				value={editDraft}
-				onChange={(event) => onEditDraftChange(event.target.value)}
-				spellCheck
+				onChange={onEditDraftChange}
+				listingContext={listingContext}
 				className={cn(
 					isSheet &&
 						cn(
@@ -507,13 +516,14 @@ function CommentListItem({
 				isSheet ? "mt-2 text-sm leading-relaxed" : "mt-1",
 			)}
 		>
-			{row.comment.body}
+			<BodyWithMentions body={row.comment.body} />
 		</p>
 	);
 
 	if (isSheet) {
 		return (
 			<div
+				id={`comment-${row.comment.id}`}
 				className={cn(
 					"flex items-start gap-3",
 					isReply ? "py-1 pl-1" : "rounded-2xl bg-background p-4",
@@ -571,6 +581,7 @@ function CommentListItem({
 
 	return (
 		<div
+			id={`comment-${row.comment.id}`}
 			className={cn(
 				isReply
 					? "border-border/40 border-l py-1 pl-3"
@@ -638,11 +649,13 @@ function CommentThreadBranch({
 	onEditDraftChange,
 	onSaveEdit,
 	onRequestDelete,
+	listingContext = null,
 }: {
 	row: CommentRow;
 	replyTo: CommentRow | null;
 	childrenByParentId: Map<string, CommentRow[]>;
 	appearance: "default" | "sheet";
+	listingContext?: MentionTextareaListingContext | null;
 	viewerUserId: string | null;
 	editingCommentId: string | null;
 	editDraft: string;
@@ -665,6 +678,7 @@ function CommentThreadBranch({
 				appearance={appearance}
 				isReply={isReply}
 				replyTo={replyTo}
+				listingContext={listingContext}
 				viewerUserId={viewerUserId}
 				isEditing={editingCommentId === row.comment.id}
 				editDraft={editDraft}
@@ -693,6 +707,7 @@ function CommentThreadBranch({
 							replyTo={row}
 							childrenByParentId={childrenByParentId}
 							appearance={appearance}
+							listingContext={listingContext}
 							viewerUserId={viewerUserId}
 							editingCommentId={editingCommentId}
 							editDraft={editDraft}
@@ -722,10 +737,13 @@ export function CommentsThread({
 	liveRefreshSignal = 0,
 	liveRefreshCommentId = null,
 	onCommentsChange,
+	listingContext = null,
 }: {
 	targetKind: Kind;
 	targetId: string;
 	initialComments: CommentRow[];
+	/** Review movie/TV context for `#` / `@` mention pickers. */
+	listingContext?: MentionTextareaListingContext | null;
 	/** `sheet` — feed-style rows on `bg-background` + composer primary pill (review reader). */
 	appearance?: "default" | "sheet";
 	/** Scrollport for the review reader — used to detect off-screen live comments. */
@@ -898,7 +916,7 @@ export function CommentsThread({
 	}
 
 	async function saveEdit(commentId: string) {
-		const trimmed = editDraft.trim();
+		const trimmed = migrateLegacyListingMentions(editDraft.trim());
 		if (!trimmed) return;
 		setEditBusy(true);
 		try {
@@ -962,14 +980,15 @@ export function CommentsThread({
 
 	async function submit(e: React.FormEvent) {
 		e.preventDefault();
-		if (!body.trim()) return;
+		const trimmed = migrateLegacyListingMentions(body.trim());
+		if (!trimmed) return;
 		suppressLiveRefresh();
 		setBusy(true);
 		try {
 			const res = await api.api.comments.post({
 				parentType: targetKind,
 				parentId: targetId,
-				body: body.trim(),
+				body: trimmed,
 				...(replyToId ? { replyToId } : {}),
 			});
 			const row = res.data as CommentRow["comment"] | null;
@@ -1043,15 +1062,18 @@ export function CommentsThread({
 						</Button>
 					</div>
 				) : null}
-				<Textarea
+				<MentionTextarea
+					id="comment-compose"
 					rows={isSheet ? 4 : 3}
 					maxLength={2000}
-					placeholder={
-						replyHandle ? `Reply to @${replyHandle}…` : "Share a thought…"
-					}
 					value={body}
-					onChange={(e) => setBody(e.target.value)}
-					spellCheck
+					onChange={setBody}
+					listingContext={listingContext}
+					placeholder={
+						replyHandle
+							? `Reply to @${replyHandle}…`
+							: "Share a thought… Use # for films and @ for people."
+					}
 					className={cn(
 						isSheet &&
 							cn(
@@ -1096,6 +1118,7 @@ export function CommentsThread({
 						replyTo={null}
 						childrenByParentId={childrenByParentId}
 						appearance={appearance}
+						listingContext={listingContext}
 						viewerUserId={viewerUserId}
 						editingCommentId={editingCommentId}
 						editDraft={editDraft}
