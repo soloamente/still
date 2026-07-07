@@ -14,8 +14,8 @@ import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { MentionTextarea } from "@/components/review/mention-textarea";
 import { ReviewAudioRecorder } from "@/components/review/review-audio-recorder";
-import { ReviewListingMentionTextarea } from "@/components/review/review-listing-mention-textarea";
 import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
 import {
 	type ContentVisibility,
@@ -26,6 +26,7 @@ import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { TransitionsModalLayer } from "@/components/ui/transitions-modal-layer";
 import { api } from "@/lib/api";
 import { MODAL_SHEET_SCROLL_CLASS } from "@/lib/app-modal-layer";
+import { migrateLegacyListingMentions } from "@/lib/content-mentions";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	clampLogRatingDisplay,
@@ -304,9 +305,10 @@ export function ReviewComposerRoot() {
 			const stillPayload = selectedStillKey
 				? { stillSlideKey: selectedStillKey }
 				: {};
+			const normalizedBody = migrateLegacyListingMentions(body.trim());
 			const patchBody = {
 				title: title.trim() || undefined,
-				body: body.trim(),
+				body: normalizedBody,
 				containsSpoilers,
 				...(visibilityTouched ? { visibility } : {}),
 				...stillPayload,
@@ -333,7 +335,7 @@ export function ReviewComposerRoot() {
 					movieId: args.movieId,
 					logId: args.diaryLogId,
 					title: title.trim() || undefined,
-					body: body.trim(),
+					body: normalizedBody,
 					rating,
 					containsSpoilers,
 					...(visibilityTouched ? { visibility } : {}),
@@ -532,12 +534,16 @@ export function ReviewComposerRoot() {
 										>
 											Your review
 										</Label>
-										<ReviewListingMentionTextarea
+										<MentionTextarea
 											id="review-body"
 											value={body}
 											onChange={setBody}
+											listingContext={{
+												kind: "movie",
+												tmdbId: args.movieId,
+											}}
 											rows={6}
-											placeholder="What stayed with you? Type @ to tag another film or show."
+											placeholder="What stayed with you? Use # for films and @ for people."
 											maxLength={BODY_MAX}
 											className={cn(
 												fieldClass,
@@ -545,8 +551,8 @@ export function ReviewComposerRoot() {
 											)}
 										/>
 										<p className="text-center text-muted-foreground text-xs">
-											Type <span className="font-medium">@</span> to link other
-											films or TV shows in your review.
+											Type <span className="font-medium">#</span> to tag films
+											or TV · <span className="font-medium">@</span> for people.
 										</p>
 										<p className="text-right text-muted-foreground text-xs tabular-nums">
 											{body.length.toLocaleString()} /{" "}
