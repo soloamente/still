@@ -1,5 +1,6 @@
 "use client";
 
+import { BodyWithMentions } from "@/components/review/review-body-with-mentions";
 import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 
 /** Spoiler-masked title + body block for Community Activity review rows. */
@@ -32,7 +33,7 @@ export function ReviewActivityCopy({
 				</p>
 			) : null}
 			<p className="line-clamp-2 text-pretty text-foreground/75 text-sm leading-relaxed">
-				{body}
+				<BodyWithMentions body={body} />
 			</p>
 		</ReviewSpoilerPreview>
 	);
