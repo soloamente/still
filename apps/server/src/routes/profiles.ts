@@ -63,6 +63,8 @@ import { resolveListingPosterPath } from "../lib/listing-poster-path";
 import { fetchProfilePinnedQuotes } from "../lib/listing-quote-saves-query";
 import {
 	backfillOnboardingFavoriteDiaryLogs,
+	parseProfileFavoriteMovieIds,
+	repairLegacyOnboardingFavoriteDiary,
 	showcaseItemsFromOnboardingFavorites,
 } from "../lib/onboarding-favorite-diary-backfill";
 import {
@@ -509,6 +511,26 @@ export const profilesRoute = new Elysia({
 				.returning();
 			if (updated) {
 				return profileMeResponse(updated, meExtras, entitlements);
+			}
+		}
+
+		// Legacy onboarding patrons may lack diary rows for pinned favorites.
+		if (row.onboardedAt) {
+			const favoriteMovieIds = parseProfileFavoriteMovieIds(
+				row.favoriteMovieIds,
+			);
+			if (favoriteMovieIds.length > 0) {
+				void repairLegacyOnboardingFavoriteDiary({
+					userId: authUser.id,
+					favoriteMovieIds,
+					onboardedAt: row.onboardedAt,
+					showcaseItems: row.showcaseItems,
+				}).catch((err) => {
+					console.error(
+						"[profiles/me] legacy onboarding diary repair failed",
+						err,
+					);
+				});
 			}
 		}
 
