@@ -5,6 +5,7 @@ import IconBell from "@still/ui/icons/bell";
 import { cn } from "@still/ui/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import {
+	AtSign,
 	Award,
 	Bell,
 	Download,
@@ -48,6 +49,7 @@ function iconForKind(kind: string): LucideIcon {
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("comment.")) return MessageCircle;
+	if (kind.startsWith("mention.")) return AtSign;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;

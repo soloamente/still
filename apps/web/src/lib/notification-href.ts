@@ -26,13 +26,18 @@ export function notificationPayloadHref(
 
 	const reviewId = payload.reviewId;
 	const movieId = payload.movieId;
+	const commentId = payload.commentId;
 	if (
 		typeof reviewId === "string" &&
 		reviewId.length > 0 &&
 		typeof movieId === "number" &&
 		Number.isFinite(movieId)
 	) {
-		return buildMovieReviewHref(movieId, reviewId);
+		return buildMovieReviewHref(
+			movieId,
+			reviewId,
+			typeof commentId === "string" ? commentId : undefined,
+		);
 	}
 
 	const quoteHref = buildQuoteSubmissionNotificationHref(payload);

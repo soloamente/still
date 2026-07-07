@@ -99,6 +99,8 @@ type OpenArgs = {
 	reviewId: string;
 	movieId?: number;
 	preview: ReviewPreview;
+	/** Deep-link anchor — scrolls the comment thread after the drawer loads. */
+	scrollToCommentId?: string;
 };
 
 /** Patches list/card counts after reactions in the reader drawer. */
@@ -280,6 +282,7 @@ export function ReviewDetailRoot() {
 		dislikesCount: number;
 	} | null>(null);
 	const liveCommentTrackedRef = useRef(false);
+	const scrolledToCommentRef = useRef<string | null>(null);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const reviewScrollKey = `${detail?.review.id ?? ""}-${detail?.review.commentsCount ?? 0}-${loading}-${loadError ?? ""}`;
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
@@ -432,8 +435,45 @@ export function ReviewDetailRoot() {
 			setLoading(false);
 			setLoadError(null);
 			setSpoilerRevealed(false);
+			scrolledToCommentRef.current = null;
 		}
 	}, [args]);
+
+	// Mention / notification deep links land with `?comment=` — scroll once the row mounts.
+	useEffect(() => {
+		const targetCommentId = args?.scrollToCommentId?.trim();
+		if (!isOpen || !targetCommentId || loading) return;
+		if (scrolledToCommentRef.current === targetCommentId) return;
+
+		let cancelled = false;
+		let attempts = 0;
+
+		function tryScrollToComment() {
+			if (cancelled) return;
+			const el = document.getElementById(`comment-${targetCommentId}`);
+			if (el) {
+				scrolledToCommentRef.current = targetCommentId;
+				el.scrollIntoView({ behavior: "smooth", block: "center" });
+				return;
+			}
+			attempts += 1;
+			if (attempts < 24) {
+				window.requestAnimationFrame(tryScrollToComment);
+			}
+		}
+
+		tryScrollToComment();
+
+		return () => {
+			cancelled = true;
+		};
+	}, [
+		args?.scrollToCommentId,
+		isOpen,
+		loading,
+		threadSeedComments.length,
+		detail?.review.id,
+	]);
 
 	useEffect(() => {
 		if (!isOpen || !args) return;

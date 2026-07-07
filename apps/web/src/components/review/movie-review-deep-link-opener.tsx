@@ -7,7 +7,10 @@ import {
 	type ReviewPreview,
 	useReviewDetail,
 } from "@/components/review/review-detail-sheet";
-import { MOVIE_REVIEW_SEARCH_PARAM } from "@/lib/review-deep-link";
+import {
+	MOVIE_REVIEW_COMMENT_SEARCH_PARAM,
+	MOVIE_REVIEW_SEARCH_PARAM,
+} from "@/lib/review-deep-link";
 
 function placeholderPreview(reviewId: string): ReviewPreview {
 	return {
@@ -32,25 +35,30 @@ export function MovieReviewDeepLinkOpener() {
 	const openedForRef = useRef<string | null>(null);
 
 	const reviewId = searchParams.get(MOVIE_REVIEW_SEARCH_PARAM)?.trim() ?? "";
+	const commentId =
+		searchParams.get(MOVIE_REVIEW_COMMENT_SEARCH_PARAM)?.trim() ?? "";
 
 	useEffect(() => {
 		if (!reviewId) {
 			openedForRef.current = null;
 			return;
 		}
-		if (openedForRef.current === reviewId) return;
-		openedForRef.current = reviewId;
+		const openKey = commentId ? `${reviewId}:${commentId}` : reviewId;
+		if (openedForRef.current === openKey) return;
+		openedForRef.current = openKey;
 
 		openReviewDetail({
 			reviewId,
 			preview: placeholderPreview(reviewId),
+			scrollToCommentId: commentId || undefined,
 		});
 
 		const params = new URLSearchParams(searchParams.toString());
 		params.delete(MOVIE_REVIEW_SEARCH_PARAM);
+		params.delete(MOVIE_REVIEW_COMMENT_SEARCH_PARAM);
 		const next = params.toString();
 		router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
-	}, [reviewId, openReviewDetail, pathname, router, searchParams]);
+	}, [reviewId, commentId, openReviewDetail, pathname, router, searchParams]);
 
 	return null;
 }

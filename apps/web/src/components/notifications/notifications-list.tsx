@@ -3,6 +3,7 @@
 import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import {
+	AtSign,
 	Award,
 	Bell,
 	Download,
@@ -73,6 +74,7 @@ function iconForKind(kind: string) {
 	if (kind.startsWith("follow.")) return UserPlus;
 	if (kind.startsWith("chat.")) return MessageCircle;
 	if (kind.startsWith("comment.")) return MessageCircle;
+	if (kind.startsWith("mention.")) return AtSign;
 	if (kind.startsWith("badge.")) return Award;
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;

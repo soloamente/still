@@ -7,5 +7,6 @@ describe("notification-preferences", () => {
 		const prefs = readNotificationPrefsFromProfile(null);
 		expect(prefs["review.liked"]).toBe(false);
 		expect(prefs["follow.created"]).toBe(true);
+		expect(prefs["mention.in_review_or_comment"]).toBe(true);
 	});
 });

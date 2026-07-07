@@ -25,6 +25,27 @@ describe("notification-href", () => {
 		).toBe("/movies/42?review=rev_1");
 	});
 
+	test("passes through mention href with comment anchor", () => {
+		expect(
+			notificationPayloadHref({
+				href: "/movies/42?review=rev_1&comment=cmt_9",
+				reviewId: "rev_1",
+				movieId: 42,
+				commentId: "cmt_9",
+			}),
+		).toBe("/movies/42?review=rev_1&comment=cmt_9");
+	});
+
+	test("builds href with comment id from payload", () => {
+		expect(
+			notificationPayloadHref({
+				reviewId: "rev_1",
+				movieId: 42,
+				commentId: "cmt_9",
+			}),
+		).toBe("/movies/42?review=rev_1&comment=cmt_9");
+	});
+
 	test("builds quote approval href for movie when href missing", () => {
 		expect(
 			notificationPayloadHref({

@@ -5,6 +5,7 @@ export type NotificationKind =
 	| "follow.created"
 	| "comment.on_review"
 	| "comment.replied"
+	| "mention.in_review_or_comment"
 	| "badge.awarded"
 	| "import.completed"
 	| "taste.challenge"
@@ -37,6 +38,12 @@ export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
 		id: "comment.replied",
 		label: "Replies to your comments",
 		description: "When someone replies in a thread you joined.",
+		defaultEnabled: true,
+	},
+	{
+		id: "mention.in_review_or_comment",
+		label: "Mentions",
+		description: "When someone @mentions you in a review or comment.",
 		defaultEnabled: true,
 	},
 	{
