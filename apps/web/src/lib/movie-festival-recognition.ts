@@ -38,6 +38,25 @@ export type FestivalRecognitionEntry = {
 export const MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX = 12;
 export const MOVIE_FESTIVAL_RECOGNITION_COLUMNS = 6;
 
+export type MovieFestivalRecognitionBuildOptions = {
+	/** Cap festival columns; `null` returns every group (awards drawer). */
+	limit?: number | null;
+};
+
+function resolveRecognitionLimit(
+	options?: MovieFestivalRecognitionBuildOptions,
+): number | null {
+	if (options?.limit === null) return null;
+	return options?.limit ?? MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX;
+}
+
+function shouldStopRecognitionCollect(
+	count: number,
+	limit: number | null,
+): boolean {
+	return limit != null && count >= limit;
+}
+
 type FestivalRule = {
 	id: FestivalIconId;
 	test: RegExp;
@@ -257,6 +276,7 @@ function linesFromKeywords(
 export function buildFestivalRecognitionEntries(
 	keywordNames: string[],
 	movieYear: number | null,
+	limit: number | null = MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 ): FestivalRecognitionEntry[] {
 	if (!keywordNames.length) return [];
 
@@ -292,7 +312,7 @@ export function buildFestivalRecognitionEntries(
 	}
 
 	for (const name of unknown) {
-		if (entries.length >= MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX) break;
+		if (shouldStopRecognitionCollect(entries.length, limit)) break;
 		const id = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 		const year = extractYear(name, movieYear);
 		const detailLines = formatLines(year, prettifyAchievement(name));
@@ -366,6 +386,7 @@ function linesFromWikidataAwards(
 export function buildFestivalRecognitionFromWikidataAwards(
 	awards: WikidataMovieAward[],
 	movieYear: number | null,
+	limit: number | null = MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 ): FestivalRecognitionEntry[] {
 	if (!awards.length) return [];
 
@@ -406,7 +427,7 @@ export function buildFestivalRecognitionFromWikidataAwards(
 	}
 
 	for (const award of unknown) {
-		if (entries.length >= MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX) break;
+		if (shouldStopRecognitionCollect(entries.length, limit)) break;
 		const id = award.awardLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 		const year =
 			award.year != null
@@ -470,6 +491,7 @@ function augmentPremiereFestivals(
 	existing: FestivalRecognitionEntry[],
 	premiereRows: PremiereRow[],
 	movieYear: number | null,
+	limit: number | null = MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 ): FestivalRecognitionEntry[] {
 	const coveredIcons = new Set(existing.map((e) => e.icon));
 	const extras: FestivalRecognitionEntry[] = [];
@@ -493,10 +515,8 @@ function augmentPremiereFestivals(
 		});
 	}
 
-	return [...existing, ...extras].slice(
-		0,
-		MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
-	);
+	const combined = [...existing, ...extras];
+	return limit == null ? combined : combined.slice(0, limit);
 }
 
 function premiereTitleFromRow(row: PremiereRow): string {
@@ -545,9 +565,10 @@ function premiereLinesFromRow(row: PremiereRow): string[] {
 /** When there are no festival keywords, surface premiere rows as simple columns. */
 export function premiereEntriesFromRows(
 	rows: PremiereRow[],
-	limit = MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
+	limit: number | null = MOVIE_FESTIVAL_RECOGNITION_DISPLAY_MAX,
 ): FestivalRecognitionEntry[] {
-	return rows.slice(0, limit).map((r) => {
+	const scoped = limit == null ? rows : rows.slice(0, limit);
+	return scoped.map((r) => {
 		const title = premiereTitleFromRow(r);
 		return {
 			id: `premiere-${r.region}-${r.date}-${r.kind}-${r.note ?? ""}`,
@@ -563,17 +584,24 @@ export function buildMovieRecognitionEntries(
 	premiereRows: PremiereRow[],
 	movieYear: number | null,
 	wikidataAwards: WikidataMovieAward[] = [],
+	options?: MovieFestivalRecognitionBuildOptions,
 ): FestivalRecognitionEntry[] {
+	const limit = resolveRecognitionLimit(options);
 	const fromWikidata = buildFestivalRecognitionFromWikidataAwards(
 		wikidataAwards,
 		movieYear,
+		limit,
 	);
-	const fromKeywords = buildFestivalRecognitionEntries(keywordNames, movieYear);
+	const fromKeywords = buildFestivalRecognitionEntries(
+		keywordNames,
+		movieYear,
+		limit,
+	);
 	const merged = mergeFestivalRecognitionEntries(fromWikidata, fromKeywords);
 
 	if (merged.length > 0) {
-		return augmentPremiereFestivals(merged, premiereRows, movieYear);
+		return augmentPremiereFestivals(merged, premiereRows, movieYear, limit);
 	}
 
-	return premiereEntriesFromRows(premiereRows);
+	return premiereEntriesFromRows(premiereRows, limit);
 }

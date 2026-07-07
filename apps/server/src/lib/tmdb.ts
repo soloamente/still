@@ -221,6 +221,8 @@ export type TmdbPersonDetail = {
 	biography: string;
 	birthday: string | null;
 	deathday: string | null;
+	place_of_birth?: string | null;
+	gender?: number;
 	profile_path: string | null;
 	known_for_department?: string;
 	popularity?: number;

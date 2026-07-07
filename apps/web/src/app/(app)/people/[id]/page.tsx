@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { PersonFilmographyGrid } from "@/components/movie/person-filmography-grid";
 import { PersonDetailHero } from "@/components/people/person-detail-hero";
+import { PersonDetailTmdbButton } from "@/components/people/person-detail-tmdb-button";
 import { PersonDetailViewShell } from "@/components/people/person-detail-view-shell";
-import { formatDate } from "@/lib/format";
+import { buildPersonDetailInfoCards } from "@/lib/person-detail-facts";
 import { parsePersonDetailViewFromSearchParams } from "@/lib/person-detail-view";
 import type { PersonFilmographyRow } from "@/lib/person-filmography";
 import { sortFilmographyByYearDesc } from "@/lib/person-filmography";
@@ -22,6 +23,8 @@ type PersonPayload = {
 		biography: string;
 		birthday: string | null;
 		deathday: string | null;
+		placeOfBirth: string | null;
+		gender: number | null;
 		knownForDepartment?: string;
 		profilePath: string | null;
 		profileUrl: string | null;
@@ -95,15 +98,13 @@ export default async function PersonPage({
 	const person = data.person;
 	if (!person) notFound();
 
-	const lifeSpan =
-		person.birthday || person.deathday
-			? [
-					person.birthday ? formatDate(new Date(person.birthday)) : "?",
-					person.deathday ? formatDate(new Date(person.deathday)) : null,
-				]
-					.filter(Boolean)
-					.join(" — ")
-			: null;
+	const infoCards = buildPersonDetailInfoCards({
+		birthday: person.birthday,
+		deathday: person.deathday,
+		placeOfBirth: person.placeOfBirth,
+		gender: person.gender,
+		knownForDepartment: person.knownForDepartment,
+	});
 
 	const filmography = sortFilmographyByYearDesc(data.filmography);
 	const filmographySubtitle = `${filmography.length} film and TV title${filmography.length === 1 ? "" : "s"} with this person in cast or crew.`;
@@ -121,21 +122,12 @@ export default async function PersonPage({
 					profilePath={person.profilePath}
 					profileUrl={person.profileUrl}
 					biography={person.biography?.trim() ? person.biography.trim() : null}
-					lifeSpan={lifeSpan}
+					infoCards={infoCards}
 				/>
 			}
 			about={
 				<div className="mx-auto w-full max-w-lg px-2.5 pb-10 sm:px-3">
-					<p className="text-center">
-						<a
-							href={`https://www.themoviedb.org/person/${person.id}`}
-							className="text-muted-foreground text-sm underline-offset-4 transition-colors duration-200 ease-out [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:underline"
-							target="_blank"
-							rel="noreferrer"
-						>
-							View on TMDb
-						</a>
-					</p>
+					<PersonDetailTmdbButton personId={person.id} />
 				</div>
 			}
 			filmography={

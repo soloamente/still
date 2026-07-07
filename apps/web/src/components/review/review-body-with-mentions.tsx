@@ -32,6 +32,8 @@ function MentionLinkContent({ label }: { label: string }) {
 type BodyWithMentionsProps = {
 	body: string;
 	className?: string;
+	/** Override default mention link styling (e.g. inline links inside line-clamp). */
+	mentionLinkClassName?: string;
 	/** When set, mention taps call this instead of navigating (e.g. carousel opens drawer). */
 	onMentionClick?: () => void;
 } & Omit<ComponentPropsWithoutRef<"span">, "children">;
@@ -50,10 +52,12 @@ function mentionPartKey(part: ContentMentionPart, index: number): string {
 export function BodyWithMentions({
 	body,
 	className,
+	mentionLinkClassName,
 	onMentionClick,
 	...rest
 }: BodyWithMentionsProps) {
 	const parts = parseBodyWithMentions(body);
+	const linkClassName = mentionLinkClassName ?? MENTION_LINK_CLASS;
 
 	return (
 		<span className={className} {...rest}>
@@ -73,7 +77,7 @@ export function BodyWithMentions({
 							key={partKey}
 							type="button"
 							className={cn(
-								MENTION_LINK_CLASS,
+								linkClassName,
 								"inline cursor-pointer bg-transparent p-0",
 							)}
 							onClick={(event) => {
@@ -90,7 +94,7 @@ export function BodyWithMentions({
 					<Link
 						key={partKey}
 						href={href}
-						className={MENTION_LINK_CLASS}
+						className={linkClassName}
 						onClick={(event) => event.stopPropagation()}
 					>
 						<MentionLinkContent label={part.label} />
@@ -243,14 +247,16 @@ export function PatronMentionPickerRow({
 				onSelect();
 			}}
 		>
-			<PatronPortraitAvatar
-				handle={handle}
-				avatarUrl={portraitUrl}
-				name={displayName}
-				width={40}
-				height={40}
-				className="size-10 shrink-0"
-			/>
+			<div className="relative size-10 shrink-0 overflow-hidden rounded-full bg-muted/40">
+				<PatronPortraitAvatar
+					handle={handle}
+					avatarUrl={portraitUrl}
+					name={displayName}
+					width={40}
+					height={40}
+					className="size-full"
+				/>
+			</div>
 			<span className="min-w-0 flex-1">
 				<span className="block truncate font-medium">{displayName}</span>
 				<span className="block truncate text-muted-foreground text-xs">

@@ -93,7 +93,10 @@ export function TvDetailAboutPanel({
 					) : null}
 
 					{recognitionPresent ? (
-						<MoviePremieresFestivals entries={recognitionEntries} />
+						<MoviePremieresFestivals
+							entries={recognitionEntries}
+							listingTitle={title}
+						/>
 					) : null}
 				</div>
 			) : null}

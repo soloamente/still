@@ -116,7 +116,8 @@ export function MentionTextarea({
 		useState<TextareaCaretViewportAnchor | null>(null);
 
 	const pickerOpen = pickerKind != null && mentionRange != null;
-	const patronPicker =
+	// Cast/crew search always runs; patrons are merged when the query looks handle-like.
+	const includePatronSearch =
 		pickerKind === "people" && isPatronMentionQuery(mentionQuery);
 
 	const { results: listingResults, loading: listingLoading } =
@@ -125,21 +126,16 @@ export function MentionTextarea({
 		usePeopleMentionSearch({
 			query: mentionQuery,
 			listingContext,
-			enabled: pickerKind === "people" && !patronPicker,
+			enabled: pickerKind === "people",
 		});
 	const { hits: patronResults, loading: patronLoading } =
-		usePatronMentionSearch(
-			mentionQuery,
-			pickerKind === "people" && patronPicker,
-		);
+		usePatronMentionSearch(mentionQuery, includePatronSearch);
 
 	const resultCount = useMemo(() => {
 		if (pickerKind === "listing") return listingResults.length;
-		if (patronPicker) return patronResults.length;
-		return peopleResults.length;
+		return peopleResults.length + patronResults.length;
 	}, [
 		listingResults.length,
-		patronPicker,
 		patronResults.length,
 		peopleResults.length,
 		pickerKind,
@@ -148,9 +144,7 @@ export function MentionTextarea({
 	const loading =
 		pickerKind === "listing"
 			? listingLoading
-			: patronPicker
-				? patronLoading
-				: peopleLoading;
+			: peopleLoading || (includePatronSearch && patronLoading);
 
 	const listContentKey = useMemo(() => {
 		if (pickerKind === "listing") {
@@ -158,15 +152,13 @@ export function MentionTextarea({
 				.map((hit) => `${hit.listingKind}-${hit.id}`)
 				.join("\0");
 		}
-		if (patronPicker) {
-			return patronResults.map((hit) => hit.userId).join("\0");
-		}
-		return peopleResults
-			.map((hit) =>
+		return [
+			...peopleResults.map((hit) =>
 				hit.source === "credit" ? `c-${hit.row.id}` : `s-${hit.row.id}`,
-			)
-			.join("\0");
-	}, [listingResults, patronPicker, patronResults, peopleResults, pickerKind]);
+			),
+			...patronResults.map((hit) => `p-${hit.userId}`),
+		].join("\0");
+	}, [listingResults, patronResults, peopleResults, pickerKind]);
 
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		listScrollRef,
@@ -270,14 +262,7 @@ export function MentionTextarea({
 				listingKind: hit.listingKind,
 				tmdbId: hit.id,
 			}));
-		} else if (patronPicker) {
-			const hit = patronResults[index];
-			if (!hit) return;
-			({ nextBody, nextCursor } = insertPatronMention(value, range, {
-				displayName: hit.displayName,
-				handle: hit.handle,
-			}));
-		} else {
+		} else if (index < peopleResults.length) {
 			const hit = peopleResults[index];
 			if (!hit) return;
 			const name = hit.source === "credit" ? hit.row.name : hit.row.name;
@@ -285,6 +270,13 @@ export function MentionTextarea({
 			({ nextBody, nextCursor } = insertPersonMention(value, range, {
 				name,
 				tmdbPersonId,
+			}));
+		} else {
+			const hit = patronResults[index - peopleResults.length];
+			if (!hit) return;
+			({ nextBody, nextCursor } = insertPatronMention(value, range, {
+				displayName: hit.displayName,
+				handle: hit.handle,
 			}));
 		}
 
@@ -323,9 +315,7 @@ export function MentionTextarea({
 	const pickerAriaLabel =
 		pickerKind === "listing"
 			? "Tag a film or show"
-			: patronPicker
-				? "Tag a patron"
-				: "Tag cast or crew";
+			: "Tag cast, crew, or patrons";
 
 	const emptyCopy = (() => {
 		if (pickerKind === "listing") {
@@ -333,13 +323,8 @@ export function MentionTextarea({
 				? `No matches for #${mentionQuery}`
 				: "Type # and a film or TV title to tag it";
 		}
-		if (patronPicker) {
-			return mentionQuery
-				? `No patrons for @${mentionQuery.replace(/^@+/, "")}`
-				: "Type @ and a handle to tag a patron";
-		}
 		return mentionQuery
-			? `No people for @${mentionQuery}`
+			? `No matches for @${mentionQuery.replace(/^@+/, "")}`
 			: listingContext
 				? "Type @ to tag cast, crew, or patrons"
 				: "Type @ and a name to tag someone";
@@ -419,21 +404,7 @@ export function MentionTextarea({
 										</div>
 									))
 								: null}
-							{pickerKind === "people" && patronPicker
-								? patronResults.map((hit, index) => (
-										<div key={hit.userId} data-mention-index={index}>
-											<PatronMentionPickerRow
-												displayName={hit.displayName}
-												handle={hit.handle}
-												portraitUrl={hit.image}
-												active={index === highlightIndex}
-												onMouseEnter={() => setHighlightIndex(index)}
-												onSelect={() => handleSelect(index)}
-											/>
-										</div>
-									))
-								: null}
-							{pickerKind === "people" && !patronPicker
+							{pickerKind === "people"
 								? peopleResults.map((hit, index) => {
 										const name = hit.row.name;
 										const subtitle =
@@ -457,6 +428,23 @@ export function MentionTextarea({
 													name={name}
 													subtitle={subtitle}
 													profileUrl={profileUrl}
+													active={index === highlightIndex}
+													onMouseEnter={() => setHighlightIndex(index)}
+													onSelect={() => handleSelect(index)}
+												/>
+											</div>
+										);
+									})
+								: null}
+							{pickerKind === "people" && includePatronSearch
+								? patronResults.map((hit, patronIndex) => {
+										const index = peopleResults.length + patronIndex;
+										return (
+											<div key={hit.userId} data-mention-index={index}>
+												<PatronMentionPickerRow
+													displayName={hit.displayName}
+													handle={hit.handle}
+													portraitUrl={hit.image}
 													active={index === highlightIndex}
 													onMouseEnter={() => setHighlightIndex(index)}
 													onSelect={() => handleSelect(index)}

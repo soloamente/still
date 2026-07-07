@@ -70,6 +70,7 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 		premiereRows,
 		year,
 		wikidataAwards,
+		{ limit: null },
 	);
 	const recognitionPresent = recognitionEntries.length > 0;
 
@@ -97,7 +98,10 @@ export async function MovieDetailAboutAsync(props: MovieDetailAboutAsyncProps) {
 					) : null}
 
 					{recognitionPresent ? (
-						<MoviePremieresFestivals entries={recognitionEntries} />
+						<MoviePremieresFestivals
+							entries={recognitionEntries}
+							listingTitle={title}
+						/>
 					) : null}
 				</div>
 			) : null}

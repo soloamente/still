@@ -168,12 +168,16 @@ export function DetailVaulNestedSheet({
 	onOpenChange,
 	title,
 	description,
+	handleLeading,
+	handleTrailing,
 	children,
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	title: string;
 	description?: string;
+	handleLeading?: ReactNode;
+	handleTrailing?: ReactNode;
 	children: ReactNode;
 }) {
 	const dismissOnNavigate = useCallback(() => {
@@ -195,15 +199,10 @@ export function DetailVaulNestedSheet({
 					data-still-detail-drawer=""
 					className={MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME}
 				>
-					<Drawer.Handle
-						className={MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME}
-						aria-label="Drag sheet"
-					>
-						<span
-							className={MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME}
-							aria-hidden
-						/>
-					</Drawer.Handle>
+					<DetailVaulDrawerHandleRow
+						handleLeading={handleLeading}
+						handleTrailing={handleTrailing}
+					/>
 					<Drawer.Title className="sr-only">{title}</Drawer.Title>
 					{description ? (
 						<Drawer.Description className="sr-only">

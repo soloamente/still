@@ -22,6 +22,7 @@ import {
 import { ReviewEditorialPatronScore } from "@/components/review/review-editorial-patron-score";
 import { SPOILER_MASK_POST_CLASS } from "@/components/review/review-spoiler-guard";
 import { authClient } from "@/lib/auth-client";
+import { truncateReviewPreviewBody } from "@/lib/content-mentions";
 import {
 	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_LEFT_CLASS,
 	DETAIL_EDITORIAL_RAIL_EDGE_SCRIM_RIGHT_CLASS,
@@ -64,6 +65,12 @@ const REVIEW_SLIDE_INACTIVE_CLASS =
 const REVIEW_SLIDE_PRESS_CLASS =
 	"transition-transform duration-[var(--page-slide-dur)] ease-[var(--page-slide-ease)] motion-reduce:transition-none active:scale-[var(--modal-scale)] motion-reduce:active:scale-100";
 
+/** Carousel preview body cap — char limit + line clamp for wide viewports. */
+const REVIEW_SLIDE_BODY_LINE_CLAMP_CLASS = "line-clamp-5";
+
+const REVIEW_CAROUSEL_MENTION_LINK_CLASS =
+	"inline font-medium text-foreground/90 underline decoration-foreground/25 underline-offset-2 transition-colors [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40";
+
 /** Large centered quote slide — tap opens the review reader sheet. */
 function MovieDetailReviewSlide({
 	review,
@@ -88,6 +95,8 @@ function MovieDetailReviewSlide({
 		commentsCount: review.commentsCount,
 	});
 	const author = review.author;
+	const previewBody = truncateReviewPreviewBody(review.body);
+	const isPreviewTruncated = previewBody.endsWith("…");
 	const bodyRef = useRef<HTMLParagraphElement>(null);
 	const [bodyTruncated, setBodyTruncated] = useState(false);
 	const [spoilerRevealed, setSpoilerRevealed] = useState(false);
@@ -99,8 +108,8 @@ function MovieDetailReviewSlide({
 		revealed: spoilerRevealed,
 	});
 
-	// Blur + “See full review” only when line-clamp actually cuts the body.
-	const bodyMeasureKey = `${review.id}\0${review.body}\0${isActive ? "1" : "0"}`;
+	// Blur + “See full review” when the clamped preview still overflows.
+	const bodyMeasureKey = `${review.id}\0${previewBody}\0${isActive ? "1" : "0"}`;
 	useEffect(() => {
 		const el = bodyRef.current;
 		if (!el) return;
@@ -116,7 +125,7 @@ function MovieDetailReviewSlide({
 		return () => observer.disconnect();
 	}, [bodyMeasureKey]);
 
-	const showExpandHint = bodyTruncated || spoilerMasked;
+	const showExpandHint = bodyTruncated || spoilerMasked || isPreviewTruncated;
 	const showReviewBody = shouldShowReviewBody(review);
 
 	const handleOpenReview = () => {
@@ -244,14 +253,17 @@ function MovieDetailReviewSlide({
 							ref={bodyRef}
 							data-review-body=""
 							className={cn(
-								"w-full max-w-prose px-2 py-1 text-center tracking-tight outline-none",
-								bodyTruncated && "line-clamp-8",
+								"w-full max-w-prose overflow-hidden px-2 py-1 text-center tracking-tight outline-none",
+								REVIEW_SLIDE_BODY_LINE_CLAMP_CLASS,
 								review.title
 									? "mt-1.5 text-pretty font-editorial font-normal text-foreground/90 text-xl leading-normal sm:text-2xl"
 									: "mt-3 text-pretty font-sans font-semibold text-foreground text-xl leading-normal sm:text-2xl",
 							)}
 						>
-							<ReviewBodyWithMentions body={review.body} />
+							<ReviewBodyWithMentions
+								body={previewBody}
+								mentionLinkClassName={REVIEW_CAROUSEL_MENTION_LINK_CLASS}
+							/>
 						</p>
 					) : (
 						<p ref={bodyRef} className="sr-only" data-review-body="">

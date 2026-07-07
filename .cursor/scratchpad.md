@@ -2,7 +2,16 @@
 
 ## Review people mentions — # films · @ cast/crew & patrons (2026-07-07)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV · `@` people/patrons · title cast-first · comments parity · SN.9.1 notifications. **Executor Tasks 1–11 done** — focused tests **34/34 pass** (web 22 + server 12); mention-related `tsc` clean; monorepo `check-types` still fails on pre-existing server `dist/` TS5055; `graphify update .` skipped (not on PATH / `bunx graphify` has no executable on Windows). **Awaiting human QA** per checklist below.
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV · `@` people/patrons · title cast-first · comments parity · SN.9.1 notifications. **Executor Tasks 1–11 done** — focused tests **34/34 pass** (web 22 + server 12); mention-related `tsc` clean; monorepo `check-types` still fails on pre-existing server `dist/` TS5055; `graphify update .` skipped (not on PATH / `bunx graphify` has no executable on Windows). **Awaiting human QA:**
+
+1. Review composer: `#` film tag · `@` cast on title · `@handle` patron link
+2. Legacy `@[Film](/movies/id)` renders; edit + save rewrites to `#`
+3. Comment with patron mention → tappable link + inbox row for mentioned patron
+4. Settings → disable **Mentions** → no new mention inbox rows
+5. Tap mention notification on comment → review drawer scrolls to comment
+6. Community Activity review preview shows mention links
+
+**Commits:** `de819d8` … `3c6e466` (Tasks 1–11).
 
 ## Sense subscriptions & referrals — Polar (2026-07-05)
 

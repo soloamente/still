@@ -1,12 +1,13 @@
 import { cn } from "@still/ui/lib/utils";
-import { Calendar } from "lucide-react";
 import Image from "next/image";
 
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
+import { PersonDetailInfoCards } from "@/components/people/person-detail-info-cards";
+import type { PersonDetailInfoCard } from "@/lib/person-detail-facts";
 
 /**
- * Centered person hero — portrait, department, name, lifespan, and biography
+ * Centered person hero — portrait, department, name, fact cards, and biography
  * synopsis drawer (same rhythm as film/TV detail heroes).
  */
 export function PersonDetailHero({
@@ -15,14 +16,14 @@ export function PersonDetailHero({
 	profilePath,
 	profileUrl,
 	biography,
-	lifeSpan,
+	infoCards,
 }: {
 	name: string;
 	knownForDepartment?: string | null;
 	profilePath: string | null;
 	profileUrl: string | null;
 	biography: string | null;
-	lifeSpan: string | null;
+	infoCards: PersonDetailInfoCard[];
 }) {
 	return (
 		<div
@@ -69,12 +70,7 @@ export function PersonDetailHero({
 				{name}
 			</h1>
 
-			{lifeSpan ? (
-				<p className="mt-4 flex items-center justify-center gap-2 text-muted-foreground text-sm">
-					<Calendar className="size-4 shrink-0" aria-hidden />
-					{lifeSpan}
-				</p>
-			) : null}
+			<PersonDetailInfoCards cards={infoCards} />
 
 			<ListingDetailHeroSynopsis title={name} overview={biography} />
 		</div>

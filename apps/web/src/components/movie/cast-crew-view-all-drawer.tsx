@@ -12,6 +12,7 @@ import {
 	DetailVaulNestedSheet,
 	DetailVaulSheet,
 } from "@/components/movie/detail-vaul-sheet";
+import { PersonFilmographyDrawerTrailing } from "@/components/movie/person-filmography-drawer-trailing";
 import { PersonFilmographyPanel } from "@/components/movie/person-filmography-panel";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
@@ -109,6 +110,14 @@ export function CastCrewViewAllDrawer({
 					personSeed
 						? `Films and TV shows featuring ${personSeed.name}.`
 						: undefined
+				}
+				handleTrailing={
+					personSeed ? (
+						<PersonFilmographyDrawerTrailing
+							personId={personSeed.personId}
+							personName={personSeed.name}
+						/>
+					) : null
 				}
 			>
 				{personSeed ? (

@@ -171,6 +171,8 @@ export const peopleRoute = new Elysia({
 						biography: p.biography,
 						birthday: p.birthday,
 						deathday: p.deathday,
+						placeOfBirth: p.place_of_birth ?? null,
+						gender: p.gender ?? null,
 						knownForDepartment: p.known_for_department,
 						profilePath: p.profile_path,
 						profileUrl: tmdbImg.profile(p.profile_path, "h632"),

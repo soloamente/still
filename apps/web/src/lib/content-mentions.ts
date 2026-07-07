@@ -135,8 +135,8 @@ export function getActiveListingMentionQuery(
 ): { query: string; start: number; end: number } | null {
 	if (cursor < 1) return null;
 	const before = body.slice(0, cursor);
-	// Only start a mention after whitespace or at the start; stop once markdown starts.
-	const match = before.match(/(?:^|[\s\n])#([^\s#[\]()]{0,80})$/);
+	// Allow spaces in titles (e.g. `#The Godfather`); stop at markdown token boundaries.
+	const match = before.match(/(?:^|[\s\n])#([^#[\]\n()]{0,80})$/);
 	if (!match) return null;
 
 	const query = match[1] ?? "";
@@ -154,7 +154,8 @@ export function getActivePeopleMentionQuery(
 ): { query: string; start: number; end: number } | null {
 	if (cursor < 1) return null;
 	const before = body.slice(0, cursor);
-	const match = before.match(/(?:^|[\s\n])@([^\s@[\]()]{0,80})$/);
+	// Allow spaces in display names (e.g. `@Jenna Ortega`); handles stay single-token via `isPatronMentionQuery`.
+	const match = before.match(/(?:^|[\s\n])@([^@[\]\n()]{0,80})$/);
 	if (!match) return null;
 
 	const query = match[1] ?? "";
@@ -165,11 +166,11 @@ export function getActivePeopleMentionQuery(
 	return { query, start, end: cursor };
 }
 
-/** Handle-like `@` query → patron search; otherwise cast/crew people search. */
+/** Handle-like `@` query also searches patrons — never replaces cast/crew TMDb search. */
 export function isPatronMentionQuery(rawQuery: string): boolean {
 	const query = rawQuery.trim().replace(/^@+/, "");
 	if (!query || /\s/.test(query)) return false;
-	return /^[a-z0-9_]{1,30}$/i.test(query);
+	return /^[a-z0-9_.-]{2,30}$/i.test(query);
 }
 
 /** Rewrite legacy listing `@` tokens to `#` on save — leaves people/patron tokens unchanged. */
@@ -223,4 +224,36 @@ export function insertPatronMention(
 		body.slice(0, range.start) + prefix + token + body.slice(range.end);
 	const nextCursor = range.start + prefix.length + token.length;
 	return { nextBody, nextCursor };
+}
+
+/** Carousel / card previews — keep copy short without splitting mention tokens. */
+export const REVIEW_CAROUSEL_PREVIEW_MAX_CHARS = 280;
+
+export function truncateReviewPreviewBody(
+	body: string,
+	maxLength = REVIEW_CAROUSEL_PREVIEW_MAX_CHARS,
+): string {
+	const trimmed = body.trim();
+	if (trimmed.length <= maxLength) return trimmed;
+
+	let cut = trimmed.slice(0, maxLength);
+
+	// Drop a partial markdown mention at the end (`@[Name` or `#[Title`).
+	const partialMention = cut.search(/(#|@)\[[^\]]*$/);
+	if (partialMention >= 0) {
+		cut = cut.slice(0, partialMention);
+	}
+
+	// Drop a partial `](` link tail.
+	const partialLink = cut.search(/\]\([^)]*$/);
+	if (partialLink >= 0) {
+		cut = cut.slice(0, partialLink);
+	}
+
+	const lastSpace = cut.lastIndexOf(" ");
+	if (lastSpace > maxLength * 0.55) {
+		cut = cut.slice(0, lastSpace);
+	}
+
+	return `${cut.trimEnd()}…`;
 }

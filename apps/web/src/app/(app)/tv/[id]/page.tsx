@@ -262,6 +262,7 @@ export default async function TvShowPage({
 		[],
 		data.year,
 		[],
+		{ limit: null },
 	);
 	const recognitionPresent = recognitionEntries.length > 0;
 

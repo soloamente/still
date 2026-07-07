@@ -3,6 +3,7 @@
 import { create } from "zustand";
 
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import { PersonFilmographyDrawerTrailing } from "@/components/movie/person-filmography-drawer-trailing";
 import { PersonFilmographyPanel } from "@/components/movie/person-filmography-panel";
 import type { PersonFilmographySeed } from "@/lib/person-filmography";
 
@@ -33,6 +34,14 @@ export function PersonFilmographyDrawerRoot() {
 			title={seed ? `${seed.name} — filmography` : "Filmography"}
 			description={
 				seed ? `Films and TV shows featuring ${seed.name}.` : undefined
+			}
+			handleTrailing={
+				seed ? (
+					<PersonFilmographyDrawerTrailing
+						personId={seed.personId}
+						personName={seed.name}
+					/>
+				) : null
 			}
 		>
 			{seed ? <PersonFilmographyPanel seed={seed} active={isOpen} /> : null}

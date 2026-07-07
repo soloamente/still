@@ -10,6 +10,7 @@ import {
 	isPatronMentionQuery,
 	migrateLegacyListingMentions,
 	parseBodyWithMentions,
+	truncateReviewPreviewBody,
 } from "@/lib/content-mentions";
 
 describe("content mentions", () => {
@@ -73,16 +74,28 @@ describe("content mentions", () => {
 			start: 8,
 			end: 13,
 		});
+		expect(getActiveListingMentionQuery("See #The Godfather", 18)).toEqual({
+			query: "The Godfather",
+			start: 4,
+			end: 18,
+		});
 		expect(getActivePeopleMentionQuery("Shout @tim", 11)).toEqual({
 			query: "tim",
 			start: 6,
 			end: 11,
 		});
+		expect(getActivePeopleMentionQuery("Love @jenna ortega", 18)).toEqual({
+			query: "jenna ortega",
+			start: 5,
+			end: 18,
+		});
 	});
 
-	test("patron mention heuristic", () => {
+	test("patron mention heuristic supplements profile search without blocking people", () => {
 		expect(isPatronMentionQuery("jane_doe")).toBe(true);
 		expect(isPatronMentionQuery("@jane_doe")).toBe(true);
+		expect(isPatronMentionQuery("jenna")).toBe(true);
+		expect(isPatronMentionQuery("j")).toBe(false);
 		expect(isPatronMentionQuery("Timothée")).toBe(false);
 		expect(isPatronMentionQuery("tim ch")).toBe(false);
 	});
@@ -105,5 +118,16 @@ describe("content mentions", () => {
 		);
 		expect(nextBody).toBe("Compare #[Breaking Bad](/tv/1396) and go");
 		expect(nextCursor).toBe("Compare #[Breaking Bad](/tv/1396)".length);
+	});
+
+	test("truncates long review previews without splitting mention tokens", () => {
+		const longBody = `${"A".repeat(300)} @[Tim](/people/1) tail`;
+		const preview = truncateReviewPreviewBody(longBody, 280);
+		expect(preview.endsWith("…")).toBe(true);
+		expect(preview.length).toBeLessThanOrEqual(281);
+		expect(preview).not.toMatch(/(#|@)\[[^\]]*$/);
+
+		const short = truncateReviewPreviewBody("Short review.");
+		expect(short).toBe("Short review.");
 	});
 });
