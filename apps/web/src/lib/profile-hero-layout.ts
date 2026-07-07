@@ -1,6 +1,6 @@
 /**
  * Profile patron header — full-bleed banner media (parity with home taste hero shell).
- * Bleed matches profile lobby padding (`px-4 py-6 sm:p-8`).
+ * Bleed matches profile lobby padding (`px-4` sides, `py-6` top on mobile; `sm:p-8`).
  */
 /** Layout band — banner region only; portrait straddles this floor. */
 export const PROFILE_HERO_BAND_HEIGHT_CLASSNAME =
@@ -29,7 +29,7 @@ export const PROFILE_HERO_PORTRAIT_SHADOW_CLASSNAME =
 
 /** Media inside the band — bottom pinned to banner floor; bleeds over lobby padding. */
 export const PROFILE_HERO_SHELL_MEDIA_CLASSNAME =
-	"pointer-events-none absolute -top-4 -right-4 -left-4 bottom-0 z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)] sm:-top-8 sm:-right-8 sm:-left-8";
+	"pointer-events-none absolute -top-6 -right-4 -left-4 bottom-0 z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)] sm:-top-8 sm:-right-8 sm:-left-8";
 
 /** Kill anti-alias slivers on rounded card corners. */
 export const PROFILE_HERO_MEDIA_OVERSCAN_CLASSNAME = "-inset-px";
