@@ -2,7 +2,7 @@
 
 ## Review people mentions — # films · @ cast/crew & patrons (2026-07-07)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV tags (migrate legacy `@` listings on edit); `@` TMDb people + patrons (handle auto-detect); title cast-first context; `MentionTextarea` in review composer + comments; patron inbox `mention.in_review_or_comment` (SN.9.1). **Next:** Executor Task 1 (content-mentions parser) — human picks subagent-driven vs inline execution.
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV · `@` people/patrons · title cast-first · comments parity · SN.9.1 notifications. **Executor Tasks 1–11 done** — focused tests **34/34 pass** (web 22 + server 12); mention-related `tsc` clean; monorepo `check-types` still fails on pre-existing server `dist/` TS5055; `graphify update .` skipped (not on PATH / `bunx graphify` has no executable on Windows). **Awaiting human QA** per checklist below.
 
 ## Sense subscriptions & referrals — Polar (2026-07-05)
 

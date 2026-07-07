@@ -441,18 +441,19 @@ export function ReviewDetailRoot() {
 
 	// Mention / notification deep links land with `?comment=` — scroll once the row mounts.
 	useEffect(() => {
-		const targetCommentId = args?.scrollToCommentId?.trim();
-		if (!isOpen || !targetCommentId || loading) return;
-		if (scrolledToCommentRef.current === targetCommentId) return;
+		const anchorCommentId = args?.scrollToCommentId?.trim();
+		if (!isOpen || !anchorCommentId || loading) return;
+		const scrollCommentId: string = anchorCommentId;
+		if (scrolledToCommentRef.current === scrollCommentId) return;
 
 		let cancelled = false;
 		let attempts = 0;
 
 		function tryScrollToComment() {
 			if (cancelled) return;
-			const el = document.getElementById(`comment-${targetCommentId}`);
+			const el = document.getElementById(`comment-${scrollCommentId}`);
 			if (el) {
-				scrolledToCommentRef.current = targetCommentId;
+				scrolledToCommentRef.current = scrollCommentId;
 				el.scrollIntoView({ behavior: "smooth", block: "center" });
 				return;
 			}

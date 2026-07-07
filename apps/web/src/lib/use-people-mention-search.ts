@@ -30,7 +30,9 @@ export function usePeopleMentionSearch(input: {
 
 	// Load this title's cast/crew once when composing on a movie review.
 	useEffect(() => {
-		if (!input.enabled || input.listingContext?.kind !== "movie") {
+		const movieContext =
+			input.listingContext?.kind === "movie" ? input.listingContext : null;
+		if (!input.enabled || !movieContext) {
 			setCreditRows([]);
 			return;
 		}
@@ -38,7 +40,7 @@ export function usePeopleMentionSearch(input: {
 		void (async () => {
 			try {
 				const res = await fetch(
-					`${stillApiOrigin()}/api/movies/${input.listingContext.tmdbId}`,
+					`${stillApiOrigin()}/api/movies/${movieContext.tmdbId}`,
 					{ credentials: "include", signal: ctrl.signal },
 				);
 				if (!res.ok) return;
