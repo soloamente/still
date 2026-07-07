@@ -1,13 +1,10 @@
-import { db, log, profile } from "@still/db";
+import { db, log, profile, type ShowcaseItem } from "@still/db";
 import { and, eq, isNotNull, isNull } from "drizzle-orm";
 
 import { makeId } from "./cuid";
 import { ensureMovieCached } from "./ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "./favorites-list-sync";
-import {
-	migrateLegacyFavoriteMovies,
-	type ShowcaseItem,
-} from "./profile-showcase";
+import { migrateLegacyFavoriteMovies } from "./profile-showcase";
 
 /** Normalize onboarding favorite ids — unique, finite, stable order. */
 function uniqueFavoriteMovieIds(favoriteMovieIds: number[]): number[] {
