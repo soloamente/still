@@ -1,29 +1,12 @@
-BETTER_AUTH_SECRET=PsjqHef1zXKLA3jEl248cZbXWsap8lYk
-BETTER_AUTH_URL=http://localhost:3001
-POLAR_ACCESS_TOKEN=
-POLAR_SUCCESS_URL=http://localhost:3001/success?checkout_id={CHECKOUT_ID}
-POLAR_SERVER=sandbox
-POLAR_WEBHOOK_SECRET=
-POLAR_PRODUCT_ATTUNED_MONTHLY=
-POLAR_PRODUCT_ATTUNED_YEARLY=
-POLAR_PRODUCT_IMMERSED_MONTHLY=
-POLAR_PRODUCT_IMMERSED_YEARLY=
-POLAR_DISCOUNT_REFERRAL10=
-CORS_ORIGIN=http://localhost:3001
+# Local secrets for `wrangler dev` in apps/realtime.
+# Copy to `.dev.vars` (gitignored) and fill with real values — never commit secrets here.
+#
+#   cp .dev.vars.example .dev.vars
 
-DATABASE_URL=postgresql://neondb_owner:npg_FkD51UvHoaBq@ep-cold-fog-al3k54b1.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=require
-BLOB_READ_WRITE_TOKEN="vercel_blob_rw_ZIBH0Uwm3teU8jiG_Keb520ckTC3l7CWUFGuDEWbMDsYcY9"
-BLOB_STORE_ACCESS=private
+# Must match apps/server REALTIME_* secrets (connect tokens + internal publish API).
+REALTIME_JWT_SECRET=replace-with-openssl-rand-base64-32
+REALTIME_INTERNAL_SECRET=replace-with-openssl-rand-base64-32
 
-TMDB_API_KEY=2562c5f7463aa17696da4a9980626782
-
-QUOTE_API_PROVIDER=moviefamous
-QUOTE_IMPORT_ENABLED=true
-
-UPSTASH_REDIS_REST_URL=https://enjoyed-pelican-149040.upstash.io
-UPSTASH_REDIS_REST_TOKEN=gQAAAAAAAkYwAAIgcDFiMzdkMTEyODI2ZDk0NmU0ODU3NjM0YjAyMGIyOWVhZg
-
-REALTIME_JWT_SECRET=IJSXE4JoT+hQpwvm802apGipSD5cYc3wUY3ib6dpizM=
-REALTIME_INTERNAL_SECRET=GgRuy970Mm1ZXbRXBValvhw9+SY5YYbU5sXvUXJaayA=
-RESEND_API_KEY=re_DZRBuNbS_HVwTCXD4SD9PqF2itd2xM7Lr
-EMAIL_FROM=Sense <hello@cinema.sense.fans>
+# Optional local overrides (wrangler.jsonc vars are used when unset).
+# SERVER_ORIGIN=http://localhost:3000
+# ALLOWED_ORIGINS=
