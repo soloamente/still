@@ -12,14 +12,16 @@ describe("runOnboardingFinish", () => {
 				handle: "patron",
 				displayName: "Patron",
 				bio: "Hello",
-				favoriteMovieIds: [550],
+				favoriteMovieIds: [550, 680],
 			},
 			{
 				uploadAvatar: async () => {
 					calls.push("avatar");
 				},
-				postLog: async () => {
-					calls.push("log");
+				postLog: async (movieId, rating, options) => {
+					calls.push(
+						`log:${movieId}:${rating ?? "none"}:${options?.liked ? "liked" : "plain"}`,
+					);
 				},
 				patchProfile: async () => {
 					calls.push("profile");
@@ -32,7 +34,14 @@ describe("runOnboardingFinish", () => {
 			},
 		);
 
-		expect(calls).toEqual(["avatar", "log", "log", "profile", "taste"]);
+		expect(calls).toEqual([
+			"avatar",
+			"log:278:90:plain",
+			"log:550:80:plain",
+			"log:680:none:liked",
+			"profile",
+			"taste",
+		]);
 		expect(result.headline).toBe("You gravitate toward drama.");
 	});
 
@@ -51,8 +60,10 @@ describe("runOnboardingFinish", () => {
 				uploadAvatar: async () => {
 					calls.push("avatar");
 				},
-				postLog: async () => {
-					calls.push("log");
+				postLog: async (movieId, rating, options) => {
+					calls.push(
+						`log:${movieId}:${rating ?? "none"}:${options?.liked ? "liked" : "plain"}`,
+					);
 				},
 				patchProfile: async () => {
 					calls.push("profile");
@@ -65,6 +76,6 @@ describe("runOnboardingFinish", () => {
 			},
 		);
 
-		expect(calls).toEqual(["log", "profile", "taste"]);
+		expect(calls).toEqual(["log:550:80:plain", "profile", "taste"]);
 	});
 });

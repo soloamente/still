@@ -11,7 +11,11 @@ export type OnboardingFinishInput = {
 
 export type OnboardingFinishDeps = {
 	uploadAvatar: (file: File) => Promise<void>;
-	postLog: (movieId: number, rating: number) => Promise<void>;
+	postLog: (
+		movieId: number,
+		rating: number | null,
+		options?: { liked?: boolean },
+	) => Promise<void>;
 	patchProfile: (body: {
 		handle: string;
 		displayName: string;
@@ -33,6 +37,14 @@ export async function runOnboardingFinish(
 
 	for (const [movieIdStr, rating] of Object.entries(input.tasteRatings)) {
 		await deps.postLog(Number(movieIdStr), rating);
+	}
+
+	const ratedMovieIds = new Set(
+		Object.keys(input.tasteRatings).map((id) => Number(id)),
+	);
+	for (const movieId of input.favoriteMovieIds) {
+		if (ratedMovieIds.has(movieId)) continue;
+		await deps.postLog(movieId, null, { liked: true });
 	}
 
 	await deps.patchProfile({

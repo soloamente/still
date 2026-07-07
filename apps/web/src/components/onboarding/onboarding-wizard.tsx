@@ -270,10 +270,11 @@ export function OnboardingWizard({
 					uploadAvatar: async (file) => {
 						await uploadProfileMeAsset("/api/profiles/me/avatar", file);
 					},
-					postLog: async (movieId, rating) => {
+					postLog: async (movieId, rating, options) => {
 						const res = await api.api.logs.post({
 							movieId,
-							rating,
+							...(rating != null ? { rating } : {}),
+							liked: options?.liked ?? false,
 							watchedAt: new Date().toISOString(),
 							watchVenue: "streaming",
 						});

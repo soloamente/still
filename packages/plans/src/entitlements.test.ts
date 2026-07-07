@@ -40,7 +40,7 @@ describe("hasPatronFeature", () => {
 		taste_overlap: "immersed",
 		badge_prestige: "immersed",
 		challenges: "immersed",
-		leaderboard_visibility: "immersed",
+		leaderboard_visibility: "still",
 	};
 
 	test("still user blocked from attuned feature", () => {
@@ -123,10 +123,13 @@ describe("MIN_TIER_FOR_FEATURE", () => {
 			"taste_overlap",
 			"badge_prestige",
 			"challenges",
-			"leaderboard_visibility",
 		] as const) {
 			expect(MIN_TIER_FOR_FEATURE[key]).toBe("immersed");
 		}
+	});
+
+	test("leaderboard visibility is included on still", () => {
+		expect(MIN_TIER_FOR_FEATURE.leaderboard_visibility).toBe("still");
 	});
 });
 

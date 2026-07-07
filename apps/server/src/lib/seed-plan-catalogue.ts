@@ -236,9 +236,9 @@ const FEATURES: FeatureSeed[] = [
 		key: "leaderboard_visibility",
 		name: "Leaderboard visibility",
 		description:
-			"Appear on the community leaderboard ranked by activity, reviews, list quality, and engagement. Free and Attuned users can view it but aren't listed.",
+			"Community Film ranks and TV ranks list every public patron by diary activity — included on Still.",
 		buildStatus: "exists",
-		tiers: ["immersed", "devoted"],
+		tiers: ["still", "attuned", "immersed", "devoted"],
 	},
 	// ── Devoted ──
 	{

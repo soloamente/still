@@ -25,11 +25,6 @@ import {
 import { clampHiddenCount } from "./leaderboard-hidden-count";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
-import {
-	loadPatronEntitlements,
-	loadPatronEntitlementsForUserIds,
-} from "./patron-entitlements";
-import { patronHasPlanFeature } from "./plan-feature-access";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type LeaderboardKind = "films" | "tv";
@@ -310,8 +305,6 @@ export async function fetchLeaderboard(opts: {
 	limit?: number;
 }): Promise<LeaderboardResult> {
 	const limit = opts.limit ?? 50;
-	/** Over-fetch so Immersed-only filtering still fills the board. */
-	const fetchLimit = Math.min(limit * 4, 200);
 	const { start, end } =
 		opts.window ?? resolveLeaderboardWindow(opts.period, opts.tz, opts.now);
 	const blockedIds = opts.viewerId
@@ -343,24 +336,14 @@ export async function fetchLeaderboard(opts: {
 			asc(sql`max(${log.watchedAt})`),
 			asc(profile.handle),
 		)
-		.limit(fetchLimit);
+		.limit(limit);
 
-	const entitlementsByUser = await loadPatronEntitlementsForUserIds(
+	// Community Film/TV ranks list every public profile with qualifying logs — no plan gate.
+	const logCounts = await fetchDiaryLogCountsForUserIds(
 		rows.map((row) => row.userId),
 	);
-	const visibleRows = rows
-		.filter((row) => {
-			const entitlements = entitlementsByUser.get(row.userId);
-			if (!entitlements) return false;
-			return patronHasPlanFeature(entitlements, "leaderboard_visibility");
-		})
-		.slice(0, limit);
 
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		visibleRows.map((row) => row.userId),
-	);
-
-	const entries: LeaderboardEntry[] = visibleRows.map((row, index) => ({
+	const entries: LeaderboardEntry[] = rows.map((row, index) => ({
 		rank: index + 1,
 		userId: row.userId,
 		handle: row.handle,
@@ -375,20 +358,17 @@ export async function fetchLeaderboard(opts: {
 
 	let viewer: { rank: number; count: number } | null = null;
 	if (opts.viewerId) {
-		const viewerEntitlements = await loadPatronEntitlements(opts.viewerId);
-		if (patronHasPlanFeature(viewerEntitlements, "leaderboard_visibility")) {
-			const inList = entries.find((e) => e.userId === opts.viewerId);
-			if (inList) {
-				viewer = { rank: inList.rank, count: inList.count };
-			} else {
-				viewer = await fetchViewerRank({
-					kind: opts.kind,
-					viewerId: opts.viewerId,
-					start,
-					end,
-					blockedIds,
-				});
-			}
+		const inList = entries.find((e) => e.userId === opts.viewerId);
+		if (inList) {
+			viewer = { rank: inList.rank, count: inList.count };
+		} else {
+			viewer = await fetchViewerRank({
+				kind: opts.kind,
+				viewerId: opts.viewerId,
+				start,
+				end,
+				blockedIds,
+			});
 		}
 	}
 

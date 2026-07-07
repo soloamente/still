@@ -62,6 +62,10 @@ import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { resolveListingPosterPath } from "../lib/listing-poster-path";
 import { fetchProfilePinnedQuotes } from "../lib/listing-quote-saves-query";
 import {
+	backfillOnboardingFavoriteDiaryLogs,
+	showcaseItemsFromOnboardingFavorites,
+} from "../lib/onboarding-favorite-diary-backfill";
+import {
 	grandfatherOnboardedTimestamp,
 	shouldGrandfatherLegacyOnboarding,
 } from "../lib/onboarding-grandfather";
@@ -363,6 +367,21 @@ export const profilesRoute = new Elysia({
 			for (const [k, v] of Object.entries(updates))
 				if (v !== undefined) set[k] = v;
 
+			if (body.markOnboarded && body.favoriteMovieIds?.length) {
+				await backfillOnboardingFavoriteDiaryLogs(
+					user.id,
+					body.favoriteMovieIds,
+				);
+				const existingShowcase = Array.isArray(existing?.showcaseItems)
+					? existing.showcaseItems
+					: [];
+				if (existingShowcase.length === 0) {
+					set.showcaseItems = showcaseItemsFromOnboardingFavorites(
+						body.favoriteMovieIds,
+					);
+				}
+			}
+
 			// Pro profile accent preset mirrors into public `accentColor` for visitors.
 			if (preferencesForUpdate !== undefined) {
 				const accentPref = preferencesForUpdate[PROFILE_PREF_PROFILE_ACCENT];
@@ -619,7 +638,24 @@ export const profilesRoute = new Elysia({
 			}
 
 			const body = routeBody<{ items: unknown }>(rawBody);
-			const validated = await validateShowcaseItemsForUser(user.id, body.items);
+			let validated = await validateShowcaseItemsForUser(user.id, body.items);
+			if (
+				!validated.ok &&
+				validated.error === "Showcase films and shows must be in your diary"
+			) {
+				const [row] = await db
+					.select({ favoriteMovieIds: profile.favoriteMovieIds })
+					.from(profile)
+					.where(eq(profile.userId, user.id))
+					.limit(1);
+				const favoriteMovieIds = Array.isArray(row?.favoriteMovieIds)
+					? (row.favoriteMovieIds as number[])
+					: [];
+				if (favoriteMovieIds.length > 0) {
+					await backfillOnboardingFavoriteDiaryLogs(user.id, favoriteMovieIds);
+					validated = await validateShowcaseItemsForUser(user.id, body.items);
+				}
+			}
 			if (!validated.ok) {
 				return status(validated.status, validated.error);
 			}

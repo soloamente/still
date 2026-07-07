@@ -71,7 +71,7 @@ export const MIN_TIER_FOR_FEATURE: Record<PlanFeatureKey, PlanTierId> = {
 	taste_overlap: "immersed",
 	badge_prestige: "immersed",
 	challenges: "immersed",
-	leaderboard_visibility: "immersed",
+	leaderboard_visibility: "still",
 };
 
 /** Convenience wrapper — uses {@link MIN_TIER_FOR_FEATURE} for tier comparison. */
