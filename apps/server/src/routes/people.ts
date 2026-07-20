@@ -4,6 +4,7 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { mapTmdbPersonToSearchRow } from "../lib/people-search-row";
+import { buildPersonGallerySlides } from "../lib/person-gallery-slides";
 import { tmdbApi, tmdbImg } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 
@@ -73,6 +74,7 @@ export const peopleRoute = new Elysia({
 				return {
 					...TMDB_UNCONFIGURED,
 					person: null,
+					screenshots: [] as unknown[],
 					filmography: [] as unknown[],
 				};
 			}
@@ -164,6 +166,13 @@ export const peopleRoute = new Elysia({
 					return a.title.localeCompare(b.title);
 				});
 
+				const screenshots = buildPersonGallerySlides({
+					personName: p.name,
+					heroProfilePath: p.profile_path,
+					taggedImages: p.tagged_images?.results ?? [],
+					profiles: p.images?.profiles ?? [],
+				});
+
 				return {
 					person: {
 						id: p.id,
@@ -176,7 +185,10 @@ export const peopleRoute = new Elysia({
 						knownForDepartment: p.known_for_department,
 						profilePath: p.profile_path,
 						profileUrl: tmdbImg.profile(p.profile_path, "h632"),
+						imdbId: p.external_ids?.imdb_id?.trim() || null,
 					},
+					// About-tab stills rail — tagged film/TV frames + extra headshots.
+					screenshots,
 					filmography: filmography.map((m) => ({
 						tmdbId: m.tmdbId,
 						mediaKind: m.mediaKind,

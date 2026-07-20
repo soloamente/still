@@ -235,6 +235,34 @@ export type TmdbPersonDetail = {
 		cast: TmdbPersonTvCredit[];
 		crew: TmdbPersonTvCredit[];
 	};
+	/** Appended via `append_to_response=images` — extra headshots. */
+	images?: {
+		profiles?: Array<{
+			file_path: string;
+			aspect_ratio?: number;
+			vote_average?: number;
+		}>;
+	};
+	/** Appended via `append_to_response=tagged_images` — stills tagged in films/TV. */
+	tagged_images?: {
+		page?: number;
+		total_pages?: number;
+		total_results?: number;
+		results?: Array<{
+			file_path: string;
+			aspect_ratio?: number;
+			vote_average?: number;
+			image_type?: string;
+			media?: {
+				title?: string | null;
+				name?: string | null;
+			} | null;
+		}>;
+	};
+	/** Appended via `append_to_response=external_ids` — IMDb id for Wikidata award lookup. */
+	external_ids?: {
+		imdb_id?: string | null;
+	};
 };
 
 /** Optional TMDb v3 `language` — drives localized titles and regional poster picks. */
@@ -705,7 +733,10 @@ export const tmdbApi = {
 		return tmdb<TmdbPersonDetail>(
 			`/person/${id}`,
 			{
-				append_to_response: "movie_credits,tv_credits",
+				// images + tagged_images feed the About-tab gallery rail on /people/[id].
+				// external_ids surfaces IMDb id for downstream Wikidata award lookup.
+				append_to_response:
+					"movie_credits,tv_credits,images,tagged_images,external_ids",
 			},
 			fetchOpts,
 		);
