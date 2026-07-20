@@ -1,4 +1,5 @@
 import { PersonAwardsSection } from "@/components/people/person-awards-section";
+import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
 import { buildPersonAwardRows } from "@/lib/person-awards";
 import { fetchWikidataPersonAwards } from "@/lib/wikidata-person-awards";
 
@@ -7,10 +8,13 @@ export async function PersonAwardsAsync({
 	tmdbPersonId,
 	imdbId,
 	personName,
+	/** When true, parent already provides `MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME`. */
+	embedInColumn = false,
 }: {
 	tmdbPersonId: number;
 	imdbId: string | null;
 	personName: string;
+	embedInColumn?: boolean;
 }) {
 	const raw = await fetchWikidataPersonAwards({
 		tmdbPersonId,
@@ -18,6 +22,9 @@ export async function PersonAwardsAsync({
 	});
 	const rows = buildPersonAwardRows(raw);
 	if (rows.length === 0) return null;
-	// Column padding lives on the page About parent (shared with stills).
-	return <PersonAwardsSection personName={personName} rows={rows} />;
+
+	const section = <PersonAwardsSection personName={personName} rows={rows} />;
+	// Awards-only About: own column. With stills: page owns the shared column.
+	if (embedInColumn) return section;
+	return <div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>{section}</div>;
 }

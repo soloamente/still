@@ -138,16 +138,25 @@ export default async function PersonPage({
 					<div className="mx-auto w-full max-w-lg px-2.5 pb-6 sm:px-3">
 						<PersonDetailTmdbButton personId={person.id} />
 					</div>
-					{/* One About column for stills + awards (shared pt/pb; space-y between). */}
-					<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
-						{screenshots.length > 0 ? (
+					{/* Shared column only when stills exist (avoids empty pt/pb under TMDb). */}
+					{screenshots.length > 0 ? (
+						<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
 							<MovieDetailStillsSection
 								screenshots={screenshots}
 								title={person.name}
 								imageFit="contain"
 							/>
-						) : null}
-						{/* Wikidata awards stream after stills so the hero/shell paints first. */}
+							{/* Wikidata awards stream after stills so the hero/shell paints first. */}
+							<Suspense fallback={null}>
+								<PersonAwardsAsync
+									tmdbPersonId={person.id}
+									imdbId={person.imdbId ?? null}
+									personName={person.name}
+									embedInColumn
+								/>
+							</Suspense>
+						</div>
+					) : (
 						<Suspense fallback={null}>
 							<PersonAwardsAsync
 								tmdbPersonId={person.id}
@@ -155,7 +164,7 @@ export default async function PersonPage({
 								personName={person.name}
 							/>
 						</Suspense>
-					</div>
+					)}
 				</>
 			}
 			filmography={<PersonFilmographyCatalogue rows={filmography} />}
