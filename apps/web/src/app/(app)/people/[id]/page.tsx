@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
+import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
+import { MovieDetailStillsSection } from "@/components/movie/movie-detail-stills-carousel";
+import { PersonAwardsAsync } from "@/components/people/person-awards-async";
 import { PersonDetailHero } from "@/components/people/person-detail-hero";
 import { PersonDetailTmdbButton } from "@/components/people/person-detail-tmdb-button";
 import { PersonDetailViewShell } from "@/components/people/person-detail-view-shell";
 import { PersonFilmographyCatalogue } from "@/components/people/person-filmography-catalogue";
+import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
 import { buildPersonDetailInfoCards } from "@/lib/person-detail-facts";
 import { parsePersonDetailViewFromSearchParams } from "@/lib/person-detail-view";
 import type { PersonFilmographyRow } from "@/lib/person-filmography";
@@ -27,7 +32,11 @@ type PersonPayload = {
 		knownForDepartment?: string;
 		profilePath: string | null;
 		profileUrl: string | null;
+		/** IMDb nm… id when TMDb external_ids includes it (Wikidata awards lookup). */
+		imdbId?: string | null;
 	} | null;
+	/** Tagged film/TV stills + extra headshots for the About gallery rail. */
+	screenshots?: MovieDetailHeroSlide[];
 	filmography: PersonFilmographyRow[];
 };
 
@@ -106,6 +115,7 @@ export default async function PersonPage({
 	});
 
 	const filmography = sortFilmographyByYearDesc(data.filmography);
+	const screenshots = data.screenshots ?? [];
 
 	return (
 		<PersonDetailViewShell
@@ -124,9 +134,29 @@ export default async function PersonPage({
 				/>
 			}
 			about={
-				<div className="mx-auto w-full max-w-lg px-2.5 pb-10 sm:px-3">
-					<PersonDetailTmdbButton personId={person.id} />
-				</div>
+				<>
+					<div className="mx-auto w-full max-w-lg px-2.5 pb-6 sm:px-3">
+						<PersonDetailTmdbButton personId={person.id} />
+					</div>
+					{/* Same editorial stills chrome as movie/TV About — tagged film frames. */}
+					{screenshots.length > 0 ? (
+						<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
+							<MovieDetailStillsSection
+								screenshots={screenshots}
+								title={person.name}
+								imageFit="contain"
+							/>
+						</div>
+					) : null}
+					{/* Wikidata awards stream after stills so the hero/shell paints first. */}
+					<Suspense fallback={null}>
+						<PersonAwardsAsync
+							tmdbPersonId={person.id}
+							imdbId={person.imdbId ?? null}
+							personName={person.name}
+						/>
+					</Suspense>
+				</>
 			}
 			filmography={<PersonFilmographyCatalogue rows={filmography} />}
 		/>
