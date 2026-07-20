@@ -191,6 +191,24 @@ function matchRule(name: string): FestivalRule | null {
 	return FESTIVAL_RULES.find((rule) => rule.test.test(name)) ?? null;
 }
 
+/** Map a free-text award label to a festival/award icon id (person + film). */
+export function resolveFestivalIconFromAwardLabel(
+	label: string,
+): FestivalIconId {
+	return matchRule(label)?.id ?? "award";
+}
+
+/**
+ * Lower rank = higher prestige. Uses `FESTIVAL_RULES` order; generic
+ * `award` / `premiere` sort after every named festival.
+ */
+export function festivalIconPrestigeRank(icon: FestivalIconId): number {
+	const index = FESTIVAL_RULES.findIndex((rule) => rule.id === icon);
+	if (index >= 0) return index;
+	if (icon === "premiere") return FESTIVAL_RULES.length;
+	return FESTIVAL_RULES.length + 1; // award / unknown
+}
+
 function titleCasePhrase(raw: string): string {
 	const trimmed = raw.trim();
 	if (!trimmed) return trimmed;
