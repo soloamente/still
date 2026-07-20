@@ -1,5 +1,4 @@
 import { PersonAwardsSection } from "@/components/people/person-awards-section";
-import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
 import { buildPersonAwardRows } from "@/lib/person-awards";
 import { fetchWikidataPersonAwards } from "@/lib/wikidata-person-awards";
 
@@ -19,9 +18,6 @@ export async function PersonAwardsAsync({
 	});
 	const rows = buildPersonAwardRows(raw);
 	if (rows.length === 0) return null;
-	return (
-		<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
-			<PersonAwardsSection personName={personName} rows={rows} />
-		</div>
-	);
+	// Column padding lives on the page About parent (shared with stills).
+	return <PersonAwardsSection personName={personName} rows={rows} />;
 }

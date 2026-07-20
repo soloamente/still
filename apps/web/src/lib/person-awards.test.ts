@@ -38,6 +38,37 @@ describe("buildPersonAwardRows", () => {
 		expect(rows[0]?.icon).toBe("oscars");
 		expect(rows[0]?.year).toBe(1995);
 	});
+
+	test("ranks Oscar wins above Cannes/Critics wins (person prestige, not film order)", () => {
+		const rows = buildPersonAwardRows([
+			{
+				awardLabel: "Cannes Film Festival - Best Actor",
+				status: "won",
+				year: 2022,
+				workTitle: "Festival Film",
+				workTmdbId: 100,
+				workMediaKind: "movie",
+			},
+			{
+				awardLabel: "Critics Choice Award",
+				status: "won",
+				year: 2021,
+				workTitle: null,
+				workTmdbId: null,
+				workMediaKind: null,
+			},
+			{
+				awardLabel: "Academy Award for Best Actor",
+				status: "won",
+				year: 1995,
+				workTitle: "Forrest Gump",
+				workTmdbId: 13,
+				workMediaKind: "movie",
+			},
+		]);
+		expect(rows.map((r) => r.icon)).toEqual(["oscars", "cannes", "award"]);
+		expect(rows[0]?.year).toBe(1995);
+	});
 });
 
 describe("pickPersonAwardTeaserWins", () => {
