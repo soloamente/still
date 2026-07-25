@@ -60,7 +60,12 @@ import { mapElysiaErrorStatus } from "./app-on-error";
 export const app = new Elysia({ aot: false })
 	.use(
 		cors({
-			origin: env.CORS_ORIGIN,
+			// Dev: allow localhost + 127.0.0.1 even when CORS_ORIGIN is a LAN IP
+			// (phone/Expo testing). Production stays pinned to CORS_ORIGIN only.
+			origin:
+				env.NODE_ENV === "development"
+					? [env.CORS_ORIGIN, "http://localhost:3001", "http://127.0.0.1:3001"]
+					: env.CORS_ORIGIN,
 			methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 			allowedHeaders: ["Content-Type", "Authorization"],
 			credentials: true,

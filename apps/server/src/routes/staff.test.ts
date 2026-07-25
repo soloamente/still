@@ -158,6 +158,12 @@ function createSelectQuery() {
 			fromTable = (table as { __table?: string }).__table ?? null;
 			return query;
 		},
+		innerJoin() {
+			return query;
+		},
+		leftJoin() {
+			return query;
+		},
 		where(condition: unknown) {
 			whereCondition = condition;
 			return query;
@@ -206,7 +212,18 @@ function createSelectQuery() {
 		}
 		if (fromTable === "staff_user_note") {
 			const id = findEqValue(whereCondition);
-			return state.notes.filter((n) => n.userId === id);
+			return state.notes
+				.filter((n) => n.userId === id)
+				.map((note) => {
+					const authorProfile = id ? state.profiles[note.authorId] : undefined;
+					return {
+						...note,
+						authorName: state.users[note.authorId]?.id ?? null,
+						authorDisplayName: authorProfile?.displayName ?? null,
+						authorHandle: authorProfile?.handle ?? null,
+						authorRole: state.users[note.authorId]?.role ?? null,
+					};
+				});
 		}
 		return [];
 	}

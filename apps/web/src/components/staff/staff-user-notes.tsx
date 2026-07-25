@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
 import { errorMessage } from "@/lib/staff-error-message";
+import { roleLabel } from "@/lib/staff-role-labels";
 
 export type StaffUserNote = {
 	id: string;
@@ -13,6 +14,8 @@ export type StaffUserNote = {
 	authorId: string;
 	body: string;
 	createdAt: string | Date | null;
+	authorDisplayName: string;
+	authorRole: string;
 };
 
 function formatDate(value: string | Date | null): string {
@@ -81,7 +84,8 @@ export function StaffUserNotes({
 						>
 							<p className="whitespace-pre-wrap">{note.body}</p>
 							<p className="mt-1 text-muted-foreground text-xs">
-								{note.authorId} · {formatDate(note.createdAt)}
+								{note.authorDisplayName} · {roleLabel(note.authorRole)} ·{" "}
+								{formatDate(note.createdAt)}
 							</p>
 						</li>
 					))}
