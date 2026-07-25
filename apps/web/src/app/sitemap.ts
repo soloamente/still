@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 
 import { fetchJournalSitemapEntries } from "@/lib/fetch-journal";
 import { fetchSitemapLists } from "@/lib/fetch-sitemap-lists";
@@ -8,7 +9,7 @@ import { getSiteOrigin } from "@/lib/site-origin";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const origin = getSiteOrigin();
+	const origin = getSiteOrigin(await headers());
 	const lists = await fetchSitemapLists();
 	const journalPosts = await fetchJournalSitemapEntries();
 

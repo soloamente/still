@@ -1,6 +1,7 @@
 import { Agentation } from "agentation";
 import { DialRoot } from "dialkit";
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import type { ReactNode } from "react";
 import "dialkit/styles.css";
 import "pasito/styles.css";
@@ -102,29 +103,34 @@ const geistMono = Geist_Mono({
 	display: "swap",
 });
 
-export const metadata: Metadata = {
-	metadataBase: new URL(getSiteOrigin()),
-	title: {
-		default: APP_METADATA_DEFAULT_TITLE,
-		template: APP_METADATA_TITLE_TEMPLATE,
-	},
-	description: APP_METADATA_DESCRIPTION,
-	applicationName: APP_NAME,
-	openGraph: {
-		type: "website",
-		locale: "en_US",
-		siteName: APP_NAME,
-		title: APP_METADATA_DEFAULT_TITLE,
+export async function generateMetadata(): Promise<Metadata> {
+	const requestHeaders = await headers();
+
+	return {
+		// Resolve `/og/*` and other relative metadata against the web host serving this page.
+		metadataBase: new URL(getSiteOrigin(requestHeaders)),
+		title: {
+			default: APP_METADATA_DEFAULT_TITLE,
+			template: APP_METADATA_TITLE_TEMPLATE,
+		},
 		description: APP_METADATA_DESCRIPTION,
-		...ogImageMetadataFields(OG_DEFAULT_PATH).openGraph,
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: APP_METADATA_DEFAULT_TITLE,
-		description: APP_METADATA_DESCRIPTION,
-		...ogImageMetadataFields(OG_DEFAULT_PATH).twitter,
-	},
-};
+		applicationName: APP_NAME,
+		openGraph: {
+			type: "website",
+			locale: "en_US",
+			siteName: APP_NAME,
+			title: APP_METADATA_DEFAULT_TITLE,
+			description: APP_METADATA_DESCRIPTION,
+			...ogImageMetadataFields(OG_DEFAULT_PATH).openGraph,
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: APP_METADATA_DEFAULT_TITLE,
+			description: APP_METADATA_DESCRIPTION,
+			...ogImageMetadataFields(OG_DEFAULT_PATH).twitter,
+		},
+	};
+}
 
 export const viewport: Viewport = {
 	// Extend the page canvas under the notch / home indicator on iOS Safari.

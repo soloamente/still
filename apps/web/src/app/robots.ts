@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 
 import { getSiteOrigin } from "@/lib/site-origin";
 
@@ -6,8 +7,8 @@ import { getSiteOrigin } from "@/lib/site-origin";
  * Crawlers may index marketing home + public list pages (`/l/`).
  * Authenticated app shells stay out of the index.
  */
-export default function robots(): MetadataRoute.Robots {
-	const origin = getSiteOrigin();
+export default async function robots(): Promise<MetadataRoute.Robots> {
+	const origin = getSiteOrigin(await headers());
 
 	return {
 		rules: {
