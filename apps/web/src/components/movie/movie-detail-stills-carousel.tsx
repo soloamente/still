@@ -228,10 +228,12 @@ export function MovieDetailStillsCarousel({
 
 	if (screenshots.length === 0) return null;
 
-	const firstIsPortrait = isPortraitStillSlide(screenshots[0]!);
-	const lastIsPortrait = isPortraitStillSlide(
-		screenshots[screenshots.length - 1]!,
-	);
+	const firstSlide = screenshots[0];
+	const lastSlide = screenshots[screenshots.length - 1];
+	if (!firstSlide || !lastSlide) return null;
+
+	const firstIsPortrait = isPortraitStillSlide(firstSlide);
+	const lastIsPortrait = isPortraitStillSlide(lastSlide);
 
 	return (
 		<div className={cn("flex flex-col", className)}>

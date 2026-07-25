@@ -5,8 +5,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
 	type ComponentPropsWithoutRef,
 	type MutableRefObject,
-	type PointerEvent as ReactPointerEvent,
 	type ReactNode,
+	type PointerEvent as ReactPointerEvent,
 	useCallback,
 	useEffect,
 	useLayoutEffect,
@@ -189,10 +189,7 @@ export function ReviewSlideCursorCtaButton({
 		<>
 			<button
 				type="button"
-				className={cn(
-					className,
-					useCursorCta && "t-review-slide--cursor-cta",
-				)}
+				className={cn(className, useCursorCta && "t-review-slide--cursor-cta")}
 				onPointerEnter={handlePointerEnter}
 				onPointerMove={handlePointerMove}
 				onPointerLeave={handlePointerLeave}
