@@ -50,20 +50,21 @@ export function ProfilePatronMetaLine({
 	return (
 		<p
 			className={cn(
-				"mt-1.5 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-muted-foreground text-xs leading-snug",
+				// `text-sm`+ — was `text-xs` and too hard to read/tap on the hero.
+				"mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-muted-foreground text-sm leading-snug sm:text-[0.9375rem]",
 				className,
 			)}
 		>
 			{trimmedPronouns ? <span>{trimmedPronouns}</span> : null}
 			{trimmedPronouns &&
 			(trimmedLocation || trimmedWebsite || trimmedBirthday) ? (
-				<span aria-hidden className="text-muted-foreground/40">
+				<span aria-hidden className="text-muted-foreground/50">
 					·
 				</span>
 			) : null}
 			{trimmedLocation ? <span>{trimmedLocation}</span> : null}
 			{trimmedLocation && (trimmedWebsite || trimmedBirthday) ? (
-				<span aria-hidden className="text-muted-foreground/40">
+				<span aria-hidden className="text-muted-foreground/50">
 					·
 				</span>
 			) : null}
@@ -72,13 +73,17 @@ export function ProfilePatronMetaLine({
 					href={trimmedWebsite}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
+					className={cn(
+						"inline-flex min-h-9 items-center rounded-full px-1.5 font-medium text-foreground",
+						"underline-offset-4 [@media(hover:hover)]:hover:underline",
+						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+					)}
 				>
 					{formatWebsiteLabel(trimmedWebsite)}
 				</a>
 			) : null}
 			{trimmedWebsite && trimmedBirthday ? (
-				<span aria-hidden className="text-muted-foreground/40">
+				<span aria-hidden className="text-muted-foreground/50">
 					·
 				</span>
 			) : null}

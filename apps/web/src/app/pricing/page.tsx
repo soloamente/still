@@ -1,5 +1,6 @@
 import type { PlanTierId } from "@still/plans";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 import { PricingPageClient } from "@/components/pricing/pricing-page-client";
@@ -12,18 +13,22 @@ import { buildPatronEntitlementsFromProfile } from "@/lib/patron-entitlements";
 import { canManagePolarBilling } from "@/lib/polar-billing";
 import { getSiteOrigin } from "@/lib/site-origin";
 
-export const metadata: Metadata = {
-	title: "Pricing",
-	description: `${APP_NAME} plans — Still (free), Attuned, Immersed, and Devoted. Compare features and subscribe.`,
-	alternates: { canonical: `${getSiteOrigin()}/pricing` },
-	robots: { index: true, follow: true },
-	openGraph: {
-		title: `Pricing · ${APP_NAME}`,
-		description: `Compare ${APP_NAME} subscription tiers and choose the plan that fits your taste.`,
-		url: `${getSiteOrigin()}/pricing`,
-		type: "website",
-	},
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const origin = getSiteOrigin(await headers());
+
+	return {
+		title: "Pricing",
+		description: `${APP_NAME} plans — Still (free), Attuned, Immersed, and Devoted. Compare features and subscribe.`,
+		alternates: { canonical: `${origin}/pricing` },
+		robots: { index: true, follow: true },
+		openGraph: {
+			title: `Pricing · ${APP_NAME}`,
+			description: `Compare ${APP_NAME} subscription tiers and choose the plan that fits your taste.`,
+			url: `${origin}/pricing`,
+			type: "website",
+		},
+	};
+}
 
 export const revalidate = 3600;
 

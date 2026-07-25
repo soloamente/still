@@ -232,7 +232,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 				open={visible}
 				onOpenChange={setVisible}
 				handleOnly
-				shouldScaleBackground={false}
+				shouldScaleBackground={!reduceMotion}
 			>
 				<Drawer.Portal>
 					<Drawer.Overlay className="fixed inset-0 z-60 bg-absolute-black/82 backdrop-blur-sm" />

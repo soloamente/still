@@ -130,6 +130,8 @@ export function MoviePoster({
 						sizes={imageSizes}
 						className="object-cover"
 						priority={priority}
+						// Block native image ghost-drag so lobby rails / reorder can grab-scroll.
+						draggable={false}
 					/>
 				) : (
 					// No TMDb artwork — show the title in-frame (films + TV) so catalogue grids stay scannable.

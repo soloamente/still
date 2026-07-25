@@ -29,11 +29,13 @@ export const MOVIE_DETAIL_SECTION_SCROLL_MARGIN_CLASS =
 export const MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS = "xl:px-28 2xl:px-32";
 
 /**
- * About-tab column — widens on `lg+` for cast arc / awards grids without `100vw` breakout
- * (viewport width units include the scrollbar gutter and cause a stray vertical scrollbar).
+ * About-tab column — stay viewport-centered inside the detail card (matches the hero's
+ * `mx-auto` lane). `w-full` keeps flex children from outgrowing the article content box
+ * when the section-nav gutter is active; cast arc bleed handles edge extension instead
+ * of breaking max-width past `100vw`.
  */
 export const MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME =
-	"mx-auto max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12 lg:max-w-[96rem] xl:max-w-[108rem]";
+	"mx-auto w-full max-w-7xl space-y-12 px-2.5 pt-8 pb-10 sm:px-4 sm:pt-10 md:px-5 md:pt-12";
 
 /** Nav labels for the fixed right-rail legend (order matches scroll depth). */
 export function buildMovieDetailSectionNavItems({
@@ -52,10 +54,8 @@ export function buildMovieDetailSectionNavItems({
 	if (hasAwards) {
 		items.push({ id: MOVIE_DETAIL_SECTION.awards, label: "Awards" });
 	}
-	items.push(
-		{ id: MOVIE_DETAIL_SECTION.reviews, label: "Community" },
-		{ id: MOVIE_DETAIL_SECTION.related, label: "Related" },
-	);
+	// Community (reviews/lists) lives on the top-level Community tab — not an About scroll target.
+	items.push({ id: MOVIE_DETAIL_SECTION.related, label: "Related" });
 	return items;
 }
 

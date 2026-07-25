@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import {
 	APP_METADATA_DEFAULT_TITLE,
@@ -24,25 +25,29 @@ import type { LandingPoster } from "./_marketing/landing-poster";
 import { LandingPreview } from "./_marketing/landing-preview";
 import { LandingScrollScenes } from "./_marketing/landing-scroll-scenes";
 
-export const metadata: Metadata = {
-	title: APP_METADATA_DEFAULT_TITLE,
-	description:
-		"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
-	openGraph: {
-		type: "website",
-		url: getSiteOrigin(),
-		siteName: APP_NAME,
+export async function generateMetadata(): Promise<Metadata> {
+	const origin = getSiteOrigin(await headers());
+
+	return {
 		title: APP_METADATA_DEFAULT_TITLE,
-		description: APP_METADATA_DESCRIPTION,
-		...ogImageMetadataFields(OG_HOME_PATH).openGraph,
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: APP_METADATA_DEFAULT_TITLE,
-		description: APP_METADATA_DESCRIPTION,
-		...ogImageMetadataFields(OG_HOME_PATH).twitter,
-	},
-};
+		description:
+			"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
+		openGraph: {
+			type: "website",
+			url: origin,
+			siteName: APP_NAME,
+			title: APP_METADATA_DEFAULT_TITLE,
+			description: APP_METADATA_DESCRIPTION,
+			...ogImageMetadataFields(OG_HOME_PATH).openGraph,
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: APP_METADATA_DEFAULT_TITLE,
+			description: APP_METADATA_DESCRIPTION,
+			...ogImageMetadataFields(OG_HOME_PATH).twitter,
+		},
+	};
+}
 
 export const dynamic = "force-dynamic";
 

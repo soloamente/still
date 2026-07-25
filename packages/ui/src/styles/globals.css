@@ -1800,6 +1800,16 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
+@media (hover: hover) {
+	.t-review-slide--cursor-cta {
+		cursor: none;
+	}
+
+	.t-review-slide--cursor-cta .t-review-slide__cta {
+		display: none;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.t-review-slide__post,
 	.t-review-slide__cta,

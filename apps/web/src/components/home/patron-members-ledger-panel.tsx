@@ -11,7 +11,7 @@ import { PatronMembersLedgerOrderChips } from "@/components/home/patron-members-
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
-import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
+import { leaderboardDrawerHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
 	leaderboardPeriodLabel,
 	readViewerTimeZone,
@@ -147,9 +147,7 @@ export function PatronMembersLedgerPanel({
 							</h2>
 							<Link
 								href={`/profile/${handle}`}
-								className={leaderboardHandleLinkClassName(
-									"mt-0.5 max-w-full truncate text-xs",
-								)}
+								className={leaderboardDrawerHandleLinkClassName()}
 								title={`Open @${handle}'s profile`}
 							>
 								@{handle}

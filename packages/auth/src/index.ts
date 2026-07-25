@@ -74,6 +74,10 @@ export function createAuth() {
 			"still://",
 			...(env.NODE_ENV === "development"
 				? [
+						// Web app may be opened via localhost or 127.0.0.1 even when
+						// CORS_ORIGIN is a LAN IP (Expo / phone testing).
+						"http://localhost:3001",
+						"http://127.0.0.1:3001",
 						"exp://",
 						"exp://**",
 						"exp://192.168.*.*:*/**",

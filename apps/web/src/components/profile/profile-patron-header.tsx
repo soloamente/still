@@ -246,12 +246,12 @@ export function ProfilePatronHeader({
 
 				<div className="relative mx-auto max-w-lg px-2 pt-3 text-center sm:px-4">
 					{/* Name */}
-					<h1 className="text-balance font-semibold text-foreground text-xl leading-none sm:text-2xl">
+					<h1 className="text-balance font-semibold text-2xl text-foreground leading-none sm:text-3xl">
 						{displayName}
 					</h1>
 
 					{/* Handle */}
-					<p className="mt-1 text-pretty text-muted-foreground text-sm">
+					<p className="mt-1.5 text-pretty text-base text-muted-foreground sm:text-lg">
 						@{handle}
 					</p>
 
@@ -264,7 +264,7 @@ export function ProfilePatronHeader({
 
 					{/* Bio — compact pill directly under identity meta */}
 					{trimmedBio ? (
-						<p className="mx-auto mt-3 w-fit max-w-md text-balance rounded-2xl bg-background px-4 py-2.5 text-foreground/85 text-sm leading-snug">
+						<p className="mx-auto mt-3 w-fit max-w-md text-balance rounded-2xl bg-background px-4 py-2.5 text-base text-foreground/90 leading-snug sm:px-5 sm:py-3 sm:text-lg">
 							{trimmedBio}
 						</p>
 					) : null}

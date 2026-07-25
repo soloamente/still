@@ -12,6 +12,12 @@ export const leaderboardHandleLinkClassName = (extra?: string) =>
 		extra,
 	);
 
+/** Larger @handle in rank ledger drawer heroes (portrait + display name). */
+export const leaderboardDrawerHandleLinkClassName = (extra?: string) =>
+	leaderboardHandleLinkClassName(
+		cn("mt-1 max-w-full truncate text-base leading-none sm:text-lg", extra),
+	);
+
 /** Watch-log count — press scale from DetailMotionButton + soft hover wash. */
 export const leaderboardCountButtonClassName = (extra?: string) =>
 	cn(
