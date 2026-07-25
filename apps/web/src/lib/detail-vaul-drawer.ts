@@ -2,6 +2,12 @@
  * Vaul bottom-sheet chrome — `handleOnly` drag on the rail; body scrolls in a full-width flex child.
  */
 
+/**
+ * Marks the page shell Vaul scales when `shouldScaleBackground` is on — must wrap app chrome,
+ * not portaled drawer content (see `DetailVaulSheet`).
+ */
+export const VAUL_DRAWER_WRAPPER_ATTR = "data-vaul-drawer-wrapper";
+
 /** Marks Sense filmography sheets — used to neutralize Vaul’s injected handle chrome in CSS. */
 export const MOVIE_DETAIL_DRAWER_SURFACE_ATTR = "data-still-detail-drawer";
 
@@ -32,3 +38,13 @@ export const MOVIE_DETAIL_DRAWER_HANDLE_CLASSNAME =
 
 export const MOVIE_DETAIL_DRAWER_HANDLE_GRIP_CLASSNAME =
 	"pointer-events-none h-1 w-12 shrink-0 rounded-full bg-muted-foreground/35";
+
+/** Matches Vaul `shouldScaleBackground` inset — shared by page wrapper + drawer stacks. */
+export const VAUL_DRAWER_DEPTH_SCALE_OFFSET_PX = 26;
+export const VAUL_DRAWER_DEPTH_BORDER_RADIUS_PX = 8;
+/** Resting top radius — keep in sync with `rounded-t-[2.25rem]` on drawer content classes. */
+export const VAUL_DRAWER_SHEET_TOP_RADIUS = "2.25rem";
+export const VAUL_DRAWER_SHEET_RESTING_BORDER_RADIUS = `${VAUL_DRAWER_SHEET_TOP_RADIUS} ${VAUL_DRAWER_SHEET_TOP_RADIUS} 0 0`;
+export const VAUL_DRAWER_DEPTH_TRANSLATE_PX = 14;
+export const VAUL_DRAWER_DEPTH_TRANSITION_S = 0.5;
+export const VAUL_DRAWER_DEPTH_EASE = "cubic-bezier(0.32, 0.72, 0, 1)";

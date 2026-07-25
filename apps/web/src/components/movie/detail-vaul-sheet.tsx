@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { useCallback } from "react";
 import { Drawer } from "vaul";
@@ -13,6 +14,7 @@ import {
 	MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME,
 } from "@/lib/detail-vaul-drawer";
 import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
+import { useDrawerStackParentDepth } from "@/lib/use-drawer-stack-parent-depth";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
 import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 
@@ -106,7 +108,11 @@ export function DetailVaulSheet({
 	children: ReactNode;
 }) {
 	useLockDrawerScroll(scrollLock ?? open);
+	const reduceMotion = useReducedMotion();
 	const softwareGpu = useSoftwareGpuRendering();
+	// Vaul scales `[data-vaul-drawer-wrapper]` (AppShell) for depth under the dimmed scrim.
+	const shouldScaleBackground = !reduceMotion;
+	useDrawerStackParentDepth(open && shouldScaleBackground);
 	const overlayClassName = nested
 		? NESTED_OVERLAY_CLASSNAME
 		: appStack
@@ -134,7 +140,7 @@ export function DetailVaulSheet({
 			open={open}
 			onOpenChange={onOpenChange}
 			handleOnly
-			shouldScaleBackground={false}
+			shouldScaleBackground={shouldScaleBackground}
 			nested={nested}
 		>
 			{trigger ? <Drawer.Trigger asChild>{trigger}</Drawer.Trigger> : null}
@@ -180,11 +186,13 @@ export function DetailVaulNestedSheet({
 	handleTrailing?: ReactNode;
 	children: ReactNode;
 }) {
+	const reduceMotion = useReducedMotion();
 	const dismissOnNavigate = useCallback(() => {
 		onOpenChange(false);
 	}, [onOpenChange]);
 	// Nested filmography links also navigate away — dismiss before the parent page swaps.
 	useDismissSheetOnRouteChange(open, dismissOnNavigate);
+	useDrawerStackParentDepth(open && !reduceMotion);
 
 	return (
 		<Drawer.NestedRoot

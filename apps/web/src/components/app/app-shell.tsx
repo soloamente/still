@@ -19,6 +19,7 @@ import { InviteEarnDialogRoot } from "@/components/referrals/invite-earn-dialog-
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
+import { VAUL_DRAWER_WRAPPER_ATTR } from "@/lib/detail-vaul-drawer";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
 
@@ -73,7 +74,10 @@ export function AppShell({
 	return (
 		<Suspense fallback={null}>
 			<FeedbackDrawerProvider>
-				<div className="relative flex min-h-svh flex-col bg-background">
+				<div
+					className="relative flex min-h-svh flex-col bg-background"
+					{...{ [VAUL_DRAWER_WRAPPER_ATTR]: "" }}
+				>
 					<SoftwareGpuDocumentProbe />
 					<Suspense fallback={null}>
 						<DetailReturnCapture />
