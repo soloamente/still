@@ -69,7 +69,7 @@ const REVIEW_SLIDE_PRESS_CLASS =
 const REVIEW_SLIDE_BODY_LINE_CLAMP_CLASS = "line-clamp-5";
 
 const REVIEW_CAROUSEL_MENTION_LINK_CLASS =
-	"inline font-medium text-foreground/90 underline decoration-foreground/25 underline-offset-2 transition-colors [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40";
+	"inline-flex max-w-full items-baseline gap-0.5 font-medium text-foreground/90 underline decoration-foreground/25 underline-offset-2 transition-colors [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40";
 
 /** Large centered quote slide — tap opens the review reader sheet. */
 function MovieDetailReviewSlide({

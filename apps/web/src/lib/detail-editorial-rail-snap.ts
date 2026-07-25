@@ -24,6 +24,22 @@ function slideTargetScrollLeft(rail: HTMLElement, slide: HTMLElement) {
 	return slide.offsetLeft + slide.offsetWidth / 2 - rail.clientWidth / 2;
 }
 
+/**
+ * CSS `scroll-snap-type: mandatory` clamps per-frame `scrollLeft` writes to the
+ * nearest snap point — kills Motion tweens and makes grab-drag feel sticky.
+ * Disable snap while easing or dragging; restore after settle / click-without-drag.
+ */
+function setEditorialRailScrollSnapEnabled(
+	rail: HTMLElement,
+	enabled: boolean,
+) {
+	if (enabled) {
+		rail.style.removeProperty("scroll-snap-type");
+		return;
+	}
+	rail.style.setProperty("scroll-snap-type", "none");
+}
+
 /** Midpoint + velocity bias — easier to advance without dragging the full gap. */
 function resolveSnapSlideIndex(
 	slides: HTMLElement[],
@@ -120,12 +136,19 @@ export function useDetailEditorialRailSnap({
 		});
 	}, [syncActiveSlideIndex]);
 
-	const cancelSnapAnimation = useCallback(() => {
-		animationRef.current?.stop();
-		animationRef.current = null;
-		snapLockRef.current = false;
-		allowScrollSettleRef.current = true;
-	}, []);
+	const cancelSnapAnimation = useCallback(
+		(options?: { restoreSnap?: boolean }) => {
+			animationRef.current?.stop();
+			animationRef.current = null;
+			snapLockRef.current = false;
+			allowScrollSettleRef.current = true;
+			// Drag starts by canceling an ease — keep snap off so pointer moves aren't clamped.
+			if (options?.restoreSnap === false) return;
+			const rail = railRef.current;
+			if (rail) setEditorialRailScrollSnapEnabled(rail, true);
+		},
+		[],
+	);
 
 	const easeToSlideIndex = useCallback(
 		(index: number) => {
@@ -137,9 +160,14 @@ export function useDetailEditorialRailSnap({
 			if (!slide) return;
 
 			const targetLeft = slideTargetScrollLeft(rail, slide);
-			if (Math.abs(rail.scrollLeft - targetLeft) < 1.5) return;
+			// Already centered — still restore snap (drag may have left it disabled).
+			if (Math.abs(rail.scrollLeft - targetLeft) < 1.5) {
+				setEditorialRailScrollSnapEnabled(rail, true);
+				setActiveSlideIndex(index);
+				return;
+			}
 
-			cancelSnapAnimation();
+			cancelSnapAnimation({ restoreSnap: false });
 			// Programmatic nav — ignore scroll velocity so CSS snap cannot cascade slides.
 			allowScrollSettleRef.current = false;
 			scrollVelocityRef.current = 0;
@@ -166,9 +194,13 @@ export function useDetailEditorialRailSnap({
 			if (reduceMotion) {
 				rail.scrollLeft = targetLeft;
 				snapLockRef.current = false;
+				setEditorialRailScrollSnapEnabled(rail, true);
 				releaseScrollSettle();
 				return;
 			}
+
+			// Hold snap off for the whole tween — otherwise browsers clamp each frame.
+			setEditorialRailScrollSnapEnabled(rail, false);
 
 			animationRef.current = animate(rail.scrollLeft, targetLeft, {
 				...EDITORIAL_RAIL_SNAP_TWEEN,
@@ -178,6 +210,7 @@ export function useDetailEditorialRailSnap({
 				onComplete: () => {
 					animationRef.current = null;
 					snapLockRef.current = false;
+					setEditorialRailScrollSnapEnabled(rail, true);
 					syncActiveSlideIndex();
 					releaseScrollSettle();
 				},
@@ -286,14 +319,22 @@ export function useDetailEditorialRailSnap({
 				rail.releasePointerCapture(pointerId);
 			}
 
-			if (session.moved) {
+			const didDrag = session.moved;
+			if (didDrag) {
 				suppressNextClickRef.current = true;
 			}
 
 			dragSessionRef.current = null;
 			pointerDownRef.current = false;
 			setIsDragging(false);
-			scheduleSnapToSettledSlide();
+
+			if (didDrag) {
+				// Snap stays off until settle ease completes (same as arrow nav).
+				scheduleSnapToSettledSlide();
+			} else {
+				// Click without drag — put mandatory snap back.
+				setEditorialRailScrollSnapEnabled(rail, true);
+			}
 		};
 
 		const handlePointerDown = (event: PointerEvent) => {
@@ -307,7 +348,9 @@ export function useDetailEditorialRailSnap({
 			}
 
 			pointerDownRef.current = true;
-			cancelSnapAnimation();
+			// Stop any in-flight ease without re-enabling snap — drag writes scrollLeft freely.
+			cancelSnapAnimation({ restoreSnap: false });
+			setEditorialRailScrollSnapEnabled(rail, false);
 			if (scrollEndTimerRef.current) clearTimeout(scrollEndTimerRef.current);
 
 			dragSessionRef.current = {

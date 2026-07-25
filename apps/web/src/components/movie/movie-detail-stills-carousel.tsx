@@ -15,6 +15,8 @@ import {
 	DETAIL_EDITORIAL_RAIL_SCROLLPORT_CLASS,
 	DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
 	DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
+	DETAIL_EDITORIAL_STILL_PORTRAIT_RAIL_EDGE_SPACER_CLASS,
+	DETAIL_EDITORIAL_STILL_PORTRAIT_SLIDE_WIDTH_CLASS,
 	DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS,
 	DETAIL_EDITORIAL_STILL_SLIDE_GAP_CLASS,
 	DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS,
@@ -32,12 +34,23 @@ const STILL_IMAGE_OUTLINE_CLASS =
 /** Cinematic rail height — 16:9 frame plus vertical breathing room. */
 const STILL_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(24rem,52vh)]";
 
-function StillsRailEdgeSpacer() {
+function isPortraitStillSlide(slide: MovieDetailHeroSlide): boolean {
+	return (
+		typeof slide.aspectRatio === "number" &&
+		Number.isFinite(slide.aspectRatio) &&
+		slide.aspectRatio > 0 &&
+		slide.aspectRatio < 1
+	);
+}
+
+function StillsRailEdgeSpacer({ portrait }: { portrait?: boolean }) {
 	return (
 		<li
 			aria-hidden
 			className={cn(
-				DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS,
+				portrait
+					? DETAIL_EDITORIAL_STILL_PORTRAIT_RAIL_EDGE_SPACER_CLASS
+					: DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS,
 				"pointer-events-none shrink-0 list-none",
 			)}
 		/>
@@ -48,6 +61,9 @@ function StillsRailEdgeSpacer() {
 const STILL_SLIDE_INACTIVE_CLASS =
 	"opacity-45 blur-[3px] scale-[0.98] motion-reduce:blur-none motion-reduce:scale-100";
 
+/** `cover` = cinematic crop (movie/TV backdrops); `contain` = full frame (mixed person gallery). */
+export type DetailStillsImageFit = "cover" | "contain";
+
 function MovieDetailStillSlide({
 	slide,
 	slideIndex,
@@ -55,6 +71,7 @@ function MovieDetailStillSlide({
 	isActive,
 	onSelect,
 	shouldSuppressRailClick,
+	imageFit = "cover",
 	className,
 }: {
 	slide: MovieDetailHeroSlide;
@@ -63,6 +80,7 @@ function MovieDetailStillSlide({
 	isActive: boolean;
 	onSelect: () => void;
 	shouldSuppressRailClick: () => boolean;
+	imageFit?: DetailStillsImageFit;
 	className?: string;
 }) {
 	const [downloading, setDownloading] = useState(false);
@@ -98,11 +116,27 @@ function MovieDetailStillSlide({
 		onSelect();
 	};
 
+	// Person gallery sends TMDb aspect_ratio so each card matches the image format.
+	const aspectRatio =
+		typeof slide.aspectRatio === "number" &&
+		Number.isFinite(slide.aspectRatio) &&
+		slide.aspectRatio > 0
+			? slide.aspectRatio
+			: null;
+	const isPortraitCard = aspectRatio != null && aspectRatio < 1;
+	// When the card ratio matches the asset, cover fills cleanly; otherwise contain.
+	const objectFitClass =
+		aspectRatio != null || imageFit === "cover"
+			? "object-cover"
+			: "object-contain";
+
 	return (
 		<li
 			data-still-slide
 			className={cn(
-				DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS,
+				isPortraitCard
+					? DETAIL_EDITORIAL_STILL_PORTRAIT_SLIDE_WIDTH_CLASS
+					: DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS,
 				DETAIL_EDITORIAL_RAIL_SLIDE_SNAP_CLASS,
 				"group/still shrink-0 list-none transition-[opacity,filter,transform] duration-(--page-fade-dur) ease-(--page-fade-ease) motion-reduce:transition-none",
 				!isActive && STILL_SLIDE_INACTIVE_CLASS,
@@ -114,13 +148,25 @@ function MovieDetailStillSlide({
 			onClick={handleSlideClick}
 			onKeyDown={handleSlideKeyDown}
 		>
-			<figure className="relative aspect-video overflow-hidden rounded-[1.5rem] bg-background shadow-[0_12px_40px_-16px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem] md:rounded-[1.75rem]">
+			<figure
+				className={cn(
+					"relative overflow-hidden rounded-[1.5rem] bg-background shadow-[0_12px_40px_-16px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem] md:rounded-[1.75rem]",
+					aspectRatio == null && "aspect-video",
+				)}
+				style={
+					aspectRatio != null ? { aspectRatio: String(aspectRatio) } : undefined
+				}
+			>
 				<Image
 					src={slide.src}
 					alt={slide.label}
 					fill
-					className={cn("object-cover", STILL_IMAGE_OUTLINE_CLASS)}
-					sizes="(max-width: 768px) 92vw, 56rem"
+					className={cn(objectFitClass, STILL_IMAGE_OUTLINE_CLASS)}
+					sizes={
+						isPortraitCard
+							? "(max-width: 768px) 70vw, 20rem"
+							: "(max-width: 768px) 92vw, 56rem"
+					}
 					draggable={false}
 				/>
 				{isActive ? (
@@ -157,11 +203,13 @@ function MovieDetailStillSlide({
 export function MovieDetailStillsCarousel({
 	screenshots,
 	titleSlug,
+	imageFit = "cover",
 	className,
 }: {
 	screenshots: MovieDetailHeroSlide[];
 	/** Film/show title for download filenames. */
 	titleSlug: string;
+	imageFit?: DetailStillsImageFit;
 	className?: string;
 }) {
 	const {
@@ -179,6 +227,11 @@ export function MovieDetailStillsCarousel({
 	});
 
 	if (screenshots.length === 0) return null;
+
+	const firstIsPortrait = isPortraitStillSlide(screenshots[0]!);
+	const lastIsPortrait = isPortraitStillSlide(
+		screenshots[screenshots.length - 1]!,
+	);
 
 	return (
 		<div className={cn("flex flex-col", className)}>
@@ -208,8 +261,9 @@ export function MovieDetailStillsCarousel({
 						DETAIL_EDITORIAL_RAIL_X_FADE_CLASS,
 					)}
 				>
-					<ul className="flex min-h-full w-max items-stretch">
-						<StillsRailEdgeSpacer />
+					{/* items-center: mixed portrait/landscape cards share a mid-line, not stretch. */}
+					<ul className="flex min-h-full w-max items-center">
+						<StillsRailEdgeSpacer portrait={firstIsPortrait} />
 						{screenshots.map((slide, index) => (
 							<MovieDetailStillSlide
 								key={slide.key}
@@ -219,12 +273,13 @@ export function MovieDetailStillsCarousel({
 								isActive={index === activeSlideIndex}
 								onSelect={() => gotoSlide(index)}
 								shouldSuppressRailClick={shouldSuppressRailClick}
+								imageFit={imageFit}
 								className={
 									index > 0 ? DETAIL_EDITORIAL_STILL_SLIDE_GAP_CLASS : undefined
 								}
 							/>
 						))}
-						<StillsRailEdgeSpacer />
+						<StillsRailEdgeSpacer portrait={lastIsPortrait} />
 					</ul>
 				</div>
 			</section>
@@ -245,10 +300,13 @@ export function MovieDetailStillsCarousel({
 export function MovieDetailStillsSection({
 	screenshots,
 	title,
+	imageFit = "cover",
 	className,
 }: {
 	screenshots: MovieDetailHeroSlide[];
 	title: string;
+	/** Person galleries pass `contain` so portrait/poster tags are not cropped. */
+	imageFit?: DetailStillsImageFit;
 	className?: string;
 }) {
 	if (screenshots.length === 0) return null;
@@ -257,6 +315,7 @@ export function MovieDetailStillsSection({
 		<MovieDetailStillsCarousel
 			screenshots={screenshots}
 			titleSlug={title}
+			imageFit={imageFit}
 			className={className}
 		/>
 	);

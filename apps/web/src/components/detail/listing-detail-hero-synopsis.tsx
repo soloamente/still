@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
+import { ReviewSlideCursorCtaButton } from "@/components/review/review-slide-cursor-cta-button";
 import { resolveListingDetailHeroSynopsis } from "@/lib/listing-detail-hero-synopsis";
 
 const SYNOPSIS_MAX_WIDTH_CLASS = "max-w-md";
@@ -58,10 +59,10 @@ export function ListingDetailHeroSynopsis({
 					className,
 				)}
 			>
-				<button
-					type="button"
+				<ReviewSlideCursorCtaButton
+					label="View more"
 					className={cn(
-						"t-review-slide t-review-slide--truncated t-review-slide--zone-hover group/synopsis w-full cursor-pointer select-none border-none bg-transparent p-0 text-center",
+						"t-review-slide t-review-slide--truncated t-review-slide--zone-hover group/synopsis w-full select-none border-none bg-transparent p-0 text-center",
 						SYNOPSIS_PRESS_CLASS,
 						"[-webkit-tap-highlight-color:transparent]",
 					)}
@@ -81,11 +82,7 @@ export function ListingDetailHeroSynopsis({
 							{synopsis.full}
 						</p>
 					</div>
-
-					<div aria-hidden className="t-review-slide__cta">
-						<span className="t-review-slide__cta-label">View more</span>
-					</div>
-				</button>
+				</ReviewSlideCursorCtaButton>
 			</div>
 
 			<DetailVaulSheet

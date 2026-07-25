@@ -135,18 +135,9 @@ export default async function PersonPage({
 			}
 			about={
 				<>
-					<div className="mx-auto w-full max-w-lg px-2.5 pb-6 sm:px-3">
-						<PersonDetailTmdbButton personId={person.id} />
-					</div>
-					{/* Shared column only when stills exist (avoids empty pt/pb under TMDb). */}
+					{/* Awards before gallery stills; TMDb CTA stays at the page foot. */}
 					{screenshots.length > 0 ? (
 						<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
-							<MovieDetailStillsSection
-								screenshots={screenshots}
-								title={person.name}
-								imageFit="contain"
-							/>
-							{/* Wikidata awards stream after stills so the hero/shell paints first. */}
 							<Suspense fallback={null}>
 								<PersonAwardsAsync
 									tmdbPersonId={person.id}
@@ -155,6 +146,11 @@ export default async function PersonPage({
 									embedInColumn
 								/>
 							</Suspense>
+							<MovieDetailStillsSection
+								screenshots={screenshots}
+								title={person.name}
+								imageFit="contain"
+							/>
 						</div>
 					) : (
 						<Suspense fallback={null}>
@@ -165,6 +161,9 @@ export default async function PersonPage({
 							/>
 						</Suspense>
 					)}
+					<div className="mx-auto w-full max-w-lg px-2.5 pt-2 pb-10 sm:px-3">
+						<PersonDetailTmdbButton personId={person.id} />
+					</div>
 				</>
 			}
 			filmography={<PersonFilmographyCatalogue rows={filmography} />}

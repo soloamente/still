@@ -32,12 +32,12 @@ export function PersonFilmographyCatalogue({
 					type="search"
 					value={query}
 					onChange={(event) => setQuery(event.target.value)}
-					onClearQuery={() => setQuery("")}
+					showClearQuery={false}
 					placeholder="Search filmography…"
 					aria-label="Search filmography"
 					autoComplete="off"
 					spellCheck={false}
-					containerClassName="border-0 bg-background shadow-none"
+					containerClassName="border-0 bg-background shadow-none focus-within:border-transparent focus-within:ring-0"
 				/>
 			</div>
 
