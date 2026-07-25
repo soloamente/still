@@ -102,10 +102,10 @@ export function DetailViewSegmentToolbar<T extends string>({
 			{indicator ? (
 				<motion.span
 					aria-hidden
-					className="pointer-events-none absolute top-1 bottom-1 z-0 rounded-full bg-background"
+					className="pointer-events-none absolute top-1 bottom-1 left-0 rounded-full bg-background"
 					initial={false}
 					animate={{
-						left: indicator.left,
+						x: indicator.left,
 						width: indicator.width,
 					}}
 					transition={pillTransition}

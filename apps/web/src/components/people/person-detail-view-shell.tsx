@@ -76,7 +76,7 @@ function PersonDetailViewShellBody({
 	}, [urlView]);
 
 	return (
-		<div className="flex flex-1 flex-col bg-background">
+		<div className="flex min-h-0 flex-1 flex-col bg-background">
 			<PersonDetailTopBar
 				personId={personId}
 				title={title}
@@ -88,10 +88,10 @@ function PersonDetailViewShellBody({
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"relative flex-1 overflow-x-clip overflow-y-visible",
+					"relative flex min-h-0 flex-1 flex-col overflow-x-clip overflow-y-visible",
 				)}
 			>
-				<article className="flex flex-1 flex-col">
+				<article className="flex min-h-0 flex-1 flex-col">
 					{view === "about" ? hero : null}
 
 					<div hidden={view !== "about"}>{about}</div>

@@ -102,12 +102,12 @@ export function SegmentedPillToolbar<T extends string>({
 				<motion.span
 					aria-hidden
 					className={cn(
-						"pointer-events-none absolute top-1 bottom-1 z-0 rounded-full",
+						"pointer-events-none absolute top-1 bottom-1 left-0 z-0 rounded-full",
 						indicatorClassName ?? "bg-card",
 					)}
 					initial={false}
 					animate={{
-						left: indicator.left,
+						x: indicator.left,
 						width: indicator.width,
 					}}
 					transition={pillTransition}

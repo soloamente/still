@@ -318,7 +318,7 @@ export default async function TvShowPage({
 			)}
 		>
 			{heroMetaLine ? (
-				<p className="mb-5 text-muted-foreground text-xs tracking-wide">
+				<p className="mb-5 text-muted-foreground text-sm tracking-wide">
 					{heroMetaLine}
 				</p>
 			) : null}
@@ -338,7 +338,7 @@ export default async function TvShowPage({
 					).hero_artwork
 				}
 			/>
-			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
+			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.12] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
 			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />

@@ -15,6 +15,40 @@ export type MovieDetailReturn = {
 	label: string;
 };
 
+/** Visible + screen-reader labels for the film/TV detail back pill. */
+export type ListingDetailBackAffordance = {
+	visibleLabel: string;
+	ariaLabel: string;
+};
+
+/**
+ * Avoid duplicating a center-tab label on the back pill (e.g. back "Community"
+ * beside the Community tab). Falls back to the destination name when distinct.
+ */
+export function formatListingDetailBackAffordance(
+	destinationLabel: string,
+	tabLabels: readonly string[] = [],
+): ListingDetailBackAffordance {
+	const trimmed = destinationLabel.trim();
+	const lower = trimmed.toLowerCase();
+	const tabCollision = tabLabels.some(
+		(tabLabel) => tabLabel.trim().toLowerCase() === lower,
+	);
+
+	if (tabCollision) {
+		const suffix = lower === "community" ? " feed" : "";
+		return {
+			visibleLabel: "Back",
+			ariaLabel: `Back to ${trimmed}${suffix}`,
+		};
+	}
+
+	return {
+		visibleLabel: trimmed,
+		ariaLabel: `Back to ${trimmed}`,
+	};
+}
+
 /** SSR-safe back pill before client hydration reads sessionStorage / referrer. */
 export const MOVIE_DETAIL_RETURN_SSR_FALLBACK: MovieDetailReturn = {
 	href: "/home",

@@ -179,6 +179,7 @@ export function MovieDetailSectionNav({
 							<li key={section.id}>
 								<DetailMotionButton
 									type="button"
+									motionVariant="chrome"
 									ref={(node) => {
 										if (node) labelRefs.current.set(section.id, node);
 										else labelRefs.current.delete(section.id);
@@ -213,8 +214,13 @@ export function MovieDetailSectionNav({
 				>
 					<motion.div
 						className="absolute inset-x-1 rounded-full bg-card shadow-sm"
+						style={{
+							height: THUMB_HEIGHT_PX,
+							top: 0,
+							transformOrigin: "top center",
+						}}
 						initial={false}
-						animate={{ top: thumbTop, height: THUMB_HEIGHT_PX }}
+						animate={{ y: thumbTop }}
 						transition={thumbTransition}
 					/>
 				</div>

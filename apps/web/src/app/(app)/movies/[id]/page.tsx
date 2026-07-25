@@ -37,6 +37,7 @@ import {
 } from "@/lib/movie-detail-tmdb";
 import { parseMovieDetailViewFromSearchParams } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
+import { movieLooksTheatricalOnly } from "@/lib/movie-theatrical-only";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import {
 	ogImageMetadataFields,
@@ -239,6 +240,10 @@ export default async function MoviePage({
 	const watchProviders = buildMovieWatchProvidersViewModel(
 		j?.["watch/providers"]?.results,
 	);
+	// Empty Streaming tab — cinema-only copy when TMDb has theatrical but no digital yet.
+	const theatricalOnly =
+		watchProviders.providers.length === 0 &&
+		movieLooksTheatricalOnly(j?.release_dates);
 	const premiereRows = extractPremiereRows(j?.release_dates);
 	const festivalKeywords = festivalAndAwardKeywordNames(j?.keywords?.keywords);
 	const recognitionPresent =
@@ -286,7 +291,7 @@ export default async function MoviePage({
 			)}
 		>
 			{heroMetaLine ? (
-				<p className="mb-5 text-muted-foreground text-xs tracking-wide">
+				<p className="mb-5 text-muted-foreground text-sm tracking-wide">
 					{heroMetaLine}
 				</p>
 			) : null}
@@ -306,7 +311,7 @@ export default async function MoviePage({
 					).hero_artwork
 				}
 			/>
-			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
+			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.12] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
 			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />
@@ -350,6 +355,7 @@ export default async function MoviePage({
 				sectionNavItems={sectionNavItems}
 				hero={hero}
 				watchProviders={watchProviders}
+				theatricalOnly={theatricalOnly}
 				about={
 					<Suspense fallback={<MovieDetailAboutFallback />}>
 						<MovieDetailAboutAsync

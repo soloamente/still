@@ -11,6 +11,7 @@ import type { ComponentProps, ReactNode } from "react";
 import {
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	DETAIL_MOTION_SWAP_CLASS,
+	type DetailActionMotionVariant,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
 
@@ -31,9 +32,14 @@ export function DetailMotionLink({
 
 	children,
 
+	motionVariant = "hero",
+
 	...props
-}: MotionLinkProps) {
-	const motionProps = useDetailActionMotion();
+}: MotionLinkProps & {
+	/** `chrome` = sticky detail header / rail (tap-only, subtler scale). */
+	motionVariant?: DetailActionMotionVariant;
+}) {
+	const motionProps = useDetailActionMotion(motionVariant);
 
 	return (
 		<MotionLink
@@ -62,13 +68,18 @@ export function DetailMotionButton({
 
 	iconSwapKey,
 
+	motionVariant = "hero",
+
 	...props
 }: MotionButtonProps & {
 	/** When set, children swap with blur crossfade (e.g. Share → Copied). */
 
 	iconSwapKey?: string;
+
+	/** `chrome` = sticky detail header / rail (tap-only, subtler scale). */
+	motionVariant?: DetailActionMotionVariant;
 }) {
-	const motionProps = useDetailActionMotion();
+	const motionProps = useDetailActionMotion(motionVariant);
 
 	const body =
 		iconSwapKey != null ? (

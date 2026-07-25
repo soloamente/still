@@ -16,6 +16,7 @@ import {
 } from "@/components/movie/detail-motion-pressable";
 import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
 import { DetailViewSegmentToolbar } from "@/components/ui/detail-view-segment-toolbar";
+import { formatListingDetailBackAffordance } from "@/lib/movie-detail-return";
 import {
 	buildPersonDetailViewHref,
 	type PersonDetailView,
@@ -51,6 +52,10 @@ export function PersonDetailTopBar({
 
 	const pathname = usePathname();
 	const back = useMovieDetailReturn();
+	const backAffordance = formatListingDetailBackAffordance(
+		back.label,
+		PERSON_DETAIL_VIEW_TABS.map((tab) => tab.label),
+	);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [shareCopied, setShareCopied] = useState(false);
 
@@ -142,7 +147,7 @@ export function PersonDetailTopBar({
 		<header
 			className={cn(
 				"sticky top-0 z-30 w-full overflow-visible bg-background",
-				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
+				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-200 after:ease-out after:content-[''] motion-reduce:after:transition-none",
 				isScrolled && "after:opacity-100",
 			)}
 		>
@@ -150,11 +155,14 @@ export function PersonDetailTopBar({
 				<div className="flex min-w-0 justify-start">
 					<DetailMotionLink
 						href={back.href}
+						motionVariant="chrome"
 						className={cn(pill, pillIconOnlyMobile, "pl-3 max-sm:pl-0")}
-						aria-label={back.label}
+						aria-label={backAffordance.ariaLabel}
 					>
 						<IconShareIn size="20px" className="shrink-0 opacity-90" />
-						<span className="hidden truncate sm:inline">{back.label}</span>
+						<span className="hidden truncate sm:inline">
+							{backAffordance.visibleLabel}
+						</span>
 					</DetailMotionLink>
 				</div>
 				<DetailViewSegmentToolbar
@@ -166,6 +174,7 @@ export function PersonDetailTopBar({
 				<div className="flex min-w-0 items-center justify-end gap-2">
 					<DetailMotionButton
 						type="button"
+						motionVariant="chrome"
 						className={cn(pill, pillIconOnlyMobile, "pr-3 max-sm:pr-0")}
 						onClick={() => void handleShare()}
 						aria-label={shareCopied ? "Link copied" : `Copy link for ${title}`}

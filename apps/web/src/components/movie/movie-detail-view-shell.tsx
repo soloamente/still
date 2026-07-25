@@ -2,7 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { useSearchParams } from "next/navigation";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
@@ -34,6 +34,7 @@ export function MovieDetailViewShell({
 	sectionNavItems,
 	hero,
 	watchProviders,
+	theatricalOnly = false,
 	about,
 	community,
 	quotes,
@@ -46,6 +47,8 @@ export function MovieDetailViewShell({
 	sectionNavItems: MovieDetailSectionNavItem[];
 	hero: ReactNode;
 	watchProviders: MovieWatchProvidersViewModel;
+	/** Empty Streaming tab — cinema-only message when no at-home providers. */
+	theatricalOnly?: boolean;
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
@@ -61,6 +64,7 @@ export function MovieDetailViewShell({
 				sectionNavItems={sectionNavItems}
 				hero={hero}
 				watchProviders={watchProviders}
+				theatricalOnly={theatricalOnly}
 				about={about}
 				community={community}
 				quotes={quotes}
@@ -78,6 +82,7 @@ function MovieDetailViewShellBody({
 	sectionNavItems,
 	hero,
 	watchProviders,
+	theatricalOnly,
 	about,
 	community,
 	quotes,
@@ -90,6 +95,7 @@ function MovieDetailViewShellBody({
 	sectionNavItems: MovieDetailSectionNavItem[];
 	hero: ReactNode;
 	watchProviders: MovieWatchProvidersViewModel;
+	theatricalOnly: boolean;
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
@@ -104,15 +110,23 @@ function MovieDetailViewShellBody({
 		episode: searchParams.get("episode"),
 	});
 	const [view, setView] = useState<MovieDetailView>(urlView);
+	const previousViewRef = useRef(view);
 
 	useEffect(() => {
 		setView(urlView);
 	}, [urlView]);
 
+	// Off-tab RSC panels unmount so short tabs (Streaming) don't inherit About scroll height.
+	useEffect(() => {
+		if (previousViewRef.current === view) return;
+		previousViewRef.current = view;
+		window.scrollTo({ top: 0, behavior: "instant" });
+	}, [view]);
+
 	const showSectionNav = view === "about" && sectionNavItems.length >= 2;
 
 	return (
-		<div className="flex flex-1 flex-col bg-background">
+		<div className="flex min-h-0 flex-1 flex-col bg-background">
 			<MovieReviewDeepLinkOpener />
 			<MovieDetailTopBar
 				movieId={movieId}
@@ -130,7 +144,7 @@ function MovieDetailViewShellBody({
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"relative flex-1 overflow-x-clip overflow-y-visible",
+					"relative flex min-h-0 flex-1 flex-col overflow-x-clip overflow-y-visible",
 				)}
 			>
 				<ListingPresenceProvider
@@ -139,24 +153,38 @@ function MovieDetailViewShellBody({
 				/>
 				<article
 					className={cn(
-						"flex flex-1 flex-col",
+						"flex min-h-0 flex-1 flex-col",
 						showSectionNav && MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
 					)}
 				>
-					{hero}
-
-					<div
-						className="mx-auto flex w-full max-w-2xl flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10"
-						hidden={view !== "streaming"}
-					>
-						<MovieDetailStreaming watchProviders={watchProviders} />
+					{/* Stable keyed slots — RSC Suspense panels must not be conditional direct
+					    siblings in the article array (Turbopack key warning). */}
+					<div key="movie-detail-tab-hero">
+						{view === "about" ? hero : null}
 					</div>
-					<div hidden={view !== "about"}>{about}</div>
-					<div hidden={view !== "community"}>{community}</div>
-					{/* Unmount quotes off-tab — TV episode picker auto-defaults sync ?view=quotes.
-					    Wrap in a stable div so the RSC-passed element is never a conditional
-					    direct sibling in the array (avoids React key warning in Turbopack). */}
-					<div>{view === "quotes" ? quotes : null}</div>
+
+					<div key="movie-detail-tab-streaming">
+						{view === "streaming" ? (
+							<div className="mx-auto flex w-full max-w-2xl flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10">
+								<MovieDetailStreaming
+									watchProviders={watchProviders}
+									theatricalOnly={theatricalOnly}
+								/>
+							</div>
+						) : null}
+					</div>
+
+					<div key="movie-detail-tab-about">
+						{view === "about" ? about : null}
+					</div>
+
+					<div key="movie-detail-tab-community">
+						{view === "community" ? community : null}
+					</div>
+
+					<div key="movie-detail-tab-quotes">
+						{view === "quotes" ? quotes : null}
+					</div>
 				</article>
 			</section>
 		</div>

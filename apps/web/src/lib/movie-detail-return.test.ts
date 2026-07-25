@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 
 import {
+	formatListingDetailBackAffordance,
 	isListingDetailPath,
 	isMeSettingsReturnHref,
 	isSameProfileReturnHref,
@@ -72,5 +73,35 @@ describe("isMeSettingsReturnHref", () => {
 	it("ignores profile and home targets", () => {
 		expect(isMeSettingsReturnHref("/profile/anselmo")).toBe(false);
 		expect(isMeSettingsReturnHref("/home?browse=movies")).toBe(false);
+	});
+});
+
+describe("formatListingDetailBackAffordance", () => {
+	it("uses neutral Back when the destination matches a center tab label", () => {
+		expect(
+			formatListingDetailBackAffordance("Community", [
+				"About",
+				"Streaming",
+				"Community",
+				"Quotes",
+			]),
+		).toEqual({
+			visibleLabel: "Back",
+			ariaLabel: "Back to Community feed",
+		});
+	});
+
+	it("keeps the destination name when it does not collide with tabs", () => {
+		expect(
+			formatListingDetailBackAffordance("Movies", [
+				"About",
+				"Streaming",
+				"Community",
+				"Quotes",
+			]),
+		).toEqual({
+			visibleLabel: "Movies",
+			ariaLabel: "Back to Movies",
+		});
 	});
 });
