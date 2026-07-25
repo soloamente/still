@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { FestivalRecognitionIcon } from "@/components/movie/festival-recognition-icon";
@@ -64,11 +65,17 @@ export function PersonAwardsSection({
 									) : null}
 									{workTitle ? (
 										workHref ? (
+											// Underline + outbound arrow so work titles read as links (parity with drawer).
 											<Link
 												href={workHref}
-												className="w-full text-balance text-muted-foreground text-xs leading-tight underline-offset-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:text-[0.8125rem] [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:underline"
+												aria-label={`Open ${workTitle}`}
+												className="inline-flex max-w-full items-baseline justify-center gap-0.5 text-balance font-medium text-muted-foreground text-xs leading-tight underline decoration-muted-foreground/40 underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:text-[0.8125rem] [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40"
 											>
-												{workTitle}
+												<span className="min-w-0">{workTitle}</span>
+												<ArrowUpRight
+													className="size-3 shrink-0 translate-y-px opacity-80"
+													aria-hidden
+												/>
 											</Link>
 										) : (
 											<p className="w-full text-balance text-muted-foreground text-xs leading-tight sm:text-[0.8125rem]">

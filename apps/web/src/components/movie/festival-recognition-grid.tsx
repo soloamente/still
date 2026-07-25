@@ -1,42 +1,8 @@
 import { cn } from "@still/ui/lib/utils";
 
 import { FestivalRecognitionIcon } from "@/components/movie/festival-recognition-icon";
+import { groupFestivalDetailLines } from "@/lib/festival-recognition-lines";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
-
-const YEAR_ONLY = /^\d{4}$/;
-
-/** Pairs flat `[year, detail, …]` lines into one block per award. */
-function groupFestivalDetailLines(
-	lines: string[],
-): Array<{ year: string | null; detail: string | null }> {
-	const groups: Array<{ year: string | null; detail: string | null }> = [];
-	let index = 0;
-
-	while (index < lines.length) {
-		const current = lines[index] ?? "";
-		const next = lines[index + 1];
-		const currentIsYear = YEAR_ONLY.test(current.trim());
-		const nextIsDetail =
-			next != null && next.length > 0 && !YEAR_ONLY.test(next.trim());
-
-		if (currentIsYear && nextIsDetail) {
-			groups.push({ year: current, detail: next });
-			index += 2;
-			continue;
-		}
-
-		if (currentIsYear) {
-			groups.push({ year: current, detail: null });
-			index += 1;
-			continue;
-		}
-
-		groups.push({ year: null, detail: current });
-		index += 1;
-	}
-
-	return groups;
-}
 
 /**
  * Flex wrap keeps partial second rows centered (e.g. 7–11 entries under the 6-column cap).
@@ -49,7 +15,7 @@ function festivalRecognitionListLayout(count: number): string {
 	return "flex flex-wrap justify-center";
 }
 
-/** MUBI-style festival / award column grid — shared by About section and awards drawer. */
+/** MUBI-style festival / award column grid — About section preview (drawer uses the list). */
 export function FestivalRecognitionGrid({
 	entries,
 	className,

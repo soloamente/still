@@ -3,7 +3,7 @@ import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections
 import { buildPersonAwardRows } from "@/lib/person-awards";
 import { fetchWikidataPersonAwards } from "@/lib/wikidata-person-awards";
 
-/** Stream Wikidata awards under About stills without blocking the person shell. */
+/** Stream Wikidata awards on About (above stills when present) without blocking the shell. */
 export async function PersonAwardsAsync({
 	tmdbPersonId,
 	imdbId,

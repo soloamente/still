@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
@@ -49,36 +50,46 @@ function PersonAwardListRow({
 				>
 					{row.awardLabel}
 				</p>
-				<p
-					className={cn(
-						"text-xs leading-relaxed sm:text-[0.8125rem]",
-						muted ? "text-muted-foreground" : "text-foreground/80",
-					)}
-				>
+				{/* Year + status pill (canvas-on-card chip, same family as @handle tags). */}
+				<div className="flex flex-wrap items-center gap-2">
 					{row.year != null ? (
-						<span className="font-medium tabular-nums">{row.year}</span>
-					) : null}
-					{row.year != null ? (
-						<span aria-hidden className="px-1.5">
-							·
-						</span>
-					) : null}
-					<span>{statusWord}</span>
-				</p>
-				{workTitle ? (
-					workHref ? (
-						<Link
-							href={workHref}
+						<span
 							className={cn(
-								"block truncate text-sm underline-offset-4 transition-colors",
-								"[@media(hover:hover)]:hover:underline",
-								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-								muted
-									? "text-muted-foreground"
-									: "text-foreground/90 [@media(hover:hover)]:hover:text-foreground",
+								"font-medium text-xs tabular-nums leading-none sm:text-[0.8125rem]",
+								muted ? "text-muted-foreground" : "text-foreground/80",
 							)}
 						>
-							{workTitle}
+							{row.year}
+						</span>
+					) : null}
+					<span
+						className={cn(
+							"inline-flex items-center rounded-full bg-background px-2.5 py-0.5 font-medium text-[11px] tracking-wide",
+							muted ? "text-muted-foreground" : "text-foreground",
+						)}
+					>
+						{statusWord}
+					</span>
+				</div>
+				{workTitle ? (
+					workHref ? (
+						// Always-visible underline + outbound arrow — same cue as review title mentions.
+						<Link
+							href={workHref}
+							aria-label={`Open ${workTitle}`}
+							className={cn(
+								"inline-flex max-w-full items-baseline gap-0.5 font-medium text-sm underline decoration-foreground/25 underline-offset-2 transition-colors",
+								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+								muted
+									? "text-muted-foreground decoration-muted-foreground/40 [@media(hover:hover)]:hover:decoration-muted-foreground/70"
+									: "text-foreground/90 [@media(hover:hover)]:hover:text-desert-orange [@media(hover:hover)]:hover:decoration-desert-orange/40",
+							)}
+						>
+							<span className="truncate">{workTitle}</span>
+							<ArrowUpRight
+								className="size-3.5 shrink-0 translate-y-px opacity-80"
+								aria-hidden
+							/>
 						</Link>
 					) : (
 						<span

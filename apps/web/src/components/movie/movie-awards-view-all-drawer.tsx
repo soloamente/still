@@ -6,15 +6,15 @@ import { useRef, useState } from "react";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
-import { FestivalRecognitionGrid } from "@/components/movie/festival-recognition-grid";
+import { FestivalRecognitionAwardList } from "@/components/movie/festival-recognition-award-list";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import type { FestivalRecognitionEntry } from "@/lib/movie-festival-recognition";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 /**
- * Full awards & festivals catalogue — opens from the About tab when the inline
- * grid is capped at twelve festival columns.
+ * Full awards & festivals catalogue — person-awards list chrome (year + Won /
+ * Nominated pills). Opens from About when the inline grid is capped.
  */
 export function MovieAwardsViewAllDrawer({
 	listingTitle,
@@ -61,7 +61,7 @@ export function MovieAwardsViewAllDrawer({
 		>
 			<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
 				<DetailDrawerScrollBody scrollRef={scrollRef}>
-					<div className="mx-auto w-full max-w-6xl px-2 pb-6 sm:px-4">
+					<div className="mx-auto w-full max-w-2xl px-2 pb-6 sm:px-4">
 						<p className="mx-auto mb-8 max-w-2xl text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
 							{entries.length} festival and award{" "}
 							{entries.length === 1 ? "group" : "groups"}
@@ -69,7 +69,10 @@ export function MovieAwardsViewAllDrawer({
 								? ` · ${awardLineCount} wins and nominations`
 								: null}
 						</p>
-						<FestivalRecognitionGrid entries={entries} />
+						<FestivalRecognitionAwardList
+							entries={entries}
+							listingTitle={listingTitle}
+						/>
 					</div>
 				</DetailDrawerScrollBody>
 				<SheetScrollScrims
