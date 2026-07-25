@@ -5,7 +5,10 @@ import {
 	DEFAULT_HOME_CATALOG_RUN,
 	type HomeCatalogRun,
 } from "@/lib/home-catalog-run";
-import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
+import {
+	DEFAULT_HOME_CATALOG_SORT,
+	type HomeCatalogSort,
+} from "@/lib/home-catalog-sort";
 import type {
 	HomeCommunityFeed,
 	HomeCommunityRankKind,
@@ -100,10 +103,10 @@ export function buildHomeLobbyHref(input: {
 			params.set("run", "upcoming");
 			params.set("sort", "popular");
 		} else {
-			// Always serialize `sort` — bare `/home` would otherwise restore `still.home-lobby-href-v1`
-			// from the previous chip (e.g. Popular) while the Latest chip reads as active.
-			if (catalogSort === "popular") {
-				params.set("sort", "popular");
+			// Always serialize `sort` — bare `/home` restores `still.home-lobby-href-v1`
+			// and must not disagree with the active chip (Popular is the default).
+			if (catalogSort === DEFAULT_HOME_CATALOG_SORT) {
+				params.set("sort", DEFAULT_HOME_CATALOG_SORT);
 			} else if (catalogSort === "latest") {
 				params.set("sort", "latest");
 			} else if (catalogSort === "upcoming") {

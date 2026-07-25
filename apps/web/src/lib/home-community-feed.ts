@@ -60,6 +60,12 @@ export const HOME_COMMUNITY_FEEDS: readonly {
 	label: string;
 	hint: string;
 }[] = [
+	// Leading chip — ranks first on the Community filter rail (Agentation).
+	{
+		id: "ranks",
+		label: "Ranks",
+		hint: "Patron leaderboards — Films, Shows, or Reviews",
+	},
 	{
 		id: "lists",
 		label: "Lists",
@@ -74,11 +80,6 @@ export const HOME_COMMUNITY_FEEDS: readonly {
 		id: "activity",
 		label: "Activity",
 		hint: "Watch logs, reviews, and lists from people you follow",
-	},
-	{
-		id: "ranks",
-		label: "Ranks",
-		hint: "Patron leaderboards — Films, Shows, or Reviews",
 	},
 ];
 
