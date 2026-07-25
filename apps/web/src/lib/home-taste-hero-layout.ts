@@ -27,8 +27,12 @@ export const HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME =
 export const HOME_TASTE_HERO_POSTER_RAIL_EDGE_FADE_WIDTH_PX = 128;
 export const HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME =
 	"relative min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_2.75rem)] sm:-mr-10 sm:ml-auto sm:w-full sm:max-w-[24rem] sm:[mask-image:linear-gradient(to_right,transparent_0%,black_4.5rem)] lg:max-w-[25.5rem] min-[2000px]:max-w-[27rem] min-[2000px]:[mask-image:linear-gradient(to_right,transparent_0%,black_5rem)]";
+/**
+ * RTL rail — first child sits on the physical right. Inset only that tile from the
+ * edge (`mr`), keep the scrollport flush (`pr-0`) so the container does not shift in.
+ */
 export const HOME_TASTE_HERO_POSTER_RAIL_SCROLL_CLASSNAME =
-	"dir-rtl items-end gap-2 py-1 pl-2 pr-0 max-sm:pl-3 sm:gap-3 sm:py-2 sm:pl-3 [&>*]:dir-ltr";
+	"dir-rtl items-end gap-2 py-1 pl-2 pr-0 max-sm:pl-3 sm:gap-3 sm:py-2 sm:pl-3 [&>*]:dir-ltr [&>*:first-child]:mr-2 max-sm:[&>*:first-child]:mr-3 sm:[&>*:first-child]:mr-3";
 /** Taste-hero poster tile widths — mobile unchanged; larger on desktop. */
 export const HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME =
 	"w-[4.25rem] sm:w-32";
@@ -43,7 +47,10 @@ export const HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME =
 /** Mobile — drop the whole spotlight row (actions + poster rail move together). */
 export const HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME =
 	"max-sm:translate-y-10";
-/** 2K+ only — drop spotlight row; mid/desktop unchanged. */
+/**
+ * 2K+ only — drop the full spotlight row (copy + actions + poster rail).
+ * Must not apply to the title/rating block alone or the score slides under the CTAs.
+ */
 export const HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME =
 	"min-[2000px]:translate-y-16";
 /** 2K+ — reserve layout space so the nudge stays inside the hero section. */

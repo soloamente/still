@@ -2,7 +2,9 @@
 
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
+import { useState } from "react";
 
+import { HomeTasteHeroYouTubeTrailer } from "@/components/home/home-taste-hero-youtube-trailer";
 import {
 	HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME,
 	HOME_TASTE_HERO_SCRIM_BOTTOM_VERTICAL_CLASSNAME,
@@ -11,6 +13,7 @@ import {
 	HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME,
 	HOME_TASTE_HERO_TRAILER_IFRAME_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
+import { parseTasteHeroYouTubeEmbed } from "@/lib/home-taste-hero-youtube-embed";
 
 /** Backdrop + optional trailer for the taste hero — colocated with controls (no context sync). */
 export function HomeTasteHeroMediaLayer({
@@ -22,6 +25,36 @@ export function HomeTasteHeroMediaLayer({
 	backdropUrl: string | null;
 	trailerSrc: string | null;
 }) {
+	// Remount clears age-gate block state when the spotlight title/trailer changes.
+	return (
+		<HomeTasteHeroMediaLayerBody
+			key={`${tmdbId}:${trailerSrc ?? ""}`}
+			tmdbId={tmdbId}
+			backdropUrl={backdropUrl}
+			trailerSrc={trailerSrc}
+		/>
+	);
+}
+
+function HomeTasteHeroMediaLayerBody({
+	tmdbId,
+	backdropUrl,
+	trailerSrc,
+}: {
+	tmdbId: number;
+	backdropUrl: string | null;
+	trailerSrc: string | null;
+}) {
+	// Age-restricted / non-embeddable YouTube titles hide the player and keep the still.
+	const [trailerBlocked, setTrailerBlocked] = useState(false);
+
+	const youtubeEmbed =
+		trailerSrc && !trailerBlocked
+			? parseTasteHeroYouTubeEmbed(trailerSrc)
+			: null;
+	const showVimeoIframe =
+		Boolean(trailerSrc) && !trailerBlocked && youtubeEmbed == null;
+
 	return (
 		<div className={HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME} aria-hidden>
 			<div className="relative size-full">
@@ -48,7 +81,16 @@ export function HomeTasteHeroMediaLayer({
 						)}
 					/>
 				)}
-				{trailerSrc ? (
+				{youtubeEmbed ? (
+					<HomeTasteHeroYouTubeTrailer
+						key={`hero-trailer-yt-${tmdbId}-${youtubeEmbed.videoId}`}
+						videoId={youtubeEmbed.videoId}
+						origin={youtubeEmbed.origin}
+						className={HOME_TASTE_HERO_TRAILER_IFRAME_CLASSNAME}
+						onBlocked={() => setTrailerBlocked(true)}
+					/>
+				) : null}
+				{showVimeoIframe && trailerSrc ? (
 					<iframe
 						key={`hero-trailer-${tmdbId}`}
 						title="Background film trailer"

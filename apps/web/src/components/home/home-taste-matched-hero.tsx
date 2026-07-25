@@ -70,6 +70,7 @@ import {
 import { tmdbBackdropUrlFromPath } from "@/lib/tmdb-backdrop-url";
 import { tmdbLogoUrlFromPath } from "@/lib/tmdb-logo-url";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import { useHorizontalRailPointerDrag } from "@/lib/use-horizontal-rail-pointer-drag";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
 	useHorizontalRailPosterEdgeOpacity,
@@ -192,6 +193,9 @@ export function HomeTasteMatchedHero({
 			return next;
 		});
 	}, []);
+	const { isDragging: isPosterRailDragging, shouldSuppressClick } =
+		useHorizontalRailPointerDrag(posterRailRef, movies.length > 1);
+
 	// Posters lose opacity at clipped edges — long left runway before wrapper clip.
 	useHorizontalRailPosterEdgeOpacity(
 		posterRailRef,
@@ -492,7 +496,9 @@ export function HomeTasteMatchedHero({
 						className={cn(
 							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-2 overflow-visible px-3 pb-1 sm:mt-0",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
+							// Nudge title + actions + posters together — rating must not slide under buttons.
 							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
+							HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 							"sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:px-6",
 						)}
 					>
@@ -505,7 +511,6 @@ export function HomeTasteMatchedHero({
 								className={cn(
 									"space-y-2 sm:space-y-3",
 									HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
-									HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
 								)}
 							>
 								<p className="inline-flex items-center gap-1.5 text-balance text-[0.6875rem] text-foreground/75 tracking-wide sm:text-sm">
@@ -677,6 +682,8 @@ export function HomeTasteMatchedHero({
 									className={cn(
 										HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
 										HOME_TASTE_HERO_POSTER_RAIL_SCROLL_CLASSNAME,
+										"cursor-grab select-none",
+										isPosterRailDragging && "cursor-grabbing",
 									)}
 									role="listbox"
 									aria-label="Browse taste-matched films"
@@ -716,6 +723,8 @@ export function HomeTasteMatchedHero({
 													}}
 													className={cn(
 														"shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
+														// Keep pointer gestures on the button — not a floating browser image drag.
+														"[&_img]:pointer-events-none [&_img]:[-webkit-user-drag:none]",
 														isActive
 															? cn(
 																	HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
@@ -726,7 +735,14 @@ export function HomeTasteMatchedHero({
 																	"opacity-[calc(0.8*var(--edge-opacity))] [@media(hover:hover)]:opacity-(--edge-opacity) [@media(hover:hover)]:hover:scale-[1.02]",
 																),
 													)}
-													onClick={() => setActiveIndex(index)}
+													onDragStart={(event) => {
+														event.preventDefault();
+													}}
+													onClick={() => {
+														// Grab-drag should not change the spotlight title.
+														if (shouldSuppressClick()) return;
+														setActiveIndex(index);
+													}}
 												>
 													<MoviePoster
 														movieId={film.tmdbId}
