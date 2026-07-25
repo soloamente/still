@@ -2,6 +2,9 @@ import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
 
 export type HomeCatalogSort = "latest" | "popular" | "upcoming";
 
+/** First-open / bare `?sort=` default — Popular, not Latest. */
+export const DEFAULT_HOME_CATALOG_SORT: HomeCatalogSort = "popular";
+
 /** Normalises `?sort=` for the home lobby — shared by the RSC page and client chip strip. */
 export function parseHomeCatalogSort(
 	raw: string | undefined | null,
@@ -22,5 +25,6 @@ export function parseHomeCatalogSort(
 	}
 	if (s === "popular" || s === "popularity") return "popular";
 	if (s === "upcoming" || s === "coming" || s === "soon") return "upcoming";
-	return "latest";
+	if (s === "latest" || s === "new" || s === "newest") return "latest";
+	return DEFAULT_HOME_CATALOG_SORT;
 }
