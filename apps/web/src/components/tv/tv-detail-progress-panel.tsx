@@ -5,7 +5,7 @@ import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
 import { cn } from "@still/ui/lib/utils";
 import { ChevronDown, Loader2 } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
@@ -24,30 +24,81 @@ import {
 	countTvLogsInScope,
 	findLatestTvLogInScope,
 } from "@/lib/tv-log-scope-prior";
+import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import {
 	TV_PROGRESS_MODE_LABELS,
 	TV_WATCH_STATUS_LABELS,
 	type TvEpisodeSummary,
 	type TvProgressMode,
 	type TvSeasonSummary,
+	type TvWatchStatus,
 } from "@/lib/tv-watch-types";
+
+/** Raised tiles on the detail card — no borders, rings, or decorative shadows. */
+const PROGRESS_TILE_CLASS = "rounded-2xl bg-background";
+
+/** Shared content width inside the About section column. */
+const PROGRESS_CONTENT_CLASS = "mx-auto flex w-full max-w-2xl flex-col gap-5";
 
 /** Secondary diary controls on season rows — mirrors TV hero (rewatch + pencil). */
 const SEASON_DIARY_ACTION_CIRCLE_CLASS = cn(
-	"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground",
+	"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card text-foreground",
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 	"disabled:pointer-events-none disabled:opacity-45",
 );
 
 const SEASON_DIARY_FALLBACK_PILL_CLASS = cn(
-	"inline-flex shrink-0 items-center justify-center rounded-full bg-background px-4 py-2 font-medium text-foreground text-sm",
+	"inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-card px-4 py-2 font-medium text-foreground text-sm",
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 );
 
+const MARK_SEASON_COMPLETE_CLASS = cn(
+	"inline-flex min-h-10 min-w-[9.5rem] shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 font-semibold text-background text-sm",
+	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+	"disabled:pointer-events-none disabled:opacity-50",
+);
+
+const START_WATCHING_CLASS = cn(
+	"inline-flex min-h-11 items-center justify-center rounded-full bg-foreground px-6 py-3 font-semibold text-background text-sm",
+	"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+	"disabled:pointer-events-none disabled:opacity-50",
+);
+
+function countWatchedInSeason(
+	watchedKeySet: ReadonlySet<string>,
+	seasonNumber: number,
+) {
+	let count = 0;
+	for (const key of watchedKeySet) {
+		if (key.startsWith(`${seasonNumber}:`)) count += 1;
+	}
+	return count;
+}
+
+function buildProgressSubtitle(input: {
+	hasWatch: boolean;
+	status: TvWatchStatus | null;
+	progressMode: TvProgressMode | null;
+}) {
+	if (!input.hasWatch) {
+		return "Track seasons and episodes as you watch — separate from your diary.";
+	}
+	if (input.status === "paused" || input.status === "abandoned") {
+		return `${TV_WATCH_STATUS_LABELS[input.status]} — set status back to Watching in the hero to keep checking episodes off.`;
+	}
+	if (input.status === "finished") {
+		return "Series marked finished — your episode checklist stays here for reference.";
+	}
+	if (input.progressMode === "episode") {
+		return "Check off episodes as you go. Expand a season to see every episode.";
+	}
+	return "Mark whole seasons when you binge them, or log season diary entries.";
+}
+
 /**
- * Season vs episode progress UI on the About tab — checkboxes and season milestones.
+ * Season vs episode progress UI on the About tab — summary meter, mode toggle, and rows.
  */
 export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 	const { tvWatch, userState } = useTvDetailWatchContext();
@@ -55,6 +106,8 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		hydrated,
 		watch,
 		watchedKeySet,
+		nextEpisode,
+		isActivelyTracking,
 		busy,
 		startWatching,
 		setProgressMode,
@@ -88,6 +141,17 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		if (!watch) return;
 		void loadSeasons();
 	}, [watch, loadSeasons]);
+
+	const totalEpisodes = useMemo(
+		() => seasons.reduce((sum, season) => sum + season.episode_count, 0),
+		[seasons],
+	);
+	const watchedEpisodeCount = watchedKeySet.size;
+	const progressPercent =
+		totalEpisodes > 0
+			? Math.min(100, Math.round((watchedEpisodeCount / totalEpisodes) * 100))
+			: 0;
+	const continueLabel = formatTvNextEpisodeLabel(nextEpisode);
 
 	async function loadEpisodesForSeason(seasonNumber: number) {
 		if (episodesBySeason[seasonNumber]) return;
@@ -165,8 +229,15 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 				title="Your progress"
 				subtitle="Track seasons and episodes as you watch."
 			>
-				<div className="flex justify-center py-8">
-					<Loader2 className="size-6 animate-spin text-muted-foreground" />
+				<div className={PROGRESS_CONTENT_CLASS}>
+					<div
+						className={cn(
+							PROGRESS_TILE_CLASS,
+							"flex justify-center px-6 py-10",
+						)}
+					>
+						<Loader2 className="size-6 animate-spin text-muted-foreground" />
+					</div>
 				</div>
 			</MovieDetailBodySection>
 		);
@@ -177,20 +248,32 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 			<MovieDetailBodySection
 				id={TV_DETAIL_SECTION.progress}
 				title="Your progress"
-				subtitle="Track seasons and episodes as you watch — separate from your diary."
+				subtitle={buildProgressSubtitle({
+					hasWatch: false,
+					status: null,
+					progressMode: null,
+				})}
 			>
-				<div className="flex flex-col items-center gap-4 py-4">
-					<p className="max-w-md text-balance text-center text-muted-foreground text-sm">
-						Start watching to check off episodes and see what&apos;s next.
-					</p>
-					<button
-						type="button"
-						className="inline-flex rounded-full bg-foreground px-5 py-3 font-semibold text-background text-sm"
-						onClick={() => void startWatching()}
-						disabled={busy === "start"}
+				<div className={PROGRESS_CONTENT_CLASS}>
+					<div
+						className={cn(
+							PROGRESS_TILE_CLASS,
+							"flex flex-col items-center gap-4 px-6 py-8 text-center sm:px-8 sm:py-10",
+						)}
 					>
-						{busy === "start" ? "Starting…" : "Start watching"}
-					</button>
+						<p className="max-w-sm text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+							Start watching to check off episodes, mark seasons complete, and
+							see what&apos;s next in the series.
+						</p>
+						<DetailMotionButton
+							type="button"
+							className={START_WATCHING_CLASS}
+							onClick={() => void startWatching()}
+							disabled={busy === "start"}
+						>
+							{busy === "start" ? "Starting…" : "Start watching"}
+						</DetailMotionButton>
+					</div>
 				</div>
 			</MovieDetailBodySection>
 		);
@@ -203,37 +286,54 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		<MovieDetailBodySection
 			id={TV_DETAIL_SECTION.progress}
 			title="Your progress"
-			subtitle={`${statusLabel} · ${progressMode === "episode" ? "Episode checklist" : "Season milestones"}`}
+			subtitle={buildProgressSubtitle({
+				hasWatch: true,
+				status: watch.status,
+				progressMode,
+			})}
 		>
-			<div className="mx-auto flex max-w-2xl flex-col items-center gap-6">
-				<SegmentedPillToolbar
-					layoutId="tv-detail-progress-mode-pill"
-					aria-label="Progress mode"
-					value={progressMode}
-					onChange={(mode) => void setProgressMode(mode)}
-					disabled={busy === "mode"}
-					options={(
-						["season", "episode"] as const satisfies TvProgressMode[]
-					).map((mode) => ({
-						id: mode,
-						label: TV_PROGRESS_MODE_LABELS[mode],
-					}))}
+			<div className={PROGRESS_CONTENT_CLASS}>
+				<TvProgressSummaryCard
+					statusLabel={statusLabel}
+					watchedEpisodeCount={watchedEpisodeCount}
+					totalEpisodes={totalEpisodes}
+					progressPercent={progressPercent}
+					continueLabel={
+						isActivelyTracking && continueLabel ? continueLabel : null
+					}
+					seasonCount={seasons.length}
 				/>
 
+				<div className="flex justify-center">
+					<SegmentedPillToolbar
+						layoutId="tv-detail-progress-mode-pill"
+						aria-label="Progress mode"
+						value={progressMode}
+						onChange={(mode) => void setProgressMode(mode)}
+						disabled={busy === "mode"}
+						options={(
+							["season", "episode"] as const satisfies TvProgressMode[]
+						).map((mode) => ({
+							id: mode,
+							label: TV_PROGRESS_MODE_LABELS[mode],
+						}))}
+					/>
+				</div>
+
 				{seasonsLoading ? (
-					<div className="flex justify-center py-6">
+					<div
+						className={cn(PROGRESS_TILE_CLASS, "flex justify-center px-6 py-8")}
+					>
 						<Loader2 className="size-5 animate-spin text-muted-foreground" />
 					</div>
 				) : null}
 
 				{!seasonsLoading && progressMode === "season" ? (
-					<ul className="divide-y divide-foreground/5 rounded-2xl bg-card shadow-[var(--shadow-raised)]">
+					<ul className="flex flex-col gap-3">
 						{seasons.map((season) => {
 							const sn = season.season_number;
 							const total = season.episode_count;
-							const watchedInSeason = [...watchedKeySet].filter((k) =>
-								k.startsWith(`${sn}:`),
-							).length;
+							const watchedInSeason = countWatchedInSeason(watchedKeySet, sn);
 							const complete = total > 0 && watchedInSeason >= total;
 							const seasonScope = {
 								logScope: "season" as const,
@@ -245,108 +345,38 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 								seasonScope,
 							);
 							const seasonName = season.name || `Season ${sn}`;
+
 							return (
-								<li
-									key={sn}
-									className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5"
-								>
-									<div className="text-left">
-										<p className="font-medium text-foreground text-sm">
-											{seasonName}
-										</p>
-										<p className="mt-0.5 text-muted-foreground text-xs tabular-nums">
-											{watchedInSeason} / {total} episodes
-											{complete ? " · Complete" : ""}
-										</p>
-									</div>
-									{complete ? (
-										seasonLogCount > 0 && latestSeasonLog ? (
-											<div className="flex shrink-0 items-center gap-2">
-												<DetailMotionButton
-													type="button"
-													className={SEASON_DIARY_ACTION_CIRCLE_CLASS}
-													onClick={() =>
-														handleOpenQuickLog(
-															{
-																logScope: "season",
-																seasonNumber: sn,
-															},
-															{ asRewatch: true },
-														)
-													}
-													aria-label={
-														seasonLogCount > 1
-															? `Log ${seasonName} again (${seasonLogCount} season logs)`
-															: `Log ${seasonName} again`
-													}
-												>
-													<span className="relative inline-flex">
-														<IconPlayRotateAnticlockwise
-															size="20px"
-															className="shrink-0 opacity-90"
-															aria-hidden
-														/>
-														{seasonLogCount > 1 ? (
-															<span
-																className="absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-semibold text-[10px] text-background tabular-nums"
-																aria-hidden
-															>
-																{seasonLogCount}
-															</span>
-														) : null}
-													</span>
-												</DetailMotionButton>
-												<DetailMotionButton
-													type="button"
-													className={SEASON_DIARY_ACTION_CIRCLE_CLASS}
-													onClick={() => handleEditLog(latestSeasonLog)}
-													aria-label={`Edit your ${seasonName} diary log`}
-												>
-													<IconPen2Fill
-														size="20px"
-														className="shrink-0 opacity-90"
-														aria-hidden
-													/>
-												</DetailMotionButton>
-											</div>
-										) : (
-											<button
-												type="button"
-												className={SEASON_DIARY_FALLBACK_PILL_CLASS}
-												onClick={() =>
-													handleOpenQuickLog({
-														logScope: "season",
-														seasonNumber: sn,
-													})
-												}
-											>
-												Log to diary
-											</button>
-										)
-									) : (
-										<button
-											type="button"
-											className={cn(
-												"inline-flex min-w-[9.5rem] items-center justify-center gap-2 rounded-full bg-background px-4 py-2 font-medium text-foreground text-sm disabled:opacity-50",
-												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-												"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
-											)}
-											disabled={busy === "season" || completingSeason === sn}
-											onClick={() => void handleMarkSeasonComplete(sn)}
-										>
-											{completingSeason === sn ? (
-												<>
-													<Loader2
-														className="size-4 animate-spin"
-														aria-hidden
-													/>
-													Marking…
-												</>
-											) : (
-												"Mark season complete"
-											)}
-										</button>
-									)}
+								<li key={sn}>
+									<TvSeasonMilestoneRow
+										seasonName={seasonName}
+										watchedInSeason={watchedInSeason}
+										totalEpisodes={total}
+										complete={complete}
+										completing={completingSeason === sn}
+										markDisabled={busy === "season"}
+										onMarkComplete={() => void handleMarkSeasonComplete(sn)}
+										seasonLogCount={seasonLogCount}
+										latestSeasonLog={latestSeasonLog}
+										onRewatch={() =>
+											handleOpenQuickLog(
+												{
+													logScope: "season",
+													seasonNumber: sn,
+												},
+												{ asRewatch: true },
+											)
+										}
+										onEditLog={() => {
+											if (latestSeasonLog) handleEditLog(latestSeasonLog);
+										}}
+										onLogToDiary={() =>
+											handleOpenQuickLog({
+												logScope: "season",
+												seasonNumber: sn,
+											})
+										}
+									/>
 								</li>
 							);
 						})}
@@ -354,101 +384,395 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 				) : null}
 
 				{!seasonsLoading && progressMode === "episode" ? (
-					<div className="flex flex-col gap-2">
+					<div className="flex flex-col gap-3">
 						{seasons.map((season) => {
 							const sn = season.season_number;
 							const isOpen = openSeason === sn;
 							const eps = episodesBySeason[sn];
+							const watchedInSeason = countWatchedInSeason(watchedKeySet, sn);
+							const total = season.episode_count;
+
 							return (
-								<div
+								<TvSeasonEpisodeAccordion
 									key={sn}
-									className="overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-raised)]"
-								>
-									<button
-										type="button"
-										className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left sm:px-5"
-										aria-expanded={isOpen}
-										onClick={() => handleToggleSeasonAccordion(sn)}
-									>
-										<span className="font-medium text-foreground text-sm">
-											{season.name || `Season ${sn}`}
-										</span>
-										<ChevronDown
-											className={cn(
-												"size-4 shrink-0 text-muted-foreground transition-transform duration-200",
-												isOpen && "rotate-180",
-											)}
-											aria-hidden
-										/>
-									</button>
-									{isOpen ? (
-										<div className="border-foreground/5 border-t px-2 pb-3 sm:px-3">
-											{episodesLoading === sn && !eps ? (
-												<div className="flex justify-center py-4">
-													<Loader2 className="size-4 animate-spin text-muted-foreground" />
-												</div>
-											) : null}
-											<ul className="flex flex-col">
-												{(eps ?? []).map((ep) => {
-													const key = `${ep.season_number}:${ep.episode_number}`;
-													const checked = watchedKeySet.has(key);
-													return (
-														<li
-															key={key}
-															className="flex min-h-11 items-center gap-3 rounded-xl px-2 py-2 hover:bg-foreground/[0.04]"
-														>
-															<Checkbox
-																id={`tv-ep-${tvId}-${key}`}
-																checked={checked}
-																disabled={busy === "episode"}
-																onCheckedChange={(value) => {
-																	void toggleEpisodeWatched(
-																		ep.season_number,
-																		ep.episode_number,
-																		value === true,
-																	);
-																}}
-															/>
-															<label
-																htmlFor={`tv-ep-${tvId}-${key}`}
-																className="flex min-w-0 flex-1 cursor-pointer select-none flex-col gap-0.5"
-															>
-																<span className="font-medium text-foreground text-sm tabular-nums">
-																	E{ep.episode_number}
-																	{ep.name ? ` · ${ep.name}` : ""}
-																</span>
-																{ep.air_date ? (
-																	<span className="text-muted-foreground text-xs">
-																		{ep.air_date}
-																	</span>
-																) : null}
-															</label>
-														</li>
-													);
-												})}
-											</ul>
-										</div>
-									) : null}
-								</div>
+									seasonName={season.name || `Season ${sn}`}
+									isOpen={isOpen}
+									watchedInSeason={watchedInSeason}
+									totalEpisodes={total}
+									loadingEpisodes={episodesLoading === sn && !eps}
+									episodes={eps ?? []}
+									tvId={tvId}
+									watchedKeySet={watchedKeySet}
+									toggleDisabled={busy === "episode"}
+									onToggle={() => handleToggleSeasonAccordion(sn)}
+									onToggleEpisode={(seasonNumber, episodeNumber, checked) => {
+										void toggleEpisodeWatched(
+											seasonNumber,
+											episodeNumber,
+											checked,
+										);
+									}}
+								/>
 							);
 						})}
 					</div>
 				) : null}
+			</div>
+		</MovieDetailBodySection>
+	);
+}
 
-				{watch.status === "finished" ? (
-					<p className="text-center text-muted-foreground text-sm">
-						You marked this show finished. Log a series review in your diary
-						when you&apos;re ready.
+function TvProgressSummaryCard({
+	statusLabel,
+	watchedEpisodeCount,
+	totalEpisodes,
+	progressPercent,
+	continueLabel,
+	seasonCount,
+}: {
+	statusLabel: string;
+	watchedEpisodeCount: number;
+	totalEpisodes: number;
+	progressPercent: number;
+	continueLabel: string | null;
+	seasonCount: number;
+}) {
+	const hasTotals = totalEpisodes > 0;
+
+	return (
+		<div className={cn(PROGRESS_TILE_CLASS, "px-4 py-4 sm:px-5 sm:py-5")}>
+			<div className="flex flex-wrap items-start justify-between gap-3">
+				<div className="min-w-0 text-left">
+					<p className="font-medium text-foreground text-sm">{statusLabel}</p>
+					<p className="mt-1 font-semibold text-foreground text-xl tabular-nums tracking-tight sm:text-2xl">
+						{hasTotals ? (
+							<>
+								{watchedEpisodeCount}
+								<span className="font-medium text-muted-foreground">
+									{" "}
+									/ {totalEpisodes}
+								</span>
+							</>
+						) : (
+							watchedEpisodeCount
+						)}{" "}
+						<span className="font-medium text-base text-muted-foreground sm:text-lg">
+							episodes watched
+						</span>
 					</p>
-				) : null}
-
-				{watch.status === "paused" || watch.status === "abandoned" ? (
-					<p className="text-center text-muted-foreground text-sm">
-						Status: {statusLabel}. Set status back to Watching in the hero to
-						continue tracking episodes.
+				</div>
+				{hasTotals ? (
+					<p className="shrink-0 font-semibold text-foreground text-lg tabular-nums">
+						{progressPercent}%
 					</p>
 				) : null}
 			</div>
-		</MovieDetailBodySection>
+
+			{hasTotals ? (
+				<TvProgressMeter
+					className="mt-4"
+					value={watchedEpisodeCount}
+					max={totalEpisodes}
+					label={`${watchedEpisodeCount} of ${totalEpisodes} episodes watched`}
+				/>
+			) : null}
+
+			{continueLabel ? (
+				<p className="mt-4 text-balance text-left font-editorial text-muted-foreground text-sm leading-relaxed">
+					{continueLabel}
+				</p>
+			) : null}
+
+			{seasonCount > 0 ? (
+				<p className="mt-3 text-left text-muted-foreground text-xs tabular-nums">
+					{seasonCount} {seasonCount === 1 ? "season" : "seasons"} in this show
+				</p>
+			) : null}
+		</div>
+	);
+}
+
+function TvProgressMeter({
+	value,
+	max,
+	label,
+	className,
+}: {
+	value: number;
+	max: number;
+	label: string;
+	className?: string;
+}) {
+	const percent = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
+
+	return (
+		<div className={className}>
+			<div
+				className="h-1.5 overflow-hidden rounded-full bg-card"
+				role="progressbar"
+				aria-valuenow={value}
+				aria-valuemin={0}
+				aria-valuemax={max}
+				aria-label={label}
+			>
+				<div
+					className="h-full rounded-full bg-foreground transition-[width] duration-200 ease-out"
+					style={{ width: `${percent}%` }}
+				/>
+			</div>
+		</div>
+	);
+}
+
+function TvSeasonMilestoneRow({
+	seasonName,
+	watchedInSeason,
+	totalEpisodes,
+	complete,
+	completing,
+	markDisabled,
+	onMarkComplete,
+	seasonLogCount,
+	latestSeasonLog,
+	onRewatch,
+	onEditLog,
+	onLogToDiary,
+}: {
+	seasonName: string;
+	watchedInSeason: number;
+	totalEpisodes: number;
+	complete: boolean;
+	completing: boolean;
+	markDisabled: boolean;
+	onMarkComplete: () => void;
+	seasonLogCount: number;
+	latestSeasonLog: ReturnType<typeof findLatestTvLogInScope>;
+	onRewatch: () => void;
+	onEditLog: () => void;
+	onLogToDiary: () => void;
+}) {
+	return (
+		<div
+			className={cn(
+				PROGRESS_TILE_CLASS,
+				"flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5",
+			)}
+		>
+			<div className="min-w-0 flex-1 text-left">
+				<div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+					<p className="font-medium text-base text-foreground">{seasonName}</p>
+					{complete ? (
+						<span className="rounded-full bg-card px-2 py-0.5 font-medium text-foreground text-xs">
+							Complete
+						</span>
+					) : null}
+				</div>
+				<p className="mt-1 text-muted-foreground text-sm tabular-nums">
+					{watchedInSeason} / {totalEpisodes} episodes
+				</p>
+				{totalEpisodes > 0 ? (
+					<TvProgressMeter
+						className="mt-3 max-w-md"
+						value={watchedInSeason}
+						max={totalEpisodes}
+						label={`${seasonName}: ${watchedInSeason} of ${totalEpisodes} episodes watched`}
+					/>
+				) : null}
+			</div>
+
+			<div className="flex shrink-0 items-center gap-2 self-start sm:self-center">
+				{complete ? (
+					seasonLogCount > 0 && latestSeasonLog ? (
+						<>
+							<DetailMotionButton
+								type="button"
+								className={SEASON_DIARY_ACTION_CIRCLE_CLASS}
+								onClick={onRewatch}
+								aria-label={
+									seasonLogCount > 1
+										? `Log ${seasonName} again (${seasonLogCount} season logs)`
+										: `Log ${seasonName} again`
+								}
+							>
+								<span className="relative inline-flex">
+									<IconPlayRotateAnticlockwise
+										size="20px"
+										className="shrink-0 opacity-90"
+										aria-hidden
+									/>
+									{seasonLogCount > 1 ? (
+										<span
+											className="absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-semibold text-[10px] text-background tabular-nums"
+											aria-hidden
+										>
+											{seasonLogCount}
+										</span>
+									) : null}
+								</span>
+							</DetailMotionButton>
+							<DetailMotionButton
+								type="button"
+								className={SEASON_DIARY_ACTION_CIRCLE_CLASS}
+								onClick={onEditLog}
+								aria-label={`Edit your ${seasonName} diary log`}
+							>
+								<IconPen2Fill
+									size="20px"
+									className="shrink-0 opacity-90"
+									aria-hidden
+								/>
+							</DetailMotionButton>
+						</>
+					) : (
+						<button
+							type="button"
+							className={SEASON_DIARY_FALLBACK_PILL_CLASS}
+							onClick={onLogToDiary}
+						>
+							Log to diary
+						</button>
+					)
+				) : (
+					<DetailMotionButton
+						type="button"
+						className={MARK_SEASON_COMPLETE_CLASS}
+						disabled={markDisabled || completing}
+						onClick={onMarkComplete}
+					>
+						{completing ? (
+							<>
+								<Loader2 className="size-4 animate-spin" aria-hidden />
+								Marking…
+							</>
+						) : (
+							"Mark season complete"
+						)}
+					</DetailMotionButton>
+				)}
+			</div>
+		</div>
+	);
+}
+
+function TvSeasonEpisodeAccordion({
+	seasonName,
+	isOpen,
+	watchedInSeason,
+	totalEpisodes,
+	loadingEpisodes,
+	episodes,
+	tvId,
+	watchedKeySet,
+	toggleDisabled,
+	onToggle,
+	onToggleEpisode,
+}: {
+	seasonName: string;
+	isOpen: boolean;
+	watchedInSeason: number;
+	totalEpisodes: number;
+	loadingEpisodes: boolean;
+	episodes: TvEpisodeSummary[];
+	tvId: number;
+	watchedKeySet: ReadonlySet<string>;
+	toggleDisabled: boolean;
+	onToggle: () => void;
+	onToggleEpisode: (
+		seasonNumber: number,
+		episodeNumber: number,
+		checked: boolean,
+	) => void;
+}) {
+	return (
+		<div className={cn(PROGRESS_TILE_CLASS, "overflow-hidden")}>
+			<button
+				type="button"
+				className={cn(
+					"flex w-full items-center gap-3 px-4 py-4 text-left sm:px-5",
+					"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
+				)}
+				aria-expanded={isOpen}
+				onClick={onToggle}
+			>
+				<div className="min-w-0 flex-1">
+					<div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+						<span className="font-medium text-base text-foreground">
+							{seasonName}
+						</span>
+						<span className="rounded-full bg-card px-2 py-0.5 font-medium text-muted-foreground text-xs tabular-nums">
+							{watchedInSeason}/{totalEpisodes}
+						</span>
+					</div>
+					{totalEpisodes > 0 ? (
+						<TvProgressMeter
+							className="mt-3 max-w-md"
+							value={watchedInSeason}
+							max={totalEpisodes}
+							label={`${seasonName}: ${watchedInSeason} of ${totalEpisodes} episodes watched`}
+						/>
+					) : null}
+				</div>
+				<ChevronDown
+					className={cn(
+						"size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-out",
+						isOpen && "rotate-180",
+					)}
+					aria-hidden
+				/>
+			</button>
+
+			{isOpen ? (
+				<div className="px-3 pb-3 sm:px-4 sm:pb-4">
+					{loadingEpisodes ? (
+						<div className="flex justify-center py-4">
+							<Loader2 className="size-4 animate-spin text-muted-foreground" />
+						</div>
+					) : null}
+					<ul className="flex flex-col gap-1">
+						{episodes.map((ep) => {
+							const key = `${ep.season_number}:${ep.episode_number}`;
+							const checked = watchedKeySet.has(key);
+							return (
+								<li key={key}>
+									<div
+										className={cn(
+											"flex min-h-11 items-center gap-3 rounded-xl px-2 py-2",
+											"[@media(hover:hover)]:hover:bg-card/80",
+										)}
+									>
+										<Checkbox
+											id={`tv-ep-${tvId}-${key}`}
+											checked={checked}
+											disabled={toggleDisabled}
+											onCheckedChange={(value) => {
+												onToggleEpisode(
+													ep.season_number,
+													ep.episode_number,
+													value === true,
+												);
+											}}
+										/>
+										<label
+											htmlFor={`tv-ep-${tvId}-${key}`}
+											className="flex min-w-0 flex-1 cursor-pointer select-none flex-col gap-0.5"
+										>
+											<span className="font-medium text-foreground text-sm tabular-nums">
+												E{ep.episode_number}
+												{ep.name ? ` · ${ep.name}` : ""}
+											</span>
+											{ep.air_date ? (
+												<span className="text-muted-foreground text-xs">
+													{ep.air_date}
+												</span>
+											) : null}
+										</label>
+									</div>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			) : null}
+		</div>
 	);
 }
