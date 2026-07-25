@@ -32,8 +32,16 @@ export const DETAIL_EDITORIAL_REVIEW_SLIDE_GAP_CLASS =
 
 export const DETAIL_EDITORIAL_STILL_SLIDE_WIDTH_CLASS = "w-[min(56rem,94cqw)]";
 
+/** Portrait / poster stills — narrower card so 2:3 frames match headshot/poster tags. */
+export const DETAIL_EDITORIAL_STILL_PORTRAIT_SLIDE_WIDTH_CLASS =
+	"w-[min(20rem,70cqw)]";
+
 export const DETAIL_EDITORIAL_STILL_RAIL_EDGE_SPACER_CLASS =
 	"w-[max(0px,calc((100cqw-min(56rem,94cqw))/2))]";
+
+/** Edge pad when the end slide is a portrait card — matches portrait slide width. */
+export const DETAIL_EDITORIAL_STILL_PORTRAIT_RAIL_EDGE_SPACER_CLASS =
+	"w-[max(0px,calc((100cqw-min(20rem,70cqw))/2))]";
 
 export const DETAIL_EDITORIAL_STILL_SLIDE_GAP_CLASS =
 	"ml-6 sm:ml-28 md:ml-36 lg:ml-40";

@@ -22,7 +22,7 @@ import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
 /**
  * Second-row chips on `/home`:
  * - **Movies / TV:** Popular, Latest, and Upcoming (TMDb) with a sliding `layoutId` pill.
- * - **Community:** Lists, Reviews, Diary, Activity — member-made surfaces.
+ * - **Community:** Ranks, Lists, Reviews, Activity — member-made surfaces.
  */
 function HomeCommunityFeedChips({
 	sortToolbarDescId,

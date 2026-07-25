@@ -13,6 +13,8 @@ export type MovieDetailHeroSlide = {
 	/** Full-resolution TMDb backdrop (`original`) when the API exposes download URLs. */
 	srcFull?: string | null;
 	label: string;
+	/** When set (person gallery), the stills card uses this ratio instead of fixed 16:9. */
+	aspectRatio?: number;
 };
 
 /**
