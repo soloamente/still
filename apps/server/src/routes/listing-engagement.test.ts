@@ -29,7 +29,9 @@ const fetchListingEngagementWatchlist = mock(async () => ({
 	totalVisible: 0,
 	totalGlobal: 0,
 }));
-const fetchListingCommunityEngagementStats = mock(async () => ({
+const fetchCachedListingCommunityStats = mock(async () => ({
+	averageRating: null,
+	ratingsCount: 0,
 	watchesCount: 3,
 	listsCount: 1,
 	favoritesCount: 2,
@@ -43,8 +45,8 @@ mock.module("../lib/listing-engagement-query", () => ({
 	fetchListingEngagementWatchlist,
 }));
 
-mock.module("../lib/listing-community-stats", () => ({
-	fetchListingCommunityEngagementStats,
+mock.module("../lib/listing-community-stats-cache", () => ({
+	fetchCachedListingCommunityStats,
 }));
 
 mock.module("@still/auth", () => ({
@@ -78,7 +80,7 @@ describe("listing engagement routes", () => {
 		fetchListingEngagementLists.mockClear();
 		fetchListingEngagementFavorites.mockClear();
 		fetchListingEngagementWatchlist.mockClear();
-		fetchListingCommunityEngagementStats.mockClear();
+		fetchCachedListingCommunityStats.mockClear();
 	});
 
 	test("GET watches returns 401 when unsigned", async () => {
@@ -131,10 +133,12 @@ describe("listing engagement routes", () => {
 			}),
 		);
 		expect(res.status).toBe(200);
-		expect(fetchListingCommunityEngagementStats).toHaveBeenCalledWith({
+		expect(fetchCachedListingCommunityStats).toHaveBeenCalledWith({
 			movieId: 550,
 		});
 		expect(await res.json()).toEqual({
+			averageRating: null,
+			ratingsCount: 0,
 			watchesCount: 3,
 			listsCount: 1,
 			favoritesCount: 2,
