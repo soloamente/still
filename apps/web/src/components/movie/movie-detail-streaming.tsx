@@ -4,10 +4,14 @@ import { cn } from "@still/ui/lib/utils";
 import { Check } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { CountryFlagIcon } from "@/components/ui/country-flag-icon";
 import type { MovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
+import {
+	useHorizontalRailPosterEdgeOpacity,
+	useHorizontalScrollFades,
+} from "@/lib/use-horizontal-scroll-fades";
 
 const TMDB_LOGO = (path: string) => `https://image.tmdb.org/t/p/w92${path}`;
 
@@ -18,8 +22,11 @@ const TMDB_LOGO = (path: string) => `https://image.tmdb.org/t/p/w92${path}`;
  */
 export function MovieDetailStreaming({
 	watchProviders,
+	/** Film is in cinemas with no past digital bow — empty copy says so (movies only). */
+	theatricalOnly = false,
 }: {
 	watchProviders: MovieWatchProvidersViewModel;
+	theatricalOnly?: boolean;
 }) {
 	const reduceMotion = useReducedMotion();
 	const { providers, rowsByProviderId } = watchProviders;
@@ -36,6 +43,25 @@ export function MovieDetailStreaming({
 		? (rowsByProviderId[selectedProvider.id] ?? [])
 		: [];
 
+	const providerRailRef = useRef<HTMLDivElement>(null);
+	const providerRailContentKey = [
+		selectedId ?? "none",
+		providers.map((provider) => provider.id).join(","),
+	].join("\0");
+	const providerRailEnabled = providers.length > 0;
+	const { showStartFade, showEndFade } = useHorizontalScrollFades(
+		providerRailRef,
+		providerRailEnabled,
+		providerRailContentKey,
+	);
+	// Per-tile opacity at clipped edges — works even when gradient scrims sit under z-10 logos.
+	useHorizontalRailPosterEdgeOpacity(
+		providerRailRef,
+		providerRailEnabled,
+		providerRailContentKey,
+		{ fadeWidthPx: 48, minOpacity: 0.2 },
+	);
+
 	const pillTransition = reduceMotion
 		? { duration: 0 }
 		: {
@@ -47,74 +73,101 @@ export function MovieDetailStreaming({
 	if (!providers.length) {
 		return (
 			<div
-				className="mx-auto w-full max-w-2xl rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
+				className="mx-auto w-full max-w-2xl rounded-2xl bg-background p-8 text-center text-muted-foreground text-sm"
 				role="status"
 			>
-				No streaming or rental links from TMDb yet — try again after the next
-				sync.
+				{theatricalOnly ? (
+					<>
+						Only in cinemas for now — no streaming or rental options are listed
+						yet. Check back when it arrives at home.
+					</>
+				) : (
+					<>
+						No streaming or rental links from TMDb yet — try again after the
+						next sync.
+					</>
+				)}
 			</div>
 		);
 	}
 
 	return (
 		<div className="mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-8">
-			{/* Provider picker — native horizontal scroll; Lenis ignores wheel here. */}
-			<div
-				data-lenis-prevent-wheel
-				className="scrollbar-none -mx-1 flex flex-nowrap items-start gap-2 overflow-x-auto overscroll-x-contain px-1 pb-1 [-webkit-overflow-scrolling:touch]"
-				role="tablist"
-				aria-label="Streaming and rental services"
-			>
-				{providers.map((provider) => {
-					const active = provider.id === selectedProvider?.id;
-					return (
-						<button
-							key={provider.id}
-							type="button"
-							role="tab"
-							aria-selected={active}
-							onClick={() => setSelectedId(provider.id)}
-							className={cn(
-								"relative flex w-[5.75rem] shrink-0 flex-col items-center gap-2 rounded-2xl px-2 py-3 text-center transition-colors duration-200 ease-out motion-reduce:transition-none",
-								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
-								active
-									? "text-foreground"
-									: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-							)}
-						>
-							{active ? (
-								<motion.span
-									layoutId="movie-streaming-provider-pill"
-									// Canvas on `bg-card` — `bg-muted/*` vanishes on Cozy where `--muted` === `--card`.
-									className="absolute inset-0 z-0 rounded-2xl bg-background"
-									transition={pillTransition}
-								/>
-							) : null}
-							<span className="relative z-10 flex size-14 items-center justify-center overflow-hidden rounded-2xl bg-background shadow-sm">
-								{provider.logoPath ? (
-									<Image
-										src={TMDB_LOGO(provider.logoPath)}
-										alt=""
-										width={56}
-										height={56}
-										className="size-full object-cover"
-									/>
-								) : (
-									<span className="font-semibold text-[10px] uppercase tracking-wide">
-										{provider.name.slice(0, 2)}
-									</span>
+			{/* Provider picker — edge fades soften horizontal clip on overflow. */}
+			<div className="relative min-w-0 overflow-hidden">
+				<div
+					aria-hidden
+					className={cn(
+						// Provider rail sits on the raised `bg-card` detail section — match `--card` scrims.
+						"pointer-events-none absolute inset-y-0 left-0 z-20 w-10 bg-linear-to-r from-0% from-card via-35% via-card/70 to-card/0 transition-opacity duration-200 motion-reduce:transition-none",
+						showStartFade ? "opacity-100" : "opacity-0",
+					)}
+				/>
+				<div
+					aria-hidden
+					className={cn(
+						"pointer-events-none absolute inset-y-0 right-0 z-20 w-12 bg-linear-to-l from-0% from-card via-35% via-card/70 to-card/0 transition-opacity duration-200 motion-reduce:transition-none",
+						showEndFade ? "opacity-100" : "opacity-0",
+					)}
+				/>
+				<div
+					ref={providerRailRef}
+					data-lenis-prevent-wheel
+					className="scrollbar-none flex flex-nowrap items-start gap-2 overflow-x-auto overscroll-x-contain pb-1 [-webkit-overflow-scrolling:touch]"
+					role="tablist"
+					aria-label="Streaming and rental services"
+				>
+					{providers.map((provider) => {
+						const active = provider.id === selectedProvider?.id;
+						return (
+							<button
+								key={provider.id}
+								type="button"
+								role="tab"
+								aria-selected={active}
+								onClick={() => setSelectedId(provider.id)}
+								className={cn(
+									"relative flex w-[5.75rem] shrink-0 flex-col items-center gap-2 rounded-2xl px-2 py-3 text-center opacity-(--edge-opacity) transition-[color,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none",
+									"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+									active
+										? "text-foreground"
+										: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 								)}
-							</span>
-							<span className="relative z-10 line-clamp-2 w-full font-medium text-xs leading-tight">
-								{provider.name}
-							</span>
-							<span className="relative z-10 text-[11px] text-muted-foreground leading-none">
-								{provider.countryCount}{" "}
-								{provider.countryCount === 1 ? "country" : "countries"}
-							</span>
-						</button>
-					);
-				})}
+							>
+								{active ? (
+									<motion.span
+										layoutId="movie-streaming-provider-pill"
+										// Canvas on `bg-card` — `bg-muted/*` vanishes on Cozy where `--muted` === `--card`.
+										className="absolute inset-0 z-0 rounded-2xl bg-background"
+										transition={pillTransition}
+									/>
+								) : null}
+								<span className="relative z-10 flex size-14 items-center justify-center overflow-hidden rounded-2xl bg-background shadow-sm">
+									{provider.logoPath ? (
+										<Image
+											src={TMDB_LOGO(provider.logoPath)}
+											alt=""
+											width={56}
+											height={56}
+											className="size-full object-cover"
+										/>
+									) : (
+										<span className="font-semibold text-[10px] uppercase tracking-wide">
+											{provider.name.slice(0, 2)}
+										</span>
+									)}
+								</span>
+								<span className="relative z-10 line-clamp-2 w-full font-medium text-xs leading-tight">
+									{provider.name}
+								</span>
+								<span className="relative z-10 text-[11px] text-muted-foreground leading-none">
+									{provider.countryCount}{" "}
+									{provider.countryCount === 1 ? "country" : "countries"}
+								</span>
+							</button>
+						);
+					})}
+				</div>
 			</div>
 
 			{/* Country availability table */}
