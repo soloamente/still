@@ -4,9 +4,15 @@ import { cn } from "@still/ui/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 
 import { PatronPortraitAvatar } from "@/components/profile/patron-portrait-avatar";
+import {
+	MentionHoverPreviewLayer,
+	type MentionHoverPreviewState,
+	useMentionHoverPreviewHandlers,
+} from "@/components/review/mention-hover-preview";
 import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
 import {
 	type ContentMentionPart,
@@ -19,13 +25,13 @@ const MENTION_LINK_CLASS =
 /** Name + outbound arrow — stored tokens hide `#` / `@` prefixes from readers. */
 function MentionLinkContent({ label }: { label: string }) {
 	return (
-		<>
+		<span className="inline-flex items-baseline gap-0.5 whitespace-nowrap">
 			<span>{label}</span>
 			<ArrowUpRight
 				className="size-3.5 shrink-0 translate-y-px opacity-80"
 				aria-hidden
 			/>
-		</>
+		</span>
 	);
 }
 
@@ -48,6 +54,58 @@ function mentionPartKey(part: ContentMentionPart, index: number): string {
 	return `${part.type}-${part.href}-${part.label}`;
 }
 
+type MentionEntityPart = Exclude<ContentMentionPart, { type: "text" }>;
+
+/** Shared hover preview wiring for listing, person, and patron mention links. */
+function MentionLinkWithPreview({
+	part,
+	linkClassName,
+	onMentionClick,
+	setPreview,
+}: {
+	part: MentionEntityPart;
+	linkClassName: string;
+	onMentionClick?: () => void;
+	setPreview: Dispatch<SetStateAction<MentionHoverPreviewState | null>>;
+}) {
+	const hoverHandlers = useMentionHoverPreviewHandlers(part, setPreview);
+	const pointerProps = {
+		onPointerEnter: hoverHandlers.onPointerEnter,
+		onPointerMove: hoverHandlers.onPointerMove,
+		onPointerLeave: hoverHandlers.onPointerLeave,
+	};
+
+	if (onMentionClick) {
+		return (
+			<button
+				type="button"
+				className={cn(
+					linkClassName,
+					"inline cursor-pointer bg-transparent p-0",
+				)}
+				onClick={(event) => {
+					event.stopPropagation();
+					onMentionClick();
+				}}
+				{...pointerProps}
+			>
+				<MentionLinkContent label={part.label} />
+			</button>
+		);
+	}
+
+	return (
+		<Link
+			href={part.href}
+			className={linkClassName}
+			onClick={(event) => event.stopPropagation()}
+			{...pointerProps}
+		>
+			<MentionLinkContent label={part.label} />
+		</Link>
+	);
+}
+
 /** Renders review/comment copy with clickable listing, person, and patron links. */
 export function BodyWithMentions({
 	body,
@@ -58,50 +116,34 @@ export function BodyWithMentions({
 }: BodyWithMentionsProps) {
 	const parts = parseBodyWithMentions(body);
 	const linkClassName = mentionLinkClassName ?? MENTION_LINK_CLASS;
+	const [preview, setPreview] = useState<MentionHoverPreviewState | null>(null);
 
 	return (
-		<span className={className} {...rest}>
-			{parts.map((part, index) => {
-				const partKey = mentionPartKey(part, index);
+		<>
+			<span className={className} {...rest}>
+				{parts.map((part, index) => {
+					const partKey = mentionPartKey(part, index);
 
-				if (part.type === "text") {
-					return <span key={partKey}>{part.value}</span>;
-				}
+					if (part.type === "text") {
+						return <span key={partKey}>{part.value}</span>;
+					}
 
-				const href = mentionPartHref(part);
-				if (!href) return null;
+					const href = mentionPartHref(part);
+					if (!href) return null;
 
-				if (onMentionClick) {
 					return (
-						<button
+						<MentionLinkWithPreview
 							key={partKey}
-							type="button"
-							className={cn(
-								linkClassName,
-								"inline cursor-pointer bg-transparent p-0",
-							)}
-							onClick={(event) => {
-								event.stopPropagation();
-								onMentionClick();
-							}}
-						>
-							<MentionLinkContent label={part.label} />
-						</button>
+							part={part}
+							linkClassName={linkClassName}
+							onMentionClick={onMentionClick}
+							setPreview={setPreview}
+						/>
 					);
-				}
-
-				return (
-					<Link
-						key={partKey}
-						href={href}
-						className={linkClassName}
-						onClick={(event) => event.stopPropagation()}
-					>
-						<MentionLinkContent label={part.label} />
-					</Link>
-				);
-			})}
-		</span>
+				})}
+			</span>
+			<MentionHoverPreviewLayer preview={preview} />
+		</>
 	);
 }
 
