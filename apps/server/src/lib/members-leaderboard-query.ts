@@ -9,6 +9,7 @@ import {
 	review,
 	user,
 } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import {
 	and,
 	asc,
@@ -33,6 +34,10 @@ import {
 import { annotateViewerFollows, fetchViewerFollowingIds } from "./follow-list";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type MembersLeaderboardSort = "popular" | "reviews" | "lists" | "likes";
@@ -48,6 +53,7 @@ export type MembersLeaderboardEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	count: number;
 	viewerFollows: boolean;
 };
@@ -413,9 +419,11 @@ export async function fetchMembersLeaderboard(opts: {
 	const hasMore = slice.length > limit;
 	const pageRows = hasMore ? slice.slice(0, limit) : slice;
 
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		pageRows.map((row) => row.userId),
-	);
+	const userIds = pageRows.map((row) => row.userId);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 	const ranked = rankMembersLeaderboardRows(pageRows);
 
 	const followingIds = opts.viewerId
@@ -436,6 +444,7 @@ export async function fetchMembersLeaderboard(opts: {
 				row.preferences as Record<string, unknown> | null,
 			),
 			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+			planTier: planTierForUserId(row.userId, planTiers),
 			count: row.count,
 		})),
 		followingIds,

@@ -10,6 +10,7 @@ import {
 	review,
 	user,
 } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import {
 	and,
 	asc,
@@ -34,6 +35,10 @@ import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
 import { withCoverPosterPaths } from "./list-cover-posters";
 import type { MembersLeaderboardSort } from "./members-leaderboard-query";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 /** One row in the patron contribution ledger drawer — poster opens review or list. */
@@ -101,6 +106,7 @@ export type MembersLeaderboardItemsPayload = {
 		image: string | null;
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
+		planTier: PlanTierId;
 	};
 	items: MembersLeaderboardLedgerItem[];
 };
@@ -131,6 +137,7 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	isPrivate: boolean;
 } | null> {
 	const [row] = await db
@@ -148,8 +155,12 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 
 	if (!row) return null;
 
-	const counts = await fetchDiaryLogCountsForUserIds([userId]);
+	const [counts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds([userId]),
+		fetchPlanTiersForUserIds([userId]),
+	]);
 	const diaryMetalTier = resolveDiaryMetalTier(counts.get(userId) ?? 0);
+	const planTier = planTierForUserId(userId, planTiers);
 
 	return {
 		handle: row.handle,
@@ -159,6 +170,7 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 			row.preferences as Record<string, unknown> | null,
 		),
 		diaryMetalTier,
+		planTier,
 		isPrivate: row.isPrivate,
 	};
 }
@@ -483,6 +495,7 @@ export async function fetchMembersLeaderboardItems(opts: {
 			image: patron.image,
 			avatarIsAnimated: patron.avatarIsAnimated,
 			diaryMetalTier: patron.diaryMetalTier,
+			planTier: patron.planTier,
 		},
 		items,
 	};

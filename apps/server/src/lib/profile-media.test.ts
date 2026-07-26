@@ -82,7 +82,18 @@ describe("serializePatronProfileForClient", () => {
 			displayName: "A",
 			avatarIsAnimated: false,
 			diaryMetalTier: "chromatic",
+			planTier: "still",
 		});
+	});
+
+	test("includes explicit planTier when provided", () => {
+		expect(
+			serializePatronProfileForClient(
+				{ handle: "c", displayName: "C", preferences: {} },
+				0,
+				"immersed",
+			)?.planTier,
+		).toBe("immersed");
 	});
 
 	test("null tier below threshold", () => {

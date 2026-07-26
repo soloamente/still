@@ -1,6 +1,9 @@
 import { describe, expect, mock, test } from "bun:test";
 
+import * as diaryMetalTier from "./diary-metal-tier";
+
 mock.module("./diary-metal-tier", () => ({
+	...diaryMetalTier,
 	fetchDiaryLogCountsForUserIds: mock(async (userIds: string[]) => {
 		const counts = new Map<string, number>();
 		for (const userId of userIds) {
@@ -8,7 +11,6 @@ mock.module("./diary-metal-tier", () => ({
 		}
 		return counts;
 	}),
-	resolveDiaryMetalTier: (count: number) => (count >= 100 ? "gold" : null),
 }));
 
 mock.module("./patron-plan-tier", () => ({

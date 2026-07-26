@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "./diary-metal-tier";
 
 /** Relationship tier for sorting profile search hits (lower = higher in list). */
@@ -10,6 +12,7 @@ export interface ProfileSearchCandidate {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	isFollowing: boolean;
 	isMutual: boolean;
 }
@@ -21,6 +24,7 @@ export interface ProfileSearchHit {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	relationship: ProfileSearchRelationship;
 }
 
@@ -67,6 +71,7 @@ export function rankProfileSearchHits(
 				image: row.image,
 				avatarIsAnimated: row.avatarIsAnimated,
 				diaryMetalTier: row.diaryMetalTier,
+				planTier: row.planTier,
 				relationship,
 				_sortTier: relationshipSortTier(relationship),
 				_handlePrefix: handlePrefix ? 0 : 1,
@@ -91,6 +96,7 @@ export function rankProfileSearchHits(
 				image,
 				avatarIsAnimated,
 				diaryMetalTier,
+				planTier,
 				relationship,
 			}) => ({
 				userId,
@@ -99,6 +105,7 @@ export function rankProfileSearchHits(
 				image,
 				avatarIsAnimated,
 				diaryMetalTier,
+				planTier,
 				relationship,
 			}),
 		);

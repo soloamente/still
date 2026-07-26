@@ -221,6 +221,7 @@ describe("listing-presence", () => {
 			displayName: "Alice",
 			avatarIsAnimated: true,
 			diaryMetalTier: "gold",
+			planTier: "still",
 			presenceState: "active",
 		});
 		expect(patrons[1]).toMatchObject({
@@ -228,6 +229,7 @@ describe("listing-presence", () => {
 			handle: "carol",
 			displayName: "Carol",
 			diaryMetalTier: "silver",
+			planTier: "still",
 			presenceState: "active",
 		});
 	});
@@ -346,6 +348,7 @@ describe("prependViewerSelfToViewingPatrons", () => {
 		image: null,
 		avatarIsAnimated: false,
 		diaryMetalTier: null,
+		planTier: "still" as const,
 		presenceState: "active" as const,
 	};
 
@@ -356,6 +359,7 @@ describe("prependViewerSelfToViewingPatrons", () => {
 		image: null,
 		avatarIsAnimated: false,
 		diaryMetalTier: null,
+		planTier: "still" as const,
 		presenceState: "away" as const,
 	};
 

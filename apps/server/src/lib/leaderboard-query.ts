@@ -1,4 +1,5 @@
 import { block, db, log, movie, profile, tv, user } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import {
 	and,
 	asc,
@@ -25,6 +26,10 @@ import {
 import { clampHiddenCount } from "./leaderboard-hidden-count";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type LeaderboardKind = "films" | "tv";
@@ -38,6 +43,7 @@ export type LeaderboardEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	count: number;
 };
 
@@ -339,9 +345,11 @@ export async function fetchLeaderboard(opts: {
 		.limit(limit);
 
 	// Community Film/TV ranks list every public profile with qualifying logs — no plan gate.
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		rows.map((row) => row.userId),
-	);
+	const userIds = rows.map((row) => row.userId);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 
 	const entries: LeaderboardEntry[] = rows.map((row, index) => ({
 		rank: index + 1,
@@ -353,6 +361,7 @@ export async function fetchLeaderboard(opts: {
 			row.preferences as Record<string, unknown> | null,
 		),
 		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+		planTier: planTierForUserId(row.userId, planTiers),
 		count: Number(row.count),
 	}));
 
@@ -452,6 +461,7 @@ export async function fetchLeaderboardLogs(opts: {
 		image: string | null;
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
+		planTier: PlanTierId;
 	};
 	period: LeaderboardPeriod;
 	window: { start: string; end: string };
@@ -473,11 +483,16 @@ export async function fetchLeaderboardLogs(opts: {
 
 	if (!row || row.isPrivate) return null;
 
-	const [logCountRow] = await db
-		.select({ c: count(log.id) })
-		.from(log)
-		.where(and(eq(log.userId, opts.userId), isNull(log.removedAt)));
+	const [logCountRow, planTiers] = await Promise.all([
+		db
+			.select({ c: count(log.id) })
+			.from(log)
+			.where(and(eq(log.userId, opts.userId), isNull(log.removedAt)))
+			.then((rows) => rows[0]),
+		fetchPlanTiersForUserIds([opts.userId]),
+	]);
 	const diaryMetalTier = resolveDiaryMetalTier(Number(logCountRow?.c ?? 0));
+	const planTier = planTierForUserId(opts.userId, planTiers);
 
 	const { start, end } = resolveLeaderboardWindow(
 		opts.period,
@@ -540,6 +555,7 @@ export async function fetchLeaderboardLogs(opts: {
 					row.preferences as Record<string, unknown> | null,
 				),
 				diaryMetalTier,
+				planTier,
 			},
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
@@ -616,6 +632,7 @@ export async function fetchLeaderboardLogs(opts: {
 				row.preferences as Record<string, unknown> | null,
 			),
 			diaryMetalTier,
+			planTier,
 		},
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },

@@ -37,6 +37,10 @@ import {
 	areUsersMutualFollows,
 	deliverNotification,
 } from "../lib/notification-delivery";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "../lib/patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
@@ -609,10 +613,14 @@ export const reviewsRoute = new Elysia({
 				screenshots,
 				row.review.stillSlideKey,
 			);
-			const [logCountRow] = await db
-				.select({ c: count(log.id) })
-				.from(log)
-				.where(and(eq(log.userId, author), isNull(log.removedAt)));
+			const [logCountRow, planTiers] = await Promise.all([
+				db
+					.select({ c: count(log.id) })
+					.from(log)
+					.where(and(eq(log.userId, author), isNull(log.removedAt)))
+					.then((rows) => rows[0]),
+				fetchPlanTiersForUserIds([author]),
+			]);
 			return {
 				...row,
 				author:
@@ -630,6 +638,7 @@ export const reviewsRoute = new Elysia({
 								diaryMetalTier: resolveDiaryMetalTier(
 									Number(logCountRow?.c ?? 0),
 								),
+								planTier: planTierForUserId(author, planTiers),
 							}
 						: null,
 				screenshots,

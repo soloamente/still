@@ -1,4 +1,5 @@
 import { db, list, profile, review, user } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import { and, eq, inArray, isNull, sql } from "drizzle-orm";
 
 import { creatorRecognitionThresholds } from "./creator-recognition-config";
@@ -8,6 +9,10 @@ import {
 	resolveDiaryMetalTier,
 } from "./diary-metal-tier";
 import { LIST_DESCRIPTION_DISCOVERABILITY_MIN_CHARS } from "./list-quality";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 /** Review Community ranking — engagement, not body length (SN.11). */
@@ -29,6 +34,7 @@ export interface CuratorSpotlightPatron {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	headline: string;
 	spotlightScore: number;
 }
@@ -228,7 +234,10 @@ export async function fetchCuratorSpotlightPatrons(
 		.where(and(eq(profile.isPrivate, false), inArray(profile.userId, userIds)));
 
 	const profileByUser = new Map(profiles.map((row) => [row.userId, row]));
-	const logCounts = await fetchDiaryLogCountsForUserIds(userIds);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 
 	return ranked
 		.map((row) => {
@@ -243,6 +252,7 @@ export async function fetchCuratorSpotlightPatrons(
 					patron.preferences as Record<string, unknown> | null,
 				),
 				diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+				planTier: planTierForUserId(row.userId, planTiers),
 				headline: buildCuratorHeadline(row.stats),
 				spotlightScore: row.score,
 			} satisfies CuratorSpotlightPatron;

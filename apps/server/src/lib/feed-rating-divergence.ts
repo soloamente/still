@@ -1,4 +1,5 @@
 import { db, log, movie, profile, tv, user } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import { and, desc, eq, inArray, isNotNull, isNull } from "drizzle-orm";
 import { withinCommunityPeriod } from "./community-period";
 import { contentVisibilityWhere } from "./content-visibility";
@@ -6,6 +7,10 @@ import {
 	type DiaryMetalTier,
 	fetchDiaryLogCountsForUserIds,
 } from "./diary-metal-tier";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { serializePatronProfileForClient } from "./profile-media";
 import { logMediaKey, storedRatingToDisplayTen } from "./sense-taste-overlap";
 
@@ -20,6 +25,7 @@ export type FeedDivergencePatron = {
 		displayName: string;
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
+		planTier: PlanTierId;
 	} | null;
 	/** Stored `log.rating` (tenths or legacy). */
 	rating: number;
@@ -67,6 +73,7 @@ type DivergenceLogRow = {
 export function pickFeedRatingDivergence(
 	rows: DivergenceLogRow[],
 	logCounts: ReadonlyMap<string, number> = new Map(),
+	planTiers: ReadonlyMap<string, PlanTierId> = new Map(),
 ): { at: Date; payload: FeedRatingDivergencePayload } | null {
 	const byMedia = new Map<
 		string,
@@ -93,6 +100,7 @@ export function pickFeedRatingDivergence(
 			profile: serializePatronProfileForClient(
 				row.profile,
 				logCounts.get(row.log.userId) ?? 0,
+				planTierForUserId(row.log.userId, planTiers),
 			),
 			rating: row.log.rating,
 			displayRating,
@@ -191,7 +199,10 @@ export async function findFeedRatingDivergence(args: {
 		.limit(600);
 
 	const userIds = [...new Set(rows.map((row) => row.log.userId))];
-	const logCounts = await fetchDiaryLogCountsForUserIds(userIds);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 
-	return pickFeedRatingDivergence(rows, logCounts);
+	return pickFeedRatingDivergence(rows, logCounts, planTiers);
 }

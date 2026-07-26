@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "./diary-metal-tier";
 import {
 	celebratedMonthKeyFromWindow,
@@ -21,6 +23,7 @@ export type MonthRecapEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	count: number;
 };
 
@@ -64,6 +67,7 @@ function mapLeaderboardEntries(
 		image: entry.image,
 		avatarIsAnimated: entry.avatarIsAnimated,
 		diaryMetalTier: entry.diaryMetalTier,
+		planTier: entry.planTier,
 		count: entry.count,
 	}));
 }

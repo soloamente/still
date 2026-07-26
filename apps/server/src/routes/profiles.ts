@@ -76,6 +76,10 @@ import {
 	type PatronEntitlements,
 } from "../lib/patron-entitlements";
 import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "../lib/patron-plan-tier";
+import {
 	canAccessYearInReviewYear,
 	patronHasPlanFeature,
 	planFeatureRequiredBody,
@@ -179,6 +183,7 @@ function profileMeResponse(
 		image: string | null;
 		birthDate: string | null;
 		diaryMetalTier: ReturnType<typeof resolveDiaryMetalTier>;
+		planTier: PatronEntitlements["effectiveTier"];
 	},
 	entitlements: PatronEntitlements,
 ) {
@@ -498,6 +503,7 @@ export const profilesRoute = new Elysia({
 			image: portraitImage,
 			birthDate: profileBirthDateToIso(row.birthDate),
 			diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
+			planTier: entitlements.effectiveTier,
 		};
 
 		// One-time legacy backfill — v3 gate uses onboarded_at; pre-v3 patrons never got it.
@@ -998,9 +1004,11 @@ export const profilesRoute = new Elysia({
 					),
 				)
 				.limit(50);
-			const logCounts = await fetchDiaryLogCountsForUserIds(
-				rows.map((row) => row.userId),
-			);
+			const userIds = rows.map((row) => row.userId);
+			const [logCounts, planTiers] = await Promise.all([
+				fetchDiaryLogCountsForUserIds(userIds),
+				fetchPlanTiersForUserIds(userIds),
+			]);
 			return rankProfileSearchHits(
 				rows.map((row) => ({
 					userId: row.userId,
@@ -1011,6 +1019,7 @@ export const profilesRoute = new Elysia({
 						row.preferences as Record<string, unknown> | null,
 					),
 					diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+					planTier: planTierForUserId(row.userId, planTiers),
 					isFollowing: row.followerId != null,
 					isMutual: row.isMutual ?? false,
 				})),
@@ -1646,6 +1655,7 @@ export const profilesRoute = new Elysia({
 							.where(and(eq(log.userId, targetUserId), isNull(log.removedAt)))
 							.then((r) => Number(r[0]?.c ?? 0));
 			const diaryMetalTier = resolveDiaryMetalTier(diaryLogCount);
+			const planTier = targetEntitlements.effectiveTier;
 
 			const birthIso = profileBirthDateToIso(row.profile.birthDate);
 			const showBirthday = readShowBirthDateOnProfilePref(
@@ -1674,6 +1684,7 @@ export const profilesRoute = new Elysia({
 				profile: {
 					...publicProfile,
 					diaryMetalTier,
+					planTier,
 					...(freshTasteSignature && tasteSignatureEnabled
 						? { tasteSignature: freshTasteSignature }
 						: {}),

@@ -1,4 +1,5 @@
 import { db, profile, user } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import { parseListingMovieRoomId, parseListingTvRoomId } from "@still/realtime";
 import { and, asc, eq, inArray, isNotNull } from "drizzle-orm";
 
@@ -8,6 +9,10 @@ import {
 	resolveDiaryMetalTier,
 } from "./diary-metal-tier";
 import { fetchMutualFollowingIds } from "./mutual-follow-cache";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import {
 	clearActivityStateForUser,
 	type PatronActivityState,
@@ -59,6 +64,7 @@ export type ListingPresenceViewingPatron = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	presenceState: PatronActivityState;
 };
 
@@ -206,6 +212,7 @@ export function pickListingPresenceViewingPatrons(
 	logCounts: ReadonlyMap<string, number> = new Map(),
 	limit: number = LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
 	activityByUserId: ReadonlyMap<string, PatronActivityState> = new Map(),
+	planTiers: ReadonlyMap<string, PlanTierId> = new Map(),
 ): ListingPresenceViewingPatron[] {
 	const patrons: ListingPresenceViewingPatron[] = [];
 
@@ -227,6 +234,7 @@ export function pickListingPresenceViewingPatrons(
 			image: row.image,
 			avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
 			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+			planTier: planTierForUserId(row.userId, planTiers),
 			presenceState: activityByUserId.get(row.userId) ?? "active",
 		});
 		if (patrons.length >= limit) break;
@@ -272,7 +280,10 @@ export async function fetchViewerSelfPatronInRoom(
 	const handle = row?.handle?.trim();
 	if (!row || !handle) return null;
 
-	const logCounts = await fetchDiaryLogCountsForUserIds([viewerId]);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds([viewerId]),
+		fetchPlanTiersForUserIds([viewerId]),
+	]);
 	const activityByUserId =
 		activityOverride ??
 		(redis && typeof redis.hget === "function"
@@ -286,6 +297,7 @@ export async function fetchViewerSelfPatronInRoom(
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
 		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(viewerId) ?? 0),
+		planTier: planTierForUserId(viewerId, planTiers),
 		presenceState: activityByUserId.get(viewerId) ?? "active",
 	};
 }
@@ -349,9 +361,11 @@ export async function fetchViewingPatronsInRoom(
 		.orderBy(asc(profile.displayName), asc(profile.handle))
 		.limit(LISTING_PRESENCE_MUTUAL_FETCH_LIMIT);
 
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		rows.map((row) => row.userId),
-	);
+	const userIds = rows.map((row) => row.userId);
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 	const activityByUserId =
 		activityOverride ??
 		(redis && typeof redis.hget === "function"
@@ -365,6 +379,7 @@ export async function fetchViewingPatronsInRoom(
 		logCounts,
 		LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
 		activityByUserId,
+		planTiers,
 	);
 }
 

@@ -43,6 +43,10 @@ import { resolveMovieTitleLogoPath } from "../lib/movie-title-logo-resolve";
 import { resolveMovieTrailer } from "../lib/movie-trailer-resolve";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "../lib/patron-plan-tier";
+import {
 	isPremiumStreamingMonetizationFilter,
 	patronHasPlanFeature,
 } from "../lib/plan-feature-access";
@@ -965,9 +969,11 @@ export const moviesRoute = new Elysia({
 				)
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(20);
-			const logCounts = await fetchDiaryLogCountsForUserIds(
-				rows.map((row) => row.review.userId),
-			);
+			const userIds = rows.map((row) => row.review.userId);
+			const [logCounts, planTiers] = await Promise.all([
+				fetchDiaryLogCountsForUserIds(userIds),
+				fetchPlanTiersForUserIds(userIds),
+			]);
 			return rows.map(
 				({ review: row, handle, displayName, image, preferences }) => ({
 					...row,
@@ -983,6 +989,7 @@ export const moviesRoute = new Elysia({
 									diaryMetalTier: resolveDiaryMetalTier(
 										logCounts.get(row.userId) ?? 0,
 									),
+									planTier: planTierForUserId(row.userId, planTiers),
 								}
 							: null,
 				}),

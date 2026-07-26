@@ -44,7 +44,7 @@ export async function fetchPlanTiersForUserIds(
 /** Missing profile rows read as the free tier. */
 export function planTierForUserId(
 	userId: string,
-	tiers: Map<string, PlanTierId>,
+	tiers: ReadonlyMap<string, PlanTierId>,
 ): PlanTierId {
 	return tiers.get(userId) ?? "still";
 }

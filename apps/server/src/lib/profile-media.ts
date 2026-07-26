@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import { type DiaryMetalTier, resolveDiaryMetalTier } from "./diary-metal-tier";
 
 /** Profile preference keys for animated avatar/banner GIF playback. */
@@ -45,11 +47,13 @@ export function serializePatronProfileForClient(
 		| null
 		| undefined,
 	logsCount = 0,
+	planTier: PlanTierId = "still",
 ): {
 	handle: string;
 	displayName: string;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 } | null {
 	if (!profile?.handle) return null;
 	return {
@@ -57,6 +61,7 @@ export function serializePatronProfileForClient(
 		displayName: profile.displayName,
 		avatarIsAnimated: readAvatarIsAnimatedPref(profile.preferences),
 		diaryMetalTier: resolveDiaryMetalTier(logsCount),
+		planTier,
 	};
 }
 
