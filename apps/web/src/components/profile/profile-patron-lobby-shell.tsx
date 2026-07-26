@@ -22,7 +22,6 @@ import { ProfileTabPanels } from "@/components/profile/profile-tab-panels";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { ProfileTopBar } from "@/components/profile/profile-top-bar";
 
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
@@ -77,7 +76,6 @@ export interface ProfilePatronLobbyShellProps {
 	avatarIsAnimated?: boolean;
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
 	planTier?: PlanTierId | string | null;
 	activitySignatureEnabled?: boolean;
 }
@@ -120,7 +118,6 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		avatarIsAnimated,
 		bannerIsAnimated,
 		profilePortraitGrayscaleUntilHover,
-		diaryMetalTier = null,
 		planTier = null,
 		activitySignatureEnabled = true,
 	} = props;

@@ -17,7 +17,6 @@ import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteCategoryPill } from "@/components/profile/profile-taste-signature";
 
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import {
@@ -76,7 +75,6 @@ type ProfilePatronHeaderProps = {
 	avatarIsAnimated?: boolean;
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
 	planTier?: PlanTierId | string | null;
 	/** Profile owner has Attuned activity signature entitlement. */
 	activitySignatureEnabled?: boolean;
@@ -113,7 +111,6 @@ export function ProfilePatronHeader({
 	avatarIsAnimated,
 	bannerIsAnimated,
 	profilePortraitGrayscaleUntilHover,
-	diaryMetalTier = null,
 	planTier = null,
 	activitySignatureEnabled = true,
 }: ProfilePatronHeaderProps) {
