@@ -1531,6 +1531,121 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
+/* Avatar plan auras — rest rim is static; motion is hover-gated per tier. */
+@layer components {
+	.avatar-aura-rim {
+		padding: 1.5px;
+		border-radius: 9999px;
+	}
+
+	.avatar-aura-layer {
+		position: absolute;
+		inset: 0;
+		border-radius: 9999px;
+		overflow: hidden;
+		pointer-events: none;
+		opacity: 0;
+	}
+
+	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+		/* Attuned — one diagonal projector sweep per hover-enter. */
+		.avatar-aura-root:hover .avatar-aura-sweep::before {
+			content: "";
+			position: absolute;
+			inset: -40%;
+			background: linear-gradient(
+				115deg,
+				transparent 42%,
+				oklch(0.98 0.02 90 / 0.55) 50%,
+				transparent 58%
+			);
+			animation: avatar-aura-sweep 600ms ease-out forwards;
+		}
+		.avatar-aura-root:hover .avatar-aura-sweep {
+			opacity: 1;
+		}
+
+		/* Immersed — breathing golden glow + drifting anamorphic flare. */
+		.avatar-aura-root:hover .avatar-aura-glow {
+			opacity: 1;
+			background: radial-gradient(
+				circle at 50% 42%,
+				oklch(0.85 0.13 90 / 0.32),
+				transparent 68%
+			);
+			animation: avatar-aura-breathe 2.4s ease-in-out infinite alternate;
+		}
+		.avatar-aura-root:hover .avatar-aura-flare::before {
+			content: "";
+			position: absolute;
+			top: 46%;
+			left: -60%;
+			width: 120%;
+			height: 8%;
+			border-radius: 9999px;
+			background: linear-gradient(
+				90deg,
+				transparent,
+				oklch(0.92 0.1 95 / 0.5),
+				transparent
+			);
+			filter: blur(1px);
+			animation: avatar-aura-flare 3.2s ease-in-out infinite;
+		}
+		.avatar-aura-root:hover .avatar-aura-flare {
+			opacity: 1;
+		}
+
+		/* Devoted CSS fallback — holo foil when WebGL is unavailable. */
+		.avatar-aura-root:hover .avatar-aura-holo {
+			opacity: 1;
+			background: conic-gradient(
+				from 0deg,
+				oklch(0.8 0.12 320 / 0.28),
+				oklch(0.82 0.12 200 / 0.28),
+				oklch(0.85 0.13 90 / 0.28),
+				oklch(0.8 0.11 260 / 0.28),
+				oklch(0.8 0.12 320 / 0.28)
+			);
+			mix-blend-mode: screen;
+			animation: avatar-aura-holo 4s linear infinite;
+		}
+	}
+
+	@keyframes avatar-aura-sweep {
+		from {
+			transform: translateX(-55%);
+		}
+		to {
+			transform: translateX(55%);
+		}
+	}
+	@keyframes avatar-aura-breathe {
+		from {
+			opacity: 0.5;
+		}
+		to {
+			opacity: 0.85;
+		}
+	}
+	@keyframes avatar-aura-flare {
+		0%,
+		100% {
+			transform: translateX(-12%);
+			opacity: 0.4;
+		}
+		50% {
+			transform: translateX(12%);
+			opacity: 0.9;
+		}
+	}
+	@keyframes avatar-aura-holo {
+		to {
+			filter: hue-rotate(360deg);
+		}
+	}
+}
+
 /* ---------------------------------------------------------------------------
  * Sonner — Still pill toasts (overrides injected base styles from the library).
  * Track B: depth comes from shadow tokens, not outline rings on the shell.
