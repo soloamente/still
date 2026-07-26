@@ -7,9 +7,9 @@ export type DiaryMetalTier = "silver" | "gold" | "chromatic";
 export function resolveDiaryMetalTier(
 	logsCount: number,
 ): DiaryMetalTier | null {
-	if (logsCount >= 150) return "chromatic";
-	if (logsCount >= 100) return "gold";
-	if (logsCount >= 50) return "silver";
+	if (logsCount >= 1000) return "chromatic";
+	if (logsCount >= 500) return "gold";
+	if (logsCount >= 100) return "silver";
 	return null;
 }
 

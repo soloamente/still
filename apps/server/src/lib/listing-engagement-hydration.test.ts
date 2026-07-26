@@ -59,7 +59,7 @@ describe("listing engagement patron hydration", () => {
 			},
 		]);
 
-		expect(items[0]?.diaryMetalTier).toBe("gold");
+		expect(items[0]?.diaryMetalTier).toBe("silver");
 		expect(items[0]?.planTier).toBe("immersed");
 		expect(items[1]?.diaryMetalTier).toBeNull();
 		expect(items[1]?.planTier).toBe("still");
@@ -88,7 +88,7 @@ describe("listing engagement watch hydration", () => {
 			},
 		]);
 
-		expect(items[0]?.diaryMetalTier).toBe("gold");
+		expect(items[0]?.diaryMetalTier).toBe("silver");
 		expect(items[0]?.planTier).toBe("immersed");
 	});
 });

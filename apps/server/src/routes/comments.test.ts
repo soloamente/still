@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, mock, test } from "bun:test";
 import { Elysia } from "elysia";
 
+import * as diaryMetalTier from "../lib/diary-metal-tier";
+
 const commentTable = { __table: "comment" };
 const reviewTable = { __table: "review" };
 const profileTable = { __table: "profile" };
@@ -30,6 +32,7 @@ mock.module("../lib/rate-limit", () => ({
 }));
 
 mock.module("../lib/diary-metal-tier", () => ({
+	...diaryMetalTier,
 	fetchDiaryLogCountsForUserIds: async () => new Map(),
 }));
 

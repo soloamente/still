@@ -75,7 +75,7 @@ describe("serializePatronProfileForClient", () => {
 		expect(
 			serializePatronProfileForClient(
 				{ handle: "a", displayName: "A", preferences: {} },
-				150,
+				1000,
 			),
 		).toEqual({
 			handle: "a",
