@@ -10,6 +10,7 @@ import {
 	user,
 	watchlistItem,
 } from "@still/db";
+import type { PlanTierId } from "@still/plans";
 import {
 	and,
 	count,
@@ -37,6 +38,10 @@ import {
 	watchlistPatronHasNotWatchedTitle,
 } from "./listing-community-stats";
 import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
+import {
+	fetchPlanTiersForUserIds,
+	planTierForUserId,
+} from "./patron-plan-tier";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type ListingEngagementKind =
@@ -69,6 +74,7 @@ export type ListingEngagementWatchItem = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -95,6 +101,7 @@ export type ListingEngagementPatronItem = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	rating: number | null;
 	liked: boolean;
 	sortAt: string;
@@ -240,9 +247,12 @@ async function mapWatchRows(
 		reviewContainsSpoilers: boolean | null;
 	}[],
 ): Promise<ListingEngagementWatchItem[]> {
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		rows.map((row) => row.userId),
-	);
+	const userIds = rows.map((row) => row.userId);
+	// Resolve diary metal + subscription tier in one round-trip each.
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 	return rows.map((row) => ({
 		userId: row.userId,
 		handle: row.handle,
@@ -250,6 +260,7 @@ async function mapWatchRows(
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
 		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+		planTier: planTierForUserId(row.userId, planTiers),
 		rating: row.logRating,
 		liked: row.liked,
 		watchedAt: row.watchedAt.toISOString(),
@@ -280,9 +291,12 @@ async function mapPatronRows(
 		sortAt: Date;
 	}[],
 ): Promise<ListingEngagementPatronItem[]> {
-	const logCounts = await fetchDiaryLogCountsForUserIds(
-		rows.map((row) => row.userId),
-	);
+	const userIds = rows.map((row) => row.userId);
+	// Resolve diary metal + subscription tier in one round-trip each.
+	const [logCounts, planTiers] = await Promise.all([
+		fetchDiaryLogCountsForUserIds(userIds),
+		fetchPlanTiersForUserIds(userIds),
+	]);
 	return rows.map((row) => ({
 		userId: row.userId,
 		handle: row.handle,
@@ -290,11 +304,18 @@ async function mapPatronRows(
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
 		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
+		planTier: planTierForUserId(row.userId, planTiers),
 		rating: row.rating,
 		liked: row.liked,
 		sortAt: row.sortAt.toISOString(),
 	}));
 }
+
+/** @internal Exported for hydration shape tests only. */
+export const mapListingEngagementWatchRowsForTest = mapWatchRows;
+
+/** @internal Exported for hydration shape tests only. */
+export const mapListingEngagementPatronRowsForTest = mapPatronRows;
 
 async function fetchVisibleWatchCount(
 	listing: ListingEngagementListingRef,
