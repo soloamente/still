@@ -7,7 +7,9 @@ export function resolveAvatarAuraTier(value: unknown): PlanTierId {
 }
 
 /** Free tier renders the plain portrait — no rim, no hover effect. */
-export function hasAvatarAura(tier: PlanTierId): boolean {
+export function hasAvatarAura(
+	tier: PlanTierId,
+): tier is Exclude<PlanTierId, "still"> {
 	return tier !== "still";
 }
 
