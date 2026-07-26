@@ -62,6 +62,7 @@ describe("resolveListingPresenceRowDisplay", () => {
 			image: null,
 			avatarIsAnimated: false,
 			diaryMetalTier: null,
+			planTier: "still" as const,
 			presenceState: "active" as const,
 		};
 
@@ -109,6 +110,7 @@ describe("resolveListingPresenceRowDisplay", () => {
 			avatarIsAnimated: false,
 
 			diaryMetalTier: null,
+			planTier: "still" as const,
 
 			presenceState: "active" as const,
 		};

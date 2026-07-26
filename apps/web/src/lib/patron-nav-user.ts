@@ -31,7 +31,7 @@ export function buildPatronNavUser(
 			image,
 			profile?.preferences ?? null,
 		),
-		diaryMetalTier: profile?.diaryMetalTier ?? null,
+		planTier: profile?.planTier ?? profile?.effectiveTier ?? "still",
 	};
 }
 

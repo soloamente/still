@@ -1,13 +1,15 @@
 "use client";
 
-import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
-import { LayoutGrid } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
+import { DiaryLogRatingLabel } from "@/components/diary/diary-log-rating-label";
+import { ACTIVITY_ROW_CLASS } from "@/components/feed/activity-item";
+import { FeedActivityFavoriteChip } from "@/components/feed/feed-activity-kind-badge";
+import { FeedListingThumb } from "@/components/feed/feed-listing-thumb";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
 import { ReviewSpoilerPreview } from "@/components/review/review-spoiler-preview";
 import type {
@@ -16,138 +18,231 @@ import type {
 	ListingEngagementWatchItem,
 } from "@/lib/fetch-listing-engagement";
 import { formatDistanceToNowStrict, formatTimeAgoLabel } from "@/lib/format";
-import {
-	isListCoverProxySrc,
-	listBoardRowPosterUrl,
-} from "@/lib/list-cover-image";
-import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
+import { listBoardRowPosterUrl } from "@/lib/list-cover-image";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
-const COMMUNITY_CARD = "rounded-2xl bg-background";
+/** Centered patron tile — display name, large portrait, timestamp. */
+const ENGAGEMENT_PATRON_TILE_CLASS =
+	"group flex flex-col items-center gap-3 rounded-2xl bg-background p-4 text-center transition-[transform,background-color] duration-[var(--aker-duration)] ease-[var(--aker-ease)] [@media(hover:hover)]:hover:bg-foreground/5 active:scale-[0.96] motion-reduce:active:scale-100";
 
-function PatronAvatarRow({
-	item,
-	subtitle,
+/** Large portrait used in stacked engagement tiles (watchlist, etc.). */
+const ENGAGEMENT_PATRON_TILE_AVATAR_PX = 80;
+
+function EngagementMetaRow({
+	children,
+	className,
 }: {
-	item: ListingEngagementPatronItem | ListingEngagementWatchItem;
-	subtitle?: string | null;
+	children: ReactNode;
+	className?: string;
 }) {
 	return (
-		<div className="flex min-w-0 items-center gap-3">
-			<PatronPortraitWithMetalTier
+		<div
+			className={cn(
+				"flex flex-wrap items-center gap-x-2 gap-y-1 text-muted-foreground text-xs tabular-nums",
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
+}
+
+function EngagementPatronStackedTile({
+	item,
+	timestampLabel,
+	timestampDateTime,
+}: {
+	item: ListingEngagementPatronItem | ListingEngagementWatchItem;
+	timestampLabel: string;
+	timestampDateTime: string;
+}) {
+	return (
+		<Link
+			href={`/profile/${item.handle}`}
+			className={cn(
+				ENGAGEMENT_PATRON_TILE_CLASS,
+				"outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+			)}
+			aria-label={`${item.displayName}, ${timestampLabel}`}
+		>
+			<span className="relative isolate size-16 shrink-0 overflow-visible rounded-full bg-muted sm:size-20">
+				<PatronPortraitWithAura
+					handle={item.handle}
+					avatarUrl={item.image}
+					name={item.displayName}
+					className="size-full rounded-full"
+					width={ENGAGEMENT_PATRON_TILE_AVATAR_PX}
+					height={ENGAGEMENT_PATRON_TILE_AVATAR_PX}
+					isAnimated={inferAnimatedFromProfileUrl(
+						item.image,
+						item.avatarIsAnimated,
+					)}
+					planTier={item.planTier}
+				/>
+			</span>
+			{/* Portrait first — display name + handle stack directly under it. */}
+			<span className="flex w-full min-w-0 flex-col items-center gap-0.5">
+				<span className="max-w-full truncate font-semibold text-foreground text-sm leading-snug">
+					{item.displayName}
+				</span>
+				<span className="max-w-full truncate text-muted-foreground text-xs leading-snug">
+					@{item.handle}
+				</span>
+			</span>
+			<time
+				dateTime={timestampDateTime}
+				className="text-balance text-muted-foreground text-xs tabular-nums leading-relaxed"
+			>
+				{timestampLabel}
+			</time>
+		</Link>
+	);
+}
+
+/** Patron rows with inline review/meta keep the horizontal feed layout. */
+const ENGAGEMENT_PATRON_ROW_CLASS = cn(ACTIVITY_ROW_CLASS, "gap-4");
+
+function EngagementPatronAvatarLink({
+	item,
+}: {
+	item: ListingEngagementPatronItem | ListingEngagementWatchItem;
+}) {
+	return (
+		<Link
+			href={`/profile/${item.handle}`}
+			className={cn(
+				"relative isolate size-11 shrink-0 overflow-visible rounded-full bg-muted",
+				"transition-[transform,colors] duration-[var(--aker-duration)] ease-[var(--aker-ease)]",
+				"[@media(hover:hover)]:hover:bg-foreground/10",
+				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+				"select-none active:scale-[0.96] motion-reduce:active:scale-100",
+			)}
+			aria-label={`${item.displayName} profile`}
+		>
+			<PatronPortraitWithAura
 				handle={item.handle}
 				avatarUrl={item.image}
 				name={item.displayName}
-				className="size-11 shrink-0 rounded-full"
+				className="size-full rounded-full"
 				width={44}
 				height={44}
 				isAnimated={inferAnimatedFromProfileUrl(
 					item.image,
 					item.avatarIsAnimated,
 				)}
-				diaryMetalTier={item.diaryMetalTier}
+				planTier={item.planTier}
 			/>
-			<div className="min-w-0 text-left">
-				<p className="truncate font-medium text-foreground text-sm">
-					{item.displayName}
-				</p>
-				<p className="truncate text-muted-foreground text-xs">@{item.handle}</p>
-				{subtitle ? (
-					<p className="mt-0.5 truncate text-muted-foreground text-xs tabular-nums">
-						{subtitle}
-					</p>
-				) : null}
-			</div>
-		</div>
+		</Link>
 	);
 }
 
-/** Watched / favorited row — patron byline plus optional review excerpt. */
+function EngagementPatronNameLink({
+	item,
+}: {
+	item: ListingEngagementPatronItem | ListingEngagementWatchItem;
+}) {
+	return (
+		<Link
+			href={`/profile/${item.handle}`}
+			className="font-medium text-foreground hover:underline"
+		>
+			{item.displayName}
+		</Link>
+	);
+}
+
+/** Watched / favorited row — single feed-style tile; review excerpt stays on the same surface. */
 export function ListingEngagementWatchRow({
 	item,
 	movieId,
+	kind = "watched",
 }: {
 	item: ListingEngagementWatchItem;
 	movieId?: number;
+	kind?: "watched" | "favorited";
 }) {
 	const openReviewDetail = useReviewDetail((s) => s.open);
-	const scoreLabel = formatStoredLogRatingDisplay(item.rating);
-	const subtitleParts: string[] = [];
-	if (scoreLabel) subtitleParts.push(scoreLabel);
-	if (item.liked) subtitleParts.push("Favorite");
-	if (subtitleParts.length === 0) subtitleParts.push("Logged");
-	subtitleParts.push(formatTimeAgoLabel(item.watchedAt));
-
 	const review = item.review;
 	const reviewExcerpt =
 		review?.headline?.trim() || review?.body?.trim() || null;
+	const verbLabel = kind === "favorited" ? "Favorited" : "Watched";
+	const watchedLabel = formatTimeAgoLabel(item.watchedAt);
 
 	return (
-		<article className={cn(COMMUNITY_CARD, "p-4")}>
-			<div className="flex items-start justify-between gap-3">
-				<Link
-					href={`/profile/${item.handle}`}
-					className="min-w-0 flex-1 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/55"
-				>
-					<PatronAvatarRow item={item} subtitle={subtitleParts.join(" · ")} />
-				</Link>
-				{item.liked ? (
-					<IconHeartFilled
-						aria-label="Favorite"
-						className="size-4 shrink-0 text-orange-400/90"
-					/>
+		<article className={ENGAGEMENT_PATRON_ROW_CLASS}>
+			<EngagementPatronAvatarLink item={item} />
+			<div className="flex min-w-0 flex-1 flex-col gap-2">
+				<p className="min-w-0 text-pretty text-sm leading-snug">
+					<EngagementPatronNameLink item={item} />
+					<span className="text-muted-foreground"> {verbLabel}</span>
+					<span className="text-muted-foreground"> · </span>
+					<time
+						dateTime={item.watchedAt}
+						className="text-muted-foreground tabular-nums"
+					>
+						{watchedLabel}
+					</time>
+				</p>
+
+				<EngagementMetaRow>
+					<DiaryLogRatingLabel stored={item.rating} />
+					{item.liked ? <FeedActivityFavoriteChip /> : null}
+					{!item.rating && !item.liked ? (
+						<span className="text-muted-foreground">Logged</span>
+					) : null}
+				</EngagementMetaRow>
+
+				{review && reviewExcerpt ? (
+					<>
+						<ReviewSpoilerPreview
+							containsSpoilers={review.containsSpoilers ?? false}
+							movieId={movieId}
+							reviewUserId={item.userId}
+							align="start"
+							nestedInInteractive
+						>
+							<p className="line-clamp-3 text-pretty font-editorial text-foreground/80 text-sm leading-relaxed">
+								{reviewExcerpt}
+							</p>
+						</ReviewSpoilerPreview>
+						<DetailMotionButton
+							type="button"
+							className="w-fit font-medium text-foreground text-sm transition-colors duration-150 [@media(hover:hover)]:hover:text-desert-orange"
+							onClick={() =>
+								openReviewDetail({
+									reviewId: review.id,
+									movieId,
+									preview: {
+										id: review.id,
+										userId: item.userId,
+										title: review.headline,
+										body: review.body,
+										rating: review.rating,
+										likesCount: review.likesCount,
+										commentsCount: 0,
+										publishedAt: review.publishedAt,
+										containsSpoilers: review.containsSpoilers,
+										author: {
+											handle: item.handle,
+											displayName: item.displayName,
+											image: item.image,
+											avatarIsAnimated: item.avatarIsAnimated,
+											planTier: item.planTier,
+										},
+									},
+								})
+							}
+						>
+							Read review
+						</DetailMotionButton>
+					</>
 				) : null}
 			</div>
-			{review && reviewExcerpt ? (
-				<DetailMotionButton
-					type="button"
-					className="mt-3 w-full rounded-2xl bg-card px-4 py-3 text-left"
-					onClick={() =>
-						openReviewDetail({
-							reviewId: review.id,
-							movieId,
-							preview: {
-								id: review.id,
-								userId: item.userId,
-								title: review.headline,
-								body: review.body,
-								rating: review.rating,
-								likesCount: review.likesCount,
-								commentsCount: 0,
-								publishedAt: review.publishedAt,
-								containsSpoilers: review.containsSpoilers,
-								author: {
-									handle: item.handle,
-									displayName: item.displayName,
-									image: item.image,
-									avatarIsAnimated: item.avatarIsAnimated,
-									diaryMetalTier: item.diaryMetalTier,
-								},
-							},
-						})
-					}
-				>
-					<ReviewSpoilerPreview
-						containsSpoilers={review.containsSpoilers ?? false}
-						movieId={movieId}
-						reviewUserId={item.userId}
-						align="start"
-						nestedInInteractive
-					>
-						<p className="line-clamp-3 font-editorial text-foreground/85 text-sm leading-relaxed">
-							{reviewExcerpt}
-						</p>
-					</ReviewSpoilerPreview>
-					<p className="mt-2 font-medium text-desert-orange text-xs">
-						See full review
-					</p>
-				</DetailMotionButton>
-			) : null}
 		</article>
 	);
 }
 
-/** List card row — mirrors community tab list tiles. */
+/** List row — same horizontal rhythm as community activity list tiles. */
 export function ListingEngagementListRow({
 	item,
 }: {
@@ -162,79 +257,68 @@ export function ListingEngagementListRow({
 		},
 		"w342",
 	);
+	const listHref = `/lists/${item.id}`;
 	const listCountLabel = item.itemsCount === 1 ? "title" : "titles";
 
 	return (
-		<article className={cn(COMMUNITY_CARD, "overflow-hidden")}>
-			<Link
-				href={`/lists/${item.id}`}
-				className="flex items-stretch gap-4 p-4 text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100"
-			>
-				<aside
-					className="relative w-[5.25rem] shrink-0 self-stretch sm:w-[6.5rem]"
-					aria-hidden
+		<article className={ACTIVITY_ROW_CLASS}>
+			<FeedListingThumb
+				layout="activity"
+				title={item.title}
+				posterUrl={coverSrc}
+				href={listHref}
+				linkable
+			/>
+			<div className="flex min-w-0 flex-1 flex-col gap-2">
+				<Link
+					href={listHref}
+					className="block text-balance font-serif text-foreground text-lg leading-snug tracking-tight transition-colors duration-150 [@media(hover:hover)]:group-hover:text-desert-orange"
 				>
-					<div className="relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-muted/30">
-						{coverSrc ? (
-							<Image
-								src={coverSrc}
-								alt=""
-								fill
-								sizes="(max-width: 640px) 88px, 104px"
-								className="object-cover"
-								unoptimized={isListCoverProxySrc(coverSrc)}
-							/>
-						) : (
-							<div className="grid size-full place-items-center text-desert-orange">
-								<LayoutGrid className="size-6" aria-hidden />
-							</div>
-						)}
-					</div>
-				</aside>
-				<div className="min-w-0 flex-1">
-					<p className="font-serif text-foreground text-lg leading-snug [@media(hover:hover)]:hover:text-desert-orange">
-						{item.title}
+					{item.title}
+				</Link>
+				<EngagementMetaRow>
+					<span>
+						by{" "}
+						<Link
+							href={`/profile/${item.ownerHandle}`}
+							className="font-medium text-foreground transition-colors duration-150 [@media(hover:hover)]:hover:text-desert-orange"
+						>
+							@{item.ownerHandle}
+						</Link>
+					</span>
+					<span>
+						{item.itemsCount} {listCountLabel}
+					</span>
+					<span>
+						{item.likesCount} {item.likesCount === 1 ? "like" : "likes"}
+					</span>
+					<span>
+						updated {formatDistanceToNowStrict(new Date(item.updatedAt))} ago
+					</span>
+				</EngagementMetaRow>
+				{item.description ? (
+					<p className="line-clamp-2 text-pretty font-editorial text-foreground/80 text-sm leading-relaxed">
+						{item.description}
 					</p>
-					<p className="mt-1 text-muted-foreground text-xs tabular-nums">
-						by <span className="text-foreground/85">@{item.ownerHandle}</span>
-						{" · "}
-						{item.itemsCount} {listCountLabel} · {item.likesCount}{" "}
-						{item.likesCount === 1 ? "like" : "likes"} · updated{" "}
-						{formatDistanceToNowStrict(new Date(item.updatedAt))} ago
-					</p>
-					{item.description ? (
-						<p className="mt-2 line-clamp-2 font-editorial text-foreground/80 text-sm leading-relaxed">
-							{item.description}
-						</p>
-					) : null}
-				</div>
-			</Link>
+				) : null}
+			</div>
 		</article>
 	);
 }
 
-/** Watchlist / simple patron row without review body. */
+/** Watchlist patron — centered name, large avatar, added timestamp. */
 export function ListingEngagementPatronRow({
 	item,
 }: {
 	item: ListingEngagementPatronItem;
 }) {
-	const scoreLabel = formatStoredLogRatingDisplay(item.rating);
-	const subtitle = formatTimeAgoLabel(item.sortAt);
+	const savedLabel = formatTimeAgoLabel(item.sortAt);
 
 	return (
-		<article className={cn(COMMUNITY_CARD, "p-4")}>
-			<Link
-				href={`/profile/${item.handle}`}
-				className="block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-desert-orange/55"
-			>
-				<PatronAvatarRow
-					item={item}
-					subtitle={
-						scoreLabel ? `${scoreLabel} · ${subtitle}` : `Saved ${subtitle}`
-					}
-				/>
-			</Link>
-		</article>
+		<EngagementPatronStackedTile
+			item={item}
+			timestampDateTime={item.sortAt}
+			timestampLabel={`Added to watchlist · ${savedLabel}`}
+		/>
 	);
 }

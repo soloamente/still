@@ -4,7 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { leaderboardHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import type {
 	MonthRecapCategoryId,
@@ -153,7 +153,7 @@ function MonthRecapPodiumTile({
 				href={`/profile/${entry.handle}`}
 				className="relative mt-2 overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 			>
-				<PatronPortraitWithMetalTier
+				<PatronPortraitWithAura
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
@@ -167,7 +167,7 @@ function MonthRecapPodiumTile({
 						entry.image,
 						entry.avatarIsAnimated,
 					)}
-					diaryMetalTier={entry.diaryMetalTier}
+					planTier={entry.planTier}
 				/>
 			</Link>
 			<p

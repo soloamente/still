@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 
@@ -11,6 +13,7 @@ export type LeaderboardEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	count: number;
 };
 
@@ -46,6 +49,7 @@ export type LeaderboardLogsPayload = {
 		image: string | null;
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
+		planTier: PlanTierId;
 	};
 	period: HomeLeaderboardPeriod;
 	window: { start: string; end: string };

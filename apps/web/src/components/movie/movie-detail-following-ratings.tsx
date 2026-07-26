@@ -1,10 +1,10 @@
+import type { PlanTierId } from "@still/plans";
 import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
@@ -14,7 +14,7 @@ export type MovieDetailFollowingRating = {
 	displayName: string;
 	image: string | null;
 	avatarIsAnimated: boolean;
-	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -80,7 +80,7 @@ function FollowingRatingChip({ entry }: { entry: MovieDetailFollowingRating }) {
 			)}
 		>
 			<span className="relative isolate size-11 overflow-visible rounded-full bg-muted active:scale-[0.96] motion-reduce:active:scale-100 [@media(hover:hover)]:group-hover:bg-foreground/10">
-				<PatronPortraitWithMetalTier
+				<PatronPortraitWithAura
 					handle={entry.handle}
 					avatarUrl={entry.image}
 					name={entry.displayName}
@@ -91,7 +91,7 @@ function FollowingRatingChip({ entry }: { entry: MovieDetailFollowingRating }) {
 						entry.image,
 						entry.avatarIsAnimated,
 					)}
-					diaryMetalTier={entry.diaryMetalTier}
+					planTier={entry.planTier}
 				/>
 			</span>
 			<span className="font-semibold text-foreground text-sm tabular-nums leading-none">

@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import type { HomeFriendRailEntry } from "@/lib/home-friend-rail";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
@@ -103,7 +103,7 @@ export function HomeFriendActivityRail({
 								className="flex gap-2 rounded-xl p-2 transition-colors hover:bg-surface-overlay/50"
 							>
 								<span className="relative size-9 shrink-0 overflow-visible rounded-full bg-muted">
-									<PatronPortraitWithMetalTier
+									<PatronPortraitWithAura
 										handle={e.handle}
 										avatarUrl={e.image}
 										name={e.displayName}
@@ -114,7 +114,7 @@ export function HomeFriendActivityRail({
 											e.image,
 											e.avatarIsAnimated,
 										)}
-										diaryMetalTier={e.diaryMetalTier}
+										planTier={e.planTier}
 									/>
 								</span>
 								<span className="min-w-0 flex-1">

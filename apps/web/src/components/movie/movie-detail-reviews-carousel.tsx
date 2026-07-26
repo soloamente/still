@@ -12,7 +12,7 @@ import {
 } from "react";
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
 import {
@@ -278,7 +278,7 @@ function MovieDetailReviewSlide({
 								className="rounded-full outline-none transition-transform duration-150 ease-out [-webkit-tap-highlight-color:transparent] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card active:scale-[0.96] motion-reduce:active:scale-100"
 								onClick={(event) => event.stopPropagation()}
 							>
-								<PatronPortraitWithMetalTier
+								<PatronPortraitWithAura
 									handle={author.handle}
 									avatarUrl={author.image}
 									name={author.displayName}
@@ -289,7 +289,7 @@ function MovieDetailReviewSlide({
 										author.image,
 										author.avatarIsAnimated,
 									)}
-									diaryMetalTier={author.diaryMetalTier ?? null}
+									planTier={author.planTier ?? null}
 								/>
 							</Link>
 							{/* Display name, handle, and engagement counts read as one byline block. */}

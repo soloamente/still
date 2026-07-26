@@ -4,7 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 
 import Link from "next/link";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import type {
 	ListingPresenceSnapshot,
@@ -94,7 +94,7 @@ function PresenceStackAvatar({
 						ringClass,
 					)}
 				>
-					<PatronPortraitWithMetalTier
+					<PatronPortraitWithAura
 						handle={patron.handle}
 						avatarUrl={patron.image}
 						name={patron.displayName || patron.handle}
@@ -107,7 +107,7 @@ function PresenceStackAvatar({
 							patron.image,
 							patron.avatarIsAnimated,
 						)}
-						diaryMetalTier={patron.diaryMetalTier}
+						planTier={patron.planTier}
 					/>
 				</span>
 			</Link>

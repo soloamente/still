@@ -9,7 +9,7 @@ import { PatronWatchLedgerGrid } from "@/components/home/patron-watch-ledger-gri
 import { PatronWatchLedgerOrderChips } from "@/components/home/patron-watch-ledger-order-chips";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { leaderboardDrawerHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
 	leaderboardWatchLedgerSummaryLabel,
@@ -97,8 +97,7 @@ export function PatronWatchLedgerPanel({
 	const avatarImage = payload?.user.image ?? seed.image;
 	const avatarIsAnimated =
 		payload?.user.avatarIsAnimated ?? seed.avatarIsAnimated;
-	const diaryMetalTier =
-		payload?.user.diaryMetalTier ?? seed.diaryMetalTier ?? null;
+	const planTier = payload?.user.planTier ?? seed.planTier ?? null;
 	const items = payload?.items ?? [];
 	const sortedItems = useMemo(
 		() => sortPatronWatchLedgerItems(items, order),
@@ -118,7 +117,7 @@ export function PatronWatchLedgerPanel({
 								className="relative overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
 								title={`Open @${handle}'s profile`}
 							>
-								<PatronPortraitWithMetalTier
+								<PatronPortraitWithAura
 									handle={handle}
 									avatarUrl={avatarImage}
 									name={displayName}
@@ -129,7 +128,7 @@ export function PatronWatchLedgerPanel({
 										avatarImage,
 										avatarIsAnimated,
 									)}
-									diaryMetalTier={diaryMetalTier}
+									planTier={planTier}
 								/>
 							</Link>
 						</div>

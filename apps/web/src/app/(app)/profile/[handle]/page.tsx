@@ -100,6 +100,7 @@ type ProfileData = {
 		isPrivate: boolean;
 		tasteSignature?: unknown;
 		diaryMetalTier?: DiaryMetalTier | null;
+		planTier?: import("@still/plans").PlanTierId | string | null;
 		pinnedQuoteSaveIds?: unknown;
 	};
 	stats: { followers: number; following: number };
@@ -301,7 +302,7 @@ export default async function ProfilePage({
 			avatarIsAnimated={avatarIsAnimated}
 			bannerIsAnimated={bannerIsAnimated}
 			profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
-			diaryMetalTier={profile.diaryMetalTier ?? null}
+			planTier={profile.planTier ?? null}
 			activitySignatureEnabled={data.capabilities?.activitySignature ?? false}
 		/>
 	);

@@ -1,6 +1,7 @@
+import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
 	ProfileAboutCollapsible,
 	ProfilePatronMetaLine,
@@ -15,6 +16,7 @@ import { ProfileShowcaseStrip } from "@/components/profile/profile-showcase-stri
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteCategoryPill } from "@/components/profile/profile-taste-signature";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
@@ -75,6 +77,7 @@ type ProfilePatronHeaderProps = {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 	/** Profile owner has Attuned activity signature entitlement. */
 	activitySignatureEnabled?: boolean;
 };
@@ -111,6 +114,7 @@ export function ProfilePatronHeader({
 	bannerIsAnimated,
 	profilePortraitGrayscaleUntilHover,
 	diaryMetalTier = null,
+	planTier = null,
 	activitySignatureEnabled = true,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
@@ -131,7 +135,7 @@ export function ProfilePatronHeader({
 			{/* Card-colored glow — wraps evenly around the portrait */}
 			<div className={PROFILE_HERO_PORTRAIT_SHADOW_CLASSNAME} aria-hidden />
 			{hasPortrait ? (
-				<PatronPortraitWithMetalTier
+				<PatronPortraitWithAura
 					handle={handle}
 					avatarUrl={avatarUrl}
 					name={displayName || initials}
@@ -140,7 +144,7 @@ export function ProfilePatronHeader({
 					className="size-full rounded-full"
 					width={PROFILE_HERO_PORTRAIT_IMAGE_PX}
 					height={PROFILE_HERO_PORTRAIT_IMAGE_PX}
-					diaryMetalTier={diaryMetalTier}
+					planTier={planTier}
 				/>
 			) : (
 				<div className="size-full overflow-hidden rounded-full">

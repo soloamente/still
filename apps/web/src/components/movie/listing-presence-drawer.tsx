@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import type { ListingPresenceViewingPatron } from "@/lib/fetch-listing-presence";
 import { buildListingPresenceDrawerCopy } from "@/lib/listing-presence-copy";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
@@ -27,7 +27,7 @@ function ListingPresenceDrawerRow({
 				aria-label={`Open @${patron.handle} profile`}
 			>
 				<span className="block size-11 shrink-0 rounded-full bg-muted">
-					<PatronPortraitWithMetalTier
+					<PatronPortraitWithAura
 						handle={patron.handle}
 						avatarUrl={patron.image}
 						name={patron.displayName || patron.handle}
@@ -40,7 +40,7 @@ function ListingPresenceDrawerRow({
 							patron.image,
 							patron.avatarIsAnimated,
 						)}
-						diaryMetalTier={patron.diaryMetalTier}
+						planTier={patron.planTier}
 					/>
 				</span>
 				<div className="min-w-0">

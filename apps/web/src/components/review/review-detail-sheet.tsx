@@ -20,7 +20,7 @@ import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressab
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import type { MovieDetailHeroSlide } from "@/components/movie/movie-detail-hero-media";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { ReviewAddToShowcaseButton } from "@/components/review/review-add-to-showcase-button";
 import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
@@ -46,7 +46,6 @@ import { api } from "@/lib/api";
 import { APP_MEMBER_LABEL } from "@/lib/app-brand";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
@@ -69,13 +68,15 @@ const REVIEW_READER_HEADER_DELETE_ICON_BUTTON_CLASS = cn(
 	"[@media(hover:hover)]:hover:bg-destructive/10 [@media(hover:hover)]:hover:text-destructive",
 );
 
+import type { PlanTierId } from "@still/plans";
+
 /** Patron identity shown in the drawer header while detail loads. */
 export type ReviewAuthorPreview = {
 	handle: string;
 	displayName: string;
 	image: string | null;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
@@ -663,7 +664,7 @@ export function ReviewDetailRoot() {
 				DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 			)}
 		>
-			<PatronPortraitWithMetalTier
+			<PatronPortraitWithAura
 				handle={displayAuthor.handle}
 				avatarUrl={displayAuthor.image}
 				name={displayAuthor.displayName}
@@ -674,7 +675,7 @@ export function ReviewDetailRoot() {
 					displayAuthor.image,
 					displayAuthor.avatarIsAnimated,
 				)}
-				diaryMetalTier={displayAuthor.diaryMetalTier ?? null}
+				planTier={displayAuthor.planTier ?? null}
 			/>
 			<span className="min-w-0 text-left">
 				<span className="block truncate font-medium text-foreground text-sm leading-snug">

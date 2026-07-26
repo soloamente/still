@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { PatronActivityState } from "@/lib/patron-activity-tracker";
 import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
@@ -12,6 +14,7 @@ export type ListingPresenceViewingPatron = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	/** Explicit server signal used to render online-now badges. */
 	presenceState: "active" | "away";
 };

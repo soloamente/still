@@ -1,10 +1,11 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
+
 import { create } from "zustand";
 
 import { PatronMembersLedgerPanel } from "@/components/home/patron-members-ledger-panel";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { membersLeaderboardSortLabel } from "@/lib/members-leaderboard";
 import type {
@@ -18,7 +19,7 @@ export type PatronMembersLedgerSeed = {
 	displayName: string;
 	image: string | null;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 	sort: MembersLeaderboardSort;
 	period: HomeLeaderboardPeriod;
 };
@@ -53,7 +54,7 @@ export function buildPatronMembersLedgerSeed(
 		displayName: entry.displayName,
 		image: entry.image,
 		avatarIsAnimated: entry.avatarIsAnimated,
-		diaryMetalTier: entry.diaryMetalTier,
+		planTier: entry.planTier,
 		sort,
 		period,
 	};

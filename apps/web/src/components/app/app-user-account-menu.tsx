@@ -1,5 +1,6 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import {
 	DropdownMenuGroup,
 	DropdownMenuItem,
@@ -16,10 +17,9 @@ import { useRouter } from "next/navigation";
 
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
 import { useFeedbackDrawer } from "@/components/feedback/feedback-drawer-provider";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 /** Session + profile fields needed for the Mobbin-style account surface (nav + home header). */
@@ -32,7 +32,7 @@ export type AccountMenuUser = {
 	/** Polar / billing hook — badge stays hidden until we wire subscription state. */
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 type AppUserAccountMenuBodyProps = {
@@ -102,7 +102,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 			{/* Identity — avatar row, PRO chip, profile CTA on raised card (home / detail token rhythm). */}
 			<div className="pt-1 pb-1">
 				<div className="flex items-start gap-3">
-					<PatronPortraitWithMetalTier
+					<PatronPortraitWithAura
 						handle={user.handle}
 						avatarUrl={user.image}
 						name={user.name}
@@ -113,7 +113,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 							user.image,
 							user.avatarIsAnimated,
 						)}
-						diaryMetalTier={user.diaryMetalTier ?? null}
+						planTier={user.planTier ?? null}
 					/>
 					<div className="min-w-0 flex-1">
 						<div className="flex flex-col gap-0">

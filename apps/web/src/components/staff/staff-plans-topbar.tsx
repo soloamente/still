@@ -10,7 +10,7 @@ import { cn } from "@still/ui/lib/utils";
 import { Plus } from "lucide-react";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
@@ -79,7 +79,7 @@ export function StaffPlansTopbar({
 											/>
 										}
 									>
-										<PatronPortraitWithMetalTier
+										<PatronPortraitWithAura
 											handle={patron.handle}
 											avatarUrl={patron.image}
 											name={patron.displayName || patron.handle}
@@ -92,7 +92,7 @@ export function StaffPlansTopbar({
 												patron.image,
 												patron.avatarIsAnimated,
 											)}
-											diaryMetalTier={patron.diaryMetalTier}
+											planTier={patron.planTier}
 										/>
 									</TooltipTrigger>
 									<TooltipContent side="bottom" sideOffset={6}>

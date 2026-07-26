@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 
 export type MonthRecapCategoryId = "films" | "tv" | "reviews";
@@ -10,6 +12,7 @@ export type MonthRecapEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	count: number;
 };
 

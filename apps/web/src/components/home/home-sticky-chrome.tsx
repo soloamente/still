@@ -1,5 +1,6 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import { Button } from "@still/ui/components/button";
 import {
 	DropdownMenu,
@@ -33,7 +34,7 @@ import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surf
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
 import { InviteEarnHeaderButton } from "@/components/referrals/invite-earn-header-button";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+
 import {
 	type HomeBrowseSurface,
 	parseHomeBrowseSurface,
@@ -61,7 +62,7 @@ export type HomeStickyChromeUser = {
 	email?: string | null;
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 /**
@@ -434,7 +435,7 @@ export function HomeStickyChrome({
 													handle={user.handle}
 													size="compact"
 													isAnimated={user.avatarIsAnimated ?? false}
-													diaryMetalTier={user.diaryMetalTier ?? null}
+													planTier={user.planTier ?? null}
 												/>
 											</Button>
 										}
@@ -452,7 +453,7 @@ export function HomeStickyChrome({
 												email: user.email,
 												isPro: user.isPro,
 												avatarIsAnimated: user.avatarIsAnimated,
-												diaryMetalTier: user.diaryMetalTier ?? null,
+												planTier: user.planTier ?? null,
 											}}
 										/>
 									</DropdownMenuContent>

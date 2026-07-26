@@ -33,6 +33,7 @@ export type MeProfile = {
 	tasteSignatureComputedAt?: string | Date | null;
 	favoriteMovieIds?: readonly unknown[] | null;
 	preferences: Record<string, unknown> | null;
+	planTier?: PlanTierId;
 	diaryMetalTier?: DiaryMetalTier | null;
 } | null;
 

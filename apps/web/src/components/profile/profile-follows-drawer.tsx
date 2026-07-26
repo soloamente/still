@@ -1,16 +1,16 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
-
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { api } from "@/lib/api";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 const PROFILE_FOLLOWS_TAB_OPTIONS = [
@@ -37,7 +37,7 @@ type FollowsListRow = {
 		handle: string;
 		displayName: string;
 		avatarIsAnimated?: boolean;
-		diaryMetalTier?: DiaryMetalTier | null;
+		planTier?: PlanTierId | string | null;
 	} | null;
 	viewerFollows: boolean;
 };
@@ -281,7 +281,7 @@ function FollowRow({
 	return (
 		<li className="flex items-center gap-3 border-white/5 border-t px-2 py-2.5 first:border-t-0">
 			{handle ? (
-				<PatronPortraitWithMetalTier
+				<PatronPortraitWithAura
 					handle={handle}
 					avatarUrl={row.user?.image}
 					name={name}
@@ -292,7 +292,7 @@ function FollowRow({
 						row.user?.image,
 						row.profile?.avatarIsAnimated,
 					)}
-					diaryMetalTier={row.profile?.diaryMetalTier ?? null}
+					planTier={row.profile?.planTier ?? null}
 				/>
 			) : (
 				<span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/40 font-medium text-foreground/80 text-sm">

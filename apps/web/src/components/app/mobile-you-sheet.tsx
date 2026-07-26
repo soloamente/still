@@ -1,5 +1,6 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import IconAwardFill from "@still/ui/icons/award-fill";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconFeedbackInbox from "@still/ui/icons/feedback-inbox";
@@ -15,7 +16,6 @@ import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
-
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
 import { MOBILE_YOU_DESTINATIONS } from "@/components/app/mobile-nav";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
@@ -24,7 +24,6 @@ import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { authClient } from "@/lib/auth-client";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 type YouUser = {
@@ -35,7 +34,7 @@ type YouUser = {
 	email?: string | null;
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 const DESTINATION_ICON_CLASS = "size-5 shrink-0 opacity-80";
@@ -172,7 +171,7 @@ export function MobileYouSheet({
 								name={user.name}
 								handle={user.handle}
 								isAnimated={user.avatarIsAnimated ?? false}
-								diaryMetalTier={user.diaryMetalTier ?? null}
+								planTier={user.planTier ?? null}
 							/>
 							<div className="min-w-0 flex-1">
 								<p className="truncate font-semibold text-base text-foreground">

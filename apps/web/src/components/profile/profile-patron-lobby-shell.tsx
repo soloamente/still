@@ -1,8 +1,8 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
 import { useMemo } from "react";
-
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { ProfileFollowsDrawerRoot } from "@/components/profile/profile-follows-drawer";
@@ -21,6 +21,7 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import { ProfileTabPanels } from "@/components/profile/profile-tab-panels";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { ProfileTopBar } from "@/components/profile/profile-top-bar";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
@@ -77,6 +78,7 @@ export interface ProfilePatronLobbyShellProps {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 	activitySignatureEnabled?: boolean;
 }
 
@@ -119,6 +121,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		bannerIsAnimated,
 		profilePortraitGrayscaleUntilHover,
 		diaryMetalTier = null,
+		planTier = null,
 		activitySignatureEnabled = true,
 	} = props;
 
@@ -222,7 +225,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 						profilePortraitGrayscaleUntilHover={
 							profilePortraitGrayscaleUntilHover
 						}
-						diaryMetalTier={diaryMetalTier}
+						planTier={planTier}
 						activitySignatureEnabled={activitySignatureEnabled}
 					/>
 

@@ -205,6 +205,7 @@ export type MoviePageReviewAuthor = {
 	image: string | null;
 	avatarIsAnimated?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: import("@still/plans").PlanTierId | string | null;
 };
 
 export type MoviePageReview = {

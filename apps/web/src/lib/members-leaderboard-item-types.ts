@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { MembersLeaderboardSort } from "@/lib/members-leaderboard-types";
@@ -65,6 +67,7 @@ export type MembersLeaderboardItemsPayload = {
 		image: string | null;
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
+		planTier: PlanTierId;
 	};
 	items: MembersLeaderboardLedgerItem[];
 };

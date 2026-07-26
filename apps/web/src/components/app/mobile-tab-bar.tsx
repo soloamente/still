@@ -1,5 +1,6 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import IconBell from "@still/ui/icons/bell";
 import IconHomeFilled from "@still/ui/icons/home-filled";
 import { cn } from "@still/ui/lib/utils";
@@ -8,7 +9,6 @@ import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useState } from "react";
-
 import { isActive, shouldHideMobileTabBar } from "@/components/app/mobile-nav";
 import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
@@ -16,7 +16,7 @@ import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { useNotificationsInbox } from "@/components/notifications/notifications-inbox-provider";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+
 import { useDismissSheetOnRouteChange } from "@/lib/use-dismiss-sheet-on-route-change";
 
 type TabUser = {
@@ -27,7 +27,7 @@ type TabUser = {
 	email?: string | null;
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 /** Shared tap target — icon-only; label stays available to screen readers. */
@@ -212,7 +212,7 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 									handle={user.handle}
 									size="compact"
 									isAnimated={user.avatarIsAnimated ?? false}
-									diaryMetalTier={user.diaryMetalTier ?? null}
+									planTier={user.planTier ?? null}
 								/>
 							</MobileTabSlot>
 						</button>

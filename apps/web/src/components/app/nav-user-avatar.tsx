@@ -1,5 +1,6 @@
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import type { PlanTierId } from "@still/plans";
+
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 
 /** Compact avatar — same proxy + `unoptimized` path as `ProfilePatronHeader`. */
 export function NavUserAvatar({
@@ -8,7 +9,7 @@ export function NavUserAvatar({
 	handle,
 	size = "default",
 	isAnimated = false,
-	diaryMetalTier = null,
+	planTier = null,
 }: {
 	src: string | null;
 	name: string;
@@ -16,7 +17,7 @@ export function NavUserAvatar({
 	/** `compact` = single `size-8` for dense header icon rows (e.g. home sticky). */
 	size?: "default" | "compact";
 	isAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 }) {
 	const frame =
 		size === "compact"
@@ -25,7 +26,7 @@ export function NavUserAvatar({
 	const px = size === "compact" ? 32 : 36;
 
 	return (
-		<PatronPortraitWithMetalTier
+		<PatronPortraitWithAura
 			handle={handle}
 			avatarUrl={src}
 			name={name}
@@ -33,7 +34,7 @@ export function NavUserAvatar({
 			height={px}
 			className={frame}
 			isAnimated={isAnimated}
-			diaryMetalTier={diaryMetalTier}
+			planTier={planTier}
 		/>
 	);
 }

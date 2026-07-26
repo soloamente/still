@@ -1,7 +1,13 @@
 "use client";
 
+import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
-import { BorderBeam } from "border-beam";
+
+import { AvatarAura } from "@/components/profile/avatar-aura/avatar-aura";
+import {
+	hasAvatarAura,
+	resolveAvatarAuraTier,
+} from "@/components/profile/avatar-aura/avatar-aura-tier";
 import {
 	PatronOnlineDot,
 	type PatronPresenceDotState,
@@ -15,18 +21,12 @@ import {
 	usePatronPresenceState,
 	useViewerHandleForPresence,
 } from "@/components/realtime/patron-online-provider";
-import {
-	DIARY_METAL_BORDER_BEAM_STRENGTH,
-	type DiaryMetalTier,
-	diaryMetalBorderBeamColorVariant,
-	isCircularPatronPortraitClass,
-} from "@/lib/diary-metal-tier";
+import { isCircularPatronPortraitClass } from "@/lib/diary-metal-tier";
 import { formatPatronPresenceDotLabel } from "@/lib/listing-presence-copy";
 import { normalizePatronOnlineHandle } from "@/lib/patron-online-presence";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
-export type PatronPortraitWithMetalTierProps = PatronPortraitAvatarProps & {
-	diaryMetalTier?: DiaryMetalTier | null;
+export type PatronPortraitWithAuraProps = PatronPortraitAvatarProps & {
+	planTier?: PlanTierId | string | null;
 	/** When false, skip the global online-now badge (e.g. decorative placeholders). */
 	showOnlineStatus?: boolean;
 	/**
@@ -37,11 +37,11 @@ export type PatronPortraitWithMetalTierProps = PatronPortraitAvatarProps & {
 };
 
 /**
- * Patron portrait with diary-volume ring — `border-beam` pulse outside the avatar,
- * `colorVariant` follows diary volume — silver / gold / chromatic.
+ * Patron portrait with subscription-tier aura — static OKLCH rim plus tier hover
+ * effects (Attuned sweep, Immersed glow, Devoted WebGL/CSS holo).
  */
-export function PatronPortraitWithMetalTier({
-	diaryMetalTier,
+export function PatronPortraitWithAura({
+	planTier,
 	className,
 	width = 72,
 	height = 72,
@@ -50,8 +50,7 @@ export function PatronPortraitWithMetalTier({
 	handle,
 	style,
 	...avatarProps
-}: PatronPortraitWithMetalTierProps) {
-	const reducedMotion = usePrefersReducedMotion();
+}: PatronPortraitWithAuraProps) {
 	const viewerHandle = useViewerHandleForPresence();
 	const circularPortrait = isCircularPatronPortraitClass(className);
 	const fillsParent = Boolean(className?.includes("size-full"));
@@ -85,8 +84,9 @@ export function PatronPortraitWithMetalTier({
 		circularPortrait ? "rounded-full" : "rounded-[inherit]",
 	);
 
+	const tier = resolveAvatarAuraTier(planTier);
 	const portrait =
-		!diaryMetalTier || !circularPortrait ? (
+		!hasAvatarAura(tier) || !circularPortrait ? (
 			<PatronPortraitAvatar
 				handle={handle}
 				className={innerPortraitClassName}
@@ -95,15 +95,7 @@ export function PatronPortraitWithMetalTier({
 				{...avatarProps}
 			/>
 		) : (
-			<BorderBeam
-				size="pulse-outside"
-				theme="auto"
-				colorVariant={diaryMetalBorderBeamColorVariant(diaryMetalTier)}
-				borderRadius={9999}
-				active={!reducedMotion}
-				strength={DIARY_METAL_BORDER_BEAM_STRENGTH}
-				className="inline-flex size-full shrink-0 overflow-visible"
-			>
+			<AvatarAura tier={tier}>
 				<PatronPortraitAvatar
 					handle={handle}
 					{...avatarProps}
@@ -111,7 +103,7 @@ export function PatronPortraitWithMetalTier({
 					height={height}
 					className={cn(innerPortraitClassName, "rounded-full")}
 				/>
-			</BorderBeam>
+			</AvatarAura>
 		);
 
 	return (

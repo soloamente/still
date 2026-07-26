@@ -3,6 +3,8 @@
  * Server logic lives in `apps/server/src/lib/creator-recognition.ts`.
  */
 
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 
 export const REVIEW_ENGAGEMENT_LIKE_WEIGHT = 2;
@@ -15,6 +17,7 @@ export interface CuratorSpotlightPatron {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	headline: string;
 	spotlightScore: number;
 }

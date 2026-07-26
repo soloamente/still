@@ -1,3 +1,4 @@
+import type { PlanTierId } from "@still/plans";
 import { type CSSProperties, type ReactNode, Suspense } from "react";
 import { AppScrollToTop } from "@/components/app/app-scroll-to-top";
 import { DetailReturnCapture } from "@/components/app/detail-return-capture";
@@ -19,8 +20,8 @@ import { InviteEarnDialogRoot } from "@/components/referrals/invite-earn-dialog-
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
+
 import { VAUL_DRAWER_WRAPPER_ATTR } from "@/lib/detail-vaul-drawer";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
 
 /**
@@ -48,7 +49,7 @@ export type AppShellUser = {
 	email?: string | null;
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
-	diaryMetalTier?: DiaryMetalTier | null;
+	planTier?: PlanTierId | string | null;
 };
 
 /**
@@ -128,7 +129,7 @@ export function AppShell({
 							email: user.email,
 							isPro: user.isPro,
 							avatarIsAnimated: user.avatarIsAnimated,
-							diaryMetalTier: user.diaryMetalTier ?? null,
+							planTier: user.planTier ?? null,
 						}}
 					/>
 				</div>

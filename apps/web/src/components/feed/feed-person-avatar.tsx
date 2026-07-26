@@ -1,8 +1,12 @@
+import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
-import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import {
+	hasAvatarAura,
+	resolveAvatarAuraTier,
+} from "@/components/profile/avatar-aura/avatar-aura-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 export type FeedPerson = {
@@ -11,13 +15,13 @@ export type FeedPerson = {
 		handle: string;
 		displayName: string;
 		avatarIsAnimated?: boolean;
-		diaryMetalTier?: DiaryMetalTier | null;
+		planTier?: PlanTierId | string | null;
 	} | null;
 };
 
 /**
  * Circular profile image for feed rows and the home “friend activity” rail.
- * Uses the same avatar proxy as nav / profile (`PatronPortraitWithMetalTier`) — raw
+ * Uses the same avatar proxy as nav / profile (`PatronPortraitWithAura`) — raw
  * `user.image` blob URLs are not fetchable by Next `<Image>` (403 on private blob).
  */
 export function FeedPersonAvatar({
@@ -32,7 +36,9 @@ export function FeedPersonAvatar({
 }) {
 	const handle = person.profile?.handle ?? person.user?.id ?? "user";
 	const name = person.profile?.displayName ?? person.user?.name ?? "Someone";
-	const hasMetalTier = Boolean(person.profile?.diaryMetalTier);
+	const hasAura = hasAvatarAura(
+		resolveAvatarAuraTier(person.profile?.planTier),
+	);
 	const px = size === "md" ? 44 : size === "sm" ? 36 : 32;
 	const box =
 		size === "md"
@@ -46,7 +52,7 @@ export function FeedPersonAvatar({
 			href={`/profile/${handle}`}
 			className={cn(
 				"relative isolate shrink-0 rounded-full",
-				hasMetalTier
+				hasAura
 					? "overflow-visible bg-transparent"
 					: "overflow-visible bg-muted",
 				"transition-[transform,colors] duration-[var(--aker-duration)] ease-[var(--aker-ease)]",
@@ -58,7 +64,7 @@ export function FeedPersonAvatar({
 			)}
 			aria-label={`${name} profile`}
 		>
-			<PatronPortraitWithMetalTier
+			<PatronPortraitWithAura
 				handle={handle}
 				avatarUrl={person.user?.image}
 				name={name}
@@ -69,7 +75,7 @@ export function FeedPersonAvatar({
 					person.user?.image,
 					person.profile?.avatarIsAnimated,
 				)}
-				diaryMetalTier={person.profile?.diaryMetalTier ?? null}
+				planTier={person.profile?.planTier ?? null}
 			/>
 		</Link>
 	);

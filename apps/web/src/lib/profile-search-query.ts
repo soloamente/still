@@ -1,3 +1,5 @@
+import type { PlanTierId } from "@still/plans";
+
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 
 /** Patron row from `GET /api/profiles/search`. */
@@ -10,6 +12,7 @@ export interface ProfileSearchHit {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
+	planTier: PlanTierId;
 	relationship: ProfileSearchRelationship;
 }
 

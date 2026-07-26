@@ -3,8 +3,9 @@
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
-import { PatronPortraitWithMetalTier } from "@/components/profile/patron-portrait-with-metal-tier";
+import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import type { CuratorSpotlightPatron } from "@/lib/creator-recognition";
+import { HOME_COMMUNITY_FEED_COLUMN_CLASSNAME } from "@/lib/home-community-lobby-layout";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 /**
@@ -21,7 +22,11 @@ export function HomeCuratorSpotlights({
 
 	return (
 		<section
-			className={cn("mx-auto mb-6 w-full max-w-2xl px-1", className)}
+			className={cn(
+				HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+				"mb-6 px-1",
+				className,
+			)}
 			aria-label="Curators on Sense"
 		>
 			<p className="mb-3 text-center font-medium text-foreground text-sm">
@@ -37,7 +42,7 @@ export function HomeCuratorSpotlights({
 									href={`/profile/${patron.handle}`}
 									className="flex w-[9.5rem] flex-col items-center rounded-2xl bg-background px-3 py-3 text-center transition-colors [@media(hover:hover)]:hover:bg-background/80"
 								>
-									<PatronPortraitWithMetalTier
+									<PatronPortraitWithAura
 										handle={patron.handle}
 										avatarUrl={patron.image}
 										name={patron.displayName}
@@ -48,7 +53,7 @@ export function HomeCuratorSpotlights({
 											patron.image,
 											patron.avatarIsAnimated,
 										)}
-										diaryMetalTier={patron.diaryMetalTier}
+										planTier={patron.planTier}
 									/>
 									<p className="mt-2 line-clamp-1 w-full font-medium text-foreground text-sm leading-snug">
 										{patron.displayName}

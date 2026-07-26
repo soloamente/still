@@ -39,7 +39,7 @@ export function SearchDialogPeopleResults({
 						displayName={hit.displayName}
 						image={hit.image}
 						avatarIsAnimated={hit.avatarIsAnimated}
-						diaryMetalTier={hit.diaryMetalTier}
+						planTier={hit.planTier}
 						relationship={hit.relationship}
 						onSelect={() => onSelect(hit.handle)}
 					/>
