@@ -23,6 +23,7 @@ import {
 	eq,
 	gte,
 	ilike,
+	inArray,
 	isNotNull,
 	isNull,
 	lt,
@@ -54,10 +55,10 @@ import {
 	fetchCuratorSpotlightPatrons,
 	resolveCuratorRecognition,
 } from "../lib/creator-recognition";
-import {
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "../lib/diary-metal-tier";
+import { resolveDiaryMetalTier } from "../lib/diary-metal-tier";
+import { invalidateDiscordActivityMetadata } from "../lib/discord-activity-metadata-cache";
+import { sanitizeDiscordActivityPreferences } from "../lib/discord-activity-preferences";
+import { fetchProfileDiscordActivity } from "../lib/fetch-profile-discord-activity";
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { resolveListingPosterPath } from "../lib/listing-poster-path";
 import { fetchProfilePinnedQuotes } from "../lib/listing-quote-saves-query";
@@ -72,19 +73,21 @@ import {
 	shouldGrandfatherLegacyOnboarding,
 } from "../lib/onboarding-grandfather";
 import {
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "../lib/patron-avatar-badge";
+import {
 	loadPatronEntitlements,
 	type PatronEntitlements,
 } from "../lib/patron-entitlements";
-import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "../lib/patron-plan-tier";
+import { parseStaffRoleFromUserRole } from "../lib/patron-staff-role";
 import {
 	canAccessYearInReviewYear,
 	patronHasPlanFeature,
 	planFeatureRequiredBody,
 	sanitizeWatchlistStreamingAlertsPreference,
 } from "../lib/plan-feature-access";
+import { invalidatePresenceProfileMetadata } from "../lib/presence-profile-metadata-cache";
 import {
 	isProfileAccentId,
 	PROFILE_PREF_PROFILE_ACCENT,
@@ -114,7 +117,6 @@ import {
 	PRO_ANIMATED_MEDIA_REQUIRED,
 	readAvatarIsAnimatedPref,
 } from "../lib/profile-media";
-import { validatePinnedQuoteSaveIdsForUser } from "../lib/profile-pinned-quotes";
 import {
 	hydratePinnedReviews,
 	validatePinnedReviewIdsForUser,
@@ -148,6 +150,7 @@ import {
 import { routeBody } from "../lib/route-body";
 import { sanitizeAppearancePreferences } from "../lib/sanitize-appearance-preferences";
 import { ensureFreshTasteSignature } from "../lib/taste-signature-cache";
+import { resolveTvTitleScore } from "../lib/tv-title-score";
 import { getWatchStreakSnapshot } from "../lib/watch-streak-sync";
 import {
 	fetchYearInReviewForUser,
@@ -184,6 +187,7 @@ function profileMeResponse(
 		birthDate: string | null;
 		diaryMetalTier: ReturnType<typeof resolveDiaryMetalTier>;
 		planTier: PatronEntitlements["effectiveTier"];
+		staffRole: ReturnType<typeof parseStaffRoleFromUserRole>;
 	},
 	entitlements: PatronEntitlements,
 ) {
@@ -286,6 +290,11 @@ export const profilesRoute = new Elysia({
 			if (preferencesForUpdate !== undefined) {
 				// Normalize nested audio prefs and keep legacy theaterAudio in sync.
 				preferencesForUpdate = sanitizeProfileAudioPreferences(
+					existingPreferences,
+					preferencesForUpdate,
+				);
+				// Deep-merge integrations.discordActivityEnabled without wiping siblings.
+				preferencesForUpdate = sanitizeDiscordActivityPreferences(
 					existingPreferences,
 					preferencesForUpdate,
 				);
@@ -416,6 +425,14 @@ export const profilesRoute = new Elysia({
 						});
 					}
 				}
+				void invalidatePresenceProfileMetadata(
+					user.id,
+					row.handle ?? existing.handle,
+				);
+				void invalidateDiscordActivityMetadata(
+					user.id,
+					row.handle ?? existing.handle,
+				);
 				return {
 					...row,
 					birthDate: profileBirthDateToIso(row.birthDate),
@@ -450,6 +467,8 @@ export const profilesRoute = new Elysia({
 			void syncProfileReferrerFromCapture(user.id).catch((err) => {
 				console.error("[profiles/me] referral profile sync failed", err);
 			});
+			void invalidatePresenceProfileMetadata(user.id, row.handle);
+			void invalidateDiscordActivityMetadata(user.id, row.handle);
 			return {
 				...row,
 				birthDate: profileBirthDateToIso(row?.birthDate),
@@ -504,6 +523,7 @@ export const profilesRoute = new Elysia({
 			birthDate: profileBirthDateToIso(row.birthDate),
 			diaryMetalTier: resolveDiaryMetalTier(diaryLogCount),
 			planTier: entitlements.effectiveTier,
+			staffRole: parseStaffRoleFromUserRole(authUser.role),
 		};
 
 		// One-time legacy backfill — v3 gate uses onboarded_at; pre-v3 patrons never got it.
@@ -1005,10 +1025,7 @@ export const profilesRoute = new Elysia({
 				)
 				.limit(50);
 			const userIds = rows.map((row) => row.userId);
-			const [logCounts, planTiers] = await Promise.all([
-				fetchDiaryLogCountsForUserIds(userIds),
-				fetchPlanTiersForUserIds(userIds),
-			]);
+			const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 			return rankProfileSearchHits(
 				rows.map((row) => ({
 					userId: row.userId,
@@ -1018,8 +1035,7 @@ export const profilesRoute = new Elysia({
 					avatarIsAnimated: readAvatarIsAnimatedPref(
 						row.preferences as Record<string, unknown> | null,
 					),
-					diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-					planTier: planTierForUserId(row.userId, planTiers),
+					...patronAvatarBadgeFields(row.userId, badgeMaps),
 					isFollowing: row.followerId != null,
 					isMutual: row.isMutual ?? false,
 				})),
@@ -1332,6 +1348,58 @@ export const profilesRoute = new Elysia({
 
 			const total = Number(totalRow[0]?.total ?? 0);
 
+			// TV filmography posters show derived title scores, not the latest raw season row.
+			const resolvedRatingByTvId = new Map<number, number | null>();
+			if (isTv && rows.length > 0) {
+				const pageTvIds = [
+					...new Set(
+						rows
+							.map((r) => r.tvId)
+							.filter((id): id is number => typeof id === "number"),
+					),
+				];
+				if (pageTvIds.length > 0) {
+					const scoreRows = await db
+						.select({
+							tvId: log.tvId,
+							rating: log.rating,
+							logScope: log.logScope,
+							seasonNumber: log.seasonNumber,
+						})
+						.from(log)
+						.where(
+							and(
+								eq(log.userId, row.userId),
+								isNull(log.removedAt),
+								inArray(log.tvId, pageTvIds),
+								contentVisibilityWhere(viewerId, log.userId, log.visibility),
+							),
+						);
+					const byTv = new Map<
+						number,
+						{
+							logScope: string | null;
+							seasonNumber: number | null;
+							rating: number | null;
+						}[]
+					>();
+					for (const scoreRow of scoreRows) {
+						if (scoreRow.tvId == null) continue;
+						const bucket = byTv.get(scoreRow.tvId);
+						const entry = {
+							logScope: scoreRow.logScope,
+							seasonNumber: scoreRow.seasonNumber,
+							rating: scoreRow.rating,
+						};
+						if (bucket) bucket.push(entry);
+						else byTv.set(scoreRow.tvId, [entry]);
+					}
+					for (const [tvId, logs] of byTv) {
+						resolvedRatingByTvId.set(tvId, resolveTvTitleScore(logs));
+					}
+				}
+			}
+
 			// Resolve artwork from column or cached TMDb JSON; backfill remaining gaps
 			// so profile grids match detail pages after a single load.
 			const resolvedPosters = rows.map((r) =>
@@ -1348,11 +1416,15 @@ export const profilesRoute = new Elysia({
 			const results = rows.map((r, index) => {
 				const posterPath =
 					resolvedPosters[index] ?? backfilledPosters.get(r.tmdbId) ?? null;
+				const rating =
+					isTv && r.tvId != null && resolvedRatingByTvId.has(r.tvId)
+						? (resolvedRatingByTvId.get(r.tvId) ?? null)
+						: r.rating;
 				return {
 					log: {
 						id: r.logId,
 						watchedAt: r.watchedAt,
-						rating: r.rating,
+						rating,
 						liked: r.liked,
 						watchVenue: r.watchVenue,
 					},
@@ -1413,6 +1485,21 @@ export const profilesRoute = new Elysia({
 				page: t.Optional(t.String()),
 				limit: t.Optional(t.String()),
 			}),
+		},
+	)
+	/** Live Discord activity row for profile hero + account menu preview. */
+	.get(
+		"/:handle/discord-activity",
+		async ({ params, user: viewer, status }) => {
+			const result = await fetchProfileDiscordActivity({
+				handle: params.handle,
+				viewerId: viewer?.id ?? null,
+			});
+			if (!result.ok) return status(result.status, result.error);
+			return result.body;
+		},
+		{
+			params: t.Object({ handle: t.String() }),
 		},
 	)
 	/**
@@ -1656,6 +1743,7 @@ export const profilesRoute = new Elysia({
 							.then((r) => Number(r[0]?.c ?? 0));
 			const diaryMetalTier = resolveDiaryMetalTier(diaryLogCount);
 			const planTier = targetEntitlements.effectiveTier;
+			const staffRole = parseStaffRoleFromUserRole(row.user.role);
 
 			const birthIso = profileBirthDateToIso(row.profile.birthDate);
 			const showBirthday = readShowBirthDateOnProfilePref(
@@ -1685,6 +1773,7 @@ export const profilesRoute = new Elysia({
 					...publicProfile,
 					diaryMetalTier,
 					planTier,
+					staffRole,
 					...(freshTasteSignature && tasteSignatureEnabled
 						? { tasteSignature: freshTasteSignature }
 						: {}),
