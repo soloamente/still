@@ -9,7 +9,7 @@ function communityStatsKey(
 	ref: { movieId: number } | { tvId: number },
 ): string {
 	return "tvId" in ref
-		? `sense:community:tv:${ref.tvId}`
+		? `sense:community:tv:v2:${ref.tvId}`
 		: `sense:community:movie:${ref.movieId}`;
 }
 
