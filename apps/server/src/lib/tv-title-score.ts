@@ -58,3 +58,30 @@ export function resolveTvTitleScore(logs: TvTitleScoreLog[]): number | null {
 	}
 	return meanStoredTenths(seasonScores);
 }
+
+/**
+ * Caption rating for one TV ledger tile — series/season means, episode keeps its row.
+ * `allLogs` should be the patron's logs in the same ledger payload set (same title filters).
+ */
+export function ledgerDisplayRatingForTvLog(
+	item: {
+		tvId: number | null;
+		logScope?: string | null;
+		seasonNumber?: number | null;
+		rating: number | null;
+	},
+	allLogs: Array<
+		TvTitleScoreLog & {
+			tvId: number | null;
+		}
+	>,
+): number | null {
+	if (item.tvId == null) return item.rating;
+	const sameTitle = allLogs.filter((row) => row.tvId === item.tvId);
+	const scope = normalizeScope(item.logScope);
+	if (scope === "show") return resolveTvTitleScore(sameTitle);
+	if (scope === "season" && item.seasonNumber != null) {
+		return resolveTvSeasonScore(sameTitle, item.seasonNumber);
+	}
+	return item.rating;
+}

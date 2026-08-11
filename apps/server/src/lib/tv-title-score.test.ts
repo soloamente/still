@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { resolveTvSeasonScore, resolveTvTitleScore } from "./tv-title-score";
+import {
+	ledgerDisplayRatingForTvLog,
+	resolveTvSeasonScore,
+	resolveTvTitleScore,
+} from "./tv-title-score";
 
 describe("resolveTvTitleScore", () => {
 	test("returns null when no rated logs", () => {
@@ -80,5 +84,55 @@ describe("resolveTvSeasonScore", () => {
 				2,
 			),
 		).toBe(80);
+	});
+});
+
+describe("ledgerDisplayRatingForTvLog", () => {
+	test("maps show/season/episode tiles to the right derived rating", () => {
+		const set = [
+			{
+				tvId: 1,
+				logScope: "season" as const,
+				seasonNumber: 1,
+				rating: 80,
+			},
+			{
+				tvId: 1,
+				logScope: "season" as const,
+				seasonNumber: 2,
+				rating: 100,
+			},
+			{
+				tvId: 1,
+				logScope: "show" as const,
+				seasonNumber: null,
+				rating: 60,
+			},
+			{
+				tvId: 1,
+				logScope: "episode" as const,
+				seasonNumber: 1,
+				rating: 45,
+			},
+		];
+
+		expect(
+			ledgerDisplayRatingForTvLog(
+				{ tvId: 1, logScope: "show", seasonNumber: null, rating: 60 },
+				set,
+			),
+		).toBe(60);
+		expect(
+			ledgerDisplayRatingForTvLog(
+				{ tvId: 1, logScope: "season", seasonNumber: 2, rating: 100 },
+				set,
+			),
+		).toBe(100);
+		expect(
+			ledgerDisplayRatingForTvLog(
+				{ tvId: 1, logScope: "episode", seasonNumber: 1, rating: 45 },
+				set,
+			),
+		).toBe(45);
 	});
 });

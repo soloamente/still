@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import { block, db, log, movie, profile, tv, user } from "@still/db";
 import type { PlanTierId } from "@still/plans";
 import {
@@ -12,27 +13,38 @@ import {
 	isNotNull,
 	isNull,
 	lt,
-	notInArray,
 	or,
 	sql,
 } from "drizzle-orm";
-
+import { communityOffset } from "./community-page-args";
 import { contentVisibilityWhere } from "./content-visibility";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "./diary-metal-tier";
+	sqlEpisodeRankWeight,
+	sqlEpisodesRankScopePredicate,
+	weightForEpisodeRankLog,
+} from "./leaderboard-episode-weight";
 import { clampHiddenCount } from "./leaderboard-hidden-count";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
+import { leaderboardPublicProfileConditions } from "./leaderboard-profile-eligibility";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "./profile-media";
+import { ledgerDisplayRatingForTvLog } from "./tv-title-score";
 
-export type LeaderboardKind = "films" | "tv";
+export type LeaderboardKind = "films" | "tv" | "episodes";
+
+export const LEADERBOARD_DEFAULT_LIMIT = 50;
+export const LEADERBOARD_MAX_LIMIT = 50;
+
+export function parseLeaderboardLimit(raw: string | undefined): number {
+	const n = Number(raw);
+	if (!Number.isFinite(n) || n < 1) return LEADERBOARD_DEFAULT_LIMIT;
+	return Math.min(Math.floor(n), LEADERBOARD_MAX_LIMIT);
+}
 
 export type LeaderboardEntry = {
 	rank: number;
@@ -44,6 +56,7 @@ export type LeaderboardEntry = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	count: number;
 };
 
@@ -51,6 +64,9 @@ export type LeaderboardResult = {
 	kind: LeaderboardKind;
 	period: LeaderboardPeriod;
 	window: { start: string; end: string };
+	page: number;
+	limit: number;
+	nextPage: number | null;
 	entries: LeaderboardEntry[];
 	viewer: { rank: number; count: number } | null;
 };
@@ -64,6 +80,15 @@ export type LeaderboardLogItem = {
 	posterPath: string | null;
 	rating: number | null;
 	rewatch: boolean;
+	/** TV diary scope — present on Episodes (and TV) ledger rows. */
+	logScope?: "show" | "season" | "episode" | null;
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
+	/**
+	 * Episode-equivalent weight for Episodes ranks (season/show expand to N).
+	 * Omitted on Films / Shows boards where each row counts as 1.
+	 */
+	episodeWeight?: number;
 	/** 1-based index for this title within the period (chronological by `watchedAt`). */
 	watchIndexInPeriod: number;
 	/** How many logs this patron filed for the same title in the period. */
@@ -83,21 +108,45 @@ type LeaderboardLogItemRow = {
 	posterPath: string | null;
 	rating: number | null;
 	rewatch: boolean;
+	logScope?: "show" | "season" | "episode" | null;
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
+	episodeWeight?: number;
 };
 
-/** Groups period logs by title so the drawer can show rewatch ordinals and repeat counts. */
+/**
+ * Group key for rewatch / period ordinals — TV seasons and episodes of the same
+ * series must not share a bucket (Squid Game S1 + S2 ≠ "2nd this month").
+ */
+export function leaderboardLogGroupKey(item: {
+	logId: string;
+	movieId: number | null;
+	tvId: number | null;
+	logScope?: "show" | "season" | "episode" | null;
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
+}): string {
+	if (item.movieId != null) return `movie:${item.movieId}`;
+	if (item.tvId == null) return item.logId;
+
+	const scope = item.logScope ?? "show";
+	if (scope === "episode") {
+		return `tv:${item.tvId}:episode:${item.seasonNumber ?? "x"}:${item.episodeNumber ?? "x"}`;
+	}
+	if (scope === "season") {
+		return `tv:${item.tvId}:season:${item.seasonNumber ?? "x"}`;
+	}
+	return `tv:${item.tvId}:show`;
+}
+
+/** Groups period logs by title (or TV scope unit) for rewatch ordinals. */
 export function annotateLeaderboardLogItems(
 	raw: LeaderboardLogItemRow[],
 ): LeaderboardLogItem[] {
 	const groups = new Map<string, LeaderboardLogItemRow[]>();
 
 	for (const item of raw) {
-		const key =
-			item.movieId != null
-				? `movie:${item.movieId}`
-				: item.tvId != null
-					? `tv:${item.tvId}`
-					: item.logId;
+		const key = leaderboardLogGroupKey(item);
 		const bucket = groups.get(key);
 		if (bucket) bucket.push(item);
 		else groups.set(key, [item]);
@@ -133,21 +182,19 @@ type LifetimeWatchRow = {
 	watchedAt: string | Date;
 	movieId: number | null;
 	tvId: number | null;
+	logScope?: "show" | "season" | "episode" | null;
+	seasonNumber?: number | null;
+	episodeNumber?: number | null;
 };
 
-/** All-time watch ordinals per title — used for ledger poster labels (not period-only). */
+/** All-time watch ordinals per title / TV scope unit — ledger poster labels. */
 export function buildLifetimeWatchIndexMap(
 	rows: LifetimeWatchRow[],
 ): Map<string, { watchIndexLifetime: number; watchCountLifetime: number }> {
 	const groups = new Map<string, LifetimeWatchRow[]>();
 
 	for (const item of rows) {
-		const key =
-			item.movieId != null
-				? `movie:${item.movieId}`
-				: item.tvId != null
-					? `tv:${item.tvId}`
-					: item.logId;
+		const key = leaderboardLogGroupKey(item);
 		const bucket = groups.get(key);
 		if (bucket) bucket.push(item);
 		else groups.set(key, [item]);
@@ -217,6 +264,9 @@ async function fetchLifetimeWatchRowsForTitles(
 			watchedAt: log.watchedAt,
 			movieId: log.movieId,
 			tvId: log.tvId,
+			logScope: log.logScope,
+			seasonNumber: log.seasonNumber,
+			episodeNumber: log.episodeNumber,
 		})
 		.from(log)
 		.where(
@@ -274,30 +324,76 @@ async function blockedUserIdsForViewer(viewerId: string): Promise<string[]> {
 }
 
 function mediaFilter(kind: LeaderboardKind) {
-	return kind === "films" ? isNotNull(log.movieId) : isNotNull(log.tvId);
+	if (kind === "films") return isNotNull(log.movieId);
+	return isNotNull(log.tvId);
 }
 
-function baseLogConditions(
+/**
+ * Episodes ranks: weighted episode + season + show diary scopes (with dedupe).
+ * Shows ranks stay unfiltered by scope (every TV diary row counts as 1).
+ */
+function logScopeFilter(kind: LeaderboardKind, start: Date, end: Date) {
+	if (kind === "episodes") return sqlEpisodesRankScopePredicate(start, end);
+	return undefined;
+}
+
+/** Log rows in the window that count toward public Community ranks. */
+function publicLogWindowConditions(
 	kind: LeaderboardKind,
 	start: Date,
 	end: Date,
-	blockedIds: string[],
 ) {
-	const conditions = [
-		eq(profile.isPrivate, false),
+	const scopeFilter = logScopeFilter(kind, start, end);
+	return and(
 		isNull(log.removedAt),
 		mediaFilter(kind),
 		gte(log.watchedAt, start),
 		lt(log.watchedAt, end),
-	];
-	if (blockedIds.length > 0) {
-		conditions.push(notInArray(log.userId, blockedIds));
+		eq(log.visibility, "public"),
+		...(scopeFilter ? [scopeFilter] : []),
+	);
+}
+
+/** Per-patron activity for ranks — Episodes uses weighted sum + tv join. */
+function leaderboardActivitySubquery(
+	kind: LeaderboardKind,
+	start: Date,
+	end: Date,
+) {
+	if (kind === "episodes") {
+		return db
+			.select({
+				userId: log.userId,
+				count: sql<number>`coalesce(sum(${sqlEpisodeRankWeight()}), 0)::int`.as(
+					"count",
+				),
+				lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
+			})
+			.from(log)
+			.leftJoin(tv, eq(log.tvId, tv.tmdbId))
+			.where(publicLogWindowConditions(kind, start, end))
+			.groupBy(log.userId)
+			.as("activity");
 	}
-	return and(...conditions);
+
+	return db
+		.select({
+			userId: log.userId,
+			count: sql<number>`count(*)::int`.as("count"),
+			lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
+		})
+		.from(log)
+		.where(publicLogWindowConditions(kind, start, end))
+		.groupBy(log.userId)
+		.as("activity");
+}
+
+function publicLeaderboardProfileConditions(blockedIds: string[]) {
+	return leaderboardPublicProfileConditions(blockedIds);
 }
 
 /**
- * Global leaderboard — top patrons by log count in the half-open window.
+ * Global leaderboard — top patrons by public log count in the half-open window.
  */
 export async function fetchLeaderboard(opts: {
 	kind: LeaderboardKind;
@@ -307,52 +403,53 @@ export async function fetchLeaderboard(opts: {
 	now?: Date;
 	/** When set, skips `resolveLeaderboardWindow` (month-recap, backfills). */
 	window?: { start: Date; end: Date };
-	/** Max rows returned — default 50 (Community ranks). */
+	page?: number;
 	limit?: number;
 }): Promise<LeaderboardResult> {
-	const limit = opts.limit ?? 50;
+	const page = opts.page ?? 1;
+	const limit = opts.limit ?? LEADERBOARD_DEFAULT_LIMIT;
+	const offset = communityOffset(page, limit);
 	const { start, end } =
 		opts.window ?? resolveLeaderboardWindow(opts.period, opts.tz, opts.now);
 	const blockedIds = opts.viewerId
 		? await blockedUserIdsForViewer(opts.viewerId)
 		: [];
 
+	// Per-patron public log counts — left-joined so eligible zero-log patrons appear.
+	// Episodes board sums episode-equivalent weights (season/show expand via TMDb).
+	const activity = leaderboardActivitySubquery(opts.kind, start, end);
+
 	const rows = await db
 		.select({
-			userId: log.userId,
+			userId: profile.userId,
 			handle: profile.handle,
 			displayName: profile.displayName,
-			image: sql<string | null>`max(${user.image})`.as("image"),
+			image: user.image,
 			preferences: profile.preferences,
-			count: sql<number>`count(*)::int`.as("count"),
-			lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			lastWatch: activity.lastWatch,
 		})
-		.from(log)
-		.innerJoin(profile, eq(log.userId, profile.userId))
-		.innerJoin(user, eq(log.userId, user.id))
-		.where(baseLogConditions(opts.kind, start, end, blockedIds))
-		.groupBy(
-			log.userId,
-			profile.handle,
-			profile.displayName,
-			profile.preferences,
-		)
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.leftJoin(activity, eq(profile.userId, activity.userId))
+		.where(and(...publicLeaderboardProfileConditions(blockedIds)))
 		.orderBy(
-			desc(sql`count(*)`),
-			asc(sql`max(${log.watchedAt})`),
+			desc(sql`coalesce(${activity.count}, 0)`),
+			asc(sql`coalesce(${activity.lastWatch}, to_timestamp(0))`),
 			asc(profile.handle),
 		)
-		.limit(limit);
+		.limit(limit + 1)
+		.offset(offset);
 
-	// Community Film/TV ranks list every public profile with qualifying logs — no plan gate.
-	const userIds = rows.map((row) => row.userId);
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
+	const hasMore = rows.length > limit;
+	const pageRows = hasMore ? rows.slice(0, limit) : rows;
 
-	const entries: LeaderboardEntry[] = rows.map((row, index) => ({
-		rank: index + 1,
+	// Community Film/TV ranks — public profiles only; counts use public diary logs.
+	const userIds = pageRows.map((row) => row.userId);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
+
+	const entries: LeaderboardEntry[] = pageRows.map((row, index) => ({
+		rank: offset + index + 1,
 		userId: row.userId,
 		handle: row.handle,
 		displayName: row.displayName,
@@ -360,8 +457,7 @@ export async function fetchLeaderboard(opts: {
 		avatarIsAnimated: readAvatarIsAnimatedPref(
 			row.preferences as Record<string, unknown> | null,
 		),
-		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-		planTier: planTierForUserId(row.userId, planTiers),
+		...patronAvatarBadgeFields(row.userId, badgeMaps),
 		count: Number(row.count),
 	}));
 
@@ -385,6 +481,9 @@ export async function fetchLeaderboard(opts: {
 		kind: opts.kind,
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
+		page,
+		limit,
+		nextPage: hasMore ? page + 1 : null,
 		entries,
 		viewer,
 	};
@@ -397,50 +496,65 @@ async function fetchViewerRank(opts: {
 	end: Date;
 	blockedIds: string[];
 }): Promise<{ rank: number; count: number } | null> {
+	const [viewerProfile] = await db
+		.select({ handle: profile.handle, isPrivate: profile.isPrivate })
+		.from(profile)
+		.where(eq(profile.userId, opts.viewerId))
+		.limit(1);
+	if (!viewerProfile?.handle || viewerProfile.isPrivate) return null;
+
+	const activity = leaderboardActivitySubquery(opts.kind, opts.start, opts.end);
+
 	const [selfRow] = await db
 		.select({
-			count: sql<number>`count(*)::int`.as("count"),
-			lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			lastWatch: activity.lastWatch,
 		})
-		.from(log)
-		.innerJoin(profile, eq(log.userId, profile.userId))
+		.from(profile)
+		.leftJoin(activity, eq(profile.userId, activity.userId))
 		.where(
 			and(
-				eq(log.userId, opts.viewerId),
+				eq(profile.userId, opts.viewerId),
 				eq(profile.isPrivate, false),
-				baseLogConditions(opts.kind, opts.start, opts.end, []),
+				isNotNull(profile.handle),
 			),
 		);
 
 	const count = Number(selfRow?.count ?? 0);
-	if (count === 0) return null;
+	const lastWatch = selfRow?.lastWatch ?? null;
 
-	const lastWatch = selfRow?.lastWatch ?? new Date(0);
+	const aheadWhenHigherCount = gt(sql`coalesce(${activity.count}, 0)`, count);
+	const aheadConditions = [aheadWhenHigherCount];
 
-	const ranked = db
-		.select({
-			userId: log.userId,
-			cnt: sql<number>`count(*)::int`.as("cnt"),
-			lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
-		})
-		.from(log)
-		.innerJoin(profile, eq(log.userId, profile.userId))
-		.where(baseLogConditions(opts.kind, opts.start, opts.end, opts.blockedIds))
-		.groupBy(log.userId)
-		.as("ranked");
+	if (count > 0 && lastWatch) {
+		const tiedEarlier = and(
+			eq(sql`coalesce(${activity.count}, 0)`, count),
+			lt(activity.lastWatch, lastWatch),
+		);
+		if (tiedEarlier) aheadConditions.push(tiedEarlier);
+	}
+
+	const tiedHandle = and(
+		eq(sql`coalesce(${activity.count}, 0)`, count),
+		lastWatch
+			? eq(activity.lastWatch, lastWatch)
+			: sql`${activity.lastWatch} is null`,
+		lt(profile.handle, viewerProfile.handle),
+	);
+	if (tiedHandle) aheadConditions.push(tiedHandle);
 
 	const [aheadRow] = await db
 		.select({ ahead: sql<number>`count(*)::int`.as("ahead") })
-		.from(ranked)
+		.from(profile)
+		.leftJoin(activity, eq(profile.userId, activity.userId))
 		.where(
-			or(
-				gt(ranked.cnt, count),
-				and(eq(ranked.cnt, count), lt(ranked.lastWatch, lastWatch)),
+			and(
+				...publicLeaderboardProfileConditions(opts.blockedIds),
+				or(...aheadConditions),
 			),
 		);
 
 	const aheadCount = Number(aheadRow?.ahead ?? 0);
-
 	return { rank: aheadCount + 1, count };
 }
 
@@ -462,6 +576,7 @@ export async function fetchLeaderboardLogs(opts: {
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
 		planTier: PlanTierId;
+		staffRole: StaffRole | null;
 	};
 	period: LeaderboardPeriod;
 	window: { start: string; end: string };
@@ -474,6 +589,7 @@ export async function fetchLeaderboardLogs(opts: {
 			displayName: profile.displayName,
 			isPrivate: profile.isPrivate,
 			image: user.image,
+			role: user.role,
 			preferences: profile.preferences,
 		})
 		.from(profile)
@@ -483,16 +599,11 @@ export async function fetchLeaderboardLogs(opts: {
 
 	if (!row || row.isPrivate) return null;
 
-	const [logCountRow, planTiers] = await Promise.all([
-		db
-			.select({ c: count(log.id) })
-			.from(log)
-			.where(and(eq(log.userId, opts.userId), isNull(log.removedAt)))
-			.then((rows) => rows[0]),
-		fetchPlanTiersForUserIds([opts.userId]),
-	]);
-	const diaryMetalTier = resolveDiaryMetalTier(Number(logCountRow?.c ?? 0));
-	const planTier = planTierForUserId(opts.userId, planTiers);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps([opts.userId]);
+	const { diaryMetalTier, planTier, staffRole } = patronAvatarBadgeFields(
+		opts.userId,
+		badgeMaps,
+	);
 
 	const { start, end } = resolveLeaderboardWindow(
 		opts.period,
@@ -535,10 +646,7 @@ export async function fetchLeaderboardLogs(opts: {
 			.where(
 				and(
 					eq(log.userId, opts.userId),
-					isNull(log.removedAt),
-					isNotNull(log.movieId),
-					gte(log.watchedAt, start),
-					lt(log.watchedAt, end),
+					publicLogWindowConditions("films", start, end),
 				),
 			);
 		const hiddenCount = clampHiddenCount(
@@ -556,6 +664,7 @@ export async function fetchLeaderboardLogs(opts: {
 				),
 				diaryMetalTier,
 				planTier,
+				staffRole,
 			},
 			period: opts.period,
 			window: { start: start.toISOString(), end: end.toISOString() },
@@ -578,6 +687,10 @@ export async function fetchLeaderboardLogs(opts: {
 		};
 	}
 
+	const tvKind = opts.kind;
+	const scopeFilter = logScopeFilter(tvKind, start, end);
+	const isEpisodesBoard = tvKind === "episodes";
+
 	const logs = await db
 		.select({
 			logId: log.id,
@@ -585,8 +698,12 @@ export async function fetchLeaderboardLogs(opts: {
 			tvId: log.tvId,
 			rating: log.rating,
 			rewatch: log.rewatch,
+			logScope: log.logScope,
+			seasonNumber: log.seasonNumber,
+			episodeNumber: log.episodeNumber,
 			title: tv.title,
 			posterPath: tv.posterPath,
+			tmdbJson: tv.tmdbJson,
 		})
 		.from(log)
 		.innerJoin(tv, eq(log.tvId, tv.tmdbId))
@@ -597,6 +714,7 @@ export async function fetchLeaderboardLogs(opts: {
 				isNotNull(log.tvId),
 				gte(log.watchedAt, start),
 				lt(log.watchedAt, end),
+				...(scopeFilter ? [scopeFilter] : []),
 				contentVisibilityWhere(
 					opts.viewerId ?? null,
 					log.userId,
@@ -607,20 +725,36 @@ export async function fetchLeaderboardLogs(opts: {
 		.orderBy(desc(log.watchedAt));
 
 	const [tvTotalRow] = await db
-		.select({ total: count() })
+		.select({
+			total: isEpisodesBoard
+				? sql<number>`coalesce(sum(${sqlEpisodeRankWeight()}), 0)::int`
+				: count(),
+		})
 		.from(log)
+		.leftJoin(tv, eq(log.tvId, tv.tmdbId))
 		.where(
 			and(
 				eq(log.userId, opts.userId),
-				isNull(log.removedAt),
-				isNotNull(log.tvId),
-				gte(log.watchedAt, start),
-				lt(log.watchedAt, end),
+				publicLogWindowConditions(tvKind, start, end),
 			),
 		);
+
+	// Hidden gap: public weighted (or row) total minus rows visible to this viewer.
+	const visibleWeight = isEpisodesBoard
+		? logs.reduce(
+				(sum, l) =>
+					sum +
+					weightForEpisodeRankLog(
+						l.logScope,
+						l.seasonNumber,
+						(l.tmdbJson as Record<string, unknown> | null) ?? null,
+					),
+				0,
+			)
+		: logs.length;
 	const tvHiddenCount = clampHiddenCount(
 		Number(tvTotalRow?.total ?? 0),
-		logs.length,
+		visibleWeight,
 	);
 
 	return {
@@ -633,6 +767,7 @@ export async function fetchLeaderboardLogs(opts: {
 			),
 			diaryMetalTier,
 			planTier,
+			staffRole,
 		},
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
@@ -640,16 +775,48 @@ export async function fetchLeaderboardLogs(opts: {
 		items: await annotateLeaderboardLogsWithLifetimeCounts(
 			opts.userId,
 			annotateLeaderboardLogItems(
-				logs.map((l) => ({
-					logId: l.logId,
-					watchedAt: l.watchedAt.toISOString(),
-					movieId: null,
-					tvId: l.tvId,
-					title: l.title,
-					posterPath: l.posterPath,
-					rating: l.rating,
-					rewatch: l.rewatch,
-				})),
+				(() => {
+					const scoreInputs = logs.map((l) => ({
+						tvId: l.tvId,
+						logScope: l.logScope,
+						seasonNumber: l.seasonNumber,
+						rating: l.rating,
+					}));
+					return logs.map((l) => {
+						const tmdbJson =
+							(l.tmdbJson as Record<string, unknown> | null) ?? null;
+						return {
+							logId: l.logId,
+							watchedAt: l.watchedAt.toISOString(),
+							movieId: null,
+							tvId: l.tvId,
+							title: l.title,
+							posterPath: l.posterPath,
+							rating: ledgerDisplayRatingForTvLog(
+								{
+									tvId: l.tvId,
+									logScope: l.logScope,
+									seasonNumber: l.seasonNumber,
+									rating: l.rating,
+								},
+								scoreInputs,
+							),
+							rewatch: l.rewatch,
+							logScope: l.logScope,
+							seasonNumber: l.seasonNumber,
+							episodeNumber: l.episodeNumber,
+							...(isEpisodesBoard
+								? {
+										episodeWeight: weightForEpisodeRankLog(
+											l.logScope,
+											l.seasonNumber,
+											tmdbJson,
+										),
+									}
+								: {}),
+						};
+					});
+				})(),
 			),
 		),
 	};
