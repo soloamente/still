@@ -93,12 +93,19 @@ export async function fetchPublicDiaryCommunityStats(
 				),
 			);
 
-		return aggregateResolvedTvPatronScores(
-			rows.filter(
-				(row): row is TvCommunityScoreRow =>
-					row.rating != null && Number.isFinite(row.rating),
-			),
-		);
+		const scored: TvCommunityScoreRow[] = [];
+		for (const row of rows) {
+			// Drizzle still types `rating` as nullable even after `isNotNull` — narrow explicitly.
+			const rating = row.rating;
+			if (rating == null || !Number.isFinite(rating)) continue;
+			scored.push({
+				userId: row.userId,
+				logScope: row.logScope,
+				seasonNumber: row.seasonNumber,
+				rating,
+			});
+		}
+		return aggregateResolvedTvPatronScores(scored);
 	}
 
 	const baseWhere = and(
