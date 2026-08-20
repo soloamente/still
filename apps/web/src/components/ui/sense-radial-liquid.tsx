@@ -9,6 +9,7 @@ import type {
 import {
 	SenseLiquid,
 	SenseLiquidItem,
+	type SenseLiquidItemProps,
 	useSenseLiquidEnabled,
 } from "@/components/ui/sense-liquid";
 
@@ -57,7 +58,14 @@ export function SenseRadialLiquidItem({
 	morph,
 	...rest
 }: RadialToolkitLiquidItemProps) {
-	return <SenseLiquidItem transition={transition} morph={morph} {...rest} />;
+	// Radial toolkit keeps transition/morph loose; liquid-gooey Item types are narrower.
+	return (
+		<SenseLiquidItem
+			transition={transition as SenseLiquidItemProps["transition"]}
+			morph={morph as SenseLiquidItemProps["morph"]}
+			{...rest}
+		/>
+	);
 }
 
 /**

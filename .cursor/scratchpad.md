@@ -1,5 +1,23 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Vercel web typecheck (2026-08-21) — EXECUTOR
+
+**Status:** Local `apps/web` `tsc --noEmit` clean. Needs commit + push (not committed).
+
+### Root cause (log on `83d6752`)
+`me-discord.ts` chained Elysia routes not assignable to bare `Elysia` return — same pattern as `me-data.ts`.
+
+### Also fixed (would fail next Vercel typecheck after me-discord)
+- Missing `validatePinnedQuoteSaveIdsForUser` import in `profiles.ts`
+- `staffRole` on `MoviePageReviewAuthor`; JSX return types; me-account-nav icon cast; TV `airDate`; liquid Item casts; onboarding progress track typing
+- Restored missing `can-create-web-gl-context.ts`
+- Excluded `**/*.test.ts(x)` from `apps/web/tsconfig.json` so Next build doesn’t typecheck unit tests (vitest/bun noise)
+
+### Human
+Commit + push these files, then confirm Vercel web build green.
+
+---
+
 ## What's New split dialog (2026-08-20) — EXECUTOR
 
 **Status:** Shipped for human QA.  

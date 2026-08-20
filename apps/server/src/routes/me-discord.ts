@@ -125,7 +125,7 @@ export function buildMeDiscordRoute(
 			void invalidateDiscordActivityMetadata(user.id);
 
 			return { ok: true as const };
-		});
+		}) as unknown as Elysia;
 }
 
 export const meDiscordRoute = buildMeDiscordRoute();

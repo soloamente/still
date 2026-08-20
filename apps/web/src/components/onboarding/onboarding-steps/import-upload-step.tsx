@@ -54,7 +54,7 @@ export function ImportUploadStep({
 	onBack,
 	onImport,
 	onSkip,
-}: ImportUploadStepProps): JSX.Element {
+}: ImportUploadStepProps) {
 	const { title, description } = importUploadCopy(source);
 
 	return (

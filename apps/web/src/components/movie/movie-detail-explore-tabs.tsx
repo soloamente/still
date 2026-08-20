@@ -193,6 +193,8 @@ export type MoviePageReviewAuthor = {
 	avatarIsAnimated?: boolean;
 	diaryMetalTier?: DiaryMetalTier | null;
 	planTier?: import("@still/plans").PlanTierId | string | null;
+	/** Staff aura wins over plan tier on review bylines. */
+	staffRole?: import("@/lib/staff-role-labels").StaffRole | null;
 };
 
 export type MoviePageReview = {

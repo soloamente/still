@@ -734,7 +734,7 @@ function TvSeasonEpisodeAccordion({
 									<TvEpisodeWatchCheckRow
 										episodeNumber={ep.episode_number}
 										episodeName={ep.name}
-										airDate={ep.air_date}
+										airDate={ep.air_date ?? null}
 										checked={checked}
 										disabled={toggleDisabled}
 										onCheckedChange={(next) => {

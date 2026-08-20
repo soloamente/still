@@ -26,7 +26,7 @@ type NavIcon = ComponentType<
 >;
 
 /** Section icons — Nucleo where we have them; Lucide only for Data (export/import). */
-const ME_ACCOUNT_NAV_ICONS: Record<MeAccountNavHref, NavIcon | LucideIcon> = {
+const ME_ACCOUNT_NAV_ICONS = {
 	"/me/settings/profile": IconPeople,
 	"/me/settings/notifications": IconBell,
 	"/me/settings/catalogue": IconCinema,
@@ -34,7 +34,8 @@ const ME_ACCOUNT_NAV_ICONS: Record<MeAccountNavHref, NavIcon | LucideIcon> = {
 	"/me/settings/subscription": IconTicket,
 	"/me/settings/data": Download,
 	"/me/settings/experience": IconGear,
-};
+	// Nucleo `size?: string` vs Lucide `size?: string | number` — unify at the call site.
+} as Record<MeAccountNavHref, NavIcon | LucideIcon>;
 
 /** Account sidebar — settings sections on `/me/*` (vertical rail + icons). */
 export function MeAccountNav({ handle: _handle }: { handle: string }) {

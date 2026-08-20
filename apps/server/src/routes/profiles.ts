@@ -117,6 +117,7 @@ import {
 	PRO_ANIMATED_MEDIA_REQUIRED,
 	readAvatarIsAnimatedPref,
 } from "../lib/profile-media";
+import { validatePinnedQuoteSaveIdsForUser } from "../lib/profile-pinned-quotes";
 import {
 	hydratePinnedReviews,
 	validatePinnedReviewIdsForUser,

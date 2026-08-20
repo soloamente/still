@@ -50,7 +50,7 @@ export function onboardingProgressFraction(
 	step: WizardStep,
 	skipMode: WizardSkipMode,
 ): number {
-	const track =
+	const track: readonly WizardStep[] =
 		skipMode === "abbreviated"
 			? ONBOARDING_ABBREV_PROGRESS_TRACK
 			: ONBOARDING_FULL_PROGRESS_TRACK;

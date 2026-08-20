@@ -44,7 +44,7 @@ export function AnilistImportPanel({
 	variant,
 	onImported,
 	onRunnerChange,
-}: AnilistImportPanelProps): JSX.Element {
+}: AnilistImportPanelProps) {
 	const inputId = useId();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const reduceMotion = useReducedMotion();

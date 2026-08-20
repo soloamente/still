@@ -179,7 +179,7 @@ export function LetterboxdImportPanel({
 	variant,
 	onImported,
 	onRunnerChange,
-}: LetterboxdImportPanelProps): JSX.Element {
+}: LetterboxdImportPanelProps) {
 	const inputId = useId();
 	const missingHintId = useId();
 	const inputRef = useRef<HTMLInputElement>(null);
