@@ -43,21 +43,27 @@ export function HomeCommunityPatronBody({
 		rankKind !== committedRankKind;
 
 	if (lobbyBodyStale) {
-		return <CommunityFeedSkeleton feed={feed} />;
+		return (
+			<div className="flex min-h-0 flex-1 flex-col">
+				<CommunityFeedSkeleton feed={feed} />
+			</div>
+		);
 	}
 
 	return (
-		<HomeCommunityLobby
-			feed={committedFeed}
-			period={committedPeriod}
-			rankKind={committedRankKind}
-			seed={seed}
-			leaderboard={leaderboard}
-			membersLeaderboard={membersLeaderboard}
-			monochromePeersOnHover={monochromePeersOnHover}
-			signedIn={signedIn}
-			viewerUserId={viewerUserId}
-		/>
+		<div className="flex min-h-0 flex-1 flex-col">
+			<HomeCommunityLobby
+				feed={committedFeed}
+				period={committedPeriod}
+				rankKind={committedRankKind}
+				seed={seed}
+				leaderboard={leaderboard}
+				membersLeaderboard={membersLeaderboard}
+				monochromePeersOnHover={monochromePeersOnHover}
+				signedIn={signedIn}
+				viewerUserId={viewerUserId}
+			/>
+		</div>
 	);
 }
 

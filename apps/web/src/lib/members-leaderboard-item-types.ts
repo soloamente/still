@@ -3,6 +3,7 @@ import type { PlanTierId } from "@still/plans";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { MembersLeaderboardSort } from "@/lib/members-leaderboard-types";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type MembersLeaderboardLedgerReviewItem = {
 	itemKind: "review";
@@ -68,6 +69,7 @@ export type MembersLeaderboardItemsPayload = {
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
 		planTier: PlanTierId;
+		staffRole: StaffRole | null;
 	};
 	items: MembersLeaderboardLedgerItem[];
 };

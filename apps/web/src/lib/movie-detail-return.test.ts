@@ -2,6 +2,7 @@ import { describe, expect, it } from "bun:test";
 
 import {
 	formatListingDetailBackAffordance,
+	isAchievementsReturnHref,
 	isListingDetailPath,
 	isMeSettingsReturnHref,
 	isSameProfileReturnHref,
@@ -73,6 +74,18 @@ describe("isMeSettingsReturnHref", () => {
 	it("ignores profile and home targets", () => {
 		expect(isMeSettingsReturnHref("/profile/anselmo")).toBe(false);
 		expect(isMeSettingsReturnHref("/home?browse=movies")).toBe(false);
+	});
+});
+
+describe("isAchievementsReturnHref", () => {
+	it("matches achievements lobby and tab query variants", () => {
+		expect(isAchievementsReturnHref("/achievements")).toBe(true);
+		expect(isAchievementsReturnHref("/achievements?tab=goals")).toBe(true);
+	});
+
+	it("ignores profile and home targets", () => {
+		expect(isAchievementsReturnHref("/profile/anselmo")).toBe(false);
+		expect(isAchievementsReturnHref("/home?browse=movies")).toBe(false);
 	});
 });
 

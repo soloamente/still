@@ -39,7 +39,7 @@ describe("patronNeedsOnboarding", () => {
 		).toBe(false);
 	});
 
-	test("grandfathers patrons with diary activity but no onboarded_at", () => {
+	test("keeps post-v3 patrons gated even with diary (import step still unfinished)", () => {
 		expect(
 			patronNeedsOnboarding({
 				handle: "diary",
@@ -47,18 +47,31 @@ describe("patronNeedsOnboarding", () => {
 				createdAt: "2026-06-14T12:00:00.000Z",
 				diaryMetalTier: "silver",
 			}),
-		).toBe(false);
+		).toBe(true);
 	});
 
-	test("grandfathers patrons with taste signature but no onboarded_at", () => {
+	test("keeps post-v3 patrons gated even with taste signature before Enter", () => {
 		expect(
 			patronNeedsOnboarding({
 				handle: "taste",
 				onboardedAt: null,
 				createdAt: "2026-06-14T12:00:00.000Z",
-				tasteSignatureComputedAt: "2026-06-13T10:00:00.000Z",
+				tasteSignatureComputedAt: "2026-06-14T13:00:00.000Z",
 			}),
-		).toBe(false);
+		).toBe(true);
+	});
+
+	test("keeps post-v3 patrons gated after favorites save without markOnboarded", () => {
+		expect(
+			patronNeedsOnboarding({
+				handle: "favs",
+				onboardedAt: null,
+				createdAt: "2026-06-14T12:00:00.000Z",
+				favoriteMovieIds: [550, 278],
+				tasteSignatureComputedAt: "2026-06-14T13:00:00.000Z",
+				diaryMetalTier: "bronze",
+			}),
+		).toBe(true);
 	});
 });
 

@@ -6,6 +6,7 @@ import { cn } from "@still/ui/lib/utils";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 import type { ProfileSearchRelationship } from "@/lib/profile-search-query";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 function relationshipLabel(
 	relationship: ProfileSearchRelationship | undefined,
@@ -24,6 +25,7 @@ export function SearchDialogPeopleRow({
 	image,
 	avatarIsAnimated,
 	planTier = null,
+	staffRole = null,
 	relationship,
 	metaLine,
 	onSelect,
@@ -33,6 +35,7 @@ export function SearchDialogPeopleRow({
 	image: string | null;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 	relationship?: ProfileSearchRelationship;
 	/** Secondary line under @handle — taste match stats, etc. */
 	metaLine?: string | null;
@@ -60,6 +63,7 @@ export function SearchDialogPeopleRow({
 					className="size-11 shrink-0 rounded-full"
 					isAnimated={inferAnimatedFromProfileUrl(image, avatarIsAnimated)}
 					planTier={planTier}
+					staffRole={staffRole}
 				/>
 				<div className="min-w-0 flex-1">
 					<p className="truncate font-semibold text-foreground text-sm leading-snug">

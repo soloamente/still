@@ -75,7 +75,7 @@ function VisibilitySegment({
 	);
 }
 
-/** Public / Private rail — bottom of profile settings card, create-list tooltips. */
+/** Public / Private rail — Profile privacy panel (and create-list tooltips). */
 export function MeProfileVisibilityToggle({
 	checked: isPrivate,
 	onChange,

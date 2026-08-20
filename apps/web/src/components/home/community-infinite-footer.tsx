@@ -39,15 +39,14 @@ export function CommunityInfiniteFooter({
 				) : null}
 				{footerState === "error" ? (
 					<p className="text-center text-muted-foreground text-sm">
-						Something jammed loading more —{" "}
+						Unable to load more.{" "}
 						<button
 							type="button"
 							className="underline decoration-dashed underline-offset-2 hover:text-foreground"
 							onClick={retry}
 						>
-							try again
+							Try again
 						</button>
-						.
 					</p>
 				) : null}
 			</div>

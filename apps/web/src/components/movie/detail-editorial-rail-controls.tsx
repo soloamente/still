@@ -26,6 +26,7 @@ export function DetailEditorialRailFooterControls({
 	onNext,
 	onGoto,
 	ariaLabel,
+	getStepLabel,
 	className,
 }: {
 	totalSlides: number;
@@ -34,6 +35,8 @@ export function DetailEditorialRailFooterControls({
 	onNext: () => void;
 	onGoto: (index: number) => void;
 	ariaLabel: string;
+	/** Review rails pass author/title labels; stills keep Pasito’s default Step N. */
+	getStepLabel?: (index: number) => string;
 	className?: string;
 }) {
 	if (totalSlides <= 1) return null;
@@ -64,6 +67,7 @@ export function DetailEditorialRailFooterControls({
 					count={totalSlides}
 					active={activeSlideIndex}
 					onStepClick={onGoto}
+					getStepLabel={getStepLabel}
 					maxVisible={
 						totalSlides > EDITORIAL_RAIL_MAX_VISIBLE_STEPS
 							? EDITORIAL_RAIL_MAX_VISIBLE_STEPS

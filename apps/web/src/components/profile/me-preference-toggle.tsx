@@ -16,6 +16,7 @@ export function MePreferenceToggle({
 	description,
 	onLabel = "On",
 	offLabel = "Off",
+	disabled = false,
 }: {
 	/** Stable id for `layoutId` (unique per row on the page). */
 	id: string;
@@ -25,6 +26,8 @@ export function MePreferenceToggle({
 	description: ReactNode;
 	onLabel?: string;
 	offLabel?: string;
+	/** Native disabled on both segments — prefer over opacity wrappers. */
+	disabled?: boolean;
 }) {
 	const reduceMotion = useReducedMotion();
 	const pillTransition = reduceMotion
@@ -39,6 +42,7 @@ export function MePreferenceToggle({
 		cn(
 			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
 			"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
+			"disabled:pointer-events-none disabled:opacity-50",
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
@@ -47,20 +51,30 @@ export function MePreferenceToggle({
 	const pillLayoutId = `me-preference-pill-${id}`;
 
 	return (
-		<div className="space-y-3">
+		<div
+			className={cn("space-y-3", disabled && "opacity-60")}
+			aria-disabled={disabled || undefined}
+		>
 			<div className="space-y-1">
 				<p className="font-medium text-foreground text-sm">{title}</p>
 				<p className="max-w-prose text-muted-foreground text-sm leading-relaxed">
 					{description}
 				</p>
 			</div>
-			<fieldset className="m-0 flex w-fit min-w-0 max-w-full flex-wrap gap-1 rounded-full border-0 bg-card p-1 sm:flex-nowrap">
+			<fieldset
+				className="m-0 flex w-fit min-w-0 max-w-full flex-wrap gap-1 rounded-full border-0 bg-card p-1 sm:flex-nowrap"
+				disabled={disabled}
+			>
 				<legend className="sr-only">{title}</legend>
 				<button
 					type="button"
 					className={chip(!checked)}
 					aria-pressed={!checked}
-					onClick={() => onChange(false)}
+					disabled={disabled}
+					onClick={() => {
+						if (disabled) return;
+						onChange(false);
+					}}
 				>
 					{!checked ? (
 						<motion.span
@@ -75,7 +89,11 @@ export function MePreferenceToggle({
 					type="button"
 					className={chip(checked)}
 					aria-pressed={checked}
-					onClick={() => onChange(true)}
+					disabled={disabled}
+					onClick={() => {
+						if (disabled) return;
+						onChange(true);
+					}}
 				>
 					{checked ? (
 						<motion.span

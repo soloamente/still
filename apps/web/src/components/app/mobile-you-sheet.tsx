@@ -17,6 +17,7 @@ import { cn } from "@still/ui/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useRef } from "react";
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
+import { AccountMenuUpgradePlanButton } from "@/components/app/account-menu-upgrade-plan-button";
 import { MOBILE_YOU_DESTINATIONS } from "@/components/app/mobile-nav";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
 import { useFeedbackDrawer } from "@/components/feedback/feedback-drawer-provider";
@@ -24,6 +25,7 @@ import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { authClient } from "@/lib/auth-client";
+import { ME_ACCOUNT_SETTINGS_HOME_HREF } from "@/lib/me-account-nav";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 type YouUser = {
@@ -35,6 +37,7 @@ type YouUser = {
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: import("@/lib/staff-role-labels").StaffRole | null;
 };
 
 const DESTINATION_ICON_CLASS = "size-5 shrink-0 opacity-80";
@@ -127,6 +130,7 @@ export function MobileYouSheet({
 	const pathname = usePathname();
 	const { openCompose, openFeedbackList } = useFeedbackDrawer();
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const viewProfileRef = useRef<HTMLButtonElement>(null);
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
 		open,
@@ -172,6 +176,7 @@ export function MobileYouSheet({
 								handle={user.handle}
 								isAnimated={user.avatarIsAnimated ?? false}
 								planTier={user.planTier ?? null}
+								staffRole={user.staffRole ?? null}
 							/>
 							<div className="min-w-0 flex-1">
 								<p className="truncate font-semibold text-base text-foreground">
@@ -183,6 +188,7 @@ export function MobileYouSheet({
 							</div>
 						</div>
 						<button
+							ref={viewProfileRef}
 							type="button"
 							className={cn(
 								"mt-3 w-full rounded-full bg-background py-3 text-center font-medium text-foreground",
@@ -192,6 +198,12 @@ export function MobileYouSheet({
 						>
 							View profile
 						</button>
+						<AccountMenuUpgradePlanButton
+							planTier={user.planTier ?? null}
+							onNavigate={onClose}
+							effectActive={open}
+							reflectionTargets={[viewProfileRef]}
+						/>
 
 						{/* Destinations */}
 						<div className={cn("mt-3", insetGroupClassName)}>
@@ -214,7 +226,7 @@ export function MobileYouSheet({
 							<button
 								type="button"
 								className={rowClass}
-								onClick={() => go("/me/settings")}
+								onClick={() => go(ME_ACCOUNT_SETTINGS_HOME_HREF)}
 							>
 								<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
 								Settings

@@ -209,6 +209,12 @@ export function HomeTasteMatchedHero({
 
 	const safeActiveIndex = Math.min(activeIndex, Math.max(movies.length - 1, 0));
 	const spotlight = movies[safeActiveIndex] ?? null;
+	/**
+	 * Enrichment effects below key off this id, never the `spotlight` object:
+	 * they write the fetched logo/trailer back into `movies`, which rebuilds that
+	 * object and would otherwise retrigger them in an endless fetch loop.
+	 */
+	const spotlightTmdbId = spotlight?.tmdbId ?? null;
 
 	useEffect(() => {
 		if (initial === undefined) return;
@@ -268,71 +274,85 @@ export function HomeTasteMatchedHero({
 	}, [reduceMotion, safeActiveIndex]);
 
 	useEffect(() => {
-		if (!spotlight) {
+		if (spotlightTmdbId == null) {
 			setSpotlightLogoPath(null);
 			return;
 		}
-		if (spotlight.logoPath) {
-			setSpotlightLogoPath(spotlight.logoPath);
-		} else {
-			setSpotlightLogoPath(null);
-		}
+		// Paint the wordmark we already hold while the fresh lookup is in flight.
+		setSpotlightLogoPath(
+			moviesRef.current.find((film) => film.tmdbId === spotlightTmdbId)
+				?.logoPath ?? null,
+		);
 		let cancelled = false;
-		void fetchMovieTitleLogoPath(spotlight.tmdbId).then((logoPath) => {
+		void fetchMovieTitleLogoPath(spotlightTmdbId).then((logoPath) => {
 			if (cancelled || !logoPath) return;
 			setSpotlightLogoPath(logoPath);
 			setMovies((prev) =>
-				prev.map((film) =>
-					film.tmdbId === spotlight.tmdbId ? { ...film, logoPath } : film,
-				),
+				prev.some(
+					(film) =>
+						film.tmdbId === spotlightTmdbId && film.logoPath !== logoPath,
+				)
+					? prev.map((film) =>
+							film.tmdbId === spotlightTmdbId ? { ...film, logoPath } : film,
+						)
+					: prev,
 			);
 		});
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlight]);
+	}, [spotlightTmdbId]);
 
 	useEffect(() => {
-		if (!spotlight) {
+		if (spotlightTmdbId == null) {
 			setResolvedTrailer(null);
 			return;
 		}
-		if (spotlight.trailerKey) {
-			setResolvedTrailer({
-				trailerKey: spotlight.trailerKey,
-				trailerSite: spotlight.trailerSite ?? "YouTube",
-			});
-		} else {
-			setResolvedTrailer(null);
-		}
+		const seeded =
+			moviesRef.current.find((film) => film.tmdbId === spotlightTmdbId) ?? null;
+		setResolvedTrailer(
+			seeded?.trailerKey
+				? {
+						trailerKey: seeded.trailerKey,
+						trailerSite: seeded.trailerSite ?? "YouTube",
+					}
+				: null,
+		);
 		let cancelled = false;
-		void fetchMovieTrailer(spotlight.tmdbId).then((row) => {
+		void fetchMovieTrailer(spotlightTmdbId).then((row) => {
 			if (cancelled || !row?.trailerKey) return;
 			setResolvedTrailer(row);
 			setMovies((prev) =>
-				prev.map((film) =>
-					film.tmdbId === spotlight.tmdbId
-						? {
-								...film,
-								trailerKey: row.trailerKey,
-								trailerSite: row.trailerSite,
-							}
-						: film,
-				),
+				prev.some(
+					(film) =>
+						film.tmdbId === spotlightTmdbId &&
+						(film.trailerKey !== row.trailerKey ||
+							film.trailerSite !== row.trailerSite),
+				)
+					? prev.map((film) =>
+							film.tmdbId === spotlightTmdbId
+								? {
+										...film,
+										trailerKey: row.trailerKey,
+										trailerSite: row.trailerSite,
+									}
+								: film,
+						)
+					: prev,
 			);
 		});
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlight]);
+	}, [spotlightTmdbId]);
 
 	useEffect(() => {
-		if (!spotlight) {
+		if (spotlightTmdbId == null) {
 			setPriorLogCount(0);
 			return;
 		}
 		let cancelled = false;
-		void fetchMyLogsForMovie(spotlight.tmdbId)
+		void fetchMyLogsForMovie(spotlightTmdbId)
 			.then((res) => {
 				if (cancelled) return;
 				const rows = Array.isArray(res.data) ? res.data : [];
@@ -344,7 +364,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlight]);
+	}, [spotlightTmdbId]);
 
 	const removeFromQueue = useCallback((tmdbId: number) => {
 		const snapshot = moviesRef.current;

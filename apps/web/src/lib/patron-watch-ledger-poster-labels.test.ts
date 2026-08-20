@@ -90,4 +90,60 @@ describe("patronWatchLedgerPosterLabels", () => {
 		expect(labels.metaLine).not.toContain("9.6");
 		expect(labels.metaLine).not.toContain("2nd watch");
 	});
+
+	test("labels season diary rows with episode-equivalent weight on Episodes ranks", () => {
+		const labels = patronWatchLedgerPosterLabels(
+			item({
+				logId: "s1",
+				movieId: null,
+				tvId: 42,
+				title: "Test Show",
+				logScope: "season",
+				seasonNumber: 2,
+				episodeWeight: 10,
+			}),
+		);
+		expect(labels.posterCaption).toBe("Season 2 · 10 episodes");
+	});
+
+	test("labels whole-series and season rows on Shows ranks without weight", () => {
+		const series = patronWatchLedgerPosterLabels(
+			item({
+				logId: "show",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				logScope: "show",
+			}),
+		);
+		expect(series.posterCaption).toBe("Whole series");
+
+		const season = patronWatchLedgerPosterLabels(
+			item({
+				logId: "s2",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				logScope: "season",
+				seasonNumber: 2,
+			}),
+		);
+		expect(season.posterCaption).toBe("Season 2");
+	});
+
+	test("puts season scope under rating when both are present", () => {
+		const labels = patronWatchLedgerPosterLabels(
+			item({
+				logId: "rated-season",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				logScope: "season",
+				seasonNumber: 1,
+				rating: 90,
+			}),
+		);
+		expect(labels.posterCaption).toBe("9.0");
+		expect(labels.posterCaptionSubline).toBe("Season 1");
+	});
 });

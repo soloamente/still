@@ -8,10 +8,11 @@ import {
 	profile,
 	reaction,
 	review,
+	reviewTranslation,
 	user,
 } from "@still/db";
 import { reviewRoomId } from "@still/realtime";
-import { and, count, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { putAudioAsset } from "../lib/audio-store";
@@ -32,19 +33,20 @@ import {
 } from "../lib/content-visibility";
 import { reviewEngagementOrderSql } from "../lib/creator-recognition";
 import { makeId } from "../lib/cuid";
-import { resolveDiaryMetalTier } from "../lib/diary-metal-tier";
+import { detectReviewLanguage } from "../lib/detect-language";
 import {
 	areUsersMutualFollows,
 	deliverNotification,
 } from "../lib/notification-delivery";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "../lib/patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "../lib/patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { removePinnedReviewId } from "../lib/profile-pinned-reviews";
 import { hit } from "../lib/rate-limit";
 import { publishRealtimeEvent } from "../lib/realtime-publish";
+import { cachedRead, cacheRedis } from "../lib/redis-cache";
 import { formField } from "../lib/request-form";
 import {
 	assertEmailVerified,
@@ -67,6 +69,15 @@ import {
 	readReviewReactionSnapshot,
 	removeViewerReviewReaction,
 } from "../lib/review-reactions";
+import {
+	createReviewTranslationProvider,
+	isReviewTranslationConfigured,
+} from "../lib/review-translation-provider";
+import {
+	normalizeLanguageTag,
+	resolveReviewTranslation,
+} from "../lib/review-translation-service";
+import { MentionPlaceholderError } from "../lib/review-translation-tokens";
 import { routeBody } from "../lib/route-body";
 import {
 	parseViralReviewsLimit,
@@ -76,6 +87,12 @@ import {
 const reviewRatingSchema = t.Optional(
 	t.Union([t.Integer({ minimum: 0, maximum: 100 }), t.Null()]),
 );
+
+/**
+ * Hot cache in front of the stored translation rows. The table is the source of
+ * truth; this exists to keep repeat reads of a popular review off Neon.
+ */
+const REVIEW_TRANSLATION_CACHE_TTL_SEC = 24 * 60 * 60;
 
 type CreateReviewBody = {
 	movieId: number;
@@ -209,6 +226,7 @@ export const reviewsRoute = new Elysia({
 					logId,
 					title: body.title ?? null,
 					body: bodyText,
+					sourceLanguage: detectReviewLanguage(bodyText),
 					containsSpoilers: body.containsSpoilers ?? false,
 					visibility,
 					rating,
@@ -356,6 +374,131 @@ export const reviewsRoute = new Elysia({
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
+	// Translate a review into the reader's language. Sign-in required — anonymous
+	// access would be an open faucet on a metered model.
+	.post(
+		"/:id/translate",
+		async ({ params, body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (!isReviewTranslationConfigured()) {
+				return status(503, "Translation is not available");
+			}
+
+			const body = routeBody<{ language: string }>(rawBody);
+			const target = normalizeLanguageTag(body.language);
+			if (!target) return status(400, "Invalid language");
+
+			// Burst guard plus a daily ceiling — one runaway client should not be
+			// able to spend the month's budget in an afternoon.
+			if (
+				!hit(`reviews:translate:${user.id}`, {
+					limit: 20,
+					windowMs: 60_000,
+				}).ok
+			) {
+				return status(429, "Slow down");
+			}
+			if (
+				!hit(`reviews:translate:day:${user.id}`, {
+					limit: 200,
+					windowMs: 86_400_000,
+				}).ok
+			) {
+				return status(429, "Daily translation limit reached");
+			}
+
+			const [existing] = await db
+				.select()
+				.from(review)
+				.where(and(eq(review.id, params.id), isNull(review.removedAt)))
+				.limit(1);
+			if (!existing) return status(404, "Not found");
+
+			// Same visibility gate as GET /:id — translation must not become a way
+			// to read a review you cannot otherwise see.
+			const follows = await resolveViewerFollow(user.id, existing.userId);
+			if (
+				!canViewContent({
+					viewerId: user.id,
+					authorId: existing.userId,
+					visibility: existing.visibility,
+					...follows,
+				})
+			) {
+				return status(404, "Not found");
+			}
+
+			if (!existing.body.trim()) return status(400, "Nothing to translate");
+
+			// `updatedAt` in the key means an edit self-invalidates the hot cache;
+			// the stored rows are deleted separately on PATCH.
+			const cacheKey = `sense:review-translation:${existing.id}:${target}:${new Date(existing.updatedAt).getTime()}`;
+			const provider = createReviewTranslationProvider();
+
+			try {
+				return await cachedRead(
+					await cacheRedis(),
+					cacheKey,
+					REVIEW_TRANSLATION_CACHE_TTL_SEC,
+					() =>
+						resolveReviewTranslation(
+							{
+								id: existing.id,
+								body: existing.body,
+								title: existing.title,
+								sourceLanguage: existing.sourceLanguage,
+							},
+							target,
+							{
+								loadStored: async (reviewId, language) => {
+									const [row] = await db
+										.select({
+											title: reviewTranslation.title,
+											body: reviewTranslation.body,
+											model: reviewTranslation.model,
+										})
+										.from(reviewTranslation)
+										.where(
+											and(
+												eq(reviewTranslation.reviewId, reviewId),
+												eq(reviewTranslation.targetLanguage, language),
+											),
+										)
+										.limit(1);
+									return row ?? null;
+								},
+								saveStored: async (input) => {
+									await db
+										.insert(reviewTranslation)
+										.values({
+											id: makeId("rtr"),
+											reviewId: input.reviewId,
+											targetLanguage: input.language,
+											title: input.title,
+											body: input.body,
+											model: input.model,
+										})
+										.onConflictDoNothing();
+								},
+								translate: (request) => provider.translate(request),
+							},
+						),
+				);
+			} catch (error) {
+				// A mangled placeholder means the links in the body would be broken —
+				// better to fail and leave the reader on the original text.
+				if (error instanceof MentionPlaceholderError) {
+					return status(502, "Translation could not be completed");
+				}
+				console.error("[reviews] translate failed", error);
+				return status(502, "Translation failed");
+			}
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			body: t.Object({ language: t.String({ maxLength: 16 }) }),
+		},
+	)
 	.patch(
 		"/:id",
 		async ({ params, body: rawBody, user, status }) => {
@@ -388,8 +531,8 @@ export const reviewsRoute = new Elysia({
 			if (nextRating != null && !isValidReviewRatingStored(nextRating)) {
 				return status(400, "Invalid rating");
 			}
-			if (body.body !== undefined) {
-				const nextBody = body.body.trim();
+			const nextBody = body.body !== undefined ? body.body.trim() : null;
+			if (nextBody !== null) {
 				if (nextBody.length === 0 && !existing.audioUrl) {
 					return status(400, "Review body required without voice attachment");
 				}
@@ -408,7 +551,13 @@ export const reviewsRoute = new Elysia({
 				.update(review)
 				.set({
 					title: body.title ?? existing.title,
-					body: body.body !== undefined ? body.body.trim() : existing.body,
+					body: nextBody ?? existing.body,
+					// Only re-detect when the text itself changed — an edit that just
+					// flips visibility or rating must not churn the stored language.
+					sourceLanguage:
+						nextBody !== null
+							? detectReviewLanguage(nextBody)
+							: existing.sourceLanguage,
 					containsSpoilers: body.containsSpoilers ?? existing.containsSpoilers,
 					visibility: body.visibility ?? existing.visibility,
 					rating: nextRating,
@@ -419,6 +568,16 @@ export const reviewsRoute = new Elysia({
 				})
 				.where(eq(review.id, params.id))
 				.returning();
+
+			// Stored translations describe the old text — drop them when the body
+			// actually changed. (The Redis key carries `updatedAt`, so it expires
+			// itself.) Only on a real text change: re-translating after a visibility
+			// toggle would be pure waste.
+			if (nextBody !== null && nextBody !== existing.body) {
+				await db
+					.delete(reviewTranslation)
+					.where(eq(reviewTranslation.reviewId, params.id));
+			}
 
 			if (body.body !== undefined && existing.movieId != null) {
 				const savedBody = body.body.trim();
@@ -613,14 +772,13 @@ export const reviewsRoute = new Elysia({
 				screenshots,
 				row.review.stillSlideKey,
 			);
-			const [logCountRow, planTiers] = await Promise.all([
-				db
-					.select({ c: count(log.id) })
-					.from(log)
-					.where(and(eq(log.userId, author), isNull(log.removedAt)))
-					.then((rows) => rows[0]),
-				fetchPlanTiersForUserIds([author]),
+			const [badgeMaps] = await Promise.all([
+				fetchPatronAvatarBadgeMaps([author]),
 			]);
+			const { diaryMetalTier, planTier, staffRole } = patronAvatarBadgeFields(
+				author,
+				badgeMaps,
+			);
 			return {
 				...row,
 				author:
@@ -635,10 +793,9 @@ export const reviewsRoute = new Elysia({
 										| null
 										| undefined,
 								),
-								diaryMetalTier: resolveDiaryMetalTier(
-									Number(logCountRow?.c ?? 0),
-								),
-								planTier: planTierForUserId(author, planTiers),
+								diaryMetalTier,
+								planTier,
+								staffRole,
 							}
 						: null,
 				screenshots,
@@ -648,6 +805,13 @@ export const reviewsRoute = new Elysia({
 				likesCount: reactionSnapshot.likesCount,
 				dislikesCount: reactionSnapshot.dislikesCount,
 				likedByProfiles,
+				// Whether a translate control is worth showing at all: the engine is
+				// configured, we know what language this is, and there is text to
+				// translate. The client still compares against the reader's language.
+				canTranslate:
+					isReviewTranslationConfigured() &&
+					Boolean(row.review.sourceLanguage) &&
+					row.review.body.trim().length > 0,
 			};
 		},
 		{ params: t.Object({ id: t.String() }) },
@@ -658,6 +822,7 @@ export const reviewsRoute = new Elysia({
 			const limit = Math.min(Number(query.limit ?? 20), 50);
 			const page = parseCommunityPage(query.page);
 			const { start, end } = resolveCommunityPeriodQuery(query);
+			const orderEngagement = query.order === "engagement";
 			const rows = await db
 				.select({ review, movie, user, profile })
 				.from(review)
@@ -675,8 +840,15 @@ export const reviewsRoute = new Elysia({
 						withinCommunityPeriod(review.publishedAt, start, end),
 					),
 				)
-				// Default Community **All reviews** feed — chronological; engagement lives on `/viral`.
-				.orderBy(desc(review.publishedAt), desc(review.id))
+				.orderBy(
+					...(orderEngagement
+						? [
+								desc(reviewEngagementOrderSql()),
+								desc(review.publishedAt),
+								desc(review.id),
+							]
+						: [desc(review.publishedAt), desc(review.id)]),
+				)
 				.limit(limit)
 				.offset(communityOffset(page, limit));
 			return rows;
@@ -685,6 +857,9 @@ export const reviewsRoute = new Elysia({
 			query: t.Object({
 				limit: t.Optional(t.String()),
 				page: t.Optional(t.String()),
+				order: t.Optional(
+					t.Union([t.Literal("chronological"), t.Literal("engagement")]),
+				),
 				period: t.Optional(
 					t.Union([
 						t.Literal("week"),

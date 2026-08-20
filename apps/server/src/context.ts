@@ -3,38 +3,67 @@ import type { StaffRole } from "@still/auth/permissions";
 import { db } from "@still/db";
 import { Elysia } from "elysia";
 
+type ResolvedSession = Awaited<ReturnType<typeof auth.api.getSession>>;
+
+type RequestContext = {
+	db: typeof db;
+	session: NonNullable<ResolvedSession>["session"] | null;
+	user: NonNullable<ResolvedSession>["user"] | null;
+};
+
 /**
- * Shared Elysia plugin that derives a request context: the Better Auth
- * session (if any), the user, and a handle to the Drizzle DB. Routes
- * that need auth simply call `.guard({ as: 'global' })` or reference
- * the `user` field after calling `.use(context)`.
+ * Resolve Better Auth session for a request.
+ * Ordinary routes use the signed cookie cache (fewer Neon reads on polling).
+ * Security-sensitive routes pass `fresh: true` to bypass the cache.
+ */
+export async function resolveRequestSession(
+	request: Request,
+	options: { fresh?: boolean } = {},
+): Promise<RequestContext> {
+	try {
+		const session = await auth.api.getSession({
+			headers: request.headers,
+			...(options.fresh ? { query: { disableCookieCache: true } } : {}),
+		});
+		const sessionUser = session?.user ?? null;
+		// Defense-in-depth: Better Auth's admin plugin already revokes a
+		// banned user's sessions, but if one somehow still presents a valid
+		// session we treat them as signed out so no authenticated endpoint
+		// serves a banned account.
+		if (sessionUser && isBanned(sessionUser)) {
+			return { db, session: null, user: null };
+		}
+		return {
+			db,
+			session: session?.session ?? null,
+			user: sessionUser,
+		};
+	} catch (err) {
+		console.error(
+			"[context] getSession failed — treating request as signed out",
+			err,
+		);
+		return { db, session: null, user: null };
+	}
+}
+
+/**
+ * Shared Elysia plugin — cached session resolution for hot polling paths.
+ * Staff, billing, impersonation, and destructive routes should use
+ * `freshContext` instead.
  */
 export const context = new Elysia({ name: "context" }).derive(
 	{ as: "global" },
-	async ({ request }) => {
-		try {
-			const session = await auth.api.getSession({ headers: request.headers });
-			const sessionUser = session?.user ?? null;
-			// Defense-in-depth: Better Auth's admin plugin already revokes a
-			// banned user's sessions, but if one somehow still presents a valid
-			// session we treat them as signed out so no authenticated endpoint
-			// serves a banned account.
-			if (sessionUser && isBanned(sessionUser)) {
-				return { db, session: null, user: null };
-			}
-			return {
-				db,
-				session: session?.session ?? null,
-				user: sessionUser,
-			};
-		} catch (err) {
-			console.error(
-				"[context] getSession failed — treating request as signed out",
-				err,
-			);
-			return { db, session: null, user: null };
-		}
-	},
+	async ({ request }) => resolveRequestSession(request),
+);
+
+/**
+ * Fresh-session plugin — always validates against Postgres (no cookie cache).
+ * Use on staff, billing, impersonation, and destructive data routes.
+ */
+export const freshContext = new Elysia({ name: "fresh-context" }).derive(
+	{ as: "global" },
+	async ({ request }) => resolveRequestSession(request, { fresh: true }),
 );
 
 /**

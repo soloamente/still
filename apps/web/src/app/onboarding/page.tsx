@@ -17,7 +17,7 @@ type OnboardingPageProfile = NonNullable<OnboardingGateProfile> & {
 };
 
 export default async function OnboardingPage() {
-	const session = await authServer();
+	const session = await authServer({ fresh: true });
 	if (!session) redirect("/sign-in");
 
 	const api = await serverApi();
@@ -41,7 +41,10 @@ export default async function OnboardingPage() {
 
 	return (
 		<OnboardingWizard
-			emailVerified={session.user.emailVerified !== false}
+			emailVerified={
+				session.user.emailVerified === true ||
+				process.env.NODE_ENV === "development"
+			}
 			initialBio={profile?.bio ?? ""}
 			initialDisplayName={profile?.displayName ?? session.user.name ?? ""}
 			initialHandle={profile?.handle ?? ""}

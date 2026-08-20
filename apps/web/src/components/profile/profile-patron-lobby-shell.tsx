@@ -21,7 +21,7 @@ import type { ProfileReviewRow } from "@/components/profile/profile-reviews-pane
 import { ProfileTabPanels } from "@/components/profile/profile-tab-panels";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { ProfileTopBar } from "@/components/profile/profile-top-bar";
-
+import type { ProfileDiscordActivity } from "@/lib/fetch-profile-discord-activity-client";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { HomeVenue } from "@/lib/home-venue";
 import type { ListBoardRow } from "@/lib/list-board-row";
@@ -31,6 +31,7 @@ import { buildProfileLobbyHref } from "@/lib/profile-lobby-order";
 import type { ProfileShowcaseTile } from "@/lib/profile-showcase";
 import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export interface ProfilePatronLobbyShellProps {
 	handle: string;
@@ -77,7 +78,10 @@ export interface ProfilePatronLobbyShellProps {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 	activitySignatureEnabled?: boolean;
+	/** Live Discord activity when visible to the signed-in viewer. */
+	discordActivity?: ProfileDiscordActivity | null;
 }
 
 function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
@@ -119,7 +123,9 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		bannerIsAnimated,
 		profilePortraitGrayscaleUntilHover,
 		planTier = null,
+		staffRole = null,
 		activitySignatureEnabled = true,
+		discordActivity = null,
 	} = props;
 
 	const {
@@ -223,7 +229,10 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 							profilePortraitGrayscaleUntilHover
 						}
 						planTier={planTier}
+						staffRole={staffRole}
 						activitySignatureEnabled={activitySignatureEnabled}
+						discordActivity={discordActivity}
+						viewerId={viewerId}
 					/>
 
 					<ProfilePatronMilestones

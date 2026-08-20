@@ -11,6 +11,7 @@ import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchPublicPlans } from "@/lib/fetch-public-plans";
 import { buildPatronEntitlementsFromProfile } from "@/lib/patron-entitlements";
 import { canManagePolarBilling } from "@/lib/polar-billing";
+import { buildPricingFaqJsonLd } from "@/lib/pricing-faq";
 import { getSiteOrigin } from "@/lib/site-origin";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -61,8 +62,17 @@ export default async function PricingPage() {
 		}
 	}
 
+	const faqJsonLd = buildPricingFaqJsonLd(getSiteOrigin(await headers()));
+
 	return (
 		<div className="min-h-svh bg-background text-foreground">
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: static FAQPage JSON-LD
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+				}}
+			/>
 			<header className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
 				<Link
 					href="/"

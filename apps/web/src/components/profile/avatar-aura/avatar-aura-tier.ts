@@ -1,5 +1,6 @@
 import { type PlanTierId, parsePlanTierId } from "@still/plans";
-import type { CSSProperties } from "react";
+
+import { parseStaffRole } from "@/lib/staff-role-labels";
 
 /** Coerce unknown API values (missing field on stale payloads) to a tier. */
 export function resolveAvatarAuraTier(value: unknown): PlanTierId {
@@ -15,19 +16,44 @@ export function hasAvatarAura(
 
 type PaidTier = Exclude<PlanTierId, "still">;
 
-/**
- * Rest-state rim gradients — the static tier cue. Muted stops so the rim reads
- * as chrome, not a notification ring; hover effects carry the spectacle.
- */
-const RIM_GRADIENTS: Record<PaidTier, string> = {
-	attuned:
-		"conic-gradient(from 210deg, oklch(0.62 0.07 75), oklch(0.48 0.05 60), oklch(0.7 0.09 85), oklch(0.62 0.07 75))",
-	immersed:
-		"conic-gradient(from 210deg, oklch(0.78 0.12 85), oklch(0.6 0.1 70), oklch(0.85 0.13 95), oklch(0.78 0.12 85))",
-	devoted:
-		"conic-gradient(from 210deg, oklch(0.75 0.1 320), oklch(0.78 0.11 200), oklch(0.8 0.12 90), oklch(0.74 0.1 260), oklch(0.75 0.1 320))",
-};
+export type AvatarAuraVisual =
+	| { kind: "none" }
+	| { kind: "staff" }
+	| { kind: "plan"; tier: PaidTier };
 
-export function avatarAuraRimStyle(tier: PaidTier): CSSProperties {
-	return { background: RIM_GRADIENTS[tier] };
+/** Staff badge wins over subscription tier when both apply. */
+export function resolveAvatarAuraVisual(opts: {
+	planTier?: unknown;
+	staffRole?: unknown;
+}): AvatarAuraVisual {
+	if (parseStaffRole(opts.staffRole)) {
+		return { kind: "staff" };
+	}
+	const tier = resolveAvatarAuraTier(opts.planTier);
+	if (hasAvatarAura(tier)) {
+		return { kind: "plan", tier };
+	}
+	return { kind: "none" };
+}
+
+export function hasAvatarAuraVisual(visual: AvatarAuraVisual): boolean {
+	return visual.kind !== "none";
+}
+
+/** Modifier class for tier-specific static rims in globals.css. */
+export function avatarAuraTierClassName(tier: PaidTier): string {
+	return `avatar-aura-rim--${tier}`;
+}
+
+export function avatarAuraVisualClassName(
+	visual: AvatarAuraVisual,
+): string | null {
+	if (visual.kind === "staff") return "avatar-aura-rim--staff";
+	if (visual.kind === "plan") return avatarAuraTierClassName(visual.tier);
+	return null;
+}
+
+/** Kept for tests — rim paint lives in CSS for animated conic rims. */
+export function avatarAuraRimStyle(_tier: PaidTier): Record<string, never> {
+	return {};
 }

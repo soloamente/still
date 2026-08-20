@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@still/ui/lib/utils";
 import { useCallback, useMemo } from "react";
 
 import { ActivityItem } from "@/components/feed/activity-item";
 import { CommunityInfiniteFooter } from "@/components/home/community-infinite-footer";
-import { HomeFriendActivityRail } from "@/components/home/home-friend-activity-rail";
 import {
 	type ActivityFeedCursor,
 	activityFeedCursorFromItem,
@@ -13,7 +13,10 @@ import {
 	parseFeedApiActivityItems,
 	sortActivityItems,
 } from "@/lib/home-community-activity";
-import { deriveFriendRailEntries } from "@/lib/home-friend-rail";
+import {
+	HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+	HOME_COMMUNITY_FEED_LIST_CLASSNAME,
+} from "@/lib/home-community-lobby-layout";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import {
@@ -26,12 +29,13 @@ export function CommunityActivityInfinite({
 	seeds,
 	initialCursor,
 	period,
-	signedIn,
+	/** When false, render the bounded discover snapshot only (no load-more). */
+	paginate,
 }: {
 	seeds: HomeCommunityActivityItem[];
 	initialCursor: ActivityFeedCursor | null;
 	period: HomeLeaderboardPeriod;
-	signedIn: boolean;
+	paginate: boolean;
 }) {
 	const sortedSeeds = useMemo(() => sortActivityItems(seeds), [seeds]);
 
@@ -40,7 +44,7 @@ export function CommunityActivityInfinite({
 			const payload = await fetchCommunityActivity(
 				period,
 				readViewerTimeZone(),
-				signedIn,
+				true,
 				{
 					before: cursor.before,
 					beforeKind: cursor.beforeKind,
@@ -59,7 +63,7 @@ export function CommunityActivityInfinite({
 						: null,
 			};
 		},
-		[period, signedIn],
+		[period],
 	);
 
 	const {
@@ -69,38 +73,39 @@ export function CommunityActivityInfinite({
 		retry,
 	} = useInfinitePager<HomeCommunityActivityItem, ActivityFeedCursor>({
 		seeds: sortedSeeds,
-		initialCursor,
-		loadMore,
+		initialCursor: paginate ? initialCursor : null,
+		loadMore: paginate
+			? loadMore
+			: async () => ({ items: [], nextCursor: null }),
 		getKey: homeCommunityActivityRowKey,
 	});
 
 	const items = useMemo(() => sortActivityItems(rawItems), [rawItems]);
 
-	const friendRailEntries = useMemo(
-		() => deriveFriendRailEntries(items),
-		[items],
+	const listClassName = cn(
+		HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+		HOME_COMMUNITY_FEED_LIST_CLASSNAME,
 	);
 
 	return (
-		<div className="flex min-h-0 flex-1 flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-			<div className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
-				<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
-					{items.map((item) => (
-						<li key={homeCommunityActivityRowKey(item)}>
-							<ActivityItem item={item} />
-						</li>
-					))}
-				</ul>
-				<CommunityInfiniteFooter
-					footerState={footerState}
-					sentinelRef={sentinelRef}
-					retry={retry}
-					loadingLabel="Loading more activity"
-				/>
-			</div>
-			{friendRailEntries.length > 0 ? (
-				<HomeFriendActivityRail entries={friendRailEntries} />
+		<>
+			<ul className={listClassName}>
+				{items.map((item) => (
+					<li key={homeCommunityActivityRowKey(item)}>
+						<ActivityItem item={item} variant="community" />
+					</li>
+				))}
+			</ul>
+			{paginate ? (
+				<div className={HOME_COMMUNITY_FEED_COLUMN_CLASSNAME}>
+					<CommunityInfiniteFooter
+						footerState={footerState}
+						sentinelRef={sentinelRef}
+						retry={retry}
+						loadingLabel="Loading more activity"
+					/>
+				</div>
 			) : null}
-		</div>
+		</>
 	);
 }

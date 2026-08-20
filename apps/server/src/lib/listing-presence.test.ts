@@ -17,6 +17,15 @@ import {
 	viewerCountExcludingSelf,
 } from "./listing-presence";
 
+/** Minimal badge map fixture for pure picker tests. */
+function testBadgeMaps(logCounts: Map<string, number> = new Map()) {
+	return {
+		logCounts,
+		planTiers: new Map<string, "still">(),
+		staffRoles: new Map<string, "user">(),
+	};
+}
+
 /** In-memory ZSET for unit tests — mirrors Upstash score/member semantics. */
 function createTestPresenceRedis() {
 	const sets = new Map<string, Map<string, number>>();
@@ -212,7 +221,11 @@ describe("listing-presence", () => {
 			["usr_c", 50],
 		]);
 
-		const patrons = pickListingPresenceViewingPatrons(rows, logCounts, 2);
+		const patrons = pickListingPresenceViewingPatrons(
+			rows,
+			testBadgeMaps(logCounts),
+			2,
+		);
 
 		expect(patrons).toHaveLength(2);
 		expect(patrons[0]).toMatchObject({
@@ -220,16 +233,18 @@ describe("listing-presence", () => {
 			handle: "alice",
 			displayName: "Alice",
 			avatarIsAnimated: true,
-			diaryMetalTier: "gold",
+			diaryMetalTier: "silver",
 			planTier: "still",
+			staffRole: null,
 			presenceState: "active",
 		});
 		expect(patrons[1]).toMatchObject({
 			userId: "usr_c",
 			handle: "carol",
 			displayName: "Carol",
-			diaryMetalTier: "silver",
+			diaryMetalTier: null,
 			planTier: "still",
+			staffRole: null,
 			presenceState: "active",
 		});
 	});
@@ -248,7 +263,7 @@ describe("listing-presence", () => {
 		];
 		const patrons = pickListingPresenceViewingPatrons(
 			rows,
-			new Map(),
+			testBadgeMaps(),
 			8,
 			new Map([["usr_a", "away"]]),
 		);
@@ -267,9 +282,9 @@ describe("listing-presence", () => {
 			isMutualWithViewer: true,
 		}));
 
-		expect(pickListingPresenceViewingPatrons(rows).length).toBe(
-			LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
-		);
+		expect(
+			pickListingPresenceViewingPatrons(rows, testBadgeMaps()).length,
+		).toBe(LISTING_PRESENCE_MUTUAL_FETCH_LIMIT);
 	});
 
 	test("pickListingPresenceViewingPatrons enforces friends/public visibility", () => {
@@ -302,7 +317,7 @@ describe("listing-presence", () => {
 				isMutualWithViewer: true,
 			},
 		];
-		const patrons = pickListingPresenceViewingPatrons(rows);
+		const patrons = pickListingPresenceViewingPatrons(rows, testBadgeMaps());
 
 		expect(patrons.map((patron) => patron.userId)).toEqual([
 			"usr_public",
@@ -349,6 +364,7 @@ describe("prependViewerSelfToViewingPatrons", () => {
 		avatarIsAnimated: false,
 		diaryMetalTier: null,
 		planTier: "still" as const,
+		staffRole: null,
 		presenceState: "active" as const,
 	};
 
@@ -360,6 +376,7 @@ describe("prependViewerSelfToViewingPatrons", () => {
 		avatarIsAnimated: false,
 		diaryMetalTier: null,
 		planTier: "still" as const,
+		staffRole: null,
 		presenceState: "away" as const,
 	};
 

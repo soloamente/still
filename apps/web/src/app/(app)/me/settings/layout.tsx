@@ -1,8 +1,10 @@
+import { redirect } from "next/navigation";
 import type { SettingsProfile } from "@/components/profile/settings-form-context";
 import { SettingsFormShell } from "@/components/profile/settings-form-shell";
 import type { ContentVisibility } from "@/components/review/visibility-select";
 import { authServer } from "@/lib/auth-server";
 import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
+import { normalizeProfileBirthDateYmd } from "@/lib/normalize-profile-birth-date";
 import { buildPatronEntitlementsFromProfile } from "@/lib/patron-entitlements";
 
 export default async function SettingsLayout({
@@ -13,8 +15,10 @@ export default async function SettingsLayout({
 	const session = await authServer();
 	const me = await fetchMeProfile();
 
+	// Never return `null` here — that skips child pages (including the index
+	// redirect) and Next can surface the request as a 404.
 	if (!me || me === PROFILE_FETCH_FAILED) {
-		return null;
+		redirect("/signed-out");
 	}
 
 	const entitlements = buildPatronEntitlementsFromProfile(me);
@@ -55,7 +59,7 @@ export default async function SettingsLayout({
 			me.defaultVisibility === "private"
 				? (me.defaultVisibility as ContentVisibility)
 				: null,
-		birthDate: typeof me.birthDate === "string" ? me.birthDate : null,
+		birthDate: normalizeProfileBirthDateYmd(me.birthDate),
 		bannerUrl: me.bannerUrl ?? null,
 		hasAvatar: Boolean(session?.user.image?.trim()),
 	};

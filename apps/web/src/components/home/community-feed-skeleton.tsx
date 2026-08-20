@@ -1,12 +1,18 @@
 "use client";
 
 import { ShimmerBone } from "@still/ui/components/skeleton-shimmer";
+import { cn } from "@still/ui/lib/utils";
 
 import { CommunityRanksSkeleton } from "@/components/home/community-ranks-skeleton";
+import { HomeCommunityLobbyScroll } from "@/components/home/home-community-lobby-scroll";
 import {
 	type HomeCommunityFeed,
 	isHomeLeaderboardFeed,
 } from "@/lib/home-community-feed";
+import {
+	HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+	HOME_COMMUNITY_FEED_LIST_CLASSNAME,
+} from "@/lib/home-community-lobby-layout";
 import { HOME_LOBBY_CATALOGUE_GRID_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 
 const COMMUNITY_LIST_POSTER_SKELETON_KEYS = [
@@ -35,39 +41,42 @@ const COMMUNITY_FEED_ROW_SKELETON_KEYS = [
 
 function CommunityListsFeedSkeleton() {
 	return (
-		<div
-			className={`min-h-0 flex-1 px-0.5 pb-2 ${HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}`}
-		>
-			{COMMUNITY_LIST_POSTER_SKELETON_KEYS.map((posterKey) => (
-				<ShimmerBone
-					key={`community-lists-skel-poster-${posterKey}`}
-					className="aspect-2/3 w-full rounded-[3rem] bg-background"
-					aria-hidden
-				/>
-			))}
-		</div>
+		<HomeCommunityLobbyScroll contentKey="community-lists-skeleton">
+			<div className={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}>
+				{COMMUNITY_LIST_POSTER_SKELETON_KEYS.map((posterKey) => (
+					<ShimmerBone
+						key={`community-lists-skel-poster-${posterKey}`}
+						className="aspect-2/3 w-full rounded-[3rem] bg-background"
+						aria-hidden
+					/>
+				))}
+			</div>
+		</HomeCommunityLobbyScroll>
 	);
 }
 
 function CommunityFeedRowSkeleton({ label }: { label: string }) {
 	return (
-		<div
-			className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2"
-			aria-busy
-			aria-live="polite"
-		>
+		<HomeCommunityLobbyScroll contentKey="community-feed-row-skeleton">
 			<p className="sr-only">{label}</p>
-			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
+			<ul
+				className={cn(
+					HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+					HOME_COMMUNITY_FEED_LIST_CLASSNAME,
+				)}
+				aria-busy
+				aria-live="polite"
+			>
 				{COMMUNITY_FEED_ROW_SKELETON_KEYS.map((rowKey) => (
 					<li key={`community-feed-row-skel-${rowKey}`}>
 						<ShimmerBone
-							className="h-24 w-full rounded-2xl bg-background"
+							className="h-40 w-full rounded-[1.75rem] bg-background"
 							aria-hidden
 						/>
 					</li>
 				))}
 			</ul>
-		</div>
+		</HomeCommunityLobbyScroll>
 	);
 }
 
@@ -76,12 +85,16 @@ function CommunityFeedRowSkeleton({ label }: { label: string }) {
  */
 export function CommunityFeedSkeleton({ feed }: { feed: HomeCommunityFeed }) {
 	if (isHomeLeaderboardFeed(feed)) {
-		return <CommunityRanksSkeleton />;
+		return (
+			<HomeCommunityLobbyScroll>
+				<CommunityRanksSkeleton />
+			</HomeCommunityLobbyScroll>
+		);
 	}
 
 	if (feed === "lists") {
 		return (
-			<div className="min-h-0 flex-1" aria-busy aria-live="polite">
+			<div aria-busy aria-live="polite">
 				<p className="sr-only">Loading lists…</p>
 				<CommunityListsFeedSkeleton />
 			</div>

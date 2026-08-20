@@ -22,7 +22,8 @@ export type PlanFeatureKey =
 	| "taste_overlap"
 	| "badge_prestige"
 	| "challenges"
-	| "leaderboard_visibility";
+	| "leaderboard_visibility"
+	| "discord_activity";
 
 /** Numeric rank for tier comparison — higher tier includes lower-tier entitlements. */
 const TIER_RANK: Record<PlanTierId, number> = {
@@ -72,6 +73,7 @@ export const MIN_TIER_FOR_FEATURE: Record<PlanFeatureKey, PlanTierId> = {
 	badge_prestige: "immersed",
 	challenges: "immersed",
 	leaderboard_visibility: "still",
+	discord_activity: "attuned",
 };
 
 /** Convenience wrapper — uses {@link MIN_TIER_FOR_FEATURE} for tier comparison. */

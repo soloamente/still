@@ -12,6 +12,7 @@ import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { api } from "@/lib/api";
 
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 const PROFILE_FOLLOWS_TAB_OPTIONS = [
 	{ id: "followers" as const, label: "Followers" },
@@ -38,6 +39,7 @@ type FollowsListRow = {
 		displayName: string;
 		avatarIsAnimated?: boolean;
 		planTier?: PlanTierId | string | null;
+		staffRole?: StaffRole | null;
 	} | null;
 	viewerFollows: boolean;
 };
@@ -293,6 +295,7 @@ function FollowRow({
 						row.profile?.avatarIsAnimated,
 					)}
 					planTier={row.profile?.planTier ?? null}
+					staffRole={row.profile?.staffRole ?? null}
 				/>
 			) : (
 				<span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/40 font-medium text-foreground/80 text-sm">

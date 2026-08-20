@@ -7,19 +7,28 @@ import {
 	quoteSubmission,
 	tv,
 } from "@still/db";
-import { desc, eq } from "drizzle-orm";
+import type { SQL } from "drizzle-orm";
+import { and, desc, eq, isNotNull } from "drizzle-orm";
 
+import { communityOffset, parseCommunityPage } from "./community-page-args";
 import { makeId } from "./cuid";
 import { ensureMovieCached } from "./ensure-movie-cached";
 import {
 	type ListingQuoteScope,
+	parseListingQuoteLimit,
 	parseQuoteTimestampInput,
 	quoteTimestampLabel,
 	validateListingQuoteScope,
 	validateQuoteBody,
 	validateQuoteSpeaker,
 } from "./listing-quote";
+import {
+	parseSavedQuotesKind,
+	type SavedQuoteListingKind,
+	type SavedQuoteListingThumb,
+} from "./listing-quote-saves-query";
 import { deliverNotification } from "./notification-delivery";
+import { tmdbImg } from "./tmdb";
 import { ensureTvCached } from "./tv-cache";
 
 /** Patron submit cap — 5 pending submissions per rolling 24h window. */
@@ -34,6 +43,38 @@ export type QuoteSubmissionInput = {
 	tvId?: number | null;
 	seasonNumber?: number | null;
 	episodeNumber?: number | null;
+};
+
+/** Patron `/quotes` submission status filter — omitted means all statuses. */
+export type QuoteSubmissionStatusFilter = QuoteSubmissionStatus | "all";
+
+export function parseQuoteSubmissionStatusFilter(
+	raw: string | undefined,
+): QuoteSubmissionStatusFilter {
+	if (raw === "pending" || raw === "approved" || raw === "rejected") {
+		return raw;
+	}
+	return "all";
+}
+
+export type QuoteSubmissionLobbyItem = {
+	submissionId: string;
+	status: QuoteSubmissionStatus;
+	body: string;
+	speaker: string | null;
+	timestampLabel: string | null;
+	createdAt: Date;
+	reviewedAt: Date | null;
+	staffNote: string | null;
+	resolvedQuoteId: string | null;
+	listing: SavedQuoteListingThumb;
+};
+
+export type QuoteSubmissionsPage = {
+	items: QuoteSubmissionLobbyItem[];
+	page: number;
+	limit: number;
+	hasMore: boolean;
 };
 
 export type QuoteSubmissionListItem = {
@@ -153,6 +194,134 @@ function mapSubmissionRow(
 		staffNote: row.staffNote,
 		resolvedQuoteId: row.resolvedQuoteId,
 	};
+}
+
+function buildSubmissionListingThumb(args: {
+	movieId: number | null;
+	tvId: number | null;
+	movieTitle: string | null;
+	tvTitle: string | null;
+	moviePosterPath: string | null;
+	tvPosterPath: string | null;
+	movieYear: number | null;
+	tvYear: number | null;
+	seasonNumber: number | null;
+	episodeNumber: number | null;
+}): SavedQuoteListingThumb | null {
+	if (args.movieId != null) {
+		return {
+			kind: "movie",
+			id: args.movieId,
+			title: args.movieTitle ?? "Unknown film",
+			posterPath: args.moviePosterPath,
+			posterUrl: tmdbImg.poster(args.moviePosterPath),
+			year: args.movieYear,
+			seasonNumber: null,
+			episodeNumber: null,
+		};
+	}
+	if (args.tvId != null) {
+		return {
+			kind: "tv",
+			id: args.tvId,
+			title: args.tvTitle ?? "Unknown show",
+			posterPath: args.tvPosterPath,
+			posterUrl: tmdbImg.poster(args.tvPosterPath),
+			year: args.tvYear,
+			seasonNumber: args.seasonNumber,
+			episodeNumber: args.episodeNumber,
+		};
+	}
+	return null;
+}
+
+function mapSubmissionLobbyRow(row: {
+	submission: typeof quoteSubmission.$inferSelect;
+	movieTitle: string | null;
+	tvTitle: string | null;
+	moviePosterPath: string | null;
+	tvPosterPath: string | null;
+	movieYear: number | null;
+	tvYear: number | null;
+}): QuoteSubmissionLobbyItem | null {
+	const listing = buildSubmissionListingThumb({
+		movieId: row.submission.movieId,
+		tvId: row.submission.tvId,
+		movieTitle: row.movieTitle,
+		tvTitle: row.tvTitle,
+		moviePosterPath: row.moviePosterPath,
+		tvPosterPath: row.tvPosterPath,
+		movieYear: row.movieYear,
+		tvYear: row.tvYear,
+		seasonNumber: row.submission.seasonNumber,
+		episodeNumber: row.submission.episodeNumber,
+	});
+	if (!listing) return null;
+
+	return {
+		submissionId: row.submission.id,
+		status: row.submission.status,
+		body: row.submission.body,
+		speaker: row.submission.speaker,
+		timestampLabel: quoteTimestampLabel(row.submission.timestampMs),
+		createdAt: row.submission.createdAt,
+		reviewedAt: row.submission.reviewedAt,
+		staffNote: row.submission.staffNote,
+		resolvedQuoteId: row.submission.resolvedQuoteId,
+		listing,
+	};
+}
+
+/** Signed-in patron history on `/quotes` — newest submissions first. */
+export async function fetchMyQuoteSubmissions(args: {
+	userId: string;
+	page?: string;
+	limit?: string;
+	kind?: string;
+	status?: string;
+}): Promise<QuoteSubmissionsPage> {
+	const page = parseCommunityPage(args.page);
+	const limit = parseListingQuoteLimit(args.limit);
+	const offset = communityOffset(page, limit);
+	const kind = parseSavedQuotesKind(args.kind) as SavedQuoteListingKind | null;
+	const status = parseQuoteSubmissionStatusFilter(args.status);
+
+	const filters: SQL[] = [eq(quoteSubmission.userId, args.userId)];
+	if (status !== "all") {
+		filters.push(eq(quoteSubmission.status, status));
+	}
+	if (kind === "movie") {
+		filters.push(isNotNull(quoteSubmission.movieId));
+	}
+	if (kind === "tv") {
+		filters.push(isNotNull(quoteSubmission.tvId));
+	}
+
+	const rows = await db
+		.select({
+			submission: quoteSubmission,
+			movieTitle: movie.title,
+			tvTitle: tv.title,
+			moviePosterPath: movie.posterPath,
+			tvPosterPath: tv.posterPath,
+			movieYear: movie.year,
+			tvYear: tv.year,
+		})
+		.from(quoteSubmission)
+		.leftJoin(movie, eq(quoteSubmission.movieId, movie.tmdbId))
+		.leftJoin(tv, eq(quoteSubmission.tvId, tv.tmdbId))
+		.where(and(...filters))
+		.orderBy(desc(quoteSubmission.createdAt), desc(quoteSubmission.id))
+		.limit(limit + 1)
+		.offset(offset);
+
+	const hasMore = rows.length > limit;
+	const slice = hasMore ? rows.slice(0, limit) : rows;
+	const items = slice
+		.map((row) => mapSubmissionLobbyRow(row))
+		.filter((item): item is QuoteSubmissionLobbyItem => item != null);
+
+	return { items, page, limit, hasMore };
 }
 
 /** Staff queue — newest first, optional status filter. */

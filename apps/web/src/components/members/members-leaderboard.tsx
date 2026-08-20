@@ -7,6 +7,11 @@ import { useEffect, useState } from "react";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { MembersLeaderboardPodium } from "@/components/members/members-leaderboard-podium";
 import { MembersLeaderboardRow } from "@/components/members/members-leaderboard-row";
+import { HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME } from "@/lib/home-community-lobby-layout";
+import {
+	HOME_COMMUNITY_RANKS_COLUMN_CLASSNAME,
+	HOME_COMMUNITY_RANKS_LIST_CLASSNAME,
+} from "@/lib/home-community-ranks-layout";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
@@ -18,7 +23,8 @@ import type {
 import { fetchMembersLeaderboard } from "@/lib/still-api-fetch";
 
 /**
- * Community Ranks patron slices — tier podium for top 3, list from #4, follow on rows.
+ * Community Ranks patron slices — tier podium for top 3, list from #4.
+ * Follow lives on profiles, not rank rows (parity with Film/TV ranks).
  */
 export function MembersLeaderboard({
 	initialData,
@@ -102,33 +108,35 @@ export function MembersLeaderboard({
 
 	if (items.length === 0) {
 		return (
-			<HomeCommunityEmpty
-				title={`No members ranked by ${sortLabel.toLowerCase()}`}
-				description="When patrons contribute in this window, the directory fills in here."
-				primaryHref={buildHomeLobbyHref({
-					browse: "community",
-					sort: "reviews",
-					period,
-				})}
-				primaryLabel="Browse reviews"
-				secondaryHref={buildHomeLobbyHref({
-					browse: "movies",
-					sort: "popular",
-				})}
-				secondaryLabel="Browse films"
-			/>
+			<div className={HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME}>
+				<HomeCommunityEmpty
+					title={`No members ranked by ${sortLabel.toLowerCase()}`}
+					description="When patrons contribute in this window, the directory fills in here."
+					primaryHref={buildHomeLobbyHref({
+						browse: "community",
+						sort: "reviews",
+						period,
+					})}
+					primaryLabel="Browse reviews"
+					secondaryHref={buildHomeLobbyHref({
+						browse: "movies",
+						sort: "popular",
+					})}
+					secondaryLabel="Browse films"
+				/>
+			</div>
 		);
 	}
 
 	return (
-		<div className="mx-auto flex w-full max-w-lg flex-col gap-4 pb-4">
+		<div className={HOME_COMMUNITY_RANKS_COLUMN_CLASSNAME}>
 			<MembersLeaderboardPodium
 				items={podiumItems}
 				sort={memberSort}
 				period={period}
 			/>
 			{rest.length > 0 ? (
-				<ul className="flex flex-col gap-2 rounded-2xl bg-card p-3 sm:p-4">
+				<ul className={HOME_COMMUNITY_RANKS_LIST_CLASSNAME}>
 					{rest.map((entry) => (
 						<MembersLeaderboardRow
 							key={entry.userId}

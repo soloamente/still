@@ -3,6 +3,7 @@
  * `HomeStickyChrome`, `HomeCatalogViewModeToolbar`, and the same poster grid stack as `/home`.
  */
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
 
 export type WatchlistLobbyOrder =
@@ -76,8 +77,7 @@ export function watchlistRowToPopularSeed(
 	}
 	let poster_url: string | null = listing.posterPath;
 	if (poster_url?.length && !poster_url.startsWith("http")) {
-		const fragment = poster_url.startsWith("/") ? poster_url : `/${poster_url}`;
-		poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
+		poster_url = tmdbPosterUrlFromPath(poster_url, "w342");
 	}
 	return {
 		id: listing.tmdbId,

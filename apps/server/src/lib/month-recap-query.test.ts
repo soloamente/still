@@ -16,6 +16,7 @@ function entry(rank: number): MonthRecapEntry {
 		avatarIsAnimated: false,
 		diaryMetalTier: null satisfies DiaryMetalTier | null,
 		planTier: "still",
+		staffRole: null,
 		count: 10 - rank,
 	};
 }

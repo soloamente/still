@@ -1,9 +1,11 @@
 "use client";
 
+import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
+import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import {
 	ListingEngagementListRow,
@@ -11,6 +13,7 @@ import {
 	ListingEngagementWatchRow,
 } from "@/components/movie/movie-detail-engagement-drawer-rows";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	fetchListingEngagementByKind,
 	formatListingEngagementPrivateGapFooter,
@@ -167,10 +170,21 @@ export function MovieDetailEngagementDrawer({
 		>
 			<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
 				<DetailDrawerScrollBody scrollRef={scrollRef}>
-					<div className="mx-auto w-full max-w-lg px-4 pt-2 pb-10 sm:max-w-xl">
+					<div className="mx-auto w-full max-w-xl pt-2 pb-10">
+						{description && kind ? (
+							<header className="mx-auto mb-8 max-w-md text-center">
+								<h2 className="text-balance font-semibold text-foreground text-xl sm:text-2xl">
+									{title}
+								</h2>
+								<p className="mt-2 text-balance font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
+									{description}
+								</p>
+							</header>
+						) : null}
+
 						{loading ? (
 							<div
-								className="flex justify-center py-16"
+								className="flex min-h-[min(36svh,280px)] items-center justify-center"
 								role="status"
 								aria-live="polite"
 							>
@@ -179,31 +193,42 @@ export function MovieDetailEngagementDrawer({
 						) : null}
 
 						{error ? (
-							<p
-								className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
+							<div
+								className="flex min-h-[min(36svh,280px)] flex-col items-center justify-center px-4 text-center"
 								role="alert"
 							>
-								{error}
-							</p>
+								<p className="max-w-sm text-muted-foreground text-sm leading-relaxed">
+									{error}
+								</p>
+							</div>
 						) : null}
 
 						{!loading && !error && items.length === 0 ? (
-							<p
-								className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
+							<div
+								className="flex min-h-[min(36svh,280px)] flex-col items-center justify-center px-4 text-center"
 								role="status"
 							>
-								{emptyCopy}
-							</p>
+								<p className="max-w-sm text-balance text-muted-foreground text-sm leading-relaxed">
+									{emptyCopy}
+								</p>
+							</div>
 						) : null}
 
 						{!loading && !error && items.length > 0 && kind ? (
-							<ul className="space-y-3">
+							<ul
+								className={cn(
+									kind === "watchlist"
+										? "grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3"
+										: "space-y-2",
+								)}
+							>
 								{isWatchKind(kind)
 									? (items as ListingEngagementWatchItem[]).map((item) => (
 											<li key={item.userId}>
 												<ListingEngagementWatchRow
 													item={item}
 													movieId={movieId}
+													kind={kind}
 												/>
 											</li>
 										))
@@ -227,18 +252,22 @@ export function MovieDetailEngagementDrawer({
 
 						{!loading && !error && hasMore ? (
 							<div className="mt-6 flex justify-center">
-								<button
-									type="button"
-									disabled={loadingMore}
-									className="inline-flex min-h-10 items-center justify-center rounded-full bg-card px-5 py-2 font-medium text-foreground text-sm disabled:opacity-60"
-									onClick={() => void loadPage(page + 1, true)}
-								>
-									{loadingMore ? (
-										<Loader2 className="size-4 animate-spin" aria-hidden />
-									) : (
-										"Load more"
-									)}
-								</button>
+								<DetailMotionButtonWrap>
+									<button
+										type="button"
+										disabled={loadingMore}
+										className={cn(
+											"inline-flex min-h-10 items-center justify-center gap-2 rounded-full bg-background px-5 py-2 font-medium text-foreground text-sm disabled:opacity-60",
+											DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+										)}
+										onClick={() => void loadPage(page + 1, true)}
+									>
+										{loadingMore ? (
+											<Loader2 className="size-4 animate-spin" aria-hidden />
+										) : null}
+										{loadingMore ? "Loading…" : "Load more"}
+									</button>
+								</DetailMotionButtonWrap>
 							</div>
 						) : null}
 

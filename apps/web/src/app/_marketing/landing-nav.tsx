@@ -2,132 +2,62 @@
 
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
 
-import { LANDING_GLASS_PILL, LANDING_GLASS_PILL_LINK } from "./landing-glass";
+import { LANDING_CHAPTERS, LANDING_CTA } from "./landing-copy";
 import { LandingMarkPill } from "./landing-mark-pill";
-import {
-	LANDING_HERO_CTA_PRIMARY_CLASS,
-	LANDING_HERO_CTA_SECONDARY_CLASS,
-	LANDING_NAV_CTA_PRIMARY_CLASS,
-	LANDING_NAV_FLOAT_CLUSTER_CLASS,
-	LANDING_NAV_FLOAT_ROOT_CLASS,
-} from "./landing-mobbin-hero";
+import { LANDING_HERO_CTA_PRIMARY_CLASS } from "./landing-mobbin-hero";
 
-/** In-page anchors — Mobbin-style sparse center nav. */
-const CHAPTERS = [
-	{ href: "#intro", label: "Product" },
-	{ href: "#diary", label: "Features" },
-	{ href: "#start", label: "Contact" },
-] as const;
+/** Quiet in-page section links — larger type, tighter pad, same 44px hit. */
+const LANDING_NAV_SECTION_LINK_CLASS =
+	"inline-flex h-11 select-none items-center justify-center rounded-full px-2 font-sans text-base text-muted-foreground transition-colors duration-200 [@media(hover:hover)]:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card";
 
+/**
+ * Floating island nav — mark · section anchors · primary Sign in.
+ */
 export function LandingNav({ className }: { className?: string }) {
-	const [open, setOpen] = useState(false);
-
 	return (
-		<>
-			<header className={cn(LANDING_NAV_FLOAT_ROOT_CLASS, className)}>
-				<div className={LANDING_NAV_FLOAT_CLUSTER_CLASS}>
-					<LandingMarkPill />
-
-					<nav
-						className={cn(
-							LANDING_GLASS_PILL,
-							"hidden h-11 min-w-0 items-center gap-0.5 px-2 md:flex",
-						)}
-						aria-label="Site sections"
-					>
-						{CHAPTERS.map((link) => (
-							<Link
-								key={link.href}
-								href={link.href}
-								className={cn(
-									LANDING_GLASS_PILL_LINK,
-									"rounded-full px-4 py-2",
-								)}
-							>
-								{link.label}
-							</Link>
-						))}
-					</nav>
-
-					<div
-						className={cn(
-							LANDING_GLASS_PILL,
-							"hidden h-11 items-center gap-0.5 p-1 pl-3 md:flex",
-						)}
-					>
-						<Link
-							href="/sign-in"
-							className={cn(
-								LANDING_GLASS_PILL_LINK,
-								"rounded-full px-3 py-2 text-foreground/80 [@media(hover:hover)]:text-foreground",
-							)}
-						>
-							Sign in
-						</Link>
-						<Link href="/sign-up" className={LANDING_NAV_CTA_PRIMARY_CLASS}>
-							Create account
-						</Link>
-					</div>
-
-					<button
-						type="button"
-						className={cn(
-							LANDING_GLASS_PILL,
-							"flex h-11 items-center px-4 font-sans text-foreground/90 text-sm md:hidden",
-						)}
-						aria-expanded={open}
-						aria-controls="landing-mobile-menu"
-						onClick={() => setOpen((value) => !value)}
-					>
-						{open ? "Close" : "Menu"}
-					</button>
+		<header
+			className={cn(
+				"pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:px-6 sm:pt-5",
+				className,
+			)}
+		>
+			<nav
+				aria-label="Sense"
+				className="pointer-events-auto grid w-full max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-full bg-card/80 p-1.5 pl-2 backdrop-blur-lg"
+			>
+				{/* Mark uses canvas fill so it reads on the raised card shell. */}
+				<div className="justify-self-start">
+					{/* Content-sized pad — no extra horizontal chrome beyond the wordmark. */}
+					<LandingMarkPill className="w-fit min-w-0 bg-background px-4 text-base" />
 				</div>
-			</header>
 
-			{open ? (
-				<div
-					id="landing-mobile-menu"
-					role="dialog"
-					aria-modal="true"
-					aria-label="Site menu"
-					className="fixed inset-0 z-50 flex flex-col bg-background/96 px-6 pt-20 pb-10 backdrop-blur-md md:hidden"
-				>
-					<nav
-						className="flex flex-1 flex-col gap-6"
-						aria-label="Site sections"
-					>
-						{CHAPTERS.map((link) => (
-							<Link
-								key={link.href}
-								href={link.href}
-								className="font-sans font-semibold text-2xl text-foreground tracking-[-0.03em]"
-								onClick={() => setOpen(false)}
+				{/* Center section links — Taste · Diary · Community (Mobbin rhythm). */}
+				<ul className="flex items-center justify-center gap-0.5 sm:gap-1">
+					{LANDING_CHAPTERS.map((chapter) => (
+						<li key={chapter.id}>
+							<a
+								href={`#${chapter.id}`}
+								className={LANDING_NAV_SECTION_LINK_CLASS}
 							>
-								{link.label}
-							</Link>
-						))}
-					</nav>
+								{chapter.label}
+							</a>
+						</li>
+					))}
+				</ul>
 
-					<div className="flex flex-col gap-3 border-border/50 border-t pt-8">
-						<Link
-							href="/sign-in"
-							className={LANDING_HERO_CTA_SECONDARY_CLASS}
-							onClick={() => setOpen(false)}
-						>
-							Sign in
-						</Link>
-						<Link
-							href="/sign-up"
-							className={LANDING_HERO_CTA_PRIMARY_CLASS}
-							onClick={() => setOpen(false)}
-						>
-							Create account
-						</Link>
-					</div>
+				<div className="justify-self-end">
+					<Link
+						href={LANDING_CTA.secondary.href}
+						className={cn(
+							LANDING_HERO_CTA_PRIMARY_CLASS,
+							"w-fit min-w-0 px-4 text-base",
+						)}
+					>
+						{LANDING_CTA.secondary.label}
+					</Link>
 				</div>
-			) : null}
-		</>
+			</nav>
+		</header>
 	);
 }

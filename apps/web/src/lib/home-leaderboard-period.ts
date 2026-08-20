@@ -1,3 +1,6 @@
+import type { LeaderboardKind } from "@/lib/home-leaderboard-types";
+import { leaderboardKindCountLabel } from "@/lib/leaderboard-kind-labels";
+
 export const HOME_LEADERBOARD_PERIODS = [
 	{ id: "week", label: "Week" },
 	{ id: "month", label: "Month" },
@@ -82,17 +85,10 @@ function leaderboardWatchedPeriodPhrase(period: HomeLeaderboardPeriod): string {
 /** Ledger drawer header — e.g. "13 films watched this month". */
 export function leaderboardWatchLedgerSummaryLabel(
 	count: number,
-	kind: "films" | "tv",
+	kind: LeaderboardKind,
 	period: HomeLeaderboardPeriod,
 ): string {
-	const media =
-		kind === "tv"
-			? count === 1
-				? "show"
-				: "shows"
-			: count === 1
-				? "film"
-				: "films";
+	const media = leaderboardKindCountLabel(kind, count);
 	return `${count} ${media} watched ${leaderboardWatchedPeriodPhrase(period)}`;
 }
 

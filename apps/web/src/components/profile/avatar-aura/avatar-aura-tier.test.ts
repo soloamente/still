@@ -2,8 +2,12 @@ import { describe, expect, it } from "bun:test";
 
 import {
 	avatarAuraRimStyle,
+	avatarAuraTierClassName,
+	avatarAuraVisualClassName,
 	hasAvatarAura,
+	hasAvatarAuraVisual,
 	resolveAvatarAuraTier,
+	resolveAvatarAuraVisual,
 } from "./avatar-aura-tier";
 
 describe("resolveAvatarAuraTier", () => {
@@ -26,10 +30,49 @@ describe("hasAvatarAura", () => {
 	});
 });
 
+describe("resolveAvatarAuraVisual", () => {
+	it("staff role wins over paid plan tier", () => {
+		expect(
+			resolveAvatarAuraVisual({ planTier: "devoted", staffRole: "admin" }),
+		).toEqual({ kind: "staff" });
+	});
+
+	it("falls back to plan tier when not staff", () => {
+		expect(resolveAvatarAuraVisual({ planTier: "attuned" })).toEqual({
+			kind: "plan",
+			tier: "attuned",
+		});
+	});
+});
+
+describe("avatarAuraTierClassName", () => {
+	it("returns a CSS modifier for every paid tier", () => {
+		expect(avatarAuraTierClassName("attuned")).toBe("avatar-aura-rim--attuned");
+		expect(avatarAuraTierClassName("immersed")).toBe(
+			"avatar-aura-rim--immersed",
+		);
+		expect(avatarAuraTierClassName("devoted")).toBe("avatar-aura-rim--devoted");
+	});
+});
+
+describe("avatarAuraVisualClassName", () => {
+	it("returns staff seal class for staff visual", () => {
+		expect(avatarAuraVisualClassName({ kind: "staff" })).toBe(
+			"avatar-aura-rim--staff",
+		);
+	});
+});
+
+describe("hasAvatarAuraVisual", () => {
+	it("is true for staff and paid tiers", () => {
+		expect(hasAvatarAuraVisual({ kind: "staff" })).toBe(true);
+		expect(hasAvatarAuraVisual({ kind: "plan", tier: "attuned" })).toBe(true);
+		expect(hasAvatarAuraVisual({ kind: "none" })).toBe(false);
+	});
+});
+
 describe("avatarAuraRimStyle", () => {
-	it("returns a conic gradient for every paid tier", () => {
-		for (const tier of ["attuned", "immersed", "devoted"] as const) {
-			expect(avatarAuraRimStyle(tier).background).toContain("conic-gradient");
-		}
+	it("returns an empty object — rim paint lives in CSS", () => {
+		expect(avatarAuraRimStyle("attuned")).toEqual({});
 	});
 });

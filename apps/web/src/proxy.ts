@@ -64,6 +64,14 @@ export function proxy(req: NextRequest) {
 		return withReferralCapture(req, NextResponse.redirect(url));
 	}
 
+	// Bare `/me/settings` has no content page — send patrons to Profile before the
+	// RSC tree runs (page-level `redirect()` was logging as 404 on soft navigations).
+	if (pathname === "/me/settings" || pathname === "/me/settings/") {
+		const url = req.nextUrl.clone();
+		url.pathname = "/me/settings/profile";
+		return withReferralCapture(req, NextResponse.redirect(url));
+	}
+
 	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
 
 	if (

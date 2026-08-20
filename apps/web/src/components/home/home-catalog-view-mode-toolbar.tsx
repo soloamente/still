@@ -2,13 +2,13 @@
 
 import IconSlider from "@still/ui/icons/slider";
 import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { HomeCatalogFiltersPopover } from "@/components/home/home-catalog-filters-popover";
 import { useHomeTmdbLobbyParamsOptional } from "@/components/home/home-tmdb-lobby-params-context";
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 
 import {
 	buildDiaryLobbyHref,
@@ -216,7 +216,6 @@ export function HomeCatalogViewModeToolbar() {
 		browse,
 		animeSeason: animeSeasonActive,
 	});
-	const reduceMotion = useReducedMotion();
 
 	const isHomeLobby = pathname === "/home" || pathname.endsWith("/home");
 	const isDiaryLobby = pathname === "/diary" || pathname.endsWith("/diary");
@@ -257,23 +256,6 @@ export function HomeCatalogViewModeToolbar() {
 	if (browse === "community" && !isDiaryLobby && !isWatchlistLobby) {
 		return null;
 	}
-
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
-
-	// Match chip tap targets beside `HomeCatalogSortChips` (left column).
-	const chipLink = (active: boolean) =>
-		cn(
-			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
 
 	const toolbarDescId = "home-catalog-view-mode-desc";
 
@@ -443,11 +425,6 @@ export function HomeCatalogViewModeToolbar() {
 		// Coalesce null (e.g. anime season or absent `?run=`) to the default Ongoing slice for chip/filter props.
 		const activeRun = tmdbLobby?.run ?? catalogRun ?? DEFAULT_HOME_CATALOG_RUN;
 		const seasonActive = tmdbLobby?.animeSeason ?? animeSeasonActive;
-		const theatersActive = effectiveVenue === "theaters";
-		const streamingActive = effectiveVenue === "streaming";
-		const ongoingActive = !seasonActive && activeRun === "ongoing";
-		const completedActive = !seasonActive && activeRun === "completed";
-		const upcomingActive = !seasonActive && activeRun === "upcoming";
 		const showUpcomingVenue = activeRun === "upcoming";
 
 		const tvRunChipHref = (run: HomeCatalogRun) =>
@@ -463,116 +440,14 @@ export function HomeCatalogViewModeToolbar() {
 		const tvToolbarCopy =
 			"Pick one catalogue slice: Ongoing (all returning series), Completed (ended), or Upcoming (first air dates ahead). Latest, Popular, and This season on the left order or narrow the grid.";
 
-		const runChip = (
-			run: HomeCatalogRun,
-			label: string,
-			title: string,
-			ariaLabel: string,
-			active: boolean,
-		) => {
-			const href = tvRunChipHref(run);
-			if (tmdbLobby) {
-				return (
-					<button
-						key={run}
-						type="button"
-						aria-current={active ? "page" : undefined}
-						className={chipLink(active)}
-						title={title}
-						aria-label={ariaLabel}
-						onClick={() => tmdbLobby.selectRun(run)}
-						onPointerEnter={() => tmdbLobby.prefetchLobby(href)}
-					>
-						{active ? (
-							<motion.span
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								layoutId="home-catalog-tv-run-pill"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">{label}</span>
-					</button>
-				);
-			}
-			return (
-				<Link
-					key={run}
-					href={href}
-					scroll={false}
-					aria-current={active ? "page" : undefined}
-					className={chipLink(active)}
-					title={title}
-					aria-label={ariaLabel}
-				>
-					{active ? (
-						<motion.span
-							className="absolute inset-0 z-0 rounded-full bg-card"
-							layoutId="home-catalog-tv-run-pill"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">{label}</span>
-				</Link>
-			);
-		};
-
-		const venueChip = (
-			venue: "theaters" | "streaming",
-			label: string,
-			title: string,
-			ariaLabel: string,
-			active: boolean,
-		) => {
-			const href = buildHomeLobbyHref({
+		const tvVenueHref = (venue: "theaters" | "streaming") =>
+			buildHomeLobbyHref({
 				sort: activeSort,
 				browse: "tv",
 				venue,
 				run: activeRun,
 				animeSeason: seasonActive,
 			});
-			if (tmdbLobby) {
-				return (
-					<button
-						key={venue}
-						type="button"
-						aria-current={active ? "page" : undefined}
-						className={chipLink(active)}
-						title={title}
-						aria-label={ariaLabel}
-						onClick={() => tmdbLobby.selectVenue(venue)}
-						onPointerEnter={() => tmdbLobby.prefetchLobby(href)}
-					>
-						{active ? (
-							<motion.span
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								layoutId="home-catalog-view-mode-pill"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">{label}</span>
-					</button>
-				);
-			}
-			return (
-				<Link
-					key={venue}
-					href={href}
-					aria-current={active ? "page" : undefined}
-					className={chipLink(active)}
-					title={title}
-					aria-label={ariaLabel}
-				>
-					{active ? (
-						<motion.span
-							className="absolute inset-0 z-0 rounded-full bg-card"
-							layoutId="home-catalog-view-mode-pill"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10">{label}</span>
-				</Link>
-			);
-		};
 
 		const tvCatalogFilters = parseHomeCatalogFilters(searchParams, {
 			venue: effectiveVenue,
@@ -650,22 +525,38 @@ export function HomeCatalogViewModeToolbar() {
 					aria-describedby={tvToolbarDescId}
 				>
 					{showUpcomingVenue ? (
-						<div className="flex shrink-0 flex-nowrap">
-							{venueChip(
-								"theaters",
-								"In cinemas",
-								"First air dates from today — all networks (TMDb discover)",
-								"In cinemas — first air dates ahead on TMDb",
-								theatersActive,
-							)}
-							{venueChip(
-								"streaming",
-								"At home",
-								"Subscription streaming — first air dates from today",
-								"At home — subscription streaming catalogue",
-								streamingActive,
-							)}
-						</div>
+						<SegmentedPillToolbar
+							layoutId="home-catalog-view-mode-pill"
+							aria-label="Release window"
+							value={effectiveVenue}
+							onChange={(venue) => {
+								if (tmdbLobby) {
+									tmdbLobby.selectVenue(venue);
+									return;
+								}
+								handleFilterNavigate(tvVenueHref(venue));
+							}}
+							onOptionPointerEnter={
+								tmdbLobby
+									? (venue) => tmdbLobby.prefetchLobby(tvVenueHref(venue))
+									: undefined
+							}
+							options={[
+								{
+									id: "theaters",
+									label: "In cinemas",
+									title:
+										"First air dates from today — all networks (TMDb discover)",
+								},
+								{
+									id: "streaming",
+									label: "At home",
+									title: "Subscription streaming — first air dates from today",
+								},
+							]}
+							compact
+							className="flex shrink-0 flex-nowrap justify-start bg-transparent p-0"
+						/>
 					) : null}
 
 					{showUpcomingVenue ? (
@@ -675,29 +566,43 @@ export function HomeCatalogViewModeToolbar() {
 						/>
 					) : null}
 
-					<div className="flex shrink-0 flex-nowrap">
-						{runChip(
-							"ongoing",
-							"Ongoing",
-							"Series TMDb marks as Returning (still active, not ended)",
-							"Ongoing — returning TV series on TMDb",
-							ongoingActive,
-						)}
-						{runChip(
-							"completed",
-							"Completed",
-							"Series TMDb marks as ended (completed)",
-							"Completed — ended TV series on TMDb",
-							completedActive,
-						)}
-						{runChip(
-							"upcoming",
-							"Upcoming",
-							"Shows with first air dates from today onward on TMDb",
-							"Upcoming — first air dates ahead on TMDb",
-							upcomingActive,
-						)}
-					</div>
+					<SegmentedPillToolbar
+						layoutId="home-catalog-tv-run-pill"
+						aria-label="TV lifecycle"
+						value={activeRun}
+						onChange={(run) => {
+							if (tmdbLobby) {
+								tmdbLobby.selectRun(run);
+								return;
+							}
+							handleFilterNavigate(tvRunChipHref(run));
+						}}
+						onOptionPointerEnter={
+							tmdbLobby
+								? (run) => tmdbLobby.prefetchLobby(tvRunChipHref(run))
+								: undefined
+						}
+						options={[
+							{
+								id: "ongoing",
+								label: "Ongoing",
+								title:
+									"Series TMDb marks as Returning (still active, not ended)",
+							},
+							{
+								id: "completed",
+								label: "Completed",
+								title: "Series TMDb marks as ended (completed)",
+							},
+							{
+								id: "upcoming",
+								label: "Upcoming",
+								title: "Shows with first air dates from today onward on TMDb",
+							},
+						]}
+						compact
+						className="flex shrink-0 flex-nowrap justify-start bg-transparent p-0"
+					/>
 
 					<span
 						aria-hidden
@@ -759,8 +664,6 @@ export function HomeCatalogViewModeToolbar() {
 		: tmdbLobby
 			? tmdbLobby.venue
 			: parseHomeVenue(searchParams.get("venue"), catalogSort);
-	const theatersActive = effectiveVenue === "theaters";
-	const streamingActive = effectiveVenue === "streaming";
 	const venueBrowse = browse === "tv" ? "tv" : "movies";
 	const activeCatalogSort = tmdbLobby?.sort ?? catalogSort;
 
@@ -839,130 +742,43 @@ export function HomeCatalogViewModeToolbar() {
 				aria-label="Release window and filters"
 				aria-describedby={toolbarDescId}
 			>
-				<div className="flex shrink-0 flex-nowrap">
-					{(() => {
-						const theatersHref = isDiaryLobby
-							? buildDiaryLobbyHref({
-									order: diaryOrder,
-									venue: "theaters",
-									tab: diaryTab,
-								})
-							: buildHomeLobbyHref({
-									sort: activeCatalogSort,
-									browse: venueBrowse,
-									venue: "theaters",
-								});
-						const theatersTitle = isDiaryLobby
-							? "Emphasise in-cinema context for filters and browse"
-							: "Now playing (Popular), newest already in cinemas (Latest), or opening soon (Upcoming)";
-						const theatersAria = isDiaryLobby
-							? "In cinemas — stay on diary"
-							: "In cinemas — TMDb theatrical lists";
-
-						if (tmdbLobby && !isDiaryLobby) {
-							return (
-								<button
-									type="button"
-									aria-current={theatersActive ? "page" : undefined}
-									className={chipLink(theatersActive)}
-									title={theatersTitle}
-									aria-label={theatersAria}
-									onClick={() => tmdbLobby.selectVenue("theaters")}
-									onPointerEnter={() => tmdbLobby.prefetchLobby(theatersHref)}
-								>
-									{theatersActive ? (
-										<motion.span
-											className="absolute inset-0 z-0 rounded-full bg-card"
-											layoutId="home-catalog-view-mode-pill"
-											transition={pillTransition}
-										/>
-									) : null}
-									<span className="relative z-10">In cinemas</span>
-								</button>
-							);
-						}
-
-						return (
-							<Link
-								href={theatersHref}
-								aria-current={theatersActive ? "page" : undefined}
-								className={chipLink(theatersActive)}
-								title={theatersTitle}
-								aria-label={theatersAria}
-							>
-								{theatersActive ? (
-									<motion.span
-										className="absolute inset-0 z-0 rounded-full bg-card"
-										layoutId="home-catalog-view-mode-pill"
-										transition={pillTransition}
-									/>
-								) : null}
-								<span className="relative z-10">In cinemas</span>
-							</Link>
-						);
-					})()}
-					{(() => {
-						const streamingHref = isDiaryLobby
-							? buildDiaryLobbyHref({
-									order: diaryOrder,
-									venue: "streaming",
-									tab: diaryTab,
-								})
-							: buildHomeLobbyHref({
-									sort: activeCatalogSort,
-									browse: venueBrowse,
-									venue: "streaming",
-								});
-						const streamingTitle = isDiaryLobby
-							? "Emphasise at-home streaming context for filters and browse"
-							: "Popular, newest, or upcoming subscription streaming at home";
-						const streamingAria = isDiaryLobby
-							? "At home — stay on diary"
-							: "At home — subscription streaming catalogue";
-
-						if (tmdbLobby && !isDiaryLobby) {
-							return (
-								<button
-									type="button"
-									aria-current={streamingActive ? "page" : undefined}
-									className={chipLink(streamingActive)}
-									title={streamingTitle}
-									aria-label={streamingAria}
-									onClick={() => tmdbLobby.selectVenue("streaming")}
-									onPointerEnter={() => tmdbLobby.prefetchLobby(streamingHref)}
-								>
-									{streamingActive ? (
-										<motion.span
-											className="absolute inset-0 z-0 rounded-full bg-card"
-											layoutId="home-catalog-view-mode-pill"
-											transition={pillTransition}
-										/>
-									) : null}
-									<span className="relative z-10">At home</span>
-								</button>
-							);
-						}
-
-						return (
-							<Link
-								href={streamingHref}
-								aria-current={streamingActive ? "page" : undefined}
-								className={chipLink(streamingActive)}
-								title={streamingTitle}
-								aria-label={streamingAria}
-							>
-								{streamingActive ? (
-									<motion.span
-										className="absolute inset-0 z-0 rounded-full bg-card"
-										layoutId="home-catalog-view-mode-pill"
-										transition={pillTransition}
-									/>
-								) : null}
-								<span className="relative z-10">At home</span>
-							</Link>
-						);
-					})()}
-				</div>
+				<SegmentedPillToolbar
+					layoutId="home-catalog-view-mode-pill"
+					aria-label="Release window"
+					value={effectiveVenue}
+					onChange={selectLobbyVenue}
+					onOptionPointerEnter={
+						tmdbLobby && !isDiaryLobby
+							? (venue) => {
+									tmdbLobby.prefetchLobby(
+										buildHomeLobbyHref({
+											sort: activeCatalogSort,
+											browse: venueBrowse,
+											venue,
+										}),
+									);
+								}
+							: undefined
+					}
+					options={[
+						{
+							id: "theaters",
+							label: "In cinemas",
+							title: isDiaryLobby
+								? "Emphasise in-cinema context for filters and browse"
+								: "Now playing (Popular), newest already in cinemas (Latest), or opening soon (Upcoming)",
+						},
+						{
+							id: "streaming",
+							label: "At home",
+							title: isDiaryLobby
+								? "Emphasise at-home streaming context for filters and browse"
+								: "Popular, newest, or upcoming subscription streaming at home",
+						},
+					]}
+					compact
+					className="flex shrink-0 flex-nowrap justify-start bg-transparent p-0"
+				/>
 
 				<span
 					aria-hidden

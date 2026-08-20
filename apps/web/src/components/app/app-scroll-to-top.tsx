@@ -38,11 +38,11 @@ import {
 	useRef,
 	useState,
 } from "react";
-
 import {
 	DETAIL_BUTTON_SPRING,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 } from "@/lib/detail-action-motion";
+import { scrollDocumentToTop } from "@/lib/scroll-document-to-top";
 
 /** Scroll gate — when the floating control may appear. */
 const SCROLL = {
@@ -287,16 +287,13 @@ export function AppScrollToTop() {
 	}, [syncVisibility]);
 
 	const scrollToTop = useCallback(() => {
-		if (lenis) {
-			lenis.scrollTo(0, {
-				immediate: Boolean(reduceMotion),
-				duration: reduceMotion ? 0 : SCROLL.scrollToDuration,
-			});
+		if (lenis && !reduceMotion) {
+			lenis.scrollTo(0, { duration: SCROLL.scrollToDuration });
 			return;
 		}
-		window.scrollTo({
-			top: 0,
-			behavior: reduceMotion ? "auto" : "smooth",
+		scrollDocumentToTop({
+			lenis,
+			behavior: reduceMotion ? "instant" : "smooth",
 		});
 	}, [lenis, reduceMotion]);
 

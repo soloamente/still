@@ -30,20 +30,11 @@ function toDate(value: string | Date | null | undefined): Date | null {
 	return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
-function favoriteMovieCount(
-	raw: readonly unknown[] | null | undefined,
-): number {
-	return raw?.length ?? 0;
-}
-
 /**
-
  * Pre-v3 patrons often have a handle but never received `onboarded_at`.
-
- * Mid-wizard v3 patrons (handle saved, same-day signup) stay gated.
-
+ * Post-v3 patrons must get `markOnboarded` on Enter — favorites / taste / diary
+ * alone must not unlock `/home` mid-wizard (import step still counts as setup).
  */
-
 export function isLegacyOnboardingComplete(
 	profile: NonNullable<OnboardingGateProfile>,
 ): boolean {
@@ -53,23 +44,14 @@ export function isLegacyOnboardingComplete(
 
 	if (createdAt && createdAt < ONBOARDING_V3_LAUNCH_AT) return true;
 
-	if (toDate(profile.tasteSignatureComputedAt)) return true;
-
-	if (favoriteMovieCount(profile.favoriteMovieIds) > 0) return true;
-
-	if (profile.diaryMetalTier != null) return true;
-
 	return false;
 }
 
 /**
-
  * Patrons must not enter `(app)` until onboarding sets `onboardedAt`
-
- * (`markOnboarded` on finish). Handle alone is saved mid-wizard and is not enough.
-
+ * (`markOnboarded` on Enter / abbreviated finish). Handle alone is saved
+ * mid-wizard and is not enough — nor are favorites/taste saved before import.
  */
-
 export function patronNeedsOnboarding(profile: OnboardingGateProfile): boolean {
 	if (!profile) return true;
 

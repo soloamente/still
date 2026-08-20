@@ -6,9 +6,11 @@ import Link from "next/link";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import type { ListBoardRow } from "@/lib/list-board-row";
 import {
+	isListCoverProxySrc,
 	listBoardRowPosterUrl,
 	listPosterDisplayUrl,
 } from "@/lib/list-cover-image";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /** One list row from `GET /api/lists/*` after `coverPosterPaths` hydration (B.5.6). */
 export type { ListBoardRow } from "@/lib/list-board-row";
@@ -88,6 +90,7 @@ export function ListRowStrip({ list }: { list: ListBoardRow }) {
 										fill
 										sizes="52px"
 										className="object-cover"
+										unoptimized={isListCoverProxySrc(src) || isTmdbCdnUrl(src)}
 									/>
 								) : (
 									<div className="grid size-full place-items-center bg-muted/40">

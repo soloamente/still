@@ -11,6 +11,7 @@ import {
 	isTmdbSummaryAdult,
 	isTvAdultFromRow,
 } from "./adult-content-policy";
+import { traceTiming } from "./trace-timing";
 
 /** Post-filter movie catalogue rows using TMDb summary + cached DB adult flags. */
 export async function filterMovieCatalogueResults<
@@ -23,10 +24,12 @@ export async function filterMovieCatalogueResults<
 	if (withoutTmdbAdult.length === 0) return [];
 
 	const ids = withoutTmdbAdult.map((row) => row.id);
-	const cached = await db
-		.select({ tmdbId: movie.tmdbId, adult: movie.adult })
-		.from(movie)
-		.where(inArray(movie.tmdbId, ids));
+	const cached = await traceTiming("db", "filterMovieCatalogueResults", () =>
+		db
+			.select({ tmdbId: movie.tmdbId, adult: movie.adult })
+			.from(movie)
+			.where(inArray(movie.tmdbId, ids)),
+	);
 	const adultIds = new Set(
 		cached.filter((row) => isMovieAdult(row)).map((row) => row.tmdbId),
 	);

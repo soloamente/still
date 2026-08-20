@@ -101,33 +101,44 @@ export function MovieDetailAboutBodyFallback({
 						</div>
 					</div>
 				) : (
+					// Stacked Community: compact score → review rail → lists (no legacy tablist / related).
 					<>
-						<div className="mx-auto flex w-full max-w-md justify-center gap-2">
-							<Skeleton className="h-10 w-24 rounded-full bg-background/80" />
-							<Skeleton className="h-10 w-20 rounded-full bg-background/50" />
-							<Skeleton className="h-10 w-24 rounded-full bg-background/50" />
+						<div className="mx-auto flex w-full max-w-md flex-col items-center gap-2 pt-2">
+							<div className="flex items-center justify-center gap-2">
+								<Skeleton className="h-10 w-8 rounded-md bg-muted/30" />
+								<Skeleton className="h-8 w-14 rounded-lg bg-muted/40" />
+								<Skeleton className="h-10 w-8 rounded-md bg-muted/30" />
+							</div>
+							<Skeleton className="h-3 w-28 rounded-full bg-muted/30" />
+							<div className="mt-1 flex flex-wrap justify-center gap-2">
+								<Skeleton className="h-8 w-20 rounded-full bg-background/80" />
+								<Skeleton className="h-8 w-16 rounded-full bg-background/70" />
+								<Skeleton className="h-8 w-22 rounded-full bg-background/70" />
+							</div>
 						</div>
 
-						<div className="mx-auto flex w-full max-w-xl flex-col items-center gap-4 rounded-2xl bg-background px-6 py-8">
-							<Skeleton className="h-3 w-28 rounded-full bg-muted/35" />
-							<Skeleton className="h-10 w-20 rounded-lg bg-muted/40" />
-							<Skeleton className="h-3 w-36 rounded-full bg-muted/30" />
+						<div className="space-y-3 pt-2">
+							<Skeleton className="mx-auto h-3 w-16 rounded-full bg-muted/35" />
+							<Skeleton className="mx-auto h-[min(22rem,50vh)] w-full max-w-xl rounded-2xl bg-background/80" />
+							<div className="mx-auto flex items-center justify-center gap-3">
+								<Skeleton className="size-11 rounded-full bg-background/70" />
+								<div className="flex gap-1.5">
+									{RELATED_POSTER_KEYS.slice(0, 4).map((key) => (
+										<Skeleton
+											key={key}
+											className="size-2.5 rounded-full bg-muted/40"
+										/>
+									))}
+								</div>
+								<Skeleton className="size-11 rounded-full bg-background/70" />
+							</div>
 						</div>
 
-						<div className="space-y-4">
-							<Skeleton className="h-28 w-full rounded-2xl bg-background/80" />
-							<Skeleton className="h-28 w-full rounded-2xl bg-background/70" />
-						</div>
-
-						<div className="space-y-4 pt-2">
-							<Skeleton className="mx-auto h-3 w-20 rounded-full bg-muted/35" />
-							<div className="grid grid-cols-3 gap-3 sm:grid-cols-6 sm:gap-2">
-								{RELATED_POSTER_KEYS.map((key) => (
-									<Skeleton
-										key={key}
-										className="aspect-2/3 w-full rounded-[3rem] bg-muted/30"
-									/>
-								))}
+						<div className="space-y-3 pt-2">
+							<Skeleton className="mx-auto h-3 w-12 rounded-full bg-muted/35" />
+							<div className="grid gap-4 sm:grid-cols-2">
+								<Skeleton className="h-28 w-full rounded-[1.75rem] bg-background/80" />
+								<Skeleton className="h-28 w-full rounded-[1.75rem] bg-background/70" />
 							</div>
 						</div>
 					</>

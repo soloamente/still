@@ -205,6 +205,10 @@ export function ProfileMediaCustomizer({
 
 	return (
 		<header className="relative mb-8 shrink-0">
+			{/*
+			 * Portrait straddles the banner (`-mt-14`) on purpose. Keep this
+			 * header in-flow so the Identity form never slides under the media.
+			 */}
 			<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25">
 				{pendingBanner ? (
 					// biome-ignore lint/performance/noImgElement: local file preview before save

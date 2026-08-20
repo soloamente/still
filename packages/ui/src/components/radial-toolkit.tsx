@@ -8,6 +8,8 @@ import {
 	useReducedMotion,
 } from "motion/react";
 import {
+	type ComponentType,
+	type CSSProperties,
 	type ReactNode,
 	type PointerEvent as ReactPointerEvent,
 	useCallback,
@@ -32,6 +34,74 @@ export interface RadialToolkitItem {
 	onSelect: () => void;
 }
 
+/**
+ * Optional liquid-gooey injection from the app (`apps/web`).
+ * `@still/ui` stays free of the `liquid-gooey` dependency — pass SenseLiquid hosts here.
+ */
+export type RadialToolkitLiquidRootProps = {
+	className?: string;
+	style?: CSSProperties;
+	children: ReactNode;
+	blur?: number;
+	contrast?: number;
+	fill?: string;
+	filterPadding?: number;
+	/** `box-shadow` syntax — rendered on the merged silhouette (PlusMenu demo uses a soft drop). */
+	shadow?: string;
+};
+
+export type RadialToolkitLiquidItemProps = {
+	className?: string;
+	style?: CSSProperties;
+	children: ReactNode;
+	x?: number;
+	y?: number;
+	delay?: number;
+	/** Force silhouette corner radius (half width = full circle). */
+	radius?: number | [number, number, number, number];
+	transition?: string | Record<string, unknown>;
+	morph?:
+		| boolean
+		| {
+				shape?: boolean;
+				contentBlur?: number;
+				bounce?: number;
+				speed?: number;
+		  };
+};
+
+export type RadialToolkitLiquidSlot = {
+	Root: ComponentType<RadialToolkitLiquidRootProps>;
+	Item: ComponentType<RadialToolkitLiquidItemProps>;
+	/**
+	 * When false (reduced motion / software GPU), Morph **chrome** still runs
+	 * (theme `bg-card` hub + orbit pills) — only the SVG goo is skipped.
+	 * Passing `liquid` always replaces the legacy blue ring/wedge rail.
+	 */
+	enabled: boolean;
+};
+
+/**
+ * PlusMenu open footprint — sats sit ~40–64px from hub so blur×contrast still
+ * bridges (demo screenshot: fused cross). Far larger orbits look like separate discs.
+ */
+const LIQUID_ROUND_PX = 48;
+const LIQUID_HUB_PX = 48;
+/**
+ * Center-to-icon distance when fan is open.
+ * Midpoint between “too close” (54) and “too far” (76).
+ */
+const LIQUID_ORBIT_RADIUS_PX = 64;
+/**
+ * PlusMenu `bouncy` (320/17) — snappy open. Prior 230/18 felt laggy on RMB hold.
+ */
+const LIQUID_FAN_TRANSITION = {
+	stiffness: 320,
+	damping: 17,
+	mass: 1,
+} as const;
+/** Stagger between orbit Items (PlusMenu uses 40; keep slightly tighter for RMB). */
+const LIQUID_FAN_DELAY_MS = 28;
 const ORBIT_RADIUS_PX = 96;
 const HUB_RADIUS_PX = 28;
 const ICON_CELL_PX = 48;
@@ -47,12 +117,12 @@ const ACTION_BLUE = "#38bdf8";
 /** Delete slot only — matches `--color-crimson-blush` / destructive token. */
 const ACTION_DESTRUCTIVE = "#df6a6b";
 
-function wedgeGradientStops(accent: string) {
+function wedgeGradientStops(accent: string, orbitRadiusPx = ORBIT_RADIUS_PX) {
 	return (
 		<>
 			<stop offset="0%" stopColor={accent} stopOpacity={0} />
 			<stop
-				offset={`${(HUB_RADIUS_PX / (ORBIT_RADIUS_PX + 14)) * 100}%`}
+				offset={`${(HUB_RADIUS_PX / (orbitRadiusPx + 14)) * 100}%`}
 				stopColor={accent}
 				stopOpacity={0}
 			/>
@@ -62,9 +132,6 @@ function wedgeGradientStops(accent: string) {
 		</>
 	);
 }
-
-/** Inside this radius from the hub, no wedge or action is selected. */
-const HUB_DEAD_ZONE_PX = ORBIT_RADIUS_PX * 0.55;
 
 /** Block the browser context menu briefly after RMB release (fires after toolkit unmounts). */
 const NATIVE_CONTEXT_MENU_SUPPRESS_MS = 500;
@@ -217,8 +284,8 @@ function wedgePath(
  * Anchor the tooltip edge nearest the icon on a fixed rim gap; pill grows outward.
  * Centering on the radial caused side pills to overlap the 48px icon tiles.
  */
-function activeLabelAnchor(angleDeg: number) {
-	const anchorR = ORBIT_RADIUS_PX + ICON_CELL_PX / 2 + LABEL_RIM_GAP_PX;
+function activeLabelAnchor(angleDeg: number, orbitRadiusPx = ORBIT_RADIUS_PX) {
+	const anchorR = orbitRadiusPx + ICON_CELL_PX / 2 + LABEL_RIM_GAP_PX;
 	const pos = polarToXY(anchorR, angleDeg);
 	const norm = ((angleDeg % 360) + 360) % 360;
 
@@ -280,12 +347,19 @@ export function RadialToolkit({
 	anchor,
 	items,
 	title = "Actions",
+	liquid,
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	anchor: { x: number; y: number } | null;
 	items: RadialToolkitItem[];
 	title?: string;
+	/**
+	 * App-injected Morph host (SenseLiquid). When provided, RMB always uses the
+	 * Morph rail (card pills) — never the legacy blue ring/wedge — even if
+	 * `liquid.enabled` is false (then Motion fans the same chrome without goo).
+	 */
+	liquid?: RadialToolkitLiquidSlot;
 }) {
 	const reduceMotion = useReducedMotion();
 	const menuId = useId();
@@ -295,6 +369,15 @@ export function RadialToolkit({
 	const [wedgeRotate, setWedgeRotate] = useState(0);
 	const wedgeRotateRef = useRef(0);
 	const [mounted, setMounted] = useState(false);
+	/** Two-frame fan: first paint at hub, then Morph to orbit (PlusMenu pattern). */
+	const [fanOut, setFanOut] = useState(false);
+	/** Morph rail chrome (replaces legacy blue) whenever the app injects `liquid`. */
+	const morphRail = Boolean(liquid);
+	/** SVG goo + Liquid.Item springs — gated separately from Morph chrome. */
+	const liquidGoo = Boolean(liquid?.enabled) && !reduceMotion;
+	/** Aim + icon radius — tight PlusMenu orbit on Morph rail. */
+	const orbitRadiusPx = morphRail ? LIQUID_ORBIT_RADIUS_PX : ORBIT_RADIUS_PX;
+	const hubDeadZonePx = orbitRadiusPx * 0.55;
 
 	const clampedAnchor = useMemo(() => {
 		if (!anchor) return null;
@@ -304,7 +387,7 @@ export function RadialToolkit({
 	const count = items.length;
 	const sessionRef = useRef(false);
 	const stepDeg = count > 0 ? 360 / count : 360;
-	const wedgeOuterR = ORBIT_RADIUS_PX + 14;
+	const wedgeOuterR = orbitRadiusPx + 14;
 	const wedgePathD = wedgePathUp(stepDeg, HUB_RADIUS_PX, wedgeOuterR);
 	const wedgeGradientId = `${menuId}-wedge-fill`;
 	const wedgeGradientDestructiveId = `${menuId}-wedge-fill-destructive`;
@@ -322,6 +405,27 @@ export function RadialToolkit({
 	useEffect(() => {
 		setMounted(true);
 	}, []);
+
+	// Morph fan: mount collapsed at hub, then spread (Liquid.Item x/y or Motion fallback).
+	useEffect(() => {
+		if (!open || !morphRail) {
+			setFanOut(false);
+			return;
+		}
+		if (reduceMotion) {
+			setFanOut(true);
+			return;
+		}
+		setFanOut(false);
+		let inner = 0;
+		const outer = requestAnimationFrame(() => {
+			inner = requestAnimationFrame(() => setFanOut(true));
+		});
+		return () => {
+			cancelAnimationFrame(outer);
+			cancelAnimationFrame(inner);
+		};
+	}, [open, morphRail, reduceMotion, clampedAnchor?.x, clampedAnchor?.y]);
 
 	// RMB release fires `contextmenu` after this overlay unmounts — swallow it briefly.
 	useEffect(() => {
@@ -376,7 +480,7 @@ export function RadialToolkit({
 			if (!clampedAnchor || count === 0) return;
 			const dx = clientX - clampedAnchor.x;
 			const dy = clientY - clampedAnchor.y;
-			if (Math.hypot(dx, dy) < HUB_DEAD_ZONE_PX) {
+			if (Math.hypot(dx, dy) < hubDeadZonePx) {
 				setActiveIndex(NO_SELECTION);
 				activeIndexRef.current = NO_SELECTION;
 				return;
@@ -397,7 +501,7 @@ export function RadialToolkit({
 			setActiveIndex(idx);
 			activeIndexRef.current = idx;
 		},
-		[clampedAnchor, count, items, stepDeg],
+		[clampedAnchor, count, hubDeadZonePx, items, stepDeg],
 	);
 
 	useEffect(() => {
@@ -457,8 +561,13 @@ export function RadialToolkit({
 	const activeIsDestructive = activeItem?.variant === "destructive";
 	const activeAccent = activeIsDestructive ? ACTION_DESTRUCTIVE : ACTION_BLUE;
 	const activeAngle = hasSelection ? (itemAngles[activeIndex] ?? 0) : 0;
-	const { pos: activeLabelPos, motion: activeLabelMotion } =
-		activeLabelAnchor(activeAngle);
+	const { pos: activeLabelPos, motion: activeLabelMotion } = activeLabelAnchor(
+		activeAngle,
+		orbitRadiusPx,
+	);
+	// Capitalized aliases — JSX cannot mount `liquid.Root` as a lowercase tag.
+	const LiquidRoot = liquid?.Root;
+	const LiquidItem = liquid?.Item;
 
 	const portal = (
 		<AnimatePresence initial={false}>
@@ -495,163 +604,341 @@ export function RadialToolkit({
 						exit={reduceMotion ? { opacity: 0 } : fadeUpExit}
 						transition={enterTransition}
 					>
-						{/* Orbit ring — stroke only, sized to the action orbit */}
-						<motion.div
-							aria-hidden
-							variants={reduceMotion ? undefined : pieceVariants}
-							className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4.5px] border-white/80"
-							style={{ width: ORBIT_RING_PX, height: ORBIT_RING_PX }}
-						/>
-
-						{/* Wedge — spring rotate on shortest path; fades when over hub */}
-						<motion.div
-							aria-hidden
-							className="absolute inset-0 origin-center will-change-transform"
-							animate={{
-								opacity: hasSelection ? 1 : 0,
-								scale: hasSelection ? 1 : 0.96,
-								rotate: wedgeRotate,
-							}}
-							transition={aimTransition}
-							style={{
-								width: TRACK_SIZE_PX,
-								height: TRACK_SIZE_PX,
-							}}
-						>
-							<svg
+						{/* Orbit ring — legacy chrome only (Morph rail hides it). */}
+						{!morphRail ? (
+							<motion.div
 								aria-hidden
-								className="overflow-visible"
-								width={TRACK_SIZE_PX}
-								height={TRACK_SIZE_PX}
-								viewBox={`0 0 ${TRACK_SIZE_PX} ${TRACK_SIZE_PX}`}
-							>
-								<title>Aim wedge</title>
-								<defs>
-									{/* Outer edge = accent; fades to transparent toward the hub. */}
-									<radialGradient
-										id={wedgeGradientId}
-										gradientUnits="userSpaceOnUse"
-										cx={TRACK_CENTER}
-										cy={TRACK_CENTER}
-										r={wedgeOuterR}
-										fx={TRACK_CENTER}
-										fy={TRACK_CENTER}
-									>
-										{wedgeGradientStops(ACTION_BLUE)}
-									</radialGradient>
-									<radialGradient
-										id={wedgeGradientDestructiveId}
-										gradientUnits="userSpaceOnUse"
-										cx={TRACK_CENTER}
-										cy={TRACK_CENTER}
-										r={wedgeOuterR}
-										fx={TRACK_CENTER}
-										fy={TRACK_CENTER}
-									>
-										{wedgeGradientStops(ACTION_DESTRUCTIVE)}
-									</radialGradient>
-								</defs>
-								<path
-									d={wedgePathD}
-									fill={`url(#${activeIsDestructive ? wedgeGradientDestructiveId : wedgeGradientId})`}
-								/>
-							</svg>
-						</motion.div>
+								variants={reduceMotion ? undefined : pieceVariants}
+								className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4.5px] border-white/80"
+								style={{ width: ORBIT_RING_PX, height: ORBIT_RING_PX }}
+							/>
+						) : null}
 
-						{/* Center hub — X hints: aim here and release to dismiss without an action */}
-						<motion.div
-							aria-hidden
-							variants={reduceMotion ? undefined : pieceVariants}
-							className="absolute top-1/2 left-1/2 flex size-[3.5rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[4px] bg-white text-zinc-400 shadow-[0_2px_10px_-4px_rgba(15,23,42,0.2)]"
-							style={{ borderColor: ACTION_BLUE }}
-						>
-							<motion.span
-								className="grid place-items-center"
+						{/* Aim wedge — legacy Motion chrome only; Morph path has no blue hover halo. */}
+						{!morphRail ? (
+							<motion.div
+								aria-hidden
+								className="absolute inset-0 origin-center will-change-transform"
 								animate={{
-									opacity: hasSelection ? 0.38 : 1,
-									scale: hasSelection ? 0.88 : 1,
-									color: hasSelection ? "rgb(161 161 170)" : ACTION_BLUE,
+									opacity: hasSelection ? 1 : 0,
+									scale: hasSelection ? 1 : 0.96,
+									rotate: wedgeRotate,
 								}}
 								transition={aimTransition}
+								style={{
+									width: TRACK_SIZE_PX,
+									height: TRACK_SIZE_PX,
+								}}
 							>
-								<IconXmarkFill12 className="size-3.5" aria-hidden />
-							</motion.span>
-						</motion.div>
-
-						{/* Orbit icons — staggered enter; spring scale when aimed */}
-						{items.map((item, index) => {
-							const angle = itemAngles[index] ?? 0;
-							const pos = polarToXY(ORBIT_RADIUS_PX, angle);
-							const isActive = hasSelection && index === activeIndex;
-							const itemAccent =
-								item.variant === "destructive"
-									? ACTION_DESTRUCTIVE
-									: ACTION_BLUE;
-
-							return (
-								<motion.div
-									key={item.id}
-									id={isActive ? `${menuId}-${item.id}` : undefined}
-									role="menuitem"
-									aria-label={
-										item.shortcut
-											? `${item.label} (${item.shortcut})`
-											: item.label
-									}
-									aria-disabled={item.disabled || undefined}
-									variants={reduceMotion ? undefined : pieceVariants}
-									className="absolute -translate-x-1/2 -translate-y-1/2"
-									style={{ left: pos.x, top: pos.y }}
+								<svg
+									aria-hidden
+									className="overflow-visible"
+									width={TRACK_SIZE_PX}
+									height={TRACK_SIZE_PX}
+									viewBox={`0 0 ${TRACK_SIZE_PX} ${TRACK_SIZE_PX}`}
 								>
-									<motion.div
-										className={cn(
-											"relative flex size-11 items-center justify-center rounded-xl bg-white text-zinc-700 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)] will-change-transform",
-											item.disabled && "opacity-35",
-										)}
+									<title>Aim wedge</title>
+									<defs>
+										{/* Outer edge = accent; fades to transparent toward the hub. */}
+										<radialGradient
+											id={wedgeGradientId}
+											gradientUnits="userSpaceOnUse"
+											cx={TRACK_CENTER}
+											cy={TRACK_CENTER}
+											r={wedgeOuterR}
+											fx={TRACK_CENTER}
+											fy={TRACK_CENTER}
+										>
+											{wedgeGradientStops(ACTION_BLUE, orbitRadiusPx)}
+										</radialGradient>
+										<radialGradient
+											id={wedgeGradientDestructiveId}
+											gradientUnits="userSpaceOnUse"
+											cx={TRACK_CENTER}
+											cy={TRACK_CENTER}
+											r={wedgeOuterR}
+											fx={TRACK_CENTER}
+											fy={TRACK_CENTER}
+										>
+											{wedgeGradientStops(ACTION_DESTRUCTIVE, orbitRadiusPx)}
+										</radialGradient>
+									</defs>
+									<path
+										d={wedgePathD}
+										fill={`url(#${activeIsDestructive ? wedgeGradientDestructiveId : wedgeGradientId})`}
+									/>
+								</svg>
+							</motion.div>
+						) : null}
+
+						{/* Hub + orbit — Morph rail (goo or Motion card pills) vs legacy blue chrome */}
+						{morphRail && liquidGoo && LiquidRoot && LiquidItem ? (
+							// Absolute shell lives here — Liquid host must stay position:relative
+							// (liquid-gooey overrides Tailwind absolute with inline relative).
+							<div
+								className="absolute inset-0"
+								style={{
+									width: TRACK_SIZE_PX,
+									height: TRACK_SIZE_PX,
+								}}
+							>
+								{/* PlusMenu: blur={6} contrast={18}; Items use transition="bouncy" + delay={40*i}. */}
+								<LiquidRoot className="h-full w-full" blur={6} contrast={18}>
+									{/* Hub — stays at rest like PlusMenu’s center `+` Item */}
+									<LiquidItem
+										radius={LIQUID_HUB_PX / 2}
+										style={{
+											position: "absolute",
+											left: TRACK_CENTER - LIQUID_HUB_PX / 2,
+											top: TRACK_CENTER - LIQUID_HUB_PX / 2,
+										}}
+									>
+										<div
+											aria-hidden
+											className={cn(
+												"flex items-center justify-center rounded-full bg-card text-muted-foreground shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)]",
+												hasSelection && "opacity-55",
+											)}
+											style={{
+												width: LIQUID_HUB_PX,
+												height: LIQUID_HUB_PX,
+											}}
+										>
+											<IconXmarkFill12 className="size-3.5" aria-hidden />
+										</div>
+									</LiquidItem>
+
+									{items.map((item, index) => {
+										const angle = itemAngles[index] ?? 0;
+										const pos = polarToXY(LIQUID_ORBIT_RADIUS_PX, angle);
+										const dx = pos.x - TRACK_CENTER;
+										const dy = pos.y - TRACK_CENTER;
+										const isActive = hasSelection && index === activeIndex;
+
+										return (
+											<LiquidItem
+												key={item.id}
+												x={fanOut ? dx : 0}
+												y={fanOut ? dy : 0}
+												delay={index * LIQUID_FAN_DELAY_MS}
+												transition={LIQUID_FAN_TRANSITION}
+												radius={LIQUID_ROUND_PX / 2}
+												style={{
+													position: "absolute",
+													left: TRACK_CENTER - LIQUID_ROUND_PX / 2,
+													top: TRACK_CENTER - LIQUID_ROUND_PX / 2,
+												}}
+											>
+												<div
+													id={isActive ? `${menuId}-${item.id}` : undefined}
+													role="menuitem"
+													tabIndex={-1}
+													aria-label={
+														item.shortcut
+															? `${item.label} (${item.shortcut})`
+															: item.label
+													}
+													aria-disabled={item.disabled || undefined}
+													className={cn(
+														// Theme card pill — no blue hover/aim ring.
+														"relative flex items-center justify-center rounded-full bg-card text-foreground shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)]",
+														item.variant === "destructive" &&
+															isActive &&
+															"text-destructive",
+														item.disabled && "opacity-35",
+													)}
+													style={{
+														width: LIQUID_ROUND_PX,
+														height: LIQUID_ROUND_PX,
+														transform: isActive ? "scale(1.06)" : "scale(1)",
+													}}
+												>
+													<span className="relative z-10 grid size-5 place-items-center [&_svg]:size-5">
+														{item.icon}
+													</span>
+												</div>
+											</LiquidItem>
+										);
+									})}
+								</LiquidRoot>
+							</div>
+						) : morphRail ? (
+							<>
+								{/* Morph chrome without goo — same card pills / orbit as Liquid path. */}
+								<div
+									aria-hidden
+									className={cn(
+										"absolute flex items-center justify-center rounded-full bg-card text-muted-foreground shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)]",
+										hasSelection && "opacity-55",
+									)}
+									style={{
+										left: TRACK_CENTER - LIQUID_HUB_PX / 2,
+										top: TRACK_CENTER - LIQUID_HUB_PX / 2,
+										width: LIQUID_HUB_PX,
+										height: LIQUID_HUB_PX,
+									}}
+								>
+									<IconXmarkFill12 className="size-3.5" aria-hidden />
+								</div>
+								{items.map((item, index) => {
+									const angle = itemAngles[index] ?? 0;
+									const pos = polarToXY(LIQUID_ORBIT_RADIUS_PX, angle);
+									const isActive = hasSelection && index === activeIndex;
+									const dx = pos.x - TRACK_CENTER;
+									const dy = pos.y - TRACK_CENTER;
+									return (
+										<motion.div
+											key={item.id}
+											id={isActive ? `${menuId}-${item.id}` : undefined}
+											role="menuitem"
+											tabIndex={-1}
+											aria-label={
+												item.shortcut
+													? `${item.label} (${item.shortcut})`
+													: item.label
+											}
+											aria-disabled={item.disabled || undefined}
+											className="absolute"
+											style={{
+												left: TRACK_CENTER - LIQUID_ROUND_PX / 2,
+												top: TRACK_CENTER - LIQUID_ROUND_PX / 2,
+												width: LIQUID_ROUND_PX,
+												height: LIQUID_ROUND_PX,
+											}}
+											initial={false}
+											animate={{
+												x: fanOut ? dx : 0,
+												y: fanOut ? dy : 0,
+												scale: isActive ? 1.06 : 1,
+											}}
+											transition={
+												reduceMotion
+													? { duration: 0 }
+													: {
+															...LIQUID_FAN_TRANSITION,
+															delay: (index * LIQUID_FAN_DELAY_MS) / 1000,
+														}
+											}
+										>
+											<div
+												className={cn(
+													"relative flex size-full items-center justify-center rounded-full bg-card text-foreground shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)]",
+													item.variant === "destructive" &&
+														isActive &&
+														"text-destructive",
+													item.disabled && "opacity-35",
+												)}
+											>
+												<span className="relative z-10 grid size-5 place-items-center [&_svg]:size-5">
+													{item.icon}
+												</span>
+											</div>
+										</motion.div>
+									);
+								})}
+							</>
+						) : (
+							<>
+								{/* Legacy blue hub + orbit — only when no `liquid` slot is injected. */}
+								<motion.div
+									aria-hidden
+									variants={reduceMotion ? undefined : pieceVariants}
+									className="absolute top-1/2 left-1/2 flex size-[3.5rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[4px] bg-white text-zinc-400 shadow-[0_2px_10px_-4px_rgba(15,23,42,0.2)]"
+									style={{ borderColor: ACTION_BLUE }}
+								>
+									<motion.span
+										className="grid place-items-center"
 										animate={{
-											scale: isActive ? 1.06 : 1,
-											color: isActive ? itemAccent : "rgb(63 63 70)",
+											opacity: hasSelection ? 0.38 : 1,
+											scale: hasSelection ? 0.88 : 1,
+											color: hasSelection ? "rgb(161 161 170)" : ACTION_BLUE,
 										}}
 										transition={aimTransition}
 									>
-										{/* Border ring — boxShadow strings don't spring; animate border instead. */}
-										<motion.span
-											aria-hidden
-											className="pointer-events-none absolute inset-0 rounded-xl border-2 border-transparent"
-											initial={false}
-											animate={{
-												opacity: isActive ? 1 : 0,
-												scale: isActive ? 1 : 0.94,
-												borderColor: isActive
-													? itemAccent
-													: "rgba(56, 189, 248, 0)",
-											}}
-											transition={
-												reduceMotion ? { duration: 0 } : SPRING_ICON_RING
-											}
-										/>
-										<span className="relative z-10 grid size-6 place-items-center [&_svg]:size-6">
-											{item.icon}
-										</span>
-									</motion.div>
+										<IconXmarkFill12 className="size-3.5" aria-hidden />
+									</motion.span>
 								</motion.div>
-							);
-						})}
 
-						{/* Active label — one pill that springs between segment positions */}
+								{items.map((item, index) => {
+									const angle = itemAngles[index] ?? 0;
+									const pos = polarToXY(ORBIT_RADIUS_PX, angle);
+									const isActive = hasSelection && index === activeIndex;
+									const itemAccent =
+										item.variant === "destructive"
+											? ACTION_DESTRUCTIVE
+											: ACTION_BLUE;
+
+									return (
+										<motion.div
+											key={item.id}
+											id={isActive ? `${menuId}-${item.id}` : undefined}
+											role="menuitem"
+											tabIndex={-1}
+											aria-label={
+												item.shortcut
+													? `${item.label} (${item.shortcut})`
+													: item.label
+											}
+											aria-disabled={item.disabled || undefined}
+											variants={reduceMotion ? undefined : pieceVariants}
+											className="absolute -translate-x-1/2 -translate-y-1/2"
+											style={{ left: pos.x, top: pos.y }}
+										>
+											<motion.div
+												className={cn(
+													"relative flex size-11 items-center justify-center rounded-xl bg-white text-zinc-700 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.18)] will-change-transform",
+													item.disabled && "opacity-35",
+												)}
+												animate={{
+													scale: isActive ? 1.06 : 1,
+													color: isActive ? itemAccent : "rgb(63 63 70)",
+												}}
+												transition={aimTransition}
+											>
+												<motion.span
+													aria-hidden
+													className="pointer-events-none absolute inset-0 rounded-xl border-2 border-transparent"
+													initial={false}
+													animate={{
+														opacity: isActive ? 1 : 0,
+														scale: isActive ? 1 : 0.94,
+														borderColor: isActive
+															? itemAccent
+															: "rgba(56, 189, 248, 0)",
+													}}
+													transition={
+														reduceMotion ? { duration: 0 } : SPRING_ICON_RING
+													}
+												/>
+												<span className="relative z-10 grid size-6 place-items-center [&_svg]:size-6">
+													{item.icon}
+												</span>
+											</motion.div>
+										</motion.div>
+									);
+								})}
+							</>
+						)}
+
+						{/* Active label — theme card on Morph; accent pill only on legacy Motion path */}
 						<AnimatePresence initial={false}>
 							{hasSelection && activeItem ? (
 								<motion.div
 									key="radial-active-label"
 									aria-hidden
-									className="pointer-events-none absolute flex items-center gap-2 rounded-full px-3 py-1.5 text-white will-change-[left,top,transform,opacity,background-color]"
+									className={cn(
+										"pointer-events-none absolute flex items-center gap-2 rounded-full px-3 py-1.5 will-change-[left,top,transform,opacity,background-color]",
+										morphRail ? "bg-card text-foreground" : "text-white",
+									)}
 									initial={
 										reduceMotion
 											? false
 											: {
 													opacity: 0,
 													scale: 0.9,
-													backgroundColor: activeAccent,
+													...(morphRail
+														? {}
+														: { backgroundColor: activeAccent }),
 													left: activeLabelPos.x,
 													top: activeLabelPos.y,
 													...activeLabelMotion,
@@ -660,7 +947,7 @@ export function RadialToolkit({
 									animate={{
 										opacity: 1,
 										scale: 1,
-										backgroundColor: activeAccent,
+										...(morphRail ? {} : { backgroundColor: activeAccent }),
 										left: activeLabelPos.x,
 										top: activeLabelPos.y,
 										...activeLabelMotion,
@@ -692,11 +979,19 @@ export function RadialToolkit({
 									</AnimatePresence>
 									{activeItem.shortcut ? (
 										<motion.span
-											animate={{ color: activeAccent }}
+											animate={morphRail ? undefined : { color: activeAccent }}
 											transition={aimTransition}
-											className="inline-flex"
+											className={cn(
+												"inline-flex",
+												morphRail && "text-muted-foreground",
+											)}
 										>
-											<kbd className="rounded-md bg-foreground px-1.5 py-0.5 font-medium text-[10px] text-inherit tabular-nums">
+											<kbd
+												className={cn(
+													"rounded-md px-1.5 py-0.5 font-medium text-[10px] text-inherit tabular-nums",
+													morphRail ? "bg-background" : "bg-foreground",
+												)}
+											>
 												{activeItem.shortcut}
 											</kbd>
 										</motion.span>

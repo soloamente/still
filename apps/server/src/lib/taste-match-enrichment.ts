@@ -1,6 +1,6 @@
 import { db, movie } from "@still/db";
 import { env } from "@still/env/server";
-import { inArray } from "drizzle-orm";
+import { inArray, sql } from "drizzle-orm";
 
 import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
 import type { TasteMatchMovie } from "./taste-matched-discovery";
@@ -14,9 +14,27 @@ import {
 	pickTrailerFromTmdbJson,
 	pickTrailerFromVideoResults,
 } from "./tmdb-trailer-pick";
+import { traceTiming } from "./trace-timing";
 
 /** Poster-rail titles that can become spotlight — enrich logos/trailers for each. */
 const TASTE_HERO_ENRICH_LIMIT = 12;
+
+/**
+ * Server-side projection of the only three paths this module reads out of the
+ * verbatim `tmdb_json` payload. Selecting the whole column cost ~300ms for 12
+ * rows (vs 31ms for 24 rows without it) because it also carries credits,
+ * recommendations, release dates, and every poster/backdrop variant.
+ *
+ * Shape is preserved so `pickTrailerFromTmdbJson` / `pickTitleLogoFromTmdbJson` /
+ * `pickFestivalIconFromTmdbJson` keep working unchanged.
+ */
+const HERO_TMDB_JSON_PROJECTION = sql<Record<string, unknown> | null>`
+	jsonb_build_object(
+		'videos', ${movie.tmdbJson} -> 'videos',
+		'images', jsonb_build_object('logos', ${movie.tmdbJson} -> 'images' -> 'logos'),
+		'keywords', ${movie.tmdbJson} -> 'keywords'
+	)
+`;
 
 /** Lightweight festival mark for the home spotlight — keyword names only. */
 function pickFestivalIconFromTmdbJson(
@@ -105,28 +123,57 @@ export async function enrichTasteMatchMovies(
 	if (movies.length === 0) return movies;
 
 	const ids = movies.map((row) => row.tmdbId);
-	const rows = await db
-		.select({
-			tmdbId: movie.tmdbId,
-			backdropPath: movie.backdropPath,
-			tmdbJson: movie.tmdbJson,
-		})
-		.from(movie)
-		.where(inArray(movie.tmdbId, ids));
-	const rowById = new Map(rows.map((row) => [row.tmdbId, row]));
+	/**
+	 * `tmdb_json` is the verbatim TMDb payload, so it is fetched only for the hero
+	 * slice that actually reads it — the rail carries 24 titles but only the first
+	 * `TASTE_HERO_ENRICH_LIMIT` can become spotlight. The rest need a backdrop.
+	 */
+	const heroIds = ids.slice(0, TASTE_HERO_ENRICH_LIMIT);
+	const [backdropRows, heroRows] = await Promise.all([
+		traceTiming("taste", "enrich backdrops", () =>
+			db
+				.select({
+					tmdbId: movie.tmdbId,
+					backdropPath: movie.backdropPath,
+				})
+				.from(movie)
+				.where(inArray(movie.tmdbId, ids)),
+		),
+		heroIds.length > 0
+			? traceTiming("taste", "enrich heroJson", () =>
+					db
+						.select({
+							tmdbId: movie.tmdbId,
+							tmdbJson: HERO_TMDB_JSON_PROJECTION,
+						})
+						.from(movie)
+						.where(inArray(movie.tmdbId, heroIds)),
+				)
+			: Promise.resolve([]),
+	]);
+	const backdropById = new Map(
+		backdropRows.map((row) => [row.tmdbId, row.backdropPath]),
+	);
+	const heroJsonById = new Map(
+		heroRows.map((row) => [row.tmdbId, row.tmdbJson]),
+	);
 
-	return Promise.all(
-		movies.map(async (entry, index) => {
-			const cached = rowById.get(entry.tmdbId);
-			const backdropPath = cached?.backdropPath ?? entry.backdropPath ?? null;
+	return traceTiming("taste", "enrich rows", () =>
+		Promise.all(
+			movies.map(async (entry, index) => {
+				const backdropPath =
+					backdropById.get(entry.tmdbId) ?? entry.backdropPath ?? null;
 
-			if (index >= TASTE_HERO_ENRICH_LIMIT) {
-				return { ...entry, backdropPath };
-			}
+				if (index >= TASTE_HERO_ENRICH_LIMIT) {
+					return { ...entry, backdropPath };
+				}
 
-			return enrichTasteMatchMovieRow(entry, cached, {
-				includeCommunity: index === 0,
-			});
-		}),
+				return enrichTasteMatchMovieRow(
+					entry,
+					{ backdropPath, tmdbJson: heroJsonById.get(entry.tmdbId) ?? null },
+					{ includeCommunity: index === 0 },
+				);
+			}),
+		),
 	);
 }

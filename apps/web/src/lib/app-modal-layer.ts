@@ -5,7 +5,7 @@
  * Pair with `html[data-software-gpu]` rules in globals.css to drop backdrop-blur.
  */
 export const APP_MODAL_OVERLAY_CLASS =
-	"modal-overlay-scrim fixed inset-0 z-[250] grid min-h-[100dvh] place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center";
+	"modal-overlay-scrim fixed inset-0 z-[250] grid min-h-[100dvh] place-items-end overscroll-contain bg-absolute-black/82 backdrop-blur-sm md:place-items-center";
 
 /**
  * Shared scrollport for review composer, quick log, and create-list sheets —

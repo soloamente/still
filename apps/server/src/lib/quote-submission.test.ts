@@ -2,8 +2,22 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	parseQuoteSubmissionInput,
+	parseQuoteSubmissionStatusFilter,
 	quoteSubmissionNotificationHref,
 } from "./quote-submission";
+
+describe("parseQuoteSubmissionStatusFilter", () => {
+	test("defaults to all", () => {
+		expect(parseQuoteSubmissionStatusFilter(undefined)).toBe("all");
+		expect(parseQuoteSubmissionStatusFilter("unknown")).toBe("all");
+	});
+
+	test("accepts moderation statuses", () => {
+		expect(parseQuoteSubmissionStatusFilter("pending")).toBe("pending");
+		expect(parseQuoteSubmissionStatusFilter("approved")).toBe("approved");
+		expect(parseQuoteSubmissionStatusFilter("rejected")).toBe("rejected");
+	});
+});
 
 describe("quoteSubmissionNotificationHref", () => {
 	test("links movie detail Quotes tab", () => {

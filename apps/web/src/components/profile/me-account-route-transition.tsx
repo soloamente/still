@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useLayoutEffect, useRef, useState } from "react";
 
+import { readPageSlideMs } from "@/lib/css-duration";
 import {
 	meAccountNavIndex,
 	resolveMeAccountNavPath,
@@ -56,16 +57,7 @@ export function MeAccountRouteTransition({
 			setIsActive(true);
 		});
 
-		const root = document.documentElement;
-		const slideMs = Number.parseInt(
-			getComputedStyle(root).getPropertyValue("--page-slide-dur") || "200",
-			10,
-		);
-		const fadeMs = Number.parseInt(
-			getComputedStyle(root).getPropertyValue("--page-fade-dur") || "200",
-			10,
-		);
-		const timeoutMs = Math.max(slideMs, fadeMs);
+		const timeoutMs = readPageSlideMs();
 
 		const timeoutId = window.setTimeout(() => {
 			setLayers([{ key: resolvedPath, content: children, phase: "enter" }]);
@@ -83,7 +75,7 @@ export function MeAccountRouteTransition({
 	return (
 		<div
 			className={cn(
-				"t-page-slide relative min-h-[12rem] w-full min-w-0",
+				"t-page-slide relative flex min-h-0 w-full min-w-0 flex-1 flex-col",
 				isAnimating && "is-animating",
 				isAnimating && isActive && "is-active",
 			)}
@@ -93,7 +85,7 @@ export function MeAccountRouteTransition({
 				<section
 					key={`${layer.key}-${layer.phase}`}
 					className={cn(
-						"t-page",
+						"t-page flex h-full min-h-0 flex-col",
 						layer.phase === "enter" ? "is-enter" : "is-exit",
 					)}
 					data-page-id={layer.key}

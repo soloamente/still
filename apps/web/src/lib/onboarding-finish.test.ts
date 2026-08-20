@@ -23,8 +23,9 @@ describe("runOnboardingFinish", () => {
 						`log:${movieId}:${rating ?? "none"}:${options?.liked ? "liked" : "plain"}`,
 					);
 				},
-				patchProfile: async () => {
+				patchProfile: async (body) => {
 					calls.push("profile");
+					expect(body.markOnboarded).toBe(false);
 					return {};
 				},
 				recomputeTaste: async () => {

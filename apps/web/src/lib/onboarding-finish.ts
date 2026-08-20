@@ -21,7 +21,8 @@ export type OnboardingFinishDeps = {
 		displayName: string;
 		bio?: string;
 		favoriteMovieIds: number[];
-		markOnboarded: true;
+		/** When true, unlocks `(app)` — defer until Enter / abbreviated finish. */
+		markOnboarded?: boolean;
 	}) => Promise<unknown>;
 	recomputeTaste: () => Promise<{ headline?: string }>;
 };
@@ -47,12 +48,14 @@ export async function runOnboardingFinish(
 		await deps.postLog(movieId, null, { liked: true });
 	}
 
+	// Save identity + favorites, but do not unlock `/home` yet — import / done
+	// still belong to onboarding; `markOnboarded` runs on Enter.
 	await deps.patchProfile({
 		handle: input.handle,
 		displayName: input.displayName,
 		bio: input.bio.trim() || undefined,
 		favoriteMovieIds: input.favoriteMovieIds,
-		markOnboarded: true,
+		markOnboarded: false,
 	});
 
 	const taste = await deps.recomputeTaste();

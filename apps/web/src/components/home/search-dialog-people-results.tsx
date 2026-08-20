@@ -40,6 +40,7 @@ export function SearchDialogPeopleResults({
 						image={hit.image}
 						avatarIsAnimated={hit.avatarIsAnimated}
 						planTier={hit.planTier}
+						staffRole={hit.staffRole}
 						relationship={hit.relationship}
 						onSelect={() => onSelect(hit.handle)}
 					/>

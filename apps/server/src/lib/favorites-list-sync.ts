@@ -50,7 +50,11 @@ async function countListItems(listId: string): Promise<number> {
 /** Create or fetch the patron's system favorites list (always ranked). */
 export async function ensureFavoritesList(userId: string): Promise<string> {
 	const [existing] = await db
-		.select({ id: list.id, isRanked: list.isRanked })
+		.select({
+			id: list.id,
+			isRanked: list.isRanked,
+			description: list.description,
+		})
 		.from(list)
 		.where(
 			and(
@@ -60,12 +64,26 @@ export async function ensureFavoritesList(userId: string): Promise<string> {
 		)
 		.limit(1);
 	if (existing) {
+		const next: {
+			isRanked?: boolean;
+			description?: string | null;
+			updatedAt: Date;
+		} = { updatedAt: new Date() };
+		let needsUpdate = false;
 		if (!existing.isRanked) {
-			await db
-				.update(list)
-				.set({ isRanked: true, updatedAt: new Date() })
-				.where(eq(list.id, existing.id));
-			await repairFavoritesListPositions(existing.id);
+			next.isRanked = true;
+			needsUpdate = true;
+		}
+		// Drop the second-person system blurb so public movie/TV tiles don’t leak diary voice.
+		if (existing.description === "Titles you've favorited from your diary.") {
+			next.description = null;
+			needsUpdate = true;
+		}
+		if (needsUpdate) {
+			await db.update(list).set(next).where(eq(list.id, existing.id));
+			if (!existing.isRanked) {
+				await repairFavoritesListPositions(existing.id);
+			}
 		}
 		return existing.id;
 	}
@@ -76,7 +94,8 @@ export async function ensureFavoritesList(userId: string): Promise<string> {
 		userId,
 		title: "Favorites",
 		slug: "favorites",
-		description: "Titles you've favorited from your diary.",
+		// No public blurb — title “Favorites” is enough; avoid second-person diary copy.
+		description: null,
 		isRanked: true,
 		isPublic: true,
 		isCollaborative: false,

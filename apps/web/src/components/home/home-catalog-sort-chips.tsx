@@ -1,27 +1,27 @@
 "use client";
 
-import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
 import { useSearchParams } from "next/navigation";
+
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
 import { useHomeTmdbLobbyParams } from "@/components/home/home-tmdb-lobby-params-context";
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import type { HomeBrowseSurface } from "@/lib/home-browse-surface";
+import type { HomeCatalogSort } from "@/lib/home-catalog-sort";
 import {
 	buildHomeCatalogueSearchSortHref,
 	isHomeCatalogueSearchActive,
 	parseHomeCatalogueSearchLobbySort,
 } from "@/lib/home-catalogue-search-param";
 import { HOME_COMMUNITY_FEEDS } from "@/lib/home-community-feed";
-import {
-	HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
-	HOME_LOBBY_CHIP_TRACK_CLASSNAME,
-} from "@/lib/home-lobby-catalogue-layout";
+import { HOME_LOBBY_CHIP_TRACK_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
+
+type TmdbSortChipId = HomeCatalogSort | "anime_season";
 
 /**
  * Second-row chips on `/home`:
- * - **Movies / TV:** Popular, Latest, and Upcoming (TMDb) with a sliding `layoutId` pill.
+ * - **Movies / TV:** Popular, Latest, and Upcoming (TMDb) with liquid Move pill.
  * - **Community:** Ranks, Lists, Reviews, Activity — member-made surfaces.
  */
 function HomeCommunityFeedChips({
@@ -32,55 +32,25 @@ function HomeCommunityFeedChips({
 	description: string;
 }) {
 	const { feed, selectFeed } = useHomeCommunityLobbyParams();
-	const reduceMotion = useReducedMotion();
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
-
-	const chipButton = (active: boolean) =>
-		cn(
-			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
 
 	return (
 		<div className="flex min-w-0 flex-col gap-1">
 			<p id={sortToolbarDescId} className="sr-only">
 				{description}
 			</p>
-			<div
-				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
-				role="toolbar"
+			<SegmentedPillToolbar
+				layoutId="home-catalog-sort-pill"
 				aria-label="Community feeds"
-				aria-describedby={sortToolbarDescId}
-			>
-				{HOME_COMMUNITY_FEEDS.map(({ id, label, hint }) => (
-					<button
-						key={id}
-						type="button"
-						aria-current={feed === id ? "page" : undefined}
-						className={chipButton(feed === id)}
-						title={hint}
-						aria-label={`${label} — ${hint}`}
-						onClick={() => selectFeed(id)}
-					>
-						{feed === id ? (
-							<motion.span
-								layoutId="home-catalog-sort-pill"
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">{label}</span>
-					</button>
-				))}
-			</div>
+				value={feed}
+				onChange={selectFeed}
+				options={HOME_COMMUNITY_FEEDS.map(({ id, label, hint }) => ({
+					id,
+					label,
+					title: hint,
+				}))}
+				compact
+				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
+			/>
 		</div>
 	);
 }
@@ -113,168 +83,119 @@ function HomeTmdbSortChips({
 	const searchLobbySort = searchActive
 		? parseHomeCatalogueSearchLobbySort(searchParams, catalogueBrowse)
 		: null;
-	const reduceMotion = useReducedMotion();
 
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
+	const activeValue: TmdbSortChipId = animeSeason
+		? "anime_season"
+		: searchActive
+			? (searchLobbySort ?? "popular")
+			: catalogSort;
 
-	const chipButton = (active: boolean) =>
-		cn(
-			HOME_LOBBY_CHIP_BUTTON_CLASSNAME,
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
+	const options: {
+		id: TmdbSortChipId;
+		label: string;
+		title: string;
+	}[] = [
+		{
+			id: "popular",
+			label: "Popular",
+			title: searchActive
+				? "Most popular matches first"
+				: "Trending and most popular on TMDb right now",
+		},
+		{
+			id: "latest",
+			label: "Latest",
+			title: searchActive
+				? "Newest matching releases first"
+				: "Newest releases first in this TMDb catalogue",
+		},
+	];
 
-	const chipForUpcoming = () => {
-		const sort = "upcoming" as const;
-		const href = buildHomeLobbyHref({
-			sort,
-			browse,
-			venue,
-			run: catalogRun,
-			animeSeason,
+	if (browse !== "tv" && !searchActive) {
+		options.push({
+			id: "upcoming",
+			label: "Upcoming",
+			title:
+				"Theatrical or streaming titles with primary release dates from today onward",
 		});
-		const active = catalogSort === sort;
-		return (
-			<button
-				key={sort}
-				type="button"
-				aria-current={active ? "page" : undefined}
-				className={chipButton(active)}
-				title="Theatrical or streaming titles with primary release dates from today onward"
-				aria-label="Upcoming — releases ahead on TMDb"
-				onClick={() => selectSort(sort)}
-				onPointerEnter={() => prefetchLobby(href)}
-			>
-				{active ? (
-					<motion.span
-						layoutId="home-catalog-sort-pill"
-						className="absolute inset-0 z-0 rounded-full bg-card"
-						transition={pillTransition}
-					/>
-				) : null}
-				<span className="relative z-10">Upcoming</span>
-			</button>
-		);
-	};
+	}
 
-	const chipFor = (sort: "latest" | "popular") => {
-		const href = searchActive
-			? buildHomeCatalogueSearchSortHref({
-					browse: catalogueBrowse,
-					sort,
-					currentParams: new URLSearchParams(searchParams.toString()),
-				})
-			: buildHomeLobbyHref({
-					sort,
-					browse,
-					venue,
-					run: catalogRun,
-					animeSeason,
-				});
-		const active = searchActive
-			? searchLobbySort === sort
-			: catalogSort === sort;
-		const labels =
-			sort === "latest"
-				? {
-						label: "Latest",
-						title: searchActive
-							? "Newest matching releases first"
-							: "Newest releases first in this TMDb catalogue",
-						ariaLabel: searchActive
-							? "Latest — newest matching releases first"
-							: "Latest — newest releases in this TMDb catalogue",
-					}
-				: {
-						label: "Popular",
-						title: searchActive
-							? "Most popular matches first"
-							: "Trending and most popular on TMDb right now",
-						ariaLabel: searchActive
-							? "Popular — most popular matches first"
-							: "Popular — trending titles on TMDb",
-					};
-
-		return (
-			<button
-				key={sort}
-				type="button"
-				aria-current={active ? "page" : undefined}
-				className={chipButton(active)}
-				title={labels.title}
-				aria-label={labels.ariaLabel}
-				onClick={() => {
-					if (searchActive) {
-						if (searchLobbySort === sort) return;
-						navigate(href);
-						return;
-					}
-					selectSort(sort);
-				}}
-				onPointerEnter={() => prefetchLobby(href)}
-			>
-				{active ? (
-					<motion.span
-						layoutId="home-catalog-sort-pill"
-						className="absolute inset-0 z-0 rounded-full bg-card"
-						transition={pillTransition}
-					/>
-				) : null}
-				<span className="relative z-10">{labels.label}</span>
-			</button>
-		);
-	};
-
-	const seasonChipHref = buildHomeLobbyHref({
-		sort: catalogSort,
-		browse,
-		venue,
-		animeSeason: !animeSeason,
-		run: null,
-	});
+	if (browse === "tv" && !searchActive) {
+		options.push({
+			id: "anime_season",
+			label: "This season",
+			title:
+				"Animation TV that started airing within the last 90 days and is still returning",
+		});
+	}
 
 	return (
 		<div className="flex min-w-0 flex-col gap-1">
 			<p id={sortToolbarDescId} className="sr-only">
 				{description}
 			</p>
-			<div
-				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
-				role="toolbar"
+			<SegmentedPillToolbar
+				layoutId="home-catalog-sort-pill"
 				aria-label="Catalogue sort"
-				aria-describedby={sortToolbarDescId}
-			>
-				{chipFor("popular")}
-				{chipFor("latest")}
-				{browse !== "tv" && !searchActive ? chipForUpcoming() : null}
-				{browse === "tv" && !searchActive ? (
-					<button
-						type="button"
-						aria-current={animeSeason ? "page" : undefined}
-						className={chipButton(animeSeason)}
-						title="Animation TV that started airing within the last 90 days and is still returning"
-						aria-label="This season — airing anime simulcasts"
-						onClick={() => selectAnimeSeason()}
-						onPointerEnter={() => prefetchLobby(seasonChipHref)}
-					>
-						{animeSeason ? (
-							<motion.span
-								layoutId="home-catalog-anime-season-pill"
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">This season</span>
-					</button>
-				) : null}
-			</div>
+				value={activeValue}
+				onChange={(next) => {
+					if (next === "anime_season") {
+						selectAnimeSeason();
+						return;
+					}
+					if (searchActive) {
+						// Search lobby only exposes Popular · Latest.
+						if (next !== "popular" && next !== "latest") return;
+						if (searchLobbySort === next) return;
+						navigate(
+							buildHomeCatalogueSearchSortHref({
+								browse: catalogueBrowse,
+								sort: next,
+								currentParams: new URLSearchParams(searchParams.toString()),
+							}),
+						);
+						return;
+					}
+					selectSort(next);
+				}}
+				onOptionPointerEnter={(id) => {
+					if (id === "anime_season") {
+						prefetchLobby(
+							buildHomeLobbyHref({
+								sort: catalogSort,
+								browse,
+								venue,
+								animeSeason: !animeSeason,
+								run: null,
+							}),
+						);
+						return;
+					}
+					if (searchActive) {
+						if (id !== "popular" && id !== "latest") return;
+						prefetchLobby(
+							buildHomeCatalogueSearchSortHref({
+								browse: catalogueBrowse,
+								sort: id,
+								currentParams: new URLSearchParams(searchParams.toString()),
+							}),
+						);
+						return;
+					}
+					prefetchLobby(
+						buildHomeLobbyHref({
+							sort: id,
+							browse,
+							venue,
+							run: catalogRun,
+							animeSeason,
+						}),
+					);
+				}}
+				options={options}
+				compact
+				className={HOME_LOBBY_CHIP_TRACK_CLASSNAME}
+			/>
 		</div>
 	);
 }

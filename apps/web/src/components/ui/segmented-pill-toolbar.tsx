@@ -2,42 +2,52 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 
-type SegmentIndicator = {
-	left: number;
-	width: number;
+export type SegmentedPillOption<T extends string> = {
+	id: T;
+	label: ReactNode;
+	title?: string;
+	/** Vertical rule before this chip (e.g. profile ledger → social). */
+	separatorBefore?: boolean;
+	/** Per-option disable (e.g. empty search categories). */
+	disabled?: boolean;
 };
 
 /**
- * Home `/home` catalogue sort toolbar — `rounded-full bg-background p-1` track with a
- * sliding `bg-card` pill. Uses measured segment bounds (not shared `layoutId`) so the
- * indicator stays inside the track when sibling content reflows (e.g. review composer).
+ * Sliding `bg-card` pill on a `rounded-full bg-background` track.
+ * Shared `layoutId` motion pill — no liquid-gooey on chip rails.
  */
 export function SegmentedPillToolbar<T extends string>({
-	layoutId: _layoutId,
+	layoutId,
 	"aria-label": ariaLabel,
 	value,
 	onChange,
 	options,
 	className,
 	indicatorClassName,
+	optionClassName,
 	compact = false,
 	disabled = false,
+	onOptionPointerEnter,
 }: {
-	/** Kept for call-site stability; sliding pill no longer uses shared layout ids. */
+	/** Shared motion layout id for the sliding active pill. */
 	layoutId: string;
 	"aria-label": string;
 	value: T;
 	onChange: (next: T) => void;
-	options: readonly { id: T; label: string; title?: string }[];
+	options: readonly SegmentedPillOption<T>[];
 	/** Extra track classes — `bg-background` is always applied on the shell. */
 	className?: string;
 	/** Sliding active segment — defaults to `bg-card`. */
 	indicatorClassName?: string;
+	/** Extra classes on each segment button. */
+	optionClassName?: string;
 	/** Tighter chips when many segments (e.g. five watching statuses). */
 	compact?: boolean;
 	disabled?: boolean;
+	/** Prefetch / hover hints per segment (home catalogue). */
+	onOptionPointerEnter?: (id: T) => void;
 }) {
 	const reduceMotion = useReducedMotion();
 	const pillTransition = reduceMotion
@@ -48,49 +58,21 @@ export function SegmentedPillToolbar<T extends string>({
 				ease: [0.165, 0.84, 0.44, 1] as const,
 			};
 
-	const trackRef = useRef<HTMLDivElement>(null);
-	const [indicator, setIndicator] = useState<SegmentIndicator | null>(null);
-
-	const measureActiveSegment = useCallback(() => {
-		const track = trackRef.current;
-		if (!track) return;
-		const active = track.querySelector<HTMLElement>(
-			`[data-segment-id="${CSS.escape(String(value))}"]`,
-		);
-		if (!active) return;
-		setIndicator({
-			left: active.offsetLeft,
-			width: active.offsetWidth,
-		});
-	}, [value]);
-
-	useLayoutEffect(() => {
-		measureActiveSegment();
-	}, [measureActiveSegment]);
-
-	useLayoutEffect(() => {
-		const track = trackRef.current;
-		if (!track) return;
-		const observer = new ResizeObserver(() => {
-			measureActiveSegment();
-		});
-		observer.observe(track);
-		return () => observer.disconnect();
-	}, [measureActiveSegment]);
-
 	const chipClass = (active: boolean) =>
 		cn(
-			"relative z-10 inline-flex min-h-10 items-center justify-center rounded-full text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
+			"relative inline-flex min-h-10 items-center justify-center rounded-full text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
 			compact ? "px-3 py-2 sm:px-3.5" : "px-5 py-2.5",
 			active
 				? "text-foreground"
 				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
 			disabled && "pointer-events-none opacity-50",
+			optionClassName,
 		);
+
+	const pillFaceClass = indicatorClassName ?? "bg-card";
 
 	return (
 		<div
-			ref={trackRef}
 			className={cn(
 				"relative flex max-w-full flex-wrap justify-center gap-1 overflow-hidden rounded-full bg-background p-1 sm:flex-nowrap",
 				className,
@@ -98,36 +80,51 @@ export function SegmentedPillToolbar<T extends string>({
 			role="toolbar"
 			aria-label={ariaLabel}
 		>
-			{indicator ? (
-				<motion.span
-					aria-hidden
-					className={cn(
-						"pointer-events-none absolute top-1 bottom-1 left-0 z-0 rounded-full",
-						indicatorClassName ?? "bg-card",
-					)}
-					initial={false}
-					animate={{
-						x: indicator.left,
-						width: indicator.width,
-					}}
-					transition={pillTransition}
-				/>
-			) : null}
 			{options.map((opt) => {
 				const active = value === opt.id;
+				const optionDisabled = disabled || Boolean(opt.disabled);
 				return (
-					<button
-						key={opt.id}
-						type="button"
-						data-segment-id={opt.id}
-						disabled={disabled}
-						aria-pressed={active}
-						title={opt.title}
-						className={chipClass(active)}
-						onClick={() => onChange(opt.id)}
-					>
-						{opt.label}
-					</button>
+					<span key={opt.id} className="contents">
+						{opt.separatorBefore ? (
+							<div
+								aria-hidden
+								className="relative z-10 mx-0.5 h-6 w-px shrink-0 self-center rounded-full bg-border/70"
+							/>
+						) : null}
+						<button
+							type="button"
+							disabled={optionDisabled}
+							aria-pressed={active}
+							aria-disabled={optionDisabled || undefined}
+							title={opt.title}
+							className={cn(
+								chipClass(active),
+								opt.disabled &&
+									!disabled &&
+									"pointer-events-none cursor-default opacity-40",
+							)}
+							onClick={() => {
+								if (optionDisabled) return;
+								onChange(opt.id);
+							}}
+							onPointerEnter={() => {
+								if (optionDisabled) return;
+								onOptionPointerEnter?.(opt.id);
+							}}
+						>
+							{active ? (
+								<motion.span
+									layoutId={layoutId}
+									className={cn(
+										"absolute inset-0 z-0 rounded-full",
+										pillFaceClass,
+									)}
+									transition={pillTransition}
+								/>
+							) : null}
+							<span className="relative z-10">{opt.label}</span>
+						</button>
+					</span>
 				);
 			})}
 		</div>

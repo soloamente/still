@@ -31,6 +31,12 @@ import {
 	useMeAccountSession,
 	writeStoredSettingsDraft,
 } from "@/components/profile/me-account-session-context";
+import {
+	type SettingsFormDirtySnapshot,
+	settingsFormIsDirty,
+	settingsFormSnapshotsEqual,
+	snapshotSettingsFormFromProfile,
+} from "@/components/profile/settings-form-dirty";
 import type { ContentVisibility } from "@/components/review/visibility-select";
 import { patronMeetsAdultAgeGate } from "@/lib/adult-content-age-gate";
 import { api } from "@/lib/api";
@@ -40,9 +46,9 @@ import {
 	EMAIL_VERIFICATION_TOAST,
 	isEmailVerificationRequiredError,
 } from "@/lib/email-verification-error";
+import { normalizeProfileBirthDateYmd } from "@/lib/normalize-profile-birth-date";
 import {
 	buildNotificationPrefsPatch,
-	NOTIFICATION_KIND_SETTINGS,
 	type NotificationKind,
 	readNotificationPrefsFromProfile,
 } from "@/lib/notification-preferences";
@@ -60,6 +66,7 @@ import {
 	readProfileAudioPreferences,
 } from "@/lib/profile-audio-preferences";
 import {
+	mergeDiscordActivityEnabledPref,
 	PROFILE_PREF_APP_THEME,
 	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
 	PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER,
@@ -67,6 +74,7 @@ import {
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
 	PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY,
 	PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER,
+	PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE,
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
 	PROFILE_PREF_SMOOTH_SCROLL,
@@ -77,8 +85,10 @@ import {
 	readCatalogMonochromePeersOnHoverPref,
 	readCatalogTmdbLanguagePref,
 	readCatalogTmdbWatchRegionPref,
+	readDiscordActivityEnabledPref,
 	readProfilePortraitGrayscaleUntilHoverPref,
 	readProfilePresenceVisibilityPref,
+	readReviewTranslationLanguagePref,
 	readShowAdultContentPref,
 	readShowBirthDateOnProfilePref,
 	readSmoothScrollPref,
@@ -87,6 +97,7 @@ import {
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
 import { invalidateCastCrewMonochromePrefCache } from "@/lib/use-cast-crew-monochrome-pref";
 import { invalidateCatalogTmdbLanguageCache } from "@/lib/use-catalog-tmdb-language";
+import { invalidateReviewTranslationLanguageCache } from "@/lib/use-review-translation-language";
 import { clearSearchDialogGenreCache } from "@/lib/use-search-dialog-genres";
 
 export type SettingsProfile = {
@@ -145,6 +156,8 @@ type SettingsFormContextValue = {
 	setShowBirthDateOnProfile: (value: boolean) => void;
 	presenceVisibility: ProfilePresenceVisibilityPref;
 	setPresenceVisibility: (value: ProfilePresenceVisibilityPref) => void;
+	discordActivityEnabled: boolean;
+	setDiscordActivityEnabled: (value: boolean) => void;
 	isPrivate: boolean;
 	setIsPrivate: (value: boolean) => void;
 	profileAudioEnabled: boolean;
@@ -165,6 +178,8 @@ type SettingsFormContextValue = {
 	setCatalogTmdbWatchRegion: (value: string) => void;
 	catalogTmdbLanguage: string;
 	setCatalogTmdbLanguage: (value: string) => void;
+	reviewTranslationLanguage: string;
+	setReviewTranslationLanguage: (value: string) => void;
 	watchlistStreamingAlerts: boolean;
 	setWatchlistStreamingAlerts: (value: boolean) => void;
 	showAdultContent: boolean;
@@ -224,7 +239,9 @@ export function SettingsFormProvider({
 	const [pronouns, setPronouns] = useState(profile.pronouns ?? "");
 	const [location, setLocation] = useState(profile.location ?? "");
 	const [website, setWebsite] = useState(profile.website ?? "");
-	const [birthDate, setBirthDate] = useState(profile.birthDate ?? "");
+	const [birthDate, setBirthDate] = useState(
+		() => normalizeProfileBirthDateYmd(profile.birthDate) ?? "",
+	);
 	const [showBirthDateOnProfile, setShowBirthDateOnProfile] = useState(() =>
 		readShowBirthDateOnProfilePref(profile.preferences ?? null),
 	);
@@ -232,6 +249,9 @@ export function SettingsFormProvider({
 		useState<ProfilePresenceVisibilityPref>(() =>
 			readProfilePresenceVisibilityPref(profile.preferences ?? null),
 		);
+	const [discordActivityEnabled, setDiscordActivityEnabled] = useState(() =>
+		readDiscordActivityEnabledPref(profile.preferences ?? null),
+	);
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
 	const [profileAudio, setProfileAudio] = useState(() =>
 		readProfileAudioPreferences(profile.preferences ?? null),
@@ -273,6 +293,9 @@ export function SettingsFormProvider({
 	const [catalogTmdbLanguage, setCatalogTmdbLanguage] = useState(
 		() => readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
 	);
+	const [reviewTranslationLanguage, setReviewTranslationLanguage] = useState(
+		() => readReviewTranslationLanguagePref(profile.preferences ?? null) ?? "",
+	);
 	const [watchlistStreamingAlerts, setWatchlistStreamingAlerts] = useState(() =>
 		readWatchlistStreamingAlertsPref(profile.preferences ?? null),
 	);
@@ -297,6 +320,11 @@ export function SettingsFormProvider({
 	const [saving, setSaving] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const didHydrateSettingsDraftRef = useRef(false);
+	// Last successful save in this session — dirty must not keep comparing
+	// against the stale RSC `profile` until `router.refresh()` lands.
+	const [committed, setCommitted] = useState<SettingsFormDirtySnapshot | null>(
+		null,
+	);
 
 	useLayoutEffect(() => {
 		if (didHydrateSettingsDraftRef.current) return;
@@ -308,7 +336,11 @@ export function SettingsFormProvider({
 		setPronouns(stored.pronouns ?? profile.pronouns ?? "");
 		setLocation(stored.location ?? profile.location ?? "");
 		setWebsite(stored.website ?? profile.website ?? "");
-		setBirthDate(stored.birthDate ?? profile.birthDate ?? "");
+		setBirthDate(
+			normalizeProfileBirthDateYmd(stored.birthDate) ??
+				normalizeProfileBirthDateYmd(profile.birthDate) ??
+				"",
+		);
 		setShowBirthDateOnProfile(
 			typeof stored.showBirthDateOnProfile === "boolean"
 				? stored.showBirthDateOnProfile
@@ -384,6 +416,12 @@ export function SettingsFormProvider({
 				? stored.catalogTmdbLanguage
 				: (readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? ""),
 		);
+		setReviewTranslationLanguage(
+			typeof stored.reviewTranslationLanguage === "string"
+				? stored.reviewTranslationLanguage
+				: (readReviewTranslationLanguagePref(profile.preferences ?? null) ??
+						""),
+		);
 		setWatchlistStreamingAlerts(
 			typeof stored.watchlistStreamingAlerts === "boolean"
 				? stored.watchlistStreamingAlerts
@@ -397,73 +435,41 @@ export function SettingsFormProvider({
 		}
 	}, [profile]);
 
-	const dirty = useMemo(() => {
-		const regionFromProfile = readCatalogTmdbWatchRegionPref(
-			profile.preferences ?? null,
-		);
-		const regionStr =
-			regionFromProfile === null
-				? ""
-				: regionFromProfile === "ALL"
-					? "ALL"
-					: regionFromProfile;
-		const languageFromProfile =
-			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "";
-		const themeFromProfile = resolveAppThemeForPatron(
-			readAppThemePref(profile.preferences ?? null),
-			isPro,
-		);
-		const accentFromProfile = initialProfileAccent(profile);
-		const frameFromProfile = readProfileBannerFramePref(
-			profile.preferences ?? null,
-		);
-		const notificationsFromProfile = readNotificationPrefsFromProfile(
-			profile.preferences ?? null,
-		);
-		const notificationsDirty = NOTIFICATION_KIND_SETTINGS.some(
-			(k) => notificationPrefs[k.id] !== notificationsFromProfile[k.id],
-		);
-		const audioFromProfile = readProfileAudioPreferences(
-			profile.preferences ?? null,
-		);
-		return (
-			displayName.trim() !== (profile.displayName ?? "").trim() ||
-			bio.trim() !== (profile.bio ?? "").trim() ||
-			pronouns.trim() !== (profile.pronouns ?? "").trim() ||
-			location.trim() !== (profile.location ?? "").trim() ||
-			website.trim() !== (profile.website ?? "").trim() ||
-			birthDate !== (profile.birthDate ?? "") ||
-			showBirthDateOnProfile !==
-				readShowBirthDateOnProfilePref(profile.preferences ?? null) ||
-			presenceVisibility !==
-				readProfilePresenceVisibilityPref(profile.preferences ?? null) ||
-			isPrivate !== Boolean(profile.isPrivate) ||
-			profileAudio.enabled !== audioFromProfile.enabled ||
-			profileAudio.atmosphere !== audioFromProfile.atmosphere ||
-			profileAudio.feedback !== audioFromProfile.feedback ||
-			smoothScroll !== readSmoothScrollPref(profile.preferences ?? null) ||
-			castCrewMonochromeOnHover !==
-				readCastCrewMonochromeOnHoverPref(profile.preferences ?? null) ||
-			profilePortraitGrayscaleUntilHover !==
-				readProfilePortraitGrayscaleUntilHoverPref(
-					profile.preferences ?? null,
-				) ||
-			catalogMonochromePeersOnHover !==
-				readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null) ||
-			showAdultContent !==
-				readShowAdultContentPref(profile.preferences ?? null) ||
-			catalogTmdbWatchRegion.trim() !== regionStr ||
-			catalogTmdbLanguage.trim() !== languageFromProfile ||
-			watchlistStreamingAlerts !==
-				readWatchlistStreamingAlertsPref(profile.preferences ?? null) ||
-			appTheme !== themeFromProfile ||
-			profileAccent !== accentFromProfile ||
-			bannerFrame !== frameFromProfile ||
-			notificationsDirty ||
-			Boolean(pendingBanner || pendingAvatar)
-		);
+	const fromProfile = useMemo(
+		() => snapshotSettingsFormFromProfile(profile, isPro),
+		[profile, isPro],
+	);
+	const currentSnapshot = useMemo((): SettingsFormDirtySnapshot => {
+		const region = catalogTmdbWatchRegion.trim();
+		return {
+			displayName: displayName.trim(),
+			bio: bio.trim(),
+			pronouns: pronouns.trim(),
+			location: location.trim(),
+			website: website.trim(),
+			birthDate,
+			showBirthDateOnProfile,
+			presenceVisibility,
+			discordActivityEnabled,
+			isPrivate,
+			audioEnabled: profileAudio.enabled,
+			audioAtmosphere: profileAudio.atmosphere,
+			audioFeedback: profileAudio.feedback,
+			smoothScroll,
+			castCrewMonochromeOnHover,
+			profilePortraitGrayscaleUntilHover,
+			catalogMonochromePeersOnHover,
+			showAdultContent,
+			catalogTmdbWatchRegion: region,
+			catalogTmdbLanguage: catalogTmdbLanguage.trim(),
+			reviewTranslationLanguage: reviewTranslationLanguage.trim(),
+			watchlistStreamingAlerts,
+			appTheme,
+			profileAccent,
+			bannerFrame,
+			notificationPrefs,
+		};
 	}, [
-		profile,
 		notificationPrefs,
 		displayName,
 		bio,
@@ -473,6 +479,7 @@ export function SettingsFormProvider({
 		birthDate,
 		showBirthDateOnProfile,
 		presenceVisibility,
+		discordActivityEnabled,
 		isPrivate,
 		profileAudio,
 		smoothScroll,
@@ -482,69 +489,68 @@ export function SettingsFormProvider({
 		showAdultContent,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		reviewTranslationLanguage,
 		watchlistStreamingAlerts,
 		appTheme,
 		profileAccent,
 		bannerFrame,
-		isPro,
-		pendingBanner,
-		pendingAvatar,
 	]);
+	const baseline = committed ?? fromProfile;
+	const dirty = settingsFormIsDirty(
+		currentSnapshot,
+		baseline,
+		Boolean(pendingBanner || pendingAvatar),
+	);
+
+	useEffect(() => {
+		// RSC refresh caught up — drop the session override.
+		if (committed && settingsFormSnapshotsEqual(fromProfile, committed)) {
+			setCommitted(null);
+		}
+	}, [committed, fromProfile]);
 
 	const resetToProfile = useCallback(() => {
 		clearStoredSettingsDraft();
 		revokeAllCustomizationPending();
 		syncCustomizationDirty(false);
 		syncSettingsDirty(false);
-		setDisplayName(profile.displayName ?? "");
-		setBio(profile.bio ?? "");
-		setPronouns(profile.pronouns ?? "");
-		setLocation(profile.location ?? "");
-		setWebsite(profile.website ?? "");
-		setBirthDate(profile.birthDate ?? "");
-		setShowBirthDateOnProfile(
-			readShowBirthDateOnProfilePref(profile.preferences ?? null),
-		);
-		setPresenceVisibility(
-			readProfilePresenceVisibilityPref(profile.preferences ?? null),
-		);
-		setIsPrivate(Boolean(profile.isPrivate));
-		setProfileAudio(readProfileAudioPreferences(profile.preferences ?? null));
-		setSmoothScroll(readSmoothScrollPref(profile.preferences ?? null));
-		setCastCrewMonochromeOnHover(
-			readCastCrewMonochromeOnHoverPref(profile.preferences ?? null),
-		);
+		const next = committed ?? fromProfile;
+		setDisplayName(next.displayName);
+		setBio(next.bio);
+		setPronouns(next.pronouns);
+		setLocation(next.location);
+		setWebsite(next.website);
+		setBirthDate(next.birthDate);
+		setShowBirthDateOnProfile(next.showBirthDateOnProfile);
+		setPresenceVisibility(next.presenceVisibility);
+		setDiscordActivityEnabled(next.discordActivityEnabled);
+		setIsPrivate(next.isPrivate);
+		setProfileAudio((prev) => ({
+			...prev,
+			enabled: next.audioEnabled,
+			atmosphere: next.audioAtmosphere,
+			feedback: next.audioFeedback,
+		}));
+		setSmoothScroll(next.smoothScroll);
+		setCastCrewMonochromeOnHover(next.castCrewMonochromeOnHover);
 		setProfilePortraitGrayscaleUntilHover(
-			readProfilePortraitGrayscaleUntilHoverPref(profile.preferences ?? null),
+			next.profilePortraitGrayscaleUntilHover,
 		);
-		setCatalogMonochromePeersOnHover(
-			readCatalogMonochromePeersOnHoverPref(profile.preferences ?? null),
-		);
-		const p = readCatalogTmdbWatchRegionPref(profile.preferences ?? null);
-		setCatalogTmdbWatchRegion(p === null ? "" : p === "ALL" ? "ALL" : p);
-		setCatalogTmdbLanguage(
-			readCatalogTmdbLanguagePref(profile.preferences ?? null) ?? "",
-		);
-		setWatchlistStreamingAlerts(
-			readWatchlistStreamingAlertsPref(profile.preferences ?? null),
-		);
-		setShowAdultContent(readShowAdultContentPref(profile.preferences ?? null));
-		setAppTheme(
-			resolveAppThemeForPatron(
-				readAppThemePref(profile.preferences ?? null),
-				isPro,
-			),
-		);
-		setProfileAccent(initialProfileAccent(profile));
-		setBannerFrame(readProfileBannerFramePref(profile.preferences ?? null));
-		setNotificationPrefs(
-			readNotificationPrefsFromProfile(profile.preferences ?? null),
-		);
+		setCatalogMonochromePeersOnHover(next.catalogMonochromePeersOnHover);
+		setCatalogTmdbWatchRegion(next.catalogTmdbWatchRegion);
+		setCatalogTmdbLanguage(next.catalogTmdbLanguage);
+		setReviewTranslationLanguage(next.reviewTranslationLanguage);
+		setWatchlistStreamingAlerts(next.watchlistStreamingAlerts);
+		setShowAdultContent(next.showAdultContent);
+		setAppTheme(next.appTheme);
+		setProfileAccent(next.profileAccent);
+		setBannerFrame(next.bannerFrame);
+		setNotificationPrefs(next.notificationPrefs);
 	}, [
-		profile,
+		committed,
+		fromProfile,
 		syncSettingsDirty,
 		syncCustomizationDirty,
-		isPro,
 		revokeAllCustomizationPending,
 	]);
 
@@ -585,6 +591,7 @@ export function SettingsFormProvider({
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				reviewTranslationLanguage,
 				watchlistStreamingAlerts,
 				showAdultContent,
 				appTheme,
@@ -612,6 +619,7 @@ export function SettingsFormProvider({
 				catalogMonochromePeersOnHover,
 				catalogTmdbWatchRegion,
 				catalogTmdbLanguage,
+				reviewTranslationLanguage,
 				watchlistStreamingAlerts,
 				showAdultContent,
 				appTheme,
@@ -627,6 +635,7 @@ export function SettingsFormProvider({
 		birthDate,
 		showBirthDateOnProfile,
 		presenceVisibility,
+		discordActivityEnabled,
 		isPrivate,
 		profileAudio,
 		smoothScroll,
@@ -635,6 +644,7 @@ export function SettingsFormProvider({
 		catalogMonochromePeersOnHover,
 		catalogTmdbWatchRegion,
 		catalogTmdbLanguage,
+		reviewTranslationLanguage,
 		watchlistStreamingAlerts,
 		showAdultContent,
 		appTheme,
@@ -737,6 +747,13 @@ export function SettingsFormProvider({
 				} else {
 					delete prefs[PROFILE_PREF_CATALOG_TMDB_LANGUAGE];
 				}
+				// Empty means “follow the browser”, which is the absence of a stored tag.
+				if (reviewTranslationLanguage.trim() !== "") {
+					prefs[PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE] =
+						reviewTranslationLanguage.trim();
+				} else {
+					delete prefs[PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE];
+				}
 				prefs[PROFILE_PREF_APP_THEME] = appTheme;
 				if (isPro) {
 					prefs[PROFILE_PREF_BANNER_FRAME] = bannerFrame;
@@ -766,11 +783,13 @@ export function SettingsFormProvider({
 						profile.preferences ?? null,
 					).streakMilestonesCelebrated,
 				});
+				prefs = mergeDiscordActivityEnabledPref(prefs, discordActivityEnabled);
 
 				// Only send birthDate when the user actually changed it — otherwise an
 				// unrelated save (e.g. setting an avatar) would clear/re-send the DOB
 				// and trip the age-gate validation.
-				const birthDateChanged = birthDate !== (profile.birthDate ?? "");
+				const birthDateChanged =
+					birthDate !== (normalizeProfileBirthDateYmd(profile.birthDate) ?? "");
 				const saveRes = await api.api.profiles.me.patch({
 					displayName: displayName.trim(),
 					bio: bio.trim() || undefined,
@@ -820,11 +839,15 @@ export function SettingsFormProvider({
 				}
 				if (hadPendingMedia) {
 					syncCustomizationDirty(false);
-					router.refresh();
 				}
+				// Adopt the just-saved form as clean immediately — `profile` from
+				// the settings layout stays stale until refresh finishes.
+				setCommitted(currentSnapshot);
+				router.refresh();
 				toast.success("Saved");
 				invalidateCastCrewMonochromePrefCache(castCrewMonochromeOnHover);
 				invalidateCatalogTmdbLanguageCache();
+				invalidateReviewTranslationLanguageCache();
 				clearSearchDialogGenreCache();
 				clearStoredSettingsDraft();
 				syncSettingsDirty(false);
@@ -846,8 +869,10 @@ export function SettingsFormProvider({
 			birthDate,
 			showBirthDateOnProfile,
 			presenceVisibility,
+			discordActivityEnabled,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
+			reviewTranslationLanguage,
 			watchlistStreamingAlerts,
 			appTheme,
 			isPro,
@@ -869,6 +894,7 @@ export function SettingsFormProvider({
 			syncCustomizationDirty,
 			router,
 			syncSettingsDirty,
+			currentSnapshot,
 		],
 	);
 
@@ -907,9 +933,11 @@ export function SettingsFormProvider({
 			birthDate,
 			setBirthDate,
 			showBirthDateOnProfile,
-			presenceVisibility,
 			setShowBirthDateOnProfile,
+			presenceVisibility,
 			setPresenceVisibility,
+			discordActivityEnabled,
+			setDiscordActivityEnabled,
 			isPrivate,
 			setIsPrivate,
 			profileAudioEnabled: profileAudio.enabled,
@@ -930,6 +958,8 @@ export function SettingsFormProvider({
 			setCatalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			setCatalogTmdbLanguage,
+			reviewTranslationLanguage,
+			setReviewTranslationLanguage,
 			watchlistStreamingAlerts,
 			setWatchlistStreamingAlerts,
 			showAdultContent,
@@ -962,6 +992,7 @@ export function SettingsFormProvider({
 			birthDate,
 			showBirthDateOnProfile,
 			presenceVisibility,
+			discordActivityEnabled,
 			isPrivate,
 			profileAudio,
 			smoothScroll,
@@ -973,6 +1004,7 @@ export function SettingsFormProvider({
 			persistShowAdultContent,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
+			reviewTranslationLanguage,
 			watchlistStreamingAlerts,
 			appTheme,
 			profileAccent,

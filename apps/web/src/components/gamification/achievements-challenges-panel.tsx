@@ -15,7 +15,7 @@ import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 } from "@/lib/detail-action-motion";
-import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import { isTmdbCdnUrl, tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 export type ChallengeListItem = {
 	id: string;
@@ -264,6 +264,7 @@ function ChallengeCard({
 													width={36}
 													height={54}
 													className="aspect-2/3 w-9 shrink-0 rounded-md object-cover"
+													unoptimized={isTmdbCdnUrl(poster)}
 												/>
 											) : (
 												<div

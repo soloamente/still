@@ -2,7 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { useSearchParams } from "next/navigation";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 import { LobbyNavigationProvider } from "@/components/lobby/lobby-navigation-provider";
 import { MovieDetailSectionNav } from "@/components/movie/movie-detail-section-nav";
@@ -12,7 +12,10 @@ import { ListingPresenceProvider } from "@/components/realtime/listing-presence-
 import { MovieReviewDeepLinkOpener } from "@/components/review/movie-review-deep-link-opener";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
-import { MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS } from "@/lib/movie-detail-sections";
+import {
+	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
+	MOVIE_DETAIL_SECTION_NAV_GUTTER_CLASS,
+} from "@/lib/movie-detail-sections";
 import {
 	type MovieDetailListingKind,
 	type MovieDetailView,
@@ -20,6 +23,7 @@ import {
 	parseMovieDetailViewFromSearchParams,
 } from "@/lib/movie-detail-view";
 import type { MovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
+import { useListingDetailScrollReset } from "@/lib/use-listing-detail-scroll-reset";
 
 /**
  * Client shell for film/TV detail — instant tab switches without freezing sticky
@@ -35,6 +39,7 @@ export function MovieDetailViewShell({
 	hero,
 	watchProviders,
 	theatricalOnly = false,
+	catalogWatchRegion = null,
 	about,
 	community,
 	quotes,
@@ -49,6 +54,8 @@ export function MovieDetailViewShell({
 	watchProviders: MovieWatchProvidersViewModel;
 	/** Empty Streaming tab — cinema-only message when no at-home providers. */
 	theatricalOnly?: boolean;
+	/** Patron catalogue watch region ISO2 for Streaming pin; null when unset / All. */
+	catalogWatchRegion?: string | null;
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
@@ -65,6 +72,7 @@ export function MovieDetailViewShell({
 				hero={hero}
 				watchProviders={watchProviders}
 				theatricalOnly={theatricalOnly}
+				catalogWatchRegion={catalogWatchRegion}
 				about={about}
 				community={community}
 				quotes={quotes}
@@ -83,6 +91,7 @@ function MovieDetailViewShellBody({
 	hero,
 	watchProviders,
 	theatricalOnly,
+	catalogWatchRegion,
 	about,
 	community,
 	quotes,
@@ -96,6 +105,7 @@ function MovieDetailViewShellBody({
 	hero: ReactNode;
 	watchProviders: MovieWatchProvidersViewModel;
 	theatricalOnly: boolean;
+	catalogWatchRegion: string | null;
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
@@ -110,18 +120,13 @@ function MovieDetailViewShellBody({
 		episode: searchParams.get("episode"),
 	});
 	const [view, setView] = useState<MovieDetailView>(urlView);
-	const previousViewRef = useRef(view);
 
 	useEffect(() => {
 		setView(urlView);
 	}, [urlView]);
 
-	// Off-tab RSC panels unmount so short tabs (Streaming) don't inherit About scroll height.
-	useEffect(() => {
-		if (previousViewRef.current === view) return;
-		previousViewRef.current = view;
-		window.scrollTo({ top: 0, behavior: "instant" });
-	}, [view]);
+	// Forward entry + tab switches always start at the document top (Lenis-aware).
+	useListingDetailScrollReset({ listingId: movieId, view });
 
 	const showSectionNav = view === "about" && sectionNavItems.length >= 2;
 
@@ -165,10 +170,13 @@ function MovieDetailViewShellBody({
 
 					<div key="movie-detail-tab-streaming">
 						{view === "streaming" ? (
-							<div className="mx-auto flex w-full max-w-2xl flex-col px-2.5 pt-6 pb-8 sm:px-3 sm:pt-8 sm:pb-10">
+							<div className={MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME}>
 								<MovieDetailStreaming
+									listingKind={listingKind}
+									tmdbId={movieId}
 									watchProviders={watchProviders}
 									theatricalOnly={theatricalOnly}
+									catalogWatchRegion={catalogWatchRegion}
 								/>
 							</div>
 						) : null}

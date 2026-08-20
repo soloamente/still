@@ -7,12 +7,20 @@ import { QuotesLobbyBrowseLink } from "@/components/quotes/quotes-kind-chips";
 import { QuotesLobbyFallback } from "@/components/quotes/quotes-lobby-fallback";
 import { QuotesLobbyInfinite } from "@/components/quotes/quotes-lobby-infinite";
 import { QuotesPatronLobbyShell } from "@/components/quotes/quotes-patron-lobby-shell";
+import { QuotesSubmissionsInfinite } from "@/components/quotes/quotes-submissions-infinite";
 import { authServer } from "@/lib/auth-server";
 import type { MeProfile } from "@/lib/fetch-me-profile";
+import { fetchMyQuoteSubmissionsServer } from "@/lib/fetch-my-quote-submissions-server";
 import { fetchMySavedQuotesServer } from "@/lib/fetch-my-saved-quotes-server";
 import { buildPatronNavUserOrNull } from "@/lib/patron-nav-user";
 import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
-import { parseQuotesLobbyKind } from "@/lib/quotes-lobby";
+import {
+	type QuotesLobbyKind,
+	type QuotesLobbyView,
+	type QuotesSubmissionStatusFilter,
+	quotesLobbySearchState,
+} from "@/lib/quotes-lobby";
+import { quotesLobbyEmptyCopy } from "@/lib/quotes-lobby-empty-copy";
 import { serverApi } from "@/lib/server-api";
 
 export const metadata: Metadata = { title: "Quotes" };
@@ -50,28 +58,50 @@ async function QuotesChrome() {
 	);
 }
 
-async function QuotesLobbyData({
-	kind,
+function QuotesLobbyEmptyState({
+	title,
+	body,
+	ctaLabel,
 }: {
-	kind: ReturnType<typeof parseQuotesLobbyKind>;
+	title: string;
+	body: string;
+	ctaLabel: string;
 }) {
+	return (
+		<div
+			className="flex min-h-[min(40vh,20rem)] flex-1 flex-col items-center justify-center px-4 py-10 text-center"
+			role="status"
+		>
+			<div className="mx-auto flex w-full max-w-md flex-col items-center gap-4 rounded-2xl bg-background px-6 py-12 sm:px-10 sm:py-14">
+				<div className="space-y-2">
+					<p className="text-balance font-semibold text-foreground text-lg tracking-tight">
+						{title}
+					</p>
+					<p className="text-pretty text-muted-foreground text-sm leading-relaxed">
+						{body}
+					</p>
+				</div>
+				<QuotesLobbyBrowseLink label={ctaLabel} />
+			</div>
+		</div>
+	);
+}
+
+async function QuotesSavedLobbyData({ kind }: { kind: QuotesLobbyKind }) {
 	const page = await fetchMySavedQuotesServer({ kind, page: 1 });
+	const emptyCopy = quotesLobbyEmptyCopy({
+		view: "saved",
+		kind,
+		status: "all",
+	});
 
 	if (page.items.length === 0) {
 		return (
-			<div
-				className="flex min-h-[min(40vh,20rem)] flex-1 flex-col items-center justify-center px-4 py-10 text-center"
-				role="status"
-			>
-				<p className="text-balance font-sans text-lg">No saved quotes yet</p>
-				<p className="mx-auto mt-2 max-w-sm text-pretty text-muted-foreground text-sm leading-relaxed">
-					Open a film or show, visit the Quotes tab, and bookmark lines you want
-					to keep.
-				</p>
-				<div className="mt-6">
-					<QuotesLobbyBrowseLink />
-				</div>
-			</div>
+			<QuotesLobbyEmptyState
+				title={emptyCopy.title}
+				body={emptyCopy.body}
+				ctaLabel={emptyCopy.ctaLabel}
+			/>
 		);
 	}
 
@@ -84,13 +114,63 @@ async function QuotesLobbyData({
 	);
 }
 
+async function QuotesSubmittedLobbyData({
+	kind,
+	status,
+}: {
+	kind: QuotesLobbyKind;
+	status: QuotesSubmissionStatusFilter;
+}) {
+	const page = await fetchMyQuoteSubmissionsServer({ kind, status, page: 1 });
+	const emptyCopy = quotesLobbyEmptyCopy({
+		view: "submitted",
+		kind,
+		status,
+	});
+
+	if (page.items.length === 0) {
+		return (
+			<QuotesLobbyEmptyState
+				title={emptyCopy.title}
+				body={emptyCopy.body}
+				ctaLabel={emptyCopy.ctaLabel}
+			/>
+		);
+	}
+
+	return (
+		<QuotesSubmissionsInfinite
+			seeds={page.items}
+			initialHasMore={page.hasMore}
+			kind={kind}
+			status={status}
+		/>
+	);
+}
+
+async function QuotesLobbyData({
+	view,
+	kind,
+	status,
+}: {
+	view: QuotesLobbyView;
+	kind: QuotesLobbyKind;
+	status: QuotesSubmissionStatusFilter;
+}) {
+	if (view === "submitted") {
+		return <QuotesSubmittedLobbyData kind={kind} status={status} />;
+	}
+	return <QuotesSavedLobbyData kind={kind} />;
+}
+
 export default async function QuotesPage({
 	searchParams,
 }: {
-	searchParams: Promise<{ kind?: string }>;
+	searchParams: Promise<{ kind?: string; view?: string; status?: string }>;
 }) {
 	const sp = await searchParams;
-	const kind = parseQuotesLobbyKind(sp?.kind);
+	const { kind, view, status } = quotesLobbySearchState(sp);
+	const lobbyKey = `${view}-${kind}-${status}`;
 
 	return (
 		<div className="flex flex-1 flex-col overflow-visible bg-background">
@@ -99,17 +179,8 @@ export default async function QuotesPage({
 			</Suspense>
 
 			<QuotesPatronLobbyShell>
-				<header className="mx-auto mb-6 max-w-2xl text-center">
-					<h1 className="font-semibold text-foreground text-xl sm:text-2xl">
-						Your quotes
-					</h1>
-					<p className="mt-2 text-pretty font-editorial text-muted-foreground text-sm leading-relaxed sm:text-base">
-						Lines you saved from film and TV detail pages — newest first.
-					</p>
-				</header>
-
-				<Suspense fallback={<QuotesLobbyFallback />}>
-					<QuotesLobbyData kind={kind} />
+				<Suspense key={lobbyKey} fallback={<QuotesLobbyFallback />}>
+					<QuotesLobbyData view={view} kind={kind} status={status} />
 				</Suspense>
 			</QuotesPatronLobbyShell>
 		</div>

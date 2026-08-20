@@ -41,6 +41,7 @@ describe("hasPatronFeature", () => {
 		badge_prestige: "immersed",
 		challenges: "immersed",
 		leaderboard_visibility: "still",
+		discord_activity: "attuned",
 	};
 
 	test("still user blocked from attuned feature", () => {
@@ -78,7 +79,7 @@ describe("hasPatronFeature", () => {
 });
 
 describe("MIN_TIER_FOR_FEATURE", () => {
-	test("covers all 14 feature keys", () => {
+	test("covers all 15 feature keys", () => {
 		const keys: PlanFeatureKey[] = [
 			"full_stats",
 			"taste_signature",
@@ -94,8 +95,9 @@ describe("MIN_TIER_FOR_FEATURE", () => {
 			"badge_prestige",
 			"challenges",
 			"leaderboard_visibility",
+			"discord_activity",
 		];
-		expect(Object.keys(MIN_TIER_FOR_FEATURE)).toHaveLength(14);
+		expect(Object.keys(MIN_TIER_FOR_FEATURE)).toHaveLength(15);
 		for (const key of keys) {
 			expect(MIN_TIER_FOR_FEATURE[key]).toBeDefined();
 		}
@@ -108,6 +110,7 @@ describe("MIN_TIER_FOR_FEATURE", () => {
 			"activity_signature",
 			"streaming_filters",
 			"watchlist_alerts",
+			"discord_activity",
 		] as const) {
 			expect(MIN_TIER_FOR_FEATURE[key]).toBe("attuned");
 		}
@@ -130,6 +133,24 @@ describe("MIN_TIER_FOR_FEATURE", () => {
 
 	test("leaderboard visibility is included on still", () => {
 		expect(MIN_TIER_FOR_FEATURE.leaderboard_visibility).toBe("still");
+	});
+
+	test("discord_activity requires attuned", () => {
+		expect(MIN_TIER_FOR_FEATURE.discord_activity).toBe("attuned");
+		expect(
+			hasPatronFeatureForTier({
+				effectiveTier: "still",
+				grants: [],
+				featureKey: "discord_activity",
+			}),
+		).toBe(false);
+		expect(
+			hasPatronFeatureForTier({
+				effectiveTier: "attuned",
+				grants: [],
+				featureKey: "discord_activity",
+			}),
+		).toBe(true);
 	});
 });
 

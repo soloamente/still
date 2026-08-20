@@ -2,6 +2,7 @@ import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
 import { MoviePoster } from "@/components/movie/movie-poster";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import type { TvWatchBundle } from "@/lib/tv-watch-types";
 
@@ -10,10 +11,7 @@ const CONTINUE_RAIL_POSTER_FRAME_CLASSNAME =
 	"rounded-2xl border-0 bg-background";
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
-	if (!posterPath?.length) return null;
-	if (posterPath.startsWith("http")) return posterPath;
-	const fragment = posterPath.startsWith("/") ? posterPath : `/${posterPath}`;
-	return `https://image.tmdb.org/t/p/w780${fragment}`;
+	return tmdbPosterUrlFromPath(posterPath, "w342");
 }
 
 /**

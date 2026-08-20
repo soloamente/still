@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import Image from "next/image";
 import { useState } from "react";
 
+import { HomeTasteHeroStillsCarousel } from "@/components/home/home-taste-hero-stills-carousel";
 import { HomeTasteHeroYouTubeTrailer } from "@/components/home/home-taste-hero-youtube-trailer";
 import {
 	HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME,
@@ -54,31 +54,37 @@ function HomeTasteHeroMediaLayerBody({
 			: null;
 	const showVimeoIframe =
 		Boolean(trailerSrc) && !trailerBlocked && youtubeEmbed == null;
+	const hasActiveTrailer = Boolean(youtubeEmbed || showVimeoIframe);
 
 	return (
 		<div className={HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME} aria-hidden>
 			<div className="relative size-full">
-				{backdropUrl ? (
+				{hasActiveTrailer && backdropUrl ? (
 					<div
 						className={cn("absolute", HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME)}
 					>
-						<Image
+						{/* biome-ignore lint/performance/noImgElement: single static plate under the trailer iframe */}
+						<img
 							key={`hero-backdrop-${tmdbId}`}
 							src={backdropUrl}
 							alt=""
-							fill
-							priority
-							sizes="100vw"
-							className="object-cover object-[center_52%] sm:object-[center_42%] min-[2000px]:object-[center_48%]"
-							unoptimized={backdropUrl.includes("image.tmdb.org")}
+							className="absolute inset-0 size-full object-cover object-[center_52%] sm:object-[center_42%] min-[2000px]:object-[center_48%]"
+							decoding="async"
+							fetchPriority="high"
 						/>
 					</div>
-				) : (
+				) : hasActiveTrailer ? (
 					<div
 						className={cn(
 							"absolute bg-background",
 							HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME,
 						)}
+					/>
+				) : (
+					<HomeTasteHeroStillsCarousel
+						key={`hero-stills-${tmdbId}`}
+						tmdbId={tmdbId}
+						fallbackBackdropUrl={backdropUrl}
 					/>
 				)}
 				{youtubeEmbed ? (

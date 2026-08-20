@@ -73,9 +73,24 @@ export async function fetchSocialCandidates(args: {
 		]),
 	);
 
+	/**
+	 * Column-scoped on purpose: selecting whole `movie` rows drags `tmdb_json`
+	 * (the verbatim TMDb payload) across 400 neighbor logs, which cost ~4.8s of
+	 * pure transfer per home load. Only these scalars build a candidate.
+	 */
 	const rows = await db
 
-		.select({ log, movie })
+		.select({
+			userId: log.userId,
+			rating: log.rating,
+			movieId: log.movieId,
+			title: movie.title,
+			posterPath: movie.posterPath,
+			year: movie.year,
+			genreIds: movie.genreIds,
+			originalLanguage: movie.originalLanguage,
+			popularity: movie.popularity,
+		})
 
 		.from(log)
 
@@ -102,19 +117,19 @@ export async function fetchSocialCandidates(args: {
 		.limit(SOCIAL_LOG_BATCH_LIMIT);
 
 	for (const row of rows) {
-		if (row.log.rating == null) continue;
+		if (row.rating == null) continue;
 
-		if (storedRatingToDisplayTen(row.log.rating) < SOCIAL_MIN_RATING_DISPLAY) {
+		if (storedRatingToDisplayTen(row.rating) < SOCIAL_MIN_RATING_DISPLAY) {
 			continue;
 		}
 
-		const tmdbId = row.log.movieId;
+		const tmdbId = row.movieId;
 
 		if (tmdbId == null) continue;
 
-		const compat = compatById.get(row.log.userId) ?? 0;
+		const compat = compatById.get(row.userId) ?? 0;
 
-		const socialScore = compat * ratingAffinityWeight(row.log.rating);
+		const socialScore = compat * ratingAffinityWeight(row.rating);
 
 		const existing = best.get(tmdbId);
 
@@ -123,17 +138,17 @@ export async function fetchSocialCandidates(args: {
 		best.set(tmdbId, {
 			tmdbId,
 
-			title: row.movie.title,
+			title: row.title,
 
-			posterPath: row.movie.posterPath,
+			posterPath: row.posterPath,
 
-			year: row.movie.year,
+			year: row.year,
 
-			genreIds: row.movie.genreIds ?? [],
+			genreIds: row.genreIds ?? [],
 
-			originalLanguage: row.movie.originalLanguage,
+			originalLanguage: row.originalLanguage,
 
-			popularity: row.movie.popularity,
+			popularity: row.popularity,
 
 			socialScore,
 		});

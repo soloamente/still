@@ -22,6 +22,7 @@ import {
 	buildTasteMatchedDiscoveryWithMeta,
 	TASTE_MATCH_MIN_RESULTS,
 } from "../lib/taste-matched-discovery";
+import { traceTiming } from "../lib/trace-timing";
 
 async function resolveProfileByHandle(handle: string) {
 	const normalized = handle.toLowerCase();
@@ -88,7 +89,11 @@ export const tasteRoute = new Elysia({
 		if (!hit(`taste:for-you:${user.id}`, { limit: 60, windowMs: 60_000 }).ok) {
 			return status(429, "Slow down");
 		}
-		const { payload, meta } = await buildTasteMatchedDiscoveryWithMeta(user.id);
+		const { payload, meta } = await traceTiming(
+			"taste",
+			"buildTasteMatchedDiscovery",
+			() => buildTasteMatchedDiscoveryWithMeta(user.id),
+		);
 		if (
 			!payload.coldStart &&
 			payload.movies.length >= TASTE_MATCH_MIN_RESULTS

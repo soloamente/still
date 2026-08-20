@@ -1,6 +1,9 @@
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
-import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
+import type {
+	LeaderboardKind,
+	LeaderboardPayload,
+} from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
 import type {
 	MembersLeaderboardPayload,
@@ -715,6 +718,62 @@ export async function fetchMySavedQuotes(
 		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
 	});
 	return finishStillApiPagedGet(response);
+}
+
+/** Signed-in patron quote submissions — `/quotes?view=submitted`. */
+export async function fetchMyQuoteSubmissions(
+	opts: {
+		page?: number;
+		limit?: number;
+		kind?: string;
+		status?: string;
+	},
+	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+) {
+	const url = new URL("/api/me/quotes/submissions", stillApiOrigin());
+	if (opts.page != null) url.searchParams.set("page", String(opts.page));
+	if (opts.limit != null) url.searchParams.set("limit", String(opts.limit));
+	if (opts.kind) url.searchParams.set("kind", opts.kind);
+	if (opts.status) url.searchParams.set("status", opts.status);
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		cache: cache ?? "no-store",
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	return finishStillApiPagedGet(response);
+}
+
+/** TMDb backdrop stills — taste hero rotation + review still picker share this pool. */
+export async function fetchMovieReviewStills(
+	movieId: number,
+	init?: Pick<RequestInit, "signal">,
+): Promise<
+	{
+		key: string;
+		src: string;
+		srcFull?: string | null;
+		label: string;
+	}[]
+> {
+	const url = new URL(`/api/movies/${movieId}/review-stills`, stillApiOrigin());
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return [];
+	const data = (await response.json()) as unknown;
+	if (isStillApiErrorPayload(data)) return [];
+	const payload = data as {
+		screenshots?: {
+			key: string;
+			src: string;
+			srcFull?: string | null;
+			label: string;
+		}[];
+	};
+	return Array.isArray(payload.screenshots) ? payload.screenshots : [];
 }
 
 /** TMDb title wordmark path — used by the home taste hero when spotlight swaps. */
@@ -1570,16 +1629,26 @@ export async function fetchCommunityLists(
 	return parseCommunityListsPayload(await response.json());
 }
 
+/** Community `/api/reviews/recent` ordering. */
+export type CommunityReviewOrder = "chronological" | "engagement";
+
 /** Recent public reviews — respects community period window. */
 export async function fetchCommunityReviewsRecent(
 	period: HomeLeaderboardPeriod,
 	tz: string,
-	opts?: { page?: number; signal?: AbortSignal },
+	opts?: {
+		page?: number;
+		order?: CommunityReviewOrder;
+		signal?: AbortSignal;
+	},
 ): Promise<unknown[] | null> {
 	const url = new URL("/api/reviews/recent", stillApiOrigin());
 	url.searchParams.set("limit", String(COMMUNITY_REVIEWS_LIMIT));
 	if (opts?.page && opts.page > 1)
 		url.searchParams.set("page", String(opts.page));
+	if (opts?.order === "engagement") {
+		url.searchParams.set("order", "engagement");
+	}
 	for (const [key, value] of communityPeriodSearchParams({ period, tz })) {
 		url.searchParams.set(key, value);
 	}
@@ -1653,18 +1722,28 @@ export async function fetchCommunityActivity(
 
 /** Community rank boards — client refetch with patron IANA `tz` after SSR (UTC). */
 export async function fetchCommunityLeaderboard(
-	kind: "films" | "tv",
+	kind: LeaderboardKind,
 	period: HomeLeaderboardPeriod,
 	tz: string,
-	init?: Pick<RequestInit, "signal">,
+	options?: {
+		page?: number;
+		limit?: number;
+		signal?: AbortSignal;
+	},
 ): Promise<LeaderboardPayload | null> {
 	const url = new URL(`/api/leaderboard/${kind}`, stillApiOrigin());
 	url.searchParams.set("period", period);
 	url.searchParams.set("tz", tz);
+	if (options?.page != null) {
+		url.searchParams.set("page", String(options.page));
+	}
+	if (options?.limit != null) {
+		url.searchParams.set("limit", String(options.limit));
+	}
 	const response = await fetch(url, {
 		credentials: "include",
 		cache: "no-store",
-		signal: init?.signal,
+		signal: options?.signal,
 	});
 	if (!response.ok) return null;
 	return (await response.json()) as LeaderboardPayload;

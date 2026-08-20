@@ -9,3 +9,19 @@ export function tmdbPosterUrlFromPath(
 	const fragment = path.startsWith("/") ? path : `/${path}`;
 	return `https://image.tmdb.org/t/p/${size}${fragment}`;
 }
+
+/**
+ * True when `src` is already served from TMDb's CDN.
+ * Skip Vercel `/_next/image` for these — TMDb already ships sized JPEGs; re-encoding
+ * drives Image Optimization transformations + cache-write units and Edge Requests.
+ */
+export function isTmdbCdnUrl(src: string | null | undefined): boolean {
+	if (!src?.length) return false;
+	// Relative / same-origin paths must not inherit a TMDb base URL.
+	if (!/^https?:\/\//i.test(src)) return false;
+	try {
+		return new URL(src).hostname === "image.tmdb.org";
+	} catch {
+		return false;
+	}
+}

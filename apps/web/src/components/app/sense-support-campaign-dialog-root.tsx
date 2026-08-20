@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { SenseSupportCampaignDialog } from "@/components/app/sense-support-campaign-dialog";
+import { isWhatsNewBlocking } from "@/components/app/whats-new-dialog-root";
 import { isWatchRegionPromptActive } from "@/lib/first-run-prompt-keys";
 import type { SenseSupportCampaign } from "@/lib/sense-support-campaign";
 import {
@@ -17,8 +18,8 @@ import {
 } from "@/lib/sense-support-campaign-seen";
 
 const OPEN_DELAY_MS = 2_500;
-const REGION_PROMPT_POLL_MS = 300;
-const REGION_PROMPT_MAX_WAIT_MS = 45_000;
+const PRIOR_PROMPT_POLL_MS = 300;
+const PRIOR_PROMPT_MAX_WAIT_MS = 45_000;
 
 class SenseSupportCampaignErrorBoundary extends Component<
 	{ children: ReactNode; onFailed: () => void },
@@ -41,7 +42,10 @@ class SenseSupportCampaignErrorBoundary extends Component<
 	}
 }
 
-/** One-time support campaign — replaces What's New for this release. */
+/**
+ * One-time Discord / Pro campaign — support-campaign split layout.
+ * Waits for What's New (and watch-region) so patch notes show first.
+ */
 export function SenseSupportCampaignDialogRoot({
 	userId,
 	campaign,
@@ -70,11 +74,11 @@ export function SenseSupportCampaignDialogRoot({
 
 		const tryOpen = () => {
 			if (cancelled) return;
-			const regionBlocking =
-				isWatchRegionPromptActive() &&
-				Date.now() - startedAt < REGION_PROMPT_MAX_WAIT_MS;
-			if (regionBlocking) {
-				pollId = window.setTimeout(tryOpen, REGION_PROMPT_POLL_MS);
+			const withinGrace = Date.now() - startedAt < PRIOR_PROMPT_MAX_WAIT_MS;
+			const regionBlocking = isWatchRegionPromptActive() && withinGrace;
+			const whatsNewBlocking = isWhatsNewBlocking(userId) && withinGrace;
+			if (regionBlocking || whatsNewBlocking) {
+				pollId = window.setTimeout(tryOpen, PRIOR_PROMPT_POLL_MS);
 				return;
 			}
 			setOpen(true);

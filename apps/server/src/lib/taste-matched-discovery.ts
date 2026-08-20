@@ -28,6 +28,7 @@ import {
 	buildTasteMatchExcludeIds,
 	fetchWatchlistMovieTmdbIds,
 } from "./taste-watchlist-exclusion";
+import { traceTiming } from "./trace-timing";
 
 /** Minimum diary rows before taste-matched rail replaces cold-start (ST.4). */
 export const TASTE_MATCH_MIN_LOGS = 10;
@@ -185,18 +186,29 @@ export function mergeBlendAndPenalizeCandidates(input: {
 export async function scoreTasteMatchCandidatesForUser(
 	userId: string,
 ): Promise<ScoreTasteMatchResult> {
-	const rows = await db
-		.select({
-			log,
-			movie,
-		})
-		.from(log)
-		.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-		.where(and(eq(log.userId, userId), isNull(log.removedAt)))
-		.orderBy(desc(log.watchedAt))
-		.limit(400);
+	/**
+	 * Column-scoped on purpose: selecting whole `movie` rows drags `tmdb_json`
+	 * (the verbatim TMDb payload) for up to 400 diary rows, which cost ~4.4s of
+	 * pure transfer per home load. Only these scalars feed the taste profile.
+	 */
+	const rows = await traceTiming("taste", "viewerDiaryRows", () =>
+		db
+			.select({
+				rating: log.rating,
+				movieId: log.movieId,
+				genreIds: movie.genreIds,
+				year: movie.year,
+				originalLanguage: movie.originalLanguage,
+				popularity: movie.popularity,
+			})
+			.from(log)
+			.leftJoin(movie, eq(log.movieId, movie.tmdbId))
+			.where(and(eq(log.userId, userId), isNull(log.removedAt)))
+			.orderBy(desc(log.watchedAt))
+			.limit(400),
+	);
 
-	const movieRows = rows.filter((row) => row.log.movieId != null);
+	const movieRows = rows.filter((row) => row.movieId != null);
 	if (movieRows.length < TASTE_MATCH_MIN_LOGS) {
 		return {
 			coldStart: true,
@@ -214,14 +226,14 @@ export async function scoreTasteMatchCandidatesForUser(
 
 	const total = movieRows.length;
 	const slices: TasteProfileSlice[] = movieRows.map((row, index) => ({
-		genreIds: (row.movie?.genreIds as number[] | undefined) ?? [],
-		rating: row.log.rating,
-		year: row.movie?.year ?? null,
-		originalLanguage: row.movie?.originalLanguage ?? null,
-		popularity: row.movie?.popularity ?? null,
+		genreIds: row.genreIds ?? [],
+		rating: row.rating,
+		year: row.year ?? null,
+		originalLanguage: row.originalLanguage ?? null,
+		popularity: row.popularity ?? null,
 		index,
 		total,
-		movieTmdbId: row.log.movieId ?? undefined,
+		movieTmdbId: row.movieId ?? undefined,
 	}));
 
 	const profile = buildWeightedTasteProfile(slices);
@@ -259,29 +271,39 @@ export async function scoreTasteMatchCandidatesForUser(
 	let neighborCount = 0;
 
 	try {
-		const viewerSlices = await fetchOverlapDiarySlices(userId);
+		const viewerSlices = await traceTiming("taste", "overlapDiarySlices", () =>
+			fetchOverlapDiarySlices(userId),
+		);
 		const viewerMap = buildOverlapDiaryMap(viewerSlices);
 
 		const [stratified, dismissed, neighbors] = await Promise.all([
-			fetchStratifiedCandidates({ topGenreIds, excludeTmdbIds: excludeIds }),
-			fetchDismissedMoviesWithMetadata(userId, 50),
-			resolveTasteNeighbors({
-				viewerId: userId,
-				viewerMap,
-				minSharedTitles: 3,
-				minCompatibility: 40,
-				limit: 20,
-			}),
+			traceTiming("taste", "stratifiedCandidates", () =>
+				fetchStratifiedCandidates({ topGenreIds, excludeTmdbIds: excludeIds }),
+			),
+			traceTiming("taste", "dismissedMovies", () =>
+				fetchDismissedMoviesWithMetadata(userId, 50),
+			),
+			traceTiming("taste", "resolveTasteNeighbors", () =>
+				resolveTasteNeighbors({
+					viewerId: userId,
+					viewerMap,
+					minSharedTitles: 3,
+					minCompatibility: 40,
+					limit: 20,
+				}),
+			),
 		]);
 
 		stratifiedCandidates = stratified;
 		dismissedMetadata = dismissed;
 		neighborCount = neighbors.length;
-		socialCandidates = await fetchSocialCandidates({
-			viewerId: userId,
-			neighbors,
-			excludeTmdbIds: excludeIds,
-		});
+		socialCandidates = await traceTiming("taste", "socialCandidates", () =>
+			fetchSocialCandidates({
+				viewerId: userId,
+				neighbors,
+				excludeTmdbIds: excludeIds,
+			}),
+		);
 	} catch (err) {
 		console.error("[taste-match] neighbor/social fetch failed; solo-only", {
 			userId,
@@ -428,19 +450,25 @@ function payloadFromScoredResult(
 export async function buildTasteMatchedDiscoveryWithMeta(
 	userId: string,
 ): Promise<TasteMatchedDiscoveryResult> {
-	const result = await scoreTasteMatchCandidatesForUser(userId);
+	const result = await traceTiming("taste", "scoreCandidates", () =>
+		scoreTasteMatchCandidatesForUser(userId),
+	);
 	let payload = payloadFromScoredResult(result);
 	if (!payload.coldStart && payload.movies.length > 0) {
 		const { enrichTasteMatchMovies } = await import("./taste-match-enrichment");
 		payload = {
 			...payload,
-			movies: await enrichTasteMatchMovies(payload.movies),
+			movies: await traceTiming("taste", "enrichMovies", () =>
+				enrichTasteMatchMovies(payload.movies),
+			),
 		};
 	}
 	const { finalizeTasteMatchedPayload } = await import(
 		"./taste-consumed-movies"
 	);
-	payload = await finalizeTasteMatchedPayload(userId, payload);
+	payload = await traceTiming("taste", "finalizePayload", () =>
+		finalizeTasteMatchedPayload(userId, payload),
+	);
 	return {
 		payload,
 		meta: result.meta,

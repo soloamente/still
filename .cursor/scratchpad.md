@@ -1,17 +1,1679 @@
 # Still — 70mm Cinematic Direction Plan
 
+## What's New split dialog (2026-08-20) — EXECUTOR
+
+**Status:** Shipped for human QA.  
+**Scope:** One multi-step What's New (support-campaign split). Discord is **step 4**, not a separate campaign.
+
+### Steps
+1. Translate reviews  
+2. Bug fixes throughout  
+3. Small polish everywhere  
+4. Discord activity for Pro  
+
+### Done
+- Release id `2026-08-20-translate-fixes-v4`
+- `SENSE_SUPPORT_CAMPAIGN_ENABLED = false`
+- Discord step: both body paragraphs + **What you unlock** inset card
+- **See full release** only on last step, as `bg-background` pill
+- Translate + Bug fixes steps thank **@jdc** (links to `/profile/jdc`)
+
+### Manual QA
+1. Clear `still:whats-new-seen:v1:{userId}` (or reload — v4 is a new id)
+2. Steps 1–3: no changelog CTA; steps 1–2 show thanks to @jdc
+3. Last step: Discord copy + card + **See full release** pill
+4. No separate Discord-only campaign after Got it
+
+Reply **`ok`** or list bugs / copy tweaks.
+
+---
+
+## Vercel cost optimization (2026-08-20) — EXECUTOR
+
+**Status:** Code shipped (TMDb bypass + next.config harden). Dashboard steps below need human.
+
+### Code done
+- `isTmdbCdnUrl` + tests in `apps/web/src/lib/tmdb-poster-url.ts`
+- `unoptimized` on high-volume TMDb `next/image` surfaces (`MoviePoster`, feed thumbs, hero/stills, tickets, etc.)
+- Grid poster buckets `w780` → `w342` (diary/watchlist/lists/taste rail/profile filmography)
+- `next.config.ts`: `minimumCacheTTL` 31d, removed `hostname: "**"`, restricted sizes/qualities/formats
+
+### Observability ($2.44) — human dashboard
+No `@vercel/analytics` / Speed Insights in app layouts. Events are project-level:
+1. Vercel → Sense web project → **Usage → Observability** (confirm product: Observability Plus / Web Analytics / Speed Insights / drains)
+2. Disable unused products or lower sampling; remove noisy log drains
+3. Prefer Observability Free tier if Plus is on and unused
+
+### Post-deploy verify
+1. Usage → Image Optimization: transformations + cache writes should collapse within days
+2. Edge Requests should drop with `/_next/image` traffic
+3. Spot-check `/home` catalogue posters still sharp
+4. Only if Function Invocations stay ~700K: audit presence heartbeats next
+
+Reply **`ok`** after deploy + first usage check, or list regressions.
+
+---
+
+## Missing artwork morph placeholder (2026-08-20) — EXECUTOR
+
+**Status:** Shipped for human QA.  
+**Scope:** Empty TMDb posters + cast/crew headshots use morphing dot-field (`MissingArtworkPlaceholder`) instead of `ImageOff` / `UserRound`.
+
+### Done
+- `apps/web/src/components/media/missing-artwork-placeholder.tsx`
+- `.missing-artwork*` in `packages/ui/src/styles/globals.css` (theme tokens + reduced motion)
+- Wired: `movie-poster.tsx`, `person-credit-portrait.tsx`, `movie-detail-hero-media.tsx` empty frame
+
+### Manual QA
+1. Catalogue / diary tile with no poster — morph dots + “No poster” + title
+2. Movie/TV cast arc or credits card with no headshot — **`bg-background`** + centered **No image** pill (Agentation fix 2026-08-20)
+3. Detail hero with no poster
+4. `prefers-reduced-motion` — static glow, readable label
+5. Calm + dark themes — dots use foreground/muted tokens
+
+Reply **`ok`** or list bugs.
+
+---
+
+## Settings membership card → Holo foil (2026-08-15) — PLANNER → ready for Executor
+
+**QA note (2026-08-15):** Duotone polarity on PFP felt weird — softened (later flip, capped coverage, feathered mask, soft-light duo, circular tile). Awaiting re-check.
+
+### Task 1 status (2026-08-15)
+- Created `apps/web/src/lib/holo/engine.ts` (FOILS×10 from transcript paste; Sense `foilByKey` + `applyFoil(opts)`; no mediaUrl/Kamila)
+- Created `apps/web/src/lib/holo/tier-print.ts` (still→brushed, attuned→holo, immersed→velvet, devoted→cosmos + PRINT constants)
+- Tests: `bun test src/lib/holo/tier-print.test.ts src/lib/holo/engine.test.ts` → **5 pass**
+- Follow settle test pumps frames after stiffness-1 step (speed decay) — plan's one-step `settled` was too strict for original Follow
+
+### Task 2 status (2026-08-15)
+- Added `@layer components` `.holo-*` block in `packages/ui/src/styles/globals.css` (~line 1787) after subscription-card-fx; left `.subscription-card-fx*` untouched
+- Classes: card/body/foil×3/glare/smear/spot/noise/sheen/pattern/content/tile + polarity mask; GRAIN data-uri; edge inset box-shadows; `prefers-reduced-motion` → `.holo-card { transform: none }`
+- No heart SVGs; braces balanced; `rg` finds holo-card/foil/tile
+
+### Task 4 status (2026-08-15)
+- Wired `MeSubscriptionIdentityCard`: hostRef + perspective only; Motion flip-only; two `HoloMembershipFace` + `useHoloCardLoop`
+- Front: Sense wordmark + name/@handle/tier + `HoloMembershipTile` (no aura / CardTierChrome / CardFaceGlow)
+- Back: billing UI inside Holo face; foil on both
+- Back-face tilt: `useHoloCardLoop` inverts X for `faceRefs[index > 0]`
+- Removed Motion pointer tilt + glow drop-shadow; left `.subscription-card-fx` CSS for Task 5
+- Tests: `bun test src/lib/holo/` → **5 pass**; no commit
+
+### Executor's Feedback or Assistance Requests (Holo Task 4)
+
+**Ready for human QA** on `/me/settings/subscription`:
+1. Foil lags with pointer on identity face
+2. Flip → billing still responds to foil
+3. Still / Attuned / Immersed / Devoted distinct print + foil
+4. Portrait polarity at steep tilt
+5. Reduced motion / soft GPU — settled, no busy rAF
+6. Manage subscription still works
+
+Reply **`ok`** or list bugs. Task 5 (dead CSS + edge polish) only after **`go`**.
+
+---
+
+## Auth `/sign-up` shell — better-interface + transitions-dev (2026-08-15) — EXECUTOR
+
+**Mode:** Executor — A.1–A.5 shipped; awaiting human QA on A.3–A.5.  
+**Trigger:** Agentation on `/sign-up` @ 2554×1386 — `<AuthRouteLayout>` / `<AuthPageShell>` `.relative` flex stack + `/better-interface` `/transitions-dev`.
+
+### Scope
+
+`AuthRouteLayout` + `AuthPageShell` + sign-up form path (shared shell also covers sign-in / forgot / reset). Boundary: not onboarding wizard, not landing marketing.
+
+### Verdict (review)
+
+**Needs changes** — no HIGH task-blockers that prevent account creation, but keyboard focus on auth inputs is a HIGH a11y miss; route swap motion is half-built dead code; guidelines copy is a dead claim.
+
+### Findings (consolidated)
+
+| # | Sev | Domain | Location | Issue |
+| --- | --- | --- | --- | --- |
+| 1 | HIGH | Accessibility | `auth-motion-field.tsx:7-8` | `focus:outline-none focus:ring-0` — focused email has `outline: none` + `boxShadow: none` (verified Runtime.evaluate) |
+| 2 | MEDIUM | UI / transitions | `auth-page-shell.tsx` + `auth-route-slide.tsx` | Shared shell swaps title/form/footer instantly; `AuthRouteSlide` + `.t-page-slide` exist but are **unwired**; imports missing `@/lib/auth-route-order` |
+| 3 | MEDIUM | Writing | `sign-up-form.tsx:131-134` | “agree to our community guidelines” is plain text — no href and no `/guidelines` (or similar) route in app |
+| 4 | MEDIUM | Accessibility | `field.tsx` / `auth-motion-field.tsx` | `aria-invalid` set; errors not linked via `aria-describedby`; error `<p>` has no id/role |
+| 5 | LOW | UI | `auth-submit-button.tsx:26,34` | Press scale `0.98` vs better-ui `0.96` |
+
+### transitions-dev review (auth shell)
+
+1. `auth-page-shell.tsx` convert-card body (title + children + footer) — **page side-by-side** (`08`) — wire existing `AuthRouteSlide`.
+2. `auth-submit-button.tsx` spinner ↔ label — already Motion; optional **icon-swap** later (skip if Motion stays).
+3. Invalid fields — optional **error-state-shake** (`12`) after focus + describedby land.
+4. Skip: modal/dropdown/badge; first-load `auth-page-content-enter` already intentional (transform-only).
+
+Run `transitions apply` on finding 2 after wiring.
+
+### High-level tasks (Executor, one at a time)
+
+1. **A.1** Focus-visible on auth inputs (token-friendly ring/shadow; keep no orange chrome).
+2. **A.2** Wire `AuthRouteSlide` around shell `routeContent`; add `auth-route-order.ts`; honor reduced motion.
+3. **A.3** Guidelines: link to a real page **or** rewrite copy so it doesn’t claim a missing policy.
+4. **A.4** `aria-describedby` + stable error ids on `Field` / `AuthFieldErrors`.
+5. **A.5** (optional) press scale `0.96`; error shake.
+
+### Rejected
+
+- Drop full-height `md` card / nested `.relative` — intentional half-bleed cinematic chrome.
+- Replace CSS enter with Motion opacity — known mobile blank-page regression.
+- Remove `shadow-lg` on auth card in this pass — floating convert panel, not lobby depth ladder.
+
+### Project Status Board
+
+- [x] A.1 Focus-visible auth inputs — theme-neutral `ring-foreground/35` (human ok)
+- [x] A.2 Wire AuthRouteSlide + motion slide — human ok
+- [x] A.3 Guidelines copy — dropped dead “community guidelines” claim; spoiler line kept
+- [x] A.4 aria-describedby + `role="alert"` error ids on auth fields (sign-up Field + sign-in / forgot / reset)
+- [x] A.5 Press scale `0.96` on AuthSubmitButton (skipped error-shake — optional)
+
+### Executor's Feedback or Assistance Requests
+
+**A.3–A.5 ready for QA:**
+1. `/sign-up` footer — only “We don’t spoil films you haven’t logged.” (no guidelines claim)
+2. Empty-submit or invalid email — input has `aria-describedby` → `#email-error` (etc.); error has `role="alert"`
+3. Submit button press feels ~0.96 scale
+
+Reply **ok** if the auth shell track is done, or notes.
+
+---
+
+## Landing hero: full-viewport spiral (2026-08-15) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting visual QA on unsigned `/` `#scene` @ 2554×1386.  
+**Trigger:** Agentation — spiral should be hero background for the whole first screen with headline on top.
+
+### What shipped
+
+- `LandingHero` is `min-h-dvh`, pulls under sticky nav (`-mt-[4.5rem]`), spiral absolute full-bleed + radial scrim.
+- Type + CTAs sit `z-10` centered over the vortex; removed nested product well (`landing-hero-well.tsx` deleted).
+
+### Density pass (2026-08-15)
+
+- Spiral: `imageSize` 360, `spacing` 1.65 (~120 slots), `spread` 7.2, `sizeAttenuation` 1.2, `turns` 4.2.
+- Poster feed cap **20**.
+
+### Executor's Feedback or Assistance Requests
+
+Hard-refresh `/` — posters should read denser and larger. Then **ok** or notes.
+
+---
+
+## Landing hero: Originkit Spiral Images (2026-08-15) — EXECUTOR
+
+**Mode:** Executor — superseded by full-viewport spiral pass above.  
+**Trigger:** Add Originkit `spiralimages` via CLI (`--prompt` + `ORIGINKIT_API_KEY` in shell only).
+
+### What shipped
+
+- CLI wrote `apps/web/src/components/originkit/ui/spiralimages.tsx` (added `"use client"` for App Router).
+- `LandingHeroSpiral` maps popular posters → spiral `images`; reduced-motion sets `speed={0}`.
+- Poster pick cap **14**. Biome ignores vendor `originkit/**`; `.originkit/` already gitignored.
+
+### Executor's Feedback or Assistance Requests
+
+Superseded — see full-viewport spiral section.
+
+**Security:** API key was pasted in chat — rotate it on Originkit if this thread is shared; never commit the key.
+
+---
+
+## Agentation: Onboarding wizard layout (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/onboarding` @ 1430×1384.  
+**Trigger:** `.box-border > .mx-auto` — redesign `/transitions-dev` `/better-interface`.
+
+### What shipped
+
+- Inner card is no longer 50/50 auto-flex. Wizard rail is a fixed column; preview takes the rest.
+- **2026-08-20:** Setup column is **45% / 50% at xl** of the card (not a fixed rem rail) so it balances the preview on ultrawide. Hard-refresh if HMR stalls. Taste ratings use shared `SenseTrackSlider` (same as crop zoom).
+- Step changes use transitions.dev page-slide + card-resize height; continue labels text-swap; identity ↔ catalogue preview panel-reveals.
+- Profile specimen is `bg-background` (no card-in-card). Copy and fields left-align on `lg`. Quiet progress meter on the rail.
+
+### Executor's Feedback or Assistance Requests
+
+Please refresh `/onboarding` at ~2554×1386 and confirm the setup column has enough width / inset. Reply **`ok`** or notes.
+
+**Awaiting human verify (import `/home` leak):** favorites → import → must stay on `/onboarding` until **Enter Sense**. If an account was already grandfathered mid-wizard in an earlier session, use a fresh signup (or clear `onboarded_at`) to retest. Reply **`ok`** or notes.
+
+**2026-08-20 import motion:** Live source stack uses transitions.dev **avatar-group-hover** (`useAvatarGroupHover` + `.t-avatar`); select mark uses **icon-swap**. Hover no longer washes tile into card. TV Time + all provider PNGs wired.
+
+**2026-08-21 landing spiral posters:** Spiral used `crossOrigin=anonymous` which can fail TMDb loads in some privacy modes (colored / empty tiles). Removed CORS flag for display-only canvas; prefer `w342`; eased hero veil. Hard-refresh `/`.
+
+**2026-08-20 follow-up:** Portrait step opens `ImageCropDialog` (same as Settings) so PC patrons can pan/zoom before confirm. Manual QA: pick image on `/onboarding` avatar step → crop dialog → drag/zoom → Apply → circular preview updates.
+
+**Zoom slider redesign:** Native `<input type="range">` replaced with `ImageCropZoomSlider` (± pills + `bg-background` track + thumb, card-resize fill motion). Shared by Settings + onboarding crop.
+
+**2026-08-20 taste search scroll cue:** Soft fades alone weren’t enough. Search list now (1) clips mid-row so the next hit peeks, (2) uses a denser bottom scrim, (3) shows a “More results” + chevron pill while `showFooterFade` is true. Shell is `overflow-hidden rounded-2xl` so bottom corners stay round; equal `p-2`; taller `max-h-64`.
+
+**2026-08-20 taste/favorites preview scroll:** Desktop card is viewport-locked (`lg:h/max-h-[calc(100dvh-1.25rem)]`) so preview `overflow-y-auto` gets a height budget; panel reveal + grids use `h-full min-h-0`; `justify-safe-center` so overflow isn’t trapped.
+
+**2026-08-20 taste continue gate copy:** Progress meta removed from step header; disabled Continue shows `N / 8 rated`, then swaps to `Continue` once the gate clears.
+
+**2026-08-20 favorites empty state:** Centered preview empty with heart mark + title/body (motion enter); replaces lone muted paragraph.
+
+**2026-08-20 favorites grid polish:** Single `LayoutGroup` (picks ↔ search morph), staggered empty/search enters, section gap layout, softer tile exit, pick count in section label. Reply **`ok`** or notes.
+
+**2026-08-20 import-step `/home` leak (fix):** Completing favorites ran `markOnboarded` + server grandfather (diary/taste/favorites) unlocked `(app)` before import/Enter. Now: `runOnboardingFinish` saves without `markOnboarded`; Enter Sense patches `markOnboarded: true`; post-v3 gate/grandfather only unlocks on `onboardedAt` (pre-v3 handle still grandfathered). Manual QA: favorites → import picker → stay on `/onboarding` (BrandMark/refresh must not land on home) → Done → Enter → `/home`.
+
+---
+
+## Landing remake (2026-08-14) — PLANNER
+
+**Mode:** Planner — brainstorming. Approach **2** locked. Presenting design sections; do not implement until spec is approved.  
+**Trigger:** `/` `#scene` — remake the whole landing (`/better-interface` + `/transitions-dev`).
+
+### Locked
+
+- Full `/` remake (nav through footer). Signed-in still redirects to `/home`.
+- Story: **identity → diary → community → convert**.
+- Chrome: **hybrid** — one cinematic hero still, then Sense raised-card language (no decorative borders).
+- Convert: **Create account + Sign in**.
+- Structure: **four chapters, one specimen each** (Approach 2).
+- Drop Mobbin glass nav, scroll-hijack poster theater, fade-up-on-scroll, fake “Contact” chapter.
+- **Section 1 approved:** page map + nav (Taste · Diary · Community), `#scene` → `#taste` → `#diary` → `#community` → `#start` → footer.
+- **Section 2 approved:** hero still (popular #1), identity copy, dual CTAs, peek of Taste.
+- **Remaining design (human go):** chapter cards, convert, footer, motion, architecture — written into spec.
+- **Spec approved.** Plan: `docs/superpowers/plans/2026-08-14-landing-page-remake.md` (Tasks 1–9). Do not implement until human picks Subagent-Driven or Inline and says **go**.
+- Prefer **subagent-driven** (one task per subagent; human **go** between tasks).
+- **Task 1 complete** (uncommitted): `pickLandingHeroBackdrop` + 2 tests. Review clean.
+- **Task 7 complete** (uncommitted): convert band + quiet footer. Review clean.
+- **Task 8 complete** (uncommitted): compose `/` — metadata, slim backdrop fetch, skip link, hero + three chapters + footer. Review Approved.
+- **Amendment Task 1 complete** (uncommitted): `pickLandingHeroPosters` + 3 tests. Review clean.
+- **Amendment Task 7 complete** (uncommitted): compose `/` — type hero + product tabs. Review clean. **Human visual QA** on unsigned `/` before Task 8 (delete unused theater).
+- **Amendment Task 8 complete** (uncommitted): deleted 14 theater/chapter leftovers; keepers slimmed to Quick Log + ranks + used tokens. Review restored ranks `bg-muted/40` after a restyle miss. Review Approved. **Human visual QA** on unsigned `/` (spec §8). Amendment Tasks 1–8 shipped; no commit.
+
+---
+
+## Agentation: Compare feature icons (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#compare` @ 2554×1386.  
+**Trigger:** Sticky feature `th` — “put the icons for the features”.
+
+### What shipped
+
+- Compare feature rows use `PricingFeatureIcon` (same catalogue glyphs as the tier cards), locked to the title line with Coming soon under the name.
+
+### Executor's Feedback or Assistance Requests
+
+Scan the Compare feature column. Then **ok** or notes.
+
+---
+
+## Agentation: Compare rounded bottom (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#compare` @ 2554×1386.  
+**Trigger:** `td.px-3` — “rounded corners bottom”.
+
+### What shipped
+
+- Last feature row: tier cells `rounded-b-2xl`, sticky feature cell `rounded-bl-2xl` — matches the header caps so the Popular highlight isn’t square at the floor.
+
+### Executor's Feedback or Assistance Requests
+
+Scroll to the last Compare row (Popular column). Then **ok** or notes.
+
+---
+
+## Agentation: Compare hover blocks wheel (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#compare`.  
+**Trigger:** Hovering the compare card, scroll wheel no longer moves the page.
+
+### What shipped
+
+- Removed `data-lenis-prevent-wheel` from the compare matrix. That flag blocked Lenis while the table has no vertical overflow, so the wheel died. Horizontal pan still uses `overflow-x-auto` + Lenis `allowNestedScroll`.
+
+### Executor's Feedback or Assistance Requests
+
+Hover Compare and use the wheel — page should scroll. Then **ok** or notes.
+
+---
+
+## Agentation: FAQ close ≠ open (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#questions`.  
+**Trigger:** “What is Devoted?” close animation is not the same as open.
+
+### What shipped
+
+- FAQ height tween uses a **symmetric** `--resize-ease` so collapse isn’t the global ease-out (fast start / crawl to 0).
+- Canvas well stays until `transitionend` (plus duration fallback) so close doesn’t snap the row off mid-tween.
+- ResizeObserver ignores 0-height while clipped.
+
+### Executor's Feedback or Assistance Requests
+
+Open and close **What is Devoted?** (and another row). Motions should match. Then **ok** or notes.
+
+---
+
+## Agentation: Compare header rounded top (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#compare` @ 2554×1386.  
+**Trigger:** `th.min-w-[8.5rem]` — “rounded on top”.
+
+### What shipped
+
+- Compare table uses `border-separate border-spacing-0` so cell radius paints.
+- Tier header cells get `rounded-t-2xl` (Popular `bg-background` cap is no longer square).
+- Feature header gets `rounded-tl-2xl` to match the inner panel.
+
+### Executor's Feedback or Assistance Requests
+
+Scan the Compare header row — Popular column and first/last caps. Then **ok** or notes.
+
+---
+
+## Pricing Q&A + Other Plans restyle (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#questions`.  
+**Trigger:** Redesign pricing follow-through + add Q&A (`/transitions-dev` + `/better-interface`).
+
+### What shipped
+
+- **Questions** accordion below Compare: one open row, `.t-resize` height tween, plus/minus `.t-icon-swap`.
+- FAQ copy in `pricing-faq.ts` + FAQPage JSON-LD on `/pricing`.
+- Other Plans restyled to the same raised `bg-card` / concentric inner tiles; Lucide Gift/Tag → Nucleo ticket + people; underline CTAs → pills.
+
+### Executor's Feedback or Assistance Requests
+
+Scan `#questions` (open/close a few rows, keyboard) and the invite tiles. Then **ok** or notes.
+
+---
+
+## Agentation: Pricing compare scroll border (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/pricing` `#compare` @ 2554×1386.  
+**Trigger:** `PricingComparisonTable` scroll border — `/transitions-dev` + `/better-interface`.
+
+### What shipped
+
+- Dropped section `border-t` and every row `border-b` (group with space + `bg-card` panel).
+- Horizontal clip uses lobby edge fades (`to-card/0`) and a sticky feature column fade instead of a hairline.
+- Interval prices use `t-text-swap` / `useTextStateSwap`.
+- Native scrollbar hidden; scrollport is keyboard-focusable.
+
+### Executor's Feedback or Assistance Requests
+
+Scan Compare plans at ultrawide and a narrow width (pan the matrix). Then **ok** or notes.
+
+---
+
+## Settings Save/Cancel + theme dirty (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — Task 1 shipped; awaiting human QA. Do not start Task 2 until **ok**.  
+**Trigger:** Theme applies immediately but leave-guard fires with no Save/Cancel; Profile edits lose Save/Cancel after switching to Notifications.
+
+### Background and Motivation
+
+Two Settings bugs, same chrome:
+
+1. **Appearance theme** applies on pick (`applyThemeSelection`) but stays in the settings form dirty set. Leave/back shows “unsaved settings” even though there is often no Save/Cancel. Account menu already persists theme on pick (`AccountMenuThemePicker`) — Settings should match.
+2. **Save/Cancel vanish across sidebar tabs.** Edit Profile → Notifications: buttons gone; patron has to return to Profile to find them.
+
+### Key Challenges and Analysis (root cause)
+
+- `SettingsFormShell` lives in `settings/layout.tsx`, which is a **child** of `MeAccountRouteTransition`. On tab change the transition renders **two** trees (exit + enter), so **two** `SettingsFormProvider`s register bar actions.
+- `useRegisterMeAccountBarActions` cleanup always `setActions(null)` on unmount. When the exit layer is removed, it **wipes** the surviving provider’s registration. The live provider does not re-run its effect, so the top bar stays empty while `settingsDirtyRef` / session draft still trip the leave dialog.
+- Theme dirty: `dirty` includes `appTheme !== themeFromProfile`. Pick updates local state + live chrome but does **not** PATCH. `anyUnsaved()` is true; buttons only show if registration survived.
+
+### Architecture decisions
+
+- Keep one Save/Cancel in `MeAccountTopBar` for all `/me/settings/*` tabs (do not hunt the tab where the edit happened).
+- Theme: persist-on-pick like the account menu; **exclude** from form dirty / draft / leave-guard. Other Appearance fields (e.g. grayscale portrait) stay batch-save.
+- Fix registration with an **owner token** so an exiting duplicate cannot clear a newer registrant. Do not lift `SettingsFormShell` in this pass (draft hydration already restores field state).
+
+### High-level Task Breakdown
+
+#### Task 1: Bar actions survive tab slide
+
+**Description:** Owner-token `setActions` so exit-layer unmount does not null the live Save/Cancel.
+
+**Acceptance criteria:**
+- [ ] Exiting registrant cleanup does not clear actions owned by a later registrant
+- [ ] Edit Profile → Notifications: Save/Cancel stay in the top bar and still submit/reset the shared form
+- [ ] Unit test covers the unmount-wipe race
+
+**Verification:** Test for `useRegisterMeAccountBarActions` owner semantics; manual Profile edit → Notifications → Save.
+
+**Files:** `me-account-bar-actions-context.tsx` + test
+
+**Dependencies:** None
+
+#### Task 2: Theme persist-on-pick, not unsaved
+
+**Description:** Settings theme pick PATCHes immediately (same as account menu). Drop `appTheme` from dirty, draft read/write, and leave-guard. Failed persist reverts chrome + toast.
+
+**Acceptance criteria:**
+- [ ] Theme-only pick: no Save/Cancel, no leave dialog
+- [ ] Theme + Profile name edit: leave dialog only for the name; Cancel does not revert the persisted theme
+- [ ] Persist failure restores previous theme
+
+**Verification:** Manual Appearance pick then back; combined with a Profile field edit.
+
+**Files:** `me-appearance-settings.tsx`, `settings-form-context.tsx`, maybe `settings-section-panels.tsx`
+
+**Dependencies:** Task 1 (so real unsaved fields still show the bar on every tab)
+
+### Project Status Board
+
+- [x] Task 1: Bar actions survive tab slide — code + tests; **awaiting human QA**
+- [ ] Task 2: Theme persist-on-pick, not unsaved
+
+### Executor's Feedback or Assistance Requests
+
+Task 1 ready for QA. Please: edit a Profile field → Notifications (and another tab) → confirm Save/Cancel stay in the top bar and still save/discard. Then **ok** or notes.
+
+QA follow-up (hydration on Appearance): selected theme tile now follows form `appTheme`, not `useTheme()` — next-themes was unset on SSR and live on the client (Calm vs last pick). Reload `/me/settings/appearance` should no longer throw a hydration recoverable error.
+
+QA follow-up (Save stays active): after save, `dirty` still compared the form to the stale RSC `profile` (`router.refresh` only ran for pending media), so `canSave` stayed true. Now a committed snapshot is the baseline after save; top bar hides Save/Cancel unless dirty or saving.
+
+`graphify` is not on PATH here — skipped `graphify update .`.
+
+---
+
+## Agentation: Settings Discord link status (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/me/settings/profile` Discord @ 2554×1386.  
+**Trigger:** Take inspiration from the Sync Status reference for Discord activity.
+
+### What shipped
+
+- Sense ↔ Discord connection card (`MeDiscordLinkStatus`): portrait + Discord mark, dotted rails, center status pill, footer check + copy, Connect in the trailing slot when idle.
+- States: **Active** / **Connected** / **Setup** / **Not connected** via `discord-link-status.ts`.
+- Inset `bg-card` on the settings `bg-background` panel — no decorative border. Toggle stays below the card. Disconnect is a quiet footer text action (same slot as Connect), not a standalone destructive pill.
+- Pre-production funding strip and Pro lock unchanged.
+
+### Executor's Feedback or Assistance Requests
+
+Scan Discord activity at ultrawide: diagram should read like the reference (two endpoints, live pill, footer). Then **ok** or notes.
+
+---
+
+## Agentation: Settings Profile overlap (2026-08-14) — DONE
+
+**Mode:** Planner — human **ok** on `/me/settings/profile` @ 2554×1386.  
+**Trigger:** Identity `MeSettingsSection` **flex min** slides under photo + banner.
+
+### What shipped
+
+- `MeSettingsSection` is content-sized (`flex-none`) by default. `flex-1 min-h-0` in an auto-height column collapsed the Identity box so the name/bio card (and Privacy) painted under the overflowing banner + overlapping portrait.
+- Profile Identity / Privacy / Discord pass `flex-none` explicitly. `fillFirst` pages still stretch the first child via `SettingsSectionPage`.
+- Portrait still straddles the banner (`-mt-14`); that overlap is intentional.
+
+### Planner verification
+
+Human **ok** — Identity form sits below the banner/photo. This item is complete.
+
+---
+
+## Agentation: Settings Notifications (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/me/settings/notifications` @ 2554×1386.  
+**Trigger:** Notifications `flex min` + redesign.
+
+### What shipped
+
+- `fillFirst={false}`; **Social | Watching | Milestones** on `xl`.
+- Groups live on `NOTIFICATION_KIND_SETTINGS` via `notificationSettingsSections()`.
+
+---
+
+## Agentation: Settings Catalogue (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting QA on `/me/settings/catalogue` @ 2554×1386.  
+**Trigger:** Catalogue `flex min` + `/better-interface` + `/transitions-dev`.
+
+### What shipped
+
+- `fillFirst={false}`; **Streaming | Language** on `xl`, **Display** full-width under.
+- Same outer `bg-background` cards.
+- Select labels use **text-states-swap** via `useTextStateSwap`.
+
+---
+
+## Agentation: Settings Experience shell (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — shipped; awaiting human QA on `/me/settings/experience` @ 2554×1386.  
+**Trigger:** `SettingsExperienceSection` **flex min** + `/better-interface`.
+
+### What shipped
+
+- `fillFirst={false}` so the reveal shell is content-sized (same as Profile / Data).
+- Split **Motion & picture** | **Audio** on `xl`; stacked below.
+- Nested audio uses inset `bg-background` (no `border-l`).
+
+### Executor's Feedback or Assistance Requests
+
+Scan Experience at ultrawide: two content-height columns, not one stretched featured slab. Then **ok** or notes.
+
+---
+
+## Agentation: Settings Data page shell (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — page-shell redesign shipped; awaiting human QA on `/me/settings/data` @ 2554×1386.  
+**Trigger:** `SettingsSectionPage` / `MeAccountContentReveal` / `MeAccountRevealItem` **flex min** + `/better-interface` + `/transitions-dev`.
+
+### What shipped (pass 2)
+
+- `fillFirst={false}` now also drops `flex-1 min-h-0` on the reveal shell (not only the first child).
+- Data page: ultrawide **imports | export + danger** grid; stacked on narrower viewports.
+- Anilist how-to tightened; Export uses text-states-swap + panel-reveal; Danger stays quiet.
+
+### Executor's Feedback or Assistance Requests
+
+Scan `/me/settings/data` at ultrawide: the page column should be content-height (lobby canvas below, not an empty flex slab). Imports left, Export/Danger right. Then **ok** or notes.
+
+---
+
+## Agentation: Settings Data Letterboxd panel (2026-08-14) — EXECUTOR
+
+**Mode:** Executor — redesign shipped; awaiting human QA on `/me/settings/data` @ 2554×1386.  
+**Trigger:** Letterboxd `MeSettingsPanel` flex-min slab + `/better-interface` + `/transitions-dev`.
+
+### Background and Motivation
+
+Data page used `fillFirst` so the first block (Letterboxd) stretched to leftover lobby height. On ultrawide that read as an empty flex slab. How-to + six stacked file rows buried the dropzone.
+
+### What shipped
+
+- `SettingsDataSection` `fillFirst={false}` (same as Profile — content-sized sections).
+- Settings layout: compact how-to → dropzone leading, 2-col file catalog beside it on `xl`.
+- transitions-dev: **text-states-swap** on dropzone + Import label; **icon-swap** on file ticks; **panel-reveal** on last import.
+- Import stays enabled until the request starts; empty submit focuses the inline hint.
+- Onboarding variant stays stacked (wizard split pane).
+
+### Executor's Feedback or Assistance Requests
+
+Please scan `/me/settings/data` at ultrawide: Letterboxd should be content-height (not a tall empty card), dropzone left / files right, drag text swap, Import without files shows the hint. Then **ok** or notes.
+
+---
+
+## Onboarding import prompt (2026-08-13) — PLANNER
+
+**Mode:** Planner / brainstorming — clarifying before design.  
+**Trigger:** After account creation + setup, ask whether to import from elsewhere. Live source today: **Letterboxd** (`POST /api/import/letterboxd`, Settings → Data). Reference: split pane (copy + Back/Continue left; selectable source pills right).
+
+### Background and Motivation
+
+New patrons finish identity + taste + favorites, then land on **You made it** with no path to bring a Letterboxd diary in. Settings already has Letterboxd + Anilist importers; onboarding never offers them. Goal: a skippable post-setup step that matches the reference layout.
+
+### Locked so far
+
+| Topic | Decision |
+| --- | --- |
+| Live sources | Letterboxd + Anilist (existing Settings importers) |
+| Extra rows | **B** — disabled **IMDb · Trakt · Serializd** (“Coming soon”). No TV Time. |
+| Import timing | **A** — in-wizard: picker → existing upload UI → Done. Skip / no live pick → Done. |
+| Source count | One **or both** live sources. Multi-select Letterboxd + Anilist; sequential uploads if two. Coming-soon rows stay disabled. |
+| Who sees it | **A** — full setup only (after favorites). Abbreviated name+handle skip does not show import. |
+| Implementation | **1** — new wizard steps `import` + `import-upload`; reuse Settings upload engines. |
+
+### Extra sources (research, not built)
+
+- **TV Time:** service shut down **15 Jul 2026**; only leftover GDPR/extension exports exist. High format mess (JSON zip, no stable CSV). Rescue audience only — not a living switcher.
+- **Realistic next backends:** **IMDb** (official ratings/watchlist CSV), **Trakt** (official export zip/JSON — best TV+film). **Serializd** has an account export but no first-party API we already use.
+- Building any of those is a **separate importer project**, not this onboarding step.
+
+### Key Challenges and Analysis (draft)
+
+- Wizard is already left copy + right preview; taste/favorites already swap the right pane for a grid — import can reuse that split.
+- `runOnboardingFinish` currently fires on favorites **Complete setup** (`markOnboarded: true`) before Done. Import can sit between favorites and Done, or after Done, depending on skip/upload UX.
+- Extra sources: show as disabled “soon” pills (reference look) vs hide until a real importer ships.
+- transitions-dev **page side-by-side** fits step 1 ↔ step 2 (pick source → upload); existing wizard already slides with `motion/react`.
+
+### Project Status Board
+
+- [x] Clarify sources, skip, and whether upload happens in-wizard
+- [x] Present approaches + architecture (user: **1**, **go**)
+- [x] Spec drafted — `docs/superpowers/specs/2026-08-13-onboarding-import-design.md`
+- [x] User approved spec (**go**)
+- [x] Plan — `docs/superpowers/plans/2026-08-13-onboarding-import.md`
+- [x] Execute T.1 (queue helper) — review clean
+- [x] Execute T.2 (step graph) — review clean
+- [x] Execute T.3 (Letterboxd panel extract) — review clean
+- [x] Execute T.4 (Anilist panel extract) — review clean
+- [x] Execute T.5 (source list + picker) — review clean
+- [x] Execute T.6 (upload step) — review clean
+- [x] Execute T.7 (wire wizard) — review clean (human **go**)
+- [ ] Execute T.8 (human QA) — static pass; live ticks needed
+
+### Executor's Feedback or Assistance Requests
+
+**T.8 in progress.** Static checklist + smoke tests (11) pass. `graphify` still not on PATH. Live `/onboarding` walkthrough needs your ticks — see Executor note.
+
+---
+
+## Agentation: Profile section titles (2026-08-12) — PLANNER
+
+**Mode:** Executor — T.1 shipped; awaiting human **`ok`** before T.2.  
+**Triggers:** `/me/settings/profile` @ 2554×1386  
+1. Discord block hard to parse without a title  
+2. Privacy (and peers) description-only headers — **put titles** + **transitions-dev**
+
+### Background and Motivation
+
+Profile settings dropped in-panel “Discord activity” (D.3) and never set `MeSettingsSection` `title`, so ultrawide scans only mute blurbs. Patrons need clear **h2** landmarks; Discord especially.
+
+### Key Challenges and Analysis
+
+- `MeSettingsSection` already supports optional `title` + `description` — Profile never passes `title`.
+- Sticky top bar already owns page **Profile** `h1` — section `h2`s are fine (same pattern as other lobbies).
+- transitions-dev decision: static titles don’t swap text. Best fit = **text-states-swap** on Discord labels that *do* change (Connect ↔ Opening…; loading → Connected), reusing `me-subscription-identity-card` / `log-rating-slider` orchestration. CSS `.t-text-swap` already in `globals.css`.
+
+### High-level Task Breakdown
+
+- [x] T.1 Identity / Privacy / Discord: pass `title` + keep short `description` under each
+- [ ] T.2 Discord: `t-text-swap` on CTA label + Connected status when text changes
+- [ ] T.3 Human QA — scan titles at ultrawide; Connect / Connected motion; reduced-motion ok
+
+### Project Status Board
+
+- [x] T.1 Section titles — **awaiting human verify**
+- [ ] T.2 Discord text-swap
+- [ ] T.3 Human QA
+
+### Proposed copy
+
+| Section | Title | Description (under) |
+| --- | --- | --- |
+| Identity | Identity | Photo, public identity, and links on your page. |
+| Privacy | Privacy & presence | Who can see your page, birthday, and online status. |
+| Discord | Discord activity | Show what you’re listening to or playing on your profile. |
+
+### Executor's Feedback or Assistance Requests
+
+**T.1 done (2026-08-12).** Titles on Identity / Privacy / Discord. **One** status dot only in Discord panel: emerald pulse + **Connected**, muted static + **Not connected**. Reply **`ok`** for T.2, or what looks wrong.
+
+---
+
+## Agentation: Appearance save + search filters (2026-08-12) — PLANNER
+
+**Mode:** Planner — awaiting **`go`** (or refine).  
+**Triggers:**
+1. `/me/settings/appearance` — Save/Cancel stay active after save (`MeAccountTopBar`)
+2. `/home?search=…` — replace **Clear search** chip with **Filters** to refine results
+
+### Background and Motivation
+
+Two Agentation notes: appearance chrome still reads as dirty after a successful save; committed catalogue search hides the filter control behind a redundant Clear search chip (clear already lives on the sticky search ×).
+
+### Key Challenges and Analysis
+
+**A — Appearance Save stays active**
+
+- Dirty is `useMemo` vs live `profile` prop (`settings-form-context.tsx`).
+- Successful save calls `syncSettingsDirty(false)` + toast but **does not** `router.refresh()` unless media uploaded — so `profile.preferences` stays stale and `appTheme !== themeFromProfile` (etc.) keeps `canSave: true`.
+- **Fix:** always `router.refresh()` after successful profile save (or optimistically rebase local baseline from saved prefs). Prefer refresh for consistency across all settings sections.
+
+**B — Search lobby filters**
+
+- `HomeCatalogViewModeToolbar` early-returns `HomeCatalogueSearchClearChipToolbar` when `catalogueSearchActive`.
+- User wants the slider **Filters** control instead — clear remains on sticky pill × (dissolve).
+- `mergeHomeCatalogFiltersIntoHref(currentHref, …)` already keeps `search=` if `currentHref` includes it.
+- Search seed/load path (`loadCommittedCatalogueSearchSeeds` / `buildCatalogueSearchPlanFromCommit`) does **not** yet apply `?genre=` — must merge lobby genre into discover `genreIds` + `searchWaveKey`, else UI would be a no-op.
+
+### High-level Task Breakdown
+
+- [ ] S.1 Appearance: after successful save, refresh (or rebase) so `dirty` → false and Save/Cancel disable
+- [ ] S.2 Search toolbar: show `CatalogueFiltersControl` instead of Clear search when `?search=` active
+- [ ] S.3 Wire `?genre=` (and compatible monetization if shown) into committed-search plan + wave key + infinite load
+- [ ] S.4 Human QA — appearance save; search + genre filter; sticky × still clears
+
+### Project Status Board
+
+- [ ] S.1 Appearance dirty after save
+- [ ] S.2 Filters chip during search
+- [ ] S.3 Search × genre wiring
+- [ ] S.4 Human QA
+
+### Executor's Feedback or Assistance Requests
+
+Reply **`go`** to execute S.1 first (or **`go all`** for S.1→S.3 then QA). Clarify if search filters should be **genre-only** or full popover (genre + watch type).
+
+---
+
+## Sticky search clear dissolve (2026-08-12) — EXECUTOR
+
+**Mode:** Executor — collapsed-only approach approved (`go`).  
+**Trigger:** Agentation on `/home` → Transitions.dev **Input clear with dissolve**.  
+**Skill:** `.agents/skills/transitions-dev/13-input-clear-dissolve.md`
+
+### Background and Motivation
+
+Clearing sticky catalogue search should dissolve typed/committed text (fly + blur + per-word streak) and drop the placeholder back in — not hard-cut to empty. Annotation targets the collapsed pill chrome (`HomeStickySearch` / clear `X`), not a separate marketing surface.
+
+### Locked
+
+| Topic | Choice |
+| --- | --- |
+| Scope | Collapsed sticky pill only (dialog clear deferred) |
+| Dark glow | `screen` + white streaks; Lucid light → `multiply` |
+| Reduced motion | Instant `router.replace` clear |
+
+### High-level Task Breakdown
+
+- [x] C.0 Lock scope (collapsed only)
+- [x] C.1 Install `--clear-*` vars + `.t-clear*` CSS (+ light override)
+- [x] C.2 Wire React orchestration on `HomeStickySearch` clear
+- [x] C.3 Reduced-motion instant clear path
+- [ ] C.4 Human QA
+
+### Project Status Board
+
+- [x] C.0 Scope lock
+- [x] C.1 CSS tokens (`packages/ui/src/styles/globals.css`)
+- [x] C.2 Clear orchestration (`input-clear-dissolve.ts` + `HomeStickySearch`)
+- [x] C.3 Reduced motion
+- [ ] C.4 Human QA — **awaiting**
+
+### Executor's Feedback or Assistance Requests
+
+**C.1–C.3 done (2026-08-12).** Hard-refresh `/home`, run a catalogue search so the pill shows a committed query, tap **Clear (×)**. Expect: text flies down + soft streak, placeholder drops in, then lobby restores without search. Also try Lucid light theme + OS reduced motion (should clear instantly). Reply **`ok`** or what looks wrong.
+
+Unit tests: `apps/web/src/lib/input-clear-dissolve.test.ts` (3 pass).
+
+---
+
+## img-fx ImageGeneration (2026-08-12) — CANCELLED
+
+**Status:** Cancelled (`nvm`). Replaced by **rotating TMDb stills** on taste hero when no trailer (`HomeTasteHeroStillsCarousel`).
+
+---
+
+## Taste hero still rotation (2026-08-12) — EXECUTOR
+
+**Mode:** Executor — shipped per Agentation feedback on `/home?sort=popular`.  
+**Behavior:** When the taste hero has **no background trailer** (missing, reduced-motion, or blocked), rotate different movie stills with blur cross-fade instead of a single static backdrop. Trailer path unchanged.
+
+### Project Status Board
+
+- [x] I.1 `HomeTasteHeroStillsCarousel` + `fetchMovieReviewStills`
+- [x] I.2 Wire into `HomeTasteHeroMediaLayer`
+- [x] I.3 Unit test + remove unused `img-fx` / `three`
+- [ ] I.4 Human QA — titles without trailers on `/home` (Movies, signed in)
+
+---
+
+## Account menu MetalFx frozen (2026-08-12) — PLANNER
+
+**Mode:** Planner — root cause investigated; awaiting **Executor `go`** (or Planner tweaks).  
+**Trigger:** Upgrade-plan MetalFx in account menu shows metal chrome but does not animate (static frame).
+
+### Background and Motivation
+
+`AccountMenuUpgradePlanButton` mounts `metal-fx` while the account dropdown / You sheet is open (`effectActive={menuOpen}`). Patrons see the metallic ring but it stays still — should shimmer while the menu is open, with proximity reflection onto **View profile** on dark themes.
+
+### Key Challenges and Analysis
+
+**Root cause (revised after M.1 QA):** `metal-fx@1.0.4` sets inline `visibility: hidden` until first shader copy. That makes `IntersectionObserver` mark `inst.visible = false` and stop the shared RAF loop after painting one still frame. Glow/CSS chrome can still read as “shimmer / reflect.” CSS `!important` alone was not enough in practice (M.1 failed human QA).
+
+**Fix (M.1b):** (1) Drop body portal + per-frame `setState` thrash — mount MetalFx inline. (2) Patch `metal-fx@1.0.4` so host stays `visibility: "visible"` (opacity-only hide) via `patches/metal-fx@1.0.4.patch`. (3) Keep `.account-menu-metal-fx { visibility: visible !important }` belt-and-suspenders.
+
+### Project Status Board
+
+- [x] M.1 IO visibility override (CSS) — insufficient alone
+- [x] M.1b Inline mount + metal-fx patch (visibility always visible) — awaiting human QA
+- [ ] M.2 Portal ref tracking — cancelled (portal removed)
+- [ ] M.3 Human QA
+
+### Executor's Feedback or Assistance Requests
+
+**M.1b follow-up (2026-08-12):** Inline mount made MetalFx disappear — stuck at library `opacity: 0` when IO never got a first copy inside the Base UI popup. Restored **body portal** with **ref/DOM position sync** (no per-frame React remount), forced `opacity: 1 !important` + visibility on `.account-menu-metal-fx`, kept metal-fx patch. Hard-refresh and reopen account menu — Upgrade plan should show metal again; check whether the ring also flows. Reply **`ok`** or what you see.
+
+---
+
+## Discord activity — Pro funding announcement (2026-08-11)
+
+**Mode:** Planner — brainstorm approved; spec written; awaiting human review of spec before writing-plans.  
+**Trigger:** Announce Discord activity as Pro-funded (live progress); not free-for-all; production off until VPS.
+
+### Background and Motivation
+
+Discord profile activity is built but needs a paid VPS (Lanyard + presence guild) before production. The ask: show live progress of **paying Polar Pro** members toward a target, and unlock the feature for **all Pro** when ops enables production — not for Still, and not auto-on at the count alone. Keep the existing mobile/growth support campaign; add soft surfaces (Pricing, Settings) + What's New behind that campaign.
+
+### Locked decisions
+
+| Topic | Choice |
+| --- | --- |
+| Surfaces | Approach 1 — shared funding strip + public API; Pricing + Settings + What's New |
+| Who gets it | All Pro when production on — **not** every patron |
+| Pre-ship | Teaser + live progress + CTA; Connect off |
+| Count | Paying Polar only (`active`/`past_due`); exclude override-only |
+| Progress audience | Public (everyone on Pricing) |
+| Unlock | Ops/env after VPS — progress informational |
+| Support campaign | Unchanged |
+
+**Spec:** `docs/superpowers/specs/2026-08-11-discord-activity-pro-funding-design.md`  
+**Plan:** `docs/superpowers/plans/2026-08-11-discord-activity-pro-funding.md` (Tasks 1–10)  
+**Execution:** Subagent-driven (option 1).  
+**Task 1:** complete + review Approved (`discord_activity` Attuned key; uncommitted).  
+**Task 2:** complete + review Approved (`DISCORD_ACTIVITY_PRO_TARGET` + helpers default 50; uncommitted).  
+**Task 3:** complete + review Approved after `Number()` fix on count return (uncommitted).  
+**Task 4:** complete + review Approved (public `/api/discord-activity/funding`; count-only cache; uncommitted).  
+**Task 5:** complete + review Approved (Pro gates on status/finish-setup/DELETE/profile; OAuth UI gate deferred to Task 8; uncommitted).  
+**Task 6:** complete + review Approved (funding strip + fetch/clamp; not mounted yet; uncommitted).  
+**Task 7:** complete + review Approved (Pricing mount above tiers; uncommitted).  
+**Task 8:** complete + review Approved (Settings 3-state + seed `discord_activity` planned; Human QA pending; uncommitted).  
+**Task 9:** complete + review Approved (What's New + changelog **0.3.3**; support campaign untouched; uncommitted).  
+**Task 10:** complete — automated tests green; final review **Ready** for human QA.  
+**Local note:** funding API returns `productionEnabled: true` → funding strip hidden until you set `DISCORD_ACTIVITY_ENABLED=false` to preview teasers.  
+**Next:** Human QA checklist (Pricing / Settings / support campaign); commit when asked.
+
+---
+
+## Liquid Morph on RadialToolkit (2026-08-12) — EXECUTOR
+
+**Mode:** Executor — approach approved (`go`).  
+**Trigger:** Morph fan on RMB radial (PlusMenu-style).
+
+### Locked
+
+Morph open fan; hub + orbit only; white fill; `contentBlur: 0`; inject via `liquid` slot; Motion fallback when gated.
+
+### Project Status Board
+
+- [x] R.1 RadialToolkit liquid slot API (`RadialToolkitLiquidSlot`)
+- [x] R.2 Morph fan layout (hub + orbit `x`/`y` + double-rAF `fanOut`)
+- [x] R.3 Web wiring — `useSenseRadialLiquidSlot` on catalogue / list lobby / list detail / profile filmography tiles
+- [x] R.4 Human QA — **ok** (2026-08-12)
+- [x] R.5 Style match PlusMenu — theme `card` pills, no blue aim wedge, orbit 64px, fan spring tuned
+- [x] Move pills — **reverted** to `layoutId` chips (liquid Move too buggy); Radial Morph kept
+- [x] R.6 Morph everywhere on RMB — `SenseRadialToolkit` wraps all poster call sites; bare `RadialToolkit` only inside that wrapper; Morph chrome when `liquid` slot present (no blue ring/wedge)
+
+### Executor's Feedback or Assistance Requests
+
+**Chip Move reverted (2026-08-12):** Human asked to keep chips as before — removed liquid-gooey Move from all pill rails. Chips use shared `layoutId` motion pills again (`SegmentedPillToolbar`, home browse/shortcuts, mobile tab bar). Radial Morph liquid unchanged. **DiaryVenueChips** restored to pre-edit layoutId In cinemas / At home + filters track (Agentation).
+
+**Morph rail everywhere (2026-08-12):** Swapped catalogue / list lobby / list detail / profile filmography RMB menus to `SenseRadialToolkit`. Pending human QA: hold RMB on posters across `/home`, `/diary`, `/watchlist`, `/lists`, list detail, profile filmography — Morph fan only, no legacy blue ring. Reply **`ok`** when signed off.
+
+**Fan speed (2026-08-12):** Human said open animation too slow → `LIQUID_FAN_TRANSITION` back to PlusMenu `bouncy` (320/17) and stagger `45 → 28` ms. Re-check RMB open feel; reply **`ok`** or ask for faster/slower.
+
+**Search pill kbd (2026-08-12, Agentation):** Collapsed `HomeStickySearch` shows `⌘`/`Ctrl` + `K` kbd chips on the right (`sm+`, hidden while dialog open / committed search clear). Pending human QA on `/home`.
+
+---
+
+## Liquid gooey pill chrome (2026-08-12) — REVERTED for chips
+
+**Mode:** Executor — Scope B Move on chips **reverted** (buggy end/content-load).  
+**Package:** `liquid-gooey@0.1.0` remains for Radial Morph only.  
+**Chips:** back to `layoutId` sliding `bg-card` pills.
+
+---
+
+## Subscription membership identity card (2026-08-12)
+
+**Mode:** Executor — plan implemented.  
+**Spec:** `docs/superpowers/specs/2026-08-12-subscription-identity-card-design.md`  
+**UI:** `me-subscription-identity-card.tsx` + helpers in `subscription-identity-card.ts`  
+**Wired:** `/me/settings/subscription` — identity stage + Invite & earn below.  
+**Agentation (empty stage):** Stage is now a soft radial wash + `lg+` two-column layout (larger card + companion rail: plan name, tagline, status, flip, upgrades) so ultrawide (~2554×) doesn’t leave a lonely card in a void.  
+**Glow rarity:** Specular + drop-shadow hue follows plan tier (Still silver → Attuned bronze → Immersed gold → Devoted magenta/cyan), aligned with avatar aura.  
+**Per-plan chrome:** Still quiet hairline · Attuned bronze sheen · Immersed orbiting gold edge · Devoted iridescent aurora (+ rim spin). CSS in `globals.css`; live motion gated off soft GPU / reduced-motion.  
+**Agentation:** Removed stage radial “white” wash (`card`/`foreground` blobs) — flat `bg-background` only; tier chrome stays on the card.  
+**better-interface + transitions-dev (2026-08-12):** Hover-only shadow; Still chrome darkened; rail/card dedupe; flip label `t-text-swap`; live face status; Upgrade verb labels; press scale. Verdict was Needs changes → implemented.  
+**Next:** Human QA on `/me/settings/subscription` (signed-in).
+
+---
+
+## Settings → Profile Discord block — better-interface (2026-08-12)
+
+**Mode:** Planner — review only (awaiting **`b`** / **`go`** to execute).  
+**Trigger:** Agentation on `MeDiscordConnect` `space-y-5` nest @ 2554×1386 — “design better /better-interface”.  
+**Scope:** Discord section on `/me/settings/profile` (`MeSettingsSection` + `MeDiscordConnect` + funding strip). Identity/Privacy panels out of scope.
+
+### better-interface review (mode: `full`)
+
+**Stack:** Next App Router, Tailwind surface tokens, `MeSettingsPanel` / `MePreferenceToggle`, Lucide.  
+**Boundary:** Source review of Discord settings states (loading / funding / Pro lock / connect / connected); rendered QA **Not verified**.
+
+| Domain | Evidence inspected | Result |
+| --- | --- | --- |
+| Accessibility | `me-discord-connect.tsx` loading null; button labels; Finish setup alert | 1 finding |
+| Layout | Nested `space-y-5`; section blurb vs in-panel title; funding `bg-card` in panel | 2 findings |
+| Writing | Dual titles; Connect ID label; Connect row repeats blurb; “We couldn’t” | 2 findings |
+| Typography | `text-sm` titles match Privacy rows | Clear |
+| Colors | `bg-background` panel + funding `bg-card` inset | Clear |
+| UI | Idle `t-icon-swap` empty slot gap on Connect | 1 finding (LOW) |
+
+#### Findings
+
+| # | Severity | Domain | Location | Before | After | Why |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | HIGH | Accessibility | `me-discord-connect.tsx:108` | `if (loading) return null` | Skeleton / `aria-busy` panel that keeps section height | Discord section vanishes on load → layout jump; no loading announcement |
+| 2 | MEDIUM | Layout | `me-discord-connect.tsx:114–116` + `:225` | Outer `space-y-5` wrap + inner `space-y-5` connected stack | Single spacing owner (panel `space-y-6` like Privacy; inner stacks `space-y-3` / `gap` only) | Annotated nest `.space-y-5 > .space-y-5` doubles rhythm; uneven vs Privacy |
+| 3 | MEDIUM | Writing | `settings-section-panels.tsx:241` + `me-discord-connect.tsx:215–221` | Section blurb + in-panel “Discord activity” + long body (+ Connect row repeats pitch) | One title owner: keep section description **or** in-panel title; Connect row = CTA only | Competing hierarchy; Connect duplicate copy |
+| 4 | MEDIUM | Writing | `me-discord-connect.tsx:97–100` | `Connected (ID ${accountId})` | Patron-facing status (e.g. **Connected**) — no raw Discord ID | Settings should not surface opaque account IDs |
+| 5 | LOW | UI | `me-discord-connect.tsx:312–324` | Idle Connect always reserves empty `t-icon-swap` `size-4` + `mr-2` | Hide idle icon slot (`data-state` / conditional width) or use a real idle glyph | Permanent blank gap before label |
+
+#### Considered but rejected
+
+| Location | Candidate | Rejected because |
+| --- | --- | --- |
+| Funding strip `bg-card` inside panel | Flatten strip to plain content | Strip is shared with Pricing; inset `bg-card` on `bg-background` matches intentional depth |
+| Disconnect without confirm | Add confirm dialog | Reversible OAuth unlink; not account-deletion stakes |
+| “We couldn’t add you…” | Rewrite without “we” | Tone OK for recoverable setup; lower priority than ID/copy hierarchy |
+
+#### Verification
+
+| Check | Result |
+| --- | --- |
+| Source: nested `space-y-5`, loading `null`, ID label | Passed |
+| Rendered Discord states @ 2554× | **Not verified** (no signed-in browser pass this turn) |
+
+**Verdict:** `Block` until loading null is fixed; then `Needs changes` for spacing + copy + ID.
+
+### High-level Task Breakdown
+
+1. **D.1 — Loading shell** — Never `return null`; show muted skeleton / `aria-busy` inside panel.  
+2. **D.2 — Spacing** — One `space-y` owner; flatten nested `space-y-5`.  
+3. **D.3 — Copy hierarchy** — Deduplicate section vs panel title; Connect row CTA-only; drop Discord ID from status.  
+4. **D.4 — Connect icon slot** — No idle empty gap (optional with D.3).
+
+### Project Status Board
+
+- [x] D.1 Loading shell — pulse skeleton + `aria-busy` / sr-only; no `return null`
+- [x] D.2 Spacing — wrap owns `space-y-6`; connected stack flattened (no nested `space-y-5`)
+- [x] D.3 Copy — section blurb owns pitch; panel is CTA/status only; status **Connected** (no Discord ID); dropped `listAccounts` fetch
+- [x] D.4 Connect icon idle gap — `DiscordActionSpinner` collapses to `size-0` when idle
+- [ ] Human QA Discord block @ ~2554× + phone
+
+### Executor's Feedback or Assistance Requests
+
+**D.4 done — Discord redesign D.1–D.4 complete.** Please QA `/me/settings/profile` Discord section (loading skeleton, spacing, copy, Connect button with no idle gap). Reply **`ok`** when signed off.
+
+---
+
+## Settings → Profile — better-interface + transitions-dev (2026-08-12)
+
+**Mode:** Executor — approach approved via **`execute`**; one task at a time.  
+**Trigger:** Agentation on `/me/settings/profile` @ 2554×1324 — `MeSettingsPanel` (`min flex`) → “improve redesign /transitions-dev /better-interface”.  
+**Scope:** `SettingsProfileSection` + `ProfileMediaCustomizer` + nested `MeDiscordConnect` (not whole MeAccountShell).
+
+### Background and Motivation
+
+Profile settings is a single stretched `MeSettingsPanel` that mixes identity fields, visibility, presence, and Discord. On ultrawide the flex-fill panel reads as empty chrome; Discord wraps a second `MeSettingsPanel` inside the first (card-in-card). Match the subscription-page pass: consolidate interface findings, then install only the lowest-overhead transitions-dev hooks that pay off.
+
+### better-interface review (mode: `full`)
+
+**Stack:** Next App Router, Tailwind tokens (`bg-card` / `bg-background`), `MeAccountShell`, `motion/react` reveal.  
+**Boundary:** Source review of profile section components; rendered page **Not verified** (browser session redirected to `/sign-in`).
+
+| Domain | Evidence inspected | Result |
+| --- | --- | --- |
+| Accessibility | `settings-section-panels.tsx` birthday gate; form labels; visibility fieldset; Discord buttons | 1 finding |
+| Layout | Panel nesting; `items-end` privacy stack; flex-1 stretch; Discord wrapper | 2 findings |
+| Writing | Presence question title; unlabeled visibility; Discord cross-ref; Friends only | 2 findings |
+| Typography | Labels `text-sm` / hints `text-xs`; `text-balance` on media help | Clear |
+| Colors | `bg-card` controls on `bg-background` panel (intentional Mobbin) | Clear |
+| UI | Enter stagger OK; pill rails already animated; nested surface chrome | 1 finding (via Layout) |
+
+#### Findings
+
+| # | Severity | Domain | Location | Before | After | Why |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | HIGH | Layout | `me-discord-connect.tsx:156–294` inside `settings-section-panels.tsx:94–209` | Discord always wraps `MeSettingsPanel` while already nested in the profile panel | Embed without a second panel (`variant="plain"` / no wrapper); Discord is a sibling section or inset group only | Card-in-card on `bg-card` lobby — same anti-pattern as Community feed rows |
+| 2 | MEDIUM | Layout | `settings-section-panels.tsx:94–208` | One flex-1 panel: identity grid + `items-end` visibility + presence + Discord | Split: **Identity** panel (fields + bio) + **Privacy & presence** panel (labeled visibility, birthday show, online audience); Discord sibling section; stop right-aligning privacy | Ultrawide void + mixed jobs in one surface; grouping should be space + separate panels |
+| 3 | MEDIUM | Writing | `settings-section-panels.tsx:193–202`, `me-discord-connect.tsx:200` | Presence titled “Who can see when I'm online?”; Discord quotes that question; visibility chips have no visible title | Title visibility **Profile visibility**; presence ON-state **Show online status to everyone** (off: Friends only); Discord refers to “online status” not the old question | Settings copy should name the ON state; visibility is unlabeled vs every other row |
+| 4 | MEDIUM | Accessibility | `settings-section-panels.tsx:148–167` | Birthday show row uses `opacity-50` + `pointer-events-none` | Pass `disabled` into `MePreferenceToggle` (native `disabled` on both segment buttons + `aria-disabled` if needed); keep helper description | Opacity gate still leaves a focusable-looking control pattern; keyboard/AT need a true disabled state |
+| 5 | LOW | UI | `me-discord-connect.tsx:283–290` | Spinner + label text swap with no enter/exit | Optional **icon-swap** on Connect / Opening… only if P.1–P.4 land clean | Polish; defer if scope creeps |
+
+#### Considered but rejected
+
+| Location | Candidate | Rejected because |
+| --- | --- | --- |
+| `me-form-field.tsx:12–13` | Restore focus rings on inputs | Intentional Mobbin flat controls; project convention |
+| `MeProfileVisibilityToggle` | Add `t-text-swap` on Public/Private labels | `layoutId` pill already carries the state change; text-swap would double-animate |
+| Presence “Friends only” | Rename to “People you follow” | Matches `presenceVisibility: friends` product term already shipped in Settings |
+
+#### Verification
+
+| Check | Result |
+| --- | --- |
+| Source structure of `SettingsProfileSection` + Discord nesting | Passed (nested panel confirmed) |
+| Rendered `/me/settings/profile` @ 2554×1324 | **Not verified** — no signed-in browser session |
+| Keyboard pass on birthday-disabled row | **Not verified** (needs runtime) |
+
+**Verdict:** `Block` (HIGH nested panel) until P.1 lands; then `Needs changes` until P.2–P.4.
+
+### transitions-dev review (profile scope)
+
+1. `me-discord-connect.tsx` nested panel open states — looks like a surface growing inside a region → **panel-reveal** only if Discord stays expandable; prefer un-nesting first (no transition needed).
+2. Privacy panel height when birthday unlocks — **card-resize** (`.t-resize`) on the privacy panel / birthday row.
+3. Connect Discord idle ↔ loading icon — **icon-swap** (pair with finding #5).
+4. Skip: modal/dropdown/badge (none new); page side-by-side (nav already route-transitions); success-check on Save (header-owned, out of annotation scope).
+
+Run `transitions apply` on P.5 lines after structure lands.
+
+### High-level Task Breakdown
+
+1. **P.1 — Un-nest Discord** — `MeDiscordConnect` accepts embedded/plain mode (no `MeSettingsPanel`); profile mounts Discord as sibling `MeSettingsSection` (or plain inset under Privacy).  
+   *Success:* No `MeSettingsPanel` descendant of another on `/me/settings/profile`.
+2. **P.2 — Split Identity vs Privacy panels** — Identity = media + name/pronouns/location/website/DOB/bio; Privacy = visibility (titled) + birthday show + presence; full-width content-sized panels (no lonely `items-end`); first flex grow only if content fills.  
+   *Success:* Two clear jobs; ultrawide doesn’t show a half-empty single slab.
+3. **P.3 — Copy** — Visibility + presence titles; Discord cross-ref; keep Friends only.  
+   *Success:* No question-as-title; Discord doesn’t quote a removed string.
+4. **P.4 — Birthday toggle a11y** — `disabled` prop on `MePreferenceToggle`.  
+   *Success:* Segment buttons not activatable without DOB; description still explains why.
+5. **P.5 — transitions-dev** — `.t-resize` on privacy block when birthday row enables; optional icon-swap on Connect.  
+   *Success:* Snippets + reduced-motion guards; no duplicate `:root` tokens.
+
+### Project Status Board
+
+- [x] P.1 Un-nest Discord — `MeDiscordConnect` `surface="plain"|"panel"`; profile mounts sibling section + one panel (no panel-in-panel)
+- [x] P.2 Split Identity / Privacy panels — Identity (media + fields + bio); Privacy (titled visibility, birthday show, presence); Discord sibling; `fillFirst={false}` content-sized
+- [x] P.3 Copy — presence ON-state title; Discord cross-ref to “online status”; Friends only kept
+- [x] P.4 Birthday disabled state — `MePreferenceToggle` `disabled` prop; no opacity/`pointer-events` wrapper
+- [x] P.5 transitions-dev — `.t-resize` on Privacy panel; icon-swap on Discord Connect / Finish setup; reused existing `--resize-*` / `--icon-swap-*` tokens
+- [ ] Human QA signed-in @ ~2554× + phone
+
+### Executor's Feedback or Assistance Requests
+
+**P.5 done — please verify on `/me/settings/profile`:** Privacy panel has `t-resize`; Connect Discord / Finish setup use `t-icon-swap` for the spinner. Full Profile redesign (P.1–P.5) + `/me/settings` redirect ready for Human QA. Reply **`ok`** when signed off.
+
+---
+
+## MeAccountShell / Appearance — better-interface redesign (2026-08-12)
+
+**Mode:** Executor (`execute` on consolidated review).  
+**Scope:** `MeAccountShell` + Appearance (settings chrome shared across `/me/settings/*`).
+
+### High-level Task Breakdown
+
+1. **A.1 — Mobile nav** — Horizontal chip rail + edge fades below `lg`; vertical sticky rail on `lg+` (single DOM track / one `layoutId`).  
+   *Success:* Narrow viewport first fold shows theme body sooner; nav scrolls horizontally.
+2. **A.2 — Theme depth + selected** — Tiles `bg-card` (selected `bg-foreground/8` + dot cue); Pro badge `bg-background`.  
+   *Success:* Tiles readable on `MeSettingsPanel`; active theme obvious.
+3. **A.3 — Top bar + heading** — Section `h1` centered in top bar; drop duplicate section titles; back pill hover without `muted`.  
+   *Success:* One page `h1` per settings route; Calm hover visible.
+
+### Project Status Board — Appearance shell
+
+- [~] A.1 Nav layout — **unchanged** vertical rail; section icons added (Lucide Data stroke matched)
+- [x] A.2 Theme tiles + Pro badge — refined (taller swatch, concentric radius, hover wash)
+- [x] A.3 Top bar h1 + hover — awaiting human QA
+- [x] A.4 Full-height **MeSettingsPanel** — default on all settings sections (Catalogue + every route); multi-section pages grow the first block
+
+### Executor's Feedback or Assistance Requests
+
+Continued without reshaping the nav. Please QA `/me/settings/appearance` on your 2554px viewport + a phone width: icons, theme tiles, centered title, content not stretching edge-to-edge.
+
+---
+
+## Review translation — read reviews in other languages (2026-08-11)
+
+**Mode:** Planner — brainstorming (awaiting design approval; no implementation yet).  
+**Trigger:** "i need a way for users to be able to translate reviews in other languages".
+
+### Background and Motivation
+
+Sense is a social identity platform for taste, and the Community layer (reviews, activity, movie/TV detail carousels) mixes patrons from every language. A patron who writes in Japanese or Spanish is effectively invisible to readers who don't share the language: the review body renders as opaque text, so it can't earn likes, comments, or follows. Translation turns the whole Community corpus into readable signal instead of a per-language silo, which matters more the smaller the user base is.
+
+Current state (explored 2026-08-11):
+
+- `review.body` is a single `text` column in `packages/db/src/schema/activity.ts` — **no language column** anywhere on `review`.
+- The full-read surface is `apps/web/src/components/review/review-detail-sheet.tsx` (Vaul drawer); previews live in `review-card.tsx`, `movie-detail-reviews-carousel.tsx`, `review-activity-copy.tsx`, `community-review-feed-row.tsx`, and two profile cards that render raw `{review.body}` without the mention parser.
+- Bodies carry inline mention tokens (`#[Title](/movies/id)`, `@[Name](/people/id)`) parsed by `apps/web/src/lib/content-mentions.ts` — translation must not destroy them.
+- There is **no i18n library and no AI/LLM dependency** in the repo. The only language plumbing is TMDb catalogue metadata (`resolveCatalogTmdbLanguage`, `TMDB_LANGUAGE_WHITELIST`), which is about posters/overviews, not user text.
+- Reusable infrastructure exists for the server side: `apps/server/src/lib/rate-limit.ts` (`hit()`), `apps/server/src/lib/redis-cache.ts` (`cachedRead()`), and env validation in `packages/env/src/server.ts`.
+
+### Key Challenges and Analysis
+
+1. **Engine choice is the load-bearing decision** — nothing exists today, so this drives env vars, cost, offline/dev behaviour, and whether any server route is needed at all.
+2. **Knowing when to offer it** — without a source-language signal we'd either show "Translate" on every review (noise) or detect language on read (cost). Storing detected language at publish time is the cheap fix.
+3. **Mention + spoiler integrity** — translated text must round-trip mention tokens and still pass through `ReviewSpoilerGuard`.
+4. **Surface scope** — full-read drawer only, or previews too? Previews are the discovery surface but multiply translation volume.
+5. **Cost and abuse** — translation is metered; needs `hit()` rate limits plus a durable cache so a popular review is translated once, not once per reader.
+
+### Approved approach (human, 2026-08-11 — spec doc skipped, straight to Executor)
+
+| Decision | Choice |
+| --- | --- |
+| Engine | Server-side **LLM** behind a small swappable provider interface, Redis-cached |
+| Source language | **Detected on publish/edit and stored** on `review.source_language` (free local detector) |
+| Target language | **Browser locale by default**, overridable via a new patron preference |
+| Surfaces (v1) | **Full-read review drawer only** (`review-detail-sheet.tsx`) — previews later |
+| Persistence | **Postgres `review_translation` table** with Redis in front |
+
+**Out of scope for v1:** preview surfaces (feed/carousel/profile cards), comment translation, auto-translate, translated pages for SEO.
+
+**Non-negotiable constraint:** mention tokens (`#[Title](/movies/438631)`, `@[Name](/people/1032)`) must survive translation **verbatim** — label and link target both — or `content-mentions.ts` parsing and canonical title display break. Translated bodies still render through `ReviewBodyWithMentions` inside `ReviewSpoilerGuard`.
+
+### High-level Task Breakdown (Executor, one task per `go`)
+
+1. **T.1 — DB** — migration `0041_review_translation.sql` (`review.source_language` + `review_translation` table) + Drizzle schema + journal entry.  
+   *Success:* journaled migration applies cleanly; `activity.ts` typechecks; unique `(review_id, target_language)`.
+2. **T.2 — Detection** — `apps/server/src/lib/detect-language.ts` (`tinyld`), wire into `POST`/`PATCH /api/reviews`, one-off backfill script for existing rows.  
+   *Success:* per-language fixtures pass; short/ambiguous text returns `null`; backfill fills legacy rows at zero API cost.
+3. **T.3 — Provider** — `review-translation-provider.ts` interface + AI SDK implementation, optional env vars in `packages/env/src/server.ts`.  
+   *Success:* unset env disables the feature cleanly (no boot crash, same pattern as Polar/Resend); prompt test proves mention tokens round-trip.
+4. **T.4 — API** — `POST /api/reviews/:id/translate` (session required, visibility gate, `hit()` rate limit, same-language short-circuit → table → Redis → provider); `sourceLanguage` + `canTranslate` on `GET /api/reviews/:id`; `PATCH` invalidates.  
+   *Success:* route tests cover same-language, cache hit, visibility 404, 429.
+5. **T.5 — Web plumbing** — `review-translation-language.ts` resolution + `reviewTranslationLanguage` preference + Settings select (default Automatic).  
+   *Success:* resolution unit test; preference persists.
+6. **T.6 — Drawer UI** — `Translate to English` → `Translated from Japanese · Show original` in `review-detail-sheet.tsx`; `bg-background` pill on `bg-card`, no borders/rings; errors leave the original text in place.  
+   *Success:* human QA on a foreign-language review.
+7. **T.7 — Verify** — focused test run + human QA checklist.
+
+## Movie detail Community tab — better-interface (2026-08-11)
+
+**Mode:** Executor (`execute` on consolidated review).  
+**Scope:** `/movies/[id]?view=community` stacked Community body (+ TV parity where shared).
+
+### High-level Task Breakdown
+
+1. **C.1 — Score on Community** — Pass community average / counts / engagement into `MovieDetailCommunityPanel` → compact `MovieDetailCommunityRatingHero` at top of stacked body; fix subtitle so it matches what’s on the tab.  
+   *Success:* Community first fold shows score (when present) + chips when signed in; subtitle no longer lies.
+2. **C.2 — Rail + spacing** — Soften review rail `min-h` for short rails; tighten `space-y-14` so Lists peek sooner.  
+   *Success:* With a few reviews, Lists enter the first scroll without a full-viewport dead zone.
+3. **C.3 — Empty reviews CTA** — Empty reviews match Lists empty pattern with Write a review action.  
+   *Success:* 0 reviews shows orientation + CTA that opens the review composer.
+4. **C.4 — Loading skeleton** — Community fallback mirrors stacked score → rail → lists (not old tablist/related).  
+   *Success:* Suspense fallback shape matches shipped layout.
+5. **C.5 — Lists polish** — Drop decorative `shadow-sm` on list tiles; fix system Favorites public description.  
+   *Success:* No diary second-person blurb on others’ Favorites; flat canvas-on-card tiles.
+6. **C.6 — Pasito a11y** — Review stepper tabs named by review, not “Step N”.  
+   *Success:* Snapshot/SR labels include title or @handle.
+
+### Project Status Board — Community tab
+
+- [x] C.1 Score + chips + subtitle — awaiting human QA
+- [x] C.2 Rail height + spacing — awaiting human QA
+- [x] C.3 Empty reviews CTA — awaiting human QA
+- [x] C.4 Loading skeleton — awaiting human QA
+- [x] C.5 Favorites blurb + list shadow — awaiting human QA
+- [x] C.6 Pasito review labels — awaiting human QA
+
+### Executor progress — Community C.1–C.6 (2026-08-11)
+
+- **C.1** — `MovieDetailCommunityPanel` / `TvDetailCommunityAsync` pass `communityAverage`, counts, engagement into stacked `MovieDetailExploreTabs`; compact `MovieDetailCommunityRatingHero` at top; subtitle now “Community score, reviews, and public lists…”.
+- **C.2** — Review rail `min-h` softened to `min(22rem,50vh)`; stacked community stack `space-y-14` → `space-y-10`.
+- **C.3** — Empty reviews uses Lists-style empty + **Write a review** → `useReviewComposer` (movies only when `movieId` + title present).
+- **C.4** — `MovieDetailAboutBodyFallback` `variant="community"` mirrors score → rail → list tiles (no tablist/related).
+- **C.5** — Dropped list-tile `shadow-sm`; Favorites create/repair clears second-person diary blurb; tile also hides that string if still in DB.
+- **C.6** — `DetailArtworkPasitoStepper` patches Pasito `Step N` labels via `getStepLabel`; review rail passes `@handle` + title.
+
+### Executor's Feedback or Assistance Requests
+
+Please QA on `/movies/[id]?view=community` (signed-in): compact score + chips, Lists peek sooner, empty-review CTA if 0 reviews, Favorites tiles without diary blurb. Reply **ok** / issues. Planner should not mark complete until you confirm.
+
+**Streaming prices (2026-08-11):** P.1–P.5 implemented gated. Add `STREAMING_AVAILABILITY_API_KEY` to `apps/server/.env`, restart API, set a catalogue watch region, open `/movies/[id]?view=streaming` — preferred-region Rent/Buy should show amounts (e.g. `$3.99`). Reply **ok** / issues. Without the key the tab correctly stays checkmark-only.
+
+---
+
+## Movie detail Streaming tab — better-interface (2026-08-11)
+
+**Mode:** Executor (`go` on Approach A).  
+**Trigger:** Agentation on `MovieDetailViewShell` body @ `/movies/1339713?view=streaming` (viewport 2554×1324) + `/better-interface`.  
+**Scope boundary:** Streaming tab body only (`MovieDetailStreaming` + shell wrapper). Not About hero, Community, Quotes, or top-bar chrome beyond heading ownership when Streaming is active.
+
+### Background and Motivation
+
+Streaming is the “where can I watch this?” job on title detail. Live check on Obsession (~22 providers, long country lists): the tab never deep-links out, never surfaces the patron’s watch region, and (unlike Community) paints with **no page heading** while About’s `<h1>` is unmounted.
+
+### Recommended approach (approve with `b`)
+
+**Approach A — Actionable availability board (recommended)**  
+Keep the provider rail; make country rows the action surface (JustWatch `row.link` when present); clarify Stream vs Rent vs Buy; pin/filter the patron’s catalogue watch region; restore a Streaming heading + tabpanel a11y; drop hairline table chrome for surface-depth grouping.
+
+**Rejected for now:** full JustWatch embed; price pills (TMDb has none); deleting the provider rail.
+
+### High-level Task Breakdown (post-`b`)
+
+1. **S.1 — Heading + landmarks** — Visible Streaming section title (parity with Community) when About hero is unmounted.  
+2. **S.2 — Actionable rows** — Wire `row.link` to JustWatch per country.  
+3. **S.3 — Offer vocabulary** — Stream ≠ Rent ≠ Buy (don’t collapse flatrate+rent under “Watch”).  
+4. **S.4 — Region first** — Pin/highlight or filter patron catalogue watch region.  
+5. **S.5 — Provider tablist a11y** — Arrow-key roving + `aria-controls` / `tabpanel`.  
+6. **S.6 — Surface chrome** — Replace `border-b` / `divide-y` / logo `shadow-sm` with spacing + raised tiles.  
+7. **S.7 — Empty copy** — Patron-facing empty states without “TMDb sync” jargon.
+
+### Project Status Board — Streaming tab
+
+- [x] S.1 Heading + landmarks — human `ok`
+- [x] S.2 Actionable JustWatch rows — human `ok`
+- [x] S.3 Stream / Rent / Buy clarity — human `ok`
+- [x] S.4 Watch-region personalization — human `ok`
+- [x] S.5 Provider tablist keyboard — human `go`
+- [x] S.6 Surface depth (no hairlines) — human `go`
+- [x] S.7 Empty-state copy — awaiting human QA
+
+### Executor progress — S.1 (2026-08-11)
+
+- `MOVIE_DETAIL_SECTION.streaming` anchor added.
+- `MovieDetailStreaming` wraps empty + filled bodies in `MovieDetailBodySection` (`h2` **Streaming** + subtitle).
+- Shell uses `MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME` (Community/About column parity).
+- Verified live: a11y tree shows `heading level 2: Streaming`.
+
+### Executor progress — S.2 (2026-08-11)
+
+- `CountryAvailabilityRow` — full-row `<a>` to TMDb `row.link` (JustWatch) when present; outbound arrow cue; hover via `DETAIL_CANVAS_ON_CARD_HOVER_CLASS`.
+- Checkmarks stay visual; decorative under the row link so SR hears one action name.
+- Footer: “Tap a country to open JustWatch…”.
+- Verified live: 26 country links named `Open JustWatch for Apple TV Store in …`.
+
+### Executor progress — S.3 (2026-08-11)
+
+- Country table columns are **Stream · Rent · Buy** (flatrate / rent / buy mapped 1:1 — no combined Watch).
+- Grid is `1fr auto auto auto` with slightly tighter column mins on narrow widths.
+
+### Executor progress — S.4 (2026-08-11)
+
+- Movie/TV detail RSC resolve `catalogWatchRegion` via cached `fetchMeProfile` + `readCatalogTmdbWatchRegionPref` (ISO2 only; `ALL`/unset → null).
+- `orderCountryRowsByPreferredRegion` pins preferred country first; unit tests **3/3**.
+- Preferred row: raised `bg-background` + **Your region** pill; missing-region status copy when the service doesn’t list that country.
+
+### Executor progress — S.5 (2026-08-11)
+
+- Provider rail: roving `tabIndex`, `aria-controls` → countries `role="tabpanel"`, Arrow/Home/End selection + focus + `scrollIntoView`.
+- Verified: ArrowRight moves selection from Apple TV Store → next service; inactive tabs `tabIndex=-1`.
+
+### Executor progress — S.6 (2026-08-11)
+
+- Dropped provider logo `shadow-sm`, country header `border-b`, and list `divide-y`.
+- Country rows use `gap-1` + rounded tiles; preferred region keeps raised `bg-background`.
+
+### Executor progress — S.7 (2026-08-11)
+
+- Empty states: title + editorial support line (Lists/reviews pattern).
+- Theatrical: **Only in cinemas for now** / check-back at home.
+- Generic: **No at-home options yet** / no TMDb “sync” jargon.
+- Footer softens to “Tap a country for options…”.
+
+### Executor's Feedback or Assistance Requests — Streaming
+
+S.1–S.7 human closed via follow-on pricing request (2026-08-11).
+
+---
+
+## TV title score — average of seasons/episodes (2026-08-11)
+
+**Mode:** Planner / brainstorming (Approach 1 approved via `go`; design sections in progress).  
+**Trigger:** Agentation on Shows ledger — multiple season posters with separate ratings feel like “fake” show ratings; user wants product-wide derived title score.
+
+### Decisions locked
+
+- Scope: **product-wide** title score for a series (not ledger-only).
+- Rated **whole-series** (`log_scope = show`) log(s) **win** — that average is the title score (no season roll-up).
+- Else: episode ratings → season score → average seasons → show score.
+- Within a scope unit, **average all rated logs** (rewatches included).
+- Implementation approach: **shared pure resolver** on read (no materialize-on-write in v1).
+
+### Design §1 — approved (`go`)
+
+Resolver rules + v1 surfaces (community, following, profile/list captions, ledger series score vs season tile ratings).
+
+### Design §3 — approved (`go`)
+
+Edge cases, TDD fixtures, out of scope (no write materialize / no episode-count weights).
+
+**Spec:** `docs/superpowers/specs/2026-08-11-tv-title-score-design.md` (committed).  
+**Plan:** `docs/superpowers/plans/2026-08-11-tv-title-score.md` (committed).  
+### Executor note — Reviews ranks follow button (2026-08-11)
+
+Removed `MembersFollowButton` from Community Reviews/Likes/Lists rank rows for parity with Film/TV ranks. Deleted `members-follow-button.tsx`. Follow remains on profiles.
+
+---
+
+
+**Mode:** Executor (`go` on Approach A — E.1+E.2 shipped; awaiting E.3 human QA).  
+**Trigger:** Agentation on `/home?browse=community&sort=ranks&rank=episodes` — “says I’ve seen 0 episodes even though I completed seasons / whole shows”.
+
+### Background and Motivation
+
+**Episodes** ranks previously counted only diary rows with `log_scope = 'episode'`. Completing a season writes `tv_watch_episode` progress **and** a **season** diary log (`log_scope = 'season'`). Whole-show Quick Logs are `log_scope = 'show'`. Those never entered the Episodes board, so patrons who binge via season-complete / show logs correctly showed **0** here while **Shows** ranks still counted them.
+
+### Key Challenges and Analysis
+
+1. AGENTS / previous SQL intentionally isolated Episodes as the episode-scope slice (`leaderboard-query.ts` `logScopeFilter`).
+2. Patron mental model: “I’ve watched those episodes” after marking seasons complete — the UI copy (“0 episodes”) reads as life total watched, not “0 episode-scoped diary rows”.
+3. Expanding counts needs a weight rule (season → N episodes from TMDb) and ledger UX so a season log doesn’t look like a single episode line.
+4. Counting raw `tv_watch_episode` would mix progress into ranks and bypass diary `visibility` (ranks are public-diary-only today).
+
+### Approved approach (human `go` 2026-08-11)
+
+**Approach A — Weight season/show diary logs as episode equivalents**
+
+- Episodes board `count` = sum of weights on **public** TV diary logs in the period:
+  - `episode` → **1**
+  - `season` → TMDb/`tv` cache **episode_count** for that season (≥1 fallback)
+  - `show` → series **number_of_episodes** (or sum of season counts; ≥1 fallback)
+- Dedup within period: **episode logs win for that season**; season log only counts when no episode logs for that `tvId+season` in window; show log suppressed when any season/episode exists for that title.
+- Ledger lists underlying diary rows with season/show weight captions; count badge shows weighted total.
+- **Shows** ranks stay unweighted log-row counts (unchanged).
+
+### High-level Task Breakdown
+
+1. **E.1** — Pure weight helper + dedupe rules + unit tests.  
+2. **E.2** — `fetchLeaderboard` / ledger queries for `kind=episodes` use weighted sum.  
+3. **E.3** — Human QA: season-complete → Episodes rank &gt; 0; Shows unchanged; no double-count with per-episode logs.
+
+### Project Status Board — episode ranks
+
+- [x] E.1 Weight helper + tests — `leaderboard-episode-weight.ts` (+ `.test.ts`)
+- [x] E.2 Leaderboard + ledger SQL/service — `leaderboard-query.ts`; ledger captions in `patron-watch-ledger-poster-labels.ts`
+- [ ] E.3 Human QA
+
+### Executor progress (2026-08-11)
+
+- Weighted SQL `sum(case…)` with `tv.tmdb_json` season/`number_of_episodes` lookups; EXISTS dedupe for season vs episode and show vs season/episode.
+- Ledger returns `logScope` / `seasonNumber` / `episodeWeight`; poster caption e.g. **Season 2 · 10 episodes**.
+- **Fix (Agentation):** period/lifetime ordinals group by TV **scope unit** (`season:N` / `episode:S:E` / `show`), not bare `tvId` — Squid Game S1 + S2 no longer read as “2nd this month”.
+- **Fix (Agentation, Shows ledger):** poster captions always show **Whole series** / **Season N** / **S#E#** so duplicate series covers are distinguishable (not only when Episodes `episodeWeight` is set).
+
+### Executor's Feedback or Assistance Requests
+
+Please re-open your Episodes ledger for Squid Game seasons — each season tile should stand alone (no false rewatch / “Nth this month”). Reply **ok** / issues.
+
+---
+
+
+**Mode:** Executor (`go` on Approach A — recommended defaults).  
+**Trigger:** “i want to have the prices of buy and rent” on movie detail Streaming.
+
+### Background and Motivation
+
+The Streaming tab now shows Stream · Rent · Buy as checkmarks. Patrons need **how much** to rent or buy, not only whether an offer exists. Today’s data path is TMDb `watch/providers` via JustWatch attribution — that payload has **provider presence only**, no `retail_price` / currency. Footer copy already admits checkmarks ≠ live prices.
+
+### Key Challenges and Analysis
+
+1. **TMDb cannot supply prices** — `TmdbWatchProviderRow` is id/name/logo only; no price fields in the API response we cache.
+2. **JustWatch partner API** documents offers with price + currency + monetization type (rent/buy/flatrate) — licensed, stable, but needs partner access / cost.
+3. **Unofficial JustWatch GraphQL** can return `retail_price` but is undocumented, may break, and is a ToS/risk choice for a shipping product — not recommended as the long-term source.
+4. **Scale** — Showing prices for every country × every provider is expensive (N×M offers). Pinning to the patron’s **catalogue watch region** (S.4) makes v1 tractable: one country, many providers (or one selected provider × one country).
+5. **Display** — Multiple qualities (SD/HD/4K) often mean multiple rent/buy prices; need a rule (cheapest HD, or “from $X”).
+
+### Approved approach (human `go`, 2026-08-11)
+
+**Approach A — Region-priced offers via Streaming Availability (movieofthenight)**
+
+Locked defaults:
+
+| Decision | Choice |
+| --- | --- |
+| Source | **Streaming Availability API** v4 (direct or RapidAPI) |
+| Scope | **Patron catalogue watch region only** |
+| Price rule | **Lowest HD** (then qhd/uhd, then SD) |
+| Cache | Redis 12h via `cachedRead` |
+| Degraded | No `STREAMING_AVAILABILITY_API_KEY` → checkmarks only |
+
+**Rejected for now**
+
+| Candidate | Why reject |
+| --- | --- |
+| B — Scrape unofficial JustWatch GraphQL from the web app | Fragile + ToS risk; breaks without notice |
+| C — Prices for every country in the table | Cost/latency blow-up; table becomes a spreadsheet |
+| D — Fake/static prices | Misleading |
+
+### High-level Task Breakdown
+
+1. **P.1 — Provider decision** — Streaming Availability + optional env.  
+2. **P.2 — Server enrich** — `GET /api/movies|tv/:id/streaming-prices?region=XX`.  
+3. **P.3 — Cache + rate limit** — Redis TTL + `hit()` 60/min.  
+4. **P.4 — UI** — Rent/Buy show formatted price on preferred-region row.  
+5. **P.5 — Copy** — Live-price footer when amounts shown.
+
+### Project Status Board — streaming prices
+
+- [x] P.1 Streaming Availability + env schema — **awaiting human API key**
+- [x] P.2 Server enrich route + mapper — awaiting human QA with key
+- [x] P.3 Redis cache + rate limit — awaiting human QA with key
+- [x] P.4 UI prices on preferred-region row — awaiting human QA with key
+- [x] P.5 Footer copy when prices present — awaiting human QA with key
+
+### Executor progress — streaming prices (2026-08-11)
+
+- Env: `STREAMING_AVAILABILITY_API_KEY` + optional `STREAMING_AVAILABILITY_BASE_URL` in `packages/env/src/server.ts` (Polar/Resend optional pattern).
+- Server: `streaming-availability-prices.ts` — fetch `GET /shows/movie|tv/{id}?country=`, lowest-HD pick, name-key aliases for TMDb matching; Redis key `sense:streaming-prices:v1:…` (12h).
+- Routes: `GET /api/movies/:id/streaming-prices` + `GET /api/tv/:id/streaming-prices` — 400 bad region, `{ configured: false }` when unset, 429 via `hit()`, 502 on upstream failure.
+- Web: `MovieDetailStreaming` client-fetches when region set; overlays prices on **Your region** row only; footer switches to live-price copy when amounts render.
+- Tests: 8 server + 2 web unit tests green.
+- **Live key wired (2026-08-11):** RapidAPI key + `STREAMING_AVAILABILITY_BASE_URL=https://streaming-availability.p.rapidapi.com` in `apps/server/.env`. Smoke test `movie/550` US returned Prime rent/buy amounts.
+- **Bugfix (checks not prices):** Duplicate RapidAPI key header casings caused 403; fixed to single `x-rapidapi-key`.
+- **2026-08-11 evening:** Removed forced provider auto-select (it stole focus). Prices now load for **all countries** in one upstream call (`offersByCountry`); provider rail is freely choosable again.
+
+### Open questions — resolved by Approach A defaults
+
+1. Region-only — **yes**.  
+2. Source — **Streaming Availability**.  
+3. HD vs 4K — **lowest HD**.
+
+### Project Status Board — review translation
+
+- [x] T.1 DB migration + schema — human ran `db:migrate` (2026-08-11)
+- [x] T.2 Language detection + backfill (backfill `--apply` still pending human)
+- [x] T.3 Translation provider + env (needs `AI_GATEWAY_API_KEY` from human to run live)
+- [x] T.4 Translate API + invalidation
+- [x] T.5 Web language resolution + preference + Settings select
+- [x] T.6 Drawer UI — human verified (`good ok`, 2026-08-11); control moved above body on Agentation feedback
+- [x] T.7 Verify — focused suites green; human drawer QA via T.6 (`good ok`)
+
+### Executor progress — T.1 (2026-08-11)
+
+- `packages/db/src/migrations/0041_review_translation.sql` — additive: `ALTER TABLE review ADD COLUMN IF NOT EXISTS source_language text` + `CREATE TABLE IF NOT EXISTS review_translation` (`id`, `review_id` FK cascade, `target_language`, `title`, `body`, `model`, `created_at` tz) with `CONSTRAINT review_translation_review_language_uk UNIQUE (review_id, target_language)`.
+- Journal entry `idx: 41` registered in `meta/_journal.json` (unjournaled files are silently skipped — see Lessons).
+- `packages/db/src/schema/activity.ts` — `review.sourceLanguage`, `reviewTranslation` table, `reviewTranslationRelations`, `translations: many(...)` on `reviewRelations`.
+- No redundant `review_id` index — the unique constraint's backing index already covers the prefix.
+- Verified: `tsc --noEmit -p packages/db` clean for `activity.ts` (the three `pg` `TS7016` errors are pre-existing, missing `@types/pg`). Biome's whole-file CRLF complaint is repo-wide on Windows checkouts — untouched `quote.ts` reports the same; diff is +50/−1, not a line-ending rewrite.
+- **Not run:** `bun run db:migrate` — left to the human since it mutates the live Neon database. *(Human confirmed applied, 2026-08-11.)*
+
+### Executor progress — T.2 (2026-08-11)
+
+- **`apps/server/src/lib/detect-language.ts`** — `detectReviewLanguage(body)` → base ISO-639-1 tag or `null`; `stripUndetectableNoise` removes mention tokens + URLs first (they drag detection toward English). Dependency **`tinyld@1.3.4`** added to `apps/server`, imported as **`tinyld/light`** (see Lessons — the full model calls plain English "Berber" at accuracy 1.000).
+- Gating is by **length**, not tinyld's accuracy score: **24** chars latin, **8** for CJK/hangul. Accuracy is unusable as a gate (correct Spanish = 0.11, wrong answers = 1.000).
+- **`apps/server/src/routes/reviews.ts`** — `sourceLanguage` set on `POST /` and recomputed on `PATCH /:id` **only when the body text actually changed** (a visibility-only edit must not churn it). Hoisted `nextBody` so the trim happens once.
+- **`apps/server/scripts/backfill-review-source-language.ts`** + `bun run reviews:backfill-language` — dry run by default, `--apply` to write; raw SQL so the `updatedAt` `$onUpdate` hook does not stamp every legacy review as edited.
+- **Dry run against production data:** 501 rows without a language → **447 detected, 54 too short/ambiguous**; `en=367 it=47 hi=16 fr=3 pt=3 nl=2 pl=2 fi=2 de=2 tr=1 es=1 ro=1`. The pre-`light` run produced `ber=5 rn=2 eo=1 af=1` junk on English/Italian rows — the corpus is what caught it.
+- Tests: **18/18** in `detect-language.test.ts`, including regressions built from the real misdetected rows (elongated English, casual English, abbreviated Italian) and non-latin coverage (zh/ru/ar/hi).
+- Also removed a now-unused `count` import in `reviews.ts` left behind by **pre-existing uncommitted work** in the tree (the plan-tier → `fetchPatronAvatarBadgeMaps` refactor) — it was failing `check-types`.
+- Verified: no regression. `check-types` clean for all touched files; failing suites (Lanyard, Letterboxd, listing-presence, taste-overlap) pass in isolation or are the known `mock.module` ordering pollution.
+- **Not run:** `reviews:backfill-language --apply` — one write command, left to the human.
+
+### Executor progress — T.3 (2026-08-11)
+
+- **`apps/server/src/lib/review-translation-tokens.ts`** — `maskMentionTokens` / `restoreMentionTokens`. Mention tokens are swapped for numbered `[[n]]` placeholders **before** the model sees them and restored after, so preservation is **structural, not a prompt request**. Restoring throws `MentionPlaceholderError` when the model dropped, duplicated or invented a placeholder — a review whose links silently vanished is worse than no translation, so the caller keeps the original. Placeholders may legitimately **move** (word order differs per language) and padded `[[ 0 ]]` is tolerated. Side benefit: the model never receives link targets, so it cannot translate canonical film titles.
+- **`apps/server/src/lib/review-translation-provider.ts`** — `ReviewTranslationProvider` seam (`translate(request)`), `createReviewTranslationProvider(generate?)` with an **injectable generate** so masking/prompting/restoring is testable without a key or network. Gateway impl uses `generateObject` + `gateway(model)` from **`ai@^7.0.59`**, `temperature: 0.2`. Prompt rules: keep placeholders, don't translate titles/names, **keep the writer's register** (slang/profanity/enthusiasm — no politeness drift), no added commentary.
+- Language names for prompts come from **`Intl.DisplayNames`**, not a hardcoded map — no new shared package needed, and the web side can localise the same tags for the reader.
+- **`packages/env/src/server.ts`** — `AI_GATEWAY_API_KEY` + `REVIEW_TRANSLATION_MODEL`, both `optionalNonEmptyString()` (Polar/Resend pattern). `isReviewTranslationConfigured()` is the feature switch; default model `google/gemini-2.5-flash-lite`.
+- Tests: **17/17** across `review-translation-tokens.test.ts` (8) and `review-translation-provider.test.ts` (9) — including placeholder reordering, drop/duplicate/invent failures, and the model inventing a title for a review that had none.
+- `check-types` clean for all touched files.
+- **Blocked for live use:** `AI_GATEWAY_API_KEY` is **not set** in `apps/server/.env`, so no end-to-end call was possible. Until it is set the feature reports itself unconfigured and the UI will hide the control — which is the intended degraded behaviour, not a bug.
+
+### Executor progress — T.4 (2026-08-11)
+
+- **`apps/server/src/lib/review-translation-service.ts`** — `resolveReviewTranslation(source, target, deps)` with **injected** `loadStored` / `saveStored` / `translate`. Cheapest path first: **same-language short-circuit → stored row → provider (then persist)**. Kept out of the route deliberately: a route test for `reviews.ts` would need a ~200-line mock of the whole module graph, whereas this unit is exhaustively testable. Also exports **`normalizeLanguageTag`** (`en-US`/`PT_br` → `en`/`pt`; region dropped so `en-US` and `en-GB` don't double the bill; junk → `null`).
+- **`POST /api/reviews/:id/translate`** in `reviews.ts` — session required (anonymous access is an open faucet on a metered model), **503** when unconfigured, `normalizeLanguageTag` **400** on junk, **`hit()`** 20/min burst + **200/day** ceiling, then the **same `canViewContent` visibility gate as `GET /:id`** so translation can never become a way to read a review you can't otherwise see. Empty body → 400.
+- **Caching:** Redis via `cachedRead` wraps the service call with key `sense:review-translation:{id}:{lang}:{updatedAtMs}` (TTL 24h). Putting **`updatedAt` in the key** means an edit self-invalidates the hot cache with no explicit Redis invalidation path. Postgres `review_translation` stays the source of truth; Redis exists to keep repeat reads off Neon (per the Neon compute reduction work).
+- **Invalidation:** `PATCH /:id` deletes `review_translation` rows **only when the body text actually changed** — a visibility or rating edit must not throw away paid-for translations.
+- **`MentionPlaceholderError` → 502**, leaving the reader on the original text; any other provider error also 502 with a `console.error` breadcrumb.
+- **`GET /api/reviews/:id`** now returns **`canTranslate`** (engine configured ∧ `sourceLanguage` known ∧ non-empty body). `sourceLanguage` already rides along in the spread `row.review`.
+- Tests: **12** new — `review-translation-service.test.ts` (7, incl. "does not persist when the provider fails") and `reviews-translate.test.ts` (5 guard rails: 401 unsigned, 503 unconfigured, 400 junk/traversal language, schema rejection). The route test also proves the endpoint is actually mounted.
+- Full server suite **812 pass / 11 fail** — same 11 pre-existing failures as before T.2 (779/11); every one of the 33 tests added across T.3–T.4 passes. `check-types` clean for all touched files.
+
+### Executor progress — T.5 (2026-08-11)
+
+- **`apps/web/src/lib/review-translation-language.ts`** — `REVIEW_TRANSLATION_LANGUAGE_OPTIONS` (18 base tags for the Settings dropdown), `normalizeReviewTranslationLanguage`, `resolveReviewTranslationLanguage({ preference, navigatorLanguage })` → **pref → browser → `en`**, and `reviewLanguageDisplayName(tag, displayLocale)` on `Intl.DisplayNames` (same approach as the server prompt side, no hardcoded name map). The option list is deliberately **not** a whitelist for resolution: a patron whose browser is set to a language we don't list (Czech, say) still gets translations — the list only keeps the dropdown short.
+- **Bug caught by its own test:** `"not-a-language"` split on `-` yields `"not"`, which passes a bare `^[a-z]{2,3}$` check, so junk would have reached the model as a real language. Both normalizers now require the **whole** string to be locale-shaped (`^[a-z]{2,3}([-_][a-z0-9]{2,8})*$`) before taking the base tag. Fixed on the server too (`review-translation-service.ts`) with a regression test, so the two stay in parity.
+- **Preference** — `PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE` (`"reviewTranslationLanguage"`) + `readReviewTranslationLanguagePref` in `profile-preferences.ts`, normalized on read so a legacy `en-GB` collapses to `en`. Empty/absent means "follow the browser", which is why the save path **deletes** the key rather than storing `""` (mirrors `catalogTmdbLanguage`).
+- **Settings** — `MeReviewLanguageSelect` (`me-review-language-select.tsx`), modeled on `MeCatalogLanguageSelect`, in **Settings → Catalogue** under Catalogue language so both language controls sit together; section description now reads "…streaming, and reading." The follow-browser option names the detected language ("Match my browser (English)") but reads `navigator` **in an effect only** — naming it during SSR would mismatch on hydration.
+- Wired through `settings-form-context.tsx` at all ten touchpoints (type, state, draft restore, dirty check, both draft writes, three dep arrays, prefs build, context value) and `MeAccountSettingsDraftPayload`.
+- **`use-review-translation-language.ts`** — `useReviewTranslationLanguage(enabled)` for T.6: applies the browser language immediately so the drawer can label its control on first paint, then upgrades when `GET /api/profiles/me` returns the preference. Module-level cache with a separate `preferenceLoaded` flag so "fetched, no preference set" is not re-fetched forever; `invalidateReviewTranslationLanguageCache()` fires on Settings save next to the catalogue-language invalidation.
+- Tests: **15** new in `review-translation-language.test.ts` (resolution order, junk rejection, display names, preference reads, option-list invariants) + 1 server regression. Web suite **698 pass / 7 fail** — all 7 pre-existing and unrelated (activity timestamps, list poster URLs, retired catalogue redirect, two files importing `vitest`). `tsc --noEmit` reports nothing in any touched file.
+
+### Executor progress — engine switch to direct Gemini (2026-08-11, amends T.3)
+
+**Trigger:** human set an API key. It was a **Google AI Studio key**, not a Vercel AI Gateway key, pasted into `AI_GATEWAY_API_KEY` — those are different credentials and are not interchangeable (gateway takes a `vck_…` Bearer token; a Google key must go to `generativelanguage.googleapis.com` via `x-goog-api-key`).
+
+- **Two engines, whichever key is present.** `resolveReviewTranslationEngine({ googleApiKey, gatewayApiKey })` → `"google" | "gateway" | null`, Google winning when both are set (direct path, no middleman). `isReviewTranslationConfigured()` now delegates to it. Both resolvers are **pure**, with thin `env`-reading wrappers, so tests don't depend on whatever is in the developer's `.env`.
+- **`@ai-sdk/google@4.0.41`** added to `apps/server` — resolves the same `@ai-sdk/provider@4.0.7` as `ai@7.0.59`, so the versions line up. Model is built **per call** via `createGoogleGenerativeAI({ apiKey })` rather than at module load, so importing the module without a key (every test) stays safe, and the key comes from `@still/env` instead of ambient `process.env` (Turbo strict env can drop undeclared vars).
+- **Model id differs per engine:** gateway routes on `google/<model>`, the direct provider takes the bare name. `resolveReviewTranslationModel(engine, override)` handles both; `REVIEW_TRANSLATION_MODEL` still overrides either.
+- **Default model is now `gemini-3.5-flash-lite`** (was `gemini-2.5-flash-lite`). The old one **404s** for newer accounts — *"no longer available to new users"* — even though it still appears in the `/v1beta/models` listing, so the listing is not proof of access. Pinned rather than the floating `gemini-flash-lite-latest` alias so a Google release cannot silently move translation quality or cost.
+- `apps/server/.env`: the key was moved onto **`GOOGLE_GENERATIVE_AI_API_KEY`** (value untouched).
+- **Live end-to-end verified** with a throwaway script (since deleted): Italian review → English in **874ms**, both `#[Dune](/movies/438631)` and `@[Ada](/profile/ada)` tokens intact, and register preserved — *"madonna che roba"* came back as *"holy shit what stuff"* rather than being politely sanitised, which is exactly what the voice rule in the system prompt is for.
+- Tests: **6** new (engine precedence, unconfigured, per-engine model ids, override). Translation suites **36/36**; full server suite **819 pass / 11 fail** — same 11 pre-existing failures. `check-types` clean for touched files.
+
+### Executor progress — T.6 (2026-08-11)
+
+- **`ReviewTranslateControl`** in the full-read drawer (`review-detail-sheet.tsx`), below the body and above comments. Surface rules: signed-in only, not the author, `canTranslate` from GET, and `sourceLanguage !==` reader target language.
+- Idle pill: **`Translate to {Language}`** (`bg-background` on `bg-card`, no border/ring). Busy: spinner + **Translating…**. After success: **`Translated from {Source} · Show original`**. Re-show uses a client cache (**Show translation**) so toggle does not re-pay the model.
+- Failures toast and **never** swap `translationView`, so the original title/body stay on screen. Same-language short-circuit toasts "already in your language" and leaves the original.
+- Payload plumbing: `canTranslate` + `sourceLanguage` on `normalizeReviewDetailPayload`; display title/body prefer `translationView` when set. Control is keyed by `reviewId` so opening another review remounts clean state.
+- **`fetch-review-translation.ts`** + pure **`review-translation-result.ts`** (normalize kept free of `@/lib/api` so unit tests do not boot the web env schema). 3 normalize tests pass.
+- Target language via **`useReviewTranslationLanguage`** (Settings → browser → `en`).
+- Placement follow-up (Agentation): control moved **above** score/title/body so a long review does not bury Translate.
+
+### Executor progress — T.7 (2026-08-11)
+
+- Focused suites: web translation **18/18**; server detect + tokens + provider + service + translate route **54/54**.
+- Human QA: drawer translate + top placement verified (`good ok`).
+- Optional leftover for human: `bun run reviews:backfill-language --apply` if older reviews still lack `sourceLanguage` (no Translate pill until detected).
+- **Planner: track complete** (human `done`, 2026-08-11).
+
+## `/quotes` lobby remake — better-interface (2026-08-10)
+
+**Mode:** Complete — human verified (`ok`, 2026-08-10).  
+**Trigger:** Agentation on `QuotesPatronLobbyShell` — “remake the ui and ux of this page” + `/better-interface`.  
+**Scope:** Signed-in `/quotes` only (`QuotesPatronLobbyShell` + saved/submitted rows, chips, empty/loading). Not title Quotes tab, staff queue, or profile strip (except keep pin/visibility contracts).  
+**Viewport noted:** 1736×1010. Runtime screenshot **Not verified** (browser redirected to `/sign-in`).
+
+### Background and Motivation
+
+`/quotes` already ships collection switch (Saved · Submitted), media filter (All · Films · Shows), submission status chips, infinite list, visibility + profile pin. It reuses the **home catalogue card shell** and stacks **three centered pill toolbars** under a short intro — so it reads as a generic filter stack, not a quote collection. Spec (`2026-06-14-favorite-quotes-design.md`) wanted lobby parity with diary chrome and a quote-first list; the shell has grown into vertical chip chrome that eats the first viewport.
+
+### Key Challenges and Analysis
+
+1. **Chrome vs content** — Intro + View + (Status) + Kind can consume ~½ the first screen before any quote.
+2. **Wrong shell metaphor** — `HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME` is a poster-grid shell; Community feed uses flat `bg-background` rows on `bg-card` without a tall centered header stack.
+3. **IA duplication** — Saved/Submitted and All/Films/Shows are both primary; status is secondary and only on Submitted — should live in one `HomeLobbyFilterRow`-class row, not three stacked rails.
+4. **Must stay visibly different** after remake (same bar as Community lobby redesigns) — not an invisible structure shuffle.
+5. **Keep contracts** — `?view=` / `?kind=` / `?status=`, lobby nav, infinite pager, visibility PATCH, pin max 3.
+
+### Recommended approach (approve with `b`)
+
+**Approach A — Editorial reading room + home filter-row IA (recommended)**
+
+- Drop the centered multi-rail header stack.
+- One filter row under sticky chrome: **leading** Saved · Submitted (+ status as inline secondary or popover when Submitted); **trailing** All · Films · Shows (or reverse if density needs it — pick during Task 1).
+- Quote-first rows: larger editorial measure, quieter meta (poster + title as footer context), actions in a compact trailing cluster — still flat `bg-background` on `bg-card` (no borders/rings).
+- Empty/loading keep centered empty + skeleton but match new row anatomy.
+- Page title can stay in document metadata / sr-only or a single quiet line — not a hero that outranks the quote stream.
+
+**Rejected for now**
+
+| Candidate | Why reject |
+| --- | --- |
+| B — Pixel-clone Community Activity rows | Quotes need editorial quote hierarchy, not feed-verb bylines |
+| C — Masonry / backdrop still wall | Heavier, speculative assets; fights `max-w-2xl` reading measure |
+
+### High-level Task Breakdown (post-`b`, Executor one task per `go`)
+
+1. **Filter IA** — Collapse chips into one `HomeLobbyFilterRow` (or quotes-specific twin); preserve URL builders/tests.  
+   *Success:* one row at 1736 and narrow; Submitted shows status without a third full-width rail.
+2. **Shell** — Remake `QuotesPatronLobbyShell` hierarchy (no stacked intro+3 toolbars); keep `LobbyNavigationProvider`.  
+   *Success:* first viewport shows filters + ≥1 quote card when data exists.
+3. **Saved / submission rows** — Editorial remake of `QuotesSavedRow` / `QuotesSubmissionRow` + skeleton parity.  
+   *Success:* quote body is the dominant signal; actions remain reachable (visibility, pin, View on title).
+4. **Empty + copy** — Align empty titles/CTAs with new IA; verb-first browse path.  
+   *Success:* empty states still point to saving/suggesting from title Quotes tab.
+5. **Verify** — focused lobby tests + human QA checklist (Saved/Submitted, kind, status, pin, visibility, infinite).
+
+### Project Status Board — quotes remake
+
+- [x] Q.0 Approach approved (`b`)
+- [x] Q.1 Filter IA — shipped
+- [x] Q.2 Shell remake — dropped visible h1/description; filter row is the chrome (human feedback 2026-08-10)
+- [x] Q.3 Row remake — quote-first cards
+- [x] Q.4 Empty/copy
+- [x] Q.5 Automated verify **20/20** + human QA (`ok`, 2026-08-10)
+
+### Executor progress — Q.1 (2026-08-10)
+
+Shipped one-line filter chrome:
+- New `quotes-lobby-filter-row.tsx` → `HomeLobbyFilterRow`
+- **Leading:** Saved · Submitted; on Submitted, status inline at `sm+`, `HomeLobbyChipPopover` below `sm`
+- **Trailing:** All · Films · Shows
+- URL builders unchanged; `quotes-lobby.test.ts` **4/4** (extra href cases for view/status)
+
+### Executor progress — Q.2 (2026-08-10)
+
+Human: do not want h1 + description above filters. Removed visible intro from `QuotesPatronLobbyShell`; kept `sr-only` h1 for landmarks; filters are the only header chrome.
+
+**Follow-up (Agentation):** Submitted status chips → `HomeLobbyFilterRow` `center` on `sm+` (Community ranks pattern); mobile keeps status popover in the leading rail.
+
+### Executor progress — Q.3 (2026-08-10)
+
+Quote-first lobby cards:
+- Shared `quotes-lobby-listing-meta.tsx` (card shell + poster/title footer)
+- Larger editorial body (`text-xl` / `sm:text-2xl`); listing + actions in footer row
+- Submission status moved under the quote (not above)
+- Skeleton + list gap (`gap-5`) matched; visibility/pin hit targets ~40px
+
+### Executor progress — Q.4 (2026-08-10)
+
+Empty copy helper `quotes-lobby-empty-copy.ts` + tests **3/3**:
+- Films/Shows vocabulary; teach Quotes-tab save vs suggest
+- CTA: Saved → “Browse films & shows”; Submitted → “Browse titles to suggest”
+- Wired through `QuotesLobbyEmptyState` + `QuotesLobbyBrowseLink label`
+
+Lobby tests **7/7** pass.
+
+### Executor progress — Q.5 (2026-08-10)
+
+Automated: quotes lobby + empty-copy + attribution + timestamp + pinned-quotes tests **20/20** pass; no linter diagnostics on remake files. Browser signed-in visual QA **Not verified** in agent session.
+
+### Executor's Feedback or Assistance Requests
+
+**Shipped** — `/quotes` remake (Approach A, Q.1–Q.5) closed on human `ok` (2026-08-10).
+
+---
+
+## Achievements back navigation (2026-08-02)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-08-02-achievements-back-navigation-design.md` (**Approved**). **Locked:** `resolveAchievementsReturn` anti-loop; persist prior route on achievements entry; fallback home browse rail. **Executor shipped (2026-08-02):** `isAchievementsPath` / `isAchievementsReturnHref` / `resolveAchievementsReturn`; `useAchievementsReturn` + `AchievementsTopBar`; `DetailReturnCapture` achievements entry; tests **12/12 pass** on `movie-detail-return.test.ts`. **Pending human QA:** account menu → Achievements → back; Achievements → Profile → Achievements → back (not “Achievements”).
+
+## Listing detail scroll reset (2026-08-02)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-08-02-listing-detail-scroll-reset-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-08-02-listing-detail-scroll-reset.md`. **Locked:** forward entry to film/TV detail + tab switches → instant top; back to lobby preserves scroll; Lenis sync; temporary `history.scrollRestoration = 'manual'` on detail shells. **Executor Tasks 1–4 done (2026-08-02):** `scroll-document-to-top.ts` + tests **1/1 pass**; `use-listing-detail-scroll-reset.ts` wired in `movie-detail-view-shell.tsx`; `AppScrollToTop` DRY'd. **Human verified (`ok`, 2026-08-02):** home → movie top; back restores lobby scroll; tab switches top. **Follow-up fix (2026-08-02):** swallow `AbortError` on listing presence snapshot fetch + abort in-flight home catalogue pages on unmount (dev overlay `signal is aborted without reason`).
+
+## Discord profile activity — Lanyard (2026-07-28)
+
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-28-discord-profile-activity-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-28-discord-profile-activity.md`. **Locked:** one-click Connect Discord · Sense Presence guild (no Lanyard public server) · self-hosted Lanyard · activity lines on profile + account menu only · reuse `presenceVisibility` · `DISCORD_ACTIVITY_ENABLED` flag. **Executor Task 1 done (2026-07-29):** optional Discord/Lanyard env vars in `packages/env/src/server.ts`; `discord-activity-config.ts` + tests **7/7 pass**. **Executor Task 2 done (2026-07-29):** `discord-activity.ts` formatter (Spotify · playing · streaming · custom) + tests **6/6 pass**. **Executor Task 3 done (2026-07-29):** `lanyard-client.ts` REST fetch + 15s in-memory cache + tests **4/4 pass**. **Executor Task 4 done (2026-07-29):** `discord-guild-member.ts` guild join/kick (PUT/DELETE) + tests **5/5 pass**. **Executor Task 5 done (2026-07-29):** `integrations.discordActivityEnabled` helpers on web + server (`discord-activity-preferences.ts`); PATCH `/profiles/me` deep-merge via `sanitizeDiscordActivityPreferences`; tests **5/5** server + **3** new web cases pass. **Executor Task 6 done (2026-07-29):** `discord-activity-visibility.ts` — `canViewerSeeDiscordActivity` (unsigned · self · friends/public · private profile · connected/enabled gates); tests **11/11 pass**. **Executor Task 7 done (2026-07-29):** `GET /api/profiles/:handle/discord-activity` — `fetch-profile-discord-activity.ts` + `profile-discord-activity-data.ts`; feature-flagged; 404 when profile hidden; `{ visible: false | true, activity? }`; never exposes Discord snowflake; tests **9/9 pass**. **Executor Task 8 done (2026-07-29):** Better Auth `socialProviders.discord` (`identify` + `guilds.join`) when credentials set; `databaseHooks` guild join + profile prefs on link/unlink; `@still/auth/lib/discord-oauth-callback.ts` + `discord-presence-guild.ts`; server routes `POST /api/me/discord/finish-setup`, `DELETE /api/me/discord`, `GET /api/me/discord/status`; tests **4/4** auth + **5/5** route + guild member **5/5** pass. **Executor Task 9 done (2026-07-29):** `kickDiscordPresenceGuildOnUserDelete` in `discord-oauth-callback.ts` wired into Better Auth `beforeDelete`; tests **6/6** oauth callback suite. **Executor Task 10 done (2026-07-29):** `me-discord-connect.tsx` on Settings → Profile (hidden when feature off); Connect via `linkSocial`; activity toggle in form save; Finish setup + Disconnect via `/api/me/discord/*`. **Executor Task 11 done (2026-07-29):** profile hero Discord activity row — `ProfileDiscordActivityRow`, RSC `fetchProfileDiscordActivityServer` + client fetch helper, wired on `/profile/[handle]` under bio (hidden when API returns `visible: false`). **Executor Task 12 done (2026-07-29):** account menu self preview — `AccountMenuDiscordActivity` in `app-user-account-menu.tsx`; fetch on open + 30s poll while open; `aria-live="polite"` + second-person SR copy (`discord-activity-self-copy.ts`, tests **4/4**). **Executor Task 13 done (2026-07-29):** `docker/discord-lanyard.compose.yml` (Lanyard + Redis, Task 0 checklist + env wiring in header comments); spec links compose file. **Discord profile activity track complete** (Tasks 1–13) — pending human Task 0 E2E + verification checklist. **Manual Task 0 still blocking E2E:** Discord app + Sense Presence guild + self-hosted Lanyard on staging.
+
+**Executor polish (2026-07-30):**
+- [x] DPA.14 Clickable album art toggles to a rotating vinyl with the cover as its center label; click again restores the cover.
+- [x] DPA.14 accessibility/performance — `aria-pressed`, contextual labels, focus ring, transform/opacity-only state transition, linear disc rotation, and static vinyl under reduced motion.
+- [x] DPA.14 visual refinement — matched the supplied reference with a full-size circular artwork disc and minimal dark center label; removed realistic grooves and reflective highlight.
+- [x] DPA.15 artwork metadata — album tooltip on cover/vinyl plus creator portrait at the lower-right corner with creator-name tooltip; sourced from Lanyard `large_text`, `small_image`, and `small_text` (not inferred).
+- [x] DPA.15 automated verification — server Discord formatter/fetch tests **17/17 pass**, web activity tests **2/2 pass**, and no linter diagnostics.
+- [x] DPA.16 cover/vinyl motion polish — interruptible 300ms opacity + scale + 4px blur bridge using `cubic-bezier(0.2, 0, 0, 1)`; press feedback normalized to `0.96`; reduced motion retains a 200ms opacity-only state cue.
+- [x] DPA.14 automated verification — Discord activity UI tests **2/2 pass**; no linter diagnostics.
+- [ ] DPA.14 human verification — click the artwork on `/profile/adgv`, confirm vinyl/cover toggle and rotation.
+
+**Executor's Feedback or Assistance Requests:** Please manually verify the vinyl interaction while a listening activity is visible. The current browser verification session loaded the profile without a Discord activity row, so the live visual state could not be exercised automatically.
+
+## Neon compute reduction (2026-07-30)
+
+**Plan:** `neon_compute_reduction_b3671851.plan.md` (attached in Cursor plan; do not edit plan file). **Locked:** keep Neon/Postgres · prod warm at **0.25 CU** · target **<$25/mo** · 7-day measurement gate before any D1 experiment · baseline template `docs/superpowers/specs/2026-07-30-neon-compute-baseline.md`.
+
+**Executor shipped (2026-07-30):**
+- [x] **baseline-neon** — `database-target.ts` credential-safe classifier + boot log line; `database-target.test.ts` **6/6**; baseline doc template.
+- [x] **isolate-dev-jobs** — ordinary `bun dev` no longer runs recurring DB jobs; explicit `RUN_LOCAL_JOBS=true` or `bun run dev:jobs`; `run-local-scheduler.test.ts` **3/3**.
+- [x] **cache-auth-session** — Better Auth `session.cookieCache` 5m; `freshContext` on staff/billing/import/referrals/me-data/me-discord/plan-features; `request-session.test.ts` **2/2**.
+- [x] **cache-presence-metadata** — `presence-profile-metadata-cache.ts` read-through Redis (60s) for online + listing presence; invalidation on `PATCH /profiles/me`; `patron-presence.ts` + `listing-presence.ts` wired; tests **3/3** cache + listing-presence suite **17/17**.
+- [x] **cache-discord-metadata** — `discord-activity-metadata-cache.ts` (300s) split from Lanyard live cache; `fetch-profile-discord-activity.ts` refactored; invalidation on profile PATCH, `DELETE /me/discord`, and OAuth link/unlink via `registerDiscordMetadataInvalidator`; `fetch-profile-discord-activity.test.ts` **9/9**.
+- [x] **verify-rollout (automated)** — focused tests **40/40 pass** across 6 files; `graphify update .` skipped (CLI not on PATH).
+
+**Deploy / measure (human):**
+1. Deploy server first (jobs isolation + metadata caches); enable session cookie cache with deploy (already in `@still/auth`).
+2. Smoke: sign-in · staff route · ban/revoke · impersonation · library delete · presence poll · Discord activity · `RUN_LOCAL_JOBS` off in ordinary dev.
+3. Record Neon branch metrics for **7 days** in baseline doc vs pre-change baseline; if projected spend still **>$25/mo**, plan one disposable D1 read-model benchmark only — do not migrate auth/transactional data.
+
+**Executor's Feedback or Assistance Requests:** Human should capture pre/post Neon CU-hours in Neon console (Query Insights + branch usage) using the baseline template. Prefer local Postgres for dev; use `RUN_LOCAL_JOBS=true` only when scheduler testing against remote Neon.
+
 ## Review people mentions — # films · @ cast/crew & patrons (2026-07-07)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV · `@` people/patrons · title cast-first · comments parity · SN.9.1 notifications. **Executor Tasks 1–11 done** — focused tests **34/34 pass** (web 22 + server 12); mention-related `tsc` clean; monorepo `check-types` still fails on pre-existing server `dist/` TS5055; `graphify update .` skipped (not on PATH / `bunx graphify` has no executable on Windows). **Awaiting human QA:**
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-07-07-review-people-mentions-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-07-07-review-people-mentions-plan.md`. **Locked:** `#` film/TV · `@` people/patrons · title cast-first · comments parity · SN.9.1 notifications. **Executor Tasks 1–11 done** — focused tests **34/34 pass** (web 22 + server 12); mention-related `tsc` clean; monorepo `check-types` still fails on pre-existing server `dist/` TS5055; `graphify update .` skipped (not on PATH / `bunx graphify` has no executable on Windows). **Executor re-verify (2026-07-25):** mention lib tests **19/19** web · **2/2** notify · **4/4** comment mention route · hover preview **1/1** — all pass. **Human verified (`ok`, 2026-07-25).**
 
-1. Review composer: `#` film tag · `@` cast on title · `@handle` patron link
-2. Legacy `@[Film](/movies/id)` renders; edit + save rewrites to `#`
-3. Comment with patron mention → tappable link + inbox row for mentioned patron
-4. Settings → disable **Mentions** → no new mention inbox rows
-5. Tap mention notification on comment → review drawer scrolls to comment
-6. Community Activity review preview shows mention links
-
-**Commits:** `de819d8` … `3c6e466` (Tasks 1–11).
+**Shipped** — review people mentions track closed (Tasks 1–11 + hover preview `13dd5d0`).
 
 ## Sense subscriptions & referrals — Polar (2026-07-05)
 
@@ -23,7 +1685,9 @@
 
 ## Month recap dialog — community winners (2026-06-30)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-30-month-recap-dialog-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-06-30-month-recap-dialog.md`. **Locked:** first signed-in visit each calendar month (patron TZ) celebrates prior month; slides = most film logs · most TV logs · most reviews; skip empty categories; all signed-in patrons; What's New first then recap; localStorage seen per `YYYY-MM`; new files only + `app-shell.tsx` mount (no person-detail overlap). **Executor Task 1 done:** `resolvePreviousCalendarMonthWindow`, `celebratedMonthKeyFromWindow`, `celebratedMonthLabel` + tests **9/9** pass. **Executor Task 2 done:** optional `window` + `limit` on `fetchLeaderboard`; optional `window` on `fetchMembersLeaderboard`; tests **15/15** pass. **Executor Task 3 done:** `fetchMonthRecap`, `buildMonthRecapCategories`, `GET /api/community/month-recap`; tests **11/11** pass. **Executor Task 4 done:** `month-recap-seen`, `month-recap-month-key`, `month-recap-types`, `fetch-month-recap-client`; tests **4/4** pass. **Executor Task 5 done:** `MonthRecapPodium` + `MonthRecapDialog` (What's New carousel shell). **Executor Task 6 done:** `MonthRecapDialogRoot` in `app-shell.tsx` (What's New gate, fetch, defer timing). **Next:** Task 7 (verification + typecheck).
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-30-month-recap-dialog-design.md` (**Approved**). Plan: `docs/superpowers/plans/2026-06-30-month-recap-dialog.md`. **Locked:** first signed-in visit each calendar month (patron TZ) celebrates prior month; slides = most film logs · most TV logs · most reviews; skip empty categories; all signed-in patrons; What's New first then recap; localStorage seen per `YYYY-MM`; new files only + `app-shell.tsx` mount (no person-detail overlap). **Executor Task 1 done:** `resolvePreviousCalendarMonthWindow`, `celebratedMonthKeyFromWindow`, `celebratedMonthLabel` + tests **9/9** pass. **Executor Task 2 done:** optional `window` + `limit` on `fetchLeaderboard`; optional `window` on `fetchMembersLeaderboard`; tests **15/15** pass. **Executor Task 3 done:** `fetchMonthRecap`, `buildMonthRecapCategories`, `GET /api/community/month-recap`; tests **11/11** pass. **Executor Task 4 done:** `month-recap-seen`, `month-recap-month-key`, `month-recap-types`, `fetch-month-recap-client`; tests **4/4** pass. **Executor Task 5 done:** `MonthRecapPodium` + `MonthRecapDialog` (What's New carousel shell). **Executor Task 6 done:** `MonthRecapDialogRoot` in `app-shell.tsx` (What's New gate, fetch, defer timing). **Executor Task 7 done (2026-07-25):** targeted tests **15/15** pass (server 11 · web 4); spec **Approved**; monorepo `check-types` blocked by pre-existing `@still/plans` entitlements test — not month-recap regressions. **Human verified (`ok`, 2026-07-25):** defer after What's New, dismiss persists, empty categories skip, reduced-motion clean.
+
+**Shipped** — month recap dialog track closed (Tasks 1–7 + manual QA).
 
 ## Presence AFK status — orange dot (2026-06-16)
 
@@ -35,7 +1699,9 @@
 
 ## Listing engagement stats — movie/TV detail (2026-06-16)
 
-**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-16-listing-engagement-stats-design.md`. Plan: `docs/superpowers/plans/2026-06-16-listing-engagement-stats.md`. **Locked:** four chips (Watched · Lists · Favorited · Watchlist) under community score; always show incl. `0`; chip counts global; drawer rows viewer-visible only; tap → `DetailVaulSheet`. **Milestone 1a shipped:** chip row + four counts on movie/TV detail GET. **Milestone 1b shipped (Executor 2026-06-16):** `listing-engagement-query` + `GET /api/movies|tv/:id/engagement/{watches|lists|favorites|watchlist}`; `MovieDetailEngagementDrawer` wired from chips (signed-in only); tests **16/16** pass (server 10 · web copy 6). **Pending human verify 1b** — chip tap drawers, private-gap footer, review tap from watched row, TV parity.
+**Brainstorm approved (human `go`).** Spec: `docs/superpowers/specs/2026-06-16-listing-engagement-stats-design.md`. Plan: `docs/superpowers/plans/2026-06-16-listing-engagement-stats.md`. **Locked:** four chips (Watched · Lists · Favorited · Watchlist) under community score; always show incl. `0`; chip counts global; drawer rows viewer-visible only; tap → `DetailVaulSheet`. **Milestone 1a shipped:** chip row + four counts on movie/TV detail GET. **Milestone 1b shipped (Executor 2026-06-16):** `listing-engagement-query` + `GET /api/movies|tv/:id/engagement/{watches|lists|favorites|watchlist}`; `MovieDetailEngagementDrawer` wired from chips (signed-in only). **Executor verification (2026-07-25):** tests **17/17** pass (server 11 · web 6); summary route test aligned to `fetchCachedListingCommunityStats` (`6ae8fae`). **Human verified 1b (`ok`, 2026-07-25).**
+
+**Shipped** — listing engagement stats Milestone 1b closed.
 
 ## Listing presence — Phase B (2026-06-16)
 
@@ -713,6 +2379,92 @@ existing cinematic identity rather than replacing it.
 - [x] B.7 Planner / human sign-off on Track B _(Planner note 2026-05-14 — see Executor; staging “daily return” bar met for shipped scope, follow-ups listed)_
 
 ## Executor's Feedback or Assistance Requests
+
+### 2026-08-10 — `/home` slow load: runaway fetch loop in `HomeTasteMatchedHero` (fixed)
+
+**Symptom:** shell/skeleton painted fast, posters took seconds to fill in — local and Vercel.
+
+**Root cause (measured, not guessed):** three effects in `home-taste-matched-hero.tsx` depended on the derived **`spotlight` object** while writing results back into `movies`, so each write rebuilt that object and refired the effects. Idle `/home` issued **815 API requests in 25s** (~22 req/s) to `/api/movies/:id` (title-logo + trailer) and `/api/logs/me/by-movie/:id`. At **2 Neon queries per request** the DB did ~29s of pointless work per 25s window, starving the `/home` RSC render.
+
+**Fix:** key the effects on the primitive **`spotlight?.tmdbId`**, seed from `moviesRef.current`, and return `prev` unchanged from `setMovies` when nothing differs.
+
+**Verified:** idle **815 req/25s → 2 req/30s** (presence + streak polls only). `/home` waves **913ms + 1442ms → 125ms + 317ms** (~443ms total). No type errors in changed files; `tv-watch.ts` / `staff.test.ts` / `listing-presence-copy.test.ts` / `packages/plans` failures are **pre-existing** (in-progress `staffRole` work).
+
+**Left in place:** opt-in `traceTiming` helpers + `[trace:req]` logger, silent unless **`STILL_TRACE_TIMING=1`**. Planner declined the secondary wins (duplicate per-request profile query; serial RSC waves) — deferred, not done.
+
+**⚠️ The above was a premature all-clear — see the follow-up below.**
+
+### 2026-08-10 (cont.) — `/home` real bottleneck: `tmdb_json` dragged by `select({ log, movie })`
+
+**Correction:** the loop fix above was real but **not the cause of the slow load**. The two RSC waves I instrumented were only **330ms** while the actual page response was **10–11s** — I had measured only the spans I already suspected and called it done.
+
+**Root cause:** `/api/taste/for-you` (`buildTasteMatchedDiscovery`) ran **10–33s** and held the taste-hero **Suspense boundary** open, so the shell painted instantly and posters lagged. Phase timing isolated it to two queries using **`.select({ log, movie })`** with `.limit(400)`: `movie.tmdbJson` holds the **verbatim TMDb payload**, so both shipped hundreds of large JSONB blobs from Neon **eu-central-1** to use **six scalar fields**.
+
+**Fix:** column-scope both queries — `viewerDiaryRows` in `taste-matched-discovery.ts` and the neighbor query in `taste-social-candidates.ts`. No logic change.
+
+**Verified:** `viewerDiaryRows` **4383ms → 50ms**, `socialCandidates` **4804ms → 76ms**, `buildTasteMatchedDiscovery` **10851ms → 1618ms**, `/home` **11.3s → 2.3s**. Typecheck clean on changed files; taste suite **28 pass / 5 fail** identical to a stashed baseline (env-var failures under root `bun test`, pre-existing).
+
+**Follow-up round (same session) — all three secondary items done:**
+
+1. **`/api/lists/me` ~20x per load → 0.** `useAddToListRadial` prefetched lists in a **mount effect**, and the hook runs **once per poster cell**. Lists now load in `openPicker` only (callers never read `listsLoading`).
+2. **`enrichMovies` 504ms → 125ms.** Split proved the cost was the query, not TMDb (`enrich cacheRows` **420ms** vs `enrich rows` **83ms**). Fixed in two steps: fetch `tmdb_json` only for the **12 hero titles** (rail carries **24**), then replace the column with a **`jsonb_build_object` projection** of the only paths read — `videos`, `images.logos`, `keywords`. Verified against real rows: **425,706B → 10,590B** for 5 movies (**~40x**), pickers returning identical trailers/logos. `enrich heroJson` **300ms → 44ms**.
+3. **`resolveTasteNeighbors` ~263ms — deliberately left alone.** Already column-scoped and parallel; no cheap win. **Latent risk:** it fans out `fetchOverlapDiarySlices` **one query per followed patron** (and per candidate), so it degrades on heavy-following accounts.
+
+**Final:** `buildTasteMatchedDiscovery` **970ms**, `/home` **1.63s** (from **11.3s**). Typecheck clean on changed files; taste suite **28 pass**, no new failures vs baseline.
+
+**Same anti-pattern still present elsewhere** (not on the `/home` path, unmeasured): `.select({ log, movie, ... })` in `feed-rating-divergence.ts`, `routes/feed.ts`, `routes/logs.ts` (×2), `recompute-user-taste-signature.ts`, `suggested-patron-discovery.ts`, `movie-following-ratings.ts`. Worth auditing if feed or profile pages feel slow.
+
+**Caveat:** gains are **larger locally than in prod** — the remote dev DB (eu-central-1) exaggerates transfer cost.
+
+### 2026-07-25 — Movie detail shell layout review (Agentation `/movies/426063`)
+
+**Shipped:** `MovieDetailViewShell` — hero scoped to **About** only; top bar restored **outside** the card on `bg-background` canvas (sticky header like before); simplified flex stretch on card section; back pill uses **`formatListingDetailBackAffordance`**; hero meta **`text-sm`** + title **`leading-[1.12]`** on movie/TV pages. Person detail shell aligned. Tests: `movie-detail-return.test.ts` (+2).
+
+**Human verified + committed (`a1f5964`, 2026-07-25).** Layout + animation polish shipped. Segment pill uses **`translateX` + `width`** (not `scaleX` — preserves `rounded-full`). Same pill slide on **`SegmentedPillToolbar`** (`/home` chips). **Nested drawer stack (`f68ecbe`):** lower `DetailVaulSheet` scales when a sheet opens above it.
+
+### 2026-07-20 — Person awards brainstorm
+
+**Approved design:** Approach **2** (person strip + drawer). Spec: `docs/superpowers/specs/2026-07-20-person-awards-design.md`. Plan: `docs/superpowers/plans/2026-07-20-person-awards-plan.md`.
+
+**SDD Tasks 1–7 shipped** (`cc3871c`…`a52f53c`) + review fixes (`2bcdcef` Oscars-first prestige · shared column; `30d7095` no empty column padding). Lib tests **person-awards 4/4** (+ earlier suites). **Follow-up list chrome (`5883ab5`):** shared `FestivalRecognitionAwardList` + Won/Nominated pills in person drawer and movie View all. **Human verified Task 8 + follow-ups 1–10 (`ok`, 2026-07-25):** About order · stills rail drag · editorial rail snap · taste hero YouTube · default Popular · cinema-only streaming · request-host origin · staff notes author · portrait still widths (`cf8fd45`).
+
+**Person awards + detail polish track closed (2026-07-25).**
+
+**Executor batch (`6ac492e` · `f6f65a7`, 2026-07-25):** Community **Ranks** chip first + Popular sort URL serialization · profile hero + ledger drawer typography · About column width + drop Community from About nav · poster `draggable={false}` · synopsis cursor-CTA CSS · watch-region drawer scale · landing/pricing `generateMetadata` request-host · auth localhost trusted origins. Home lobby tests **12/12** pass.
+
+**Executor (2026-07-25):** **`TvDetailProgressPanel`** UX refresh on `/tv/*` About — summary meter card (episodes watched + % + next line), spaced `bg-background` season/episode tiles (no dividers/shadows), per-season progress bars, collapsed accordion headers show watch counts, status-aware subtitles, `DetailMotionButton` on primary actions. **Shipped + human verified (`ok`, 2026-07-25) — `5cf6908`.**
+
+### 2026-07-20 — Person detail gallery stills (Agentation `/people/1892`)
+
+**Ask:** more actor images from films below on person detail.
+**Shipped (Executor, `7c67d71`):**
+- TMDb person fetch appends `images,tagged_images`
+- `buildPersonGallerySlides` → `screenshots` on `GET /api/people/:id` (landscape tagged first, then extra profiles; hero portrait excluded)
+- About tab renders `MovieDetailStillsSection` under the TMDb link (movie stills chrome)
+- Tests: `person-gallery-slides.test.ts` **4/4**
+
+**Manual confirm:** open `/people/1892` (About) — stills rail below; download still works. **Human verified (`ok`, 2026-07-25).**
+
+**Follow-up (2026-07-20):** person gallery uses `imageFit="contain"` so mixed portrait/poster/backdrop tags letterbox instead of `object-cover` crop. Movie/TV stills stay `cover`.
+
+**Follow-up 2:** each slide carries `aspectRatio` from TMDb; stills cards use that ratio (portrait → narrower `20rem` card, landscape → wide card) so format matches the image.
+
+### 2026-07-20 — Community feed chips: Ranks first
+
+**Agentation:** `/home?browse=community&sort=ranks` — “ranks should be the first one on the left”.
+**Shipped:** `HOME_COMMUNITY_FEEDS` order → **Ranks · Lists · Reviews · Activity** (default feed still `lists`). Updated chip comment + AGENTS.md.
+**Manual confirm:** reload Community lobby — Ranks is leftmost chip. Reply **`ok`**.
+
+### 2026-07-20 — Better Auth `Invalid origin: http://localhost:3001`
+
+**Root cause:** `apps/server/.env` had `CORS_ORIGIN` / `BETTER_AUTH_URL` = `http://192.168.1.34:3001` while web uses `http://localhost:3001`.
+
+**Shipped (Executor):**
+1. Set `BETTER_AUTH_URL` + `CORS_ORIGIN` to `http://localhost:3001` in `apps/server/.env`
+2. Dev `trustedOrigins` in `packages/auth` now always includes `localhost:3001` + `127.0.0.1:3001`
+3. Dev Elysia CORS in `apps/server/src/server/app.ts` allows the same pair alongside `CORS_ORIGIN`
+
+**Manual confirm (Planner/human):** Restart `bun dev`, reload `http://localhost:3001`, confirm the Invalid origin error is gone and sign-in/session works. Reply **`ok`**.
 
 ### 2026-07-07 — Runtime crash fix (`usePatronEntitlements` provider boundary)
 
@@ -2098,6 +3850,25 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **Onboarding preview pane height:** do not rely on `size-full` / `h-full` (% height) inside a column-flex aside to center short content — percentage height often collapses to content height, so nested `min-h-full` + `items-center` is a no-op and the specimen sticks top. Prefer `flex-1 min-h-0` on the reveal shell and `absolute inset-0` + `min-h-full` center for fill specimens. **Import QA tip:** “center the import” means the **upload** dropzone step (`import-upload`), not the provider picker.
+- **Onboarding “I've verified” needs a fresh session:** Prefer `GET /api/me/email-verified` (Postgres via `freshContext`). Client `getSession` / cookie-cache stay stale. In **development**, skip the verify step entirely — auth does not `sendOnSignUp` locally.
+- **Import source tiles on `bg-card`:** never translucent hover (`muted/*` or `foreground/8` replaces opaque `bg-background` and the tile vanishes into the card). Use **brightness** filter; serve brand PNGs with plain `<img>` + prefetch.
+- **Onboarding unlock must wait for Enter:** do not set `markOnboarded` on favorites “Complete setup”, and do not grandfather post-v3 accounts via diary / taste / favorites on `GET /profiles/me` — that unlocked `/home` during the import step. Persist profile + logs first; `markOnboarded: true` only on **Enter Sense** (or abbreviated skip). Pre-v3 handle-only grandfather stays.
+- **`t-page-slide` JS duration + `.is-active`:** browsers often serialize `--page-slide-dur: 200ms` as **`.2s`**. `Number.parseInt(".2s")` is **NaN** → `setTimeout(..., NaN)` fires immediately → layers clear before the CSS tween (`is-animating` without `is-active` reads as a hard cut). Always parse with `parseCssDurationMs` / `readPageSlideMs`. Separately: if activation rAF/timeout is **cleared on effect cleanup**, Strict Mode / parent re-renders cancel `.is-active` before paint — keep the activation timer (or use a generation token), and do **not** put `children` in the route-change effect deps.
+- **`t-page-slide` snapshot cache + React Strict Mode:** if you write `cacheRef.current = incoming` in the effect and the cleanup only cancels timers, Strict Mode’s fake unmount leaves the cache on the *new* key so the replay bails and the enter layer can stick at `opacity: 0` (`is-animating` without `is-active`). Restore the outgoing cache in cleanup **only while the timeout has not completed**; after it completes, leave the cache on the new key so the next real step still snapshots the right outgoing page.
+- **"AI API key" is not one credential — check the prefix before wiring a provider:** a **Vercel AI Gateway** key is `vck_…`; a **Google AI Studio** key is `AIza…` or, since Google's 2026 migration to *auth keys*, **`AQ.…`** (~53 chars). They are not interchangeable — the gateway takes a Bearer token, while a Google key must reach `generativelanguage.googleapis.com` via the **`x-goog-api-key`** header (`AQ.` keys additionally **fail** on Google's OpenAI-compatible endpoint with *"Multiple authentication credentials received"*). Pasting a Gemini key into `AI_GATEWAY_API_KEY` looks configured and fails only at call time. Inspect **length + prefix** (never echo the value) before assuming which SDK to reach for.
+- **A model listed by `/v1beta/models` is not necessarily callable:** `gemini-2.5-flash-lite` appears in the listing for a new key yet returns **404 — "no longer available to new users"** on `generateContent`. Validate a default model with a **real one-shot call**, not by grepping the catalogue. Also prefer a **pinned** id over the floating `…-latest` alias for anything metered, so a provider release cannot silently change output quality or price.
+- **Distinguish auth failures from availability failures by status code:** the first live translation attempt returned **404**, not 401/403 — which immediately proved the key was valid and narrowed the problem to the model id. Read the status before assuming the credential is wrong.
+- **Resolvers that read `env` at module scope are untestable on a configured machine:** `isReviewTranslationConfigured()` originally read `env` directly, so once a real key landed in `.env` the "unconfigured" branch could never be exercised. Split into a **pure** `resolve…({ keys })` plus a thin env-reading wrapper; tests then cover precedence deterministically regardless of the developer's `.env`. (Route-level tests can keep using `mock.module`.)
+- **`tinyld` full model is overfit on rare languages — always import `tinyld/light`:** measured on **501 real review rows**, the full model labelled plain English (`"My friends got traumatized by Anora so I suggested this as a palette cleanser lmao."`) as **Berber with accuracy 1.000**, informal Italian (`"...nn ce l'ho ma cmq..."`) as Berber, and elongated English (`"LOVELYYYY FACEEEEEEE"`) as Romanian — producing `ber=5 rn=2 eo=1 af=1` junk. **`tinyld/light`** gets all of those right, still covers **ja/ko/zh/ru/ar/hi/tr**, and cleared every bogus rare-language hit. Corollary: **accuracy scores are useless as a confidence gate** — correct Spanish scores **0.11** while a *wrong* answer scores **1.000**. Gate on **text length** instead (24 chars latin, 8 for CJK/hangul, since dense scripts decide in fewer characters). Normalizing repeated letters made **zero** difference — don't bother.
+- **Backfilling a derived column with Drizzle `.set()` silently stamps `updatedAt`:** `review.updatedAt` uses `$onUpdate(() => new Date())`, so a `db.update(review).set({...})` backfill would mark every historical review as freshly edited (and, for review translation, invalidate every `updatedAt`-keyed cache). Use **raw `db.execute(sql\`UPDATE ...\`)`** in backfill scripts — matches `backfill-onboarding-visibility.ts`.
+- **`apps/server` `tsc -b` poisons itself via `dist/`:** `tsconfig.json` sets `outDir: "dist"` with **no `include`**, so the next build reads its own emitted `.d.ts` as input and fails with **`TS5055: Cannot write file ... would overwrite input file`** for any newly added file. `dist/` is gitignored build output — `Remove-Item -Recurse -Force dist, tsconfig.tsbuildinfo` and re-run.
+- **Verifying "was this failure pre-existing?" — never `git stash -u` in this repo:** the working tree carries large amounts of *other* uncommitted work plus hundreds of untracked skill files, so a global stash changes far more than your own edits and the before/after test counts are not comparable (observed **1464 vs 1577** passing). Also, root `bun test` **double-counts** every test (duplicate path casing `packages\db` vs `packages/db`), so failure lists print twice. Instead, **run the suspect test files in isolation** — that also separates real failures from the known `mock.module` ordering pollution.
+- **`select({ table })` on a table with a verbatim-JSON column is a transfer bomb:** `/api/taste/for-you` took **10–33s** and held the `/home` Suspense boundary open (page **11.3s**). Two queries used **`.select({ log, movie })`** with `.limit(400)` — `movie.tmdbJson` stores "the full TMDb response verbatim", so each pulled hundreds of fat JSONB blobs from Neon (**eu-central-1**) to use **six scalars** (`genreIds`, `year`, `originalLanguage`, `popularity`, `rating`, `movieId`). Column-scoping both (`taste-matched-discovery.ts` `viewerDiaryRows`, `taste-social-candidates.ts`) took **4383ms → 50ms** and **4804ms → 76ms**; `buildTasteMatchedDiscovery` **10851ms → 1618ms**; `/home` **11.3s → 2.3s**. Rule: never `select({ table })` on `movie`/`person` — they carry `tmdb_json`. Effect is worst on remote DBs, so it can hide locally.
+- **A Suspense boundary still owns the page's total time:** Next logs `GET /home 200 in Ns` only when **every** boundary resolves. The taste hero's own comment said it kept the slow call "off the critical path" — true for **first paint**, false for **completion**, which is exactly the "skeleton fast, posters slow" symptom. Instrumenting only the two RSC waves showed a healthy **330ms** while the real page was **10s**: partial instrumentation produced a **false all-clear**. Always compare traced spans against the **end-to-end** number before declaring a fix.
+- **Effects keyed on derived objects can DDoS the API:** `/home` felt slow because **`HomeTasteMatchedHero`** ran a runaway fetch loop (~**815 requests / 25s idle**, ~22 req/s) against `/api/movies/:id/title-logo`, `/trailer`, and `/logs/me/by-movie/:id`. Three effects depended on the **`spotlight` object** (`movies[safeActiveIndex]`) while two of them wrote results back via `setMovies(prev => prev.map(...))`, which rebuilds that element — new identity → effects refire → fetch → forever. Each request cost **2 Neon queries**, so the DB burned ~29s of work and starved the `/home` RSC render (waves went **125ms + 317ms → 913ms + 1442ms** under saturation). Fix: key enrichment effects on the **stable primitive `spotlight?.tmdbId`**, seed initial values from **`moviesRef.current`**, and make `setMovies` updaters **return `prev` unchanged** when nothing differs. Rule: never put a **derived object** in a dependency array when the effect writes back into the state that derives it — depend on an id.
+- **Measuring before fixing matters:** the first hypothesis (uncached TMDb) was **wrong** — TMDb is ~120ms warm and the unauthenticated catalogue endpoint is ~170ms. Opt-in timing helpers `apps/{web,server}/src/lib/trace-timing.ts` (gated by **`STILL_TRACE_TIMING=1`**) plus the `[trace:req]` logger in `apps/server/src/local.ts` attribute DB/TMDb cost to routes. Gotchas: **Turbo strict env** drops undeclared vars (declare in `turbo.json` `dev.env` or run the app directly), and **Bun can share port 3000 across two processes**, so a stale non-instrumented server silently answers requests — verify the listener PID before trusting timings.
+- **Local auth origins:** `CORS_ORIGIN` / `BETTER_AUTH_URL` on the server must match the browser origin (`localhost` vs LAN IP). Mismatch → Better Auth `Invalid origin`. Dev now also trusts `http://localhost:3001` + `http://127.0.0.1:3001` even when `CORS_ORIGIN` is a LAN URL.
 - **Client API typing bridge:** when Eden/web consumes server DTOs containing `Date` fields but client view-model expects `string`, do not cast arrays directly (`as PatronFeedbackListItem[]`). Normalize payload timestamps explicitly (`Date -> toISOString`) in fetch adapters to satisfy strict TS and avoid cross-package type drift.
 - **Next 16/TS 5.5 DOM typing:** `new Blob([bytes])` can fail when `bytes` is `Uint8Array<ArrayBufferLike>` (because `BlobPart` expects `ArrayBuffer`-compatible views). Normalize with `Uint8Array.from(bytes)` and pass `normalizedBytes.buffer` to `Blob` in strict monorepo typechecks.
 - **Presence AFK realtime:** `touchListingPresence` must set `changed: true` when **activity state** flips (not only ZSET occupancy) so `publishRealtimeEvent` fires `presence.updated`; global portrait badges need **`PatronOnlineProvider`** subscribed to **`patron:app`** SSE (`resolveStaticRealtimeRoomAccess` must allow that room). **Tab-away heartbeats** must fire **synchronously inside `visibilitychange`** (`usePatronActivityFlipHeartbeat`) with `fetch` **`keepalive`** — background tabs throttle React `useEffect`, so away POSTs never ran. **Upstash `hset`:** use **`hset(key, { [userId]: state })`** — the 3-arg `hset(key, field, value)` form is a **silent no-op** on `@upstash/redis`, so away never persisted and every read fell back to `active`. **Rapid tab churn:** coordinate with **`BroadcastChannel`** (`PatronActivityTabSync`) — patron stays **active** if **any** Sense tab is visible; debounce **away** heartbeats ~400ms (`createPresenceHeartbeatScheduler`); remove duplicate per-tab `visibilitychange` POSTs that raced sendBeacon vs active. `--aker-duration` / `--aker-duration-slow` in `packages/ui/src/styles/globals.css` are **0.2s** max for tokenized UI transitions; hero iris, projector flicker, and view-transition durations stay **explicit longer values** where cinematic. Framer **`useReducedMotion`** should gate decorative stagger (e.g. marketing poster rail) and snap onboarding step transitions when the OS requests reduced motion.
@@ -2839,3 +4610,60 @@ Reply **`ok 9`**, **`ok 4`**, etc. as you complete each.
 | 6 | Low confidence | Patron with &lt;10 logs / low confidence — no pill | ☑ |
 
 **Executor (2026-07-06):** Task 5 verified — `recomputeUserTasteSignature` persists full `computeTasteSignatureFromLogs` payload (incl. `pillLabel`/`pillGenres`/`version: 4`). `profiles` GET calls `ensureFreshTasteSignature` before paint. Added `taste-signature-cache.test.ts` (v3 stale, v4 fresh).
+
+### 2026-07-26 — Avatar plan auras (Task 1 complete)
+
+**Track:** Spec `docs/superpowers/specs/2026-07-25-avatar-plan-aura-design.md` · Plan `docs/superpowers/plans/2026-07-25-avatar-plan-aura.md`. **Executor Task 1 done:** `apps/server/src/lib/patron-plan-tier.ts` — `fetchPlanTiersForUserIds` + `planTierForUserId`; tests **2/2** pass; commit `4b7de8c`. **Next:** Task 2 — `planTier` on listing engagement payloads (TDD). Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 2 complete)
+
+**Executor Task 2 done:** `listing-engagement-query.ts` — parallel `fetchPlanTiersForUserIds` in watch + patron hydrators; `planTier: PlanTierId` on `ListingEngagementWatchItem` / `ListingEngagementPatronItem`. Tests: `listing-engagement-hydration.test.ts` **2/2** pass (+ existing query helpers **6/6**). Commit `4b28a2c`. Web types in `fetch-listing-engagement.ts` updated locally (uncommitted — full web sweep is Task 8). **Next:** Task 3 — `planTier` on remaining ~13 server payload builders. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 3 complete)
+
+**Executor Task 3 done:** `planTier` plumbed through all remaining server patron-shaped payloads — `leaderboard-query`, `members-leaderboard-query`, `members-leaderboard-items-query`, `profile-search`, `profile-media` (`serializePatronProfileForClient`), `profiles` (search + `/me` + public profile), `movie-following-ratings`, `listing-presence`, `feed-rating-divergence`, `creator-recognition`, `month-recap-query`, `movies` (review authors), `reviews` (detail author). `planTierForUserId` accepts `ReadonlyMap`. Tests on touched modules **78/78** pass. Commit `9219473`. **Next:** Task 4 — web `avatar-aura-tier.ts` config. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 4 complete)
+
+**Executor Task 4 done:** `apps/web/src/components/profile/avatar-aura/avatar-aura-tier.ts` — `resolveAvatarAuraTier`, `hasAvatarAura`, `avatarAuraRimStyle` with OKLCH conic rim gradients per paid tier. Tests **4/4** pass. Commit `97baab0`. **Next:** Task 5 — aura CSS in `globals.css`. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 5 complete)
+
+**Executor Task 5 done:** `packages/ui/src/styles/globals.css` — `@layer components` avatar aura block (`.avatar-aura-rim`, `.avatar-aura-layer`, Attuned sweep, Immersed glow/flare, Devoted holo fallback; hover + reduced-motion gated). Inert until Task 6 `AvatarAura` wrapper mounts class names. Commit `b5f58c8`. **Next:** Task 6 — `AvatarAura` wrapper component. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Tasks 6–7 complete)
+
+**Executor Tasks 6–7 done:** `avatar-aura.tsx` — rim wrapper + Devoted hover intent/exit timers, CSS layers for Attuned/Immersed, dynamic WebGL mount; `avatar-aura-devoted-canvas.tsx` — chromatic reel shader with CSS holo fallback on failure. `hasAvatarAura` narrowed to type predicate. Commit `8728e72`. **Next:** Task 8 — `PatronPortraitWithAura` rename sweep + web payload types. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 8 complete)
+
+**Executor Task 8 done:** `PatronPortraitWithAura` replaces `PatronPortraitWithMetalTier` across nav, feed, leaderboards, engagement drawers, profile hero, search people, review reader, and presence surfaces. Web payload types + `buildPatronNavUser` now expose `planTier` (falls back to `effectiveTier`). Deleted `patron-portrait-with-metal-tier.tsx`. Grep clean; avatar-related `tsc` clean (pre-existing unrelated test-file errors remain). Commit `baafb42`. **Pending human QA:** Attuned/Immersed/Devoted portraits show aura rim + hover on home header, Community ranks, movie detail engagement, profile hero. **Next:** Task 9 — remove `diaryMetalBorderBeamColorVariant` / `DIARY_METAL_BORDER_BEAM_STRENGTH` from `diary-metal-tier.ts`. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 9 complete)
+
+**Executor Task 9 done:** `diary-metal-tier.ts` — removed `diaryMetalBorderBeamColorVariant`, `DIARY_METAL_BORDER_BEAM_STRENGTH`, and `border-beam` import; updated `isCircularPatronPortraitClass` doc (gates auras, not BorderBeam). Test trimmed to circular check only (**1/1** pass). Grep zero hits for retired exports; `border-beam` remains on search chrome only. Commit `901685a`. **Next:** Task 10 — full verification + manual QA on paid tiers. Reply **`go`** to proceed.
+
+### 2026-07-26 — Avatar plan auras (Task 10 — automated verification)
+
+**Executor Task 10 automated pass:**
+- **Avatar server tests:** `patron-plan-tier` **2/2**, `listing-engagement-hydration` **2/2**, `diary-metal-tier` **5/5**, `profile-media` serialize **3/3** — all green after restoring **100 / 500 / 1000** diary-metal thresholds (regression from 50/100/150) and fixing `comments.test.ts` mock pollution.
+- **Avatar web tests:** `avatar-aura-tier` **4/4**, `diary-metal-tier` **1/1**.
+- **Biome:** clean on `avatar-aura/`, `patron-portrait-with-aura.tsx`, `patron-plan-tier.ts`.
+- **Grep:** zero hits for retired BorderBeam portrait exports / old component names.
+- **Full server suite:** **699 pass / 6 fail** — remaining failures pre-existing and unrelated (`letterboxd` import gap-fill ×3, `listing-presence` ×2, `sense-taste-overlap` ×1). Stale `dist/src` was polluting earlier runs; `bun run build` cleared duplicate dist tests.
+- **Web `tsc`:** avatar paths clean; pre-existing vitest/catalogue test-file errors remain.
+- **QA fix commit:** `c68adcf`.
+
+**Avatar plan auras track:** Tasks 1–10 code complete. **Executor browser QA (2026-07-26):** dev servers up (`:3001`/`:3000`); `/home` redirects to sign-in — session required for staff `planOverride` tier sweep. **Static verification** matches plan: Still skips `AvatarAura`; Attuned/Immersed/Devoted get rim + tier layers; Devoted 80ms intent / 300ms exit + WebGL lazy load + CSS holo when `softwareGpu` or WebGL fail; hover effects gated `@media (hover: hover)` + `prefers-reduced-motion: reduce` in globals; presence dot remains outside portrait clip on rim.
+
+**Pending human sign-off:** complete manual QA checklist below while signed in (staff panel → set `planOverride` per tier). Reply **`ok`** when verified.
+
+**Manual QA checklist:**
+- [ ] Still — no rim
+- [ ] Attuned — brass rim + diagonal sweep on hover
+- [ ] Immersed — gold rim + breathing glow while hovered
+- [ ] Devoted — iridescent rim + WebGL shader after ~80ms hover; CSS holo on software GPU
+- [ ] Sizes: feed (~32px), engagement drawer (~72px), profile hero (~128px)
+- [ ] Reduced motion — rim only, no motion
+- [ ] Touch — rim only, no hover effects
+- [ ] Presence dot on rim edge at all tiers

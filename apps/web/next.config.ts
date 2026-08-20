@@ -30,15 +30,23 @@ const nextConfig: NextConfig = {
 		viewTransition: true,
 	},
 	images: {
+		// TMDb posters rarely change — long TTL cuts MISS/STALE transforms + cache-write units.
+		minimumCacheTTL: 2_678_400, // 31 days
+		// Fewer width/quality/format variants → fewer unique optimization cache keys.
+		imageSizes: [64, 96, 128, 256, 384],
+		deviceSizes: [640, 828, 1080, 1280],
+		qualities: [75],
+		formats: ["image/webp"],
 		remotePatterns: [
 			profileAssetPattern,
 			listCoverAssetPattern,
-			// TMDb poster / backdrop / logo CDN
+			// TMDb poster / backdrop / logo CDN (most call sites bypass optimizer via unoptimized)
 			{ protocol: "https", hostname: "image.tmdb.org" },
 			// Vercel Blob (avatars / banners)
 			{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
-			// Common headshot / studio logo CDNs that show up in RSS thumbnails.
-			{ protocol: "https", hostname: "**" },
+			// Discord CDN for activity album art / game icons when not marked unoptimized.
+			{ protocol: "https", hostname: "cdn.discordapp.com" },
+			{ protocol: "https", hostname: "media.discordapp.net" },
 		],
 	},
 };

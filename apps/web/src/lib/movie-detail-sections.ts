@@ -3,6 +3,8 @@ export const MOVIE_DETAIL_SECTION = {
 	about: "movie-section-about",
 	cast: "movie-section-cast",
 	awards: "movie-section-awards",
+	/** Streaming tab body — heading target when About hero (page `<h1>`) is unmounted. */
+	streaming: "movie-section-streaming",
 	reviews: "movie-section-reviews",
 	lists: "movie-section-lists",
 	related: "movie-section-related",

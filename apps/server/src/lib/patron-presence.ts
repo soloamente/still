@@ -1,6 +1,6 @@
 import { db, profile } from "@still/db";
 import { patronAppRoomId } from "@still/realtime";
-import { and, eq, inArray, isNotNull } from "drizzle-orm";
+import { and, eq, isNotNull } from "drizzle-orm";
 import {
 	activeListingPresenceUserIds,
 	type ListingPresenceRedis,
@@ -12,6 +12,7 @@ import {
 	type PatronActivityState,
 	readActivityStatesForUserIds,
 } from "./presence-activity";
+import { fetchPublicPresenceProfilesByHandles } from "./presence-profile-metadata-cache";
 import {
 	PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC,
 	readProfilePresenceVisibilityPref,
@@ -222,20 +223,7 @@ export async function resolveVisiblePresenceForViewer(
 	);
 	if (activeUserIds.size === 0) return [];
 
-	const rows = await db
-		.select({
-			userId: profile.userId,
-			handle: profile.handle,
-			preferences: profile.preferences,
-		})
-		.from(profile)
-		.where(
-			and(
-				inArray(profile.handle, handles),
-				eq(profile.isPrivate, false),
-				isNotNull(profile.handle),
-			),
-		);
+	const rows = await fetchPublicPresenceProfilesByHandles(handles);
 
 	const candidateIds = rows
 		.map((row) => row.userId)
@@ -301,20 +289,7 @@ export async function resolveVisiblePresenceFromOccupancy(
 		entries.map((e) => [e.userId, e.activityState] as const),
 	);
 
-	const rows = await db
-		.select({
-			userId: profile.userId,
-			handle: profile.handle,
-			preferences: profile.preferences,
-		})
-		.from(profile)
-		.where(
-			and(
-				inArray(profile.handle, handles),
-				eq(profile.isPrivate, false),
-				isNotNull(profile.handle),
-			),
-		);
+	const rows = await fetchPublicPresenceProfilesByHandles(handles);
 
 	const candidateIds = rows
 		.map((row) => row.userId)

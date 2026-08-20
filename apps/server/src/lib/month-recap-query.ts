@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import type { PlanTierId } from "@still/plans";
 
 import type { DiaryMetalTier } from "./diary-metal-tier";
@@ -24,6 +25,7 @@ export type MonthRecapEntry = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	count: number;
 };
 
@@ -68,6 +70,7 @@ function mapLeaderboardEntries(
 		avatarIsAnimated: entry.avatarIsAnimated,
 		diaryMetalTier: entry.diaryMetalTier,
 		planTier: entry.planTier,
+		staffRole: entry.staffRole,
 		count: entry.count,
 	}));
 }

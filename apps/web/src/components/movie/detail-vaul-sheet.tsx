@@ -20,13 +20,15 @@ import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 
 /** Opaque scrim when blur would repaint the full viewport on software renderers. */
 const OVERLAY_CLASSNAME_GPU =
-	"fixed inset-0 z-50 bg-absolute-black/82 backdrop-blur-sm";
-const OVERLAY_CLASSNAME_SOFTWARE = "fixed inset-0 z-50 bg-absolute-black/90";
+	"fixed inset-0 z-50 overscroll-contain bg-absolute-black/82 backdrop-blur-sm";
+const OVERLAY_CLASSNAME_SOFTWARE =
+	"fixed inset-0 z-50 overscroll-contain bg-absolute-black/90";
 const APP_OVERLAY_CLASSNAME_GPU =
-	"fixed inset-0 z-[60] bg-absolute-black/82 backdrop-blur-sm";
+	"fixed inset-0 z-[60] overscroll-contain bg-absolute-black/82 backdrop-blur-sm";
 const APP_OVERLAY_CLASSNAME_SOFTWARE =
-	"fixed inset-0 z-[60] bg-absolute-black/90";
-const NESTED_OVERLAY_CLASSNAME = "fixed inset-0 z-60 bg-absolute-black/50";
+	"fixed inset-0 z-[60] overscroll-contain bg-absolute-black/90";
+const NESTED_OVERLAY_CLASSNAME =
+	"fixed inset-0 z-60 overscroll-contain bg-absolute-black/50";
 
 /** Drag rail with optional left/right chrome on the same row as the grip. */
 function DetailVaulDrawerHandleRow({

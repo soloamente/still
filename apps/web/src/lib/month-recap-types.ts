@@ -1,6 +1,7 @@
 import type { PlanTierId } from "@still/plans";
 
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type MonthRecapCategoryId = "films" | "tv" | "reviews";
 
@@ -13,6 +14,7 @@ export type MonthRecapEntry = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	count: number;
 };
 

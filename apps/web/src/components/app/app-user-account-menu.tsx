@@ -10,17 +10,21 @@ import IconFeedbackInbox from "@still/ui/icons/feedback-inbox";
 import IconFeedbackSend from "@still/ui/icons/feedback-send";
 import IconGear from "@still/ui/icons/gear";
 import IconLockFill from "@still/ui/icons/lock-fill";
-import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconYearInFilm from "@still/ui/icons/year-in-film";
 import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
+import { AccountMenuDiscordActivity } from "@/components/app/account-menu-discord-activity";
 import { AccountMenuThemePicker } from "@/components/app/account-menu-theme-picker";
+import { AccountMenuUpgradePlanButton } from "@/components/app/account-menu-upgrade-plan-button";
 import { useFeedbackDrawer } from "@/components/feedback/feedback-drawer-provider";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { ME_ACCOUNT_SETTINGS_HOME_HREF } from "@/lib/me-account-nav";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /** Session + profile fields needed for the Mobbin-style account surface (nav + home header). */
 export type AccountMenuUser = {
@@ -33,10 +37,13 @@ export type AccountMenuUser = {
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 };
 
 type AppUserAccountMenuBodyProps = {
 	user: AccountMenuUser;
+	/** When false, MetalFx stays unmounted (dropdown closed). */
+	menuOpen?: boolean;
 };
 
 /**
@@ -85,8 +92,12 @@ export const accountMenuContentClassName = cn(
  */
 const STAFF_ROLES = ["owner", "admin", "moderator", "support"];
 
-export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
+export function AppUserAccountMenuBody({
+	user,
+	menuOpen = true,
+}: AppUserAccountMenuBodyProps) {
 	const router = useRouter();
+	const viewProfileRef = useRef<HTMLButtonElement>(null);
 	const { data: session } = authClient.useSession();
 	const { openCompose, openFeedbackList } = useFeedbackDrawer();
 	const isStaff = STAFF_ROLES.includes(session?.user?.role ?? "user");
@@ -99,7 +110,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 
 	return (
 		<>
-			{/* Identity — avatar row, PRO chip, profile CTA on raised card (home / detail token rhythm). */}
+			{/* Identity — avatar row + profile CTA on raised card (home / detail token rhythm). */}
 			<div className="pt-1 pb-1">
 				<div className="flex items-start gap-3">
 					<PatronPortraitWithAura
@@ -114,6 +125,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 							user.avatarIsAnimated,
 						)}
 						planTier={user.planTier ?? null}
+						staffRole={user.staffRole ?? null}
 					/>
 					<div className="min-w-0 flex-1">
 						<div className="flex flex-col gap-0">
@@ -124,11 +136,6 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 								>
 									{user.name || "Member"}
 								</p>
-								{user.isPro ? (
-									<span className="shrink-0 rounded-full bg-foreground px-2 py-0.5 font-semibold text-[10px] text-background uppercase tracking-wide">
-										Pro
-									</span>
-								) : null}
 							</div>
 							<p
 								className="truncate text-muted-foreground text-sm leading-none"
@@ -139,7 +146,13 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 						</div>
 					</div>
 				</div>
+				<AccountMenuDiscordActivity
+					handle={user.handle}
+					menuOpen={menuOpen}
+					className="w-full"
+				/>
 				<button
+					ref={viewProfileRef}
 					type="button"
 					className={cn(
 						"mt-4 w-full rounded-full bg-background py-3 font-medium text-foreground transition-colors duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
@@ -149,6 +162,11 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 				>
 					View profile
 				</button>
+				<AccountMenuUpgradePlanButton
+					planTier={user.planTier ?? null}
+					effectActive={menuOpen}
+					reflectionTargets={[viewProfileRef]}
+				/>
 			</div>
 
 			<div className={cn(accountMenuBackgroundGroupClassName, "mt-1")}>
@@ -173,7 +191,7 @@ export function AppUserAccountMenuBody({ user }: AppUserAccountMenuBodyProps) {
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className={accountMenuItemOnBackgroundClassName}
-						onClick={() => go("/me/settings")}
+						onClick={() => go(ME_ACCOUNT_SETTINGS_HOME_HREF)}
 					>
 						<IconGear size="20px" className="size-5 shrink-0 opacity-80" />
 						Settings

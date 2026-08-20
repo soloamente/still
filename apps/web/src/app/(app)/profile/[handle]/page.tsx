@@ -11,6 +11,8 @@ import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { fetchProfileDetailServer } from "@/lib/fetch-profile-detail-server";
+import type { ProfileDiscordActivity } from "@/lib/fetch-profile-discord-activity-client";
+import { fetchProfileDiscordActivityServer } from "@/lib/fetch-profile-discord-activity-server";
 import { fetchProfileFilmographyServer } from "@/lib/fetch-profile-filmography-server";
 import { fetchProfilePinnedQuotesPreview } from "@/lib/fetch-profile-pinned-quotes-server";
 import { toListBoardRow } from "@/lib/list-board-row";
@@ -101,6 +103,7 @@ type ProfileData = {
 		tasteSignature?: unknown;
 		diaryMetalTier?: DiaryMetalTier | null;
 		planTier?: import("@still/plans").PlanTierId | string | null;
+		staffRole?: import("@/lib/staff-role-labels").StaffRole | null;
 		pinnedQuoteSaveIds?: unknown;
 	};
 	stats: { followers: number; following: number };
@@ -210,12 +213,20 @@ export default async function ProfilePage({
 				? "title"
 				: "latest";
 
-	const filmographyPage1 = await fetchProfileFilmographyServer(profile.handle, {
-		media: activeMedia,
-		order: orderToken,
-		venue: lobbyVenue,
-		favorites: favoritesOnly,
-	});
+	const [filmographyPage1, discordActivityPayload] = await Promise.all([
+		fetchProfileFilmographyServer(profile.handle, {
+			media: activeMedia,
+			order: orderToken,
+			venue: lobbyVenue,
+			favorites: favoritesOnly,
+		}),
+		fetchProfileDiscordActivityServer(profile.handle),
+	]);
+
+	const discordActivity: ProfileDiscordActivity | null =
+		discordActivityPayload.visible === true
+			? discordActivityPayload.activity
+			: null;
 
 	const pinnedQuoteSaveIds = normalizePinnedQuoteSaveIds(
 		profile.pinnedQuoteSaveIds,
@@ -303,7 +314,9 @@ export default async function ProfilePage({
 			bannerIsAnimated={bannerIsAnimated}
 			profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
 			planTier={profile.planTier ?? null}
+			staffRole={profile.staffRole ?? null}
 			activitySignatureEnabled={data.capabilities?.activitySignature ?? false}
+			discordActivity={discordActivity}
 		/>
 	);
 }

@@ -21,6 +21,14 @@ import {
 } from "@/lib/still-api-fetch";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
+export type HomeCommunityReviewAuthor = {
+	userId: string;
+	name: string;
+	handle: string;
+	image: string | null;
+	avatarIsAnimated?: boolean;
+};
+
 export type HomeCommunityReviewRow = {
 	id: string;
 	userId: string;
@@ -34,6 +42,7 @@ export type HomeCommunityReviewRow = {
 	containsSpoilers: boolean;
 	audioUrl?: string | null;
 	audioDurationMs?: number | null;
+	author?: HomeCommunityReviewAuthor;
 	listing?: {
 		title: string;
 		posterUrl: string | null;
@@ -62,10 +71,18 @@ export function mapCommunityReviewRow(
 			containsSpoilers?: boolean;
 		};
 		movie: { tmdbId: number; title: string; posterPath: string | null } | null;
+		user: { id: string; name: string; image: string | null } | null;
+		profile: {
+			handle: string;
+			displayName: string;
+			preferences?: Record<string, unknown> | null;
+		} | null;
 	};
 	const r = row.review;
 	if (!r?.id) return null;
 	const movie = row.movie;
+	const handle = row.profile?.handle ?? row.user?.id ?? r.userId;
+	const displayName = row.profile?.displayName ?? row.user?.name ?? "Member";
 	return {
 		id: r.id,
 		userId: r.userId,
@@ -79,6 +96,12 @@ export function mapCommunityReviewRow(
 		containsSpoilers: r.containsSpoilers ?? false,
 		audioUrl: r.audioUrl ?? null,
 		audioDurationMs: r.audioDurationMs ?? null,
+		author: {
+			userId: row.user?.id ?? r.userId,
+			name: displayName,
+			handle,
+			image: row.user?.image ?? null,
+		},
 		listing: movie
 			? {
 					title: movie.title,
@@ -101,12 +124,17 @@ export type CommunityFeedSeed = {
 	/** Total public lists in the active community period (likes-ordered lobby). */
 	listTotalCount: number;
 	reviews: HomeCommunityReviewRow[];
-	viralReviews: HomeCommunityReviewRow[];
+	/** Engagement-ranked page-1 seed for **Top rated** sort. */
+	topRatedReviews: HomeCommunityReviewRow[];
 	activityItems: HomeCommunityActivityItem[];
+	/** Public discover snapshot for **Discover** activity scope. */
+	discoverActivityItems: HomeCommunityActivityItem[];
 	curatorSpotlights: CuratorSpotlightPatron[];
 	/** Page 2 for offset feeds (lists/reviews); null when seed is the whole set. */
 	initialListCursor: number | null;
 	initialReviewCursor: number | null;
+	/** Page 2 cursor for engagement-ranked reviews. */
+	initialTopRatedCursor: number | null;
 	/** Composite cursor for activity infinite scroll; null when no more. */
 	initialActivityCursor: ActivityFeedCursor | null;
 };
@@ -115,11 +143,13 @@ const EMPTY_COMMUNITY_SEED: CommunityFeedSeed = {
 	listSeeds: [],
 	listTotalCount: 0,
 	reviews: [],
-	viralReviews: [],
+	topRatedReviews: [],
 	activityItems: [],
+	discoverActivityItems: [],
 	curatorSpotlights: [],
 	initialListCursor: null,
 	initialReviewCursor: null,
+	initialTopRatedCursor: null,
 	initialActivityCursor: null,
 };
 
@@ -172,15 +202,19 @@ export async function fetchHomeCommunityFeedSeed(input: {
 	}
 
 	if (input.feed === "reviews") {
-		const [reviewsRes, viralRes] = await Promise.all([
+		const [reviewsRes, topRatedRes] = await Promise.all([
 			input.api.api.reviews.recent
 				.get({
 					query: { limit: String(COMMUNITY_REVIEWS_LIMIT), ...periodQuery },
 				})
 				.catch(() => ({ data: [] })),
-			input.api.api.reviews.viral
+			input.api.api.reviews.recent
 				.get({
-					query: { limit: "6", ...periodQuery },
+					query: {
+						limit: String(COMMUNITY_REVIEWS_LIMIT),
+						order: "engagement",
+						...periodQuery,
+					},
 				})
 				.catch(() => ({ data: [] })),
 		]);
@@ -188,40 +222,60 @@ export async function fetchHomeCommunityFeedSeed(input: {
 		const reviews = rawReviews
 			.map(mapCommunityReviewRow)
 			.filter((r): r is HomeCommunityReviewRow => r != null);
-		const viralReviews = ((viralRes.data as unknown[]) ?? [])
+		const rawTopRated = (topRatedRes.data as unknown[]) ?? [];
+		const topRatedReviews = rawTopRated
 			.map(mapCommunityReviewRow)
 			.filter((r): r is HomeCommunityReviewRow => r != null);
 		return {
 			...EMPTY_COMMUNITY_SEED,
 			reviews,
-			viralReviews,
+			topRatedReviews,
 			initialReviewCursor:
 				rawReviews.length >= COMMUNITY_REVIEWS_LIMIT ? 2 : null,
+			initialTopRatedCursor:
+				rawTopRated.length >= COMMUNITY_REVIEWS_LIMIT ? 2 : null,
 		};
 	}
 
 	if (input.feed === "activity") {
-		const activityRes = input.session
-			? await input.api.api.feed
-					.get({
-						query: { limit: String(COMMUNITY_ACTIVITY_LIMIT), ...periodQuery },
-					})
-					.catch(() => ({ data: { items: [] } }))
-			: await input.api.api.feed.discover
-					.get({ query: periodQuery })
-					.catch(() => ({ data: { items: [] } }));
+		const discoverRes = await input.api.api.feed.discover
+			.get({ query: periodQuery })
+			.catch(() => ({ data: { items: [] } }));
+		const discoverActivityItems = parseFeedApiActivityItems(
+			discoverRes.data as {
+				items?: { kind: string; at: string | Date; payload: unknown }[];
+			},
+		);
+
+		if (!input.session) {
+			return {
+				...EMPTY_COMMUNITY_SEED,
+				discoverActivityItems,
+				activityItems: discoverActivityItems,
+			};
+		}
+
+		const activityRes = await input.api.api.feed
+			.get({
+				query: { limit: String(COMMUNITY_ACTIVITY_LIMIT), ...periodQuery },
+			})
+			.catch(() => ({ data: { items: [] } }));
 		const activityItems = parseFeedApiActivityItems(
 			activityRes.data as {
 				items?: { kind: string; at: string | Date; payload: unknown }[];
 			},
 		);
 		const last = activityItems[activityItems.length - 1];
-		// Discover (logged-out) is a bounded snapshot — never paginates.
 		const initialActivityCursor =
-			input.session && activityItems.length >= COMMUNITY_ACTIVITY_LIMIT && last
+			activityItems.length >= COMMUNITY_ACTIVITY_LIMIT && last
 				? activityFeedCursorFromItem(last)
 				: null;
-		return { ...EMPTY_COMMUNITY_SEED, activityItems, initialActivityCursor };
+		return {
+			...EMPTY_COMMUNITY_SEED,
+			activityItems,
+			discoverActivityItems,
+			initialActivityCursor,
+		};
 	}
 
 	// film-ranks / tv-ranks — leaderboards are client-deferred.

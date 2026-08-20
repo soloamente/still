@@ -6,6 +6,8 @@ import {
 	ProfileAboutCollapsible,
 	ProfilePatronMetaLine,
 } from "@/components/profile/profile-about-collapsible";
+import { ProfileDiscordActivityLive } from "@/components/profile/profile-discord-activity-live";
+import { ProfileDiscordActivityRow } from "@/components/profile/profile-discord-activity-row";
 import { openProfileFollows } from "@/components/profile/profile-follows-drawer";
 import { ProfileHeroMediaLayer } from "@/components/profile/profile-hero-media-layer";
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
@@ -16,7 +18,7 @@ import { ProfileShowcaseStrip } from "@/components/profile/profile-showcase-stri
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
 import { ProfileStreakStatCell } from "@/components/profile/profile-streak-stat-cell";
 import { ProfileTasteCategoryPill } from "@/components/profile/profile-taste-signature";
-
+import type { ProfileDiscordActivity } from "@/lib/fetch-profile-discord-activity-client";
 import type { ProfileBannerFrameId } from "@/lib/profile-appearance";
 import { profileBannerImageUrl } from "@/lib/profile-banner";
 import {
@@ -31,6 +33,7 @@ import { profileMediaCacheKey } from "@/lib/profile-media-cache-key";
 import type { ProfileShowcaseTile } from "@/lib/profile-showcase";
 import type { SavedQuoteLobbyItem } from "@/lib/quote-saved-types";
 import type { TasteSignatureJson } from "@/lib/sense-taste-signature";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /** Hero portrait straddles the banner — half on canvas, half on card body. */
 const PROFILE_HERO_PORTRAIT_CLASSNAME = "size-28 sm:size-32";
@@ -76,8 +79,13 @@ type ProfilePatronHeaderProps = {
 	bannerIsAnimated?: boolean;
 	profilePortraitGrayscaleUntilHover?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 	/** Profile owner has Attuned activity signature entitlement. */
 	activitySignatureEnabled?: boolean;
+	/** Live Discord activity when visible to the signed-in viewer. */
+	discordActivity?: ProfileDiscordActivity | null;
+	/** Signed-in viewer id — enables live Discord activity polling on hero. */
+	viewerId?: string | null;
 };
 
 /**
@@ -112,7 +120,10 @@ export function ProfilePatronHeader({
 	bannerIsAnimated,
 	profilePortraitGrayscaleUntilHover,
 	planTier = null,
+	staffRole = null,
 	activitySignatureEnabled = true,
+	discordActivity = null,
+	viewerId = null,
 }: ProfilePatronHeaderProps) {
 	const accent = accentColor?.trim() || "#c45c26";
 	const hasBanner = Boolean(bannerUrl?.trim());
@@ -142,6 +153,7 @@ export function ProfilePatronHeader({
 					width={PROFILE_HERO_PORTRAIT_IMAGE_PX}
 					height={PROFILE_HERO_PORTRAIT_IMAGE_PX}
 					planTier={planTier}
+					staffRole={staffRole}
 				/>
 			) : (
 				<div className="size-full overflow-hidden rounded-full">
@@ -268,6 +280,16 @@ export function ProfilePatronHeader({
 						<p className="mx-auto mt-3 w-fit max-w-md text-balance rounded-2xl bg-background px-4 py-2.5 text-base text-foreground/90 leading-snug sm:px-5 sm:py-3 sm:text-lg">
 							{trimmedBio}
 						</p>
+					) : null}
+
+					{viewerId ? (
+						<ProfileDiscordActivityLive
+							handle={handle}
+							initialActivity={discordActivity}
+							pollEnabled
+						/>
+					) : discordActivity ? (
+						<ProfileDiscordActivityRow activity={discordActivity} />
 					) : null}
 
 					<ProfilePatronActions

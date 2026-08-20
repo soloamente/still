@@ -55,6 +55,36 @@ const DOT_STATE_FLIP_TRANSITION = {
 };
 
 /**
+ * Inline pulsing emerald “online / live” cue for settings copy and legends —
+ * same green as active `PatronOnlineDot`, with a soft ping (respects reduced motion).
+ */
+export function PatronPresencePulseDot({
+	className,
+	label = "Online status indicator",
+}: {
+	className?: string;
+	/** Accessible name when the cue is meaningful on its own. */
+	label?: string;
+}) {
+	return (
+		<span
+			role="img"
+			aria-label={label}
+			className={cn("relative inline-flex size-2.5 shrink-0", className)}
+		>
+			<span
+				aria-hidden
+				className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400/45 motion-reduce:animate-none"
+			/>
+			<span
+				aria-hidden
+				className="relative inline-flex size-2.5 rounded-full bg-emerald-400"
+			/>
+		</span>
+	);
+}
+
+/**
  * Online-now badge for patron portraits — green when active, orange when away,
  * with mount pop and a micro-pop on active ↔ away color changes.
  */

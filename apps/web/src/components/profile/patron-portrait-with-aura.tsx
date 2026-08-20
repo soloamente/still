@@ -5,8 +5,8 @@ import { cn } from "@still/ui/lib/utils";
 
 import { AvatarAura } from "@/components/profile/avatar-aura/avatar-aura";
 import {
-	hasAvatarAura,
-	resolveAvatarAuraTier,
+	hasAvatarAuraVisual,
+	resolveAvatarAuraVisual,
 } from "@/components/profile/avatar-aura/avatar-aura-tier";
 import {
 	PatronOnlineDot,
@@ -25,8 +25,12 @@ import { isCircularPatronPortraitClass } from "@/lib/diary-metal-tier";
 import { formatPatronPresenceDotLabel } from "@/lib/listing-presence-copy";
 import { normalizePatronOnlineHandle } from "@/lib/patron-online-presence";
 
+import type { StaffRole } from "@/lib/staff-role-labels";
+
 export type PatronPortraitWithAuraProps = PatronPortraitAvatarProps & {
 	planTier?: PlanTierId | string | null;
+	/** Staff rank — when set, shows the staff seal instead of plan-tier rim. */
+	staffRole?: StaffRole | string | null;
 	/** When false, skip the global online-now badge (e.g. decorative placeholders). */
 	showOnlineStatus?: boolean;
 	/**
@@ -37,11 +41,11 @@ export type PatronPortraitWithAuraProps = PatronPortraitAvatarProps & {
 };
 
 /**
- * Patron portrait with subscription-tier aura — static OKLCH rim plus tier hover
- * effects (Attuned sweep, Immersed glow, Devoted WebGL/CSS holo).
+ * Patron portrait with plan-tier rim or staff seal — static, no hover motion.
  */
 export function PatronPortraitWithAura({
 	planTier,
+	staffRole,
 	className,
 	width = 72,
 	height = 72,
@@ -84,27 +88,28 @@ export function PatronPortraitWithAura({
 		circularPortrait ? "rounded-full" : "rounded-[inherit]",
 	);
 
-	const tier = resolveAvatarAuraTier(planTier);
-	const portrait =
-		!hasAvatarAura(tier) || !circularPortrait ? (
+	const auraVisual = resolveAvatarAuraVisual({ planTier, staffRole });
+	// Aura rim extends past the portrait — only the inner well clips.
+	const showAura = hasAvatarAuraVisual(auraVisual) && circularPortrait;
+	const portrait = showAura ? (
+		<AvatarAura planTier={planTier} staffRole={staffRole} className="size-full">
 			<PatronPortraitAvatar
 				handle={handle}
-				className={innerPortraitClassName}
+				{...avatarProps}
 				width={width}
 				height={height}
-				{...avatarProps}
+				className={cn(innerPortraitClassName, "rounded-full")}
 			/>
-		) : (
-			<AvatarAura tier={tier}>
-				<PatronPortraitAvatar
-					handle={handle}
-					{...avatarProps}
-					width={width}
-					height={height}
-					className={cn(innerPortraitClassName, "rounded-full")}
-				/>
-			</AvatarAura>
-		);
+		</AvatarAura>
+	) : (
+		<PatronPortraitAvatar
+			handle={handle}
+			className={innerPortraitClassName}
+			width={width}
+			height={height}
+			{...avatarProps}
+		/>
+	);
 
 	return (
 		<span
@@ -115,15 +120,18 @@ export function PatronPortraitWithAura({
 			)}
 			style={style ?? (fillsParent ? undefined : { width, height })}
 		>
-			{/* Clip portrait to rounded tile; keep outer overflow visible so the status dot can sit on the rim. */}
-			<span
-				className={cn(
-					"size-full overflow-hidden",
-					circularPortrait ? "rounded-full" : "rounded-[inherit]",
-				)}
-			>
-				{portrait}
-			</span>
+			{showAura ? (
+				portrait
+			) : (
+				<span
+					className={cn(
+						"size-full overflow-hidden",
+						circularPortrait ? "rounded-full" : "rounded-[inherit]",
+					)}
+				>
+					{portrait}
+				</span>
+			)}
 			<PatronOnlineDot
 				presenceState={resolvedPresenceState}
 				label={dotLabel}

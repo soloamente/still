@@ -116,7 +116,7 @@ function MovieCastCrewArcCard({
 					})
 				}
 			>
-				<div className="relative aspect-3/4 overflow-hidden rounded-[1.5rem] bg-muted/35 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.65)] sm:rounded-[1.85rem] lg:rounded-[2rem] xl:rounded-[2.15rem]">
+				<div className="relative aspect-3/4 overflow-hidden rounded-[1.5rem] bg-muted/35 sm:rounded-[1.85rem] lg:rounded-[2rem] xl:rounded-[2.15rem]">
 					<PersonCreditPortrait
 						name={person.name}
 						profilePath={person.profilePath}
@@ -124,16 +124,34 @@ function MovieCastCrewArcCard({
 						sizes="(max-width: 640px) 104px, (max-width: 1280px) 140px, 168px"
 						imageClassName="transition-[filter] duration-200 ease-out"
 					/>
+					{/* Empty headshots sit on `bg-background` — fade from canvas, not black ink. */}
 					<div
-						className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 via-black/45 to-transparent px-2 pt-8 pb-2"
+						className={cn(
+							"pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t to-transparent px-2 pt-8 pb-2",
+							person.profilePath
+								? "from-black/85 via-black/45"
+								: "from-background via-background/70",
+						)}
 						aria-hidden
 					/>
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 px-2 pb-2 text-center">
-						<p className="line-clamp-1 font-semibold text-[11px] text-white leading-tight sm:text-xs">
+						<p
+							className={cn(
+								"line-clamp-1 font-semibold text-[11px] leading-tight sm:text-xs",
+								person.profilePath ? "text-white" : "text-foreground",
+							)}
+						>
 							{person.name}
 						</p>
 						{person.subtitle ? (
-							<p className="mt-0.5 line-clamp-1 text-[10px] text-white/65 leading-tight sm:text-[11px]">
+							<p
+								className={cn(
+									"mt-0.5 line-clamp-1 text-[10px] leading-tight sm:text-[11px]",
+									person.profilePath
+										? "text-white/65"
+										: "text-muted-foreground",
+								)}
+							>
 								{person.subtitle}
 							</p>
 						) : null}

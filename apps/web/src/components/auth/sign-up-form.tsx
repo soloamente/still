@@ -129,8 +129,7 @@ export function SignUpForm() {
 				</form.Subscribe>
 
 				<p className="text-pretty text-center text-muted-foreground text-xs">
-					By signing up you agree to our community guidelines. <br /> We
-					don&apos;t spoil films you haven&apos;t logged.
+					We don&apos;t spoil films you haven&apos;t logged.
 				</p>
 			</form>
 		</div>

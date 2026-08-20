@@ -26,6 +26,7 @@ const PLAN_FEATURE_LABELS: Record<PlanFeatureKey, string> = {
 	badge_prestige: "Badge prestige",
 	challenges: "Challenges",
 	leaderboard_visibility: "Leaderboard visibility",
+	discord_activity: "Discord activity",
 };
 
 /** Minimum tier label for pricing upsell copy. */

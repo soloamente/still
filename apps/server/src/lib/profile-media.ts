@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import type { PlanTierId } from "@still/plans";
 
 import { type DiaryMetalTier, resolveDiaryMetalTier } from "./diary-metal-tier";
@@ -48,12 +49,14 @@ export function serializePatronProfileForClient(
 		| undefined,
 	logsCount = 0,
 	planTier: PlanTierId = "still",
+	staffRole: StaffRole | null = null,
 ): {
 	handle: string;
 	displayName: string;
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 } | null {
 	if (!profile?.handle) return null;
 	return {
@@ -62,6 +65,7 @@ export function serializePatronProfileForClient(
 		avatarIsAnimated: readAvatarIsAnimatedPref(profile.preferences),
 		diaryMetalTier: resolveDiaryMetalTier(logsCount),
 		planTier,
+		staffRole,
 	};
 }
 

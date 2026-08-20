@@ -19,6 +19,7 @@ export type ListingEngagementWatchItem = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: import("@/lib/diary-metal-tier").DiaryMetalTier | null;
 	planTier: import("@still/plans").PlanTierId;
+	staffRole: import("@/lib/staff-role-labels").StaffRole | null;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -46,6 +47,7 @@ export type ListingEngagementPatronItem = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: import("@/lib/diary-metal-tier").DiaryMetalTier | null;
 	planTier: import("@still/plans").PlanTierId;
+	staffRole: import("@/lib/staff-role-labels").StaffRole | null;
 	rating: number | null;
 	liked: boolean;
 	sortAt: string;

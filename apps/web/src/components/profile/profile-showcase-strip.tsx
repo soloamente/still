@@ -435,7 +435,7 @@ export function ProfileShowcaseStrip({
 		>
 			{tvScopePick ? (
 				<div
-					className="fixed inset-0 z-[250] flex items-end justify-center bg-background/80 p-4 sm:items-center"
+					className="fixed inset-0 z-[250] flex items-end justify-center overscroll-contain bg-background/80 p-4 sm:items-center"
 					role="dialog"
 					aria-modal="true"
 					aria-label="Pick diary scope for showcase"

@@ -2,7 +2,10 @@
 
 import { OnboardingFieldInput } from "@/components/onboarding/onboarding-form-controls";
 
-import { OnboardingStepHeader } from "@/components/onboarding/onboarding-steps/onboarding-step-header";
+import {
+	ONBOARDING_STEP_TITLE_ID,
+	OnboardingStepHeader,
+} from "@/components/onboarding/onboarding-steps/onboarding-step-header";
 
 type NameStepProps = {
 	displayName: string;
@@ -18,7 +21,7 @@ export function NameStep({
 	onDisplayNameChange,
 	onFocus,
 	onBlur,
-	placeholder = "Enter your name",
+	placeholder = "Jordan Chen",
 }: NameStepProps) {
 	return (
 		<div className="flex flex-col gap-8">
@@ -28,6 +31,7 @@ export function NameStep({
 			/>
 
 			<OnboardingFieldInput
+				aria-labelledby={ONBOARDING_STEP_TITLE_ID}
 				autoComplete="name"
 				onBlur={(e) => onBlur?.(e.target.value)}
 				onChange={(e) => onDisplayNameChange(e.target.value)}

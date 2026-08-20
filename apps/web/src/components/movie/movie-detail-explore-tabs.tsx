@@ -2,33 +2,32 @@
 
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
-import { LayoutGrid, Sparkles } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Sparkles } from "lucide-react";
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useId, useState } from "react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
+import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
+import type { ListingEngagementCounts } from "@/components/movie/movie-detail-engagement-chips";
 import {
 	type MovieDetailFollowingRating,
 	MovieDetailFollowingRatings,
 } from "@/components/movie/movie-detail-following-ratings";
+import {
+	MovieDetailListTile,
+	type MovieListForPageTab,
+} from "@/components/movie/movie-detail-list-tile";
 import { MovieDetailReviewsCarousel } from "@/components/movie/movie-detail-reviews-carousel";
 import { Section } from "@/components/ui/section";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
-import { formatDistanceToNowStrict } from "@/lib/format";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
-import {
-	isListCoverProxySrc,
-	listBoardRowPosterUrl,
-} from "@/lib/list-cover-image";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
 import type { TmdbMovieSummary } from "@/lib/movie-detail-tmdb";
 import { requestCreateList } from "@/lib/open-create-list-surface";
@@ -185,19 +184,7 @@ export function MovieDetailRelatedCatalogue({
 	);
 }
 
-export type MovieListForPageTab = {
-	id: string;
-	title: string;
-	description: string | null;
-	itemsCount: number;
-	updatedAt: string;
-	likesCount: number;
-	ownerHandle?: string;
-	coverMovieIds?: number[];
-	coverPosterPaths?: (string | null)[];
-	coverImageUrl?: string | null;
-	coverMovieId?: number | null;
-};
+export type { MovieListForPageTab } from "@/components/movie/movie-detail-list-tile";
 
 export type MoviePageReviewAuthor = {
 	handle: string;
@@ -240,8 +227,12 @@ export function MovieDetailExploreTabs({
 	relatedListingKind = "movie",
 	movieId,
 	movieTitle,
-	listingTmdbId: _listingTmdbId,
-	listCountLabel = "films",
+	listingTmdbId,
+	listingKind = "movie",
+	communityAverage = null,
+	communityRatingsCount = 0,
+	engagementCounts,
+	listCountLabel = "titles",
 	/** When false, stacked layout omits Related (rendered on About tab instead). */
 	showRelated = true,
 }: {
@@ -258,7 +249,12 @@ export function MovieDetailExploreTabs({
 	movieId?: number;
 	movieTitle?: string;
 	listingTmdbId: number;
-	/** Meta line after list owner — `films` on movie detail, `titles` on TV. */
+	listingKind?: "movie" | "tv";
+	/** Public diary community score — surfaced on stacked Community tab. */
+	communityAverage?: number | null;
+	communityRatingsCount?: number;
+	engagementCounts?: Partial<ListingEngagementCounts>;
+	/** Meta line after list owner — always `titles` / `title`. */
 	listCountLabel?: string;
 	showRelated?: boolean;
 }) {
@@ -308,76 +304,21 @@ export function MovieDetailExploreTabs({
 	const reviewsSubsectionLabel = formatReviewsSubsectionLabel(reviews.length);
 
 	const reviewsPanel = (
-		<MovieDetailReviewsCarousel movieId={movieId} reviews={reviews} />
+		<MovieDetailReviewsCarousel
+			movieId={movieId}
+			movieTitle={movieTitle}
+			averageRating={communityAverage}
+			reviews={reviews}
+		/>
 	);
 
 	const listsPanel = lists.length ? (
 		<ul className="grid gap-4 sm:grid-cols-2">
-			{lists.map((list) => {
-				const coverSrc = listBoardRowPosterUrl(
-					{
-						id: list.id,
-						coverImageUrl: list.coverImageUrl,
-						coverPosterPaths: list.coverPosterPaths ?? [],
-						updatedAt: list.updatedAt,
-					},
-					"w342",
-				);
-				return (
-					<li key={list.id} className={cn(COMMUNITY_CARD, "overflow-hidden")}>
-						<Link
-							href={`/lists/${list.id}`}
-							className="flex items-stretch gap-4 p-4 text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100"
-						>
-							<aside
-								className="relative w-[5.25rem] shrink-0 self-stretch sm:w-[6.5rem]"
-								aria-hidden
-							>
-								<div className="relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-muted/30">
-									{coverSrc ? (
-										<Image
-											src={coverSrc}
-											alt=""
-											fill
-											sizes="(max-width: 640px) 88px, 104px"
-											className="object-cover"
-											unoptimized={isListCoverProxySrc(coverSrc)}
-										/>
-									) : (
-										<div className="grid size-full place-items-center text-desert-orange">
-											<LayoutGrid className="size-6" aria-hidden />
-										</div>
-									)}
-								</div>
-							</aside>
-							<div className="min-w-0 flex-1">
-								<p className="font-serif text-foreground text-lg leading-snug [@media(hover:hover)]:hover:text-desert-orange">
-									{list.title}
-								</p>
-								<p className="mt-1 text-muted-foreground text-xs tabular-nums">
-									{list.ownerHandle ? (
-										<>
-											by{" "}
-											<span className="text-foreground/85">
-												@{list.ownerHandle}
-											</span>
-											{" · "}
-										</>
-									) : null}
-									{list.itemsCount} {listCountLabel} · {list.likesCount}{" "}
-									{list.likesCount === 1 ? "like" : "likes"} · updated{" "}
-									{formatDistanceToNowStrict(new Date(list.updatedAt))} ago
-								</p>
-								{list.description ? (
-									<p className="mt-2 line-clamp-2 font-editorial text-foreground/80 text-sm leading-relaxed">
-										{list.description}
-									</p>
-								) : null}
-							</div>
-						</Link>
-					</li>
-				);
-			})}
+			{lists.map((list) => (
+				<li key={list.id}>
+					<MovieDetailListTile list={list} countLabel={listCountLabel} />
+				</li>
+			))}
 		</ul>
 	) : (
 		<MovieDetailListsEmpty movieId={movieId} movieTitle={movieTitle} />
@@ -392,7 +333,18 @@ export function MovieDetailExploreTabs({
 		) : null;
 
 	const communityPanel = (
-		<div className="space-y-14">
+		// Tighter stack so Lists peek into the first scroll after a short review rail.
+		<div className="space-y-10">
+			<MovieDetailCommunityRatingHero
+				variant="compact"
+				className="mt-0"
+				communityAverage={communityAverage}
+				communityRatingsCount={communityRatingsCount}
+				engagementCounts={engagementCounts}
+				listingKind={listingKind}
+				listingId={listingTmdbId}
+				movieId={movieId}
+			/>
 			{followingRatingsPanel}
 			<div>
 				<MovieDetailSubsectionLabel>
@@ -432,7 +384,7 @@ export function MovieDetailExploreTabs({
 				<MovieDetailBodySection
 					id={MOVIE_DETAIL_SECTION.reviews}
 					title="Community"
-					subtitle="Reviews, lists, and patron scores for this title."
+					subtitle="Community score, reviews, and public lists for this title."
 					className="pt-2 pb-2"
 				>
 					{communityPanel}

@@ -6,7 +6,7 @@ import {
 	PopoverTrigger,
 } from "@still/ui/components/popover";
 import { stillToast } from "@still/ui/components/still-toast";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { AddToListPicker } from "@/components/list/add-to-list-picker";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
@@ -23,6 +23,10 @@ import { fetchListsMe } from "@/lib/still-api-fetch";
 /**
  * Headless add-to-list flow for radial menus — opens the same picker sheet as hero
  * `AddToListControl` without rendering the circle trigger.
+ *
+ * Lists load on `openPicker`, never on mount: this hook runs once per poster cell,
+ * so prefetching fired one `/api/lists/me` per visible tile (~20 per lobby load)
+ * for a picker most patrons never open.
  */
 export function useAddToListRadial(media: AddToListMedia) {
 	const [lists, setLists] = useState<ListBoardRow[] | null>(null);
@@ -56,11 +60,6 @@ export function useAddToListRadial(media: AddToListMedia) {
 			if (gen === fetchGen.current) setListsLoading(false);
 		}
 	}, [media.listingKind, media.tmdbId]);
-
-	useEffect(() => {
-		if (lists != null) return;
-		void loadLists();
-	}, [lists, loadLists]);
 
 	const handlePickerOpenChange = useCallback((next: boolean) => {
 		setPickerOpen(next);

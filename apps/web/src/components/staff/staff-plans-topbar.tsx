@@ -93,6 +93,7 @@ export function StaffPlansTopbar({
 												patron.avatarIsAnimated,
 											)}
 											planTier={patron.planTier}
+											staffRole={patron.staffRole}
 										/>
 									</TooltipTrigger>
 									<TooltipContent side="bottom" sideOffset={6}>

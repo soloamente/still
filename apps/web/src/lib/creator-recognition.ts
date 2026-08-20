@@ -6,6 +6,7 @@
 import type { PlanTierId } from "@still/plans";
 
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export const REVIEW_ENGAGEMENT_LIKE_WEIGHT = 2;
 export const REVIEW_ENGAGEMENT_COMMENT_WEIGHT = 3;
@@ -18,6 +19,7 @@ export interface CuratorSpotlightPatron {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	headline: string;
 	spotlightScore: number;
 }

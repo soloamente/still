@@ -25,15 +25,14 @@ import {
 	TASTE_TITLE_CONSUMED_EVENT,
 	type TasteTitleConsumedDetail,
 } from "@/lib/taste-title-consumed-events";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useTasteRailVisibleCount } from "@/lib/use-taste-rail-visible-count";
 
 const RAIL_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0 bg-background";
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
-	if (!posterPath?.length) return null;
-	if (posterPath.startsWith("http")) return posterPath;
-	const fragment = posterPath.startsWith("/") ? posterPath : `/${posterPath}`;
-	return `https://image.tmdb.org/t/p/w780${fragment}`;
+	// Grid rail tiles — w342 is enough; avoid pulling w780 through Vercel Image Optimization.
+	return tmdbPosterUrlFromPath(posterPath, "w342");
 }
 
 function tasteRailIsEmpty(movies: TasteMatchMovie[]): boolean {

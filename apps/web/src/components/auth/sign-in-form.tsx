@@ -9,6 +9,7 @@ import z from "zod";
 import {
 	AuthFieldErrors,
 	AuthMotionInput,
+	authFieldErrorId,
 } from "@/components/auth/auth-motion-field";
 import { AuthSubmitButton } from "@/components/auth/auth-submit-button";
 
@@ -57,50 +58,68 @@ export function SignInForm({ redirectTo = "/home" }: { redirectTo?: string }) {
 			>
 				<div>
 					<form.Field name="email">
-						{(field) => (
-							<div>
-								<label className="sr-only" htmlFor={field.name}>
-									Email
-								</label>
-								<AuthMotionInput
-									autoComplete="email"
-									id={field.name}
-									name={field.name}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-									placeholder="Email"
-									reduceMotion={reduceMotion}
-									spellCheck={false}
-									type="email"
-									value={field.state.value}
-								/>
-								<AuthFieldErrors errors={field.state.meta.errors} />
-							</div>
-						)}
+						{(field) => {
+							const errorId = authFieldErrorId(field.name);
+							const hasError = Boolean(field.state.meta.errors.find(Boolean));
+							return (
+								<div>
+									<label className="sr-only" htmlFor={field.name}>
+										Email
+									</label>
+									<AuthMotionInput
+										aria-describedby={hasError ? errorId : undefined}
+										aria-invalid={hasError ? true : undefined}
+										autoComplete="email"
+										id={field.name}
+										name={field.name}
+										onBlur={field.handleBlur}
+										onChange={(e) => field.handleChange(e.target.value)}
+										placeholder="Email"
+										reduceMotion={reduceMotion}
+										spellCheck={false}
+										type="email"
+										value={field.state.value}
+									/>
+									<AuthFieldErrors
+										errors={field.state.meta.errors}
+										id={errorId}
+									/>
+								</div>
+							);
+						}}
 					</form.Field>
 				</div>
 
 				<div>
 					<form.Field name="password">
-						{(field) => (
-							<div>
-								<label className="sr-only" htmlFor={field.name}>
-									Password
-								</label>
-								<AuthMotionInput
-									autoComplete="current-password"
-									id={field.name}
-									name={field.name}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-									placeholder="Password"
-									reduceMotion={reduceMotion}
-									type="password"
-									value={field.state.value}
-								/>
-								<AuthFieldErrors errors={field.state.meta.errors} />
-							</div>
-						)}
+						{(field) => {
+							const errorId = authFieldErrorId(field.name);
+							const hasError = Boolean(field.state.meta.errors.find(Boolean));
+							return (
+								<div>
+									<label className="sr-only" htmlFor={field.name}>
+										Password
+									</label>
+									<AuthMotionInput
+										aria-describedby={hasError ? errorId : undefined}
+										aria-invalid={hasError ? true : undefined}
+										autoComplete="current-password"
+										id={field.name}
+										name={field.name}
+										onBlur={field.handleBlur}
+										onChange={(e) => field.handleChange(e.target.value)}
+										placeholder="Password"
+										reduceMotion={reduceMotion}
+										type="password"
+										value={field.state.value}
+									/>
+									<AuthFieldErrors
+										errors={field.state.meta.errors}
+										id={errorId}
+									/>
+								</div>
+							);
+						}}
 					</form.Field>
 				</div>
 

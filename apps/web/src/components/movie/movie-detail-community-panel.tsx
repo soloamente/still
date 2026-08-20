@@ -1,3 +1,4 @@
+import type { ListingEngagementCounts } from "@/components/movie/movie-detail-engagement-chips";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import type { MovieDetailFollowingRating } from "@/components/movie/movie-detail-following-ratings";
 import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
@@ -63,17 +64,23 @@ type FollowingRatingsPayload = {
 	moreCount: number;
 };
 
-/** Community tab body — reviews, lists, and following ratings (related stays on About). */
+/** Community tab body — score, reviews, lists, and following ratings (related stays on About). */
 export async function MovieDetailCommunityPanel({
 	id,
 	tmdbId,
 	numericId,
 	title,
+	communityAverage,
+	communityRatingsCount,
+	engagementCounts,
 }: {
 	id: string;
 	tmdbId: number;
 	numericId: number;
 	title: string;
+	communityAverage: number | null;
+	communityRatingsCount: number;
+	engagementCounts?: Partial<ListingEngagementCounts>;
 }) {
 	const api = await serverApi();
 
@@ -115,6 +122,10 @@ export async function MovieDetailCommunityPanel({
 				movieId={numericId}
 				movieTitle={title}
 				listingTmdbId={tmdbId}
+				listingKind="movie"
+				communityAverage={communityAverage}
+				communityRatingsCount={communityRatingsCount}
+				engagementCounts={engagementCounts}
 			/>
 		</div>
 	);

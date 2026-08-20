@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
+
 /**
  * Tailwind width for `posterFillTicket` compact rail `<li>` — keep equal to compact `fullBleedWidth`.
  * Exported so Coming-soon scroller gutters stay keyed to stub geometry without magic numbers drifting.
@@ -17,7 +19,7 @@ const SIZE_PRESETS = {
 		roundedTop: "rounded-t-[22px]",
 		roundedBottom: "rounded-b-[22px]",
 		notch: "size-[22px]",
-		tmDbWidth: "w500",
+		tmDbWidth: "w342",
 		posterSizes: "(max-width:640px) 92vw, 280px",
 		shadow: "shadow-[0_14px_36px_rgba(0,0,0,0.42)]",
 		/** Fixed width for rails when the poster spans the entire ticket silhouette. */
@@ -30,7 +32,7 @@ const SIZE_PRESETS = {
 		roundedBottom: "rounded-b-[14px]",
 		/** Narrow horizontal rail — small punches so Ø doesn’t overwhelm a ~188 px spine */
 		notch: "size-[20px]",
-		tmDbWidth: "w500",
+		tmDbWidth: "w342",
 		posterSizes: "188px",
 		shadow: "shadow-[0_8px_24px_rgba(0,0,0,0.38)]",
 		fullBleedWidth: TICK_COMPACT_FILL_RAIL_TW,
@@ -177,6 +179,7 @@ export function TicketStub({
 								),
 							posterClassName,
 						)}
+						unoptimized={isTmdbCdnUrl(resolved)}
 					/>
 				) : (
 					<div className="flex size-full items-center justify-center px-2 text-center text-[10px] text-white/35">
@@ -315,6 +318,7 @@ export function TicketStub({
 								"transition-[filter] duration-200 [@media(hover:hover)]:group-hover:brightness-[1.05]",
 							posterClassName,
 						)}
+						unoptimized={isTmdbCdnUrl(resolved)}
 					/>
 				) : (
 					<div className="flex size-full items-center justify-center px-2 text-center text-[10px] text-white/35">

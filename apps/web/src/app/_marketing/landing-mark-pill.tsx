@@ -3,9 +3,7 @@ import Link from "next/link";
 
 import { APP_NAME } from "@/lib/app-brand";
 
-import { LANDING_GLASS_PILL } from "./landing-glass";
-
-/** La Nube logo disc — three-dot mark as soft circles, not a single accent lamp. */
+/** Sense wordmark in a raised card pill — not the old three-dot glass mark. */
 export function LandingMarkPill({
 	className,
 	href = "/",
@@ -18,14 +16,12 @@ export function LandingMarkPill({
 			href={href}
 			aria-label={`${APP_NAME} — home`}
 			className={cn(
-				LANDING_GLASS_PILL,
-				"flex size-11 shrink-0 items-center justify-center gap-[3px] transition-colors duration-200 [@media(hover:hover)]:bg-white/[0.14]",
+				"inline-flex h-11 min-w-11 select-none items-center justify-center rounded-full bg-card px-4 font-sans font-semibold text-foreground text-sm",
+				"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 				className,
 			)}
 		>
-			<span aria-hidden className="size-1.5 rounded-full bg-foreground/90" />
-			<span aria-hidden className="size-1.5 rounded-full bg-foreground/70" />
-			<span aria-hidden className="size-1.5 rounded-full bg-foreground/50" />
+			{APP_NAME}
 		</Link>
 	);
 }

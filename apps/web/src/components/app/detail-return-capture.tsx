@@ -4,6 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 import {
+	isAchievementsPath,
 	isListingDetailPath,
 	isMeSettingsPath,
 	isProfileLobbyPath,
@@ -38,9 +39,18 @@ export function DetailReturnCapture() {
 			isMeSettingsPath(pathname) &&
 			previous.pathname.length > 0 &&
 			!isMeSettingsPath(previous.pathname);
+		const enteringAchievements =
+			isAchievementsPath(pathname) &&
+			previous.pathname.length > 0 &&
+			!isAchievementsPath(previous.pathname);
 
-		// Remember the prior route for detail, profile, and settings back pills.
-		if (enteringListingDetail || enteringProfileLobby || enteringSettings) {
+		// Remember the prior route for detail, profile, settings, and achievements back pills.
+		if (
+			enteringListingDetail ||
+			enteringProfileLobby ||
+			enteringSettings ||
+			enteringAchievements
+		) {
 			persistMovieDetailReturn(previous.pathname, previous.search);
 		}
 

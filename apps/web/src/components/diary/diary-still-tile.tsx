@@ -6,13 +6,11 @@ import Link from "next/link";
 import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import { StarRating } from "@/components/rating/star-rating";
 import { formatDate } from "@/lib/format";
+import { isTmdbCdnUrl, tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 /** Build a TMDb `w342` poster URL from a path fragment or full URL (same contract as `MoviePoster`). */
 function tmdbPosterSrc(path: string | null): string | null {
-	if (!path?.length) return null;
-	if (path.startsWith("http")) return path;
-	const fragment = path.startsWith("/") ? path : `/${path}`;
-	return `https://image.tmdb.org/t/p/w342${fragment}`;
+	return tmdbPosterUrlFromPath(path, "w342");
 }
 
 /**
@@ -45,6 +43,7 @@ export function DiaryStillTile({ row }: { row: DiaryLogRow }) {
 						fill
 						sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 200px"
 						className="object-cover"
+						unoptimized={isTmdbCdnUrl(src)}
 					/>
 				) : (
 					<div className="grid size-full place-items-center text-muted-foreground">

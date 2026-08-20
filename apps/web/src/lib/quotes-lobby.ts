@@ -1,12 +1,40 @@
 import { buildMovieDetailViewHref } from "@/lib/movie-detail-view";
 import type { SavedQuoteListingThumb } from "@/lib/quote-saved-types";
 
+/** `/quotes` primary collection — saved bookmarks vs patron submissions. */
+export type QuotesLobbyView = "saved" | "submitted";
+
+/** Patron submission moderation filter on `/quotes?view=submitted`. */
+export type QuotesSubmissionStatusFilter =
+	| "all"
+	| "pending"
+	| "approved"
+	| "rejected";
+
 /** `/quotes` media filter — All · Films · Shows. */
 export type QuotesLobbyKind = "all" | "movie" | "tv";
 
 const DEFAULT_KIND: QuotesLobbyKind = "all";
+const DEFAULT_VIEW: QuotesLobbyView = "saved";
+const DEFAULT_SUBMISSION_STATUS: QuotesSubmissionStatusFilter = "all";
 
 export const QUOTES_LOBBY_PAGE_SIZE = 20;
+
+export function parseQuotesLobbyView(
+	raw: string | null | undefined,
+): QuotesLobbyView {
+	if (raw === "submitted") return "submitted";
+	return DEFAULT_VIEW;
+}
+
+export function parseQuotesSubmissionStatusFilter(
+	raw: string | null | undefined,
+): QuotesSubmissionStatusFilter {
+	if (raw === "pending" || raw === "approved" || raw === "rejected") {
+		return raw;
+	}
+	return DEFAULT_SUBMISSION_STATUS;
+}
 
 export function parseQuotesLobbyKind(
 	raw: string | null | undefined,
@@ -15,12 +43,40 @@ export function parseQuotesLobbyKind(
 	return DEFAULT_KIND;
 }
 
-export function buildQuotesLobbyHref(opts: { kind?: QuotesLobbyKind }): string {
+export function buildQuotesLobbyHref(opts: {
+	kind?: QuotesLobbyKind;
+	view?: QuotesLobbyView;
+	status?: QuotesSubmissionStatusFilter;
+}): string {
 	const kind = opts.kind ?? DEFAULT_KIND;
-	if (kind === DEFAULT_KIND) return "/quotes";
+	const view = opts.view ?? DEFAULT_VIEW;
+	const status = opts.status ?? DEFAULT_SUBMISSION_STATUS;
 	const params = new URLSearchParams();
-	params.set("kind", kind);
-	return `/quotes?${params.toString()}`;
+
+	if (view !== DEFAULT_VIEW) params.set("view", view);
+	if (kind !== DEFAULT_KIND) params.set("kind", kind);
+	if (view === "submitted" && status !== DEFAULT_SUBMISSION_STATUS) {
+		params.set("status", status);
+	}
+
+	const qs = params.toString();
+	return qs ? `/quotes?${qs}` : "/quotes";
+}
+
+export function quotesLobbySearchState(raw: {
+	kind?: string | null;
+	view?: string | null;
+	status?: string | null;
+}): {
+	kind: QuotesLobbyKind;
+	view: QuotesLobbyView;
+	status: QuotesSubmissionStatusFilter;
+} {
+	return {
+		kind: parseQuotesLobbyKind(raw.kind),
+		view: parseQuotesLobbyView(raw.view),
+		status: parseQuotesSubmissionStatusFilter(raw.status),
+	};
 }
 
 /** Deep link to the title Quotes tab from a saved row or notification payload. */

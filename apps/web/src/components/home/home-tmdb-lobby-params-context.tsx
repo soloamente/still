@@ -155,7 +155,8 @@ export function HomeTmdbLobbyParamsProvider({
 
 	const selectSort = useCallback(
 		(sort: HomeCatalogSort) => {
-			navigateLobby({ sort });
+			// Clear This season so Popular/Latest/Upcoming own the single Move pill.
+			navigateLobby({ sort, animeSeason: false });
 		},
 		[navigateLobby],
 	);

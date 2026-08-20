@@ -1,60 +1,106 @@
 "use client";
 
+import { Button } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
+import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeLeaderboardPodium } from "@/components/home/home-leaderboard-podium";
 import { HomeLeaderboardRow } from "@/components/home/home-leaderboard-row";
-import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
+import { APP_NAME } from "@/lib/app-brand";
+import { HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME } from "@/lib/home-community-lobby-layout";
+import {
+	HOME_COMMUNITY_RANKS_COLUMN_CLASSNAME,
+	HOME_COMMUNITY_RANKS_LIST_CLASSNAME,
+	HOME_COMMUNITY_RANKS_ROW_CLASSNAME,
+	HOME_COMMUNITY_RANKS_VIEWER_ROW_CLASSNAME,
+} from "@/lib/home-community-ranks-layout";
+import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
+import type {
+	LeaderboardKind,
+	LeaderboardPayload,
+} from "@/lib/home-leaderboard-types";
+import { leaderboardKindCountLabel } from "@/lib/leaderboard-kind-labels";
+import { fetchCommunityLeaderboard } from "@/lib/still-api-fetch";
 
 /**
- * Community rank feeds — period chips, tier podium, list from #4, optional viewer footer.
+ * Community rank feeds — tier podium, flat list from #4, optional viewer footer.
+ * Includes every public profile (zero-log patrons appear with count 0).
  */
 export function HomeCommunityLeaderboard({
 	kind,
-	data,
+	data: initialData,
 	viewerUserId,
 }: {
-	kind: "films" | "tv";
+	kind: LeaderboardKind;
 	data: LeaderboardPayload;
 	viewerUserId: string | null;
 }) {
-	const rest = data.entries.slice(3);
+	const [data, setData] = useState(initialData);
+	const [loadingMore, setLoadingMore] = useState(false);
 
-	if (data.entries.length === 0) {
+	useEffect(() => {
+		setData(initialData);
+	}, [initialData]);
+
+	const entries = data.entries;
+	const rest = entries.slice(3);
+	const nextPage = data.nextPage;
+
+	async function handleLoadMore() {
+		if (!nextPage || loadingMore) return;
+		setLoadingMore(true);
+		try {
+			const tz = readViewerTimeZone();
+			const pagePayload = await fetchCommunityLeaderboard(
+				kind,
+				data.period,
+				tz,
+				{ page: nextPage, limit: data.limit },
+			);
+			if (!pagePayload) return;
+			setData((prev) => ({
+				...pagePayload,
+				entries: [...prev.entries, ...pagePayload.entries],
+			}));
+		} catch (err) {
+			console.error("[home-community-leaderboard] load more failed", err);
+		} finally {
+			setLoadingMore(false);
+		}
+	}
+
+	if (entries.length === 0) {
 		return (
-			<div className="flex min-h-0 flex-1 flex-col gap-4">
+			<div className={HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME}>
 				<HomeCommunityEmpty
-					title={
-						kind === "films"
-							? "No film logs this period"
-							: "No show logs this period"
-					}
-					description="When patrons log watches in this window, rankings show up here."
+					title="No public profiles yet"
+					description="Public profiles appear here with a rank from public diary logs in this period — private profiles are never listed."
 					primaryHref="/home?browse=movies"
 					primaryLabel="Browse movies"
-					secondaryHref="/diary"
-					secondaryLabel="Your diary"
+					secondaryHref="/sign-up"
+					secondaryLabel={`Join ${APP_NAME}`}
 				/>
 			</div>
 		);
 	}
 
 	const viewerInList = viewerUserId
-		? data.entries.some((e) => e.userId === viewerUserId)
+		? entries.some((e) => e.userId === viewerUserId)
 		: false;
-	const showViewerFooter =
-		viewerUserId && data.viewer && !viewerInList && data.viewer.count > 0;
+	// Show footer when the signed-in patron is public but not on the loaded page slice.
+	const showViewerFooter = viewerUserId && data.viewer && !viewerInList;
 
 	return (
-		<div className="mx-auto flex w-full max-w-lg flex-col gap-4 pb-4">
+		<div className={HOME_COMMUNITY_RANKS_COLUMN_CLASSNAME}>
 			<HomeLeaderboardPodium
-				entries={data.entries}
+				entries={entries}
 				kind={kind}
 				period={data.period}
 			/>
 			{rest.length > 0 ? (
-				<ul className="flex flex-col gap-2 rounded-2xl bg-card p-3 sm:p-4">
+				<ul className={HOME_COMMUNITY_RANKS_LIST_CLASSNAME}>
 					{rest.map((entry) => (
 						<HomeLeaderboardRow
 							key={entry.userId}
@@ -69,14 +115,32 @@ export function HomeCommunityLeaderboard({
 			{showViewerFooter && data.viewer ? (
 				<div
 					className={cn(
-						"flex items-center justify-between gap-3 rounded-xl bg-background px-4 py-3 text-sm",
+						HOME_COMMUNITY_RANKS_ROW_CLASSNAME,
+						HOME_COMMUNITY_RANKS_VIEWER_ROW_CLASSNAME,
+						"justify-between",
 					)}
 				>
-					<span className="font-medium text-foreground">Your rank</span>
-					<span className="text-muted-foreground tabular-nums">
-						#{data.viewer.rank} · {data.viewer.count}{" "}
-						{kind === "tv" ? "logs" : "films"}
+					<span className="font-semibold text-foreground text-sm">
+						Your rank
 					</span>
+					<span className="text-muted-foreground text-sm tabular-nums">
+						#{data.viewer.rank} · {data.viewer.count}{" "}
+						{leaderboardKindCountLabel(kind, data.viewer.count)}
+					</span>
+				</div>
+			) : null}
+			{nextPage ? (
+				<div className="flex justify-center pb-2">
+					<Button
+						type="button"
+						variant="ghost-light"
+						size="pill"
+						disabled={loadingMore}
+						onClick={() => void handleLoadMore()}
+					>
+						{loadingMore ? <Loader2 className="size-4 animate-spin" /> : null}
+						Load more
+					</Button>
 				</div>
 			) : null}
 		</div>

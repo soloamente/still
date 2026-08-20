@@ -77,6 +77,7 @@ function MembersPodiumTile({
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 			</Link>
 			<div className="mt-2 flex w-full min-w-0 flex-col items-center gap-0.5 px-1 text-center">

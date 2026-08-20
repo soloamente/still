@@ -3,11 +3,19 @@
 import {
 	createContext,
 	type ReactNode,
+	useCallback,
 	useContext,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
+
+import {
+	EMPTY_ME_ACCOUNT_BAR_ACTIONS_SLOT,
+	type MeAccountBarActionsSlot,
+	reduceMeAccountBarActionsSlot,
+} from "@/components/profile/me-account-bar-actions-slot";
 
 /** Actions rendered in `MeAccountTopBar` (Save / Cancel) — registered by account sub-pages. */
 export interface MeAccountBarActions {
@@ -20,7 +28,7 @@ export interface MeAccountBarActions {
 
 type MeAccountBarActionsContextValue = {
 	actions: MeAccountBarActions | null;
-	setActions: (next: MeAccountBarActions | null) => void;
+	setActions: (next: MeAccountBarActions | null, owner: symbol) => void;
 };
 
 const MeAccountBarActionsContext =
@@ -31,8 +39,19 @@ export function MeAccountBarActionsProvider({
 }: {
 	children: ReactNode;
 }) {
-	const [actions, setActions] = useState<MeAccountBarActions | null>(null);
-	const value = useMemo(() => ({ actions, setActions }), [actions]);
+	const [slot, setSlot] = useState(
+		EMPTY_ME_ACCOUNT_BAR_ACTIONS_SLOT as MeAccountBarActionsSlot<MeAccountBarActions>,
+	);
+	const setActions = useCallback(
+		(next: MeAccountBarActions | null, owner: symbol) => {
+			setSlot((prev) => reduceMeAccountBarActionsSlot(prev, next, owner));
+		},
+		[],
+	);
+	const value = useMemo(
+		() => ({ actions: slot.actions, setActions }),
+		[slot.actions, setActions],
+	);
 	return (
 		<MeAccountBarActionsContext.Provider value={value}>
 			{children}
@@ -42,19 +61,23 @@ export function MeAccountBarActionsProvider({
 
 /**
  * Register Save/Cancel for the sticky account top bar. Clear on unmount so
- * other `/me/*` routes do not inherit stale handlers.
+ * other `/me/*` routes do not inherit stale handlers — but only if this
+ * instance still owns the slot (route-slide exit layers must not wipe the
+ * surviving Settings form).
  */
 export function useRegisterMeAccountBarActions(
 	actions: MeAccountBarActions | null,
 ) {
 	const ctx = useContext(MeAccountBarActionsContext);
 	const setActions = ctx?.setActions;
+	const ownerRef = useRef(Symbol("me-account-bar-actions"));
 
 	useEffect(() => {
 		if (!setActions) return;
-		setActions(actions);
+		const owner = ownerRef.current;
+		setActions(actions, owner);
 		return () => {
-			setActions(null);
+			setActions(null, owner);
 		};
 	}, [setActions, actions]);
 }

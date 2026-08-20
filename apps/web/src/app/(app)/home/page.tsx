@@ -96,6 +96,7 @@ import {
 	fetchTvPopular,
 } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import { traceTiming } from "@/lib/trace-timing";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -432,10 +433,11 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 		.join("; ");
 
 	const api = await serverApi();
-	const [session, profileResult] = await Promise.all([
-		authServer(),
-		fetchMeProfile(),
-	]);
+	const [session, profileResult] = await traceTiming(
+		"home",
+		"wave1 auth+profile",
+		() => Promise.all([authServer(), fetchMeProfile()]),
+	);
 	const profileDataEarly =
 		profileResult === PROFILE_FETCH_FAILED ? null : profileResult;
 	const catalogLanguage = resolveCatalogTmdbLanguage(
@@ -471,175 +473,183 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 			(tvVenue === "streaming" && tvFilterMonetization !== "flatrate"));
 
 	const [continueWatching, committedSearchPayload, lobbyResult] =
-		await Promise.all([
-			// Personal TV progress rail — skip while committed search replaces the grid.
-			session && browse === "tv" && !catalogueSearchActive
-				? fetchTvWatchMeServer(api, {
-						status: "watching,rewatching",
-						limit: 12,
-					})
-				: Promise.resolve([]),
-			catalogueSearchActive && committedSearchRaw
-				? loadCommittedCatalogueSearchSeeds({
-						searchRaw: committedSearchRaw,
-						browse: browse === "tv" ? "tv" : "movies",
-						sort: catalogueSearchSort ?? "popular",
-						cookieHeader,
-						catalogLanguage,
-					})
-				: Promise.resolve(null),
-			// Lobby catalogue fetch — runs concurrently with the personal rails above.
-			(async (): Promise<{
-				data: unknown;
-				error: { status: number; nonJson?: boolean } | null;
-			}> => {
-				if (catalogueSearchActive) return { data: null, error: null };
-				try {
-					return browse === "community"
-						? { data: null, error: null }
-						: browse === "tv"
-							? animeSeasonActive
-								? await fetchTvDiscover(SEED_PAGE, {
-										cookieHeader,
-										...animeSeasonTvDiscoverParams(tvLobbySort),
-									})
-								: catalogRun === "ongoing"
-									? await fetchTvDiscover(SEED_PAGE, {
-											cookieHeader,
-											sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
-											status: TV_ONGOING_DISCOVER_STATUS,
-											genreId: tvFilterGenreId,
-										})
-									: catalogRun === "completed"
+		await traceTiming("home", "wave2 rails+catalogue", () =>
+			Promise.all([
+				// Personal TV progress rail — skip while committed search replaces the grid.
+				session && browse === "tv" && !catalogueSearchActive
+					? fetchTvWatchMeServer(api, {
+							status: "watching,rewatching",
+							limit: 12,
+						})
+					: Promise.resolve([]),
+				catalogueSearchActive && committedSearchRaw
+					? loadCommittedCatalogueSearchSeeds({
+							searchRaw: committedSearchRaw,
+							browse: browse === "tv" ? "tv" : "movies",
+							sort: catalogueSearchSort ?? "popular",
+							cookieHeader,
+							catalogLanguage,
+						})
+					: Promise.resolve(null),
+				// Lobby catalogue fetch — runs concurrently with the personal rails above.
+				traceTiming(
+					"home",
+					"catalogue seed fetch",
+					async (): Promise<{
+						data: unknown;
+						error: { status: number; nonJson?: boolean } | null;
+					}> => {
+						if (catalogueSearchActive) return { data: null, error: null };
+						try {
+							return browse === "community"
+								? { data: null, error: null }
+								: browse === "tv"
+									? animeSeasonActive
 										? await fetchTvDiscover(SEED_PAGE, {
 												cookieHeader,
-												sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
-												status: TV_COMPLETED_DISCOVER_STATUS,
-												genreId: tvFilterGenreId,
+												...animeSeasonTvDiscoverParams(tvLobbySort),
 											})
-										: catalogRun === "upcoming"
-											? tvLobbyStreamingUpcoming
+										: catalogRun === "ongoing"
+											? await fetchTvDiscover(SEED_PAGE, {
+													cookieHeader,
+													sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
+													status: TV_ONGOING_DISCOVER_STATUS,
+													genreId: tvFilterGenreId,
+												})
+											: catalogRun === "completed"
 												? await fetchTvDiscover(SEED_PAGE, {
 														cookieHeader,
-														sortBy: TV_UPCOMING_DISCOVER_SORT,
-														airDateGte: catalogReleaseFloorUtc,
-														monetization: tvFilterMonetization,
-														watchRegion: streamingWatchRegionApi,
+														sortBy: tvDiscoverSortByForLobbySort(tvLobbySort),
+														status: TV_COMPLETED_DISCOVER_STATUS,
 														genreId: tvFilterGenreId,
 													})
-												: await fetchTvDiscover(SEED_PAGE, {
-														cookieHeader,
-														sortBy: TV_UPCOMING_DISCOVER_SORT,
-														airDateGte: catalogReleaseFloorUtc,
-														genreId: tvFilterGenreId,
-													})
-											: tvPopularNeedsDiscover
-												? await fetchTvDiscover(SEED_PAGE, {
-														cookieHeader,
-														sortBy: "popularity.desc",
-														genreId: tvFilterGenreId,
-														monetization:
-															tvVenue === "streaming"
-																? tvFilterMonetization
-																: undefined,
-														watchRegion:
-															tvVenue === "streaming"
-																? streamingWatchRegionApi
-																: undefined,
-													})
-												: sort === "popular"
-													? await fetchTvPopular(SEED_PAGE, { cookieHeader })
-													: await fetchTvDiscover(SEED_PAGE, {
-															cookieHeader,
-															sortBy: LATEST_TV_DISCOVER_SORT,
-															genreId: tvFilterGenreId,
-														})
-							: movieLobbyStreamingUpcoming
-								? await fetchMoviesDiscover(SEED_PAGE, {
-										cookieHeader,
-										sortBy: "primary_release_date.asc",
-										venue: "streaming",
-										monetization: movieFilterMonetization,
-										releaseGte: catalogReleaseFloorUtc,
-										watchRegion: streamingWatchRegionApi,
-										genreId: movieFilterGenreId,
-									})
-								: movieLobbyTheatersUpcoming
-									? movieFilterGenreId
+												: catalogRun === "upcoming"
+													? tvLobbyStreamingUpcoming
+														? await fetchTvDiscover(SEED_PAGE, {
+																cookieHeader,
+																sortBy: TV_UPCOMING_DISCOVER_SORT,
+																airDateGte: catalogReleaseFloorUtc,
+																monetization: tvFilterMonetization,
+																watchRegion: streamingWatchRegionApi,
+																genreId: tvFilterGenreId,
+															})
+														: await fetchTvDiscover(SEED_PAGE, {
+																cookieHeader,
+																sortBy: TV_UPCOMING_DISCOVER_SORT,
+																airDateGte: catalogReleaseFloorUtc,
+																genreId: tvFilterGenreId,
+															})
+													: tvPopularNeedsDiscover
+														? await fetchTvDiscover(SEED_PAGE, {
+																cookieHeader,
+																sortBy: "popularity.desc",
+																genreId: tvFilterGenreId,
+																monetization:
+																	tvVenue === "streaming"
+																		? tvFilterMonetization
+																		: undefined,
+																watchRegion:
+																	tvVenue === "streaming"
+																		? streamingWatchRegionApi
+																		: undefined,
+															})
+														: sort === "popular"
+															? await fetchTvPopular(SEED_PAGE, {
+																	cookieHeader,
+																})
+															: await fetchTvDiscover(SEED_PAGE, {
+																	cookieHeader,
+																	sortBy: LATEST_TV_DISCOVER_SORT,
+																	genreId: tvFilterGenreId,
+																})
+									: movieLobbyStreamingUpcoming
 										? await fetchMoviesDiscover(SEED_PAGE, {
 												cookieHeader,
 												sortBy: "primary_release_date.asc",
-												venue: "theaters",
-												region: patronCatalogTheatricalRegion,
-												genreId: movieFilterGenreId,
-											})
-										: await fetchMoviesUpcoming(SEED_PAGE, {
-												cookieHeader,
-												region: patronCatalogTheatricalRegion,
-											})
-									: movieLobbyStreamingCatalog
-										? await fetchMoviesDiscover(SEED_PAGE, {
-												cookieHeader,
-												sortBy:
-													sort === "popular"
-														? "popularity.desc"
-														: LATEST_DISCOVER_SORT,
 												venue: "streaming",
 												monetization: movieFilterMonetization,
+												releaseGte: catalogReleaseFloorUtc,
 												watchRegion: streamingWatchRegionApi,
 												genreId: movieFilterGenreId,
 											})
-										: movieLobbyUsesNowPlayingWithGenre
-											? await fetchMoviesDiscover(SEED_PAGE, {
-													cookieHeader,
-													sortBy: "popularity.desc",
-													venue: "theaters",
-													region: patronCatalogTheatricalRegion,
-													genreId: movieFilterGenreId,
-												})
-											: movieLobbyUsesNowPlaying
-												? await fetchMoviesNowPlaying(SEED_PAGE, {
+										: movieLobbyTheatersUpcoming
+											? movieFilterGenreId
+												? await fetchMoviesDiscover(SEED_PAGE, {
 														cookieHeader,
+														sortBy: "primary_release_date.asc",
+														venue: "theaters",
+														region: patronCatalogTheatricalRegion,
+														genreId: movieFilterGenreId,
 													})
-												: movieLobbyTheatersLatestDiscover
+												: await fetchMoviesUpcoming(SEED_PAGE, {
+														cookieHeader,
+														region: patronCatalogTheatricalRegion,
+													})
+											: movieLobbyStreamingCatalog
+												? await fetchMoviesDiscover(SEED_PAGE, {
+														cookieHeader,
+														sortBy:
+															sort === "popular"
+																? "popularity.desc"
+																: LATEST_DISCOVER_SORT,
+														venue: "streaming",
+														monetization: movieFilterMonetization,
+														watchRegion: streamingWatchRegionApi,
+														genreId: movieFilterGenreId,
+													})
+												: movieLobbyUsesNowPlayingWithGenre
 													? await fetchMoviesDiscover(SEED_PAGE, {
 															cookieHeader,
-															sortBy: LATEST_DISCOVER_SORT,
+															sortBy: "popularity.desc",
 															venue: "theaters",
 															region: patronCatalogTheatricalRegion,
 															genreId: movieFilterGenreId,
 														})
-													: sort === "latest"
-														? await fetchMoviesDiscover(SEED_PAGE, {
+													: movieLobbyUsesNowPlaying
+														? await fetchMoviesNowPlaying(SEED_PAGE, {
 																cookieHeader,
-																sortBy: LATEST_DISCOVER_SORT,
-																venue:
-																	movieVenue === "streaming"
-																		? "streaming"
-																		: "theaters",
-																monetization:
-																	movieVenue === "streaming"
-																		? movieFilterMonetization
-																		: undefined,
-																watchRegion:
-																	movieVenue === "streaming"
-																		? streamingWatchRegionApi
-																		: undefined,
-																region:
-																	movieVenue === "theaters"
-																		? patronCatalogTheatricalRegion
-																		: undefined,
-																genreId: movieFilterGenreId,
 															})
-														: await fetchMoviesNowPlaying(SEED_PAGE, {
-																cookieHeader,
-															});
-				} catch (err) {
-					console.error("[home] catalogue fetch failed", err);
-					return { data: null, error: { status: 0 } };
-				}
-			})(),
-		]);
+														: movieLobbyTheatersLatestDiscover
+															? await fetchMoviesDiscover(SEED_PAGE, {
+																	cookieHeader,
+																	sortBy: LATEST_DISCOVER_SORT,
+																	venue: "theaters",
+																	region: patronCatalogTheatricalRegion,
+																	genreId: movieFilterGenreId,
+																})
+															: sort === "latest"
+																? await fetchMoviesDiscover(SEED_PAGE, {
+																		cookieHeader,
+																		sortBy: LATEST_DISCOVER_SORT,
+																		venue:
+																			movieVenue === "streaming"
+																				? "streaming"
+																				: "theaters",
+																		monetization:
+																			movieVenue === "streaming"
+																				? movieFilterMonetization
+																				: undefined,
+																		watchRegion:
+																			movieVenue === "streaming"
+																				? streamingWatchRegionApi
+																				: undefined,
+																		region:
+																			movieVenue === "theaters"
+																				? patronCatalogTheatricalRegion
+																				: undefined,
+																		genreId: movieFilterGenreId,
+																	})
+																: await fetchMoviesNowPlaying(SEED_PAGE, {
+																		cookieHeader,
+																	});
+						} catch (err) {
+							console.error("[home] catalogue fetch failed", err);
+							return { data: null, error: { status: 0 } };
+						}
+					},
+				),
+			]),
+		);
 
 	const { data, error } = lobbyResult;
 
@@ -976,7 +986,7 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 											the catalogue region. You can set your streaming region
 											(or all regions) in{" "}
 											<Link
-												href="/me/settings"
+												href="/me/settings/catalogue"
 												className="underline underline-offset-2 hover:text-foreground"
 											>
 												Settings
@@ -992,7 +1002,7 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 											the catalogue region from today’s first-air dates onward.
 											Set your streaming region (or all regions) in{" "}
 											<Link
-												href="/me/settings"
+												href="/me/settings/catalogue"
 												className="underline underline-offset-2 hover:text-foreground"
 											>
 												Settings

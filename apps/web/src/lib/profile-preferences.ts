@@ -7,6 +7,7 @@ import {
 	catalogWatchRegionIsoToTmdbLanguage,
 	isCatalogTmdbLanguageCode,
 } from "@/lib/catalog-tmdb-language";
+import { normalizeReviewTranslationLanguage } from "@/lib/review-translation-language";
 
 /**
  * Stable keys under profile `preferences` (opaque JSON; Settings PATCH shallow-merges).
@@ -28,6 +29,13 @@ export const PROFILE_PREF_CATALOG_TMDB_LANGUAGE =
  */
 export const PROFILE_PREF_CATALOG_TMDB_WATCH_REGION =
 	"catalogTmdbWatchRegion" as const;
+
+/**
+ * Base language tag reviews get translated into. When unset, the reader's
+ * browser language is used (see `resolveReviewTranslationLanguage`).
+ */
+export const PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE =
+	"reviewTranslationLanguage" as const;
 
 /** Opt-in for watchlist streaming inbox alerts — default on (Task 18 Settings toggle). */
 export const PROFILE_PREF_WATCHLIST_STREAMING_ALERTS =
@@ -64,6 +72,9 @@ export const PROFILE_PREF_AVATAR_IS_ANIMATED = "avatarIsAnimated" as const;
 export const PROFILE_PREF_BANNER_IS_ANIMATED = "bannerIsAnimated" as const;
 export const PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY =
 	"presenceVisibility" as const;
+export const PROFILE_PREF_INTEGRATIONS = "integrations" as const;
+export const PROFILE_PREF_DISCORD_ACTIVITY_ENABLED =
+	"discordActivityEnabled" as const;
 export const PROFILE_PRESENCE_VISIBILITY_FRIENDS = "friends" as const;
 export const PROFILE_PRESENCE_VISIBILITY_PUBLIC = "public" as const;
 export type ProfilePresenceVisibilityPref =
@@ -144,6 +155,19 @@ export function resolveCatalogTmdbLanguage(
 	return "en-US";
 }
 
+/**
+ * Explicit review translation target, or `null` to follow the browser language.
+ * Stored as a base tag so `en-GB` and `en-US` share one cached translation.
+ */
+export function readReviewTranslationLanguagePref(
+	preferences: Record<string, unknown> | null | undefined,
+): string | null {
+	if (preferences == null) return null;
+	const raw = preferences[PROFILE_PREF_REVIEW_TRANSLATION_LANGUAGE];
+	if (typeof raw !== "string") return null;
+	return normalizeReviewTranslationLanguage(raw);
+}
+
 export function readCatalogMonochromePeersOnHoverPref(
 	preferences: Record<string, unknown> | null | undefined,
 ): boolean {
@@ -220,6 +244,41 @@ export function readBannerIsAnimatedPref(
 	preferences: Record<string, unknown> | null | undefined,
 ): boolean {
 	return preferences?.[PROFILE_PREF_BANNER_IS_ANIMATED] === true;
+}
+
+function readIntegrationsObject(
+	preferences: Record<string, unknown> | null | undefined,
+): Record<string, unknown> {
+	const raw = preferences?.[PROFILE_PREF_INTEGRATIONS];
+	if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+		return {};
+	}
+	return raw as Record<string, unknown>;
+}
+
+/** Discord activity row on profile — default on when connected unless patron disables. */
+export function readDiscordActivityEnabledPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	const raw =
+		readIntegrationsObject(preferences)[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED];
+	if (typeof raw === "boolean") return raw;
+	return true;
+}
+
+/** Merge Discord activity toggle without wiping sibling integration keys. */
+export function mergeDiscordActivityEnabledPref(
+	existing: Record<string, unknown>,
+	enabled: boolean,
+): Record<string, unknown> {
+	const integrations = readIntegrationsObject(existing);
+	return {
+		...existing,
+		[PROFILE_PREF_INTEGRATIONS]: {
+			...integrations,
+			[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED]: enabled,
+		},
+	};
 }
 
 /**

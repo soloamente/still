@@ -12,6 +12,7 @@ import { useMemo, useState } from "react";
 import { meFieldControlClass } from "@/components/profile/me-form-field";
 import { CATALOG_TMDB_LANGUAGE_OPTIONS } from "@/lib/catalog-tmdb-language";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { useTextStateSwap } from "@/lib/text-state-swap";
 
 type LanguageOption = { value: string; label: string };
 
@@ -44,6 +45,7 @@ export function MeCatalogLanguageSelect({
 		const row = options.find((o) => o.value === value);
 		return row?.label ?? "Same as watch region";
 	}, [options, value]);
+	const labelRef = useTextStateSwap(selectedLabel);
 
 	const triggerClass = cn(
 		meFieldControlClass(
@@ -69,7 +71,9 @@ export function MeCatalogLanguageSelect({
 				aria-haspopup="listbox"
 				aria-expanded={open}
 			>
-				<span className="min-w-0 flex-1 truncate">{selectedLabel}</span>
+				<span ref={labelRef} className="t-text-swap min-w-0 flex-1 truncate">
+					{selectedLabel}
+				</span>
 				<ChevronDown
 					className={cn(
 						"size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-out",

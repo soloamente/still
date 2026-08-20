@@ -2,8 +2,6 @@
 
 import { type PlanTierId, tierRank } from "@still/plans";
 import { Button } from "@still/ui/components/button";
-import { cn } from "@still/ui/lib/utils";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -16,97 +14,26 @@ import {
 	MeSettingsPanel,
 	MeSettingsSection,
 } from "@/components/profile/me-settings-layout";
+import { MeSubscriptionIdentityCard } from "@/components/profile/me-subscription-identity-card";
 import { useSettingsForm } from "@/components/profile/settings-form-context";
 import { openInviteEarnDialog } from "@/components/referrals/invite-earn-dialog-root";
 import { authClient } from "@/lib/auth-client";
 import { fetchSyncPolarCheckoutClient } from "@/lib/fetch-sync-polar-checkout-client";
 import { fetchSyncPolarSubscriptionClient } from "@/lib/fetch-sync-polar-subscription-client";
+import type { SubscriptionBillingStatus } from "@/lib/subscription-identity-card";
 
-/** Patron-facing tier names for billing copy. */
-const TIER_LABELS: Record<PlanTierId, string> = {
-	still: "Still",
-	attuned: "Attuned",
-	immersed: "Immersed",
-	devoted: "Devoted",
-};
-
-const TIER_TAGLINES: Record<PlanTierId, string> = {
-	still: "Quiet foundation — always free",
-	attuned: "Know yourself as a watcher",
-	immersed: "Expression, social depth, engagement layer",
-	devoted: "You helped build this",
-};
-
-type SubscriptionStatus = "active" | "past_due" | "canceled" | null;
-
-function statusBadgeCopy(status: SubscriptionStatus): {
-	label: string;
-	className: string;
-} {
-	switch (status) {
-		case "active":
-			return {
-				label: "Active",
-				className: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
-			};
-		case "past_due":
-			return {
-				label: "Payment issue",
-				className: "bg-desert-orange/15 text-desert-orange",
-			};
-		case "canceled":
-			return {
-				label: "Canceled",
-				className: "bg-muted text-muted-foreground",
-			};
-		default:
-			return {
-				label: "Free",
-				className: "bg-background text-muted-foreground",
-			};
-	}
-}
-
-function formatBillingInterval(
-	interval: "month" | "year" | null | undefined,
-): string | null {
-	if (interval === "month") return "Monthly billing";
-	if (interval === "year") return "Annual billing";
-	return null;
-}
-
-function PlanStatusBadge({
-	status,
-	className,
-}: {
-	status: SubscriptionStatus;
-	className?: string;
-}) {
-	const copy = statusBadgeCopy(status);
-	return (
-		<span
-			className={cn(
-				"inline-flex items-center rounded-full px-2.5 py-1 font-medium text-xs",
-				copy.className,
-				className,
-			)}
-		>
-			{copy.label}
-		</span>
-	);
-}
-
-/** Settings → Subscription — current tier, Polar portal, upgrade CTAs. */
+/** Settings → Subscription — identity card, Polar portal, upgrade CTAs, invite. */
 export function MeSubscriptionSettings() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const { profile, effectiveTier } = useSettingsForm();
+	const { profile, effectiveTier, displayName } = useSettingsForm();
+	const { data: session } = authClient.useSession();
 	const [portalLoading, setPortalLoading] = useState(false);
 
-	const subscriptionTier = profile.subscriptionTier ?? "still";
-	const planOverride = profile.planOverride ?? null;
+	const subscriptionTier = (profile.subscriptionTier ?? "still") as PlanTierId;
+	const planOverride = (profile.planOverride ?? null) as PlanTierId | null;
 	const subscriptionStatus = (profile.subscriptionStatus ??
-		null) as SubscriptionStatus;
+		null) as SubscriptionBillingStatus;
 	const billingInterval = profile.subscriptionInterval ?? null;
 	const polarSubscriptionId = profile.polarSubscriptionId?.trim() ?? "";
 
@@ -199,59 +126,25 @@ export function MeSubscriptionSettings() {
 	};
 
 	return (
-		<MeAccountContentReveal className="space-y-0">
-			<MeAccountRevealItem>
-				<div className="flex flex-col gap-12 pb-4 lg:gap-14">
-					<MeSettingsSection
-						title="Subscription"
-						description="Your Sense plan, billing, and upgrades."
-					>
-						<MeSettingsPanel className="space-y-5">
-							<div className="flex flex-wrap items-start justify-between gap-4">
-								<div>
-									<p className="font-semibold text-foreground text-xl tracking-tight">
-										{TIER_LABELS[effectiveTier]}
-									</p>
-									<p className="mt-1 max-w-md text-muted-foreground text-sm leading-relaxed">
-										{TIER_TAGLINES[effectiveTier]}
-									</p>
-								</div>
-								<PlanStatusBadge status={subscriptionStatus} />
-							</div>
-
-							{formatBillingInterval(billingInterval) ? (
-								<p className="text-muted-foreground text-sm">
-									{formatBillingInterval(billingInterval)}
-								</p>
-							) : null}
-
-							{planOverride ? (
-								<p className="text-muted-foreground text-sm leading-relaxed">
-									You have complimentary{" "}
-									<span className="font-medium text-foreground">
-										{TIER_LABELS[planOverride]}
-									</span>{" "}
-									access from the Sense team
-									{subscriptionTier !== "still"
-										? ` — your Polar subscription is ${TIER_LABELS[subscriptionTier]}`
-										: ""}
-									.
-								</p>
-							) : null}
-
-							{canManagePolarBilling ? (
-								<Button
-									type="button"
-									variant="secondary"
-									className="h-11 rounded-full px-6"
-									disabled={portalLoading}
-									onClick={handleManageSubscription}
-								>
-									{portalLoading ? "Opening portal…" : "Manage subscription"}
-								</Button>
-							) : null}
-						</MeSettingsPanel>
-					</MeSettingsSection>
+		<MeAccountContentReveal className="flex min-h-0 flex-1 flex-col space-y-0">
+			<MeAccountRevealItem className="flex min-h-0 flex-1 flex-col">
+				<div className="flex min-h-0 flex-1 flex-col gap-12 pb-4 lg:gap-14 [&>*:first-child]:min-h-0 [&>*:first-child]:flex-1 [&>*:not(:first-child)]:flex-none">
+					{/* Identity stage replaces the old plan-status + Upgrade panels. */}
+					<MeSubscriptionIdentityCard
+						handle={profile.handle}
+						displayName={displayName}
+						avatarUrl={session?.user?.image ?? null}
+						effectiveTier={effectiveTier}
+						subscriptionTier={subscriptionTier}
+						planOverride={planOverride}
+						subscriptionStatus={subscriptionStatus}
+						billingInterval={billingInterval}
+						canManagePolarBilling={canManagePolarBilling}
+						portalLoading={portalLoading}
+						onManage={() => void handleManageSubscription()}
+						showAttunedUpgrade={showAttunedUpgrade}
+						showImmersedUpgrade={showImmersedUpgrade}
+					/>
 
 					<MeSettingsSection
 						title="Invite & earn"
@@ -265,39 +158,13 @@ export function MeSubscriptionSettings() {
 							<Button
 								type="button"
 								variant="secondary"
-								className="h-11 shrink-0 rounded-full px-6"
+								className="h-11 shrink-0 rounded-full px-6 transition-transform duration-150 ease-out active:scale-[0.96] motion-reduce:active:scale-100"
 								onClick={openInviteEarnDialog}
 							>
 								Invite friends
 							</Button>
 						</MeSettingsPanel>
 					</MeSettingsSection>
-
-					{showAttunedUpgrade || showImmersedUpgrade ? (
-						<MeSettingsSection
-							title="Upgrade"
-							description="Unlock more stats, expression, and community features."
-						>
-							<MeSettingsPanel className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-								{showAttunedUpgrade ? (
-									<Link
-										href="/pricing#attuned"
-										className="inline-flex h-11 items-center justify-center rounded-full bg-card px-6 font-medium text-foreground text-sm transition-colors [@media(hover:hover)]:hover:bg-card/80"
-									>
-										View Attuned
-									</Link>
-								) : null}
-								{showImmersedUpgrade ? (
-									<Link
-										href="/pricing#immersed"
-										className="inline-flex h-11 items-center justify-center rounded-full bg-foreground px-6 font-medium text-background text-sm transition-colors [@media(hover:hover)]:hover:bg-foreground/90"
-									>
-										View Immersed
-									</Link>
-								) : null}
-							</MeSettingsPanel>
-						</MeSettingsSection>
-					) : null}
 				</div>
 			</MeAccountRevealItem>
 		</MeAccountContentReveal>

@@ -35,4 +35,76 @@ describe("annotateLeaderboardLogItems", () => {
 		expect(second?.watchCountInPeriod).toBe(2);
 		expect(second?.rewatch).toBe(true);
 	});
+
+	test("does not treat different seasons of the same show as rewatches", () => {
+		const annotated = annotateLeaderboardLogItems([
+			{
+				logId: "s1",
+				watchedAt: "2026-01-05T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				posterPath: null,
+				rating: null,
+				rewatch: false,
+				logScope: "season",
+				seasonNumber: 1,
+				episodeWeight: 9,
+			},
+			{
+				logId: "s2",
+				watchedAt: "2026-01-20T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				posterPath: null,
+				rating: null,
+				rewatch: false,
+				logScope: "season",
+				seasonNumber: 2,
+				episodeWeight: 7,
+			},
+		]);
+
+		expect(annotated.find((r) => r.logId === "s1")?.watchCountInPeriod).toBe(1);
+		expect(annotated.find((r) => r.logId === "s2")?.watchCountInPeriod).toBe(1);
+		expect(annotated.find((r) => r.logId === "s1")?.watchIndexInPeriod).toBe(1);
+		expect(annotated.find((r) => r.logId === "s2")?.watchIndexInPeriod).toBe(1);
+	});
+
+	test("still groups true season rewatches together", () => {
+		const annotated = annotateLeaderboardLogItems([
+			{
+				logId: "s2a",
+				watchedAt: "2026-01-05T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				posterPath: null,
+				rating: null,
+				rewatch: false,
+				logScope: "season",
+				seasonNumber: 2,
+			},
+			{
+				logId: "s2b",
+				watchedAt: "2026-01-20T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				title: "Squid Game",
+				posterPath: null,
+				rating: null,
+				rewatch: true,
+				logScope: "season",
+				seasonNumber: 2,
+			},
+		]);
+
+		expect(annotated.find((r) => r.logId === "s2a")?.watchCountInPeriod).toBe(
+			2,
+		);
+		expect(annotated.find((r) => r.logId === "s2b")?.watchIndexInPeriod).toBe(
+			2,
+		);
+	});
 });

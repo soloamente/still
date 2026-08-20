@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import {
 	block,
 	db,
@@ -10,34 +11,22 @@ import {
 	user,
 } from "@still/db";
 import type { PlanTierId } from "@still/plans";
-import {
-	and,
-	asc,
-	desc,
-	eq,
-	gte,
-	isNull,
-	lt,
-	ne,
-	notInArray,
-	or,
-	sql,
-} from "drizzle-orm";
+import { and, asc, desc, eq, gte, isNull, lt, ne, or, sql } from "drizzle-orm";
 
 import { communityOffset } from "./community-page-args";
 import { withinCommunityPeriod } from "./community-period";
-import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "./diary-metal-tier";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import { annotateViewerFollows, fetchViewerFollowingIds } from "./follow-list";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	isEligibleLeaderboardProfile,
+	leaderboardPublicProfileConditions,
+} from "./leaderboard-profile-eligibility";
+import {
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type MembersLeaderboardSort = "popular" | "reviews" | "lists" | "likes";
@@ -54,6 +43,7 @@ export type MembersLeaderboardEntry = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	count: number;
 	viewerFollows: boolean;
 };
@@ -99,7 +89,7 @@ export function parseMembersLeaderboardLimit(raw: string | undefined): number {
 export function isEligibleMembersLeaderboardProfile(
 	isPrivate: boolean,
 ): boolean {
-	return !isPrivate;
+	return isEligibleLeaderboardProfile(isPrivate);
 }
 
 /** Stable ordering for equal counts — higher `count`, earlier `tieAt`, then handle. */
@@ -133,11 +123,7 @@ async function blockedUserIdsForViewer(viewerId: string): Promise<string[]> {
 }
 
 function publicProfileConditions(blockedIds: string[]) {
-	const conditions = [eq(profile.isPrivate, false)];
-	if (blockedIds.length > 0) {
-		conditions.push(notInArray(profile.userId, blockedIds));
-	}
-	return conditions;
+	return leaderboardPublicProfileConditions(blockedIds);
 }
 
 async function fetchPopularRows(
@@ -147,36 +133,43 @@ async function fetchPopularRows(
 	limit: number,
 	offset: number,
 ): Promise<AggregatedRow[]> {
-	const rows = await db
+	// Aggregate diary activity per patron, then left-join every public profile so
+	// zero-log patrons still appear in the directory (count 0 at the tail).
+	const activity = db
 		.select({
 			userId: log.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			image: sql<string | null>`max(${user.image})`.as("image"),
-			preferences: profile.preferences,
 			count: sql<number>`count(*)::int`.as("count"),
 			tieAt: sql<Date>`max(${log.watchedAt})`.as("tie_at"),
 		})
 		.from(log)
-		.innerJoin(profile, eq(log.userId, profile.userId))
-		.innerJoin(user, eq(log.userId, user.id))
 		.where(
 			and(
 				isNull(log.removedAt),
+				eq(log.visibility, "public"),
 				gte(log.watchedAt, start),
 				lt(log.watchedAt, end),
-				...publicProfileConditions(blockedIds),
 			),
 		)
-		.groupBy(
-			log.userId,
-			profile.handle,
-			profile.displayName,
-			profile.preferences,
-		)
+		.groupBy(log.userId)
+		.as("activity");
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			displayName: profile.displayName,
+			image: user.image,
+			preferences: profile.preferences,
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			tieAt: activity.tieAt,
+		})
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.leftJoin(activity, eq(profile.userId, activity.userId))
+		.where(and(...publicProfileConditions(blockedIds)))
 		.orderBy(
-			desc(sql`count(*)`),
-			asc(sql`max(${log.watchedAt})`),
+			desc(sql`coalesce(${activity.count}, 0)`),
+			asc(sql`coalesce(${activity.tieAt}, to_timestamp(0))`),
 			asc(profile.handle),
 		)
 		.limit(limit)
@@ -200,36 +193,40 @@ async function fetchReviewRows(
 	limit: number,
 	offset: number,
 ): Promise<AggregatedRow[]> {
-	const rows = await db
+	const activity = db
 		.select({
 			userId: review.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			image: sql<string | null>`max(${user.image})`.as("image"),
-			preferences: profile.preferences,
 			count: sql<number>`count(*)::int`.as("count"),
 			tieAt: sql<Date>`max(${review.publishedAt})`.as("tie_at"),
 		})
 		.from(review)
-		.innerJoin(profile, eq(review.userId, profile.userId))
-		.innerJoin(user, eq(review.userId, user.id))
 		.where(
 			and(
 				isNull(review.removedAt),
 				eq(review.visibility, "public"),
 				withinCommunityPeriod(review.publishedAt, start, end),
-				...publicProfileConditions(blockedIds),
 			),
 		)
-		.groupBy(
-			review.userId,
-			profile.handle,
-			profile.displayName,
-			profile.preferences,
-		)
+		.groupBy(review.userId)
+		.as("activity");
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			displayName: profile.displayName,
+			image: user.image,
+			preferences: profile.preferences,
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			tieAt: activity.tieAt,
+		})
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.leftJoin(activity, eq(profile.userId, activity.userId))
+		.where(and(...publicProfileConditions(blockedIds)))
 		.orderBy(
-			desc(sql`count(*)`),
-			asc(sql`max(${review.publishedAt})`),
+			desc(sql`coalesce(${activity.count}, 0)`),
+			asc(sql`coalesce(${activity.tieAt}, to_timestamp(0))`),
 			asc(profile.handle),
 		)
 		.limit(limit)
@@ -253,19 +250,13 @@ async function fetchListRows(
 	limit: number,
 	offset: number,
 ): Promise<AggregatedRow[]> {
-	const rows = await db
+	const activity = db
 		.select({
 			userId: list.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			image: sql<string | null>`max(${user.image})`.as("image"),
-			preferences: profile.preferences,
 			count: sql<number>`count(*)::int`.as("count"),
 			tieAt: sql<Date>`max(${list.createdAt})`.as("tie_at"),
 		})
 		.from(list)
-		.innerJoin(profile, eq(list.userId, profile.userId))
-		.innerJoin(user, eq(list.userId, user.id))
 		.where(
 			and(
 				eq(list.isPublic, true),
@@ -275,18 +266,28 @@ async function fetchListRows(
 					ne(list.systemKind, LIST_SYSTEM_KIND_FAVORITES),
 				),
 				withinCommunityPeriod(list.createdAt, start, end),
-				...publicProfileConditions(blockedIds),
 			),
 		)
-		.groupBy(
-			list.userId,
-			profile.handle,
-			profile.displayName,
-			profile.preferences,
-		)
+		.groupBy(list.userId)
+		.as("activity");
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			displayName: profile.displayName,
+			image: user.image,
+			preferences: profile.preferences,
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			tieAt: activity.tieAt,
+		})
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.leftJoin(activity, eq(profile.userId, activity.userId))
+		.where(and(...publicProfileConditions(blockedIds)))
 		.orderBy(
-			desc(sql`count(*)`),
-			asc(sql`max(${list.createdAt})`),
+			desc(sql`coalesce(${activity.count}, 0)`),
+			asc(sql`coalesce(${activity.tieAt}, to_timestamp(0))`),
 			asc(profile.handle),
 		)
 		.limit(limit)
@@ -310,13 +311,9 @@ async function fetchLikeRows(
 	limit: number,
 	offset: number,
 ): Promise<AggregatedRow[]> {
-	const rows = await db
+	const activity = db
 		.select({
 			userId: review.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			image: sql<string | null>`max(${user.image})`.as("image"),
-			preferences: profile.preferences,
 			count: sql<number>`count(*)::int`.as("count"),
 			tieAt: sql<Date>`max(${reaction.createdAt})`.as("tie_at"),
 		})
@@ -325,26 +322,34 @@ async function fetchLikeRows(
 			review,
 			and(eq(reaction.parentType, "review"), eq(reaction.parentId, review.id)),
 		)
-		.innerJoin(profile, eq(review.userId, profile.userId))
-		.innerJoin(user, eq(review.userId, user.id))
 		.where(
 			and(
 				eq(reaction.kind, "like"),
 				withinCommunityPeriod(reaction.createdAt, start, end),
 				isNull(review.removedAt),
 				eq(review.visibility, "public"),
-				...publicProfileConditions(blockedIds),
 			),
 		)
-		.groupBy(
-			review.userId,
-			profile.handle,
-			profile.displayName,
-			profile.preferences,
-		)
+		.groupBy(review.userId)
+		.as("activity");
+
+	const rows = await db
+		.select({
+			userId: profile.userId,
+			handle: profile.handle,
+			displayName: profile.displayName,
+			image: user.image,
+			preferences: profile.preferences,
+			count: sql<number>`coalesce(${activity.count}, 0)::int`.as("count"),
+			tieAt: activity.tieAt,
+		})
+		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
+		.leftJoin(activity, eq(profile.userId, activity.userId))
+		.where(and(...publicProfileConditions(blockedIds)))
 		.orderBy(
-			desc(sql`count(*)`),
-			asc(sql`max(${reaction.createdAt})`),
+			desc(sql`coalesce(${activity.count}, 0)`),
+			asc(sql`coalesce(${activity.tieAt}, to_timestamp(0))`),
 			asc(profile.handle),
 		)
 		.limit(limit)
@@ -420,11 +425,12 @@ export async function fetchMembersLeaderboard(opts: {
 	const pageRows = hasMore ? slice.slice(0, limit) : slice;
 
 	const userIds = pageRows.map((row) => row.userId);
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
-	const ranked = rankMembersLeaderboardRows(pageRows);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
+	// SQL already ordered the page — preserve global rank across pagination offsets.
+	const ranked = pageRows.map((row, index) => ({
+		...row,
+		rank: offset + index + 1,
+	}));
 
 	const followingIds = opts.viewerId
 		? await fetchViewerFollowingIds(
@@ -443,8 +449,7 @@ export async function fetchMembersLeaderboard(opts: {
 			avatarIsAnimated: readAvatarIsAnimatedPref(
 				row.preferences as Record<string, unknown> | null,
 			),
-			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-			planTier: planTierForUserId(row.userId, planTiers),
+			...patronAvatarBadgeFields(row.userId, badgeMaps),
 			count: row.count,
 		})),
 		followingIds,

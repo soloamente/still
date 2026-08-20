@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import type { PlanTierId } from "@still/plans";
 
 import type { DiaryMetalTier } from "./diary-metal-tier";
@@ -13,6 +14,7 @@ export interface ProfileSearchCandidate {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	isFollowing: boolean;
 	isMutual: boolean;
 }
@@ -25,6 +27,7 @@ export interface ProfileSearchHit {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	relationship: ProfileSearchRelationship;
 }
 
@@ -72,6 +75,7 @@ export function rankProfileSearchHits(
 				avatarIsAnimated: row.avatarIsAnimated,
 				diaryMetalTier: row.diaryMetalTier,
 				planTier: row.planTier,
+				staffRole: row.staffRole,
 				relationship,
 				_sortTier: relationshipSortTier(relationship),
 				_handlePrefix: handlePrefix ? 0 : 1,
@@ -97,6 +101,7 @@ export function rankProfileSearchHits(
 				avatarIsAnimated,
 				diaryMetalTier,
 				planTier,
+				staffRole,
 				relationship,
 			}) => ({
 				userId,
@@ -106,6 +111,7 @@ export function rankProfileSearchHits(
 				avatarIsAnimated,
 				diaryMetalTier,
 				planTier,
+				staffRole,
 				relationship,
 			}),
 		);

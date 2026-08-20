@@ -1,6 +1,5 @@
 "use client";
 
-import { Checkbox } from "@still/ui/components/checkbox";
 import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
 import { cn } from "@still/ui/lib/utils";
@@ -11,6 +10,7 @@ import { toast } from "sonner";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
 import { useTvDetailWatchContext } from "@/components/tv/tv-detail-watch-context";
+import { TvEpisodeWatchCheckRow } from "@/components/tv/tv-episode-watch-check";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatTodayYmd, ymdToLocalDate } from "@/lib/log-watched-date";
@@ -401,7 +401,6 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 									totalEpisodes={total}
 									loadingEpisodes={episodesLoading === sn && !eps}
 									episodes={eps ?? []}
-									tvId={tvId}
 									watchedKeySet={watchedKeySet}
 									toggleDisabled={busy === "episode"}
 									onToggle={() => handleToggleSeasonAccordion(sn)}
@@ -661,7 +660,6 @@ function TvSeasonEpisodeAccordion({
 	totalEpisodes,
 	loadingEpisodes,
 	episodes,
-	tvId,
 	watchedKeySet,
 	toggleDisabled,
 	onToggle,
@@ -673,7 +671,6 @@ function TvSeasonEpisodeAccordion({
 	totalEpisodes: number;
 	loadingEpisodes: boolean;
 	episodes: TvEpisodeSummary[];
-	tvId: number;
 	watchedKeySet: ReadonlySet<string>;
 	toggleDisabled: boolean;
 	onToggle: () => void;
@@ -728,45 +725,26 @@ function TvSeasonEpisodeAccordion({
 							<Loader2 className="size-4 animate-spin text-muted-foreground" />
 						</div>
 					) : null}
-					<ul className="flex flex-col gap-1">
+					<ul className="flex flex-col gap-0.5">
 						{episodes.map((ep) => {
 							const key = `${ep.season_number}:${ep.episode_number}`;
 							const checked = watchedKeySet.has(key);
 							return (
 								<li key={key}>
-									<div
-										className={cn(
-											"flex min-h-11 items-center gap-3 rounded-xl px-2 py-2",
-											"[@media(hover:hover)]:hover:bg-card/80",
-										)}
-									>
-										<Checkbox
-											id={`tv-ep-${tvId}-${key}`}
-											checked={checked}
-											disabled={toggleDisabled}
-											onCheckedChange={(value) => {
-												onToggleEpisode(
-													ep.season_number,
-													ep.episode_number,
-													value === true,
-												);
-											}}
-										/>
-										<label
-											htmlFor={`tv-ep-${tvId}-${key}`}
-											className="flex min-w-0 flex-1 cursor-pointer select-none flex-col gap-0.5"
-										>
-											<span className="font-medium text-foreground text-sm tabular-nums">
-												E{ep.episode_number}
-												{ep.name ? ` · ${ep.name}` : ""}
-											</span>
-											{ep.air_date ? (
-												<span className="text-muted-foreground text-xs">
-													{ep.air_date}
-												</span>
-											) : null}
-										</label>
-									</div>
+									<TvEpisodeWatchCheckRow
+										episodeNumber={ep.episode_number}
+										episodeName={ep.name}
+										airDate={ep.air_date}
+										checked={checked}
+										disabled={toggleDisabled}
+										onCheckedChange={(next) => {
+											onToggleEpisode(
+												ep.season_number,
+												ep.episode_number,
+												next,
+											);
+										}}
+									/>
 								</li>
 							);
 						})}

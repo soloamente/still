@@ -1,7 +1,6 @@
 "use client";
 
 import {
-	RadialToolkit,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -24,7 +23,6 @@ import {
 	useState,
 } from "react";
 import { toast } from "sonner";
-
 import { useAddToListRadial } from "@/components/catalogue/use-add-to-list-radial";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import {
@@ -32,6 +30,7 @@ import {
 	type MoviePosterHoverEffect,
 } from "@/components/movie/movie-poster";
 import type { MyMovieLog } from "@/components/movie/use-movie-detail-user-state";
+import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { authClient } from "@/lib/auth-client";
 import {
 	buildListRadialItemSpecs,
@@ -428,7 +427,7 @@ export function ProfileFilmographyPosterTile({
 				/>
 			</fieldset>
 
-			<RadialToolkit
+			<SenseRadialToolkit
 				open={open}
 				anchor={anchor}
 				onOpenChange={onOpenChange}

@@ -3,16 +3,28 @@
 import { cn } from "@still/ui/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 
-/** icaru input surface — no focus ring/outline; scale feedback lives on `AuthMotionInput`. */
+/**
+ * Auth input surface on `bg-card` — keyboard `:focus-visible` uses theme
+ * `foreground` (not `--ring` / accent orange). Scale feedback is on
+ * `AuthMotionInput`.
+ */
 export const AUTH_INPUT_CLASS =
-	"auth-input w-full rounded-2xl bg-input px-3.75 py-3.25 text-base leading-none transition-colors placeholder:text-muted-foreground focus:outline-none focus:ring-0 md:text-[15px]";
+	"auth-input w-full rounded-2xl bg-input px-3.75 py-3.25 text-base leading-none transition-[color,box-shadow] placeholder:text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-foreground/35 focus-visible:ring-offset-2 focus-visible:ring-offset-card aria-invalid:ring-1 aria-invalid:ring-destructive/30 md:text-[15px]";
+
+/** Stable id for `aria-describedby` on the matching auth input. */
+export function authFieldErrorId(fieldName: string): string {
+	return `${fieldName}-error`;
+}
 
 /** Collapsing error line under each field (icaru height + opacity animation). */
 export function AuthFieldErrors({
 	errors,
+	id,
 	className,
 }: {
 	errors: Array<{ message?: string } | undefined>;
+	/** When set, links the message for screen readers via the input’s `aria-describedby`. */
+	id?: string;
 	className?: string;
 }) {
 	const message = errors.find(Boolean)?.message;
@@ -28,11 +40,14 @@ export function AuthFieldErrors({
 				key={message}
 				transition={{ duration: 0.2 }}
 			>
+				{/* role=alert + id so invalid fields announce the linked message */}
 				<motion.p
 					animate={{ opacity: 1 }}
 					className="text-center text-destructive text-sm"
 					exit={{ opacity: 0 }}
+					id={id}
 					initial={{ opacity: 0 }}
+					role="alert"
 					transition={{ duration: 0.15 }}
 				>
 					{message}

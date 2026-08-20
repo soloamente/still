@@ -13,6 +13,13 @@ mock.module("./diary-metal-tier", () => ({
 	}),
 }));
 
+import * as patronStaffRole from "./patron-staff-role";
+
+mock.module("./patron-staff-role", () => ({
+	...patronStaffRole,
+	fetchStaffRolesForUserIds: mock(async () => new Map()),
+}));
+
 mock.module("./patron-plan-tier", () => ({
 	fetchPlanTiersForUserIds: mock(async (userIds: string[]) => {
 		const tiers = new Map<string, "immersed">();
@@ -61,8 +68,10 @@ describe("listing engagement patron hydration", () => {
 
 		expect(items[0]?.diaryMetalTier).toBe("silver");
 		expect(items[0]?.planTier).toBe("immersed");
+		expect(items[0]?.staffRole).toBeNull();
 		expect(items[1]?.diaryMetalTier).toBeNull();
 		expect(items[1]?.planTier).toBe("still");
+		expect(items[1]?.staffRole).toBeNull();
 	});
 });
 
@@ -90,5 +99,6 @@ describe("listing engagement watch hydration", () => {
 
 		expect(items[0]?.diaryMetalTier).toBe("silver");
 		expect(items[0]?.planTier).toBe("immersed");
+		expect(items[0]?.staffRole).toBeNull();
 	});
 });

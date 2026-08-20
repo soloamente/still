@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import {
 	block,
 	db,
@@ -26,19 +27,15 @@ import {
 } from "drizzle-orm";
 import { withinCommunityPeriod } from "./community-period";
 import { contentVisibilityWhere } from "./content-visibility";
-import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "./diary-metal-tier";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import type { LeaderboardPeriod } from "./leaderboard-period";
 import { resolveLeaderboardWindow } from "./leaderboard-period";
 import { withCoverPosterPaths } from "./list-cover-posters";
 import type { MembersLeaderboardSort } from "./members-leaderboard-query";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 /** One row in the patron contribution ledger drawer — poster opens review or list. */
@@ -107,6 +104,7 @@ export type MembersLeaderboardItemsPayload = {
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
 		planTier: PlanTierId;
+		staffRole: StaffRole | null;
 	};
 	items: MembersLeaderboardLedgerItem[];
 };
@@ -138,6 +136,7 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	isPrivate: boolean;
 } | null> {
 	const [row] = await db
@@ -155,12 +154,11 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 
 	if (!row) return null;
 
-	const [counts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds([userId]),
-		fetchPlanTiersForUserIds([userId]),
-	]);
-	const diaryMetalTier = resolveDiaryMetalTier(counts.get(userId) ?? 0);
-	const planTier = planTierForUserId(userId, planTiers);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps([userId]);
+	const { diaryMetalTier, planTier, staffRole } = patronAvatarBadgeFields(
+		userId,
+		badgeMaps,
+	);
 
 	return {
 		handle: row.handle,
@@ -171,6 +169,7 @@ async function loadPatronLedgerUser(userId: string): Promise<{
 		),
 		diaryMetalTier,
 		planTier,
+		staffRole,
 		isPrivate: row.isPrivate,
 	};
 }
@@ -496,6 +495,7 @@ export async function fetchMembersLeaderboardItems(opts: {
 			avatarIsAnimated: patron.avatarIsAnimated,
 			diaryMetalTier: patron.diaryMetalTier,
 			planTier: patron.planTier,
+			staffRole: patron.staffRole,
 		},
 		items,
 	};

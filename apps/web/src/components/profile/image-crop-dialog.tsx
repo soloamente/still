@@ -1,14 +1,15 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
-import { cn } from "@still/ui/lib/utils";
-import { X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import Cropper, { type Area, type MediaSize } from "react-easy-crop";
+import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
+import { ImageCropZoomSlider } from "@/components/profile/image-crop-zoom-slider";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
+const CROP_MAX_ZOOM = 4;
 
 const OVERLAY_CLASS =
 	"fixed inset-0 z-[250] grid min-h-[100dvh] place-items-center overflow-y-auto overscroll-contain bg-absolute-black/78 px-4 py-8 backdrop-blur-sm";
@@ -125,29 +126,26 @@ export function ImageCropDialog({
 							}
 							className="flex flex-col"
 						>
-							<div className="flex items-center justify-between px-6 pt-5 pb-3 sm:px-7">
+							<div className="px-6 pt-5 pb-3 sm:px-7">
 								<h2
 									id={titleId}
 									className="font-semibold text-foreground text-lg tracking-tight"
 								>
 									{title}
 								</h2>
-								<Button
-									type="button"
-									variant="ghost"
-									size="icon-pill"
-									onClick={onCancel}
-									aria-label="Cancel"
-									className="text-muted-foreground"
-								>
-									<X className="size-4" aria-hidden />
-								</Button>
 							</div>
 
 							<div
-								className="relative mx-6 h-72 overflow-hidden rounded-2xl bg-background sm:mx-7 sm:h-80"
+								className="relative mx-6 h-72 overflow-hidden rounded-2xl sm:mx-7 sm:h-80"
 								data-lenis-prevent-wheel
 							>
+								{/* Same morphing dots as empty posters — visible in letterbox / crop dim. */}
+								<div
+									className="pointer-events-none absolute inset-0"
+									aria-hidden
+								>
+									<MissingArtworkPlaceholder className="absolute inset-0" />
+								</div>
 								<Cropper
 									key={`${src}:${aspect}:${cropShape}`}
 									image={src}
@@ -156,41 +154,37 @@ export function ImageCropDialog({
 									aspect={aspect}
 									cropShape={cropShape}
 									minZoom={minZoom}
-									maxZoom={4}
+									maxZoom={CROP_MAX_ZOOM}
 									restrictPosition
 									onCropChange={setCrop}
 									onZoomChange={setZoom}
 									onMediaLoaded={handleMediaLoaded}
 									onCropAreaChange={(_area, areaPx) => setAreaPixels(areaPx)}
 									onCropComplete={(_area, areaPx) => setAreaPixels(areaPx)}
+									classes={{
+										containerClassName: "z-[1]",
+									}}
 								/>
 							</div>
 
+							{/* Custom zoom rail — Sense track + ± pills (transitions.dev card-resize on fill). */}
 							<div className="px-6 pt-5 sm:px-7">
-								<label className="flex items-center gap-3 text-muted-foreground text-xs">
-									Zoom
-									<input
-										type="range"
-										min={minZoom}
-										max={4}
-										step={0.01}
-										value={zoom}
-										onChange={(e) => setZoom(Number(e.target.value))}
-										className="h-1 flex-1 cursor-pointer accent-foreground"
-										aria-label="Zoom"
-									/>
-								</label>
+								<ImageCropZoomSlider
+									zoom={zoom}
+									minZoom={minZoom}
+									maxZoom={CROP_MAX_ZOOM}
+									onZoomChange={setZoom}
+								/>
 							</div>
 
-							<div className="flex flex-col-reverse gap-2 px-6 pt-6 pb-6 sm:flex-row sm:justify-end sm:gap-3 sm:px-7">
+							{/* Cancel left · Apply right — header X removed as duplicate dismiss. */}
+							<div className="flex flex-col-reverse gap-2 px-6 pt-6 pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-7">
 								<Button
 									type="button"
 									variant="ghost"
 									size="pill"
 									onClick={onCancel}
-									className={cn(
-										"h-auto min-h-11 w-full border-transparent bg-background px-5 py-2.5 sm:w-auto sm:min-w-32",
-									)}
+									className="h-auto min-h-11 w-full border-transparent bg-background px-5 py-2.5 sm:w-auto sm:min-w-32"
 								>
 									Cancel
 								</Button>

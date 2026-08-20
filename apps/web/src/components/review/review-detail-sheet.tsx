@@ -31,6 +31,10 @@ import { ReviewPinToProfileButton } from "@/components/review/review-pin-to-prof
 import { ReviewReaderStillSection } from "@/components/review/review-reader-still-section";
 import { ReviewRealtimeSubscriber } from "@/components/review/review-realtime-subscriber";
 import { ReviewSpoilerGuard } from "@/components/review/review-spoiler-guard";
+import {
+	ReviewTranslateControl,
+	type ReviewTranslationView,
+} from "@/components/review/review-translate-control";
 import { VisibilityChip } from "@/components/review/visibility-chip";
 import {
 	type CommentRow,
@@ -69,6 +73,7 @@ const REVIEW_READER_HEADER_DELETE_ICON_BUTTON_CLASS = cn(
 );
 
 import type { PlanTierId } from "@still/plans";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /** Patron identity shown in the drawer header while detail loads. */
 export type ReviewAuthorPreview = {
@@ -77,6 +82,7 @@ export type ReviewAuthorPreview = {
 	image: string | null;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 };
 
 /** Card / list preview fields — shown instantly while the sheet loads full detail. */
@@ -161,6 +167,8 @@ type ReviewDetailPayload = {
 		logId: string | null;
 		title: string | null;
 		body: string;
+		/** Detected on publish/edit — null when the body was too short to call. */
+		sourceLanguage?: string | null;
 		rating: number | null;
 		likesCount: number;
 		dislikesCount: number;
@@ -184,6 +192,8 @@ type ReviewDetailPayload = {
 	selectedStill?: MovieDetailHeroSlide | null;
 	liked: boolean;
 	disliked: boolean;
+	/** Whether the translate control is worth showing for this review. */
+	canTranslate: boolean;
 };
 
 /** Eden may deserialize DB timestamps as Date; reader state keeps ISO strings. */
@@ -204,6 +214,7 @@ function normalizeReviewDetailPayload(
 		disliked?: boolean;
 		likesCount?: number;
 		dislikesCount?: number;
+		canTranslate?: boolean;
 	};
 	if (!entry.review) return null;
 
@@ -221,6 +232,10 @@ function normalizeReviewDetailPayload(
 			publishedAt,
 			likesCount: entry.likesCount ?? entry.review.likesCount,
 			dislikesCount: entry.dislikesCount ?? entry.review.dislikesCount,
+			sourceLanguage:
+				typeof entry.review.sourceLanguage === "string"
+					? entry.review.sourceLanguage
+					: (entry.review.sourceLanguage ?? null),
 		},
 		movie: entry.movie ?? null,
 		authorProfile: entry.authorProfile ?? null,
@@ -229,6 +244,7 @@ function normalizeReviewDetailPayload(
 		selectedStill: entry.selectedStill ?? null,
 		liked: entry.liked ?? false,
 		disliked: entry.disliked ?? false,
+		canTranslate: entry.canTranslate === true,
 	};
 }
 
@@ -276,6 +292,9 @@ export function ReviewDetailRoot() {
 	const [deleting, setDeleting] = useState(false);
 	const [savingStill, setSavingStill] = useState(false);
 	const [spoilerRevealed, setSpoilerRevealed] = useState(false);
+	/** Active translation overlay — null means show the original title/body. */
+	const [translationView, setTranslationView] =
+		useState<ReviewTranslationView | null>(null);
 	const [liveCommentSignal, setLiveCommentSignal] = useState(0);
 	const [liveCommentId, setLiveCommentId] = useState<string | null>(null);
 	const [liveReactionCounts, setLiveReactionCounts] = useState<{
@@ -480,6 +499,7 @@ export function ReviewDetailRoot() {
 	useEffect(() => {
 		if (!isOpen || !args) return;
 		setSpoilerRevealed(false);
+		setTranslationView(null);
 		const reviewId = args.reviewId;
 		let cancelled = false;
 
@@ -613,8 +633,12 @@ export function ReviewDetailRoot() {
 
 	const containsSpoilers =
 		review?.containsSpoilers ?? preview?.containsSpoilers ?? false;
-	const displayTitle = review?.title ?? preview?.title ?? null;
-	const displayBody = review?.body ?? preview?.body ?? "";
+	const originalTitle = review?.title ?? preview?.title ?? null;
+	const originalBody = review?.body ?? preview?.body ?? "";
+	// Prefer the active translation when the reader asked for one; failures
+	// never set translationView, so the original stays on screen.
+	const displayTitle = translationView ? translationView.title : originalTitle;
+	const displayBody = translationView ? translationView.body : originalBody;
 	const displayAudioUrl = review?.audioUrl ?? preview?.audioUrl ?? null;
 	const displayAudioDurationMs =
 		review?.audioDurationMs ?? preview?.audioDurationMs ?? null;
@@ -676,6 +700,7 @@ export function ReviewDetailRoot() {
 					displayAuthor.avatarIsAnimated,
 				)}
 				planTier={displayAuthor.planTier ?? null}
+				staffRole={displayAuthor.staffRole ?? null}
 			/>
 			<span className="min-w-0 text-left">
 				<span className="block truncate font-medium text-foreground text-sm leading-snug">
@@ -908,6 +933,18 @@ export function ReviewDetailRoot() {
 								<p className="mb-5 rounded-2xl bg-desert-orange/10 px-4 py-2.5 text-center text-desert-orange text-sm">
 									Contains spoilers
 								</p>
+							) : null}
+
+							{/* Translate sits above the body so a long review does not bury the control. */}
+							{detail && activeReviewId ? (
+								<ReviewTranslateControl
+									key={activeReviewId}
+									reviewId={activeReviewId}
+									canTranslate={detail.canTranslate}
+									sourceLanguage={detail.review.sourceLanguage}
+									enabled={Boolean(session?.user?.id) && !isReviewOwner}
+									onViewChange={setTranslationView}
+								/>
 							) : null}
 
 							<div className="relative mb-6">

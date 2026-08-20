@@ -4,7 +4,10 @@ import { cn } from "@still/ui/lib/utils";
 import { useEffect, useState } from "react";
 
 import { OnboardingFieldInput } from "@/components/onboarding/onboarding-form-controls";
-import { OnboardingStepHeader } from "@/components/onboarding/onboarding-steps/onboarding-step-header";
+import {
+	ONBOARDING_STEP_TITLE_ID,
+	OnboardingStepHeader,
+} from "@/components/onboarding/onboarding-steps/onboarding-step-header";
 import {
 	HANDLE_RE,
 	isOwnSavedHandle,
@@ -95,13 +98,13 @@ export function HandleStep({
 			: availability.state === "available"
 				? `@${normalizeHandleInput(handle)} is yours`
 				: availability.state === "taken"
-					? "Handle is taken"
+					? "Choose a different handle — this one is taken"
 					: availability.state === "invalid"
 						? "Use a–z, 0–9, . _ -"
 						: "Lowercase, 2–24 characters. This is your public URL.";
 
 	const helperClass = cn(
-		"mt-2 min-h-4 text-center text-xs",
+		"mt-2 min-h-4 text-center text-xs lg:text-start",
 		availability.state === "available" && "text-emerald-500",
 		(availability.state === "taken" || availability.state === "invalid") &&
 			"text-destructive",
@@ -118,6 +121,11 @@ export function HandleStep({
 
 			<div>
 				<OnboardingFieldInput
+					aria-describedby="onboarding-handle-hint"
+					aria-invalid={
+						availability.state === "taken" || availability.state === "invalid"
+					}
+					aria-labelledby={ONBOARDING_STEP_TITLE_ID}
 					autoCapitalize="none"
 					autoComplete="username"
 					onBlur={(e) => onBlur?.(e.target.value)}
@@ -127,7 +135,9 @@ export function HandleStep({
 					spellCheck={false}
 					value={handle}
 				/>
-				<p className={helperClass}>{helper}</p>
+				<p className={helperClass} id="onboarding-handle-hint">
+					{helper}
+				</p>
 			</div>
 		</div>
 	);

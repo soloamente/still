@@ -23,7 +23,7 @@ export function AuthSubmitButton({
 	return (
 		<motion.button
 			className={cn(
-				"active:!bg-foreground active:!text-background flex w-full cursor-pointer items-center justify-center rounded-2xl bg-foreground px-4 py-2.75 font-medium text-background transition-[background-color,opacity,transform] duration-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 [@media(hover:hover)]:hover:bg-foreground/90",
+				"active:!bg-foreground active:!text-background flex w-full cursor-pointer items-center justify-center rounded-2xl bg-foreground px-4 py-2.75 font-medium text-background transition-[background-color,opacity,transform] duration-300 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50 [@media(hover:hover)]:hover:bg-foreground/90",
 				className,
 			)}
 			disabled={isDisabled}
@@ -31,7 +31,7 @@ export function AuthSubmitButton({
 			transition={{ duration: 0.2 }}
 			type="submit"
 			whileHover={isDisabled || reduceMotion ? undefined : { scale: 1.01 }}
-			whileTap={isDisabled || reduceMotion ? undefined : { scale: 0.98 }}
+			whileTap={isDisabled || reduceMotion ? undefined : { scale: 0.96 }}
 		>
 			<div className="flex h-5 items-center justify-center">
 				<AnimatePresence initial={false} mode="wait">

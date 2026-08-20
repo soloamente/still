@@ -11,6 +11,7 @@ import {
 
 import { MonthRecapDialog } from "@/components/app/month-recap-dialog";
 import { isSenseSupportCampaignBlocking } from "@/components/app/sense-support-campaign-dialog-root";
+import { isWhatsNewBlocking } from "@/components/app/whats-new-dialog-root";
 import { fetchMonthRecapClient } from "@/lib/fetch-month-recap-client";
 import { isWatchRegionPromptActive } from "@/lib/first-run-prompt-keys";
 import { resolveClientCelebratedMonth } from "@/lib/month-recap-month-key";
@@ -20,8 +21,6 @@ import {
 } from "@/lib/month-recap-seen";
 import type { MonthRecapPayload } from "@/lib/month-recap-types";
 import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
-import { getActiveWhatsNewRelease } from "@/lib/whats-new-releases";
-import { shouldShowWhatsNewRelease } from "@/lib/whats-new-seen";
 
 const OPEN_DELAY_MS = 2_500;
 const REGION_PROMPT_POLL_MS = 300;
@@ -50,13 +49,6 @@ class MonthRecapErrorBoundary extends Component<
 		if (this.state.failed) return null;
 		return this.props.children;
 	}
-}
-
-/** True while What's New still needs to show for this patron. */
-function isWhatsNewBlocking(userId: string): boolean {
-	const release = getActiveWhatsNewRelease();
-	if (!release) return false;
-	return shouldShowWhatsNewRelease(userId, release.id);
 }
 
 /** True while support campaign or What's New still needs to show. */

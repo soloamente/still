@@ -1,3 +1,4 @@
+import type { FilmTvRankKind } from "@/lib/home-community-feed";
 import {
 	type HomeLeaderboardPeriod,
 	readViewerTimeZone,
@@ -14,7 +15,7 @@ const HOME_LEADERBOARD_PERIODS: HomeLeaderboardPeriod[] = [
 
 /** Client fill for rank tabs — patron IANA `tz` so period windows match local midnight (no UTC flash). */
 export async function fetchHomeLeaderboardsByPeriodClient(
-	kind: "films" | "tv",
+	kind: FilmTvRankKind,
 	signal?: AbortSignal,
 ): Promise<Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>> {
 	const tz = readViewerTimeZone();
@@ -24,6 +25,7 @@ export async function fetchHomeLeaderboardsByPeriodClient(
 	await Promise.all(
 		HOME_LEADERBOARD_PERIODS.map(async (period) => {
 			out[period] = await fetchCommunityLeaderboard(kind, period, tz, {
+				page: 1,
 				signal,
 			});
 		}),
@@ -35,6 +37,11 @@ export async function fetchHomeLeaderboardsByPeriodClient(
 export function homeLeaderboardMapsAreEmpty(
 	film: Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>,
 	tv: Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>,
+	episodes: Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>,
 ): boolean {
-	return Object.keys(film).length === 0 && Object.keys(tv).length === 0;
+	return (
+		Object.keys(film).length === 0 &&
+		Object.keys(tv).length === 0 &&
+		Object.keys(episodes).length === 0
+	);
 }

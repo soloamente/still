@@ -12,7 +12,7 @@ import {
 } from "@/lib/home-community-feed";
 
 /**
- * Films · Shows · Reviews — centered rail on Community Ranks.
+ * Films · Shows · Episodes · Reviews — centered rail on Community Ranks.
  */
 export function HomeCommunityRankKindToolbar({
 	className,

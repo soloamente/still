@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import {
 	createContext,
 	type ReactNode,
@@ -12,6 +13,7 @@ import {
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
 import { fetchHomeLeaderboardsByPeriodClient } from "@/lib/fetch-home-leaderboards-client";
+import { parseHomeCommunityActivityScope } from "@/lib/home-community-activity-scope";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import type {
 	HomeCommunityFeed,
@@ -21,6 +23,7 @@ import {
 	isFilmTvRankKind,
 	isHomeLeaderboardFeed,
 } from "@/lib/home-community-feed";
+import { parseHomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardPayload } from "@/lib/home-leaderboard-types";
 import { buildHomeLobbyHref } from "@/lib/home-lobby-url";
@@ -69,6 +72,13 @@ export function HomeCommunityLobbyParamsProvider({
 	children: ReactNode;
 }) {
 	const { navigate } = useLobbyNavigation();
+	const searchParams = useSearchParams();
+	const reviewSort = parseHomeCommunityReviewSort(
+		searchParams.get("reviewSort"),
+	);
+	const activityScope = parseHomeCommunityActivityScope(
+		searchParams.get("activityScope"),
+	);
 
 	const [pending, setPending] = useState<HomeCommunityLobbySnapshot | null>(
 		null,
@@ -83,6 +93,10 @@ export function HomeCommunityLobbyParamsProvider({
 	const [tvLeaderboardsByPeriod, setTvLeaderboardsByPeriod] = useState<
 		Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>
 	>({});
+	const [episodesLeaderboardsByPeriod, setEpisodesLeaderboardsByPeriod] =
+		useState<Partial<Record<HomeLeaderboardPeriod, LeaderboardPayload | null>>>(
+			{},
+		);
 	const [leaderboardsLoading, setLeaderboardsLoading] =
 		useState(deferLeaderboards);
 	const [leaderboardsFailed, setLeaderboardsFailed] = useState(false);
@@ -96,6 +110,7 @@ export function HomeCommunityLobbyParamsProvider({
 		// Clear cached maps so retry can actually refetch (maps were blocking the effect).
 		setFilmLeaderboardsByPeriod({});
 		setTvLeaderboardsByPeriod({});
+		setEpisodesLeaderboardsByPeriod({});
 		setLeaderboardFetchGeneration((n) => n + 1);
 	}, []);
 
@@ -109,13 +124,15 @@ export function HomeCommunityLobbyParamsProvider({
 		void (async () => {
 			try {
 				setLeaderboardsLoading(true);
-				const [film, tv] = await Promise.all([
+				const [film, tv, episodes] = await Promise.all([
 					fetchHomeLeaderboardsByPeriodClient("films", controller.signal),
 					fetchHomeLeaderboardsByPeriodClient("tv", controller.signal),
+					fetchHomeLeaderboardsByPeriodClient("episodes", controller.signal),
 				]);
 				if (controller.signal.aborted) return;
 				setFilmLeaderboardsByPeriod(film);
 				setTvLeaderboardsByPeriod(tv);
+				setEpisodesLeaderboardsByPeriod(episodes);
 				setLeaderboardsFailed(false);
 			} catch {
 				if (controller.signal.aborted) return;
@@ -153,6 +170,9 @@ export function HomeCommunityLobbyParamsProvider({
 		if (active.rankKind === "tv") {
 			return tvLeaderboardsByPeriod[active.period] ?? null;
 		}
+		if (active.rankKind === "episodes") {
+			return episodesLeaderboardsByPeriod[active.period] ?? null;
+		}
 		return filmLeaderboardsByPeriod[active.period] ?? null;
 	}, [
 		active.feed,
@@ -160,6 +180,7 @@ export function HomeCommunityLobbyParamsProvider({
 		active.rankKind,
 		filmLeaderboardsByPeriod,
 		tvLeaderboardsByPeriod,
+		episodesLeaderboardsByPeriod,
 	]);
 
 	const navigateLobby = useCallback(
@@ -171,10 +192,12 @@ export function HomeCommunityLobbyParamsProvider({
 					sort: next.feed,
 					period: next.period,
 					rankKind: next.rankKind,
+					reviewSort: next.feed === "reviews" ? reviewSort : undefined,
+					activityScope: next.feed === "activity" ? activityScope : undefined,
 				}),
 			);
 		},
-		[navigate],
+		[navigate, reviewSort, activityScope],
 	);
 
 	const selectFeed = useCallback(

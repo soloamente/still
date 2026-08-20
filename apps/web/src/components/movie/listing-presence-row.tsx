@@ -108,6 +108,7 @@ function PresenceStackAvatar({
 							patron.avatarIsAnimated,
 						)}
 						planTier={patron.planTier}
+						staffRole={patron.staffRole}
 					/>
 				</span>
 			</Link>

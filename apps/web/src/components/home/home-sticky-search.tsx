@@ -41,9 +41,11 @@ import { SearchDialogStudioRail } from "@/components/home/search-dialog-studio-r
 import { SearchTagPill } from "@/components/home/search-tag-pill";
 import { SearchTokenField } from "@/components/home/search-token-field";
 import { MoviePoster } from "@/components/movie/movie-poster";
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import {
 	appThemeSearchBorderBeamColor,
 	DEFAULT_APP_THEME_CLASS,
+	isAppThemeLight,
 	resolveAppTheme,
 } from "@/lib/app-themes";
 import {
@@ -71,6 +73,7 @@ import {
 	removeHomeSearchRecent,
 	restoreFromHomeSearchRecent,
 } from "@/lib/home-search-recent-storage";
+import { runInputClearDissolve } from "@/lib/input-clear-dissolve";
 import { normalizeProfileSearchQuery } from "@/lib/profile-search-query";
 import {
 	enabledCategories,
@@ -211,7 +214,7 @@ function SearchDialogBrowseCategoryNav({
 }
 
 /**
- * Films · TV under the query field — loose chips with a sliding active fill only.
+ * Films · TV under the query field — liquid-gooey Move pill on `bg-background`.
  */
 function SearchDialogListingKindChips({
 	searchListingKind,
@@ -222,64 +225,40 @@ function SearchDialogListingKindChips({
 	onSelectMovie: () => void;
 	onSelectTv: () => void;
 }) {
-	const reduceMotion = useReducedMotion();
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
-
-	const chipClass = (active: boolean) =>
-		cn(
-			"relative inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-left font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:bg-muted/45 [@media(hover:hover)]:hover:text-foreground",
-		);
-
 	return (
-		<LayoutGroup id="search-dialog-listing-kind-pill-group">
-			<div className="flex flex-wrap gap-2" role="toolbar" aria-label="Show">
-				<button
-					type="button"
-					aria-pressed={searchListingKind === "movie"}
-					className={chipClass(searchListingKind === "movie")}
-					onClick={onSelectMovie}
-				>
-					{searchListingKind === "movie" ? (
-						<motion.span
-							layoutId="search-dialog-listing-kind-pill"
-							className="absolute inset-0 z-0 rounded-full bg-background"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10 inline-flex items-center gap-2">
-						<IconCinema className="size-5 shrink-0 opacity-80" aria-hidden />
-						Films
-					</span>
-				</button>
-				<button
-					type="button"
-					aria-pressed={searchListingKind === "tv"}
-					className={chipClass(searchListingKind === "tv")}
-					onClick={onSelectTv}
-				>
-					{searchListingKind === "tv" ? (
-						<motion.span
-							layoutId="search-dialog-listing-kind-pill"
-							className="absolute inset-0 z-0 rounded-full bg-background"
-							transition={pillTransition}
-						/>
-					) : null}
-					<span className="relative z-10 inline-flex items-center gap-2">
-						<IconTvShows className="size-5 shrink-0 opacity-80" aria-hidden />
-						TV shows
-					</span>
-				</button>
-			</div>
-		</LayoutGroup>
+		<SegmentedPillToolbar
+			layoutId="search-dialog-listing-kind-pill"
+			aria-label="Show"
+			value={searchListingKind}
+			onChange={(next) => {
+				if (next === "movie") onSelectMovie();
+				else onSelectTv();
+			}}
+			options={[
+				{
+					id: "movie",
+					label: (
+						<span className="inline-flex items-center gap-2">
+							<IconCinema className="size-5 shrink-0 opacity-80" aria-hidden />
+							Films
+						</span>
+					),
+				},
+				{
+					id: "tv",
+					label: (
+						<span className="inline-flex items-center gap-2">
+							<IconTvShows className="size-5 shrink-0 opacity-80" aria-hidden />
+							TV shows
+						</span>
+					),
+				},
+			]}
+			compact
+			indicatorClassName="bg-background"
+			className="flex-wrap justify-start gap-2 bg-transparent p-0"
+			optionClassName="px-3 py-2"
+		/>
 	);
 }
 
@@ -1490,14 +1469,114 @@ export function CatalogSearchDialogRoot({
 /**
  * `/home` (and lobby) sticky pill — registers with the global dialog for anchored motion.
  */
+/** ⌘ vs Ctrl — resolved after mount so SSR markup stays stable. */
+function useCatalogSearchModKeyLabel(): string | null {
+	const [label, setLabel] = useState<string | null>(null);
+	useEffect(() => {
+		const platform =
+			(
+				navigator as Navigator & {
+					userAgentData?: { platform?: string };
+				}
+			).userAgentData?.platform ??
+			navigator.platform ??
+			"";
+		const apple =
+			/Mac|iPhone|iPod|iPad/i.test(platform) ||
+			/Mac OS X/i.test(navigator.userAgent);
+		setLabel(apple ? "⌘" : "Ctrl");
+	}, []);
+	return label;
+}
+
+function isEditableKeyboardTarget(target: EventTarget | null): boolean {
+	if (!(target instanceof HTMLElement)) return false;
+	const tag = target.tagName;
+	if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+	return target.isContentEditable;
+}
+
+/**
+ * Lights each shortcut chip as Ctrl/⌘ then K is held (skips while typing in fields).
+ */
+function useCatalogSearchShortcutPress(enabled: boolean): {
+	modPressed: boolean;
+	kPressed: boolean;
+} {
+	const [modPressed, setModPressed] = useState(false);
+	const [kPressed, setKPressed] = useState(false);
+
+	useEffect(() => {
+		if (!enabled) {
+			setModPressed(false);
+			setKPressed(false);
+			return;
+		}
+
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (isEditableKeyboardTarget(event.target)) {
+				setModPressed(false);
+				setKPressed(false);
+				return;
+			}
+			if (event.key === "Control" || event.key === "Meta") {
+				setModPressed(true);
+			}
+			if (event.ctrlKey || event.metaKey) {
+				setModPressed(true);
+			}
+			if (event.code === "KeyK" && !event.repeat) {
+				setKPressed(true);
+			}
+		};
+
+		const onKeyUp = (event: KeyboardEvent) => {
+			if (event.code === "KeyK") {
+				setKPressed(false);
+			}
+			if (event.key === "Control" || event.key === "Meta") {
+				setModPressed(event.ctrlKey || event.metaKey);
+			} else if (!(event.ctrlKey || event.metaKey)) {
+				setModPressed(false);
+			}
+		};
+
+		const clear = () => {
+			setModPressed(false);
+			setKPressed(false);
+		};
+
+		window.addEventListener("keydown", onKeyDown);
+		window.addEventListener("keyup", onKeyUp);
+		window.addEventListener("blur", clear);
+		document.addEventListener("visibilitychange", clear);
+		return () => {
+			window.removeEventListener("keydown", onKeyDown);
+			window.removeEventListener("keyup", onKeyUp);
+			window.removeEventListener("blur", clear);
+			document.removeEventListener("visibilitychange", clear);
+		};
+	}, [enabled]);
+
+	return { modPressed, kPressed };
+}
+
 export function HomeStickySearch() {
 	const router = useRouter();
 	const pathname = usePathname() ?? "";
 	const searchParams = useSearchParams();
 	const triggerRef = useRef<HTMLDivElement>(null);
+	const clearSlotRef = useRef<HTMLSpanElement>(null);
+	const clearMirrorRef = useRef<HTMLDivElement>(null);
+	const clearPlaceholderRef = useRef<HTMLDivElement>(null);
+	const clearGlowRef = useRef<HTMLDivElement>(null);
+	const clearDissolveCancelRef = useRef<(() => void) | null>(null);
+	const clearingRef = useRef(false);
+	const [isClearing, setIsClearing] = useState(false);
 	const reduceMotion = useReducedMotion();
 	const { theme, resolvedTheme } = useTheme();
 	const [themeReady, setThemeReady] = useState(false);
+	const modKeyLabel = useCatalogSearchModKeyLabel();
 	const requestOpen = useCatalogSearchDialog((s) => s.requestOpen);
 	const setHomeTriggerEl = useCatalogSearchDialog((s) => s.setHomeTriggerEl);
 	const { dialogOpen, showSheet } = useCatalogSearchDialog((s) => s.shellUi);
@@ -1509,7 +1588,15 @@ export function HomeStickySearch() {
 	const committedSearchActive =
 		onHome && isHomeCatalogueSearchActive(searchParams, catalogueBrowse);
 
-	const needsSummaryMetadata = committedSearchActive;
+	const shortcutHintsVisible =
+		Boolean(modKeyLabel) &&
+		!committedSearchActive &&
+		!dialogOpen &&
+		!isClearing;
+	const { modPressed, kPressed } =
+		useCatalogSearchShortcutPress(shortcutHintsVisible);
+
+	const needsSummaryMetadata = committedSearchActive || isClearing;
 
 	const { studios, loading: studiosLoading } =
 		useSearchDialogStudios(needsSummaryMetadata);
@@ -1521,7 +1608,7 @@ export function HomeStickySearch() {
 	} = useSearchDialogGenres(needsSummaryMetadata, catalogTmdbLanguage);
 
 	const committedSearchDisplay = useMemo(() => {
-		if (!committedSearchActive || !searchRaw) return null;
+		if ((!committedSearchActive && !isClearing) || !searchRaw) return null;
 		if (studiosLoading || genresLoading) {
 			return {
 				tags: [] as SearchTag[],
@@ -1539,6 +1626,7 @@ export function HomeStickySearch() {
 	}, [
 		committedSearchActive,
 		genresLoading,
+		isClearing,
 		movieGenres,
 		searchRaw,
 		studios,
@@ -1546,40 +1634,126 @@ export function HomeStickySearch() {
 		tvGenres,
 	]);
 
+	// Flattened label for the dissolve mirror (pills stay as resting UI).
+	const clearMirrorText = useMemo(() => {
+		if (!committedSearchDisplay) return searchRaw;
+		return (
+			formatCommittedSearchSummary(
+				committedSearchDisplay.tags,
+				committedSearchDisplay.freeText,
+				80,
+			) ||
+			committedSearchDisplay.freeText ||
+			searchRaw
+		);
+	}, [committedSearchDisplay, searchRaw]);
+
+	const activeAppTheme = resolveAppTheme(
+		themeReady && theme !== undefined
+			? (resolvedTheme ?? theme)
+			: DEFAULT_APP_THEME_CLASS,
+	);
+	const clearDissolveIsDark = !isAppThemeLight(activeAppTheme);
+
 	// `next-themes` resolves from localStorage after hydration — keep BorderBeam colors
 	// on the SSR default until then so inline `<style>` tags match server markup.
 	useEffect(() => {
 		setThemeReady(true);
 	}, []);
 
-	const borderBeamColorVariant = appThemeSearchBorderBeamColor(
-		themeReady && theme !== undefined
-			? resolveAppTheme(resolvedTheme ?? theme)
-			: DEFAULT_APP_THEME_CLASS,
-	);
+	const borderBeamColorVariant = appThemeSearchBorderBeamColor(activeAppTheme);
 
 	useEffect(() => {
 		setHomeTriggerEl(triggerRef.current);
 		return () => setHomeTriggerEl(null);
 	}, [setHomeTriggerEl]);
 
+	// Drop in-flight dissolve if the pill unmounts mid-clear.
+	useEffect(() => {
+		return () => {
+			clearDissolveCancelRef.current?.();
+			clearDissolveCancelRef.current = null;
+			clearingRef.current = false;
+		};
+	}, []);
+
+	// Hold `.is-clearing` until the URL actually drops `?search=` (avoids pill flash).
+	useEffect(() => {
+		if (isClearing && !committedSearchActive) {
+			setIsClearing(false);
+		}
+	}, [committedSearchActive, isClearing]);
+
 	const handleOpen = useCallback(() => {
+		if (clearingRef.current) return;
 		const trigger = triggerRef.current;
 		if (!trigger) return;
 		requestOpen(trigger.getBoundingClientRect());
 	}, [requestOpen]);
 
+	const navigateClearSearch = useCallback(() => {
+		const persisted = readHomeLobbyPersisted();
+		router.replace(
+			buildHomeCatalogueSearchClearHref(catalogueBrowse, persisted),
+		);
+	}, [router, catalogueBrowse]);
+
 	const handleClearSearch = useCallback(
 		(event: MouseEvent<HTMLButtonElement>) => {
 			event.preventDefault();
 			event.stopPropagation();
-			const persisted = readHomeLobbyPersisted();
-			router.replace(
-				buildHomeCatalogueSearchClearHref(catalogueBrowse, persisted),
+			if (clearingRef.current) return;
+
+			const wrap = clearSlotRef.current;
+			const mirror = clearMirrorRef.current;
+			const placeholder = clearPlaceholderRef.current;
+			const glow = clearGlowRef.current;
+
+			// Instant clear when reduced motion or dissolve DOM is missing.
+			if (
+				reduceMotion ||
+				!wrap ||
+				!mirror ||
+				!placeholder ||
+				!glow ||
+				!clearMirrorText.trim()
+			) {
+				navigateClearSearch();
+				return;
+			}
+
+			clearingRef.current = true;
+			flushSync(() => {
+				setIsClearing(true);
+			});
+
+			const handle = runInputClearDissolve(
+				{
+					wrap,
+					mirror,
+					placeholder,
+					glow,
+					fontSource: mirror,
+				},
+				{
+					text: clearMirrorText,
+					isDark: clearDissolveIsDark,
+					reducedMotion: false,
+					onComplete: () => {
+						clearDissolveCancelRef.current = null;
+						clearingRef.current = false;
+						// Keep React `isClearing` until `committedSearchActive` flips false.
+						navigateClearSearch();
+					},
+				},
 			);
+			clearDissolveCancelRef.current = handle.cancel;
 		},
-		[router, catalogueBrowse],
+		[clearDissolveIsDark, clearMirrorText, navigateClearSearch, reduceMotion],
 	);
+
+	const showCommittedChrome = Boolean(committedSearchDisplay) || isClearing;
+	const showClearButton = committedSearchActive || isClearing;
 
 	return (
 		/* Animated border trace on the catalog search pill (border-beam). */
@@ -1598,7 +1772,7 @@ export function HomeStickySearch() {
 				className={cn(
 					// Keep the original single-row shell (`px-5 py-3`) — nested buttons must not add min-height.
 					"flex w-full min-w-0 items-center rounded-full bg-card py-3 pl-5",
-					committedSearchActive ? "gap-1 pr-3" : "gap-2 pr-5",
+					showClearButton ? "gap-1 pr-3" : "gap-2 pr-5",
 				)}
 				animate={
 					reduceMotion
@@ -1628,58 +1802,118 @@ export function HomeStickySearch() {
 					aria-haspopup="dialog"
 					aria-expanded={dialogOpen}
 					aria-controls={CATALOG_SEARCH_DIALOG_ID}
+					aria-keyshortcuts="Meta+K Control+K"
+					aria-label={
+						modKeyLabel
+							? `Search catalogue (${modKeyLabel}+K)`
+							: "Search catalogue"
+					}
 				>
 					<Search
 						className="size-4 shrink-0 text-muted-foreground"
 						aria-hidden
 					/>
-					{committedSearchDisplay ? (
-						<span className="flex min-h-0 min-w-0 flex-1 flex-nowrap items-center gap-1 overflow-hidden">
-							{committedSearchDisplay.tags.map((tag) => (
-								<SearchTagPill
-									key={
-										tag.kind === "studio"
-											? `studio-${tag.id}`
-											: tag.kind === "genre"
-												? `genre-${tag.listingKind}-${tag.id}`
-												: tag.kind === "curated"
-													? `curated-${tag.slug}`
-													: tag.kind === "media"
-														? `media-${tag.listingKind}`
-														: "lists"
-									}
-									tag={tag}
-									variant="display"
-									density="compact"
-								/>
-							))}
-							{committedSearchDisplay.freeText ? (
-								<span
-									className={cn(
-										"min-w-0 truncate text-base leading-none md:text-sm",
-										committedSearchDisplay.loading ||
-											committedSearchDisplay.tags.length === 0
-											? "font-medium text-foreground"
-											: "text-foreground/90",
-									)}
-								>
-									{committedSearchDisplay.freeText}
+					{/* transitions.dev clear dissolve slot — mirror/placeholder/glow over live pills. */}
+					<span
+						ref={clearSlotRef}
+						className={cn(
+							"t-clear home-sticky-search-clear flex min-h-0 min-w-0 flex-1 items-center",
+							showCommittedChrome && "has-value",
+							isClearing && "is-clearing",
+						)}
+					>
+						<span className="t-clear-live flex min-h-0 min-w-0 flex-1 flex-nowrap items-center gap-1 overflow-hidden">
+							{committedSearchDisplay ? (
+								<>
+									{committedSearchDisplay.tags.map((tag) => (
+										<SearchTagPill
+											key={
+												tag.kind === "studio"
+													? `studio-${tag.id}`
+													: tag.kind === "genre"
+														? `genre-${tag.listingKind}-${tag.id}`
+														: tag.kind === "curated"
+															? `curated-${tag.slug}`
+															: tag.kind === "media"
+																? `media-${tag.listingKind}`
+																: "lists"
+											}
+											tag={tag}
+											variant="display"
+											density="compact"
+										/>
+									))}
+									{committedSearchDisplay.freeText ? (
+										<span
+											className={cn(
+												"min-w-0 truncate text-base leading-none md:text-sm",
+												committedSearchDisplay.loading ||
+													committedSearchDisplay.tags.length === 0
+													? "font-medium text-foreground"
+													: "text-foreground/90",
+											)}
+										>
+											{committedSearchDisplay.freeText}
+										</span>
+									) : null}
+								</>
+							) : (
+								<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
+									Films, TV, @people, lists…
 								</span>
-							) : null}
+							)}
 						</span>
-					) : (
-						<span className="min-w-0 flex-1 truncate text-base text-muted-foreground md:text-sm">
+						<div
+							ref={clearMirrorRef}
+							className="t-clear-mirror truncate font-medium text-base text-foreground leading-none md:text-sm"
+							aria-hidden
+						/>
+						<div
+							ref={clearPlaceholderRef}
+							className="t-clear-placeholder min-w-0 truncate text-base text-muted-foreground md:text-sm"
+							aria-hidden
+						>
 							Films, TV, @people, lists…
+						</div>
+						<div ref={clearGlowRef} className="t-clear-glow" aria-hidden />
+					</span>
+					{/* Shortcut hint — desktop only; cleared when a committed search shows the X. */}
+					{shortcutHintsVisible ? (
+						<span
+							className="pointer-events-none hidden shrink-0 items-center gap-1 sm:inline-flex"
+							aria-hidden
+						>
+							{/* Fully rounded chips — light up as each key is held. */}
+							<kbd
+								className={cn(
+									"rounded-full px-2.5 py-1 font-medium text-[10px] tabular-nums transition-[color,background-color] duration-150",
+									modPressed
+										? "bg-foreground/15 text-foreground"
+										: "bg-background text-muted-foreground",
+								)}
+							>
+								{modKeyLabel}
+							</kbd>
+							<kbd
+								className={cn(
+									"rounded-full px-2.5 py-1 font-medium text-[10px] tabular-nums transition-[color,background-color] duration-150",
+									kPressed
+										? "bg-foreground/15 text-foreground"
+										: "bg-background text-muted-foreground",
+								)}
+							>
+								K
+							</kbd>
 						</span>
-					)}
+					) : null}
 				</button>
-				{committedSearchActive ? (
+				{showClearButton ? (
 					<button
 						type="button"
 						aria-label="Clear search"
 						className={cn(
 							// Compact icon control — avoid `size-9` which stretched the pill taller than `py-3`.
-							"relative inline-flex shrink-0 rounded-full p-1 text-muted-foreground",
+							"t-clear-btn relative inline-flex shrink-0 rounded-full p-1 text-muted-foreground",
 							"[@media(hover:hover)]:hover:bg-background [@media(hover:hover)]:hover:text-foreground",
 						)}
 						onMouseDown={(event) => event.stopPropagation()}

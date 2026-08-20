@@ -17,13 +17,12 @@ import {
 	type FetchMyDiaryOpts,
 	fetchMyDiary,
 } from "@/lib/still-api-fetch";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatTvLogScopeLabel } from "@/lib/tv-log-scope-display";
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
-	if (!posterPath?.length) return null;
-	if (posterPath.startsWith("http")) return posterPath;
-	const fragment = posterPath.startsWith("/") ? posterPath : `/${posterPath}`;
-	return `https://image.tmdb.org/t/p/w780${fragment}`;
+	// Lobby grid cells — w342 matches display size better than w780.
+	return tmdbPosterUrlFromPath(posterPath, "w342");
 }
 
 /** Stable cross-page key per cell. */

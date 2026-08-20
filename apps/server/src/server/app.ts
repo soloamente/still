@@ -4,12 +4,14 @@ import { db } from "@still/db";
 import { env } from "@still/env/server";
 import { sql } from "drizzle-orm";
 import { Elysia } from "elysia";
+import { registerServerCacheHooks } from "../lib/register-server-cache-hooks";
 import { adminAssetsRoute } from "../routes/admin-assets";
 import { achievementsRoute, badgesRoute } from "../routes/badges";
 import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
 import { devotedRequestRoute } from "../routes/devoted-request";
+import { discordActivityFundingRoute } from "../routes/discord-activity-funding";
 import { feedRoute } from "../routes/feed";
 import { feedbackRoute } from "../routes/feedback";
 import { followsRoute } from "../routes/follows";
@@ -19,6 +21,7 @@ import { leaderboardRoute } from "../routes/leaderboard";
 import { listsRoute } from "../routes/lists";
 import { logsRoute } from "../routes/logs";
 import { meDataRoute } from "../routes/me-data";
+import { meDiscordRoute } from "../routes/me-discord";
 import { membersRoute } from "../routes/members";
 import { monthRecapRoute } from "../routes/month-recap";
 import { moviesRoute } from "../routes/movies";
@@ -44,6 +47,8 @@ import { tvRoute } from "../routes/tv";
 import { tvWatchRoute } from "../routes/tv-watch";
 import { watchlistRoute } from "../routes/watchlist";
 import { mapElysiaErrorStatus } from "./app-on-error";
+
+registerServerCacheHooks();
 
 /**
  * Pure Elysia app — no `listen`, no schedulers. Importable by clients
@@ -136,6 +141,8 @@ export const app = new Elysia({ aot: false })
 	.use(streaksRoute)
 	.use(importRoute)
 	.use(meDataRoute)
+	.use(meDiscordRoute)
+	.use(discordActivityFundingRoute)
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(feedbackRoute)

@@ -2,7 +2,13 @@
 
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+	useSyncExternalStore,
+} from "react";
 import { toast } from "sonner";
 
 import { BrandMark } from "@/components/brand-mark";
@@ -10,10 +16,12 @@ import {
 	OnboardingPrimaryButton,
 	OnboardingSecondaryButton,
 } from "@/components/onboarding/onboarding-form-controls";
+import { OnboardingImportSourceList } from "@/components/onboarding/onboarding-import-source-list";
 import {
 	OnboardingPreviewPanel,
 	OnboardingPreviewStrip,
 } from "@/components/onboarding/onboarding-preview-panel";
+import { OnboardingProgress } from "@/components/onboarding/onboarding-progress";
 import { OnboardingStepShell } from "@/components/onboarding/onboarding-step-shell";
 import { AvatarStep } from "@/components/onboarding/onboarding-steps/avatar-step";
 import { BioStep } from "@/components/onboarding/onboarding-steps/bio-step";
@@ -28,6 +36,8 @@ import {
 	isHandleStepReady,
 	useHandleAvailability,
 } from "@/components/onboarding/onboarding-steps/handle-step";
+import { ImportStep } from "@/components/onboarding/onboarding-steps/import-step";
+import { ImportUploadStep } from "@/components/onboarding/onboarding-steps/import-upload-step";
 import { NameStep } from "@/components/onboarding/onboarding-steps/name-step";
 import {
 	TasteStepControls,
@@ -37,6 +47,9 @@ import {
 import { VerifyEmailStep } from "@/components/onboarding/onboarding-steps/verify-email-step";
 import { WelcomeStep } from "@/components/onboarding/onboarding-steps/welcome-step";
 import { OnboardingWizardLayout } from "@/components/onboarding/onboarding-wizard-layout";
+import { AnilistImportPanel } from "@/components/profile/anilist-import-panel";
+import type { ImportPanelRunner } from "@/components/profile/import-panel-runner";
+import { LetterboxdImportPanel } from "@/components/profile/letterboxd-import-panel";
 import { api } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import {
@@ -46,14 +59,82 @@ import {
 } from "@/lib/email-verification-error";
 import { runOnboardingFinish } from "@/lib/onboarding-finish";
 import { resolveOnboardingResumeStep } from "@/lib/onboarding-gate";
-import { canAdvanceOnboardingTaste } from "@/lib/onboarding-taste-state";
 import {
-	ONBOARDING_FAVORITES_MIN,
+	buildOnboardingImportQueue,
+	type OnboardingImportLiveSource,
+	toggleOnboardingImportLiveSource,
+} from "@/lib/onboarding-import-queue";
+import {
+	isOnboardingImportStep,
+	onboardingProgressFraction,
+	previousOnboardingStep,
+} from "@/lib/onboarding-step-graph";
+import {
+	canAdvanceOnboardingTaste,
+	countOnboardingTasteRated,
+} from "@/lib/onboarding-taste-state";
+import {
+	ONBOARDING_TASTE_MIN_RATED,
 	type OnboardingMovie,
 	type WizardSkipMode,
 	type WizardStep,
 } from "@/lib/onboarding-types";
 import { uploadProfileMeAsset } from "@/lib/upload-profile-me-asset";
+
+/** Tailwind `lg` — desktop preview column vs mobile inline upload panel. */
+const ONBOARDING_LG_MQ = "(min-width: 1024px)";
+
+function subscribeOnboardingLg(onStoreChange: () => void) {
+	const mq = window.matchMedia(ONBOARDING_LG_MQ);
+	mq.addEventListener("change", onStoreChange);
+	return () => mq.removeEventListener("change", onStoreChange);
+}
+
+function getOnboardingLgSnapshot() {
+	return window.matchMedia(ONBOARDING_LG_MQ).matches;
+}
+
+/** SSR / first paint uses the mobile slot so the upload panel is never dual-mounted. */
+function getOnboardingLgServerSnapshot() {
+	return false;
+}
+
+/**
+ * Single Letterboxd or Anilist dropzone — parent mounts this in exactly one
+ * slot (preview on lg, under the step below lg) so file state stays unique.
+ */
+function OnboardingImportUploadPanel({
+	source,
+	onImported,
+	onRunnerChange,
+}: {
+	source: OnboardingImportLiveSource;
+	onImported: () => void;
+	onRunnerChange: (runner: ImportPanelRunner) => void;
+}) {
+	switch (source) {
+		case "letterboxd":
+			return (
+				<LetterboxdImportPanel
+					onImported={onImported}
+					onRunnerChange={onRunnerChange}
+					variant="onboarding"
+				/>
+			);
+		case "anilist":
+			return (
+				<AnilistImportPanel
+					onImported={onImported}
+					onRunnerChange={onRunnerChange}
+					variant="onboarding"
+				/>
+			);
+		default: {
+			const unreachable: never = source;
+			return unreachable;
+		}
+	}
+}
 
 type OnboardingWizardProps = {
 	initialDisplayName: string;
@@ -65,28 +146,9 @@ type OnboardingWizardProps = {
 };
 
 function stepAfterBio(verified: boolean): WizardStep {
+	// Auth skips sendOnSignUp in development — don't trap patrons on verify locally.
+	if (process.env.NODE_ENV === "development") return "taste";
 	return verified ? "taste" : "verify";
-}
-
-function previousStep(
-	current: WizardStep,
-	skipMode: WizardSkipMode,
-): WizardStep | null {
-	if (current === "done" || current === "welcome" || current === "verify") {
-		return null;
-	}
-	if (skipMode === "abbreviated") {
-		if (current === "name") return "welcome";
-		if (current === "handle") return "name";
-		return null;
-	}
-	if (current === "avatar") return "welcome";
-	if (current === "name") return "avatar";
-	if (current === "handle") return "name";
-	if (current === "bio") return "handle";
-	if (current === "taste") return "bio";
-	if (current === "favorites") return "taste";
-	return null;
 }
 
 export function OnboardingWizard({
@@ -120,6 +182,22 @@ export function OnboardingWizard({
 	const [isTypingName, setIsTypingName] = useState(false);
 	const [isTypingHandle, setIsTypingHandle] = useState(false);
 	const [isTypingBio, setIsTypingBio] = useState(false);
+	const [selectedImportSources, setSelectedImportSources] = useState<
+		Set<OnboardingImportLiveSource>
+	>(() => new Set());
+	const [importQueue, setImportQueue] = useState<OnboardingImportLiveSource[]>(
+		[],
+	);
+	const [importQueueIndex, setImportQueueIndex] = useState(0);
+	const [importRunner, setImportRunner] = useState<ImportPanelRunner | null>(
+		null,
+	);
+
+	const isLgViewport = useSyncExternalStore(
+		subscribeOnboardingLg,
+		getOnboardingLgSnapshot,
+		getOnboardingLgServerSnapshot,
+	);
 
 	const handleAvailability = useHandleAvailability(handle, initialHandle);
 
@@ -298,7 +376,7 @@ export function OnboardingWizard({
 			);
 			setTasteHeadline(result.headline);
 			void authClient.getSession();
-			goTo("done", 1);
+			goTo("import", 1);
 			toast.success("Profile saved");
 		} catch (err) {
 			console.error("[onboarding] finish failed", err);
@@ -319,13 +397,31 @@ export function OnboardingWizard({
 	const enterApp = useCallback(async () => {
 		setIsEnteringApp(true);
 		try {
+			// Unlock `(app)` only when the patron chooses Enter — not after favorites
+			// (import picker / upload still count as unfinished onboarding).
+			const res = await api.api.profiles.me.patch({
+				markOnboarded: true,
+				// Re-send favorites so server showcase / diary backfill can run on mark.
+				favoriteMovieIds: favorites.map((movie) => movie.id),
+			});
+			if (res.error) {
+				const message =
+					typeof res.error.value === "string"
+						? res.error.value
+						: "Couldn't finish setup — try again";
+				toast.error(message);
+				return;
+			}
 			void authClient.getSession();
 			router.replace("/home");
 			router.refresh();
+		} catch (err) {
+			console.error("[onboarding] enter app failed", err);
+			toast.error("Couldn't finish setup — try again");
 		} finally {
 			setIsEnteringApp(false);
 		}
-	}, [router]);
+	}, [favorites, router]);
 
 	const editProfileFromDone = useCallback(() => {
 		goTo(skipMode === "abbreviated" ? "name" : "avatar", -1);
@@ -386,9 +482,44 @@ export function OnboardingWizard({
 	]);
 
 	const handleBack = useCallback(() => {
-		const prev = previousStep(step, skipMode);
+		if (step === "import-upload") setImportRunner(null);
+		const prev = previousOnboardingStep(step, skipMode);
 		if (prev) goTo(prev, -1);
 	}, [goTo, skipMode, step]);
+
+	const toggleImportSource = useCallback((id: OnboardingImportLiveSource) => {
+		setSelectedImportSources((current) =>
+			toggleOnboardingImportLiveSource(current, id),
+		);
+	}, []);
+
+	/** Only queue advance — Import click must not also call this after runImport. */
+	const advanceImportQueue = useCallback(() => {
+		const nextIndex = importQueueIndex + 1;
+		if (nextIndex < importQueue.length) {
+			setImportQueueIndex(nextIndex);
+			setImportRunner(null);
+			return;
+		}
+		goTo("done", 1);
+	}, [goTo, importQueue.length, importQueueIndex]);
+
+	const handleImportPickerContinue = useCallback(() => {
+		const queue = buildOnboardingImportQueue(selectedImportSources);
+		if (queue.length === 0) return;
+		setImportQueue(queue);
+		setImportQueueIndex(0);
+		setImportRunner(null);
+		goTo("import-upload", 1);
+	}, [goTo, selectedImportSources]);
+
+	const skipImport = useCallback(() => {
+		goTo("done", 1);
+	}, [goTo]);
+
+	const handleImportClick = useCallback(() => {
+		void importRunner?.runImport();
+	}, [importRunner]);
 
 	const continueDisabled = useMemo(() => {
 		if (isSaving || isSkipping) return true;
@@ -400,13 +531,12 @@ export function OnboardingWizard({
 			case "taste":
 				return !canAdvanceOnboardingTaste(tasteRatings, tasteSkipped);
 			case "favorites":
-				return favorites.length < ONBOARDING_FAVORITES_MIN;
+				return false;
 			default:
 				return false;
 		}
 	}, [
 		displayName,
-		favorites.length,
 		handle,
 		handleAvailability,
 		isSaving,
@@ -428,18 +558,45 @@ export function OnboardingWizard({
 					: "Confirm my handle";
 			case "bio":
 				return "Continue";
-			case "taste":
+			case "taste": {
+				// Progress lives on the CTA so a disabled Continue explains the gate.
+				const rated = countOnboardingTasteRated(tasteRatings, tasteSkipped);
+				if (rated < ONBOARDING_TASTE_MIN_RATED) {
+					return `${rated} / ${ONBOARDING_TASTE_MIN_RATED} rated`;
+				}
 				return "Continue";
+			}
 			case "favorites":
 				return isSaving ? "Saving…" : "Complete setup";
 			default:
 				return "Continue";
 		}
-	}, [avatarFile, isSaving, skipMode, step]);
+	}, [avatarFile, isSaving, skipMode, step, tasteRatings, tasteSkipped]);
 
-	const showNav = step !== "welcome" && step !== "verify" && step !== "done";
+	const importUploadSource = importQueue[importQueueIndex] ?? null;
+	const importDisabled =
+		!importRunner?.canImport || Boolean(importRunner?.isImporting);
+
+	/** One panel instance — lg preview or mobile under the step, never both. */
+	const importUploadPanel =
+		importUploadSource != null ? (
+			<OnboardingImportUploadPanel
+				key={importUploadSource}
+				onImported={advanceImportQueue}
+				onRunnerChange={setImportRunner}
+				source={importUploadSource}
+			/>
+		) : null;
+
+	const showNav =
+		step !== "welcome" &&
+		step !== "verify" &&
+		step !== "done" &&
+		!isOnboardingImportStep(step);
 	const showBack =
-		showNav && previousStep(step, skipMode) != null && step !== "avatar";
+		showNav &&
+		previousOnboardingStep(step, skipMode) != null &&
+		step !== "avatar";
 
 	const stepContent = useMemo(() => {
 		switch (step) {
@@ -501,7 +658,12 @@ export function OnboardingWizard({
 					/>
 				);
 			case "verify":
-				return <VerifyEmailStep userEmail={userEmail} />;
+				return (
+					<VerifyEmailStep
+						userEmail={userEmail}
+						onVerified={() => goTo("taste", 1)}
+					/>
+				);
 			case "taste":
 				return (
 					<>
@@ -529,6 +691,41 @@ export function OnboardingWizard({
 						tasteHeadline={tasteHeadline}
 					/>
 				);
+			case "import":
+				return (
+					<>
+						<ImportStep
+							continueDisabled={selectedImportSources.size === 0 || isSaving}
+							onBack={handleBack}
+							onContinue={handleImportPickerContinue}
+							onNotNow={skipImport}
+						/>
+						<div className="mt-6 w-full lg:hidden">
+							<OnboardingImportSourceList
+								onToggleLive={toggleImportSource}
+								selected={selectedImportSources}
+							/>
+						</div>
+					</>
+				);
+			case "import-upload": {
+				if (!importUploadSource) return null;
+				return (
+					<>
+						<ImportUploadStep
+							importDisabled={importDisabled}
+							isImporting={Boolean(importRunner?.isImporting)}
+							onBack={handleBack}
+							onImport={handleImportClick}
+							onSkip={skipImport}
+							source={importUploadSource}
+						/>
+						{!isLgViewport ? (
+							<div className="mt-6 w-full">{importUploadPanel}</div>
+						) : null}
+					</>
+				);
+			}
 			default: {
 				const unreachable: never = step;
 				return unreachable;
@@ -544,12 +741,24 @@ export function OnboardingWizard({
 		goTo,
 		handle,
 		handleAvailability,
+		handleBack,
+		handleImportClick,
+		handleImportPickerContinue,
+		importDisabled,
+		importRunner?.isImporting,
+		importUploadPanel,
+		importUploadSource,
 		isEnteringApp,
+		isLgViewport,
 		isPro,
+		isSaving,
 		isSkipping,
 		onAvatarFile,
+		selectedImportSources,
+		skipImport,
 		tasteHeadline,
 		tasteStepModel,
+		toggleImportSource,
 		step,
 		userEmail,
 	]);
@@ -574,20 +783,48 @@ export function OnboardingWizard({
 		</div>
 	) : null;
 
+	// Logo stays on the wizard — linking / or /home would bounce mid-import.
 	return (
 		<OnboardingWizardLayout
-			header={<BrandMark size="md" />}
+			header={
+				<BrandMark
+					href="/onboarding"
+					size="md"
+					aria-label="Sense — stay on setup"
+				/>
+			}
+			progress={
+				<OnboardingProgress
+					value={onboardingProgressFraction(step, skipMode)}
+				/>
+			}
 			preview={
 				step === "taste" ? (
 					<TasteStepGridPanel
-						className="size-full px-2 py-4"
+						className="size-full px-2"
 						model={tasteStepModel}
 					/>
 				) : step === "favorites" ? (
 					<FavoritesStepGridPanel
-						className="size-full px-2 py-4"
+						className="size-full px-2"
 						model={favoritesStepModel}
 					/>
+				) : step === "import" ? (
+					<OnboardingImportSourceList
+						fill
+						onToggleLive={toggleImportSource}
+						selected={selectedImportSources}
+					/>
+				) : step === "import-upload" && isLgViewport ? (
+					/*
+					  Absolute fill + min-h-full center — upload specimen mid-pane
+					  (same shell pattern as the provider picker).
+					*/
+					<div className="absolute inset-0 overflow-y-auto overscroll-contain">
+						<div className="flex min-h-full w-full items-center justify-center px-8 py-10 sm:px-12">
+							<div className="mx-auto w-full max-w-lg">{importUploadPanel}</div>
+						</div>
+					</div>
 				) : (
 					<OnboardingPreviewPanel
 						avatarPreviewUrl={avatarPreviewUrl}
@@ -604,9 +841,20 @@ export function OnboardingWizard({
 				)
 			}
 			previewClassName={
-				step === "taste" || step === "favorites"
+				// Catalogue grids + import panes fill so absolute specimens can center.
+				step === "taste" ||
+				step === "favorites" ||
+				step === "import" ||
+				step === "import-upload"
 					? "items-stretch justify-stretch"
 					: undefined
+			}
+			previewKey={
+				step === "import" || step === "import-upload"
+					? "import"
+					: step === "taste" || step === "favorites"
+						? "catalogue"
+						: "profile"
 			}
 			previewStrip={
 				<OnboardingPreviewStrip

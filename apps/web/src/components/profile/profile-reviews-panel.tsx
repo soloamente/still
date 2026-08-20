@@ -15,6 +15,7 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { profilePosterUrlFromPath } from "@/lib/profile-filmography-map";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 export type ProfileReviewRow = {
 	review: ReviewPreview & {
@@ -25,8 +26,14 @@ export type ProfileReviewRow = {
 	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
 };
 
+/** One-line title slot + four-line body preview — keeps grid tiles equal height. */
+const PROFILE_REVIEW_TILE_TITLE_SLOT_CLASSNAME =
+	"mt-2.5 block min-h-[1.375rem] shrink-0 line-clamp-1 font-medium text-base text-foreground leading-snug tracking-tight [@media(hover:hover)]:group-hover:text-desert-orange";
+const PROFILE_REVIEW_TILE_BODY_SLOT_CLASSNAME =
+	"mt-2 min-h-[5.6875rem] shrink-0 line-clamp-4 font-editorial text-foreground/85 text-sm leading-relaxed";
+
 const reviewTileClassName = cn(
-	"flex w-full min-w-0 items-stretch gap-4 overflow-hidden rounded-[1.75rem] bg-background p-4 text-left shadow-sm transition-[transform,colors] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:gap-5 sm:p-5",
+	"flex h-full w-full min-w-0 items-stretch gap-4 overflow-hidden rounded-[1.75rem] bg-background p-4 text-left transition-[transform,colors] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:gap-5 sm:p-5",
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 );
 
@@ -44,7 +51,7 @@ function ProfileReviewPoster({
 			className="relative w-[5.25rem] shrink-0 self-stretch sm:w-[6.5rem]"
 			aria-hidden
 		>
-			<div className="relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-background shadow-sm">
+			<div className="relative size-full min-h-[9.5rem] overflow-hidden rounded-2xl bg-background">
 				{src ? (
 					<Image
 						src={src}
@@ -52,6 +59,7 @@ function ProfileReviewPoster({
 						fill
 						sizes="(max-width: 640px) 88px, 104px"
 						className="object-cover"
+						unoptimized={isTmdbCdnUrl(src)}
 					/>
 				) : (
 					<div className="grid size-full place-items-center bg-muted/25 p-2">
@@ -104,7 +112,7 @@ export function ProfileReviewTile({
 				/>
 			) : null}
 
-			<span className="flex min-h-0 min-w-0 flex-1 flex-col">
+			<span className="flex h-full min-h-0 min-w-0 flex-1 flex-col">
 				<span className="flex shrink-0 items-start justify-between gap-3">
 					<span className="min-w-0 text-muted-foreground text-xs leading-snug">
 						<span className="tabular-nums">
@@ -136,19 +144,23 @@ export function ProfileReviewTile({
 					reviewUserId={review.userId}
 					align="start"
 					nestedInInteractive
+					className="flex min-h-0 flex-1 flex-col"
 				>
-					{review.title ? (
-						<span className="mt-2.5 block shrink-0 font-medium text-base text-foreground leading-snug tracking-tight [@media(hover:hover)]:group-hover:text-desert-orange">
-							{review.title}
-						</span>
-					) : null}
+					<span
+						className={cn(
+							PROFILE_REVIEW_TILE_TITLE_SLOT_CLASSNAME,
+							!review.title && "invisible",
+						)}
+					>
+						{review.title ?? "\u00a0"}
+					</span>
 
-					<span className="mt-2 line-clamp-4 min-h-0 flex-1 font-editorial text-foreground/85 text-sm leading-relaxed">
+					<span className={PROFILE_REVIEW_TILE_BODY_SLOT_CLASSNAME}>
 						{review.body}
 					</span>
 				</ReviewSpoilerPreview>
 
-				<span className="mt-4 flex shrink-0 items-center gap-4 pt-0.5 text-muted-foreground text-xs tabular-nums">
+				<span className="mt-auto flex shrink-0 items-center gap-4 pt-4 text-muted-foreground text-xs tabular-nums">
 					<span className="inline-flex items-center gap-1.5">
 						<Heart className="size-3.5 opacity-70" aria-hidden />
 						{review.likesCount}
@@ -189,7 +201,7 @@ export function ProfileReviewsPanel({
 	return (
 		<ul className="grid w-full gap-4 md:grid-cols-2">
 			{rows.map((row) => (
-				<li key={row.review.id} className="min-w-0">
+				<li key={row.review.id} className="min-h-0 min-w-0">
 					<ProfileReviewTile row={row} isMe={isMe} />
 				</li>
 			))}

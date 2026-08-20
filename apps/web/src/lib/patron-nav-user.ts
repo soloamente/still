@@ -2,6 +2,7 @@ import type { AccountMenuUser } from "@/components/app/app-user-account-menu";
 import type { ServerSession } from "@/lib/auth-server";
 import type { MeProfile } from "@/lib/fetch-me-profile";
 import { resolvePatronAvatarIsAnimated } from "@/lib/profile-media";
+import { parseStaffRole } from "@/lib/staff-role-labels";
 
 /**
  * Build nav / account-menu identity from profile + session.
@@ -32,6 +33,7 @@ export function buildPatronNavUser(
 			profile?.preferences ?? null,
 		),
 		planTier: profile?.planTier ?? profile?.effectiveTier ?? "still",
+		staffRole: parseStaffRole(session.user.role),
 	};
 }
 

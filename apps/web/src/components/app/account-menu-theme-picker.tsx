@@ -20,6 +20,9 @@ import { PROFILE_PREF_APP_THEME } from "@/lib/profile-preferences";
 /**
  * Home-style filter chips for palette switching inside the account menu's
  * `bg-background` inset group. Persists to profile on pick (no Settings Save).
+ *
+ * Uses Motion `layoutId` (not liquid-gooey Move): the Immersed 3+2 wrap is a
+ * 2D grid inside a transformed dropdown, where measured Liquid trails mis-align.
  */
 export function AccountMenuThemePicker({ className }: { className?: string }) {
 	const { hasFeature } = usePatronEntitlements();

@@ -1,13 +1,18 @@
 "use client";
 
+import { cn } from "@still/ui/lib/utils";
 import { useCallback } from "react";
 
 import { CommunityInfiniteFooter } from "@/components/home/community-infinite-footer";
-import { ReviewCard } from "@/components/review/review-card";
+import { CommunityReviewFeedRow } from "@/components/home/community-review-feed-row";
 import {
 	type HomeCommunityReviewRow,
 	mapCommunityReviewRow,
 } from "@/lib/home-community-core-fetch";
+import {
+	HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+	HOME_COMMUNITY_FEED_LIST_CLASSNAME,
+} from "@/lib/home-community-lobby-layout";
 import type { HomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
@@ -28,14 +33,15 @@ export function CommunityReviewsInfinite({
 	period: HomeLeaderboardPeriod;
 	reviewSort?: HomeCommunityReviewSort;
 }) {
-	const mostLikedOnly = reviewSort === "most-liked";
+	const topRated = reviewSort === "most-liked";
+	const order = topRated ? "engagement" : "chronological";
 
 	const loadMore = useCallback(
 		async (page: number, signal: AbortSignal) => {
 			const raw = await fetchCommunityReviewsRecent(
 				period,
 				readViewerTimeZone(),
-				{ page, signal },
+				{ page, order, signal },
 			);
 			if (raw == null) return { error: true as const };
 			const items = raw
@@ -46,7 +52,7 @@ export function CommunityReviewsInfinite({
 				nextCursor: raw.length >= COMMUNITY_REVIEWS_LIMIT ? page + 1 : null,
 			};
 		},
-		[period],
+		[order, period],
 	);
 
 	const { items, footerState, sentinelRef, retry } = useInfinitePager<
@@ -54,38 +60,35 @@ export function CommunityReviewsInfinite({
 		number
 	>({
 		seeds,
-		initialCursor: mostLikedOnly ? null : initialCursor,
+		initialCursor,
 		loadMore,
 		getKey: (r) => r.id,
 	});
 
-	if (mostLikedOnly) {
-		return (
-			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
-				{items.map((review) => (
-					<li key={review.id}>
-						<ReviewCard review={review} />
-					</li>
-				))}
-			</ul>
-		);
-	}
+	const listClassName = cn(
+		HOME_COMMUNITY_FEED_COLUMN_CLASSNAME,
+		HOME_COMMUNITY_FEED_LIST_CLASSNAME,
+	);
 
 	return (
 		<>
-			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-3">
+			<ul className={listClassName}>
 				{items.map((review) => (
 					<li key={review.id}>
-						<ReviewCard review={review} />
+						<CommunityReviewFeedRow review={review} />
 					</li>
 				))}
 			</ul>
-			<CommunityInfiniteFooter
-				footerState={footerState}
-				sentinelRef={sentinelRef}
-				retry={retry}
-				loadingLabel="Loading more reviews"
-			/>
+			<div className={HOME_COMMUNITY_FEED_COLUMN_CLASSNAME}>
+				<CommunityInfiniteFooter
+					footerState={footerState}
+					sentinelRef={sentinelRef}
+					retry={retry}
+					loadingLabel={
+						topRated ? "Loading more top rated reviews" : "Loading more reviews"
+					}
+				/>
+			</div>
 		</>
 	);
 }

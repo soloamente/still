@@ -41,6 +41,7 @@ function ListingPresenceDrawerRow({
 							patron.avatarIsAnimated,
 						)}
 						planTier={patron.planTier}
+						staffRole={patron.staffRole}
 					/>
 				</span>
 				<div className="min-w-0">

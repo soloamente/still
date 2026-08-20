@@ -1,0 +1,66 @@
+# Sense — Discord profile activity (self-hosted Lanyard + Redis)
+#
+# Spec:  docs/superpowers/specs/2026-07-28-discord-profile-activity-design.md
+# Plan:  docs/superpowers/plans/2026-07-28-discord-profile-activity.md
+#
+# ── Task 0 checklist (manual — blocking E2E) ─────────────────────────────────
+# 1. Discord Developer Portal → New Application + Bot.
+# 2. Bot → Privileged Gateway Intents: enable PRESENCE INTENT + SERVER MEMBERS INTENT.
+# 3. Create **Sense Presence** guild (locked channels; no public invite marketed).
+# 4. Add the bot to that guild with permissions to manage members (guilds.join flow).
+# 5. OAuth2 → add redirect URL from Better Auth (local: http://localhost:3001/api/auth/callback/discord).
+# 6. Copy Client ID, Client Secret, Bot Token, Presence guild snowflake into server secrets.
+# 7. Start this stack; confirm Lanyard returns presence for a test patron in the guild:
+#      curl -s "http://127.0.0.1:4001/v1/users/<discord_user_snowflake>" | jq .
+#    (Patron must be in Sense Presence guild; test with Spotify active on Discord.)
+#
+# ── Quick start (local) ───────────────────────────────────────────────────────
+#   export DISCORD_BOT_TOKEN="<same token as DISCORD_BOT_TOKEN in apps/server>"
+#   docker compose -f docker/discord-lanyard.compose.yml up -d
+#   docker compose -f docker/discord-lanyard.compose.yml logs -f lanyard
+#
+# ── apps/server env (packages/env — all optional until feature enabled) ───────
+#   DISCORD_ACTIVITY_ENABLED=true
+#   DISCORD_CLIENT_ID=<oauth client id>
+#   DISCORD_CLIENT_SECRET=<oauth client secret>
+#   DISCORD_BOT_TOKEN=<bot token — same as BOT_TOKEN below>
+#   DISCORD_PRESENCE_GUILD_ID=<sense presence guild snowflake>
+#   LANYARD_INTERNAL_URL=http://127.0.0.1:4001
+#
+# Web app needs no Discord/Lanyard env vars — reads are proxied through Elysia.
+# Feature is off unless DISCORD_ACTIVITY_ENABLED=true AND every var above is set
+# (see apps/server/src/lib/discord-activity-config.ts).
+#
+# ── Staging / production notes ────────────────────────────────────────────────
+# - Do NOT publish port 4001 to the public internet. Firewall Lanyard to the API VPC only.
+# - When API runs in the same Compose network, set LANYARD_INTERNAL_URL=http://lanyard:4001
+#   and remove the host ports mapping on the lanyard service.
+# - Lanyard serves plain HTTP; terminate TLS at your edge/reverse proxy if exposed internally.
+#
+# Stop: docker compose -f docker/discord-lanyard.compose.yml down
+# Data: Redis volume `lanyard-redis-data` persists gateway state across restarts.
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    container_name: sense-lanyard-redis
+    volumes:
+      - lanyard-redis-data:/data
+
+  lanyard:
+    image: phineas/lanyard:latest
+    restart: unless-stopped
+    container_name: sense-lanyard
+    depends_on:
+      - redis
+    ports:
+      # Loopback bind for local dev — host `bun dev` API reaches Lanyard here.
+      - "127.0.0.1:4001:4001"
+    environment:
+      # Must match DISCORD_BOT_TOKEN on apps/server (Sense bot — Gateway + guild join/kick).
+      BOT_TOKEN: ${DISCORD_BOT_TOKEN:?Set DISCORD_BOT_TOKEN before docker compose up}
+      REDIS_HOST: redis
+
+volumes:
+  lanyard-redis-data:

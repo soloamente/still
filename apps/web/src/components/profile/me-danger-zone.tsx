@@ -21,10 +21,11 @@ export function MeDangerZone() {
 
 	return (
 		<MeSettingsSection
+			className="flex-none"
 			title="Danger zone"
 			description="Destructive actions — both ask you to confirm, and account deletion is verified by email."
 		>
-			<MeSettingsPanel className="space-y-6">
+			<MeSettingsPanel className="flex-none space-y-6">
 				<div className="flex flex-wrap items-center justify-between gap-3">
 					<div className="max-w-prose">
 						<p className="font-medium text-foreground text-sm">

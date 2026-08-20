@@ -83,6 +83,7 @@ describe("serializePatronProfileForClient", () => {
 			avatarIsAnimated: false,
 			diaryMetalTier: "chromatic",
 			planTier: "still",
+			staffRole: null,
 		});
 	});
 

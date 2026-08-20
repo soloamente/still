@@ -74,6 +74,7 @@ import {
 } from "@/lib/still-api-fetch";
 import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
@@ -862,6 +863,7 @@ export function QuickLogRoot() {
 															fill
 															sizes="44px"
 															className="object-cover"
+															unoptimized={isTmdbCdnUrl(m.poster_url)}
 														/>
 													) : null}
 												</div>

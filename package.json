@@ -40,6 +40,7 @@
 		"@still/env": "workspace:*",
 		"agentation-mcp": "^1.2.0",
 		"dotenv": "catalog:",
+		"img-fx": "^0.5.0",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
@@ -55,6 +56,7 @@
 		"@types/react": "19.2.10"
 	},
 	"patchedDependencies": {
+		"metal-fx@1.0.4": "patches/metal-fx@1.0.4.patch",
 		"next-themes@0.4.6": "patches/next-themes@0.4.6.patch"
 	}
 }

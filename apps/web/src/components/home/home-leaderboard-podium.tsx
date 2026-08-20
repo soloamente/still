@@ -19,6 +19,7 @@ import type {
 	LeaderboardEntry,
 	LeaderboardKind,
 } from "@/lib/home-leaderboard-types";
+import { leaderboardKindCountLabel } from "@/lib/leaderboard-kind-labels";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 function PodiumTile({
@@ -70,6 +71,7 @@ function PodiumTile({
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 			</Link>
 			{/* Identity block — display name + handle stacked tight under the portrait. */}
@@ -98,7 +100,7 @@ function PodiumTile({
 				count={entry.count}
 				ctaLabel={leaderboardKindLedgerCta(kind)}
 				title="View watch log for this period"
-				ariaLabel={`${entry.count} ${kind === "tv" ? "logs" : "films"} — view watch list`}
+				ariaLabel={`${entry.count} ${leaderboardKindCountLabel(kind, entry.count)} — view watch list`}
 				onClick={() =>
 					openPatronWatchLedger({
 						userId: entry.userId,
@@ -107,6 +109,7 @@ function PodiumTile({
 						image: entry.image,
 						avatarIsAnimated: entry.avatarIsAnimated,
 						planTier: entry.planTier,
+						staffRole: entry.staffRole,
 						kind,
 						period,
 					})

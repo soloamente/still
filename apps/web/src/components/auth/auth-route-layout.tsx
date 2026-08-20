@@ -102,6 +102,7 @@ export function AuthRouteLayout({ children }: { children: ReactNode }) {
 		<AuthPageShell
 			description={route.description}
 			footer={route.footer}
+			routeKey={pathname}
 			title={route.title}
 		>
 			{children}

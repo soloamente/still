@@ -1,7 +1,8 @@
 "use client";
 
+import IconPeople from "@still/ui/icons/people";
+import IconTicket from "@still/ui/icons/ticket";
 import { cn } from "@still/ui/lib/utils";
-import { Gift, Tag } from "lucide-react";
 import { type ReactNode, useCallback, useEffect, useId, useState } from "react";
 import { toast } from "sonner";
 
@@ -17,23 +18,26 @@ type PricingOtherPlansSectionProps = {
 	isSignedIn: boolean;
 };
 
-/** Mobbin OtherPlansSection parity — numeric gaps are px literals (40 / 24 / 8). */
-const MOBBIN_OTHER_PLANS_WRAPPER_CLASS =
-	"mx-auto mt-16 max-w-3xl pb-10 pt-10 min-[1280px]:mt-20 min-[1280px]:pb-20";
-const MOBBIN_OTHER_PLANS_SECTION_CLASS =
-	"flex flex-col gap-y-10 min-[720px]:flex-row min-[720px]:items-start min-[720px]:gap-x-6 min-[720px]:gap-y-0";
-const MOBBIN_OTHER_PLANS_ARTICLE_CLASS =
-	"flex min-w-0 flex-1 flex-col items-center gap-y-2";
-const MOBBIN_OTHER_PLANS_TITLE_CLASS =
-	"text-center font-semibold text-base text-foreground";
-const MOBBIN_OTHER_PLANS_BODY_CLASS =
-	"text-center text-balance text-muted-foreground text-sm leading-relaxed";
-const MOBBIN_OTHER_PLANS_LINK_CLASS =
-	"text-muted-foreground text-sm underline underline-offset-4 [@media(hover:hover)]:hover:text-foreground";
+/** Raised card chrome — matches Compare / Questions (outer 24, pad 8, inner 16). */
+const OTHER_PLANS_SHELL_CLASS = "mx-auto mt-16 max-w-3xl min-[1280px]:mt-20";
+const OTHER_PLANS_CARD_CLASS = "rounded-mobbin-3xl bg-card p-2 sm:p-3";
+const OTHER_PLANS_GRID_CLASS = "grid gap-2 min-[720px]:grid-cols-2";
+const OTHER_PLANS_TILE_CLASS =
+	"flex min-w-0 flex-col items-center gap-2 rounded-2xl bg-background px-5 py-8";
+const OTHER_PLANS_TITLE_CLASS =
+	"text-center text-balance font-semibold text-base text-foreground";
+const OTHER_PLANS_BODY_CLASS =
+	"text-center text-pretty text-muted-foreground text-sm leading-relaxed";
+const OTHER_PLANS_PILL_CLASS = cn(
+	"inline-flex min-h-10 select-none items-center justify-center rounded-full bg-card px-4",
+	"font-medium text-foreground text-sm",
+	"[@media(hover:hover)]:hover:bg-card/80",
+	"disabled:cursor-not-allowed disabled:opacity-50",
+);
 
-const MOBBIN_FRIEND_INVITE_TITLE = "Have a friend's invite code?";
+const FRIEND_INVITE_TITLE = "Have a friend's invite code?";
 
-function MobbinOtherPlanIcon({ children }: { children: ReactNode }) {
+function OtherPlanIcon({ children }: { children: ReactNode }) {
 	return (
 		<span className="text-foreground" aria-hidden>
 			{children}
@@ -41,7 +45,55 @@ function MobbinOtherPlanIcon({ children }: { children: ReactNode }) {
 	);
 }
 
-/** Mobbin-style secondary promos below tier cards — friend invite + Invite & earn. */
+function PricingReferralApplyForm({
+	inputId,
+	referralCode,
+	applyLoading,
+	onCodeChange,
+	onSubmit,
+}: {
+	inputId: string;
+	referralCode: string;
+	applyLoading: boolean;
+	onCodeChange: (value: string) => void;
+	onSubmit: () => void;
+}) {
+	return (
+		<form
+			className="flex w-full max-w-xs flex-col items-center gap-y-2 pt-1"
+			onSubmit={(event) => {
+				event.preventDefault();
+				onSubmit();
+			}}
+		>
+			<label htmlFor={inputId} className="sr-only">
+				Friend invite code
+			</label>
+			<input
+				id={inputId}
+				type="text"
+				autoComplete="off"
+				spellCheck={false}
+				placeholder="Invite code"
+				value={referralCode}
+				onChange={(event) => onCodeChange(event.target.value)}
+				className={cn(
+					"h-10 w-full rounded-2xl bg-card px-3 text-center text-base text-foreground outline-none sm:text-sm",
+					"placeholder:text-muted-foreground",
+				)}
+			/>
+			<button
+				type="submit"
+				disabled={applyLoading}
+				className={OTHER_PLANS_PILL_CLASS}
+			>
+				{applyLoading ? "Applying…" : "Apply code"}
+			</button>
+		</form>
+	);
+}
+
+/** Secondary promos below tier cards — friend invite + Invite & earn. */
 export function PricingOtherPlansSection({
 	isSignedIn,
 }: PricingOtherPlansSectionProps) {
@@ -109,161 +161,120 @@ export function PricingOtherPlansSection({
 
 	if (!isSignedIn) return null;
 
+	const showApplyForm =
+		applyFormOpen &&
+		(status?.canApplyReferralCode ||
+			(!statusLoading &&
+				!status?.referralDiscountEligible &&
+				!status?.referralDiscountRedeemed));
+
 	return (
-		<div className={MOBBIN_OTHER_PLANS_WRAPPER_CLASS}>
+		<div className={OTHER_PLANS_SHELL_CLASS}>
 			<section
 				aria-label="More ways to join Sense"
-				className={MOBBIN_OTHER_PLANS_SECTION_CLASS}
+				className={OTHER_PLANS_CARD_CLASS}
 			>
-				<article className={MOBBIN_OTHER_PLANS_ARTICLE_CLASS}>
-					<MobbinOtherPlanIcon>
-						<Tag className="size-6" strokeWidth={1.6} />
-					</MobbinOtherPlanIcon>
-					<h3 className={MOBBIN_OTHER_PLANS_TITLE_CLASS}>
-						{MOBBIN_FRIEND_INVITE_TITLE}
-					</h3>
+				<div className={OTHER_PLANS_GRID_CLASS}>
+					<article className={OTHER_PLANS_TILE_CLASS}>
+						<OtherPlanIcon>
+							<IconTicket size="24px" aria-hidden />
+						</OtherPlanIcon>
+						<h3 className={OTHER_PLANS_TITLE_CLASS}>{FRIEND_INVITE_TITLE}</h3>
 
-					{statusLoading ? (
-						<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
-							Apply it for <span className="whitespace-nowrap">10% off</span>{" "}
-							your first Attuned or Immersed plan.
-						</p>
-					) : status?.canApplyReferralCode ? (
-						<>
-							<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
+						{statusLoading ? (
+							<p className={OTHER_PLANS_BODY_CLASS}>
 								Apply it for <span className="whitespace-nowrap">10% off</span>{" "}
-								your first Attuned or Immersed plan — including if you joined
-								before Invite &amp; earn.
+								your first Attuned or Immersed plan.
 							</p>
-							{applyFormOpen ? (
-								<form
-									className="flex w-full max-w-xs flex-col items-center gap-y-2 pt-1"
-									onSubmit={(event) => {
-										event.preventDefault();
-										void handleApplyReferral();
-									}}
-								>
-									<label htmlFor={inputId} className="sr-only">
-										Friend invite code
-									</label>
-									<input
-										id={inputId}
-										type="text"
-										autoComplete="off"
-										spellCheck={false}
-										placeholder="Invite code"
-										value={referralCode}
-										onChange={(event) => setReferralCode(event.target.value)}
-										className={cn(
-											"h-10 w-full rounded-xl bg-card px-3 text-center text-foreground text-sm outline-none",
-											"placeholder:text-muted-foreground",
-										)}
+						) : status?.canApplyReferralCode ? (
+							<>
+								<p className={OTHER_PLANS_BODY_CLASS}>
+									Apply it for{" "}
+									<span className="whitespace-nowrap">10% off</span> your first
+									Attuned or Immersed plan — including if you joined before
+									Invite &amp; earn.
+								</p>
+								{showApplyForm ? (
+									<PricingReferralApplyForm
+										inputId={inputId}
+										referralCode={referralCode}
+										applyLoading={applyLoading}
+										onCodeChange={setReferralCode}
+										onSubmit={() => {
+											void handleApplyReferral();
+										}}
 									/>
+								) : (
 									<button
-										type="submit"
-										disabled={applyLoading || !referralCode.trim()}
-										className={cn(
-											MOBBIN_OTHER_PLANS_LINK_CLASS,
-											"disabled:cursor-not-allowed disabled:opacity-50",
-										)}
+										type="button"
+										onClick={() => setApplyFormOpen(true)}
+										className={OTHER_PLANS_PILL_CLASS}
 									>
-										{applyLoading ? "Applying…" : "Apply code"}
+										Apply invite code
 									</button>
-								</form>
-							) : (
-								<button
-									type="button"
-									onClick={() => setApplyFormOpen(true)}
-									className={MOBBIN_OTHER_PLANS_LINK_CLASS}
-								>
-									Apply invite code
-								</button>
-							)}
-						</>
-					) : status?.referralDiscountEligible ? (
-						<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
-							Your friend invite is linked.{" "}
-							<span className="whitespace-nowrap">10% off</span> applies at
-							checkout on Attuned or Immersed.
-						</p>
-					) : status?.referralDiscountRedeemed ? (
-						<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
-							You&apos;ve already used your friend invite discount on a
-							subscription.
-						</p>
-					) : (
-						<>
-							<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
-								Apply it for <span className="whitespace-nowrap">10% off</span>{" "}
-								your first Attuned or Immersed plan — including if you joined
-								before Invite &amp; earn.
+								)}
+							</>
+						) : status?.referralDiscountEligible ? (
+							<p className={OTHER_PLANS_BODY_CLASS}>
+								Your friend invite is linked.{" "}
+								<span className="whitespace-nowrap">10% off</span> applies at
+								checkout on Attuned or Immersed.
 							</p>
-							{applyFormOpen ? (
-								<form
-									className="flex w-full max-w-xs flex-col items-center gap-y-2 pt-1"
-									onSubmit={(event) => {
-										event.preventDefault();
-										void handleApplyReferral();
-									}}
-								>
-									<label htmlFor={inputId} className="sr-only">
-										Friend invite code
-									</label>
-									<input
-										id={inputId}
-										type="text"
-										autoComplete="off"
-										spellCheck={false}
-										placeholder="Invite code"
-										value={referralCode}
-										onChange={(event) => setReferralCode(event.target.value)}
-										className={cn(
-											"h-10 w-full rounded-xl bg-card px-3 text-center text-foreground text-sm outline-none",
-											"placeholder:text-muted-foreground",
-										)}
+						) : status?.referralDiscountRedeemed ? (
+							<p className={OTHER_PLANS_BODY_CLASS}>
+								You&apos;ve already used your friend invite discount on a
+								subscription.
+							</p>
+						) : (
+							<>
+								<p className={OTHER_PLANS_BODY_CLASS}>
+									Apply it for{" "}
+									<span className="whitespace-nowrap">10% off</span> your first
+									Attuned or Immersed plan — including if you joined before
+									Invite &amp; earn.
+								</p>
+								{showApplyForm ? (
+									<PricingReferralApplyForm
+										inputId={inputId}
+										referralCode={referralCode}
+										applyLoading={applyLoading}
+										onCodeChange={setReferralCode}
+										onSubmit={() => {
+											void handleApplyReferral();
+										}}
 									/>
+								) : (
 									<button
-										type="submit"
-										disabled={applyLoading || !referralCode.trim()}
-										className={cn(
-											MOBBIN_OTHER_PLANS_LINK_CLASS,
-											"disabled:cursor-not-allowed disabled:opacity-50",
-										)}
+										type="button"
+										onClick={() => setApplyFormOpen(true)}
+										className={OTHER_PLANS_PILL_CLASS}
 									>
-										{applyLoading ? "Applying…" : "Apply code"}
+										Apply invite code
 									</button>
-								</form>
-							) : (
-								<button
-									type="button"
-									onClick={() => setApplyFormOpen(true)}
-									className={MOBBIN_OTHER_PLANS_LINK_CLASS}
-								>
-									Apply invite code
-								</button>
-							)}
-						</>
-					)}
-				</article>
+								)}
+							</>
+						)}
+					</article>
 
-				<article className={MOBBIN_OTHER_PLANS_ARTICLE_CLASS}>
-					<MobbinOtherPlanIcon>
-						<Gift className="size-6" strokeWidth={1.6} />
-					</MobbinOtherPlanIcon>
-					<h3 className={MOBBIN_OTHER_PLANS_TITLE_CLASS}>Invite &amp; earn</h3>
-					<p className={MOBBIN_OTHER_PLANS_BODY_CLASS}>
-						Share Sense with friends — they get{" "}
-						<span className="whitespace-nowrap">10% off</span> their first paid
-						plan and you unlock milestone rewards as they join.
-					</p>
-					<button
-						type="button"
-						onClick={openInviteEarnDialog}
-						className={MOBBIN_OTHER_PLANS_LINK_CLASS}
-					>
-						Invite friends
-					</button>
-				</article>
+					<article className={OTHER_PLANS_TILE_CLASS}>
+						<OtherPlanIcon>
+							<IconPeople size="24px" aria-hidden />
+						</OtherPlanIcon>
+						<h3 className={OTHER_PLANS_TITLE_CLASS}>Invite &amp; earn</h3>
+						<p className={OTHER_PLANS_BODY_CLASS}>
+							Share Sense with friends — they get{" "}
+							<span className="whitespace-nowrap">10% off</span> their first
+							paid plan and you unlock milestone rewards as they join.
+						</p>
+						<button
+							type="button"
+							onClick={openInviteEarnDialog}
+							className={OTHER_PLANS_PILL_CLASS}
+						>
+							Invite friends
+						</button>
+					</article>
+				</div>
 			</section>
 		</div>
 	);

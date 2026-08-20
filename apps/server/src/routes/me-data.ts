@@ -1,12 +1,16 @@
+import { db } from "@still/db";
+import { user } from "@still/db/schema/auth";
+import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { strToU8, zipSync } from "fflate";
 
-import { context } from "../context";
+import { freshContext } from "../context";
 import { clearUserLibrary } from "../lib/clear-user-library";
 import { fetchMySavedQuotes } from "../lib/listing-quote-saves-query";
 import { assembleExportFiles, fetchExportInput } from "../lib/me-export-data";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import { canAccessYearInReviewYear } from "../lib/plan-feature-access";
+import { fetchMyQuoteSubmissions } from "../lib/quote-submission";
 import { hit } from "../lib/rate-limit";
 import {
 	fetchYearInReviewForUser,
@@ -48,85 +52,139 @@ export function buildMeDataRoute(options: MeDataRouteOptions = {}): Elysia {
 		? base.derive({ as: "global" }, () => ({
 				user: deriveUser(),
 			}))
-		: base.use(context)) as unknown as Elysia;
+		: base.use(freshContext)) as unknown as Elysia;
 
-	return withAuth
-		.get("/export", async (ctx) => {
-			const { user, status } = ctx as typeof ctx & { user: MeDataRequestUser };
-			if (!user) return status(401, "Sign in");
-			if (!checkLimit(`me:export:${user.id}`, limits).ok) {
-				return status(429, "Export limit reached — try again in an hour");
-			}
-
-			const input = await fetchExportInput(user.id);
-			const files = assembleExportFiles(input);
-			const zipped = zipSync(
-				Object.fromEntries(files.map((f) => [f.path, strToU8(f.contents)])),
-			);
-
-			const date = new Date().toISOString().slice(0, 10);
-			const handle = input.profile.handle;
-			return new Response(zipped, {
-				headers: {
-					"content-type": "application/zip",
-					"content-disposition": `attachment; filename="sense-export-${handle}-${date}.zip"`,
-				},
-			});
-		})
-		.delete("/library", async (ctx) => {
-			const { user, status } = ctx as typeof ctx & { user: MeDataRequestUser };
-			if (!user) return status(401, "Sign in");
-			const counts = await clearUserLibrary(user.id);
-			return { ok: true as const, counts };
-		})
-		.get("/year/:year", async (ctx) => {
-			const { user, status, params } = ctx as typeof ctx & {
-				user: MeDataRequestUser;
-				params: { year: string };
-			};
-			if (!user) return status(401, "Sign in");
-			const year = parseYearInReviewYear(params.year);
-			if (year == null) return status(400, "Invalid year");
-			const entitlements = await loadPatronEntitlements(user.id);
-			if (!canAccessYearInReviewYear(year, entitlements)) {
-				return status(403, {
-					error: "Full stats for prior years require Attuned",
-					code: "PLAN_FEATURE_REQUIRED",
-					featureKey: "full_stats",
-				});
-			}
-			return fetchYearInReviewForUser(user.id, year);
-		})
-		.get(
-			"/quotes/saved",
-			async (ctx) => {
-				const { user, status, query } = ctx as typeof ctx & {
+	return (
+		withAuth
+			.get("/export", async (ctx) => {
+				const { user, status } = ctx as typeof ctx & {
 					user: MeDataRequestUser;
-					query: {
-						page?: string;
-						limit?: string;
-						kind?: string;
-						visibility?: string;
-					};
 				};
 				if (!user) return status(401, "Sign in");
-				return fetchMySavedQuotes({
-					userId: user.id,
-					page: query.page,
-					limit: query.limit,
-					kind: query.kind,
-					visibility: query.visibility,
+				if (!checkLimit(`me:export:${user.id}`, limits).ok) {
+					return status(429, "Export limit reached — try again in an hour");
+				}
+
+				const input = await fetchExportInput(user.id);
+				const files = assembleExportFiles(input);
+				const zipped = zipSync(
+					Object.fromEntries(files.map((f) => [f.path, strToU8(f.contents)])),
+				);
+
+				const date = new Date().toISOString().slice(0, 10);
+				const handle = input.profile.handle;
+				return new Response(zipped, {
+					headers: {
+						"content-type": "application/zip",
+						"content-disposition": `attachment; filename="sense-export-${handle}-${date}.zip"`,
+					},
 				});
-			},
-			{
-				query: t.Object({
-					page: t.Optional(t.String()),
-					limit: t.Optional(t.String()),
-					kind: t.Optional(t.String()),
-					visibility: t.Optional(t.String()),
-				}),
-			},
-		) as unknown as Elysia;
+			})
+			.delete("/library", async (ctx) => {
+				const { user, status } = ctx as typeof ctx & {
+					user: MeDataRequestUser;
+				};
+				if (!user) return status(401, "Sign in");
+				const counts = await clearUserLibrary(user.id);
+				return { ok: true as const, counts };
+			})
+			.get("/year/:year", async (ctx) => {
+				const { user, status, params } = ctx as typeof ctx & {
+					user: MeDataRequestUser;
+					params: { year: string };
+				};
+				if (!user) return status(401, "Sign in");
+				const year = parseYearInReviewYear(params.year);
+				if (year == null) return status(400, "Invalid year");
+				const entitlements = await loadPatronEntitlements(user.id);
+				if (!canAccessYearInReviewYear(year, entitlements)) {
+					return status(403, {
+						error: "Full stats for prior years require Attuned",
+						code: "PLAN_FEATURE_REQUIRED",
+						featureKey: "full_stats",
+					});
+				}
+				return fetchYearInReviewForUser(user.id, year);
+			})
+			.get(
+				"/quotes/saved",
+				async (ctx) => {
+					const { user, status, query } = ctx as typeof ctx & {
+						user: MeDataRequestUser;
+						query: {
+							page?: string;
+							limit?: string;
+							kind?: string;
+							visibility?: string;
+						};
+					};
+					if (!user) return status(401, "Sign in");
+					return fetchMySavedQuotes({
+						userId: user.id,
+						page: query.page,
+						limit: query.limit,
+						kind: query.kind,
+						visibility: query.visibility,
+					});
+				},
+				{
+					query: t.Object({
+						page: t.Optional(t.String()),
+						limit: t.Optional(t.String()),
+						kind: t.Optional(t.String()),
+						visibility: t.Optional(t.String()),
+					}),
+				},
+			)
+			.get(
+				"/quotes/submissions",
+				async (ctx) => {
+					const { user, status, query } = ctx as typeof ctx & {
+						user: MeDataRequestUser;
+						query: {
+							page?: string;
+							limit?: string;
+							kind?: string;
+							status?: string;
+						};
+					};
+					if (!user) return status(401, "Sign in");
+					return fetchMyQuoteSubmissions({
+						userId: user.id,
+						page: query.page,
+						limit: query.limit,
+						kind: query.kind,
+						status: query.status,
+					});
+				},
+				{
+					query: t.Object({
+						page: t.Optional(t.String()),
+						limit: t.Optional(t.String()),
+						kind: t.Optional(t.String()),
+						status: t.Optional(t.String()),
+					}),
+				},
+			)
+			/**
+			 * Onboarding “I've verified” — read `user.email_verified` from Postgres
+			 * (fresh session). Cookie-cache get-session can stay stale for minutes.
+			 */
+			.get("/email-verified", async (ctx) => {
+				const { user: sessionUser, status } = ctx as typeof ctx & {
+					user: MeDataRequestUser;
+				};
+				if (!sessionUser) return status(401, "Sign in");
+
+				const [row] = await db
+					.select({ emailVerified: user.emailVerified })
+					.from(user)
+					.where(eq(user.id, sessionUser.id))
+					.limit(1);
+
+				return { emailVerified: row?.emailVerified === true };
+			}) as unknown as Elysia
+	);
 }
 
 export const meDataRoute = buildMeDataRoute();

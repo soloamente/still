@@ -4,6 +4,7 @@ import type { PlanFeatureKey, PlanTierId } from "@still/plans";
 import { cache } from "react";
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import { serverApi } from "@/lib/server-api";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type MeProfile = {
 	handle: string;
@@ -34,6 +35,7 @@ export type MeProfile = {
 	favoriteMovieIds?: readonly unknown[] | null;
 	preferences: Record<string, unknown> | null;
 	planTier?: PlanTierId;
+	staffRole?: StaffRole | null;
 	diaryMetalTier?: DiaryMetalTier | null;
 } | null;
 

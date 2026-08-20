@@ -15,6 +15,7 @@ import { TvDetailCommunityFallback } from "@/components/tv/tv-detail-community-f
 import { TvDetailPrimaryActions } from "@/components/tv/tv-detail-primary-actions";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { requireListingDetailApiData } from "@/lib/eden-api-error";
+import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchTvDetailServer } from "@/lib/fetch-tv-detail-server";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
@@ -43,6 +44,7 @@ import {
 	ogImageMetadataFields,
 	ogTitleTvPath,
 } from "@/lib/og/og-image-metadata";
+import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
 import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 
 export const dynamic = "force-dynamic";
@@ -199,11 +201,23 @@ export default async function TvShowPage({
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
-	const res = await fetchTvDetailServer(id);
+	const [res, profileResult] = await Promise.all([
+		fetchTvDetailServer(id),
+		fetchMeProfile(),
+	]);
 	const data = requireListingDetailApiData({
 		data: res as (TvDetail & { adultBlocked?: boolean }) | null,
 		error: null,
 	});
+	const mePrefs =
+		profileResult === PROFILE_FETCH_FAILED
+			? null
+			: (profileResult?.preferences ?? null);
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);
+	const catalogWatchRegion =
+		typeof catalogWatchPref === "string" && catalogWatchPref !== "ALL"
+			? catalogWatchPref
+			: null;
 	if (
 		(data as { code?: string }).code === "TMDB_UNCONFIGURED" &&
 		typeof (data as { hint?: string }).hint === "string"
@@ -378,6 +392,7 @@ export default async function TvShowPage({
 					sectionNavItems={sectionNavItems}
 					hero={hero}
 					watchProviders={watchProviders}
+					catalogWatchRegion={catalogWatchRegion}
 					about={
 						<TvDetailAboutPanel
 							tvId={data.tmdbId}
@@ -403,6 +418,9 @@ export default async function TvShowPage({
 								tvId={id}
 								tvTitle={data.title}
 								tvPosterUrl={data.poster_url}
+								communityAverage={communityAverage}
+								communityRatingsCount={communityRatingsCount}
+								engagementCounts={engagementCounts}
 							/>
 						</Suspense>
 					}

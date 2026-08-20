@@ -1,8 +1,6 @@
 "use client";
 
-import { cn } from "@still/ui/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
-
+import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import type { MembersLeaderboardSort } from "@/lib/members-leaderboard-types";
 import {
 	DEFAULT_PATRON_MEMBERS_LEDGER_ORDER,
@@ -14,19 +12,16 @@ const ORDER_CHIPS: readonly {
 	id: PatronMembersLedgerOrder;
 	labelKey: "latest" | "earliest";
 	titleKey: "latestTitle" | "earliestTitle";
-	ariaLabelKey: "latestAriaLabel" | "earliestAriaLabel";
 }[] = [
 	{
 		id: "latest",
 		labelKey: "latest",
 		titleKey: "latestTitle",
-		ariaLabelKey: "latestAriaLabel",
 	},
 	{
 		id: "earliest",
 		labelKey: "earliest",
 		titleKey: "earliestTitle",
-		ariaLabelKey: "earliestAriaLabel",
 	},
 ] as const;
 
@@ -43,25 +38,7 @@ export function PatronMembersLedgerOrderChips({
 	order?: PatronMembersLedgerOrder;
 	onOrderChange: (order: PatronMembersLedgerOrder) => void;
 }) {
-	const reduceMotion = useReducedMotion();
 	const labels = patronMembersLedgerOrderLabels(sort);
-
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
-
-	const chipButton = (active: boolean) =>
-		cn(
-			"relative inline-flex min-h-10 items-center justify-center rounded-full px-3 py-2 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none sm:px-3.5",
-			active
-				? "text-foreground"
-				: "text-muted-foreground [@media(hover:hover)]:hover:text-foreground/90",
-		);
-
 	const sortToolbarDescId = "patron-members-ledger-order-desc";
 
 	return (
@@ -69,33 +46,19 @@ export function PatronMembersLedgerOrderChips({
 			<p id={sortToolbarDescId} className="sr-only">
 				{labels.toolbarDescription}
 			</p>
-			<div
-				className="mx-auto flex max-w-full flex-wrap justify-center gap-1 rounded-full bg-background p-1"
-				role="toolbar"
+			<SegmentedPillToolbar
+				layoutId="patron-members-ledger-order-pill"
 				aria-label="Contribution log order"
-				aria-describedby={sortToolbarDescId}
-			>
-				{ORDER_CHIPS.map(({ id, labelKey, titleKey, ariaLabelKey }) => (
-					<button
-						key={id}
-						type="button"
-						aria-current={order === id ? "page" : undefined}
-						className={chipButton(order === id)}
-						title={labels[titleKey]}
-						aria-label={labels[ariaLabelKey]}
-						onClick={() => onOrderChange(id)}
-					>
-						{order === id ? (
-							<motion.span
-								layoutId="patron-members-ledger-order-pill"
-								className="absolute inset-0 z-0 rounded-full bg-card"
-								transition={pillTransition}
-							/>
-						) : null}
-						<span className="relative z-10">{labels[labelKey]}</span>
-					</button>
-				))}
-			</div>
+				value={order}
+				onChange={onOrderChange}
+				options={ORDER_CHIPS.map(({ id, labelKey, titleKey }) => ({
+					id,
+					label: labels[labelKey],
+					title: labels[titleKey],
+				}))}
+				compact
+				className="mx-auto max-w-full flex-wrap justify-center"
+			/>
 		</div>
 	);
 }

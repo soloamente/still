@@ -35,8 +35,12 @@ export type ServerSession = {
  * `@still/env/server` (DATABASE_URL, secrets, …), which Next.js often does not
  * load for `apps/web`. The Elysia server already runs Better Auth; we forward
  * cookies to its `/api/auth/get-session` endpoint instead.
+ *
+ * Pass `{ fresh: true }` to bypass the signed cookie cache (email verify, etc.).
  */
-export async function authServer(): Promise<ServerSession | null> {
+export async function authServer(options?: {
+	fresh?: boolean;
+}): Promise<ServerSession | null> {
 	try {
 		const store = await cookies();
 		const cookieHeader = store
@@ -55,6 +59,11 @@ export async function authServer(): Promise<ServerSession | null> {
 
 		// Same-origin as the browser so session cookies from the `/api` rewrite apply.
 		const url = new URL("/api/auth/get-session", webAppOriginFromHeaders(h));
+		// Bypass Better Auth's signed cookie cache when callers need a fresh
+		// Postgres read (e.g. onboarding after email verification).
+		if (options?.fresh) {
+			url.searchParams.set("disableCookieCache", "true");
+		}
 		const res = await fetch(url, {
 			headers: forward,
 			cache: "no-store",

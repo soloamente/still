@@ -99,7 +99,7 @@ export function QuotePinToProfileButton({
 					variant="secondary"
 					size="sm"
 					className={cn(
-						"h-8 rounded-full px-3 text-xs",
+						"h-10 rounded-full px-3 text-xs",
 						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 					)}
 					disabled={busy || loadingPins}

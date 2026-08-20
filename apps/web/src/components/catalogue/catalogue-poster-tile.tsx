@@ -1,7 +1,6 @@
 "use client";
 
 import {
-	RadialToolkit,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -23,7 +22,6 @@ import {
 	useState,
 } from "react";
 import { toast } from "sonner";
-
 import { useAddToListRadial } from "@/components/catalogue/use-add-to-list-radial";
 import type { DiaryLogRow } from "@/components/diary/diary-entry";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
@@ -31,6 +29,7 @@ import {
 	MoviePoster,
 	type MoviePosterHoverEffect,
 } from "@/components/movie/movie-poster";
+import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { authClient } from "@/lib/auth-client";
 import {
 	buildCatalogueRadialItemSpecs,
@@ -457,7 +456,7 @@ export function CataloguePosterTile({
 				)}
 			</fieldset>
 
-			<RadialToolkit
+			<SenseRadialToolkit
 				open={open}
 				anchor={anchor}
 				onOpenChange={onOpenChange}

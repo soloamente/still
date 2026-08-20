@@ -34,7 +34,8 @@
 		},
 		"dev": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"env": ["STILL_TRACE_TIMING"]
 		},
 		"db:push": {
 			"cache": false

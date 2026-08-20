@@ -18,6 +18,23 @@ describe("quotes-lobby", () => {
 	test("buildQuotesLobbyHref", () => {
 		expect(buildQuotesLobbyHref({ kind: "all" })).toBe("/quotes");
 		expect(buildQuotesLobbyHref({ kind: "movie" })).toBe("/quotes?kind=movie");
+		expect(buildQuotesLobbyHref({ view: "submitted" })).toBe(
+			"/quotes?view=submitted",
+		);
+		expect(
+			buildQuotesLobbyHref({
+				view: "submitted",
+				kind: "tv",
+				status: "pending",
+			}),
+		).toBe("/quotes?view=submitted&kind=tv&status=pending");
+		// Status query only applies on the Submitted collection.
+		expect(
+			buildQuotesLobbyHref({
+				view: "saved",
+				status: "pending",
+			}),
+		).toBe("/quotes");
 	});
 
 	test("savedQuoteListingHref", () => {

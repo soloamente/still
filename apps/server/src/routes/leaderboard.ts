@@ -1,6 +1,7 @@
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { parseCommunityPage } from "../lib/community-page-args";
 import {
 	normalizeLeaderboardTimeZone,
 	parseLeaderboardPeriod,
@@ -8,6 +9,7 @@ import {
 import {
 	fetchLeaderboard,
 	fetchLeaderboardLogs,
+	parseLeaderboardLimit,
 } from "../lib/leaderboard-query";
 
 const periodQuery = t.Object({
@@ -20,6 +22,8 @@ const periodQuery = t.Object({
 		]),
 	),
 	tz: t.Optional(t.String()),
+	page: t.Optional(t.String()),
+	limit: t.Optional(t.String()),
 });
 
 export const leaderboardRoute = new Elysia({
@@ -32,11 +36,15 @@ export const leaderboardRoute = new Elysia({
 		async ({ query, user }) => {
 			const period = parseLeaderboardPeriod(query.period);
 			const tz = normalizeLeaderboardTimeZone(query.tz);
+			const page = parseCommunityPage(query.page);
+			const limit = parseLeaderboardLimit(query.limit);
 			return fetchLeaderboard({
 				kind: "films",
 				period,
 				tz,
 				viewerId: user?.id ?? null,
+				page,
+				limit,
 			});
 		},
 		{ query: periodQuery },
@@ -46,11 +54,33 @@ export const leaderboardRoute = new Elysia({
 		async ({ query, user }) => {
 			const period = parseLeaderboardPeriod(query.period);
 			const tz = normalizeLeaderboardTimeZone(query.tz);
+			const page = parseCommunityPage(query.page);
+			const limit = parseLeaderboardLimit(query.limit);
 			return fetchLeaderboard({
 				kind: "tv",
 				period,
 				tz,
 				viewerId: user?.id ?? null,
+				page,
+				limit,
+			});
+		},
+		{ query: periodQuery },
+	)
+	.get(
+		"/episodes",
+		async ({ query, user }) => {
+			const period = parseLeaderboardPeriod(query.period);
+			const tz = normalizeLeaderboardTimeZone(query.tz);
+			const page = parseCommunityPage(query.page);
+			const limit = parseLeaderboardLimit(query.limit);
+			return fetchLeaderboard({
+				kind: "episodes",
+				period,
+				tz,
+				viewerId: user?.id ?? null,
+				page,
+				limit,
 			});
 		},
 		{ query: periodQuery },
@@ -82,6 +112,26 @@ export const leaderboardRoute = new Elysia({
 			const tz = normalizeLeaderboardTimeZone(query.tz);
 			const payload = await fetchLeaderboardLogs({
 				kind: "tv",
+				userId: params.userId,
+				period,
+				tz,
+				viewerId: user?.id ?? null,
+			});
+			if (!payload) return status(404, "Profile not found");
+			return payload;
+		},
+		{
+			params: t.Object({ userId: t.String() }),
+			query: periodQuery,
+		},
+	)
+	.get(
+		"/episodes/:userId/logs",
+		async ({ params, query, status, user }) => {
+			const period = parseLeaderboardPeriod(query.period);
+			const tz = normalizeLeaderboardTimeZone(query.tz);
+			const payload = await fetchLeaderboardLogs({
+				kind: "episodes",
 				userId: params.userId,
 				period,
 				tz,

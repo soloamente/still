@@ -6,7 +6,6 @@ import Link from "next/link";
 import { CommunityRanksRowCount } from "@/components/home/community-ranks-podium-count";
 import { openPatronWatchLedger } from "@/components/home/patron-watch-ledger-drawer";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
-import { leaderboardKindLedgerCta } from "@/lib/community-ranks-podium";
 import {
 	HOME_COMMUNITY_RANKS_ROW_CLASSNAME,
 	HOME_COMMUNITY_RANKS_VIEWER_ROW_CLASSNAME,
@@ -16,6 +15,10 @@ import type {
 	LeaderboardEntry,
 	LeaderboardKind,
 } from "@/lib/home-leaderboard-types";
+import {
+	leaderboardKindCountLabel,
+	leaderboardKindLedgerCta,
+} from "@/lib/leaderboard-kind-labels";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
 
 export function HomeLeaderboardRow({
@@ -30,7 +33,7 @@ export function HomeLeaderboardRow({
 	isViewer: boolean;
 }) {
 	const ctaLabel = leaderboardKindLedgerCta(kind);
-	const statNoun = kind === "tv" ? "logs" : "films";
+	const statNoun = leaderboardKindCountLabel(kind, entry.count);
 
 	return (
 		<li
@@ -58,6 +61,7 @@ export function HomeLeaderboardRow({
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 				<span className="flex min-w-0 flex-col gap-0.5 leading-none">
 					<span className="max-w-full truncate font-semibold text-foreground text-sm">
@@ -81,6 +85,7 @@ export function HomeLeaderboardRow({
 						image: entry.image,
 						avatarIsAnimated: entry.avatarIsAnimated,
 						planTier: entry.planTier,
+						staffRole: entry.staffRole,
 						kind,
 						period,
 					})

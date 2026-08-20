@@ -1,6 +1,8 @@
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /** `lift` = slight Y translate (default). `elevation` = card-tinted shadow + stack above neighbors (lobby grid). */
 export type MoviePosterHoverEffect = "lift" | "elevation";
@@ -22,6 +24,8 @@ export function MoviePoster({
 	filmFrame = false,
 	/** Merges onto the poster frame (e.g. `rounded-2xl` for lobby grids). */
 	frameClassName,
+	/** Extra classes on the missing-art placeholder (e.g. onboarding `bg-background`). */
+	emptyArtworkClassName,
 	className,
 	priority = false,
 	/** Lobby catalogue: shadow + z-index instead of translate so the card reads over neighbors. */
@@ -46,6 +50,7 @@ export function MoviePoster({
 	titleLines?: 1 | 2;
 	filmFrame?: boolean;
 	frameClassName?: string;
+	emptyArtworkClassName?: string;
 	className?: string;
 	priority?: boolean;
 	hoverEffect?: MoviePosterHoverEffect;
@@ -130,16 +135,18 @@ export function MoviePoster({
 						sizes={imageSizes}
 						className="object-cover"
 						priority={priority}
+						// TMDb already ships sized assets — skip Vercel Image Optimization.
+						unoptimized={isTmdbCdnUrl(posterUrl)}
 						// Block native image ghost-drag so lobby rails / reorder can grab-scroll.
 						draggable={false}
 					/>
 				) : (
-					// No TMDb artwork — show the title in-frame (films + TV) so catalogue grids stay scannable.
-					<div className="grid size-full place-items-center p-2 sm:p-2.5">
-						<p className="line-clamp-5 max-w-full text-pretty text-center font-medium text-foreground text-xs leading-snug sm:text-sm">
-							{title}
-						</p>
-					</div>
+					// Missing TMDb art — morphing dots + “No poster available”.
+					<MissingArtworkPlaceholder
+						label="No poster available"
+						aria-label={`${title} (no poster)`}
+						className={emptyArtworkClassName}
+					/>
 				)}
 				{posterCaption ? (
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3 text-center sm:pt-16 sm:pb-3.5">
@@ -168,9 +175,15 @@ export function MoviePoster({
 		</>
 	);
 
+	const linkAriaLabel = posterUrl ? title : `${title} (no poster)`;
+
 	if (linkable) {
 		return (
-			<Link href={detailHref} className={shellClassName} aria-label={title}>
+			<Link
+				href={detailHref}
+				className={shellClassName}
+				aria-label={linkAriaLabel}
+			>
 				{posterInner}
 			</Link>
 		);

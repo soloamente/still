@@ -37,6 +37,11 @@ import {
 	isPremiumStreamingMonetizationFilter,
 	patronHasPlanFeature,
 } from "../lib/plan-feature-access";
+import { hit } from "../lib/rate-limit";
+import {
+	isStreamingAvailabilityConfigured,
+	resolveStreamingPrices,
+} from "../lib/streaming-availability-prices";
 import { type TmdbTvSummary, tmdbApi, tmdbImg } from "../lib/tmdb";
 import { parseCommaIntList } from "../lib/tmdb-discover-params";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
@@ -446,6 +451,37 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			}),
 		},
 	)
+	/**
+	 * Rent/buy prices for every country (Streaming Availability).
+	 * Unconfigured → `{ configured: false, offersByCountry: {} }`.
+	 */
+	.get("/:id/streaming-prices", async ({ params, status, user }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+
+		if (!isStreamingAvailabilityConfigured()) {
+			return { configured: false as const, offersByCountry: {} };
+		}
+
+		if (
+			!hit(`streaming-prices:${user?.id ?? "anon"}`, {
+				limit: 60,
+				windowMs: 60_000,
+			}).ok
+		) {
+			return status(429, "Too many requests");
+		}
+
+		try {
+			return await resolveStreamingPrices({
+				listingKind: "tv",
+				tmdbId: id,
+			});
+		} catch (err) {
+			console.error("[tv] streaming-prices failed", err);
+			return status(502, "Streaming prices unavailable");
+		}
+	})
 	// Season list for progress pickers — cached on `tv.tmdbJson` for 24h.
 	.get(
 		"/:id/seasons",

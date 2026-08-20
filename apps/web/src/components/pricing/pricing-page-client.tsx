@@ -9,13 +9,19 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { TextMorph } from "torph/react";
 
+import { DiscordActivityFundingStrip } from "@/components/discord/discord-activity-funding-strip";
 import { PricingComparisonTable } from "@/components/pricing/pricing-comparison-table";
 import { PricingDevotedConfirmDialog } from "@/components/pricing/pricing-devoted-confirm-dialog";
+import { PricingFaqSection } from "@/components/pricing/pricing-faq-section";
 import { PricingFeatureIcon } from "@/components/pricing/pricing-feature-icon";
 import { PricingOtherPlansSection } from "@/components/pricing/pricing-other-plans-section";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import {
+	type DiscordActivityFundingPayload,
+	fetchDiscordActivityFunding,
+} from "@/lib/discord-activity-funding";
 import {
 	formatPlanPriceCents,
 	type PublicPlanTier,
@@ -299,7 +305,7 @@ function PricingTierCard({
 	);
 }
 
-/** Public pricing — Mobbin-style tier cards + compare table. */
+/** Public pricing — Mobbin-style tier cards, compare table, and Q&A. */
 export function PricingPageClient({
 	tiers,
 	viewerEffectiveTier = null,
@@ -317,8 +323,25 @@ export function PricingPageClient({
 		tier: PublicPlanTier;
 		interval: BillingInterval;
 	} | null>(null);
+	const [funding, setFunding] = useState<DiscordActivityFundingPayload | null>(
+		null,
+	);
+	const [fundingLoading, setFundingLoading] = useState(true);
 
 	const annualSavings = pricingMaxAnnualSavingsPercent(tiers);
+
+	// Public funding progress for Discord activity — client fetch on mount.
+	useEffect(() => {
+		let cancelled = false;
+		void fetchDiscordActivityFunding().then((payload) => {
+			if (cancelled) return;
+			setFunding(payload);
+			setFundingLoading(false);
+		});
+		return () => {
+			cancelled = true;
+		};
+	}, []);
 
 	// Portal plan changes may land before webhooks — mirror Polar on pricing page open.
 	useEffect(() => {
@@ -455,6 +478,13 @@ export function PricingPageClient({
 				</div>
 			</header>
 
+			<DiscordActivityFundingStrip
+				funding={funding}
+				loading={fundingLoading}
+				canManageBilling={canManagePolarBilling}
+				className="mx-auto mt-8 w-full max-w-6xl px-4 sm:px-6 lg:px-8"
+			/>
+
 			<div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
 				{tiers.map((tier) => (
 					<PricingTierCard
@@ -473,6 +503,8 @@ export function PricingPageClient({
 			<PricingOtherPlansSection isSignedIn={isSignedIn} />
 
 			<PricingComparisonTable tiers={tiers} interval={interval} />
+
+			<PricingFaqSection />
 
 			<PricingDevotedConfirmDialog
 				open={devotedConfirmOpen}

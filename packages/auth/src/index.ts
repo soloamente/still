@@ -3,7 +3,8 @@ import { checkout, polar, portal } from "@polar-sh/better-auth";
 import { db } from "@still/db";
 import * as schema from "@still/db/schema/auth";
 import { env } from "@still/env/server";
-import { type BetterAuthPlugin, betterAuth } from "better-auth";
+import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
+import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin as adminPlugin } from "better-auth/plugins";
 import type { ReactElement } from "react";
@@ -13,6 +14,12 @@ import { renderAuthEmail } from "./emails/render-email";
 import { ResetPasswordEmail } from "./emails/reset-password";
 import { VerifyEmail } from "./emails/verify-email";
 import { deleteUserBlobAssets } from "./lib/delete-user-cleanup";
+import { hasDiscordOAuthCredentials } from "./lib/discord-activity-config";
+import {
+	handleDiscordAccountLinked,
+	handleDiscordAccountUnlinked,
+	kickDiscordPresenceGuildOnUserDelete,
+} from "./lib/discord-oauth-callback";
 import { polarClient } from "./lib/payments";
 import { buildPolarCheckoutProducts } from "./lib/polar-checkout-products";
 import { sendEmail } from "./lib/send-email";
@@ -58,8 +65,60 @@ function buildPolarPlugin(): BetterAuthPlugin | null {
 	});
 }
 
+/** Discord link OAuth — only registered when client credentials exist. */
+function buildDiscordSocialProviders(): BetterAuthOptions["socialProviders"] {
+	if (!hasDiscordOAuthCredentials()) return undefined;
+	return {
+		discord: {
+			clientId: env.DISCORD_CLIENT_ID as string,
+			clientSecret: env.DISCORD_CLIENT_SECRET as string,
+			scope: ["identify", "guilds.join"],
+		},
+	};
+}
+
+/** Guild join + profile prefs after Discord account link/unlink. */
+function buildDiscordDatabaseHooks(): BetterAuthOptions["databaseHooks"] {
+	if (!hasDiscordOAuthCredentials()) return undefined;
+	return {
+		account: {
+			create: {
+				after: async (account) => {
+					if (account.providerId !== "discord") return;
+					await handleDiscordAccountLinked({
+						userId: account.userId,
+						discordAccountId: account.accountId,
+						accessToken: account.accessToken,
+					});
+				},
+			},
+			update: {
+				after: async (account) => {
+					if (account.providerId !== "discord") return;
+					await handleDiscordAccountLinked({
+						userId: account.userId,
+						discordAccountId: account.accountId,
+						accessToken: account.accessToken,
+					});
+				},
+			},
+			delete: {
+				before: async (account) => {
+					if (account.providerId !== "discord") return;
+					await handleDiscordAccountUnlinked({
+						userId: account.userId,
+						discordAccountId: account.accountId,
+					});
+				},
+			},
+		},
+	};
+}
+
 export function createAuth() {
 	const polarPlugin = buildPolarPlugin();
+	const discordSocialProviders = buildDiscordSocialProviders();
+	const discordDatabaseHooks = buildDiscordDatabaseHooks();
 	const isDevelopment = env.NODE_ENV === "development";
 	const shouldSendVerificationEmail = !isDevelopment;
 
@@ -69,6 +128,22 @@ export function createAuth() {
 
 			schema: schema,
 		}),
+		...(discordSocialProviders
+			? { socialProviders: discordSocialProviders }
+			: {}),
+		...(discordDatabaseHooks ? { databaseHooks: discordDatabaseHooks } : {}),
+		...(hasDiscordOAuthCredentials()
+			? {
+					account: {
+						accountLinking: {
+							enabled: true,
+							trustedProviders: ["discord"],
+							// Discord may omit email — link-only flow for existing patrons.
+							allowDifferentEmails: true,
+						},
+					},
+				}
+			: {}),
 		trustedOrigins: [
 			env.CORS_ORIGIN,
 			"still://",
@@ -130,11 +205,21 @@ export function createAuth() {
 				},
 				beforeDelete: async (target) => {
 					await deleteUserBlobAssets(target.id);
+					await kickDiscordPresenceGuildOnUserDelete(target.id);
 				},
 			},
 		},
 		secret: env.BETTER_AUTH_SECRET,
 		baseURL: env.BETTER_AUTH_URL,
+		session: {
+			// Short signed cookie cache — cuts Neon reads on hot polling paths
+			// (presence, Discord activity). Security-sensitive routes bypass via
+			// `freshContext` / `disableCookieCache`.
+			cookieCache: {
+				enabled: true,
+				maxAge: 5 * 60,
+			},
+		},
 		advanced: {
 			defaultCookieAttributes: {
 				/**

@@ -4,21 +4,26 @@ import { cn } from "@still/ui/lib/utils";
 import { useReducedMotion } from "motion/react";
 import { type ReactNode, useEffect } from "react";
 import { AuthBackgroundCarousel } from "@/components/auth/auth-background-carousel";
+import { AuthRouteSlide } from "@/components/auth/auth-route-slide";
 import { AuthSessionRedirect } from "@/components/auth/auth-session-redirect";
 import { BrandMark } from "@/components/brand-mark";
 import { authClient } from "@/lib/auth-client";
 
 /**
  * Full-bleed auth chrome: carousel, wordmark, floating panel. Content uses a CSS enter
- * (transform-only) on first paint; sign-in ↔ sign-up swaps instantly (shared layout).
+ * (transform-only) on first paint; route swaps slide the convert-card body via
+ * transitions.dev page side-by-side (`AuthRouteSlide`) so the panel stays mounted.
  */
 export function AuthPageShell({
+	routeKey,
 	title,
 	description,
 	children,
 	footer,
 	className,
 }: {
+	/** Pathname key for slide direction (e.g. `/sign-in` → `/sign-up`). */
+	routeKey: string;
 	title: string;
 	description: string;
 	children: ReactNode;
@@ -51,8 +56,9 @@ export function AuthPageShell({
 		return <AuthSessionRedirect />;
 	}
 
+	// Title + form + footer ride the page-slide together; shell chrome stays put.
 	const routeContent = (
-		<>
+		<div className="flex w-full min-w-0 flex-col space-y-8">
 			<header className="flex flex-col gap-2 text-balance text-center">
 				<h1 className="font-semibold text-4xl text-foreground leading-none">
 					{title}
@@ -69,7 +75,7 @@ export function AuthPageShell({
 					{footer}
 				</footer>
 			) : null}
-		</>
+		</div>
 	);
 
 	return (
@@ -102,11 +108,13 @@ export function AuthPageShell({
 							{/* CSS enter (not Motion opacity) — direct /sign-in on mobile stayed invisible after useSession re-render. */}
 							<div
 								className={cn(
-									"flex w-full min-w-0 flex-col space-y-8",
+									"w-full min-w-0",
 									!reduceMotion && "auth-page-content-enter",
 								)}
 							>
-								{routeContent}
+								<AuthRouteSlide routeKey={routeKey}>
+									{routeContent}
+								</AuthRouteSlide>
 							</div>
 						</div>
 					</div>

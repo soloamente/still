@@ -15,6 +15,15 @@ import {
 } from "@/components/feed/feed-listing-thumb";
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
 import { ReviewActivityCopy } from "@/components/feed/review-activity-copy";
+import {
+	COMMUNITY_FEED_BYLINE_CLASS,
+	COMMUNITY_FEED_META_PILL_CLASS,
+	COMMUNITY_FEED_META_PILL_ROW_CLASS,
+	COMMUNITY_FEED_ROW_BODY_CLASS,
+	COMMUNITY_FEED_ROW_CLASS,
+	COMMUNITY_FEED_ROW_COPY_COLUMN_CLASS,
+	COMMUNITY_FEED_ROW_COPY_STACK_CLASS,
+} from "@/lib/community-feed-row-layout";
 import { isFeedRatingDivergencePayload } from "@/lib/feed-rating-divergence";
 import {
 	formatActivityWatchTimestamp,
@@ -27,6 +36,8 @@ import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 type Item = { kind: HomeCommunityActivityKind; at: string; payload: unknown };
 
+export type ActivityItemVariant = "feed" | "community";
+
 /** Flat community tile — same `bg-background` surface as review cards on `bg-card`. */
 export const ACTIVITY_ROW_CLASS =
 	"group flex items-start gap-6 rounded-2xl bg-background p-4 transition-colors duration-[var(--aker-duration)] ease-[var(--aker-ease)] [@media(hover:hover)]:hover:bg-foreground/5";
@@ -35,16 +46,38 @@ export const ACTIVITY_ROW_CLASS =
  * Activity feed row: poster | byline + title + light meta.
  * Keeps links separate (no nested interactives) and drops side icon chrome.
  */
-export function ActivityItem({ item }: { item: Item }) {
+export function ActivityItem({
+	item,
+	variant = "feed",
+}: {
+	item: Item;
+	variant?: ActivityItemVariant;
+}) {
 	switch (item.kind) {
 		case "log":
-			return <LogActivity item={item} payload={item.payload as LogPayload} />;
+			return (
+				<LogActivity
+					item={item}
+					payload={item.payload as LogPayload}
+					variant={variant}
+				/>
+			);
 		case "review":
 			return (
-				<ReviewActivity item={item} payload={item.payload as ReviewPayload} />
+				<ReviewActivity
+					item={item}
+					payload={item.payload as ReviewPayload}
+					variant={variant}
+				/>
 			);
 		case "list":
-			return <ListActivity item={item} payload={item.payload as ListPayload} />;
+			return (
+				<ListActivity
+					item={item}
+					payload={item.payload as ListPayload}
+					variant={variant}
+				/>
+			);
 		case "divergence":
 			return isFeedRatingDivergencePayload(item.payload) ? (
 				<ActivityDivergenceRow payload={item.payload} />
@@ -152,6 +185,8 @@ function ActivityByline({
 	rewatch,
 	dateTime,
 	timeLabel,
+	avatarSize = "xs",
+	showHandle = false,
 }: {
 	person: Person;
 	kind: FeedActivityKind;
@@ -160,12 +195,18 @@ function ActivityByline({
 	dateTime: string;
 	/** Preformatted relative label from feed `at`. */
 	timeLabel: string;
+	avatarSize?: "xs" | "sm";
+	showHandle?: boolean;
 }) {
+	const handle = person.profile?.handle;
 	return (
 		<div className="flex min-w-0 items-center gap-2.5">
-			<FeedPersonAvatar person={person} size="xs" />
+			<FeedPersonAvatar person={person} size={avatarSize} />
 			<p className="min-w-0 flex-1 text-pretty text-sm leading-snug">
 				<PatronNameLink person={person} />
+				{showHandle && handle ? (
+					<span className="font-normal text-muted-foreground"> @{handle}</span>
+				) : null}
 				<span className="text-muted-foreground"> </span>
 				<FeedActivityVerb kind={kind} rewatch={rewatch} />
 				<span className="text-muted-foreground"> · </span>
@@ -216,7 +257,15 @@ function ActivityTextLink({
 	);
 }
 
-function LogActivity({ item, payload }: { item: Item; payload: LogPayload }) {
+function LogActivity({
+	item,
+	payload,
+	variant = "feed",
+}: {
+	item: Item;
+	payload: LogPayload;
+	variant?: ActivityItemVariant;
+}) {
 	const { log, movie, tv } = payload;
 	const listing = movie ?? tv ?? null;
 	const isTv = movie == null && tv != null;
@@ -227,9 +276,112 @@ function LogActivity({ item, payload }: { item: Item; payload: LogPayload }) {
 		: undefined;
 	const listingTitle = listing?.title ?? "Unknown title";
 	const showWatchMeta = shouldShowActivityWatchDateMeta(log.watchedAt, item.at);
+	const rowClass =
+		variant === "community" ? COMMUNITY_FEED_ROW_CLASS : ACTIVITY_ROW_CLASS;
+
+	const byline = (
+		<ActivityByline
+			person={payload}
+			kind="log"
+			rewatch={log.rewatch}
+			dateTime={item.at}
+			timeLabel={formatTimeAgoLabel(item.at)}
+			avatarSize={variant === "community" ? "sm" : "xs"}
+			showHandle={variant === "community"}
+		/>
+	);
+
+	const copyMain = (
+		<>
+			{listing && detailHref ? (
+				<ListingTitleLink
+					href={detailHref}
+					title={listing.title}
+					className={
+						variant === "community" ? "text-xl sm:text-[1.35rem]" : undefined
+					}
+				/>
+			) : (
+				<p
+					className={cn(
+						"text-balance font-serif text-foreground leading-snug tracking-tight",
+						variant === "community" ? "text-xl sm:text-[1.35rem]" : "text-lg",
+					)}
+				>
+					{listingTitle}
+				</p>
+			)}
+			{showWatchMeta ? (
+				<ActivityMetaRow>
+					<span>Watched {formatActivityWatchTimestamp(log.watchedAt)}</span>
+				</ActivityMetaRow>
+			) : null}
+			{log.note ? (
+				<p className="line-clamp-3 text-pretty text-foreground/85 text-sm leading-relaxed sm:line-clamp-4">
+					{log.note}
+				</p>
+			) : null}
+		</>
+	);
+
+	const copyMeta =
+		log.rating != null || log.liked ? (
+			variant === "community" ? (
+				<div className={COMMUNITY_FEED_META_PILL_ROW_CLASS}>
+					{log.rating != null ? (
+						<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+							<DiaryLogRatingLabel stored={log.rating} />
+						</span>
+					) : null}
+					{log.liked ? (
+						<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+							<FeedActivityFavoriteChip />
+						</span>
+					) : null}
+				</div>
+			) : (
+				<ActivityMetaRow>
+					<DiaryLogRatingLabel stored={log.rating} />
+					{log.liked ? <FeedActivityFavoriteChip /> : null}
+				</ActivityMetaRow>
+			)
+		) : null;
+
+	const copy = (
+		<>
+			{copyMain}
+			{variant === "feed" ? copyMeta : null}
+		</>
+	);
+
+	if (variant === "community") {
+		return (
+			<article className={rowClass}>
+				<div className={COMMUNITY_FEED_BYLINE_CLASS}>{byline}</div>
+				<div className={COMMUNITY_FEED_ROW_BODY_CLASS}>
+					<FeedListingThumb
+						layout="activity"
+						title={listingTitle}
+						posterUrl={
+							listing ? tmdbPosterUrlFromPath(listing.posterPath, "w185") : null
+						}
+						href={detailHref}
+						listingKind={isTv ? "tv" : "movie"}
+						linkable={Boolean(detailHref)}
+					/>
+					<div className={COMMUNITY_FEED_ROW_COPY_COLUMN_CLASS}>
+						<div className={COMMUNITY_FEED_ROW_COPY_STACK_CLASS}>
+							{copyMain}
+						</div>
+						{copyMeta}
+					</div>
+				</div>
+			</article>
+		);
+	}
 
 	return (
-		<article className={ACTIVITY_ROW_CLASS}>
+		<article className={rowClass}>
 			<FeedListingThumb
 				layout="activity"
 				title={listingTitle}
@@ -241,36 +393,8 @@ function LogActivity({ item, payload }: { item: Item; payload: LogPayload }) {
 				linkable={Boolean(detailHref)}
 			/>
 			<div className="flex min-w-0 flex-1 flex-col gap-2">
-				<ActivityByline
-					person={payload}
-					kind="log"
-					rewatch={log.rewatch}
-					dateTime={item.at}
-					timeLabel={formatTimeAgoLabel(item.at)}
-				/>
-				{listing && detailHref ? (
-					<ListingTitleLink href={detailHref} title={listing.title} />
-				) : (
-					<p className="text-balance font-serif text-foreground text-lg leading-snug tracking-tight">
-						{listingTitle}
-					</p>
-				)}
-				{showWatchMeta ? (
-					<ActivityMetaRow>
-						<span>Watched {formatActivityWatchTimestamp(log.watchedAt)}</span>
-					</ActivityMetaRow>
-				) : null}
-				{log.rating != null || log.liked ? (
-					<ActivityMetaRow>
-						<DiaryLogRatingLabel stored={log.rating} />
-						{log.liked ? <FeedActivityFavoriteChip /> : null}
-					</ActivityMetaRow>
-				) : null}
-				{log.note ? (
-					<p className="line-clamp-2 text-pretty text-foreground/80 text-sm leading-relaxed">
-						{log.note}
-					</p>
-				) : null}
+				{byline}
+				{copy}
 			</div>
 		</article>
 	);
@@ -279,18 +403,118 @@ function LogActivity({ item, payload }: { item: Item; payload: LogPayload }) {
 function ReviewActivity({
 	item,
 	payload,
+	variant = "feed",
 }: {
 	item: Item;
 	payload: ReviewPayload;
+	variant?: ActivityItemVariant;
 }) {
 	const { review, movie } = payload;
 	const detailHref = movie ? `/movies/${movie.tmdbId}` : undefined;
 	const listingTitle = movie?.title ?? "Unknown title";
 	const reviewHref = `/reviews/${review.id}`;
 	const reviewUserId = payload.user?.id ?? "";
+	const rowClass =
+		variant === "community" ? COMMUNITY_FEED_ROW_CLASS : ACTIVITY_ROW_CLASS;
+
+	const byline = (
+		<ActivityByline
+			person={payload}
+			kind="review"
+			dateTime={item.at}
+			timeLabel={formatTimeAgoLabel(item.at)}
+			avatarSize={variant === "community" ? "sm" : "xs"}
+			showHandle={variant === "community"}
+		/>
+	);
+
+	const copyMain = (
+		<>
+			{movie && detailHref ? (
+				<ListingTitleLink
+					href={detailHref}
+					title={movie.title}
+					className={
+						variant === "community" ? "text-xl sm:text-[1.35rem]" : undefined
+					}
+				/>
+			) : (
+				<p
+					className={cn(
+						"text-balance font-serif text-foreground leading-snug tracking-tight",
+						variant === "community" ? "text-xl sm:text-[1.35rem]" : "text-lg",
+					)}
+				>
+					{listingTitle}
+				</p>
+			)}
+			<ReviewActivityCopy
+				containsSpoilers={review.containsSpoilers ?? false}
+				movieId={movie?.tmdbId}
+				reviewUserId={reviewUserId}
+				title={review.title}
+				body={review.body}
+			/>
+		</>
+	);
+
+	const copyMeta =
+		variant === "community" ? (
+			<div className={COMMUNITY_FEED_META_PILL_ROW_CLASS}>
+				<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+					<DiaryLogRatingLabel stored={review.rating} />
+				</span>
+				<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+					{review.likesCount} likes
+				</span>
+				<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+					{review.commentsCount} comments
+				</span>
+				<ActivityTextLink href={reviewHref}>Read review</ActivityTextLink>
+			</div>
+		) : (
+			<ActivityMetaRow>
+				<DiaryLogRatingLabel stored={review.rating} />
+				<span>{review.likesCount} likes</span>
+				<span>{review.commentsCount} comments</span>
+				<ActivityTextLink href={reviewHref}>Read review</ActivityTextLink>
+			</ActivityMetaRow>
+		);
+
+	const copy = (
+		<>
+			{copyMain}
+			{variant === "feed" ? copyMeta : null}
+		</>
+	);
+
+	if (variant === "community") {
+		return (
+			<article className={rowClass}>
+				<div className={COMMUNITY_FEED_BYLINE_CLASS}>{byline}</div>
+				<div className={COMMUNITY_FEED_ROW_BODY_CLASS}>
+					<FeedListingThumb
+						layout="activity"
+						title={listingTitle}
+						posterUrl={
+							movie ? tmdbPosterUrlFromPath(movie.posterPath, "w185") : null
+						}
+						href={detailHref}
+						linkable={Boolean(detailHref)}
+					/>
+					<div className={COMMUNITY_FEED_ROW_COPY_COLUMN_CLASS}>
+						<div className={COMMUNITY_FEED_ROW_COPY_STACK_CLASS}>
+							{copyMain}
+						</div>
+						{copyMeta}
+					</div>
+				</div>
+			</article>
+		);
+	}
 
 	return (
-		<article className={ACTIVITY_ROW_CLASS}>
+		<article className={rowClass}>
 			<FeedListingThumb
 				layout="activity"
 				title={listingTitle}
@@ -301,78 +525,117 @@ function ReviewActivity({
 				linkable={Boolean(detailHref)}
 			/>
 			<div className="flex min-w-0 flex-1 flex-col gap-2">
-				<ActivityByline
-					person={payload}
-					kind="review"
-					dateTime={item.at}
-					timeLabel={formatTimeAgoLabel(item.at)}
-				/>
-				{movie && detailHref ? (
-					<ListingTitleLink href={detailHref} title={movie.title} />
-				) : (
-					<p className="text-balance font-serif text-foreground text-lg leading-snug tracking-tight">
-						{listingTitle}
-					</p>
-				)}
-				<ReviewActivityCopy
-					containsSpoilers={review.containsSpoilers ?? false}
-					movieId={movie?.tmdbId}
-					reviewUserId={reviewUserId}
-					title={review.title}
-					body={review.body}
-				/>
-				<ActivityMetaRow>
-					<DiaryLogRatingLabel stored={review.rating} />
-					<span>{review.likesCount} likes</span>
-					<span>{review.commentsCount} comments</span>
-					<ActivityTextLink href={reviewHref}>Read review</ActivityTextLink>
-				</ActivityMetaRow>
+				{byline}
+				{copy}
 			</div>
 		</article>
 	);
 }
 
-function ListActivity({ item, payload }: { item: Item; payload: ListPayload }) {
+function ListActivity({
+	item,
+	payload,
+	variant = "feed",
+}: {
+	item: Item;
+	payload: ListPayload;
+	variant?: ActivityItemVariant;
+}) {
 	const { list } = payload;
 	const posterUrl = listBoardRowPosterUrl(list, "w185");
 	const listHref = `/lists/${list.id}`;
+	const rowClass =
+		variant === "community" ? COMMUNITY_FEED_ROW_CLASS : ACTIVITY_ROW_CLASS;
+
+	const byline = (
+		<ActivityByline
+			person={payload}
+			kind="list"
+			dateTime={item.at}
+			timeLabel={formatTimeAgoLabel(item.at)}
+			avatarSize={variant === "community" ? "sm" : "xs"}
+			showHandle={variant === "community"}
+		/>
+	);
+
+	const thumb = posterUrl ? (
+		<FeedListingThumb
+			layout="activity"
+			title={list.title}
+			posterUrl={posterUrl}
+			href={listHref}
+			linkable
+		/>
+	) : (
+		<FeedListPlaceholderFrame>
+			<ListMusic className="size-5" />
+		</FeedListPlaceholderFrame>
+	);
+
+	const copyMain = (
+		<>
+			<ListingTitleLink
+				href={listHref}
+				title={list.title}
+				className={
+					variant === "community" ? "text-xl sm:text-[1.35rem]" : undefined
+				}
+			/>
+			{list.description ? (
+				<p className="line-clamp-3 text-pretty text-foreground/85 text-sm leading-relaxed sm:line-clamp-4">
+					{list.description}
+				</p>
+			) : null}
+		</>
+	);
+
+	const copyMeta =
+		variant === "community" ? (
+			<div className={COMMUNITY_FEED_META_PILL_ROW_CLASS}>
+				<span className={COMMUNITY_FEED_META_PILL_CLASS}>
+					<span className="font-medium text-foreground">{list.itemsCount}</span>{" "}
+					{list.itemsCount === 1 ? "title" : "titles"}
+				</span>
+			</div>
+		) : (
+			<ActivityMetaRow>
+				<span>
+					<span className="font-medium text-foreground">{list.itemsCount}</span>{" "}
+					{list.itemsCount === 1 ? "film" : "films"}
+				</span>
+			</ActivityMetaRow>
+		);
+
+	const copy = (
+		<>
+			{copyMain}
+			{variant === "feed" ? copyMeta : null}
+		</>
+	);
+
+	if (variant === "community") {
+		return (
+			<article className={rowClass}>
+				<div className={COMMUNITY_FEED_BYLINE_CLASS}>{byline}</div>
+				<div className={COMMUNITY_FEED_ROW_BODY_CLASS}>
+					{thumb}
+					<div className={COMMUNITY_FEED_ROW_COPY_COLUMN_CLASS}>
+						<div className={COMMUNITY_FEED_ROW_COPY_STACK_CLASS}>
+							{copyMain}
+						</div>
+						{copyMeta}
+					</div>
+				</div>
+			</article>
+		);
+	}
 
 	return (
-		<article className={ACTIVITY_ROW_CLASS}>
-			{posterUrl ? (
-				<FeedListingThumb
-					layout="activity"
-					title={list.title}
-					posterUrl={posterUrl}
-					href={listHref}
-					linkable
-				/>
-			) : (
-				<FeedListPlaceholderFrame>
-					<ListMusic className="size-5" />
-				</FeedListPlaceholderFrame>
-			)}
+		<article className={rowClass}>
+			{thumb}
 			<div className="flex min-w-0 flex-1 flex-col gap-2">
-				<ActivityByline
-					person={payload}
-					kind="list"
-					dateTime={item.at}
-					timeLabel={formatTimeAgoLabel(item.at)}
-				/>
-				<ListingTitleLink href={listHref} title={list.title} />
-				<ActivityMetaRow>
-					<span>
-						<span className="font-medium text-foreground">
-							{list.itemsCount}
-						</span>{" "}
-						{list.itemsCount === 1 ? "film" : "films"}
-					</span>
-				</ActivityMetaRow>
-				{list.description ? (
-					<p className="line-clamp-2 text-pretty text-foreground/75 text-sm leading-relaxed">
-						{list.description}
-					</p>
-				) : null}
+				{byline}
+				{copy}
 			</div>
 		</article>
 	);

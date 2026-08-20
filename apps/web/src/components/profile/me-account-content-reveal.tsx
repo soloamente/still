@@ -32,7 +32,7 @@ export function MeAccountContentReveal({
 	const reduceMotion = useReducedMotion();
 
 	if (reduceMotion) {
-		return <div className={className}>{children}</div>;
+		return <div className={cn(className)}>{children}</div>;
 	}
 
 	return (

@@ -29,6 +29,9 @@ export function isPublicContentVisibility(
 }
 
 export function assertEmailVerified(user: EmailVerifiedUser): void {
+	// Local onboarding often can't complete inbox links (auth skips sendOnSignUp
+	// in development). Keep the hard gate for production / test.
+	if (process.env.NODE_ENV === "development") return;
 	if (!user.emailVerified) {
 		throw new EmailVerificationRequiredError();
 	}

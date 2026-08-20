@@ -1,6 +1,7 @@
 import type { PlanTierId } from "@still/plans";
 
 import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /** Patron row from `GET /api/profiles/search`. */
 export type ProfileSearchRelationship = "mutual" | "following" | "none";
@@ -13,6 +14,7 @@ export interface ProfileSearchHit {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	relationship: ProfileSearchRelationship;
 }
 

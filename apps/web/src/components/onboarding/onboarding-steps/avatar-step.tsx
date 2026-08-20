@@ -3,16 +3,31 @@
 import { cn } from "@still/ui/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { OnboardingStepHeader } from "@/components/onboarding/onboarding-steps/onboarding-step-header";
-import { assertProfilePortraitUploadAllowed } from "@/lib/profile-media";
+import { ImageCropDialog } from "@/components/profile/image-crop-dialog";
+import { cropGifToFile } from "@/lib/crop-gif";
+import { cropImageToFile } from "@/lib/crop-image";
+import {
+	assertProfilePortraitUploadAllowed,
+	isAnimatedGifUpload,
+} from "@/lib/profile-media";
 import { assertProfileMediaUploadSize } from "@/lib/profile-media-cache-key";
+import {
+	PROFILE_AVATAR_CROP_ASPECT,
+	PROFILE_AVATAR_CROP_MAX_PX,
+} from "@/lib/profile-portrait-shell";
 
 type AvatarStepProps = {
 	avatarPreviewUrl: string | null;
 	onAvatarFile: (file: File) => void;
 	isPro?: boolean;
+};
+
+type CropState = {
+	src: string;
+	isGif: boolean;
 };
 
 /** Step 1 — optional portrait; staged locally until finish uploads to Blob. */
@@ -21,6 +36,16 @@ export function AvatarStep({
 	onAvatarFile,
 	isPro = false,
 }: AvatarStepProps) {
+	const [cropState, setCropState] = useState<CropState | null>(null);
+
+	const closeCrop = useCallback(() => {
+		setCropState((prev) => {
+			if (prev) URL.revokeObjectURL(prev.src);
+			return null;
+		});
+	}, []);
+
+	// Open the same crop dialog as Settings so patrons can pan/zoom before staging.
 	const handleFile = useCallback(
 		(file: File | undefined) => {
 			if (!file?.type.startsWith("image/")) return;
@@ -33,9 +58,46 @@ export function AvatarStep({
 				);
 				return;
 			}
-			onAvatarFile(file);
+			setCropState({
+				src: URL.createObjectURL(file),
+				isGif: isAnimatedGifUpload(file),
+			});
 		},
-		[isPro, onAvatarFile],
+		[isPro],
+	);
+
+	const onCropConfirm = useCallback(
+		async (areaPixels: {
+			x: number;
+			y: number;
+			width: number;
+			height: number;
+		}) => {
+			if (!cropState) return;
+			try {
+				const cropped = cropState.isGif
+					? await cropGifToFile(cropState.src, areaPixels, {
+							maxWidth: PROFILE_AVATAR_CROP_MAX_PX.width,
+							maxHeight: PROFILE_AVATAR_CROP_MAX_PX.height,
+							fileName: "avatar.gif",
+						})
+					: await cropImageToFile(cropState.src, areaPixels, {
+							maxWidth: PROFILE_AVATAR_CROP_MAX_PX.width,
+							maxHeight: PROFILE_AVATAR_CROP_MAX_PX.height,
+							fileName: "avatar.webp",
+							quality: 0.9,
+						});
+				assertProfileMediaUploadSize(cropped);
+				onAvatarFile(cropped);
+			} catch (err) {
+				toast.error(
+					err instanceof Error ? err.message : "Couldn't process image",
+				);
+			} finally {
+				closeCrop();
+			}
+		},
+		[closeCrop, cropState, onAvatarFile],
 	);
 
 	const onInputChange = useCallback(
@@ -127,6 +189,18 @@ export function AvatarStep({
 					</motion.div>
 				)}
 			</AnimatePresence>
+
+			{cropState ? (
+				<ImageCropDialog
+					open
+					src={cropState.src}
+					aspect={PROFILE_AVATAR_CROP_ASPECT}
+					cropShape="round"
+					title="Position your photo"
+					onCancel={closeCrop}
+					onConfirm={onCropConfirm}
+				/>
+			) : null}
 		</div>
 	);
 }

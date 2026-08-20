@@ -2,7 +2,7 @@ import { badge, db, profile } from "@still/db";
 import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 
-import { context } from "../context";
+import { freshContext } from "../context";
 import { awardBadgeToUser } from "../jobs/badge-evaluator";
 import { applyAnilistImport } from "../lib/anilist-import-apply";
 import { parseAnilistImportJson } from "../lib/anilist-import-json";
@@ -25,7 +25,7 @@ export const importRoute = new Elysia({
 	prefix: "/api/import",
 	tags: ["import"],
 })
-	.use(context)
+	.use(freshContext)
 	.post("/letterboxd", async ({ body, user, status }) => {
 		if (!user) return status(401, "Sign in");
 		if (

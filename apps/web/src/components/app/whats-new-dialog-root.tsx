@@ -45,6 +45,13 @@ class WhatsNewErrorBoundary extends Component<
 	}
 }
 
+/** True while What's New still needs to show for this patron. */
+export function isWhatsNewBlocking(userId: string): boolean {
+	const release = getActiveWhatsNewRelease();
+	if (!release) return false;
+	return shouldShowWhatsNewRelease(userId, release.id);
+}
+
 /** Shows the release carousel once per patron after they enter the authenticated app. */
 export function WhatsNewDialogRoot({ userId }: { userId: string }) {
 	const release = getActiveWhatsNewRelease();

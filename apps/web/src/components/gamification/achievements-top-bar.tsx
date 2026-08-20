@@ -2,16 +2,28 @@
 
 import IconShareIn from "@still/ui/icons/share-in";
 import { cn } from "@still/ui/lib/utils";
+import { useEffect, useState } from "react";
 
+import { useAchievementsReturn } from "@/components/gamification/use-achievements-return";
 import { DetailMotionLink } from "@/components/movie/detail-motion-pressable";
-import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
 
 /**
  * Achievements sticky header — same three-column shell as `ProfileTopBar`
  * (back pill, centered title, balanced gutters).
  */
 export function AchievementsTopBar() {
-	const back = useMovieDetailReturn();
+	const back = useAchievementsReturn();
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const onScroll = () => {
+			setIsScrolled(window.scrollY > 2);
+		};
+
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
 	const pill = cn(
 		"inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 font-medium text-sm transition-colors duration-200 ease-out",
@@ -20,7 +32,13 @@ export function AchievementsTopBar() {
 	);
 
 	return (
-		<header className="sticky top-0 z-30 w-full overflow-visible bg-background">
+		<header
+			className={cn(
+				"sticky top-0 z-30 w-full overflow-visible bg-background",
+				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
+				isScrolled && "after:opacity-100",
+			)}
+		>
 			<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-2.5 py-2 sm:px-3">
 				<div className="flex min-w-0 justify-start">
 					<DetailMotionLink

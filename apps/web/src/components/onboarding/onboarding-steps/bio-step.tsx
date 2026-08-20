@@ -33,7 +33,7 @@ export function BioStep({ bio, onBioChange }: BioStepProps) {
 					placeholder="Write a short bio about your taste…"
 					value={bio}
 				/>
-				<p className="text-center text-muted-foreground text-xs tabular-nums">
+				<p className="text-center text-muted-foreground text-xs tabular-nums lg:text-start">
 					{remaining} characters left
 				</p>
 			</div>

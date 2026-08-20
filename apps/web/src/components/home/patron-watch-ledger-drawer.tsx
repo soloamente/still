@@ -8,6 +8,7 @@ import { PatronWatchLedgerPanel } from "@/components/home/patron-watch-ledger-pa
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type { LeaderboardKind } from "@/lib/home-leaderboard-types";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type PatronWatchLedgerSeed = {
 	userId: string;
@@ -16,6 +17,7 @@ export type PatronWatchLedgerSeed = {
 	image: string | null;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 	kind: LeaderboardKind;
 	period: HomeLeaderboardPeriod;
 };
@@ -43,7 +45,13 @@ export function PatronWatchLedgerDrawerRoot() {
 	const { isOpen, seed, close } = usePatronWatchLedger();
 
 	const filmographyStyleTitle = seed
-		? `${seed.displayName} — ${seed.kind === "tv" ? "TV watch log" : "watch log"}`
+		? `${seed.displayName} — ${
+				seed.kind === "films"
+					? "watch log"
+					: seed.kind === "episodes"
+						? "episode log"
+						: "TV watch log"
+			}`
 		: "Watch log";
 
 	return (

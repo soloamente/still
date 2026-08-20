@@ -1,6 +1,7 @@
 import type { PlanTierId } from "@still/plans";
 
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /** Compact avatar — same proxy + `unoptimized` path as `ProfilePatronHeader`. */
 export function NavUserAvatar({
@@ -10,6 +11,7 @@ export function NavUserAvatar({
 	size = "default",
 	isAnimated = false,
 	planTier = null,
+	staffRole = null,
 }: {
 	src: string | null;
 	name: string;
@@ -18,6 +20,7 @@ export function NavUserAvatar({
 	size?: "default" | "compact";
 	isAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 }) {
 	const frame =
 		size === "compact"
@@ -35,6 +38,7 @@ export function NavUserAvatar({
 			className={frame}
 			isAnimated={isAnimated}
 			planTier={planTier}
+			staffRole={staffRole}
 		/>
 	);
 }

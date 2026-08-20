@@ -41,15 +41,21 @@ void main() {
 	vec2 uv = vec2(vUv.x, 1.0 - vUv.y);
 	vec2 fromMouse = uv - uMouse;
 	float dist = length(fromMouse);
-	float pull = smoothstep(0.55, 0.0, dist) * 0.012;
+	float pull = smoothstep(0.62, 0.0, dist) * 0.032;
 
-	float r = texture2D(uSampler, uv + fromMouse * pull).r;
+	float r = texture2D(uSampler, uv + fromMouse * pull * 1.15).r;
 	float g = texture2D(uSampler, uv).g;
-	float b = texture2D(uSampler, uv - fromMouse * pull).b;
+	float b = texture2D(uSampler, uv - fromMouse * pull * 1.15).b;
 
-	float grain = noise(uv * 90.0 + uTime * 0.8);
-	vec3 iridescent = 0.5 + 0.5 * cos(6.2831 * (grain + uTime * 0.05) + vec3(0.0, 2.1, 4.2));
-	vec3 color = vec3(r, g, b) + iridescent * grain * 0.10;
+	float grain = noise(uv * 110.0 + uTime * 1.1);
+	vec3 iridescent = 0.5 + 0.5 * cos(6.2831 * (grain + uTime * 0.08) + vec3(0.0, 2.1, 4.2));
+	vec3 color = vec3(r, g, b) + iridescent * grain * 0.18;
+
+	// Prismatic rim bloom — stronger at portrait edge, follows cursor angle.
+	float edge = smoothstep(0.28, 0.52, length(uv - 0.5));
+	float angle = atan(fromMouse.y, fromMouse.x);
+	vec3 rim = 0.5 + 0.5 * cos(angle * 2.0 + uTime * 0.6 + vec3(0.0, 2.4, 4.8));
+	color += rim * edge * 0.22;
 
 	gl_FragColor = vec4(color, 1.0);
 }

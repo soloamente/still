@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /** Compact tile for review cards; `activity` = uniform portrait on community feed rows. */
 export type FeedListingThumbLayout = "compact" | "activity" | "card";
@@ -56,7 +57,8 @@ export function FeedListingThumb({
 			fill
 			sizes={isActivity || isCard ? "104px" : "56px"}
 			className="object-cover"
-			unoptimized={isListCoverProxySrc(posterUrl)}
+			// Proxied list covers + TMDb CDN — both skip Vercel Image Optimization.
+			unoptimized={isListCoverProxySrc(posterUrl) || isTmdbCdnUrl(posterUrl)}
 		/>
 	) : (
 		<div

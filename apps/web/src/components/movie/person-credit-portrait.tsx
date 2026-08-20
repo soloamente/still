@@ -1,9 +1,9 @@
 import { cn } from "@still/ui/lib/utils";
-import { UserRound } from "lucide-react";
 import Image from "next/image";
+import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
 
 /**
- * TMDb headshot when available; otherwise a background tile with a person icon.
+ * TMDb headshot when available; otherwise canvas + centered “No image” pill.
  */
 export function PersonCreditPortrait({
 	name,
@@ -35,20 +35,17 @@ export function PersonCreditPortrait({
 					imageClassName,
 				)}
 				sizes={sizes}
+				// Always TMDb CDN — skip Vercel Image Optimization.
+				unoptimized
 			/>
 		);
 	}
 
 	return (
-		<div
-			className={cn(
-				"flex size-full flex-col items-center justify-center bg-background text-card",
-				className,
-			)}
-			aria-hidden
-		>
-			<UserRound className="size-10 stroke-[1.25] sm:size-12" aria-hidden />
-			<span className="sr-only">No photo for {name}</span>
-		</div>
+		<MissingArtworkPlaceholder
+			variant="portrait"
+			className={className}
+			aria-label={`No photo for ${name}`}
+		/>
 	);
 }

@@ -20,6 +20,7 @@ import {
 } from "@/lib/home-lobby-catalogue-layout";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import { fetchMyLogsForTv } from "@/lib/still-api-fetch";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 /** Horizontal inset so list/footer clear `rounded-[3rem]` poster corners. */
 const DIARY_TV_FLIP_INSET_X = "px-4 sm:px-5";
@@ -37,10 +38,7 @@ const DIARY_FLIP_BTN_SECONDARY = cn(
 );
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
-	if (!posterPath?.length) return null;
-	if (posterPath.startsWith("http")) return posterPath;
-	const fragment = posterPath.startsWith("/") ? posterPath : `/${posterPath}`;
-	return `https://image.tmdb.org/t/p/w780${fragment}`;
+	return tmdbPosterUrlFromPath(posterPath, "w342");
 }
 
 /** `GET /api/logs/me/by-tv/:id` rows → diary rows for the flip-card list. */

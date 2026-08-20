@@ -41,6 +41,36 @@ describe("buildLifetimeWatchIndexMap", () => {
 			watchCountLifetime: 3,
 		});
 	});
+
+	test("keeps different TV seasons on separate lifetime tracks", () => {
+		const map = buildLifetimeWatchIndexMap([
+			{
+				logId: "s1",
+				watchedAt: "2025-01-01T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				logScope: "season",
+				seasonNumber: 1,
+			},
+			{
+				logId: "s2",
+				watchedAt: "2026-01-01T00:00:00.000Z",
+				movieId: null,
+				tvId: 93405,
+				logScope: "season",
+				seasonNumber: 2,
+			},
+		]);
+
+		expect(map.get("s1")).toEqual({
+			watchIndexLifetime: 1,
+			watchCountLifetime: 1,
+		});
+		expect(map.get("s2")).toEqual({
+			watchIndexLifetime: 1,
+			watchCountLifetime: 1,
+		});
+	});
 });
 
 describe("mergeLifetimeWatchCounts", () => {

@@ -5,7 +5,7 @@ import IconBell from "@still/ui/icons/bell";
 import IconHomeFilled from "@still/ui/icons/home-filled";
 import { cn } from "@still/ui/lib/utils";
 import { Plus, Search } from "lucide-react";
-import { LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useState } from "react";
@@ -28,6 +28,7 @@ type TabUser = {
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: import("@/lib/staff-role-labels").StaffRole | null;
 };
 
 /** Shared tap target — icon-only; label stays available to screen readers. */
@@ -39,22 +40,22 @@ function MobileTabSlot({
 	label,
 	children,
 	className,
-	reduceMotion,
+	showPill,
+	pillTransition,
 }: {
 	active: boolean;
 	label: string;
 	children: ReactNode;
 	className?: string;
-	reduceMotion: boolean | null;
+	showPill: boolean;
+	pillTransition:
+		| { duration: number }
+		| {
+				type: "tween";
+				duration: number;
+				ease: readonly [number, number, number, number];
+		  };
 }) {
-	const pillTransition = reduceMotion
-		? { duration: 0 }
-		: {
-				type: "tween" as const,
-				duration: 0.22,
-				ease: [0.165, 0.84, 0.44, 1] as const,
-			};
-
 	return (
 		<span
 			className={cn(
@@ -65,10 +66,10 @@ function MobileTabSlot({
 				className,
 			)}
 		>
-			{active ? (
+			{showPill ? (
 				<motion.span
-					layoutId="mobile-tab-bar-active-pill"
-					className="absolute inset-0 rounded-full bg-card"
+					layoutId="mobile-tab-bar-pill"
+					className="absolute inset-0 z-0 rounded-full bg-card"
 					transition={pillTransition}
 				/>
 			) : null}
@@ -95,6 +96,14 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 	const homeActive = isActive(pathname, "/home");
 	const inboxActive = isActive(pathname, "/notifications");
 
+	const pillTransition = reduceMotion
+		? { duration: 0 }
+		: {
+				type: "tween" as const,
+				duration: 0.22,
+				ease: [0.165, 0.84, 0.44, 1] as const,
+			};
+
 	// Leaf detail pages own their bottom action bar — don't stack the tab bar.
 	if (shouldHideMobileTabBar(pathname)) return null;
 
@@ -108,116 +117,115 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 				aria-label="Primary"
 				className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 w-[min(calc(100%-1.5rem),22rem)] -translate-x-1/2 md:hidden"
 			>
-				<LayoutGroup id="mobile-tab-bar">
-					<div
-						className="flex items-center justify-between gap-0.5 rounded-full bg-background p-1"
-						role="toolbar"
+				<div
+					className="relative flex items-center justify-between gap-0.5 overflow-hidden rounded-full bg-background p-1"
+					role="toolbar"
+				>
+					{/* Home */}
+					<Link
+						href="/home"
+						aria-current={homeActive ? "page" : undefined}
+						aria-label="Home"
+						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
 					>
-						{/* Home */}
-						<Link
-							href="/home"
-							aria-current={homeActive ? "page" : undefined}
-							aria-label="Home"
-							className={DETAIL_MOTION_PRESSABLE_CLASS}
+						<MobileTabSlot
+							active={homeActive && !youOpen}
+							label="Home"
+							showPill={homeActive && !youOpen}
+							pillTransition={pillTransition}
 						>
-							<MobileTabSlot
-								active={homeActive}
-								label="Home"
-								reduceMotion={reduceMotion}
-							>
-								<IconHomeFilled
-									size="20px"
-									className="size-5 shrink-0"
-									aria-hidden
-								/>
-							</MobileTabSlot>
-						</Link>
+							<IconHomeFilled
+								size="20px"
+								className="size-5 shrink-0"
+								aria-hidden
+							/>
+						</MobileTabSlot>
+					</Link>
 
-						{/* Search */}
-						<button
-							type="button"
-							className={DETAIL_MOTION_PRESSABLE_CLASS}
-							onClick={() => requestCatalogSearch()}
-							aria-label="Search films, TV, and people"
+					{/* Search */}
+					<button
+						type="button"
+						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
+						onClick={() => requestCatalogSearch()}
+						aria-label="Search films, TV, and people"
+					>
+						<MobileTabSlot
+							active={false}
+							label="Search"
+							showPill={false}
+							pillTransition={pillTransition}
 						>
-							<MobileTabSlot
-								active={false}
-								label="Search"
-								reduceMotion={reduceMotion}
-							>
-								<Search className="size-5" aria-hidden />
-							</MobileTabSlot>
-						</button>
+							<Search className="size-5" aria-hidden />
+						</MobileTabSlot>
+					</button>
 
-						{/* Log — accent chip inline with the row (no floating lift). */}
-						<button
-							type="button"
-							className={cn(
-								"flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.96] motion-reduce:active:scale-100",
-								DETAIL_MOTION_PRESSABLE_CLASS,
-							)}
-							onClick={() => openQuickLog()}
-							aria-label="Log a film"
-						>
-							<Plus className="size-5" aria-hidden />
-						</button>
+					{/* Log — accent chip inline with the row (no floating lift). */}
+					<button
+						type="button"
+						className={cn(
+							"relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.96] motion-reduce:active:scale-100",
+							DETAIL_MOTION_PRESSABLE_CLASS,
+						)}
+						onClick={() => openQuickLog()}
+						aria-label="Log a film"
+					>
+						<Plus className="size-5" aria-hidden />
+					</button>
 
-						{/* Inbox */}
-						<Link
-							href="/notifications"
-							aria-current={inboxActive ? "page" : undefined}
-							aria-label={
-								hasUnreadInbox ? "Inbox, unread notifications" : "Inbox"
-							}
-							className={DETAIL_MOTION_PRESSABLE_CLASS}
+					{/* Inbox */}
+					<Link
+						href="/notifications"
+						aria-current={inboxActive ? "page" : undefined}
+						aria-label={
+							hasUnreadInbox ? "Inbox, unread notifications" : "Inbox"
+						}
+						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
+					>
+						<MobileTabSlot
+							active={inboxActive && !youOpen}
+							label="Inbox"
+							showPill={inboxActive && !youOpen}
+							pillTransition={pillTransition}
 						>
-							<MobileTabSlot
-								active={inboxActive}
-								label="Inbox"
-								reduceMotion={reduceMotion}
-							>
-								<span className="relative">
-									<IconBell
-										size="20px"
-										className="size-5 shrink-0"
+							<span className="relative">
+								<IconBell size="20px" className="size-5 shrink-0" aria-hidden />
+								{hasUnreadInbox ? (
+									<span
+										className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
 										aria-hidden
 									/>
-									{hasUnreadInbox ? (
-										<span
-											className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
-											aria-hidden
-										/>
-									) : null}
-								</span>
-							</MobileTabSlot>
-						</Link>
+								) : null}
+							</span>
+						</MobileTabSlot>
+					</Link>
 
-						{/* You */}
-						<button
-							type="button"
-							className={DETAIL_MOTION_PRESSABLE_CLASS}
-							onClick={() => setYouOpen(true)}
-							aria-haspopup="dialog"
-							aria-expanded={youOpen}
-							aria-label="Your account and destinations"
+					{/* You */}
+					<button
+						type="button"
+						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
+						onClick={() => setYouOpen(true)}
+						aria-haspopup="dialog"
+						aria-expanded={youOpen}
+						aria-label="Your account and destinations"
+					>
+						<MobileTabSlot
+							active={youOpen}
+							label="You"
+							showPill={youOpen}
+							pillTransition={pillTransition}
 						>
-							<MobileTabSlot
-								active={youOpen}
-								label="You"
-								reduceMotion={reduceMotion}
-							>
-								<NavUserAvatar
-									src={user.image}
-									name={user.name}
-									handle={user.handle}
-									size="compact"
-									isAnimated={user.avatarIsAnimated ?? false}
-									planTier={user.planTier ?? null}
-								/>
-							</MobileTabSlot>
-						</button>
-					</div>
-				</LayoutGroup>
+							<NavUserAvatar
+								src={user.image}
+								name={user.name}
+								handle={user.handle}
+								size="compact"
+								isAnimated={user.avatarIsAnimated ?? false}
+								planTier={user.planTier ?? null}
+								staffRole={user.staffRole ?? null}
+							/>
+						</MobileTabSlot>
+					</button>
+				</div>
 			</nav>
 
 			<MobileYouSheet

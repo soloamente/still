@@ -105,6 +105,7 @@ export function PatronMembersLedgerPanel({
 	const avatarIsAnimated =
 		payload?.user.avatarIsAnimated ?? seed.avatarIsAnimated;
 	const planTier = payload?.user.planTier ?? seed.planTier ?? null;
+	const staffRole = payload?.user.staffRole ?? seed.staffRole ?? null;
 	const items = payload?.items ?? [];
 	const sortedItems = useMemo(
 		() => sortPatronMembersLedgerItems(items, order),
@@ -137,6 +138,7 @@ export function PatronMembersLedgerPanel({
 										avatarIsAnimated,
 									)}
 									planTier={planTier}
+									staffRole={staffRole}
 								/>
 							</Link>
 						</div>

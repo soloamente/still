@@ -1433,6 +1433,18 @@ html.theme-lobby-light .cinema-vignette {
  * overrides the global `outline-ring/50` and desert-orange `::selection` on the bar only.
  */
 @layer components {
+	/*
+	 * Account-menu Upgrade plan (metal-fx): stock 1.0.4 hides the host until the
+	 * first shader copy (`opacity:0` + formerly `visibility:hidden`), then
+	 * IntersectionObserver can mark the instance non-visible and freeze the
+	 * shared RAF on a still frame. `patches/metal-fx@1.0.4.patch` forces opaque
+	 * + always-visible instances; keep CSS as a belt-and-suspenders override.
+	 */
+	.metal-fx-root.account-menu-metal-fx {
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+
 	.catalog-search-query input:is([type="search"], [type="text"]) {
 		accent-color: var(--foreground);
 	}
@@ -1487,12 +1499,14 @@ html.theme-lobby-light .cinema-vignette {
 		transition: background-color 9999s ease-out 0s;
 	}
 
-	/* Native clear control on `type="search"` auth/onboarding fields. */
+	/* Hide native cancel — onboarding uses `OnboardingSearchField` pill clear. */
 	.auth-input[type="search"]::-webkit-search-cancel-button {
-		cursor: pointer;
+		-webkit-appearance: none;
+		appearance: none;
+		display: none;
 	}
 	.auth-input[type="search"]::-moz-search-clear-button {
-		cursor: pointer;
+		display: none;
 	}
 
 	/* Search dialog studio logo tiles — canvas (`--background`) on raised dialog card. */
@@ -1531,117 +1545,737 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
-/* Avatar plan auras — rest rim is static; motion is hover-gated per tier. */
+/*
+ * Subscription membership card — per-plan chrome (not a recolored glow).
+ * Still: quiet hairline · Attuned: bronze sheen · Immersed: orbiting gold edge · Devoted: iridescent aurora.
+ * Looping motion only when `.subscription-card-fx--live` is set (JS gates reduced-motion / soft GPU).
+ */
 @layer components {
-	.avatar-aura-rim {
-		padding: 1.5px;
-		border-radius: 9999px;
-	}
-
-	.avatar-aura-layer {
+	.subscription-card-fx {
+		pointer-events: none;
 		position: absolute;
 		inset: 0;
-		border-radius: 9999px;
+		z-index: 1;
 		overflow: hidden;
+		border-radius: inherit;
+	}
+
+	/* Mask stays fixed; only `__rim-spin` rotates so the border shape doesn’t spin. */
+	.subscription-card-fx__rim {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 1.5px;
+		opacity: 0.55;
+		overflow: hidden;
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+	}
+
+	.subscription-card-fx__rim-spin {
+		position: absolute;
+		inset: -55%;
+		background: var(--subscription-card-rim, oklch(0.74 0.02 250));
+	}
+
+	.subscription-card-fx__sheen {
+		position: absolute;
+		inset: -10% -40%;
+		opacity: 0;
+		background: linear-gradient(
+			105deg,
+			transparent 42%,
+			color-mix(in oklab, var(--subscription-card-sheen, oklch(0.8 0.08 70)) 28%, transparent)
+				50%,
+			transparent 58%
+		);
+		transform: translateX(-35%) skewX(-14deg);
+	}
+
+	.subscription-card-fx__aurora {
+		position: absolute;
+		inset: -20%;
+		opacity: 0;
+		background:
+			radial-gradient(
+				ellipse 55% 40% at 20% 30%,
+				color-mix(in oklab, oklch(0.72 0.16 320) 22%, transparent),
+				transparent 70%
+			),
+			radial-gradient(
+				ellipse 50% 45% at 80% 70%,
+				color-mix(in oklab, oklch(0.7 0.12 200) 18%, transparent),
+				transparent 72%
+			);
+		filter: blur(12px);
+	}
+
+	.subscription-card-fx--still {
+		/* Mid-chrome hairline — avoid high-L stops that wash white on light themes. */
+		--subscription-card-rim: linear-gradient(
+			160deg,
+			oklch(0.58 0.02 250),
+			oklch(0.42 0.015 250) 55%,
+			oklch(0.54 0.02 250)
+		);
+	}
+
+	.subscription-card-fx--still .subscription-card-fx__rim {
+		opacity: 0.55;
+	}
+
+	.subscription-card-fx--attuned {
+		--subscription-card-rim: conic-gradient(
+			from 210deg,
+			oklch(0.6 0.08 58),
+			oklch(0.74 0.11 72),
+			oklch(0.58 0.07 48),
+			oklch(0.6 0.08 58)
+		);
+		--subscription-card-sheen: oklch(0.82 0.12 70);
+	}
+
+	.subscription-card-fx--attuned .subscription-card-fx__rim {
+		opacity: 0.7;
+	}
+
+	.subscription-card-fx--immersed {
+		--subscription-card-rim: conic-gradient(
+			from 0deg,
+			transparent 0deg 250deg,
+			oklch(0.86 0.14 78) 280deg,
+			oklch(0.72 0.12 68) 310deg,
+			transparent 340deg 360deg
+		);
+		--subscription-card-sheen: oklch(0.88 0.14 78);
+	}
+
+	.subscription-card-fx--immersed .subscription-card-fx__rim {
+		opacity: 0.95;
+		padding: 2px;
+	}
+
+	.subscription-card-fx--devoted {
+		--subscription-card-rim: conic-gradient(
+			from 0deg,
+			oklch(0.72 0.16 320),
+			oklch(0.74 0.12 200),
+			oklch(0.76 0.1 130),
+			oklch(0.7 0.14 290),
+			oklch(0.72 0.16 320)
+		);
+		--subscription-card-sheen: oklch(0.82 0.14 320);
+	}
+
+	.subscription-card-fx--devoted .subscription-card-fx__rim {
+		opacity: 0.9;
+		padding: 2px;
+	}
+
+	.subscription-card-fx--devoted .subscription-card-fx__aurora {
+		opacity: 0.55;
+	}
+
+	/* Soft GPU / reduced-motion: keep a quiet tint, drop the expensive blur wash. */
+	.subscription-card-fx:not(.subscription-card-fx--live) .subscription-card-fx__aurora {
+		filter: none;
+		opacity: 0.28;
+	}
+
+	.subscription-card-fx:not(.subscription-card-fx--live) .subscription-card-fx__sheen {
+		display: none;
+	}
+
+	/* Live motion — gated by React (`--live`) so soft GPU / reduced-motion stay static. */
+	.subscription-card-fx--live.subscription-card-fx--attuned .subscription-card-fx__sheen {
+		opacity: 0.85;
+		animation: subscription-card-sheen 4.2s ease-in-out infinite;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--immersed .subscription-card-fx__rim-spin {
+		animation: subscription-card-rim-spin 4.5s linear infinite;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--immersed .subscription-card-fx__sheen {
+		opacity: 0.9;
+		animation: subscription-card-sheen 3.2s ease-in-out infinite;
+		animation-delay: 0.6s;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__rim-spin {
+		animation: subscription-card-rim-spin 7s linear infinite;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__aurora {
+		animation: subscription-card-aurora 9s ease-in-out infinite alternate;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__sheen {
+		opacity: 0.75;
+		animation: subscription-card-sheen 5s ease-in-out infinite;
+		animation-delay: 1.2s;
+	}
+
+	/* Hover amplify — pointer-follow glow stays separate; chrome just gains presence. */
+	.subscription-card-fx--hot .subscription-card-fx__rim {
+		opacity: 1;
+	}
+
+	.subscription-card-fx--hot.subscription-card-fx--devoted .subscription-card-fx__aurora {
+		opacity: 0.75;
+	}
+}
+
+@keyframes subscription-card-sheen {
+	0%,
+	12% {
+		transform: translateX(-40%) skewX(-14deg);
+		opacity: 0;
+	}
+	28%,
+	42% {
+		opacity: 0.9;
+	}
+	58%,
+	100% {
+		transform: translateX(40%) skewX(-14deg);
+		opacity: 0;
+	}
+}
+
+@keyframes subscription-card-rim-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes subscription-card-aurora {
+	0% {
+		transform: translate(-4%, -2%) scale(1);
+		opacity: 0.45;
+	}
+	100% {
+		transform: translate(6%, 4%) scale(1.08);
+		opacity: 0.7;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.subscription-card-fx--live .subscription-card-fx__rim-spin,
+	.subscription-card-fx--live .subscription-card-fx__sheen,
+	.subscription-card-fx--live .subscription-card-fx__aurora {
+		animation: none !important;
+	}
+
+	.subscription-card-fx--live .subscription-card-fx__sheen {
+		opacity: 0 !important;
+	}
+
+	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__aurora {
+		opacity: 0.4;
+		transform: none;
+	}
+}
+
+/*
+ * Sense membership Holo card — foil stack driven by engine CSS variables
+ * (`applyFrame` / `applyFoil`). Reconstructed for Sense; not Vault-identical.
+ * Quiet grain only — no heart / romantic pattern artwork.
+ */
+@layer components {
+	.holo-card {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		border-radius: 1.25rem;
+		transform-style: preserve-3d;
+		transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+		will-change: transform;
+		/* Edge catch: each border lights by how much it faces the viewer (--edge-*). */
+		box-shadow:
+			inset calc(var(--edge-l, 0) * 1.5px) 0 calc(var(--edge-l, 0) * 10px)
+				rgba(255, 255, 255, calc(var(--edge-l, 0) * 0.5)),
+			inset calc(var(--edge-r, 0) * -1.5px) 0 calc(var(--edge-r, 0) * 10px)
+				rgba(255, 255, 255, calc(var(--edge-r, 0) * 0.5)),
+			inset 0 calc(var(--edge-t, 0) * 1.5px) calc(var(--edge-t, 0) * 10px)
+				rgba(255, 255, 255, calc(var(--edge-t, 0) * 0.5)),
+			inset 0 calc(var(--edge-b, 0) * -1.5px) calc(var(--edge-b, 0) * 10px)
+				rgba(255, 255, 255, calc(var(--edge-b, 0) * 0.5));
+	}
+
+	/*
+	 * Billing face in a CSS flip stack: permanent rotateY(180) MUST compose with
+	 * --rx/--ry. A Tailwind `transform-[rotateY(180deg)]` alone overrides .holo-card
+	 * and kills back-face 3D tilt (foil sheet vars would still move).
+	 */
+	.holo-card.holo-card--back {
+		transform: rotateY(180deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+	}
+
+	.holo-body {
+		position: absolute;
+		inset: 0;
+		background: var(--body-grad);
+	}
+
+	/* Three foil slots — background from --lN-img / size / position / blend / filter / opacity */
+	.holo-foil,
+	.holo-foil--b,
+	.holo-foil--c {
+		position: absolute;
+		inset: 0;
 		pointer-events: none;
+		background-image: var(--l1-img, none);
+		background-size: var(--l1-size, auto);
+		background-position: var(--l1-x, 50%) var(--l1-y, 50%);
+		background-blend-mode: var(--l1-bgblend, normal);
+		mix-blend-mode: var(--l1-blend, overlay);
+		filter: var(--l1-filter, none);
+		opacity: var(--l1-o, 0);
+	}
+
+	.holo-foil--b {
+		background-image: var(--l2-img, none);
+		background-size: var(--l2-size, auto);
+		background-position: var(--l2-x, 50%) var(--l2-y, 50%);
+		background-blend-mode: var(--l2-bgblend, normal);
+		mix-blend-mode: var(--l2-blend, overlay);
+		filter: var(--l2-filter, none);
+		opacity: var(--l2-o, 0);
+	}
+
+	.holo-foil--c {
+		background-image: var(--l3-img, none);
+		background-size: var(--l3-size, auto);
+		background-position: var(--l3-x, 50%) var(--l3-y, 50%);
+		background-blend-mode: var(--l3-bgblend, normal);
+		mix-blend-mode: var(--l3-blend, overlay);
+		filter: var(--l3-filter, none);
+		opacity: var(--l3-o, 0);
+	}
+
+	.holo-glare {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: calc(var(--glare-o, 0.5) * (0.35 + var(--off, 0) * 0.65));
+		background: radial-gradient(
+			circle at var(--gx, 50%) var(--gy, 50%),
+			rgba(255, 255, 255, 0.55),
+			transparent 42%
+		);
+		mix-blend-mode: soft-light;
+	}
+
+	.holo-smear {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: var(--smear, 0);
+		background: linear-gradient(
+			var(--smear-angle, 0deg),
+			transparent,
+			rgba(255, 255, 255, 0.35),
+			transparent
+		);
+		mix-blend-mode: soft-light;
+	}
+
+	.holo-spot {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: calc(var(--spot, 0) * 0.55);
+		background: radial-gradient(
+			circle at var(--gx, 50%) var(--gy, 50%),
+			rgba(255, 255, 255, 0.45),
+			transparent 50%
+		);
+		mix-blend-mode: color-dodge;
+	}
+
+	.holo-noise,
+	.holo-sheen,
+	.holo-pattern,
+	.holo-pattern--lit {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	/* Quiet grain only — same feTurbulence data-uri as holo engine GRAIN; no hearts */
+	.holo-noise {
+		opacity: 0.12;
+		background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27120%27%20height%3D%27120%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%27.85%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27120%27%20height%3D%27120%27%20filter%3D%27url%28%23n%29%27%20opacity%3D%27.4%27%2F%3E%3C%2Fsvg%3E");
+		background-size: 120px 120px;
+		mix-blend-mode: overlay;
+	}
+
+	/* Soft specular wash — opacity from engine when wired; quiet placeholder otherwise */
+	.holo-sheen {
+		opacity: calc(var(--sheen-o, 0) * 0.4);
+		background: linear-gradient(
+			105deg,
+			transparent 40%,
+			rgba(255, 255, 255, 0.22) 50%,
+			transparent 60%
+		);
+		mix-blend-mode: soft-light;
+	}
+
+	/* Empty quiet placeholders — no romantic / heart pattern */
+	.holo-pattern,
+	.holo-pattern--lit {
 		opacity: 0;
 	}
 
-	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-		/* Attuned — one diagonal projector sweep per hover-enter. */
-		.avatar-aura-root:hover .avatar-aura-sweep::before {
-			content: "";
-			position: absolute;
-			inset: -40%;
-			background: linear-gradient(
-				115deg,
-				transparent 42%,
-				oklch(0.98 0.02 90 / 0.55) 50%,
-				transparent 58%
-			);
-			animation: avatar-aura-sweep 600ms ease-out forwards;
-		}
-		.avatar-aura-root:hover .avatar-aura-sweep {
-			opacity: 1;
-		}
-
-		/* Immersed — breathing golden glow + drifting anamorphic flare. */
-		.avatar-aura-root:hover .avatar-aura-glow {
-			opacity: 1;
-			background: radial-gradient(
-				circle at 50% 42%,
-				oklch(0.85 0.13 90 / 0.32),
-				transparent 68%
-			);
-			animation: avatar-aura-breathe 2.4s ease-in-out infinite alternate;
-		}
-		.avatar-aura-root:hover .avatar-aura-flare::before {
-			content: "";
-			position: absolute;
-			top: 46%;
-			left: -60%;
-			width: 120%;
-			height: 8%;
-			border-radius: 9999px;
-			background: linear-gradient(
-				90deg,
-				transparent,
-				oklch(0.92 0.1 95 / 0.5),
-				transparent
-			);
-			filter: blur(1px);
-			animation: avatar-aura-flare 3.2s ease-in-out infinite;
-		}
-		.avatar-aura-root:hover .avatar-aura-flare {
-			opacity: 1;
-		}
-
-		/* Devoted CSS fallback — holo foil when WebGL is unavailable. */
-		.avatar-aura-root:hover .avatar-aura-holo {
-			opacity: 1;
-			background: conic-gradient(
-				from 0deg,
-				oklch(0.8 0.12 320 / 0.28),
-				oklch(0.82 0.12 200 / 0.28),
-				oklch(0.85 0.13 90 / 0.28),
-				oklch(0.8 0.11 260 / 0.28),
-				oklch(0.8 0.12 320 / 0.28)
-			);
-			mix-blend-mode: screen;
-			animation: avatar-aura-holo 4s linear infinite;
-		}
+	.holo-content {
+		position: relative;
+		z-index: 2;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.25rem 1.35rem;
+		color: oklch(0.22 0.02 280);
+		text-shadow: calc(var(--emboss-x, 0px) * -1) calc(var(--emboss-y, 0px) * -1) 0
+			rgba(255, 255, 255, 0.35);
 	}
 
-	@keyframes avatar-aura-sweep {
-		from {
-			transform: translateX(-55%);
+	.holo-tile {
+		position: relative;
+		/* Soft circle — reads as a portrait, not a stamp. */
+		width: 4.5rem;
+		aspect-ratio: 1;
+		border-radius: 9999px;
+		overflow: hidden;
+		isolation: isolate;
+		align-self: flex-start;
+	}
+
+	.holo-tile__photo,
+	.holo-tile__photo--neg {
+		position: absolute;
+		inset: 0;
+		background-image: var(--tile-src);
+		background-size: cover;
+		background-position: var(--tile-x, 50%) center;
+	}
+
+	/*
+	 * Soft iridescent band — not a hard polarity wipe. Partial invert + feathered
+	 * mask so a real face stays readable at steep tilt.
+	 */
+	.holo-tile__photo--neg {
+		filter: invert(0.55) hue-rotate(var(--tile-hue, 200deg)) saturate(1.15)
+			contrast(1.05);
+		opacity: 0.7;
+		-webkit-mask-image: linear-gradient(
+			var(--tile-sweep-angle, 90deg),
+			#000 0%,
+			#000 calc(max(0%, var(--tile-invert, 0) * 100% - 14%)),
+			transparent calc(var(--tile-invert, 0) * 100% + 22%)
+		);
+		mask-image: linear-gradient(
+			var(--tile-sweep-angle, 90deg),
+			#000 0%,
+			#000 calc(max(0%, var(--tile-invert, 0) * 100% - 14%)),
+			transparent calc(var(--tile-invert, 0) * 100% + 22%)
+		);
+	}
+
+	/* Light wash in the print family — soft-light keeps likeness. */
+	.holo-tile__duo {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, var(--tile-dark), var(--tile-light));
+		mix-blend-mode: soft-light;
+		opacity: 0.45;
+		pointer-events: none;
+	}
+
+	.holo-tile__gloss {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: radial-gradient(
+			circle at var(--gx, 40%) var(--gy, 30%),
+			rgba(255, 255, 255, 0.4),
+			transparent 55%
+		);
+		mix-blend-mode: soft-light;
+	}
+
+	/* Soft GPU / reduced-motion: drop 3D tilt; foil stack may still paint statically */
+	@media (prefers-reduced-motion: reduce) {
+		.holo-card {
+			transform: none;
 		}
-		to {
-			transform: translateX(55%);
+		/* Keep the flip-stack orientation; drop live tilt only. */
+		.holo-card.holo-card--back {
+			transform: rotateY(180deg);
 		}
 	}
-	@keyframes avatar-aura-breathe {
-		from {
-			opacity: 0.5;
-		}
-		to {
-			opacity: 0.85;
-		}
+}
+
+/* Avatar plan auras — subtle static tier rim; no hover motion. */
+@layer components {
+	.avatar-aura-rim {
+		position: relative;
+		box-sizing: border-box;
+		padding: 1.5px;
+		border-radius: 9999px;
+		background: conic-gradient(
+			from 210deg,
+			var(--avatar-aura-rim-a, oklch(0.62 0.06 70)),
+			var(--avatar-aura-rim-b, oklch(0.72 0.08 82)),
+			var(--avatar-aura-rim-c, oklch(0.58 0.05 55)),
+			var(--avatar-aura-rim-a, oklch(0.62 0.06 70))
+		);
+		/* Hairline separation from canvas — no outer bloom or glow. */
+		box-shadow: 0 0 0 1px oklch(0 0 0 / 0.18);
 	}
-	@keyframes avatar-aura-flare {
-		0%,
-		100% {
-			transform: translateX(-12%);
-			opacity: 0.4;
+
+	.avatar-aura-rim--attuned {
+		--avatar-aura-rim-a: oklch(0.6 0.06 58);
+		--avatar-aura-rim-b: oklch(0.7 0.08 72);
+		--avatar-aura-rim-c: oklch(0.56 0.05 48);
+	}
+
+	.avatar-aura-rim--immersed {
+		--avatar-aura-rim-a: oklch(0.66 0.1 68);
+		--avatar-aura-rim-b: oklch(0.76 0.12 82);
+		--avatar-aura-rim-c: oklch(0.62 0.08 58);
+	}
+
+	.avatar-aura-rim--devoted {
+		--avatar-aura-rim-a: oklch(0.66 0.11 320);
+		--avatar-aura-rim-b: oklch(0.7 0.1 200);
+		--avatar-aura-rim-c: oklch(0.68 0.09 130);
+	}
+
+	/* Staff — quadrant seal (cool slate), distinct from warm plan gradients. */
+	.avatar-aura-rim--staff {
+		padding: 2px;
+		background: repeating-conic-gradient(
+			from -22.5deg,
+			oklch(0.74 0.03 255) 0deg 45deg,
+			oklch(0.5 0.045 268) 45deg 90deg
+		);
+		box-shadow:
+			0 0 0 1px oklch(0.42 0.04 265 / 0.55),
+			inset 0 0 0 0.5px oklch(0.9 0.02 255 / 0.28);
+	}
+}
+
+/* Missing TMDb poster / cast headshot — morphing dot-field placeholder (not a broken tile). */
+@layer components {
+	.missing-artwork {
+		position: relative;
+		display: grid;
+		width: 100%;
+		height: 100%;
+		place-items: center;
+		overflow: hidden;
+		/* Canvas under dots — reads on card shells (lobby / onboarding preview). */
+		background: var(--background);
+	}
+
+	/* Cast/crew headshots — same canvas; pill stays raised `card`. */
+	.missing-artwork--portrait {
+		background: var(--background);
+	}
+
+	.missing-artwork-pill {
+		position: relative;
+		z-index: 1;
+		max-width: calc(100% - 0.75rem);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		border-radius: 9999px;
+		/* Raised pill on canvas — surface depth, no border/ring. */
+		background: var(--card);
+		padding: 0.25rem 0.625rem;
+		font-size: 0.6875rem;
+		font-weight: 500;
+		line-height: 1.25;
+		color: var(--muted-foreground);
+		user-select: none;
+	}
+
+	.missing-artwork-dots {
+		position: absolute;
+		inset: 2px;
+		pointer-events: none;
+		background-image: radial-gradient(
+			circle,
+			color-mix(in oklab, var(--muted-foreground) 70%, transparent) 0.7px,
+			transparent 1.3px
+		);
+		background-size: 11px 11px;
+		background-repeat: space;
+		opacity: 0.22;
+	}
+
+	.missing-artwork-glow {
+		position: absolute;
+		inset: 2px;
+		pointer-events: none;
+		background-image: radial-gradient(
+			circle,
+			var(--foreground) 1.1px,
+			transparent 1.6px
+		);
+		background-size: 11px 11px;
+		background-repeat: space;
+		-webkit-mask-image:
+			radial-gradient(ellipse at center, #000 0%, transparent 60%),
+			radial-gradient(ellipse at center, #000 0%, transparent 62%);
+		mask-image:
+			radial-gradient(ellipse at center, #000 0%, transparent 60%),
+			radial-gradient(ellipse at center, #000 0%, transparent 62%);
+		-webkit-mask-repeat: no-repeat, no-repeat;
+		mask-repeat: no-repeat, no-repeat;
+		-webkit-mask-size: 72% 62%, 52% 52%;
+		mask-size: 72% 62%, 52% 52%;
+		-webkit-mask-position: 16% 20%, 30% 32%;
+		mask-position: 16% 20%, 30% 32%;
+		animation:
+			missing-artwork-morph 4.2s cubic-bezier(0.35, 1.55, 0.65, 1) infinite,
+			missing-artwork-breathe 1.9s cubic-bezier(0.66, 0, 0.34, 1) infinite;
+	}
+
+	@keyframes missing-artwork-morph {
+		0% {
+			-webkit-mask-size: 52% 46%, 40% 40%;
+			mask-size: 52% 46%, 40% 40%;
+			-webkit-mask-position: 16% 20%, 30% 32%;
+			mask-position: 16% 20%, 30% 32%;
+		}
+		25% {
+			-webkit-mask-size: 46% 58%, 44% 38%;
+			mask-size: 46% 58%, 44% 38%;
+			-webkit-mask-position: 84% 16%, 66% 30%;
+			mask-position: 84% 16%, 66% 30%;
 		}
 		50% {
-			transform: translateX(12%);
-			opacity: 0.9;
+			-webkit-mask-size: 60% 44%, 38% 46%;
+			mask-size: 60% 44%, 38% 46%;
+			-webkit-mask-position: 82% 84%, 62% 68%;
+			mask-position: 82% 84%, 62% 68%;
+		}
+		75% {
+			-webkit-mask-size: 48% 54%, 46% 40%;
+			mask-size: 48% 54%, 46% 40%;
+			-webkit-mask-position: 14% 82%, 34% 66%;
+			mask-position: 14% 82%, 34% 66%;
+		}
+		100% {
+			-webkit-mask-size: 52% 46%, 40% 40%;
+			mask-size: 52% 46%, 40% 40%;
+			-webkit-mask-position: 16% 20%, 30% 32%;
+			mask-position: 16% 20%, 30% 32%;
 		}
 	}
-	@keyframes avatar-aura-holo {
-		to {
-			filter: hue-rotate(360deg);
+
+	@keyframes missing-artwork-breathe {
+		0%,
+		100% {
+			opacity: 0.55;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+
+	.missing-artwork-copy {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		max-width: 100%;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.375rem;
+		padding: 0.75rem 0.625rem;
+		text-align: center;
+	}
+
+	/* Shine sweep on “No poster available” — ink halo is `filter: drop-shadow` on the wrapper in JSX. */
+	.missing-artwork-label {
+		display: inline-block;
+		max-width: 100%;
+		padding-inline: 0.25rem;
+		font-size: 0.9375rem; /* 15px */
+		font-weight: 600;
+		line-height: 1.2;
+		text-wrap: balance;
+		background: linear-gradient(
+			90deg,
+			var(--foreground) 0%,
+			var(--foreground) 30%,
+			color-mix(in oklab, var(--foreground) 45%, transparent) 45%,
+			color-mix(in oklab, var(--foreground) 45%, transparent) 55%,
+			var(--foreground) 70%,
+			var(--foreground) 100%
+		);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		-webkit-text-fill-color: transparent;
+		animation: missing-artwork-shine 2.25s cubic-bezier(0.25, 0.1, 0.25, 1)
+			infinite;
+	}
+
+	@keyframes missing-artwork-shine {
+		0%,
+		18% {
+			background-position: 100% 0;
+		}
+		82%,
+		100% {
+			background-position: 0% 0;
+		}
+	}
+
+	.missing-artwork-title {
+		max-width: 100%;
+		font-size: 0.75rem;
+		font-weight: 500;
+		line-height: 1.25;
+		color: var(--foreground);
+		text-wrap: pretty;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+		overflow: hidden;
+	}
+
+	@media (min-width: 640px) {
+		.missing-artwork-title {
+			font-size: 0.875rem;
+			-webkit-line-clamp: 5;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.missing-artwork-glow {
+			animation: none;
+			opacity: 0.7;
+		}
+
+		.missing-artwork-label {
+			animation: none;
+			background: none;
+			color: var(--foreground);
+			-webkit-text-fill-color: var(--foreground);
 		}
 	}
 }
@@ -1723,6 +2357,12 @@ html.theme-lobby-light .cinema-vignette {
 	position: absolute;
 	inset: 0;
 	pointer-events: none;
+	/* No transition here — enter must SNAP to the off-screen “from” pose.
+	   If transition is on during setup, the browser eases toward from-x then
+	   immediately reverses on `.is-active` → near-zero travel (reads as a hard cut). */
+}
+
+.t-page-slide.is-animating.is-active .t-page {
 	transition:
 		opacity var(--page-fade-dur) var(--page-fade-ease),
 		transform var(--page-slide-dur) var(--page-slide-ease),
@@ -1730,12 +2370,17 @@ html.theme-lobby-light .cinema-vignette {
 	will-change: opacity, transform, filter;
 }
 
-.t-page-slide.is-animating[data-direction="forward"] .t-page.is-enter {
+/*
+ * Direction tokens must live on the container — custom properties do not
+ * inherit across sibling `.t-page` nodes. Setting `--t-page-exit-x` only on
+ * `.is-enter` left exit at `translateX(0)` (fade-only mush).
+ */
+.t-page-slide.is-animating[data-direction="forward"] {
 	--t-page-from-x: var(--page-slide-distance);
 	--t-page-exit-x: calc(var(--page-slide-distance) * -1);
 }
 
-.t-page-slide.is-animating[data-direction="back"] .t-page.is-enter {
+.t-page-slide.is-animating[data-direction="back"] {
 	--t-page-from-x: calc(var(--page-slide-distance) * -1);
 	--t-page-exit-x: var(--page-slide-distance);
 }
@@ -1770,6 +2415,18 @@ html.theme-lobby-light .cinema-vignette {
 
 .t-page-slide:not(.is-animating) .t-page.is-enter {
 	position: relative;
+}
+
+/*
+ * Auth convert-card — motion tokens for `AuthRouteSlide` (motion/react drives the tween).
+ * Shared `.is-animating` CSS is not used on auth; keep tokens for any future CSS readers.
+ */
+.t-page-slide[data-auth-slide] {
+	--page-slide-dur: 280ms;
+	--page-fade-dur: 200ms;
+	--page-slide-distance: 72px;
+	--page-blur: 0px;
+	--page-stagger: 100ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2008,6 +2665,11 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
+/* Modal overlays — contain wheel/touch overscroll so the page behind does not scroll. */
+.modal-overlay-scrim {
+	overscroll-behavior: contain;
+}
+
 /* Modal sheets — software GPU / hardware acceleration off: blur repaints the full viewport on scroll. */
 html[data-software-gpu] .modal-overlay-scrim {
 	backdrop-filter: none !important;
@@ -2021,6 +2683,7 @@ html[data-software-gpu] .modal-overlay-scrim {
 
 .modal-sheet-scroll {
 	contain: paint;
+	overscroll-behavior: contain;
 }
 
 /* ---------------------------------------------------------------------------
@@ -2079,8 +2742,43 @@ html[data-software-gpu] .modal-overlay-scrim {
 	will-change: width, left;
 }
 
+/* Generic card resize — height/width tween when a panel’s layout box changes. */
+.t-resize {
+	transition:
+		width var(--resize-dur) var(--resize-ease),
+		height var(--resize-dur) var(--resize-ease);
+	will-change: width, height;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.log-rating-slider__fill-motion {
+		transition: none !important;
+	}
+	.t-resize {
+		transition: none !important;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — card resize (`SenseTrackSlider` fill + thumb).
+ * --------------------------------------------------------------------------- */
+.sense-track-slider__fill-motion,
+.image-crop-zoom__fill-motion {
+	transition: width var(--resize-dur) var(--resize-ease);
+	will-change: width;
+}
+
+.sense-track-slider__thumb-motion,
+.image-crop-zoom__thumb-motion {
+	transition: left var(--resize-dur) var(--resize-ease);
+	will-change: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sense-track-slider__fill-motion,
+	.sense-track-slider__thumb-motion,
+	.image-crop-zoom__fill-motion,
+	.image-crop-zoom__thumb-motion {
 		transition: none !important;
 	}
 }
@@ -2517,6 +3215,193 @@ html[data-software-gpu] .modal-overlay-scrim {
 	.t-success-check svg path {
 		animation: none !important;
 		stroke-dashoffset: 0 !important;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — input clear with dissolve (`HomeStickySearch` clear ×).
+ * Default glow tuned for Sense dark shells (`screen` + white streaks);
+ * `.theme-lobby-light` flips to multiply / lower opacity.
+ * --------------------------------------------------------------------------- */
+:root {
+	--clear-dur: 1000ms;
+	--clear-out-dur: 400ms;
+	--clear-in-dur: 400ms;
+	--clear-out-fly: 12px;
+	--clear-in-fly: 12px;
+	--clear-out-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--clear-in-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--clear-blur: 2px;
+	--glow-delay: 50ms;
+	--glow-peak-at: 0.15;
+	/* Dark default — multiply would vanish on raised card ink. */
+	--glow-opacity: 0.85;
+	--glow-spread: 1.5;
+}
+
+.theme-lobby-light {
+	--glow-opacity: 0.42;
+}
+
+/* The wrap clips the glow to its rounded box. Bring your own width /
+   height / border-radius / surface color. */
+.t-clear {
+	position: relative;
+	overflow: hidden;
+}
+.t-clear-mirror,
+.t-clear-placeholder {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	pointer-events: none;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: 2;
+}
+.t-clear-mirror {
+	opacity: 0;
+}
+.t-clear.has-value .t-clear-mirror,
+.t-clear.is-clearing .t-clear-mirror {
+	opacity: 1;
+}
+/* Hide the input's own glyphs while the mirror owns them so
+   the cleared text doesn't double-render with the fly-up. */
+.t-clear.has-value > input,
+.t-clear.is-clearing > input {
+	-webkit-text-fill-color: transparent;
+}
+.t-clear.has-value .t-clear-placeholder {
+	opacity: 0;
+}
+/* Sticky search keeps real pills/text at rest — mirror only during clear. */
+.home-sticky-search-clear.has-value:not(.is-clearing) .t-clear-mirror {
+	opacity: 0;
+}
+.home-sticky-search-clear.is-clearing .t-clear-live {
+	visibility: hidden;
+}
+/* After the RAF fly-in, inline styles clear — keep placeholder visible until URL clears. */
+.home-sticky-search-clear.is-clearing .t-clear-placeholder {
+	opacity: 1;
+}
+/* The streak overlay: empty by default; JS writes radial-gradient layers. */
+.t-clear-glow {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	opacity: 0;
+	z-index: 3;
+	/* Sense default themes are dark — lighten streaks. */
+	mix-blend-mode: screen;
+}
+
+.theme-lobby-light .t-clear-glow {
+	mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.t-clear-glow {
+		opacity: 0 !important;
+	}
+}
+
+/* Settings Discord link — emerald sheen travels from each endpoint toward the pill. */
+.discord-link-status {
+	--discord-link-flow-dur: 2.4s;
+}
+
+.discord-link-flow {
+	position: relative;
+	min-width: 1.5rem;
+	flex: 1 1 0%;
+	overflow: hidden;
+	height: 2px;
+}
+
+.discord-link-flow__track {
+	position: absolute;
+	inset: 0;
+	border-top: 2px dotted color-mix(in oklab, var(--muted-foreground) 35%, transparent);
+}
+
+.discord-link-flow.is-live .discord-link-flow__track {
+	border-top-color: color-mix(in oklab, var(--muted-foreground) 28%, transparent);
+}
+
+.discord-link-flow__pulse {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 2px;
+	width: 42%;
+	pointer-events: none;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		color-mix(in oklab, var(--color-emerald-400, #34d399) 35%, transparent) 28%,
+		var(--color-emerald-400, #34d399) 50%,
+		color-mix(in oklab, var(--color-emerald-400, #34d399) 35%, transparent) 72%,
+		transparent
+	);
+}
+
+.discord-link-flow.is-live[data-toward="trailing"] .discord-link-flow__pulse {
+	animation: discord-link-flow-to-end var(--discord-link-flow-dur) linear infinite;
+}
+
+.discord-link-flow.is-live[data-toward="leading"] .discord-link-flow__pulse {
+	animation: discord-link-flow-to-start var(--discord-link-flow-dur) linear infinite;
+}
+
+.discord-link-flow.is-paused .discord-link-flow__pulse {
+	animation-play-state: paused;
+}
+
+@keyframes discord-link-flow-to-end {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(240%);
+	}
+}
+
+@keyframes discord-link-flow-to-start {
+	from {
+		transform: translateX(240%);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.discord-link-flow__pulse {
+		animation: none !important;
+	}
+
+	/* Static inward fade — meaning without travel. */
+	.discord-link-flow.is-live[data-toward="trailing"] .discord-link-flow__pulse {
+		width: 100%;
+		transform: none;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			var(--color-emerald-400, #34d399)
+		);
+	}
+
+	.discord-link-flow.is-live[data-toward="leading"] .discord-link-flow__pulse {
+		width: 100%;
+		transform: none;
+		background: linear-gradient(
+			90deg,
+			var(--color-emerald-400, #34d399),
+			transparent
+		);
 	}
 }
 

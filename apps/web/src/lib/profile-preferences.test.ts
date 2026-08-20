@@ -1,10 +1,13 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	mergeDiscordActivityEnabledPref,
 	PROFILE_PREF_AVATAR_IS_ANIMATED,
 	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
 	PROFILE_PREF_CATALOG_TMDB_LANGUAGE,
 	PROFILE_PREF_CATALOG_TMDB_WATCH_REGION,
+	PROFILE_PREF_DISCORD_ACTIVITY_ENABLED,
+	PROFILE_PREF_INTEGRATIONS,
 	PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER,
 	PROFILE_PREF_SHOW_ADULT_CONTENT,
 	PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE,
@@ -14,6 +17,7 @@ import {
 	readAvatarIsAnimatedPref,
 	readCastCrewMonochromeOnHoverPref,
 	readCatalogTmdbLanguagePref,
+	readDiscordActivityEnabledPref,
 	readProfilePortraitGrayscaleUntilHoverPref,
 	readProfilePresenceVisibilityPref,
 	readShowAdultContentPref,
@@ -173,5 +177,43 @@ describe("readProfilePresenceVisibilityPref", () => {
 				privacy: { presenceVisibility: "everyone" },
 			}),
 		).toBe(PROFILE_PRESENCE_VISIBILITY_FRIENDS);
+	});
+});
+
+describe("readDiscordActivityEnabledPref", () => {
+	test("defaults to true when missing", () => {
+		expect(readDiscordActivityEnabledPref(null)).toBe(true);
+		expect(readDiscordActivityEnabledPref({})).toBe(true);
+	});
+
+	test("reads explicit false", () => {
+		expect(
+			readDiscordActivityEnabledPref({
+				[PROFILE_PREF_INTEGRATIONS]: {
+					[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED]: false,
+				},
+			}),
+		).toBe(false);
+	});
+});
+
+describe("mergeDiscordActivityEnabledPref", () => {
+	test("preserves sibling integration keys", () => {
+		expect(
+			mergeDiscordActivityEnabledPref(
+				{
+					[PROFILE_PREF_INTEGRATIONS]: {
+						[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED]: true,
+						futureIntegration: "keep-me",
+					},
+				},
+				false,
+			),
+		).toEqual({
+			[PROFILE_PREF_INTEGRATIONS]: {
+				[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED]: false,
+				futureIntegration: "keep-me",
+			},
+		});
 	});
 });

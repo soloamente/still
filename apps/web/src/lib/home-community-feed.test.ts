@@ -28,8 +28,9 @@ describe("parseHomeCommunityFeed", () => {
 });
 
 describe("parseHomeCommunityRankKind", () => {
-	test("film and show diary boards", () => {
+	test("film, show, and episode diary boards", () => {
 		expect(parseHomeCommunityRankKind("tv", "ranks")).toBe("tv");
+		expect(parseHomeCommunityRankKind("episodes", "ranks")).toBe("episodes");
 		expect(parseHomeCommunityRankKind(null, "ranks")).toBe("films");
 	});
 
@@ -58,6 +59,7 @@ describe("homeCommunityRankKindLabel", () => {
 	test("patron-facing labels", () => {
 		expect(homeCommunityRankKindLabel("films")).toBe("Films");
 		expect(homeCommunityRankKindLabel("tv")).toBe("Shows");
+		expect(homeCommunityRankKindLabel("episodes")).toBe("Episodes");
 		expect(homeCommunityRankKindLabel("reviews")).toBe("Reviews");
 	});
 });
@@ -65,9 +67,11 @@ describe("homeCommunityRankKindLabel", () => {
 describe("rank kind guards", () => {
 	test("film/tv vs members slices", () => {
 		expect(isFilmTvRankKind("films")).toBe(true);
+		expect(isFilmTvRankKind("episodes")).toBe(true);
 		expect(isMembersRankKind("reviews")).toBe(true);
 		expect(isMembersRankKind("films")).toBe(false);
 		expect(isMembersRankKind("tv")).toBe(false);
+		expect(isMembersRankKind("episodes")).toBe(false);
 	});
 
 	test("isHomeLeaderboardFeed", () => {

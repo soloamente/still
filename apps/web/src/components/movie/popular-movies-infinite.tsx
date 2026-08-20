@@ -29,6 +29,7 @@ import {
 	fetchTvDiscover,
 	fetchTvOnTheAir,
 	fetchTvPopular,
+	isFetchAbortError,
 } from "@/lib/still-api-fetch";
 
 export type PopularMovieSeed = {
@@ -285,9 +286,10 @@ export function PopularMoviesInfinite({
 				let res: Awaited<ReturnType<NonNullable<typeof loadPage>>>;
 				try {
 					res = await loadPage(next, controller.signal);
-				} catch {
-					// Aborted by a re-seed or network throw — drop if superseded.
+				} catch (error) {
+					// Aborted by unmount, re-seed, or network throw — drop if superseded or expected.
 					if (gen !== seedGenRef.current) return;
+					if (isFetchAbortError(error, controller.signal)) return;
 					loadingRef.current = false;
 					setFooterState("error");
 					return;
@@ -393,8 +395,9 @@ export function PopularMoviesInfinite({
 			if (!depleted) {
 				queueMicrotask(() => peekIfRoomForMore());
 			}
-		} catch {
+		} catch (error) {
 			if (gen !== seedGenRef.current) return;
+			if (isFetchAbortError(error, controller.signal)) return;
 			loadingRef.current = false;
 			setFooterState("error");
 		}
@@ -460,6 +463,14 @@ export function PopularMoviesInfinite({
 	useEffect(() => {
 		loadMoreRef.current = loadMore;
 	}, [loadMore]);
+
+	// Cancel in-flight catalogue pages when leaving the lobby (e.g. open film detail).
+	useEffect(() => {
+		return () => {
+			abortRef.current?.abort();
+			abortRef.current = null;
+		};
+	}, []);
 
 	const showSentinel =
 		!staticCatalogue && !blockedReason && footerState !== "exhausted";

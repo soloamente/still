@@ -3,11 +3,12 @@ import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
 import {
-	hasAvatarAura,
-	resolveAvatarAuraTier,
+	hasAvatarAuraVisual,
+	resolveAvatarAuraVisual,
 } from "@/components/profile/avatar-aura/avatar-aura-tier";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type FeedPerson = {
 	user: { id: string; name: string; image: string | null } | null;
@@ -16,6 +17,7 @@ export type FeedPerson = {
 		displayName: string;
 		avatarIsAnimated?: boolean;
 		planTier?: PlanTierId | string | null;
+		staffRole?: StaffRole | null;
 	} | null;
 };
 
@@ -36,8 +38,10 @@ export function FeedPersonAvatar({
 }) {
 	const handle = person.profile?.handle ?? person.user?.id ?? "user";
 	const name = person.profile?.displayName ?? person.user?.name ?? "Someone";
-	const hasAura = hasAvatarAura(
-		resolveAvatarAuraTier(person.profile?.planTier),
+	const planTier = person.profile?.planTier ?? null;
+	const staffRole = person.profile?.staffRole ?? null;
+	const hasAura = hasAvatarAuraVisual(
+		resolveAvatarAuraVisual({ planTier, staffRole }),
 	);
 	const px = size === "md" ? 44 : size === "sm" ? 36 : 32;
 	const box =
@@ -75,7 +79,8 @@ export function FeedPersonAvatar({
 					person.user?.image,
 					person.profile?.avatarIsAnimated,
 				)}
-				planTier={person.profile?.planTier ?? null}
+				planTier={planTier}
+				staffRole={staffRole}
 			/>
 		</Link>
 	);

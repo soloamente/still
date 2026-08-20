@@ -4,8 +4,10 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
 import { DetailArtworkPasitoStepper } from "@/components/movie/detail-artwork-pasito-stepper";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 export type MovieDetailHeroSlide = {
 	key: string;
@@ -63,13 +65,15 @@ export function MovieDetailHeroMedia({
 		return (
 			<div
 				className={cn(
-					"relative mx-auto aspect-2/3 w-full max-w-[min(100%,22rem)] overflow-hidden rounded-[1.25rem] bg-background sm:rounded-[1.5rem]",
+					"relative mx-auto aspect-2/3 w-full max-w-[min(100%,22rem)] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]",
 					className,
 				)}
 			>
-				<p className="grid size-full place-items-center p-6 text-center text-muted-foreground text-sm">
-					<span role="status">No poster yet</span>
-				</p>
+				<MissingArtworkPlaceholder
+					label="No poster available"
+					title={title}
+					aria-label={`${title} (no poster)`}
+				/>
 			</div>
 		);
 	}
@@ -87,7 +91,9 @@ export function MovieDetailHeroMedia({
 						className="object-cover"
 						sizes="(max-width: 768px) 100vw, 360px"
 						priority
-						unoptimized={isListCoverProxySrc(active.src)}
+						unoptimized={
+							isListCoverProxySrc(active.src) || isTmdbCdnUrl(active.src)
+						}
 					/>
 				</div>
 			</div>

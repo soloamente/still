@@ -1,7 +1,6 @@
 "use client";
 
 import {
-	RadialToolkit,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -30,6 +29,7 @@ import { toast } from "sonner";
 import { ListLobbyDeleteConfirmDialog } from "@/components/list/list-lobby-delete-confirm-dialog";
 import { ListLobbyEditDialog } from "@/components/list/list-lobby-edit-dialog";
 import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
+import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { api } from "@/lib/api";
 import {
 	isListCoverProxySrc,
@@ -37,6 +37,7 @@ import {
 } from "@/lib/list-cover-image";
 import { listShareCopiedToastMessage } from "@/lib/list-share-toast";
 import type { ListLobbySeed } from "@/lib/lists-lobby-order";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 import { uploadListCover } from "@/lib/upload-list-cover";
 
 /**
@@ -328,7 +329,10 @@ export function ListLobbyPoster({
 							sizes={imageSizes}
 							className="object-cover"
 							priority={priority}
-							unoptimized={isListCoverProxySrc(displayPosterUrl)}
+							unoptimized={
+								isListCoverProxySrc(displayPosterUrl) ||
+								isTmdbCdnUrl(displayPosterUrl)
+							}
 						/>
 					) : (
 						<div className="grid size-full place-items-center p-3">
@@ -391,7 +395,7 @@ export function ListLobbyPoster({
 				}}
 			/>
 
-			<RadialToolkit
+			<SenseRadialToolkit
 				open={open}
 				anchor={anchor}
 				onOpenChange={onOpenChange}

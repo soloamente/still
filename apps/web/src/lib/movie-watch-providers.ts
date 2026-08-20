@@ -148,3 +148,23 @@ export function buildMovieWatchProvidersViewModel(
 
 	return { providers, rowsByProviderId };
 }
+
+/**
+ * Pin the patron’s catalogue watch region to the top of a country list.
+ * No-op when unset, `ALL`, or the region isn’t offered for this service.
+ */
+export function orderCountryRowsByPreferredRegion<
+	T extends { countryCode: string },
+>(rows: T[], preferredIso2: string | null | undefined): T[] {
+	if (!preferredIso2 || rows.length < 2) return rows;
+	const code = preferredIso2.trim().toUpperCase();
+	if (code.length !== 2) return rows;
+	const index = rows.findIndex(
+		(row) => row.countryCode.trim().toUpperCase() === code,
+	);
+	if (index <= 0) return rows;
+	const next = rows.slice();
+	const [preferred] = next.splice(index, 1);
+	if (!preferred) return rows;
+	return [preferred, ...next];
+}

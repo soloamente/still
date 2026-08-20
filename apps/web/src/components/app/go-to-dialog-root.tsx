@@ -100,7 +100,7 @@ export function GoToDialogRoot() {
 									esc
 								</kbd>
 							</div>
-							<Command.List className="max-h-[min(50vh,20rem)] overflow-y-auto p-2">
+							<Command.List className="max-h-[min(50vh,20rem)] overflow-y-auto overscroll-contain p-2">
 								{shortcuts.length > 0 ? (
 									<div className="grid grid-cols-2 gap-1">
 										{shortcuts.map((s) => (

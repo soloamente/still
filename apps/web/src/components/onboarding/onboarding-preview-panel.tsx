@@ -1,11 +1,13 @@
 "use client";
 
+import { ShimmerBone } from "@still/ui/components/skeleton-shimmer";
 import { cn } from "@still/ui/lib/utils";
 import { UserRound } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 
 import { OnboardingLetterReveal } from "@/components/onboarding/onboarding-letter-reveal";
+import { isOnboardingImportStep } from "@/lib/onboarding-step-graph";
 import type { OnboardingMovie, WizardStep } from "@/lib/onboarding-types";
 import { PROFILE_PORTRAIT_SHELL_CLASSNAME } from "@/lib/profile-portrait-shell";
 
@@ -18,6 +20,9 @@ const PREVIEW_MOTION_TRANSITION = {
 };
 
 const FIELD_OPACITY_MS = 400;
+
+/** Empty preview bones on the `bg-background` specimen — full `muted`, not /40. */
+const PREVIEW_BONE_CLASSNAME = "bg-muted";
 
 type OnboardingPreviewPanelProps = {
 	step: WizardStep;
@@ -63,6 +68,9 @@ function previewMotionForStep(
 			return { y: -168, scale: 1.5 };
 		case "done":
 			return { y: -176, scale: 1.4 };
+		case "import":
+		case "import-upload":
+			return { y: 0, scale: 1 };
 		default:
 			return { y: 0, scale: 1.05 };
 	}
@@ -81,15 +89,20 @@ function PreviewEdgeScrims() {
 		<>
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 top-0 z-20 h-36 bg-linear-to-b from-45% from-card to-transparent"
+				className="pointer-events-none absolute inset-x-0 top-0 z-20 h-36 bg-linear-to-b from-45% from-card to-card/0"
 			/>
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-36 bg-linear-to-t from-55% from-card to-transparent"
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-36 bg-linear-to-t from-55% from-card to-card/0"
+			/>
+			{/* Side fades hide the overflow-hidden cut when the specimen zooms. */}
+			<div
+				aria-hidden
+				className="pointer-events-none absolute inset-y-0 left-0 z-20 w-48 bg-linear-to-r from-60% from-card to-card/0"
 			/>
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-y-0 right-0 z-20 w-36 bg-linear-to-l from-65% from-card to-transparent"
+				className="pointer-events-none absolute inset-y-0 right-0 z-20 w-48 bg-linear-to-l from-60% from-card to-card/0"
 			/>
 		</>
 	);
@@ -106,8 +119,8 @@ function PreviewStatPlaceholder({
 	return (
 		<div
 			className={cn(
-				"flex min-h-10 min-w-[4.75rem] flex-col items-center justify-center gap-0.5 rounded-xl bg-background px-3 py-2.5",
-				active ? "opacity-100" : "opacity-30",
+				"flex min-h-10 min-w-[4.75rem] flex-col items-center justify-center gap-0.5 rounded-xl bg-card px-3 py-2.5",
+				active ? "opacity-100" : "opacity-55",
 			)}
 			style={{ transition: `opacity ${FIELD_OPACITY_MS}ms ease` }}
 		>
@@ -128,7 +141,7 @@ function PreviewPortrait({
 }) {
 	const portraitShell = cn(
 		PROFILE_PORTRAIT_SHELL_CLASSNAME,
-		"bg-muted/30",
+		"bg-muted",
 		fieldOpacity(step, "avatar"),
 	);
 
@@ -229,7 +242,13 @@ export function OnboardingPreviewPanel({
 }: OnboardingPreviewPanelProps) {
 	const reduceMotion = useReducedMotion();
 
-	if (step === "taste" || step === "favorites") return null;
+	if (
+		step === "taste" ||
+		step === "favorites" ||
+		isOnboardingImportStep(step)
+	) {
+		return null;
+	}
 
 	const motionTarget = previewMotionForStep(
 		step,
@@ -255,23 +274,24 @@ export function OnboardingPreviewPanel({
 						? { y: 0, scale: 1 }
 						: { y: motionTarget.y, scale: motionTarget.scale }
 				}
-				className="relative z-0 w-[640px] shrink-0 overflow-hidden rounded-3xl bg-card px-6 pt-6 pb-8 sm:px-8"
+				// Specimen of the profile canvas, not a second bg-card inside the shell.
+				className="relative z-0 w-[min(100%,40rem)] shrink-0 overflow-hidden rounded-3xl bg-background px-6 pt-6 pb-8 sm:px-8"
 				style={{ transformOrigin: "center top" }}
 				transition={reduceMotion ? { duration: 0 } : PREVIEW_MOTION_TRANSITION}
 			>
 				<header className="relative shrink-0">
 					{/* Banner — parity with profile patron header */}
-					<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted/25">
+					<div className="relative aspect-[3/1] w-full overflow-hidden rounded-2xl bg-muted">
 						<div
 							aria-hidden
 							className="size-full"
 							style={{
-								background: `linear-gradient(120deg, ${PROFILE_BANNER_ACCENT}44, transparent 55%), var(--card)`,
+								background: `linear-gradient(120deg, ${PROFILE_BANNER_ACCENT}44, transparent 55%), var(--muted)`,
 							}}
 						/>
 						<div
 							aria-hidden
-							className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent"
+							className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"
 						/>
 					</div>
 
@@ -295,7 +315,13 @@ export function OnboardingPreviewPanel({
 								/>
 							</h1>
 						) : (
-							<div className="mx-auto h-7 w-48 rounded-md bg-muted/50" />
+							<ShimmerBone
+								aria-hidden
+								className={cn(
+									"mx-auto h-7 w-48 rounded-md",
+									PREVIEW_BONE_CLASSNAME,
+								)}
+							/>
 						)}
 
 						{handle.trim() ? (
@@ -315,7 +341,13 @@ export function OnboardingPreviewPanel({
 								/>
 							</p>
 						) : (
-							<div className="mx-auto mt-1 h-5 w-36 rounded-sm bg-muted/40" />
+							<ShimmerBone
+								aria-hidden
+								className={cn(
+									"mx-auto mt-1 h-5 w-36 rounded-sm",
+									PREVIEW_BONE_CLASSNAME,
+								)}
+							/>
 						)}
 
 						{step === "done" && tasteHeadline ? (
@@ -323,12 +355,14 @@ export function OnboardingPreviewPanel({
 								{tasteHeadline}
 							</p>
 						) : (
-							<div
+							<ShimmerBone
+								aria-hidden
 								className={cn(
-									"mx-auto mt-4 h-5 w-56 rounded-full bg-muted/40",
+									"mx-auto mt-4 h-5 w-56 rounded-full",
+									PREVIEW_BONE_CLASSNAME,
 									step === "done" || step === "verify"
 										? "opacity-100"
-										: "opacity-20",
+										: "opacity-55",
 								)}
 							/>
 						)}
@@ -336,7 +370,7 @@ export function OnboardingPreviewPanel({
 						<div
 							className={cn(
 								"mt-4 flex flex-wrap items-stretch justify-center gap-2",
-								fieldOpacity(step, "welcome"),
+								step === "welcome" ? "opacity-100" : "opacity-55",
 							)}
 							style={{
 								transition: `opacity ${FIELD_OPACITY_MS}ms ease`,
@@ -366,7 +400,13 @@ export function OnboardingPreviewPanel({
 										</p>
 									</blockquote>
 								) : (
-									<div className="mx-auto h-20 max-w-prose rounded-xl bg-muted/40" />
+									<ShimmerBone
+										aria-hidden
+										className={cn(
+											"mx-auto h-20 max-w-prose rounded-xl",
+											PREVIEW_BONE_CLASSNAME,
+										)}
+									/>
 								)}
 							</section>
 						) : null}
@@ -411,7 +451,7 @@ export function OnboardingPreviewStrip({
 	return (
 		<div className="flex items-center gap-3 rounded-2xl bg-background px-4 py-3">
 			{avatarPreviewUrl ? (
-				<div className="relative aspect-[2/3] w-10 shrink-0 overflow-hidden rounded-xl ring-2 ring-card">
+				<div className="relative aspect-[2/3] w-10 shrink-0 overflow-hidden rounded-xl">
 					<Image
 						alt=""
 						className="size-full object-cover"
@@ -422,7 +462,7 @@ export function OnboardingPreviewStrip({
 					/>
 				</div>
 			) : (
-				<div className="flex aspect-[2/3] w-10 shrink-0 items-center justify-center rounded-xl bg-muted/40 ring-2 ring-card">
+				<div className="flex aspect-[2/3] w-10 shrink-0 items-center justify-center rounded-xl bg-muted/40">
 					<UserRound aria-hidden className="size-4 text-muted-foreground" />
 				</div>
 			)}

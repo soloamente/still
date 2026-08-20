@@ -2,7 +2,7 @@ import { db, planFeature, planFeatureTier, planTier } from "@still/db";
 import { asc, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
-import { context, requirePermission } from "../context";
+import { freshContext, requirePermission } from "../context";
 import { makeId } from "../lib/cuid";
 
 /** Stable slug for plan_feature.key — staff-created rows are display-only, not entitlement gates. */
@@ -78,7 +78,7 @@ export const planFeaturesRoute = new Elysia({
 	prefix: "/api/staff/plan-features",
 	tags: ["staff"],
 })
-	.use(context)
+	.use(freshContext)
 	.get("/", async ({ user: viewer, status }) => {
 		try {
 			await requirePermission({ user: viewer }, { user: ["list"] });

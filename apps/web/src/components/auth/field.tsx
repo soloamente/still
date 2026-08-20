@@ -7,6 +7,7 @@ import type * as React from "react";
 import {
 	AuthFieldErrors,
 	AuthMotionInput,
+	authFieldErrorId,
 } from "@/components/auth/auth-motion-field";
 
 /**
@@ -50,6 +51,7 @@ export function Field({
 	const errorMessage = field.state.meta.errors.find(Boolean) as
 		| { message?: string }
 		| undefined;
+	const errorId = authFieldErrorId(field.name);
 
 	return (
 		<div className={cn(className)}>
@@ -71,6 +73,7 @@ export function Field({
 				</label>
 			)}
 			<AuthMotionInput
+				aria-describedby={errorMessage ? errorId : undefined}
 				aria-invalid={errorMessage ? true : undefined}
 				className={inputClassName}
 				id={field.name}
@@ -83,7 +86,7 @@ export function Field({
 				{...input}
 			/>
 			{errorMessage ? (
-				<AuthFieldErrors errors={field.state.meta.errors} />
+				<AuthFieldErrors errors={field.state.meta.errors} id={errorId} />
 			) : helper ? (
 				<div className="mt-1 min-h-4 text-muted-foreground text-xs">
 					{helper}

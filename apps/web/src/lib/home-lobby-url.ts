@@ -9,6 +9,8 @@ import {
 	DEFAULT_HOME_CATALOG_SORT,
 	type HomeCatalogSort,
 } from "@/lib/home-catalog-sort";
+import type { HomeCommunityActivityScope } from "@/lib/home-community-activity-scope";
+import { serializeHomeCommunityActivityScope } from "@/lib/home-community-activity-scope";
 import type {
 	HomeCommunityFeed,
 	HomeCommunityRankKind,
@@ -63,6 +65,8 @@ export function buildHomeLobbyHref(input: {
 	rankKind?: HomeCommunityRankKind;
 	/** Wit-sized engagement leaders when `sort=reviews`. */
 	reviewSort?: HomeCommunityReviewSort;
+	/** Following graph vs public highlights when `sort=activity`. */
+	activityScope?: HomeCommunityActivityScope;
 	/** Discover refinements — movies lobby filter popover. */
 	genreId?: number | null;
 	monetization?: string | null;
@@ -91,6 +95,14 @@ export function buildHomeLobbyHref(input: {
 			);
 			if (reviewSortParam) {
 				params.set("reviewSort", reviewSortParam);
+			}
+		}
+		if (feed === "activity") {
+			const activityScopeParam = serializeHomeCommunityActivityScope(
+				input.activityScope ?? "following",
+			);
+			if (activityScopeParam) {
+				params.set("activityScope", activityScopeParam);
 			}
 		}
 	} else {

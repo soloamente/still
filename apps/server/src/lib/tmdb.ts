@@ -1,5 +1,7 @@
 import { env } from "@still/env/server";
 
+import { traceTiming } from "./trace-timing";
+
 /**
  * Tiny typed wrapper around TMDb v3. We deliberately don't generate the
  * full openapi: TMDb's responses are huge and most endpoints we touch are
@@ -338,15 +340,17 @@ async function tmdb<T>(
 		url.searchParams.set("api_key", env.TMDB_API_KEY);
 	}
 
-	const res = await fetch(url, {
-		headers: isBearer
-			? {
-					Authorization: `Bearer ${env.TMDB_API_KEY}`,
-					Accept: "application/json",
-				}
-			: { Accept: "application/json" },
-		signal: AbortSignal.timeout(8000),
-	});
+	const res = await traceTiming("tmdb", path, () =>
+		fetch(url, {
+			headers: isBearer
+				? {
+						Authorization: `Bearer ${env.TMDB_API_KEY}`,
+						Accept: "application/json",
+					}
+				: { Accept: "application/json" },
+			signal: AbortSignal.timeout(8000),
+		}),
+	);
 	if (!res.ok) {
 		throw new Error(`TMDb ${res.status} on ${path}: ${await res.text()}`);
 	}

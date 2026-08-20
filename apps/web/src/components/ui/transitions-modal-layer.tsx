@@ -77,7 +77,7 @@ export function TransitionsModalLayer({
 	if (!mounted) return null;
 
 	return (
-		<div className="fixed inset-0 z-50 grid place-items-end md:place-items-center">
+		<div className="fixed inset-0 z-50 grid place-items-end overscroll-contain md:place-items-center">
 			<button
 				type="button"
 				aria-label="Close dialog"

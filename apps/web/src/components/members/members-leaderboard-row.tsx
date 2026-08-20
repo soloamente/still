@@ -8,7 +8,6 @@ import {
 	buildPatronMembersLedgerSeed,
 	openPatronMembersLedger,
 } from "@/components/home/patron-members-ledger-drawer";
-import { MembersFollowButton } from "@/components/members/members-follow-button";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
 	HOME_COMMUNITY_RANKS_ROW_CLASSNAME,
@@ -38,7 +37,6 @@ export function MembersLeaderboardRow({
 }) {
 	const isViewer = viewerUserId != null && entry.userId === viewerUserId;
 	const statNoun = membersLeaderboardStatNoun(sort, entry.count);
-	const showFollow = viewerUserId != null && !isViewer;
 
 	return (
 		<li
@@ -66,6 +64,7 @@ export function MembersLeaderboardRow({
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 				<span className="flex min-w-0 flex-col gap-0.5 leading-none">
 					<span className="max-w-full truncate font-semibold text-foreground text-sm">
@@ -76,27 +75,18 @@ export function MembersLeaderboardRow({
 					</span>
 				</span>
 			</Link>
-			<div className="flex shrink-0 flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-2">
-				<CommunityRanksRowCount
-					count={entry.count}
-					ctaLabel={membersLeaderboardLedgerCta(sort)}
-					title={`View ${statNoun} for this period`}
-					ariaLabel={`${entry.count} ${statNoun} — view details`}
-					onClick={() =>
-						openPatronMembersLedger(
-							buildPatronMembersLedgerSeed(entry, sort, period),
-						)
-					}
-				/>
-				{showFollow ? (
-					<MembersFollowButton
-						targetUserId={entry.userId}
-						initialFollowing={entry.viewerFollows}
-						sort={sort}
-						period={period}
-					/>
-				) : null}
-			</div>
+			{/* Count opens the members ledger — no follow control (parity with Film/TV ranks). */}
+			<CommunityRanksRowCount
+				count={entry.count}
+				ctaLabel={membersLeaderboardLedgerCta(sort)}
+				title={`View ${statNoun} for this period`}
+				ariaLabel={`${entry.count} ${statNoun} — view details`}
+				onClick={() =>
+					openPatronMembersLedger(
+						buildPatronMembersLedgerSeed(entry, sort, period),
+					)
+				}
+			/>
 		</li>
 	);
 }

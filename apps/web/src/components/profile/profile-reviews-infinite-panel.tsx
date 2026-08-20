@@ -68,7 +68,7 @@ export function ProfileReviewsInfinitePanel({
 		<div className="min-h-0 w-full">
 			<ul className="grid w-full gap-4 md:grid-cols-2">
 				{items.map((row) => (
-					<li key={row.review.id} className="min-w-0">
+					<li key={row.review.id} className="min-h-0 min-w-0">
 						<ProfileReviewTile row={row} isMe={isMe} />
 					</li>
 				))}

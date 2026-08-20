@@ -22,10 +22,6 @@ import {
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { contentVisibilityWhere } from "../lib/content-visibility";
 import {
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "../lib/diary-metal-tier";
-import {
 	buildHeroArtworkSlides,
 	buildScreenshotSlides,
 	normalizeTmdbImagesBundle,
@@ -41,19 +37,24 @@ import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { resolveMovieTitleLogoPath } from "../lib/movie-title-logo-resolve";
 import { resolveMovieTrailer } from "../lib/movie-trailer-resolve";
-import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "../lib/patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "../lib/patron-avatar-badge";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import {
 	isPremiumStreamingMonetizationFilter,
 	patronHasPlanFeature,
 } from "../lib/plan-feature-access";
 import { readAvatarIsAnimatedPref } from "../lib/profile-media";
+import { hit } from "../lib/rate-limit";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
+import {
+	isStreamingAvailabilityConfigured,
+	resolveStreamingPrices,
+} from "../lib/streaming-availability-prices";
 import {
 	type TmdbMovieDetail,
 	type TmdbMovieSummary,
@@ -788,6 +789,37 @@ export const moviesRoute = new Elysia({
 			trailerSite: trailer?.trailerSite ?? null,
 		};
 	})
+	/**
+	 * Rent/buy prices for every country (Streaming Availability).
+	 * Unconfigured → `{ configured: false, offersByCountry: {} }`.
+	 */
+	.get("/:id/streaming-prices", async ({ params, status, user }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+
+		if (!isStreamingAvailabilityConfigured()) {
+			return { configured: false as const, offersByCountry: {} };
+		}
+
+		if (
+			!hit(`streaming-prices:${user?.id ?? "anon"}`, {
+				limit: 60,
+				windowMs: 60_000,
+			}).ok
+		) {
+			return status(429, "Too many requests");
+		}
+
+		try {
+			return await resolveStreamingPrices({
+				listingKind: "movie",
+				tmdbId: id,
+			});
+		} catch (err) {
+			console.error("[movies] streaming-prices failed", err);
+			return status(502, "Streaming prices unavailable");
+		}
+	})
 	// Movie detail. Redis cache → local DB cache → TMDb.
 	// Community stats are fetched fresh (with their own Redis cache) and merged last
 	// so counts stay accurate without busting the whole detail cache.
@@ -970,10 +1002,7 @@ export const moviesRoute = new Elysia({
 				.orderBy(desc(review.likesCount), desc(review.publishedAt))
 				.limit(20);
 			const userIds = rows.map((row) => row.review.userId);
-			const [logCounts, planTiers] = await Promise.all([
-				fetchDiaryLogCountsForUserIds(userIds),
-				fetchPlanTiersForUserIds(userIds),
-			]);
+			const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 			return rows.map(
 				({ review: row, handle, displayName, image, preferences }) => ({
 					...row,
@@ -986,10 +1015,7 @@ export const moviesRoute = new Elysia({
 									avatarIsAnimated: readAvatarIsAnimatedPref(
 										preferences as Record<string, unknown> | null,
 									),
-									diaryMetalTier: resolveDiaryMetalTier(
-										logCounts.get(row.userId) ?? 0,
-									),
-									planTier: planTierForUserId(row.userId, planTiers),
+									...patronAvatarBadgeFields(row.userId, badgeMaps),
 								}
 							: null,
 				}),

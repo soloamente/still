@@ -20,7 +20,7 @@ import {
 import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
-import { context, requirePermission } from "../context";
+import { freshContext, requirePermission } from "../context";
 import { forwardAuthSetCookies } from "../lib/forward-auth-set-cookies";
 import { HANDLE_RE } from "../lib/handle-re";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
@@ -63,7 +63,7 @@ function forbidden(status: (c: number, m: string) => unknown, e: unknown) {
 }
 
 export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
-	.use(context)
+	.use(freshContext)
 	.get("/users", async ({ user: viewer, query, status }) => {
 		try {
 			await requirePermission({ user: viewer }, { user: ["list"] });

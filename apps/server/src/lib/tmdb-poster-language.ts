@@ -1,6 +1,8 @@
 import { db, profile } from "@still/db";
 import { eq } from "drizzle-orm";
 
+import { traceTiming } from "./trace-timing";
+
 /**
  * Must match `PROFILE_PREF_CATALOG_TMDB_WATCH_REGION` in `apps/web` — stored under
  * `profile.preferences` when the patron picks a catalogue country in Settings.
@@ -94,11 +96,13 @@ export async function getTmdbLanguageForUser(
 ): Promise<string> {
 	if (!userId) return "en-US";
 	try {
-		const [row] = await db
-			.select({ preferences: profile.preferences })
-			.from(profile)
-			.where(eq(profile.userId, userId))
-			.limit(1);
+		const [row] = await traceTiming("db", "getTmdbLanguageForUser", () =>
+			db
+				.select({ preferences: profile.preferences })
+				.from(profile)
+				.where(eq(profile.userId, userId))
+				.limit(1),
+		);
 		const prefs = row?.preferences ?? null;
 		const explicit = readCatalogTmdbLanguagePref(prefs);
 		if (explicit) return explicit;

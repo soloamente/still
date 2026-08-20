@@ -27,6 +27,50 @@ export type ProductChangelogRelease = {
 /** Newest first — append when shipping; keep prior releases for the full log. */
 export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 	{
+		id: "2026-08-20-translate-fixes-v4",
+		versionLabel: "0.3.4",
+		dateLabel: "August 20, 2026",
+		headline: "Review translate and reliability",
+		summary:
+			"Translate reviews in the reader, a round of bug fixes, and Discord activity for Pro still funding on Pricing.",
+		items: [
+			{
+				title: "Translate reviews",
+				body: "In the full review reader, Translate sits near the top so you can read before scrolling. Sense detects the source language and keeps film and show mentions intact. Prefer a language in Settings → Language. Thanks to @jdc for suggesting this.",
+			},
+			{
+				title: "Bug fixes",
+				body: "Auth on mobile, catalogue and detail chrome, and diary/review flows got reliability fixes so everyday browsing feels steadier. Thanks to @jdc for helping surface several of these.",
+			},
+			{
+				title: "Polish",
+				body: "Empty posters and cast photos use a softer placeholder when TMDb has no art, plus quieter lobby and settings cleanup.",
+			},
+			{
+				title: "Discord activity for Pro",
+				body: "Listening and Playing on profiles unlocks for every Pro member once paid plans fund the presence server. Live progress stays on Pricing.",
+			},
+		],
+	},
+	{
+		id: "2026-08-11-discord-activity-pro",
+		versionLabel: "0.3.3",
+		dateLabel: "August 11, 2026",
+		headline: "Discord activity for Pro",
+		summary:
+			"Fund the presence server with Pro — live progress on Pricing; ships for every Pro member when production is ready.",
+		items: [
+			{
+				title: "Pro funding progress",
+				body: "Pricing and Settings show how many paying Pro members are toward the Discord activity goal. Connect stays off until the presence server is live.",
+			},
+			{
+				title: "Pro perk",
+				body: "When Discord activity turns on, it's included with Attuned and above — not on the free Still plan.",
+			},
+		],
+	},
+	{
 		id: "2026-07-03-profile-polish",
 		versionLabel: "0.3.2",
 		dateLabel: "July 3, 2026",

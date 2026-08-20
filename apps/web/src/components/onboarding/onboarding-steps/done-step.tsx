@@ -14,7 +14,7 @@ type DoneStepProps = {
 	isEntering?: boolean;
 };
 
-/** Step 7 — celebration + final preview; patron chooses to edit or enter the app. */
+/** Step 7 — celebration + taste reveal; patron chooses to edit or enter the app. */
 export function DoneStep({
 	tasteHeadline,
 	onEditProfile,
@@ -28,10 +28,22 @@ export function DoneStep({
 				title="You made it"
 			/>
 
+			{/*
+			  Taste signature as its own raised specimen — not a second muted
+			  paragraph under the step description (those used to blend together).
+			*/}
 			{tasteHeadline ? (
-				<p className="mx-auto max-w-md text-pretty text-center font-editorial text-muted-foreground text-sm leading-relaxed">
-					{tasteHeadline}
-				</p>
+				<aside
+					aria-label="Your taste signature"
+					className="rounded-2xl bg-background px-5 py-4 text-center sm:rounded-3xl sm:px-6 sm:py-5 lg:text-start"
+				>
+					<p className="font-medium text-[0.7rem] text-muted-foreground uppercase tracking-wider">
+						Your taste
+					</p>
+					<p className="mt-2 text-pretty font-editorial text-base text-foreground leading-relaxed sm:text-[1.0625rem]">
+						{tasteHeadline}
+					</p>
+				</aside>
 			) : null}
 
 			<div className="flex flex-col gap-3">

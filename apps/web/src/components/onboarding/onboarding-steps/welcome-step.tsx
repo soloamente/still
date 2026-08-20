@@ -22,8 +22,8 @@ export function WelcomeStep({
 	return (
 		<div className="flex flex-col gap-12">
 			<OnboardingStepHeader
-				description="Complete your profile to join the community and share your taste."
-				title="Let's set up your profile"
+				description="A portrait, a name, and a few films so your profile already feels like you."
+				title="Set up your profile"
 			/>
 
 			<div className="flex flex-col gap-3">

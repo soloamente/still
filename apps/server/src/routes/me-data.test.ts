@@ -199,6 +199,15 @@ describe("DELETE /api/me/library", () => {
 	});
 });
 
+describe("GET /api/me/email-verified", () => {
+	test("401 when signed out", async () => {
+		const res = await makeApp(null).handle(
+			new Request("http://test/api/me/email-verified"),
+		);
+		expect(res.status).toBe(401);
+	});
+});
+
 describe("GET /api/me/year/:year", () => {
 	test("401 when signed out", async () => {
 		const res = await makeApp(null).handle(

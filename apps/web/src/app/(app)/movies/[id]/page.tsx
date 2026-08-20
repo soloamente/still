@@ -15,6 +15,7 @@ import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { requireListingDetailApiData } from "@/lib/eden-api-error";
+import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchMovieDetailServer } from "@/lib/fetch-movie-detail-server";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
@@ -43,6 +44,7 @@ import {
 	ogImageMetadataFields,
 	ogTitleMoviePath,
 } from "@/lib/og/og-image-metadata";
+import { readCatalogTmdbWatchRegionPref } from "@/lib/profile-preferences";
 
 export const dynamic = "force-dynamic";
 
@@ -198,11 +200,23 @@ export default async function MoviePage({
 	const numericId = Number(id);
 	if (!Number.isFinite(numericId)) notFound();
 
-	const res = await fetchMovieDetailServer(id);
+	const [res, profileResult] = await Promise.all([
+		fetchMovieDetailServer(id),
+		fetchMeProfile(),
+	]);
 	const data = requireListingDetailApiData({
 		data: res as (Detail & { adultBlocked?: boolean }) | null,
 		error: null,
 	});
+	const mePrefs =
+		profileResult === PROFILE_FETCH_FAILED
+			? null
+			: (profileResult?.preferences ?? null);
+	const catalogWatchPref = readCatalogTmdbWatchRegionPref(mePrefs);
+	const catalogWatchRegion =
+		typeof catalogWatchPref === "string" && catalogWatchPref !== "ALL"
+			? catalogWatchPref
+			: null;
 
 	if (data.adultBlocked) {
 		const { accent: blockedAccent } = accentFromGenres(null);
@@ -356,6 +370,7 @@ export default async function MoviePage({
 				hero={hero}
 				watchProviders={watchProviders}
 				theatricalOnly={theatricalOnly}
+				catalogWatchRegion={catalogWatchRegion}
 				about={
 					<Suspense fallback={<MovieDetailAboutFallback />}>
 						<MovieDetailAboutAsync
@@ -383,6 +398,9 @@ export default async function MoviePage({
 							tmdbId={data.tmdbId}
 							numericId={numericId}
 							title={data.title}
+							communityAverage={communityAverage}
+							communityRatingsCount={communityRatingsCount}
+							engagementCounts={engagementCounts}
 						/>
 					</Suspense>
 				}

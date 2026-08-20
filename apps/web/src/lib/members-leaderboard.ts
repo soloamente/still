@@ -57,6 +57,26 @@ export function membersLeaderboardStatNoun(
 	}
 }
 
+/** Visible pedestal CTA — action phrase, not a bare count. */
+export function membersLeaderboardLedgerCta(
+	sort: MembersLeaderboardSort,
+): string {
+	switch (sort) {
+		case "popular":
+			return "View logs";
+		case "reviews":
+			return "View reviews";
+		case "lists":
+			return "View lists";
+		case "likes":
+			return "View likes";
+		default: {
+			const _exhaustive: never = sort;
+			return _exhaustive;
+		}
+	}
+}
+
 /** Omit from URL when still the default (**popular**). */
 export function serializeMembersLeaderboardSort(
 	sort: MembersLeaderboardSort,

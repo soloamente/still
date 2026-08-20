@@ -3,7 +3,11 @@
 import { Lock } from "lucide-react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
-import type { LeaderboardLogItem } from "@/lib/home-leaderboard-types";
+import type {
+	LeaderboardKind,
+	LeaderboardLogItem,
+} from "@/lib/home-leaderboard-types";
+import { leaderboardKindEmptyLedgerLabel } from "@/lib/leaderboard-kind-labels";
 import { patronWatchLedgerPosterLabels } from "@/lib/patron-watch-ledger-poster-labels";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
@@ -20,7 +24,7 @@ export function PatronWatchLedgerGrid({
 	hiddenCount = 0,
 }: {
 	items: LeaderboardLogItem[];
-	kind: "films" | "tv";
+	kind: LeaderboardKind;
 	period: HomeLeaderboardPeriod;
 	hiddenCount?: number;
 }) {
@@ -30,7 +34,7 @@ export function PatronWatchLedgerGrid({
 				className="rounded-2xl bg-muted/25 p-8 text-center text-muted-foreground text-sm"
 				role="status"
 			>
-				No {kind === "tv" ? "show" : "film"} logs in this window.
+				No {leaderboardKindEmptyLedgerLabel(kind)} logs in this window.
 			</p>
 		);
 	}

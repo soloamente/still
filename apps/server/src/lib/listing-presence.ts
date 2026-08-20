@@ -1,18 +1,13 @@
-import { db, profile, user } from "@still/db";
+import type { StaffRole } from "@still/auth/permissions";
 import type { PlanTierId } from "@still/plans";
 import { parseListingMovieRoomId, parseListingTvRoomId } from "@still/realtime";
-import { and, asc, eq, inArray, isNotNull } from "drizzle-orm";
 
-import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "./diary-metal-tier";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import { fetchMutualFollowingIds } from "./mutual-follow-cache";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import {
 	clearActivityStateForUser,
 	type PatronActivityState,
@@ -20,6 +15,7 @@ import {
 	readActivityStatesForUserIds,
 	writeActivityStateForUser,
 } from "./presence-activity";
+import { fetchListingPresenceProfilesByUserIds } from "./presence-profile-metadata-cache";
 import {
 	PROFILE_PRIVACY_PRESENCE_VISIBILITY_PUBLIC,
 	readAvatarIsAnimatedPref,
@@ -65,6 +61,7 @@ export type ListingPresenceViewingPatron = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	presenceState: PatronActivityState;
 };
 
@@ -209,10 +206,9 @@ export async function leaveListingPresence(
 /** Map joined profile rows to viewing patron chips (pure — unit tested). */
 export function pickListingPresenceViewingPatrons(
 	rows: MutualPatronRow[],
-	logCounts: ReadonlyMap<string, number> = new Map(),
+	badgeMaps: Awaited<ReturnType<typeof fetchPatronAvatarBadgeMaps>>,
 	limit: number = LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
 	activityByUserId: ReadonlyMap<string, PatronActivityState> = new Map(),
-	planTiers: ReadonlyMap<string, PlanTierId> = new Map(),
 ): ListingPresenceViewingPatron[] {
 	const patrons: ListingPresenceViewingPatron[] = [];
 
@@ -233,8 +229,7 @@ export function pickListingPresenceViewingPatrons(
 			displayName: row.displayName?.trim() || row.name?.trim() || handle,
 			image: row.image,
 			avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
-			diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-			planTier: planTierForUserId(row.userId, planTiers),
+			...patronAvatarBadgeFields(row.userId, badgeMaps),
 			presenceState: activityByUserId.get(row.userId) ?? "active",
 		});
 		if (patrons.length >= limit) break;
@@ -262,28 +257,11 @@ export async function fetchViewerSelfPatronInRoom(
 ): Promise<ListingPresenceViewingPatron | null> {
 	if (!activeUserIds.includes(viewerId)) return null;
 
-	const rows = await db
-		.select({
-			userId: profile.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			name: user.name,
-			image: user.image,
-			preferences: profile.preferences,
-		})
-		.from(profile)
-		.innerJoin(user, eq(profile.userId, user.id))
-		.where(and(eq(profile.userId, viewerId), isNotNull(profile.handle)))
-		.limit(1);
-
-	const row = rows[0];
+	const [row] = await fetchListingPresenceProfilesByUserIds([viewerId]);
 	const handle = row?.handle?.trim();
 	if (!row || !handle) return null;
 
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds([viewerId]),
-		fetchPlanTiersForUserIds([viewerId]),
-	]);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps([viewerId]);
 	const activityByUserId =
 		activityOverride ??
 		(redis && typeof redis.hget === "function"
@@ -296,8 +274,7 @@ export async function fetchViewerSelfPatronInRoom(
 		displayName: row.displayName?.trim() || row.name?.trim() || handle,
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
-		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(viewerId) ?? 0),
-		planTier: planTierForUserId(viewerId, planTiers),
+		...patronAvatarBadgeFields(viewerId, badgeMaps),
 		presenceState: activityByUserId.get(viewerId) ?? "active",
 	};
 }
@@ -340,32 +317,35 @@ export async function fetchViewingPatronsInRoom(
 		candidateIds.filter((id) => mutualAll.includes(id)),
 	);
 
-	const rows = await db
-		.select({
-			userId: profile.userId,
-			handle: profile.handle,
-			displayName: profile.displayName,
-			name: user.name,
-			image: user.image,
-			preferences: profile.preferences,
+	const profileRows = await fetchListingPresenceProfilesByUserIds(candidateIds);
+	const rows = profileRows
+		.filter((row) => !row.isPrivate && row.handle)
+		.sort((a, b) => {
+			const aName = (
+				a.displayName?.trim() ||
+				a.name?.trim() ||
+				a.handle
+			).toLowerCase();
+			const bName = (
+				b.displayName?.trim() ||
+				b.name?.trim() ||
+				b.handle
+			).toLowerCase();
+			if (aName !== bName) return aName.localeCompare(bName);
+			return a.handle.localeCompare(b.handle);
 		})
-		.from(profile)
-		.innerJoin(user, eq(profile.userId, user.id))
-		.where(
-			and(
-				inArray(profile.userId, candidateIds),
-				eq(profile.isPrivate, false),
-				isNotNull(profile.handle),
-			),
-		)
-		.orderBy(asc(profile.displayName), asc(profile.handle))
-		.limit(LISTING_PRESENCE_MUTUAL_FETCH_LIMIT);
+		.slice(0, LISTING_PRESENCE_MUTUAL_FETCH_LIMIT)
+		.map((row) => ({
+			userId: row.userId,
+			handle: row.handle,
+			displayName: row.displayName,
+			name: row.name,
+			image: row.image,
+			preferences: row.preferences,
+		}));
 
 	const userIds = rows.map((row) => row.userId);
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 	const activityByUserId =
 		activityOverride ??
 		(redis && typeof redis.hget === "function"
@@ -376,10 +356,9 @@ export async function fetchViewingPatronsInRoom(
 			...row,
 			isMutualWithViewer: mutualIds.has(row.userId),
 		})),
-		logCounts,
+		badgeMaps,
 		LISTING_PRESENCE_MUTUAL_FETCH_LIMIT,
 		activityByUserId,
-		planTiers,
 	);
 }
 

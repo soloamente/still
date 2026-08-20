@@ -33,6 +33,9 @@ describe("leaderboardWatchLedgerSummaryLabel", () => {
 		expect(leaderboardWatchLedgerSummaryLabel(4, "tv", "year")).toBe(
 			"4 shows watched this year",
 		);
+		expect(leaderboardWatchLedgerSummaryLabel(2, "episodes", "week")).toBe(
+			"2 episodes watched this week",
+		);
 		expect(leaderboardWatchLedgerSummaryLabel(2, "tv", "all")).toBe(
 			"2 shows watched all time",
 		);

@@ -15,6 +15,7 @@ import { formatDistanceToNowStrict } from "@/lib/format";
 import { isListCoverProxySrc } from "@/lib/list-cover-image";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { shouldShowReviewBody } from "@/lib/review-audio-fields";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 type ProfilePinnedReview = ReviewPreview & {
 	userId?: string;
@@ -43,7 +44,10 @@ function ProfilePinnedReviewPoster({
 					fill
 					sizes="96px"
 					className="object-cover"
-					unoptimized={isListCoverProxySrc(listing.posterUrl)}
+					unoptimized={
+						isListCoverProxySrc(listing.posterUrl) ||
+						isTmdbCdnUrl(listing.posterUrl)
+					}
 				/>
 			) : (
 				<div

@@ -21,7 +21,7 @@ import IconQuotesFilled from "@still/ui/icons/quotes-filled";
 import IconTicket from "@still/ui/icons/ticket";
 import IconTicketFilled from "@still/ui/icons/ticket-filled";
 import { cn } from "@still/ui/lib/utils";
-import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -63,6 +63,7 @@ export type HomeStickyChromeUser = {
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: import("@/lib/staff-role-labels").StaffRole | null;
 };
 
 /**
@@ -110,7 +111,6 @@ export function HomeStickyChrome({
 
 	const browseChip = (active: boolean) =>
 		cn(
-			/* `relative` pins the sliding `layoutId` pill (`absolute inset-0`) to each chip. */
 			"relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-center font-medium text-sm transition-colors duration-200 ease-out motion-reduce:transition-none",
 			active
 				? "text-foreground"
@@ -168,101 +168,99 @@ export function HomeStickyChrome({
 	}, [isHomeLobby, urlBrowse, searchParams]);
 
 	return (
-		<LayoutGroup id="home-sticky-chrome-browse-pill">
-			<header
-				className={cn(
-					/*
-					 * Side tracks: `minmax(max-content,1fr)` keeps browse + shortcuts visible.
-					 * Center: `minmax(0,36rem)` — search shrinks first when horizontal space is tight.
-					 */
-					"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 bg-background py-2.5 sm:grid-cols-[minmax(max-content,1fr)_minmax(0,36rem)_minmax(max-content,1fr)] sm:gap-4",
-					// Full-opacity canvas at the seam, then a long multi-stop fade so the poster row
-					// eases in instead of meeting a razor line (same token as `bg-background`).
-					"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
-					isScrolled && "after:opacity-100",
-				)}
-			>
-				{/* Left — browse tabs; side track min-width is `max-content` so chips are not clipped. */}
-				<div className="flex min-w-0 flex-wrap justify-center sm:justify-start">
-					<p id="home-sticky-browse-desc" className="sr-only">
-						Movies and TV load the TMDb catalogue. Community is where you will
-						browse lists, reviews, and other work from other members — it is
-						still in development.
-					</p>
-					<div
-						className="flex w-fit max-w-full shrink-0 rounded-full bg-background p-1"
-						role="toolbar"
-						aria-label="Lobby source"
-						aria-describedby="home-sticky-browse-desc"
+		<header
+			className={cn(
+				/*
+				 * Side tracks: `minmax(max-content,1fr)` keeps browse + shortcuts visible.
+				 * Center: `minmax(0,36rem)` — search shrinks first when horizontal space is tight.
+				 */
+				"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 bg-background py-2.5 sm:grid-cols-[minmax(max-content,1fr)_minmax(0,36rem)_minmax(max-content,1fr)] sm:gap-4",
+				// Full-opacity canvas at the seam, then a long multi-stop fade so the poster row
+				// eases in instead of meeting a razor line (same token as `bg-background`).
+				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",
+				isScrolled && "after:opacity-100",
+			)}
+		>
+			{/* Left — browse tabs; shared layoutId pill (no liquid-gooey). */}
+			<div className="flex min-w-0 flex-wrap justify-center sm:justify-start">
+				<p id="home-sticky-browse-desc" className="sr-only">
+					Movies and TV load the TMDb catalogue. Community is where you will
+					browse lists, reviews, and other work from other members — it is still
+					in development.
+				</p>
+				<div
+					className="relative flex w-fit max-w-full shrink-0 overflow-hidden rounded-full bg-background p-1"
+					role="toolbar"
+					aria-label="Lobby source"
+					aria-describedby="home-sticky-browse-desc"
+				>
+					<button
+						type="button"
+						aria-pressed={isHomeLobby && activeBrowse === "movies"}
+						aria-label="Movies — TMDb film catalogue"
+						title="Catalogue from TMDb — films"
+						onClick={() => onBrowseSurfaceSelect("movies")}
+						className={browseChip(isHomeLobby && activeBrowse === "movies")}
 					>
-						<button
-							type="button"
-							aria-pressed={isHomeLobby && activeBrowse === "movies"}
-							aria-label="Movies — TMDb film catalogue"
-							title="Catalogue from TMDb — films"
-							onClick={() => onBrowseSurfaceSelect("movies")}
-							className={browseChip(isHomeLobby && activeBrowse === "movies")}
-						>
-							{isHomeLobby && activeBrowse === "movies" ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">Movies</span>
-						</button>
-						<button
-							type="button"
-							aria-pressed={isHomeLobby && activeBrowse === "tv"}
-							aria-label="TV shows — TMDb series catalogue"
-							title="Catalogue from TMDb — series"
-							onClick={() => onBrowseSurfaceSelect("tv")}
-							className={browseChip(isHomeLobby && activeBrowse === "tv")}
-						>
-							{isHomeLobby && activeBrowse === "tv" ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">TV Shows</span>
-						</button>
-						<button
-							type="button"
-							aria-pressed={isHomeLobby && activeBrowse === "community"}
-							aria-label="Community — lists, reviews, and more from other people"
-							title="Things other people made — lists, reviews, and more (in development)"
-							onClick={() => onBrowseSurfaceSelect("community")}
-							onPointerEnter={() => prefetchBrowseSurface?.("community")}
-							onFocus={() => prefetchBrowseSurface?.("community")}
-							className={browseChip(
-								isHomeLobby && activeBrowse === "community",
-							)}
-						>
-							{isHomeLobby && activeBrowse === "community" ? (
-								<motion.span
-									layoutId="home-sticky-browse-pill"
-									className="absolute inset-0 z-0 rounded-full bg-card"
-									transition={browsePillTransition}
-								/>
-							) : null}
-							<span className="relative z-10">Community</span>
-						</button>
-					</div>
+						{isHomeLobby && activeBrowse === "movies" ? (
+							<motion.span
+								layoutId="home-sticky-browse-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={browsePillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">Movies</span>
+					</button>
+					<button
+						type="button"
+						aria-pressed={isHomeLobby && activeBrowse === "tv"}
+						aria-label="TV shows — TMDb series catalogue"
+						title="Catalogue from TMDb — series"
+						onClick={() => onBrowseSurfaceSelect("tv")}
+						className={browseChip(isHomeLobby && activeBrowse === "tv")}
+					>
+						{isHomeLobby && activeBrowse === "tv" ? (
+							<motion.span
+								layoutId="home-sticky-browse-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={browsePillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">TV Shows</span>
+					</button>
+					<button
+						type="button"
+						aria-pressed={isHomeLobby && activeBrowse === "community"}
+						aria-label="Community — lists, reviews, and more from other people"
+						title="Things other people made — lists, reviews, and more (in development)"
+						onClick={() => onBrowseSurfaceSelect("community")}
+						onPointerEnter={() => prefetchBrowseSurface?.("community")}
+						onFocus={() => prefetchBrowseSurface?.("community")}
+						className={browseChip(isHomeLobby && activeBrowse === "community")}
+					>
+						{isHomeLobby && activeBrowse === "community" ? (
+							<motion.span
+								layoutId="home-sticky-browse-pill"
+								className="absolute inset-0 z-0 rounded-full bg-card"
+								transition={browsePillTransition}
+							/>
+						) : null}
+						<span className="relative z-10">Community</span>
+					</button>
 				</div>
+			</div>
 
-				{/* Middle — fills the shrinkable grid track (up to 36rem). */}
-				<div className="flex w-full min-w-0 justify-center">
-					<HomeStickySearch />
-				</div>
+			{/* Middle — fills the shrinkable grid track (up to 36rem). */}
+			<div className="flex w-full min-w-0 justify-center">
+				<HomeStickySearch />
+			</div>
 
-				{/* Right — shortcuts (watchlist, lists, diary share the browse-rail `layoutId` pill). */}
-				<div className="hidden min-w-0 shrink-0 justify-center sm:justify-end md:flex">
-					{/* Icon-only header shortcuts should reveal instantly on hover. */}
-					<TooltipProvider delay={0} closeDelay={80}>
-						<div className="flex shrink-0 gap-1">
+			{/* Right — shortcuts; shared layoutId pill (no liquid-gooey). */}
+			<div className="hidden min-w-0 shrink-0 justify-center sm:justify-end md:flex">
+				{/* Icon-only header shortcuts should reveal instantly on hover. */}
+				<TooltipProvider delay={0} closeDelay={80}>
+					<div className="flex shrink-0 items-center gap-1">
+						<div className="relative flex shrink-0 gap-1 overflow-hidden rounded-full p-0">
 							<Tooltip>
 								<TooltipTrigger
 									render={
@@ -275,7 +273,7 @@ export function HomeStickyChrome({
 										>
 											{isWatchlistRoute ? (
 												<motion.span
-													layoutId="home-sticky-browse-pill"
+													layoutId="home-sticky-shortcut-pill"
 													className="absolute inset-0 z-0 rounded-full bg-card"
 													transition={browsePillTransition}
 												/>
@@ -307,7 +305,7 @@ export function HomeStickyChrome({
 										>
 											{isListsRoute ? (
 												<motion.span
-													layoutId="home-sticky-browse-pill"
+													layoutId="home-sticky-shortcut-pill"
 													className="absolute inset-0 z-0 rounded-full bg-card"
 													transition={browsePillTransition}
 												/>
@@ -345,7 +343,7 @@ export function HomeStickyChrome({
 										>
 											{isDiaryRoute ? (
 												<motion.span
-													layoutId="home-sticky-browse-pill"
+													layoutId="home-sticky-shortcut-pill"
 													className="absolute inset-0 z-0 rounded-full bg-card"
 													transition={browsePillTransition}
 												/>
@@ -383,7 +381,7 @@ export function HomeStickyChrome({
 										>
 											{isQuotesRoute ? (
 												<motion.span
-													layoutId="home-sticky-browse-pill"
+													layoutId="home-sticky-shortcut-pill"
 													className="absolute inset-0 z-0 rounded-full bg-card"
 													transition={browsePillTransition}
 												/>
@@ -409,6 +407,8 @@ export function HomeStickyChrome({
 									Quotes
 								</TooltipContent>
 							</Tooltip>
+						</div>
+						<div className="flex shrink-0 gap-1">
 							<HomeNotificationsMenu authenticated={Boolean(user)} />
 							{user ? <InviteEarnHeaderButton /> : null}
 							{user ? (
@@ -436,6 +436,7 @@ export function HomeStickyChrome({
 													size="compact"
 													isAnimated={user.avatarIsAnimated ?? false}
 													planTier={user.planTier ?? null}
+													staffRole={user.staffRole ?? null}
 												/>
 											</Button>
 										}
@@ -445,6 +446,7 @@ export function HomeStickyChrome({
 										className={accountMenuContentClassName}
 									>
 										<AppUserAccountMenuBody
+											menuOpen={accountMenuOpen}
 											user={{
 												id: user.id,
 												name: user.name,
@@ -454,6 +456,7 @@ export function HomeStickyChrome({
 												isPro: user.isPro,
 												avatarIsAnimated: user.avatarIsAnimated,
 												planTier: user.planTier ?? null,
+												staffRole: user.staffRole ?? null,
 											}}
 										/>
 									</DropdownMenuContent>
@@ -465,9 +468,9 @@ export function HomeStickyChrome({
 								/>
 							)}
 						</div>
-					</TooltipProvider>
-				</div>
-			</header>
-		</LayoutGroup>
+					</div>
+				</TooltipProvider>
+			</div>
+		</header>
 	);
 }

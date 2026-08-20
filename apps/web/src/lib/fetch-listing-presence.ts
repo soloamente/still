@@ -4,6 +4,8 @@ import type { DiaryMetalTier } from "@/lib/diary-metal-tier";
 import type { PatronActivityState } from "@/lib/patron-activity-tracker";
 import { buildPresenceHeartbeatBody } from "@/lib/patron-activity-tracker";
 import { postPresenceHeartbeat } from "@/lib/presence-heartbeat-post";
+import type { StaffRole } from "@/lib/staff-role-labels";
+import { isFetchAbortError } from "@/lib/still-api-fetch";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /** Public-profile patron chip returned by GET /api/realtime/presence. */
@@ -15,6 +17,7 @@ export type ListingPresenceViewingPatron = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	/** Explicit server signal used to render online-now badges. */
 	presenceState: "active" | "away";
 };
@@ -36,15 +39,22 @@ export async function fetchListingPresenceSnapshot(
 	const url = new URL(presenceApiUrl());
 	url.searchParams.set("room", roomId);
 
-	const response = await fetch(url, {
-		credentials: "include",
-		cache: "no-store",
-		signal,
-	});
+	try {
+		const response = await fetch(url, {
+			credentials: "include",
+			cache: "no-store",
+			signal,
+		});
 
-	if (!response.ok) return null;
+		if (!response.ok) return null;
 
-	return (await response.json()) as ListingPresenceSnapshot;
+		return (await response.json()) as ListingPresenceSnapshot;
+	} catch (error) {
+		// Presence is best-effort — aborts on unmount/tab switch must stay silent.
+		if (isFetchAbortError(error, signal)) return null;
+		if (error instanceof TypeError) return null;
+		return null;
+	}
 }
 
 /** Heartbeat — registers the patron in the listing room ZSET. */

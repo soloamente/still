@@ -1,16 +1,14 @@
+import type { StaffRole } from "@still/auth/permissions";
 import { db, log, movie, profile, tv, user } from "@still/db";
 import type { PlanTierId } from "@still/plans";
 import { and, desc, eq, inArray, isNotNull, isNull } from "drizzle-orm";
 import { withinCommunityPeriod } from "./community-period";
 import { contentVisibilityWhere } from "./content-visibility";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-} from "./diary-metal-tier";
-import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import { serializePatronProfileForClient } from "./profile-media";
 import { logMediaKey, storedRatingToDisplayTen } from "./sense-taste-overlap";
 
@@ -26,6 +24,7 @@ export type FeedDivergencePatron = {
 		avatarIsAnimated: boolean;
 		diaryMetalTier: DiaryMetalTier | null;
 		planTier: PlanTierId;
+		staffRole: StaffRole | null;
 	} | null;
 	/** Stored `log.rating` (tenths or legacy). */
 	rating: number;
@@ -72,8 +71,11 @@ type DivergenceLogRow = {
  */
 export function pickFeedRatingDivergence(
 	rows: DivergenceLogRow[],
-	logCounts: ReadonlyMap<string, number> = new Map(),
-	planTiers: ReadonlyMap<string, PlanTierId> = new Map(),
+	badgeMaps: Awaited<ReturnType<typeof fetchPatronAvatarBadgeMaps>> = {
+		logCounts: new Map(),
+		planTiers: new Map(),
+		staffRoles: new Map(),
+	},
 ): { at: Date; payload: FeedRatingDivergencePayload } | null {
 	const byMedia = new Map<
 		string,
@@ -94,13 +96,15 @@ export function pickFeedRatingDivergence(
 		const displayRating = storedRatingToDisplayTen(row.log.rating);
 		const watchedAtMs = row.log.watchedAt.getTime();
 		const isMovie = row.log.movieId != null;
+		const badges = patronAvatarBadgeFields(row.log.userId, badgeMaps);
 		const patron: FeedDivergencePatron = {
 			userId: row.log.userId,
 			user: row.user,
 			profile: serializePatronProfileForClient(
 				row.profile,
-				logCounts.get(row.log.userId) ?? 0,
-				planTierForUserId(row.log.userId, planTiers),
+				badgeMaps.logCounts.get(row.log.userId) ?? 0,
+				badges.planTier,
+				badges.staffRole,
 			),
 			rating: row.log.rating,
 			displayRating,
@@ -199,10 +203,7 @@ export async function findFeedRatingDivergence(args: {
 		.limit(600);
 
 	const userIds = [...new Set(rows.map((row) => row.log.userId))];
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 
-	return pickFeedRatingDivergence(rows, logCounts, planTiers);
+	return pickFeedRatingDivergence(rows, badgeMaps);
 }

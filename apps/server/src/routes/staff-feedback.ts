@@ -1,7 +1,7 @@
 import type { PatronFeedbackCategory, PatronFeedbackStatus } from "@still/db";
 import { Elysia, t } from "elysia";
 
-import { context, requirePermission } from "../context";
+import { freshContext, requirePermission } from "../context";
 import {
 	addStaffFeedbackNote,
 	addStaffFeedbackReply,
@@ -51,7 +51,7 @@ export const staffFeedbackRoute = new Elysia({
 	prefix: "/api/staff/feedback",
 	tags: ["staff"],
 })
-	.use(context)
+	.use(freshContext)
 	.get(
 		"/",
 		async ({ user: viewer, query, status }) => {

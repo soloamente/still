@@ -4,7 +4,7 @@
  */
 
 import type { PlanTierId } from "@still/plans";
-
+import type { StaffRole } from "@/lib/staff-role-labels";
 import type { HomeCommunityActivityItem } from "./home-community-activity";
 
 export type HomeFriendRailEntry = {
@@ -13,6 +13,7 @@ export type HomeFriendRailEntry = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	planTier: PlanTierId | string | null;
+	staffRole: StaffRole | null;
 	/** One-line summary for the rail (most recent activity per person in this window). */
 	snippet: string;
 	atMs: number;
@@ -25,6 +26,7 @@ type PersonRow = {
 		displayName: string;
 		avatarIsAnimated?: boolean;
 		planTier?: PlanTierId | string | null;
+		staffRole?: StaffRole | null;
 	} | null;
 };
 
@@ -88,6 +90,7 @@ export function deriveFriendRailEntries(
 			image: person.user?.image ?? null,
 			avatarIsAnimated: person.profile?.avatarIsAnimated ?? false,
 			planTier: person.profile?.planTier ?? null,
+			staffRole: person.profile?.staffRole ?? null,
 			snippet: snippetForItem(item),
 			atMs,
 		});

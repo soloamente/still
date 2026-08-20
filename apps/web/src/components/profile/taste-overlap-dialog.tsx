@@ -24,7 +24,7 @@ import {
 	parseTasteOverlapResponse,
 	type TasteOverlapResponse,
 } from "@/lib/sense-taste-overlap";
-import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import { isTmdbCdnUrl, tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 const SHEET_EASE = [0.165, 0.84, 0.44, 1] as const;
@@ -282,6 +282,7 @@ export function TasteOverlapDialog({
 																		width={40}
 																		height={60}
 																		className="aspect-2/3 w-10 shrink-0 rounded-md object-cover"
+																		unoptimized={isTmdbCdnUrl(poster)}
 																	/>
 																) : (
 																	<div

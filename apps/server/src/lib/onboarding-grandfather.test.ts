@@ -40,7 +40,7 @@ describe("shouldGrandfatherLegacyOnboarding", () => {
 		).toBe(false);
 	});
 
-	test("grandfathers when diary logs exist", () => {
+	test("does not grandfather post-v3 patrons with diary (import still unfinished)", () => {
 		expect(
 			shouldGrandfatherLegacyOnboarding(
 				{
@@ -49,7 +49,21 @@ describe("shouldGrandfatherLegacyOnboarding", () => {
 				},
 				3,
 			),
-		).toBe(true);
+		).toBe(false);
+	});
+
+	test("does not grandfather post-v3 patrons with favorites + taste", () => {
+		expect(
+			shouldGrandfatherLegacyOnboarding(
+				{
+					...baseProfile,
+					createdAt: new Date("2026-06-14T12:00:00.000Z"),
+					tasteSignatureComputedAt: new Date("2026-06-14T13:00:00.000Z"),
+					favoriteMovieIds: [550, 278],
+				},
+				2,
+			),
+		).toBe(false);
 	});
 });
 

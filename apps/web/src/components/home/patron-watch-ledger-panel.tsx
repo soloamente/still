@@ -26,10 +26,7 @@ import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 async function fetchPatronWatchLedger(
 	seed: PatronWatchLedgerSeed,
 ): Promise<LeaderboardLogsPayload | null> {
-	const base =
-		seed.kind === "films"
-			? `/api/leaderboard/films/${seed.userId}/logs`
-			: `/api/leaderboard/tv/${seed.userId}/logs`;
+	const base = `/api/leaderboard/${seed.kind}/${seed.userId}/logs`;
 	const url = new URL(base, env.NEXT_PUBLIC_SERVER_URL);
 	url.searchParams.set("period", seed.period);
 	url.searchParams.set("tz", readViewerTimeZone());
@@ -98,6 +95,7 @@ export function PatronWatchLedgerPanel({
 	const avatarIsAnimated =
 		payload?.user.avatarIsAnimated ?? seed.avatarIsAnimated;
 	const planTier = payload?.user.planTier ?? seed.planTier ?? null;
+	const staffRole = payload?.user.staffRole ?? seed.staffRole ?? null;
 	const items = payload?.items ?? [];
 	const sortedItems = useMemo(
 		() => sortPatronWatchLedgerItems(items, order),
@@ -129,6 +127,7 @@ export function PatronWatchLedgerPanel({
 										avatarIsAnimated,
 									)}
 									planTier={planTier}
+									staffRole={staffRole}
 								/>
 							</Link>
 						</div>

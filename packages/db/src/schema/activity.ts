@@ -101,6 +101,12 @@ export const review = pgTable(
 		logId: text("log_id").references(() => log.id, { onDelete: "set null" }),
 		title: text("title"),
 		body: text("body").notNull(), // markdown
+		/**
+		 * Base ISO-639-1 tag (`ja`, `es`) detected from `body` on publish/edit.
+		 * NULL when the text was too short or ambiguous to call — readers then
+		 * get no translate affordance rather than a confident wrong guess.
+		 */
+		sourceLanguage: text("source_language"),
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
 		visibility: contentVisibility("visibility").default("public").notNull(),
 		// Denormalized counters to avoid count(*) on every render. Updated by triggers.
@@ -129,6 +135,38 @@ export const review = pgTable(
 		index("review_published_idx").on(table.publishedAt),
 		index("review_likes_idx").on(table.likesCount),
 		index("review_log_idx").on(table.logId),
+	],
+);
+
+/**
+ * Machine translation of a review body, stored once per target language.
+ *
+ * Source of truth for translated text — the Redis cache in front of it is only
+ * a hot path. Rows are deleted when the review body is edited, and cascade with
+ * the review itself. `model` records which engine produced the text so a future
+ * provider swap can be told apart from older output.
+ */
+export const reviewTranslation = pgTable(
+	"review_translation",
+	{
+		id: text("id").primaryKey(),
+		reviewId: text("review_id")
+			.notNull()
+			.references(() => review.id, { onDelete: "cascade" }),
+		/** Base ISO-639-1 tag matching `review.sourceLanguage` granularity. */
+		targetLanguage: text("target_language").notNull(),
+		title: text("title"),
+		body: text("body").notNull(),
+		model: text("model").notNull(),
+		createdAt: timestamp("created_at", { withTimezone: true })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => [
+		uniqueIndex("review_translation_review_language_uk").on(
+			table.reviewId,
+			table.targetLanguage,
+		),
 	],
 );
 
@@ -178,11 +216,22 @@ export const logRelations = relations(log, ({ one, many }) => ({
 	reviews: many(review),
 }));
 
-export const reviewRelations = relations(review, ({ one }) => ({
+export const reviewRelations = relations(review, ({ one, many }) => ({
 	user: one(user, { fields: [review.userId], references: [user.id] }),
 	movie: one(movie, { fields: [review.movieId], references: [movie.tmdbId] }),
 	log: one(log, { fields: [review.logId], references: [log.id] }),
+	translations: many(reviewTranslation),
 }));
+
+export const reviewTranslationRelations = relations(
+	reviewTranslation,
+	({ one }) => ({
+		review: one(review, {
+			fields: [reviewTranslation.reviewId],
+			references: [review.id],
+		}),
+	}),
+);
 
 export const watchlistItemRelations = relations(watchlistItem, ({ one }) => ({
 	user: one(user, { fields: [watchlistItem.userId], references: [user.id] }),

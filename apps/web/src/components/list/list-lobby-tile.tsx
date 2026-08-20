@@ -2,83 +2,13 @@
 
 import IconListPlay from "@still/ui/icons/list-play";
 import { cn } from "@still/ui/lib/utils";
-import { Film, Lock } from "lucide-react";
-import Image from "next/image";
+import { Lock } from "lucide-react";
 import Link from "next/link";
 
+import { ListCoverRail } from "@/components/list/list-cover-rail";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatDistanceToNowStrict } from "@/lib/format";
 import type { ListBoardRow } from "@/lib/list-board-row";
-import {
-	isListCoverProxySrc,
-	listPosterDisplayUrl,
-} from "@/lib/list-cover-image";
-
-const STRIP_MAX = 4;
-
-/** Narrow left rail — poster stack on `bg-background`, no divider (matches profile lists). */
-const LIST_COVER_RAIL_CLASS =
-	"relative h-full w-[5.25rem] shrink-0 overflow-hidden sm:w-[6rem]";
-
-function ListCoverRail({ list }: { list: ListBoardRow }) {
-	const paths = list.coverPosterPaths ?? list.coverMovieIds.map(() => null);
-	const strip = paths.slice(0, STRIP_MAX);
-
-	if (!strip.length) {
-		return (
-			<div className={cn(LIST_COVER_RAIL_CLASS, "grid place-items-center")}>
-				<Film
-					className="size-5 text-muted-foreground"
-					strokeWidth={1.5}
-					aria-hidden
-				/>
-			</div>
-		);
-	}
-
-	return (
-		<div className={LIST_COVER_RAIL_CLASS} aria-hidden>
-			<div className="flex h-full items-stretch justify-start pl-1">
-				{strip.map((path, idx) => {
-					const src = listPosterDisplayUrl(
-						list.id,
-						path,
-						list.updatedAt,
-						"w185",
-					);
-					const movieId = list.coverMovieIds[idx];
-					const z = strip.length - idx;
-					return (
-						<div
-							key={`${list.id}-cover-${movieId ?? idx}`}
-							className="relative h-full shrink-0 overflow-hidden rounded-2xl bg-background shadow-sm"
-							style={{
-								aspectRatio: "2 / 3",
-								marginLeft: idx === 0 ? 0 : "-0.85rem",
-								zIndex: z,
-							}}
-						>
-							{src ? (
-								<Image
-									src={src}
-									alt=""
-									fill
-									sizes="96px"
-									className="object-cover"
-									unoptimized={isListCoverProxySrc(src)}
-								/>
-							) : (
-								<div className="grid size-full place-items-center bg-background">
-									<Film className="size-4 text-muted-foreground" aria-hidden />
-								</div>
-							)}
-						</div>
-					);
-				})}
-			</div>
-		</div>
-	);
-}
 
 /**
  * List row for `/lists` lobby and profile — raised `bg-background` tile with press
@@ -91,13 +21,15 @@ export function ListLobbyTile({ list }: { list: ListBoardRow }) {
 		<Link
 			href={`/lists/${list.id}`}
 			className={cn(
-				"flex min-h-[10.5rem] min-w-0 overflow-hidden rounded-[1.75rem] bg-background shadow-sm transition-[transform,colors] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
+				"flex min-h-[10.5rem] min-w-0 items-stretch overflow-hidden rounded-[1.75rem] bg-background shadow-sm transition-[transform,colors] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none",
 				DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 			)}
 		>
-			<ListCoverRail list={list} />
+			<div className="flex w-[5.75rem] shrink-0 items-center py-4 pl-4 sm:w-[7.25rem]">
+				<ListCoverRail list={list} />
+			</div>
 
-			<div className="flex min-w-0 flex-1 flex-col justify-center gap-2 p-4 sm:p-5">
+			<div className="flex min-w-0 flex-1 flex-col justify-center gap-2 py-4 pr-4 pl-3 sm:gap-2 sm:p-5 sm:pl-4">
 				<div className="flex flex-wrap items-center gap-2">
 					<span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-card text-desert-orange shadow-sm">
 						<IconListPlay className="size-4" aria-hidden />

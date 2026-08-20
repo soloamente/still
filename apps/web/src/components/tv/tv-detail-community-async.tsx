@@ -1,3 +1,4 @@
+import type { ListingEngagementCounts } from "@/components/movie/movie-detail-engagement-chips";
 import { MovieDetailExploreTabs } from "@/components/movie/movie-detail-explore-tabs";
 import type { MovieDetailFollowingRating } from "@/components/movie/movie-detail-following-ratings";
 import { MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME } from "@/lib/movie-detail-sections";
@@ -23,10 +24,16 @@ export async function TvDetailCommunityAsync({
 	tvId,
 	tvTitle,
 	tvPosterUrl: _tvPosterUrl,
+	communityAverage,
+	communityRatingsCount,
+	engagementCounts,
 }: {
 	tvId: string;
 	tvTitle: string;
 	tvPosterUrl: string | null;
+	communityAverage: number | null;
+	communityRatingsCount: number;
+	engagementCounts?: Partial<ListingEngagementCounts>;
 }) {
 	const api = await serverApi();
 
@@ -62,6 +69,10 @@ export async function TvDetailCommunityAsync({
 				listCountLabel="titles"
 				movieTitle={tvTitle}
 				listingTmdbId={Number(tvId)}
+				listingKind="tv"
+				communityAverage={communityAverage}
+				communityRatingsCount={communityRatingsCount}
+				engagementCounts={engagementCounts}
 			/>
 		</div>
 	);

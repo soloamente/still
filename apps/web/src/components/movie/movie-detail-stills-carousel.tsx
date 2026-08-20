@@ -26,6 +26,7 @@ import {
 	downloadTmdbImage,
 	tmdbImageDownloadFilename,
 } from "@/lib/download-tmdb-image";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /** Inset image edge — pure black/white at 10% (not tinted neutrals). */
 const STILL_IMAGE_OUTLINE_CLASS =
@@ -168,6 +169,8 @@ function MovieDetailStillSlide({
 							: "(max-width: 768px) 92vw, 56rem"
 					}
 					draggable={false}
+					// TMDb stills/backdrops — skip Vercel Image Optimization.
+					unoptimized={isTmdbCdnUrl(slide.src)}
 				/>
 				{isActive ? (
 					<DetailMotionButton

@@ -5,6 +5,7 @@ import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-he
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { PersonDetailInfoCards } from "@/components/people/person-detail-info-cards";
 import type { PersonDetailInfoCard } from "@/lib/person-detail-facts";
+import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /**
  * Centered person hero — portrait, department, name, fact cards, and biography
@@ -52,6 +53,7 @@ export function PersonDetailHero({
 							className="object-cover"
 							sizes="(max-width: 768px) 100vw, 360px"
 							priority
+							unoptimized={isTmdbCdnUrl(profileUrl)}
 						/>
 					) : (
 						<div className="absolute inset-0">

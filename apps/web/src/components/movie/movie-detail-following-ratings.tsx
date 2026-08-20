@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { inferAnimatedFromProfileUrl } from "@/lib/profile-media";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type MovieDetailFollowingRating = {
 	userId: string;
@@ -15,6 +16,7 @@ export type MovieDetailFollowingRating = {
 	image: string | null;
 	avatarIsAnimated: boolean;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -92,6 +94,7 @@ function FollowingRatingChip({ entry }: { entry: MovieDetailFollowingRating }) {
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 			</span>
 			<span className="font-semibold text-foreground text-sm tabular-nums leading-none">

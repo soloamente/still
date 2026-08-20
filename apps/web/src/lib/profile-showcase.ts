@@ -221,7 +221,7 @@ export function appendShowcaseItem(
 	return [...items, item];
 }
 
-/** Poster URL for a showcase tile (TMDb w780). */
+/** Poster URL for a showcase tile (TMDb w342 — tile display size). */
 export function showcasePosterUrl(tile: ProfileShowcaseTile): string | null {
 	return profilePosterUrlFromPath(tile.posterPath);
 }

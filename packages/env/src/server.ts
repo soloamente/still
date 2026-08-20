@@ -76,6 +76,36 @@ const serverEnv = {
 	RESEND_API_KEY: optionalNonEmptyString(),
 	// Verified Resend sender, e.g. "Sense <noreply@updates.example.com>".
 	EMAIL_FROM: optionalNonEmptyString(),
+	/**
+	 * Review translation runs on one of two engines, whichever key is present.
+	 * Both optional: with neither, the translate control is hidden and
+	 * `POST /api/reviews/:id/translate` reports the feature as unconfigured
+	 * rather than failing at request time.
+	 *
+	 * Google AI Studio key (`AIza…` or the newer `AQ.…` auth key). Takes
+	 * precedence — it talks to `generativelanguage.googleapis.com` directly.
+	 */
+	GOOGLE_GENERATIVE_AI_API_KEY: optionalNonEmptyString(),
+	/** Vercel AI Gateway key (`vck_…`). Used when no Google key is set. */
+	AI_GATEWAY_API_KEY: optionalNonEmptyString(),
+	/**
+	 * Model id for review translation. Defaults per engine in
+	 * `review-translation-provider.ts` — the gateway needs a `google/` prefix
+	 * that the direct Google provider must not receive.
+	 */
+	REVIEW_TRANSLATION_MODEL: optionalNonEmptyString(),
+	/**
+	 * Streaming Availability API (movieofthenight) — rent/buy prices for the
+	 * Streaming tab. Optional: when unset, checkmarks stay presence-only.
+	 * Key from developers.movieofthenight.com or RapidAPI.
+	 */
+	STREAMING_AVAILABILITY_API_KEY: optionalNonEmptyString(),
+	/**
+	 * Override API host. Defaults to direct v4
+	 * (`https://api.movieofthenight.com/v4`). Set to the RapidAPI host when the
+	 * key came from rapidapi.com.
+	 */
+	STREAMING_AVAILABILITY_BASE_URL: optionalUrl(),
 	// Upstash Redis REST — optional in dev; realtime publish/SSE no-op when unset.
 	UPSTASH_REDIS_REST_URL: optionalUrl(),
 	UPSTASH_REDIS_REST_TOKEN: optionalNonEmptyString(),
@@ -93,6 +123,24 @@ const serverEnv = {
 	R2_SECRET_ACCESS_KEY: optionalNonEmptyString(),
 	/** Private images bucket (default `cue-assets`). */
 	R2_ASSETS_BUCKET: optionalNonEmptyString(),
+	/**
+	 * Discord profile activity (Lanyard) — opt-in; requires flag plus Discord +
+	 * Lanyard env vars (see `isDiscordActivityEnabled` in server lib).
+	 */
+	DISCORD_ACTIVITY_ENABLED: z
+		.enum(["true", "false", "1", "0", "yes", "no"])
+		.optional(),
+	/** Discord OAuth application id. */
+	DISCORD_CLIENT_ID: optionalNonEmptyString(),
+	DISCORD_CLIENT_SECRET: optionalNonEmptyString(),
+	/** Bot token — guild join/kick and self-hosted Lanyard gateway. */
+	DISCORD_BOT_TOKEN: optionalNonEmptyString(),
+	/** Sense Presence guild snowflake — minimal guild for reading patron presence. */
+	DISCORD_PRESENCE_GUILD_ID: optionalNonEmptyString(),
+	/** Public funding bar target — counting Polar-paid Pro toward Discord VPS. */
+	DISCORD_ACTIVITY_PRO_TARGET: optionalNonEmptyString(),
+	/** Internal Lanyard REST base, e.g. `http://lanyard:4001` (not public). */
+	LANYARD_INTERNAL_URL: optionalUrl(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({

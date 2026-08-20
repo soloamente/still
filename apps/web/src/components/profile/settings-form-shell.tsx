@@ -11,7 +11,11 @@ import {
 function SettingsFormBody({ children }: { children: ReactNode }) {
 	const { formRef, onSubmit } = useSettingsForm();
 	return (
-		<form ref={formRef} onSubmit={onSubmit}>
+		<form
+			ref={formRef}
+			onSubmit={onSubmit}
+			className="flex min-h-0 w-full flex-1 flex-col"
+		>
 			{children}
 		</form>
 	);

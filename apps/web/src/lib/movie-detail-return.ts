@@ -9,6 +9,7 @@ import {
 	readHomeLobbyPersisted,
 	readLastHomeBrowseSurface,
 } from "@/lib/home-lobby-persist";
+import { ME_ACCOUNT_SETTINGS_HOME_HREF } from "@/lib/me-account-nav";
 
 export type MovieDetailReturn = {
 	href: string;
@@ -82,6 +83,11 @@ export function isMeSettingsPath(pathname: string): boolean {
 	return pathname === "/me/settings" || pathname.startsWith("/me/settings/");
 }
 
+/** Achievements lobby — `/achievements` and tab query variants. */
+export function isAchievementsPath(pathname: string): boolean {
+	return pathname === "/achievements" || pathname.startsWith("/achievements/");
+}
+
 function parseReturnPathname(href: string): string | null {
 	try {
 		const origin =
@@ -99,6 +105,13 @@ export function isMeSettingsReturnHref(href: string): boolean {
 	const pathname = parseReturnPathname(href);
 	if (!pathname) return href.startsWith("/me/settings");
 	return isMeSettingsPath(pathname);
+}
+
+/** True when a back target is the achievements lobby (any tab). */
+export function isAchievementsReturnHref(href: string): boolean {
+	const pathname = parseReturnPathname(href);
+	if (!pathname) return href.startsWith("/achievements");
+	return isAchievementsPath(pathname);
 }
 
 function isFilmDetailPath(pathname: string): boolean {
@@ -187,7 +200,7 @@ export function resolveMovieDetailReturnFromPath(
 		return { href: "/changelog", label: "Changelog" };
 	}
 	if (pathname === "/me/settings" || pathname.startsWith("/me/settings")) {
-		return { href: "/me/settings", label: "Settings" };
+		return { href: ME_ACCOUNT_SETTINGS_HOME_HREF, label: "Settings" };
 	}
 	if (
 		pathname === "/me/customization" ||
@@ -348,6 +361,32 @@ export function resolveSettingsReturn(pathname: string): MovieDetailReturn {
 		isMeSettingsPath(currentPath) &&
 		isMeSettingsPath(targetPath)
 	) {
+		return fallback;
+	}
+
+	return candidate;
+}
+
+/**
+ * Achievements lobby back target — never loops to `/achievements` when the stored
+ * snapshot still points at this route (common after Achievements → Profile → Achievements).
+ */
+export function resolveAchievementsReturn(
+	_pathname: string,
+	_search: string,
+): MovieDetailReturn {
+	const fallback = homeBrowseFallback();
+	if (typeof window === "undefined") return fallback;
+
+	const candidate = resolveDetailReturnCandidate();
+	if (!candidate) return fallback;
+
+	if (isAchievementsReturnHref(candidate.href)) {
+		return fallback;
+	}
+
+	// Profile back already escapes settings — achievements should too.
+	if (isMeSettingsReturnHref(candidate.href)) {
 		return fallback;
 	}
 

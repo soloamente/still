@@ -1,14 +1,11 @@
 import type { ProfileFilmographyRow } from "@/components/profile/profile-filmography-panel";
 import { patronLogPosterCaption } from "@/lib/patron-log-poster-caption";
 import type { PersonFilmographyRow } from "@/lib/person-filmography";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
-/** TMDb still path → absolute URL for profile tiles and catalogue grids. */
+/** TMDb still path → absolute URL for profile tiles and catalogue grids (w342). */
 export function profilePosterUrlFromPath(path: string | null): string | null {
-	if (!path?.length) return null;
-	// Some legacy rows store a full CDN URL instead of a `/path.jpg` fragment.
-	if (path.startsWith("http")) return path;
-	const fragment = path.startsWith("/") ? path : `/${path}`;
-	return `https://image.tmdb.org/t/p/w780${fragment}`;
+	return tmdbPosterUrlFromPath(path, "w342");
 }
 
 function patronScoreLabel(row: ProfileFilmographyRow): string | null {

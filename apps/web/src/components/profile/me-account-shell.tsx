@@ -3,6 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import type { ReactNode } from "react";
 
+import { appShellMainContentMinHeightStyle } from "@/components/app/app-shell";
 import { MeAccountBarActionsProvider } from "@/components/profile/me-account-bar-actions-context";
 import { MeAccountNav } from "@/components/profile/me-account-nav";
 import { MeAccountRouteTransition } from "@/components/profile/me-account-route-transition";
@@ -22,7 +23,14 @@ export function MeAccountShell({
 	return (
 		<MeAccountSessionProvider>
 			<MeAccountBarActionsProvider>
-				<div className="flex flex-1 flex-col bg-background">
+				{/*
+				 * Match `#main-content` min height so the raised `bg-card` lobby fills the
+				 * viewport under the top bar (not only as tall as the settings fields).
+				 */}
+				<div
+					className="flex min-h-0 flex-1 flex-col bg-background"
+					style={appShellMainContentMinHeightStyle}
+				>
 					<MeAccountTopBar handle={handle} />
 					<section
 						className={cn(
@@ -32,7 +40,8 @@ export function MeAccountShell({
 					>
 						<div
 							className={cn(
-								"grid min-h-0 w-full flex-1 gap-8 pt-5 pb-10 lg:grid-cols-[minmax(0,13.75rem)_minmax(0,1fr)] lg:gap-12 lg:pb-12",
+								// Mobile: nav auto, body fills leftover. Desktop: one stretched row beside the rail.
+								"grid min-h-0 w-full flex-1 grid-rows-[auto_minmax(0,1fr)] gap-8 pt-5 pb-10 lg:grid-cols-[minmax(0,13.75rem)_minmax(0,1fr)] lg:grid-rows-1 lg:gap-12 lg:pb-12",
 								PROFILE_LOBBY_BODY_GUTTER_CLASSNAME,
 							)}
 						>
@@ -43,7 +52,7 @@ export function MeAccountShell({
 							<aside className="sticky top-[5.5rem] z-[31] min-w-0 self-start">
 								<MeAccountNav handle={handle} />
 							</aside>
-							<div className="w-full min-w-0 pt-2">
+							<div className="flex min-h-0 w-full flex-1 flex-col pt-2">
 								<MeAccountRouteTransition>{children}</MeAccountRouteTransition>
 							</div>
 						</div>

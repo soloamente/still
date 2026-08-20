@@ -36,6 +36,8 @@ export type MeAccountSettingsDraftPayload = {
 	catalogMonochromePeersOnHover: boolean;
 	catalogTmdbWatchRegion: string;
 	catalogTmdbLanguage: string;
+	/** Empty string means “follow the browser language”. */
+	reviewTranslationLanguage?: string;
 	watchlistStreamingAlerts?: boolean;
 	showAdultContent?: boolean;
 	birthDate?: string;

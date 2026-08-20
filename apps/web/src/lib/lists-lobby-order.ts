@@ -1,5 +1,6 @@
 import type { ListBoardRow } from "@/lib/list-board-row";
 import { resolveListCoverImageSrc } from "@/lib/list-cover-image";
+import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 
 /**
  * URL + sort helpers for `/lists` — mirrors `watchlist-lobby-order` so the page reuses
@@ -98,12 +99,9 @@ export function listBoardRowToLobbySeed(row: ListBoardRow): ListLobbySeed {
 	const path = row.coverPosterPaths?.[0] ?? null;
 	let poster_url: string | null = null;
 	if (path?.length) {
-		if (path.startsWith("http")) {
-			poster_url = path;
-		} else {
-			const fragment = path.startsWith("/") ? path : `/${path}`;
-			poster_url = `https://image.tmdb.org/t/p/w780${fragment}`;
-		}
+		poster_url = path.startsWith("http")
+			? path
+			: tmdbPosterUrlFromPath(path, "w342");
 	}
 	return {
 		id: row.id,

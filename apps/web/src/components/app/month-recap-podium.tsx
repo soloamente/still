@@ -168,6 +168,7 @@ function MonthRecapPodiumTile({
 						entry.avatarIsAnimated,
 					)}
 					planTier={entry.planTier}
+					staffRole={entry.staffRole}
 				/>
 			</Link>
 			<p

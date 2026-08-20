@@ -1,20 +1,23 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { Heart, MessageCircle } from "lucide-react";
+import { Heart, MessageCircle, PenLine } from "lucide-react";
 import Link from "next/link";
 import {
 	type KeyboardEvent,
 	type MouseEvent,
+	useCallback,
 	useEffect,
 	useRef,
 	useState,
 } from "react";
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
+import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { ReviewVoiceAttachment } from "@/components/review/review-audio-player";
 import { ReviewBodyWithMentions } from "@/components/review/review-body-with-mentions";
+import { useReviewComposer } from "@/components/review/review-composer";
 import {
 	useReviewDetail,
 	useReviewEngagementCounts,
@@ -42,8 +45,55 @@ import {
 } from "@/lib/review-spoiler-mask";
 import { useViewerHasWatchedMovie } from "@/lib/use-viewer-has-watched-movie";
 
-/** Editorial scene height — slides vertically center inside the rail. */
-const REVIEW_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(32rem,72vh)]";
+/** Editorial scene height — soft floor so Lists can peek without a full-viewport dead zone. */
+const REVIEW_RAIL_MIN_HEIGHT_CLASS = "min-h-[min(22rem,50vh)]";
+
+/** Empty reviews — same orientation pattern as Lists empty (icon + CTA). */
+function MovieDetailReviewsEmpty({
+	movieId,
+	movieTitle,
+	averageRating,
+}: {
+	movieId?: number;
+	movieTitle?: string;
+	averageRating?: number | null;
+}) {
+	const openReviewComposer = useReviewComposer((s) => s.open);
+	const canCompose = movieId != null && Boolean(movieTitle?.trim());
+
+	return (
+		<div
+			className="rounded-2xl bg-background px-6 py-10 text-center"
+			role="status"
+		>
+			<span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-background text-foreground">
+				<PenLine className="size-5.5 shrink-0 opacity-90" aria-hidden />
+			</span>
+			<p className="mt-4 font-sans text-lg">No reviews yet</p>
+			<p className="mx-auto mt-2 max-w-sm text-balance font-editorial text-muted-foreground text-sm leading-relaxed">
+				Be the first to write one — share what stuck with you after the credits.
+			</p>
+			{canCompose ? (
+				<DetailMotionButton
+					type="button"
+					className={cn(
+						"mt-6 inline-flex items-center justify-center rounded-full bg-card px-5 py-2.5 font-medium text-foreground text-sm",
+						"[@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
+					)}
+					onClick={() =>
+						openReviewComposer({
+							movieId: movieId as number,
+							movieTitle: movieTitle as string,
+							averageRating: averageRating ?? null,
+						})
+					}
+				>
+					Write a review
+				</DetailMotionButton>
+			) : null}
+		</div>
+	);
+}
 
 function ReviewRailEdgeSpacer() {
 	return (
@@ -150,6 +200,8 @@ function MovieDetailReviewSlide({
 							displayName: author.displayName,
 							image: author.image,
 							avatarIsAnimated: author.avatarIsAnimated,
+							planTier: author.planTier ?? null,
+							staffRole: author.staffRole ?? null,
 						}
 					: null,
 			},
@@ -290,6 +342,7 @@ function MovieDetailReviewSlide({
 										author.avatarIsAnimated,
 									)}
 									planTier={author.planTier ?? null}
+									staffRole={author.staffRole ?? null}
 								/>
 							</Link>
 							{/* Display name, handle, and engagement counts read as one byline block. */}
@@ -352,11 +405,16 @@ function MovieDetailReviewSlide({
  */
 export function MovieDetailReviewsCarousel({
 	movieId,
+	movieTitle,
+	averageRating,
 	reviews,
 	className,
 }: {
 	/** Internal film id for spoiler / watched checks; omitted on TV detail (reviews empty today). */
 	movieId?: number;
+	movieTitle?: string;
+	/** Community average (0–10 display) for the composer slider ghost fill. */
+	averageRating?: number | null;
 	reviews: MoviePageReview[];
 	className?: string;
 }) {
@@ -377,11 +435,26 @@ export function MovieDetailReviewsCarousel({
 		slideSelector: "[data-review-slide]",
 	});
 
+	const getStepLabel = useCallback(
+		(index: number) => {
+			const review = reviews[index];
+			const handle = review?.author?.handle?.trim();
+			const title = review?.title?.trim();
+			if (handle && title) return `Review by @${handle}: ${title}`;
+			if (handle) return `Review by @${handle}`;
+			if (title) return `Review: ${title}`;
+			return `Review ${index + 1}`;
+		},
+		[reviews],
+	);
+
 	if (reviews.length === 0) {
 		return (
-			<p className="text-center text-muted-foreground text-sm">
-				No reviews yet. Be the first to write one.
-			</p>
+			<MovieDetailReviewsEmpty
+				movieId={movieId}
+				movieTitle={movieTitle}
+				averageRating={averageRating}
+			/>
 		);
 	}
 
@@ -445,6 +518,7 @@ export function MovieDetailReviewsCarousel({
 				onNext={nextSlide}
 				onGoto={gotoSlide}
 				ariaLabel="Patron reviews"
+				getStepLabel={getStepLabel}
 			/>
 		</div>
 	);

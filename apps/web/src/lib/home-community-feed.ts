@@ -4,10 +4,10 @@
  */
 export type HomeCommunityFeed = "lists" | "reviews" | "activity" | "ranks";
 
-/** Ranks slice when `sort=ranks` — film/show diary boards or patron review rank. */
-export type HomeCommunityRankKind = "films" | "tv" | "reviews";
+/** Ranks slice when `sort=ranks` — film/show/episode diary boards or patron review rank. */
+export type HomeCommunityRankKind = "films" | "tv" | "episodes" | "reviews";
 
-export type FilmTvRankKind = "films" | "tv";
+export type FilmTvRankKind = "films" | "tv" | "episodes";
 
 export const HOME_COMMUNITY_RANK_KINDS = [
 	{ id: "films", label: "Films", title: "Most film diary logs in this period" },
@@ -15,6 +15,11 @@ export const HOME_COMMUNITY_RANK_KINDS = [
 		id: "tv",
 		label: "Shows",
 		title: "Most show diary logs in this period",
+	},
+	{
+		id: "episodes",
+		label: "Episodes",
+		title: "Most episode diary logs in this period",
 	},
 	{
 		id: "reviews",
@@ -38,7 +43,7 @@ export function isHomeLeaderboardFeed(
 export function isFilmTvRankKind(
 	kind: HomeCommunityRankKind,
 ): kind is FilmTvRankKind {
-	return kind === "films" || kind === "tv";
+	return kind === "films" || kind === "tv" || kind === "episodes";
 }
 
 export function isMembersRankKind(
@@ -64,7 +69,7 @@ export const HOME_COMMUNITY_FEEDS: readonly {
 	{
 		id: "ranks",
 		label: "Ranks",
-		hint: "Patron leaderboards — Films, Shows, or Reviews",
+		hint: "Patron leaderboards — Films, Shows, Episodes, or Reviews",
 	},
 	{
 		id: "lists",
@@ -141,6 +146,7 @@ export function parseHomeCommunityRankKind(
 
 	const rank = rankParam?.trim().toLowerCase() ?? "";
 	if (rank === "tv" || rank === "shows" || rank === "tv-shows") return "tv";
+	if (rank === "episodes" || rank === "episode") return "episodes";
 	if (rank === "films" || rank === "film" || rank === "movies") return "films";
 	if (rank === "popular") return "reviews";
 	if (rank === "lists" || rank === "list") return "reviews";

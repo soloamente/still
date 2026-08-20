@@ -78,6 +78,7 @@ function EngagementPatronStackedTile({
 						item.avatarIsAnimated,
 					)}
 					planTier={item.planTier}
+					staffRole={item.staffRole}
 				/>
 			</span>
 			{/* Portrait first — display name + handle stack directly under it. */}
@@ -131,6 +132,7 @@ function EngagementPatronAvatarLink({
 					item.avatarIsAnimated,
 				)}
 				planTier={item.planTier}
+				staffRole={item.staffRole}
 			/>
 		</Link>
 	);
@@ -228,6 +230,7 @@ export function ListingEngagementWatchRow({
 											image: item.image,
 											avatarIsAnimated: item.avatarIsAnimated,
 											planTier: item.planTier,
+											staffRole: item.staffRole,
 										},
 									},
 								})

@@ -1,3 +1,4 @@
+import type { StaffRole } from "@still/auth/permissions";
 import {
 	block,
 	db,
@@ -27,11 +28,7 @@ import {
 
 import { communityOffset, parseCommunityPage } from "./community-page-args";
 import { contentVisibilityWhere } from "./content-visibility";
-import {
-	type DiaryMetalTier,
-	fetchDiaryLogCountsForUserIds,
-	resolveDiaryMetalTier,
-} from "./diary-metal-tier";
+import type { DiaryMetalTier } from "./diary-metal-tier";
 import { withCoverPosterPaths } from "./list-cover-posters";
 import {
 	type ListingCommunityEngagementStats,
@@ -39,9 +36,9 @@ import {
 } from "./listing-community-stats";
 import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
 import {
-	fetchPlanTiersForUserIds,
-	planTierForUserId,
-} from "./patron-plan-tier";
+	fetchPatronAvatarBadgeMaps,
+	patronAvatarBadgeFields,
+} from "./patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "./profile-media";
 
 export type ListingEngagementKind =
@@ -75,6 +72,7 @@ export type ListingEngagementWatchItem = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	rating: number | null;
 	liked: boolean;
 	watchedAt: string;
@@ -102,6 +100,7 @@ export type ListingEngagementPatronItem = {
 	avatarIsAnimated: boolean;
 	diaryMetalTier: DiaryMetalTier | null;
 	planTier: PlanTierId;
+	staffRole: StaffRole | null;
 	rating: number | null;
 	liked: boolean;
 	sortAt: string;
@@ -248,19 +247,14 @@ async function mapWatchRows(
 	}[],
 ): Promise<ListingEngagementWatchItem[]> {
 	const userIds = rows.map((row) => row.userId);
-	// Resolve diary metal + subscription tier in one round-trip each.
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 	return rows.map((row) => ({
 		userId: row.userId,
 		handle: row.handle,
 		displayName: row.displayName,
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
-		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-		planTier: planTierForUserId(row.userId, planTiers),
+		...patronAvatarBadgeFields(row.userId, badgeMaps),
 		rating: row.logRating,
 		liked: row.liked,
 		watchedAt: row.watchedAt.toISOString(),
@@ -292,19 +286,14 @@ async function mapPatronRows(
 	}[],
 ): Promise<ListingEngagementPatronItem[]> {
 	const userIds = rows.map((row) => row.userId);
-	// Resolve diary metal + subscription tier in one round-trip each.
-	const [logCounts, planTiers] = await Promise.all([
-		fetchDiaryLogCountsForUserIds(userIds),
-		fetchPlanTiersForUserIds(userIds),
-	]);
+	const badgeMaps = await fetchPatronAvatarBadgeMaps(userIds);
 	return rows.map((row) => ({
 		userId: row.userId,
 		handle: row.handle,
 		displayName: row.displayName,
 		image: row.image,
 		avatarIsAnimated: readAvatarIsAnimatedPref(row.preferences),
-		diaryMetalTier: resolveDiaryMetalTier(logCounts.get(row.userId) ?? 0),
-		planTier: planTierForUserId(row.userId, planTiers),
+		...patronAvatarBadgeFields(row.userId, badgeMaps),
 		rating: row.rating,
 		liked: row.liked,
 		sortAt: row.sortAt.toISOString(),

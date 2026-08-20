@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import {
-	APP_METADATA_DEFAULT_TITLE,
-	APP_METADATA_DESCRIPTION,
-	APP_NAME,
-} from "@/lib/app-brand";
+import { APP_METADATA_DEFAULT_TITLE, APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
 import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import {
@@ -15,35 +11,35 @@ import {
 import { patronNeedsOnboarding } from "@/lib/onboarding-gate";
 import { serverApi } from "@/lib/server-api";
 import { getSiteOrigin } from "@/lib/site-origin";
-import { LandingFeatures } from "./_marketing/landing-features";
-import { LandingFlows } from "./_marketing/landing-flows";
+import {
+	LANDING_METADATA_DESCRIPTION,
+	LANDING_SKIP_HREF,
+} from "./_marketing/landing-copy";
 import { LandingFooter } from "./_marketing/landing-footer";
 import { LandingHero } from "./_marketing/landing-hero";
-import { LandingIntro } from "./_marketing/landing-intro";
+import { pickLandingHeroPosters } from "./_marketing/landing-hero-still";
+import { LANDING_SKIP_LINK_CLASS } from "./_marketing/landing-mobbin-hero";
 import { LandingNav } from "./_marketing/landing-nav";
-import type { LandingPoster } from "./_marketing/landing-poster";
-import { LandingPreview } from "./_marketing/landing-preview";
-import { LandingScrollScenes } from "./_marketing/landing-scroll-scenes";
+import { LandingProduct } from "./_marketing/landing-product";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const origin = getSiteOrigin(await headers());
 
 	return {
 		title: APP_METADATA_DEFAULT_TITLE,
-		description:
-			"Log every film you watch, rate it, share it. A modern social home for cinephiles — diaries, reviews, lists, and community.",
+		description: LANDING_METADATA_DESCRIPTION,
 		openGraph: {
 			type: "website",
 			url: origin,
 			siteName: APP_NAME,
 			title: APP_METADATA_DEFAULT_TITLE,
-			description: APP_METADATA_DESCRIPTION,
+			description: LANDING_METADATA_DESCRIPTION,
 			...ogImageMetadataFields(OG_HOME_PATH).openGraph,
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: APP_METADATA_DEFAULT_TITLE,
-			description: APP_METADATA_DESCRIPTION,
+			description: LANDING_METADATA_DESCRIPTION,
 			...ogImageMetadataFields(OG_HOME_PATH).twitter,
 		},
 	};
@@ -70,36 +66,23 @@ export default async function LandingPage() {
 	const popular = await api.api.movies.popular
 		.get()
 		.catch(() => ({ data: null }));
-	const posters: LandingPoster[] =
+	const posters = pickLandingHeroPosters(
 		(
 			popular.data as {
-				results?: {
-					id: number;
-					title: string;
-					poster_url: string | null;
-					backdrop_url: string | null;
-				}[];
+				results?: { poster_url?: string | null; title?: string | null }[];
 			} | null
-		)?.results
-			?.slice(0, 18)
-			.map((m) => ({
-				id: m.id,
-				title: m.title,
-				posterUrl: m.poster_url,
-				backdropUrl: m.backdrop_url,
-			})) ?? [];
+		)?.results,
+	);
 
 	return (
 		<div className="min-h-dvh bg-background text-foreground">
+			<a href={LANDING_SKIP_HREF} className={LANDING_SKIP_LINK_CLASS}>
+				Skip to content
+			</a>
 			<LandingNav />
-
-			<main>
-				<LandingHero />
-				<LandingIntro />
-				<LandingScrollScenes posters={posters} />
-				<LandingFeatures posters={posters} />
-				<LandingFlows posters={posters} />
-				<LandingPreview posters={posters} />
+			<main id="main-content">
+				<LandingHero posters={posters} />
+				<LandingProduct />
 			</main>
 			<LandingFooter />
 		</div>

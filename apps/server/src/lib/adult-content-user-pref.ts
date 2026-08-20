@@ -2,6 +2,7 @@ import { db, profile } from "@still/db";
 import { eq } from "drizzle-orm";
 
 import { readShowAdultContentPref } from "./adult-content-policy";
+import { traceTiming } from "./trace-timing";
 
 /** Loads show-adult pref from the signed-in patron profile row. */
 export async function getShowAdultContentForUser(
@@ -9,11 +10,13 @@ export async function getShowAdultContentForUser(
 ): Promise<boolean> {
 	if (!userId) return false;
 	try {
-		const [row] = await db
-			.select({ preferences: profile.preferences })
-			.from(profile)
-			.where(eq(profile.userId, userId))
-			.limit(1);
+		const [row] = await traceTiming("db", "getShowAdultContentForUser", () =>
+			db
+				.select({ preferences: profile.preferences })
+				.from(profile)
+				.where(eq(profile.userId, userId))
+				.limit(1),
+		);
 		return readShowAdultContentPref(
 			(row?.preferences as Record<string, unknown>) ?? null,
 		);

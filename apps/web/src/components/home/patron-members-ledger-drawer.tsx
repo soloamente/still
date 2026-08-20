@@ -12,6 +12,7 @@ import type {
 	MembersLeaderboardEntry,
 	MembersLeaderboardSort,
 } from "@/lib/members-leaderboard-types";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 export type PatronMembersLedgerSeed = {
 	userId: string;
@@ -20,6 +21,7 @@ export type PatronMembersLedgerSeed = {
 	image: string | null;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 	sort: MembersLeaderboardSort;
 	period: HomeLeaderboardPeriod;
 };
@@ -55,6 +57,7 @@ export function buildPatronMembersLedgerSeed(
 		image: entry.image,
 		avatarIsAnimated: entry.avatarIsAnimated,
 		planTier: entry.planTier,
+		staffRole: entry.staffRole,
 		sort,
 		period,
 	};

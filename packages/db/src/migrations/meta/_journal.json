@@ -288,6 +288,13 @@
 			"when": 1779203600000,
 			"tag": "0040_drop_is_pro",
 			"breakpoints": true
+		},
+		{
+			"idx": 41,
+			"version": "7",
+			"when": 1779203700000,
+			"tag": "0041_review_translation",
+			"breakpoints": true
 		}
 	]
 }

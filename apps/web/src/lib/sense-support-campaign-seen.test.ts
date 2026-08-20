@@ -36,14 +36,14 @@ describe("sense-support-campaign-seen", () => {
 
 	test("shows when unseen", () => {
 		expect(
-			shouldShowSenseSupportCampaign("user-1", "sense-growth-2026-07"),
+			shouldShowSenseSupportCampaign("user-1", "discord-activity-pro-2026-08"),
 		).toBe(true);
 	});
 
 	test("hides after mark seen", () => {
-		markSenseSupportCampaignSeen("user-1", "sense-growth-2026-07");
+		markSenseSupportCampaignSeen("user-1", "discord-activity-pro-2026-08");
 		expect(
-			shouldShowSenseSupportCampaign("user-1", "sense-growth-2026-07"),
+			shouldShowSenseSupportCampaign("user-1", "discord-activity-pro-2026-08"),
 		).toBe(false);
 	});
 });

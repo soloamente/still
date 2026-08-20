@@ -20,9 +20,9 @@ import { InviteEarnDialogRoot } from "@/components/referrals/invite-earn-dialog-
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
 import { RoleChangeDialogRoot } from "@/components/staff/role-change-dialog-root";
-
 import { VAUL_DRAWER_WRAPPER_ATTR } from "@/lib/detail-vaul-drawer";
 import { getActiveSenseSupportCampaign } from "@/lib/sense-support-campaign";
+import type { StaffRole } from "@/lib/staff-role-labels";
 
 /**
  * Track B — authenticated app chrome (single shell for `(app)` routes).
@@ -50,6 +50,7 @@ export type AppShellUser = {
 	isPro?: boolean;
 	avatarIsAnimated?: boolean;
 	planTier?: PlanTierId | string | null;
+	staffRole?: StaffRole | null;
 };
 
 /**
@@ -106,14 +107,13 @@ export function AppShell({
 					<CreateListDrawerRoot />
 					<PatronWatchLedgerDrawerRoot />
 					<PatronMembersLedgerDrawerRoot />
+					<WhatsNewDialogRoot userId={user.id} />
 					{supportCampaign ? (
 						<SenseSupportCampaignDialogRoot
 							userId={user.id}
 							campaign={supportCampaign}
 						/>
-					) : (
-						<WhatsNewDialogRoot userId={user.id} />
-					)}
+					) : null}
 					<MonthRecapDialogRoot userId={user.id} />
 					<Suspense fallback={null}>
 						<PlanPurchaseSuccessDialogRoot />
@@ -130,6 +130,7 @@ export function AppShell({
 							isPro: user.isPro,
 							avatarIsAnimated: user.avatarIsAnimated,
 							planTier: user.planTier ?? null,
+							staffRole: user.staffRole ?? null,
 						}}
 					/>
 				</div>

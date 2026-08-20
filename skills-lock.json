@@ -1,6 +1,60 @@
 {
 	"version": 1,
 	"skills": {
+		"animation-vocabulary": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/animation-vocabulary/SKILL.md",
+			"computedHash": "280c6688ef2568ad92f40c4dc638f0cc5cde0f49bdd6debd097410aa9945f44f"
+		},
+		"apple-design": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/apple-design/SKILL.md",
+			"computedHash": "0d19303902efa64eace10e6b183eb29ef3220d424c1a7fd1eafc52adde216932"
+		},
+		"better-accessibility": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-accessibility/SKILL.md",
+			"computedHash": "a7b0b70403af4625052410d239a8683b35221efbf6b61b396110ce000da05e26"
+		},
+		"better-colors": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-colors/SKILL.md",
+			"computedHash": "094fbf1d8e31d225179f5d3ca80246b08b3dd9154f4058d7ee86a95e1139e563"
+		},
+		"better-interface": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-interface/SKILL.md",
+			"computedHash": "90e23bcfdea67e937a17ce43d91467f67ab71120803161ba0c2dabeb47066cd7"
+		},
+		"better-layout": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-layout/SKILL.md",
+			"computedHash": "e4eda446af4127a9b0ea97f0cc1e7c77cc1120b91fce25e3947af5e0884b74e5"
+		},
+		"better-typography": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-typography/SKILL.md",
+			"computedHash": "bbe024b4a78a56cd08b6d2e90d53bf268b559262c20665a440931645ed1861d4"
+		},
+		"better-ui": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-ui/SKILL.md",
+			"computedHash": "3d745409bc2de890c04c110ea9d43a305b33abb500a5c664f26d44774a02c79f"
+		},
+		"better-writing": {
+			"source": "jakubkrehel/skills",
+			"sourceType": "github",
+			"skillPath": "skills/better-writing/SKILL.md",
+			"computedHash": "450dc38b88fc7207044bf918e52a29422ad7a3de71517119cfd12fb65c7b05ee"
+		},
 		"brandkit": {
 			"source": "Leonxlnx/taste-skill",
 			"sourceType": "github",
@@ -12,6 +66,18 @@
 			"sourceType": "github",
 			"skillPath": "skills/taste-skill/SKILL.md",
 			"computedHash": "d823593e24d7493ab740db8f082cbe3b148ed29af9e804d11f5302ad79e4b96d"
+		},
+		"emil-design-eng": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/emil-design-eng/SKILL.md",
+			"computedHash": "87067d79205fdedc6d682891027dd9c7335486c4b4dc2e785638941a9d2e6061"
+		},
+		"find-animation-opportunities": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/find-animation-opportunities/SKILL.md",
+			"computedHash": "c6b1d0f6d03a11f8772b1cef4ca5cc88301ae8641ac2697c85ffa87eb458e40a"
 		},
 		"full-output-enforcement": {
 			"source": "Leonxlnx/taste-skill",
@@ -49,6 +115,12 @@
 			"skillPath": "skills/imagegen-frontend-web/SKILL.md",
 			"computedHash": "27255c7c50181e58add156b2aa2bd5325285b85f04027e4c8b73742d98d7be0a"
 		},
+		"improve-animations": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/improve-animations/SKILL.md",
+			"computedHash": "9cd956e91139211efa5e17fc5e1675b9a3f711ef38cbc92aa8f3fa5b626b7e12"
+		},
 		"industrial-brutalist-ui": {
 			"source": "Leonxlnx/taste-skill",
 			"sourceType": "github",
@@ -67,11 +139,23 @@
 			"skillPath": "skills/minimalist-skill/SKILL.md",
 			"computedHash": "7e88897e0371184e97a82b8d9ef080323c13f21eb067b58ef71eb05173a08ac2"
 		},
+		"pick-ui-library": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/pick-ui-library/SKILL.md",
+			"computedHash": "1a0a6819d13fb5361cf5cdc923f46a1effc37cb61ecb908419eedb0e11f428fe"
+		},
 		"redesign-existing-projects": {
 			"source": "Leonxlnx/taste-skill",
 			"sourceType": "github",
 			"skillPath": "skills/redesign-skill/SKILL.md",
 			"computedHash": "47eced3e960a2c961d3cbee11fa1216264f589344b586a5cbd03967cd6b9c54b"
+		},
+		"review-animations": {
+			"source": "emilkowalski/skills",
+			"sourceType": "github",
+			"skillPath": "skills/review-animations/SKILL.md",
+			"computedHash": "6f8d633d7884c1390eff7af4bfaf7a450e798f117e1d49a555e00819dc877f64"
 		},
 		"stitch-design-taste": {
 			"source": "Leonxlnx/taste-skill",

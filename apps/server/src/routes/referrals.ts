@@ -3,7 +3,7 @@ import { env } from "@still/env/server";
 import { and, count, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
-import { context } from "../context";
+import { freshContext } from "../context";
 import { hit } from "../lib/rate-limit";
 import {
 	captureReferralForUser,
@@ -32,7 +32,7 @@ export const referralsRoute = new Elysia({
 	prefix: "/api/referrals",
 	tags: ["referrals"],
 })
-	.use(context)
+	.use(freshContext)
 	.get("/me", async ({ user, status }) => {
 		if (!user) return status(401, "Sign in");
 

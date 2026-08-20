@@ -2,28 +2,32 @@
 
 import { Button } from "@still/ui/components/button";
 import { useSearchParams } from "next/navigation";
-
+import type { ReactNode } from "react";
 import { CommunityActivityInfinite } from "@/components/home/community-activity-infinite";
-import { CommunityListsHeader } from "@/components/home/community-lists-header";
+import {
+	CommunityActivityFeedShell,
+	CommunityListsFeedShell,
+	CommunityReviewsFeedShell,
+} from "@/components/home/community-feed-shell";
 import { CommunityListsInfinite } from "@/components/home/community-lists-infinite";
 import { CommunityRanksSkeleton } from "@/components/home/community-ranks-skeleton";
 import { CommunityReviewsInfinite } from "@/components/home/community-reviews-infinite";
 import { HomeCommunityEmpty } from "@/components/home/home-community-empty";
 import { HomeCommunityLeaderboard } from "@/components/home/home-community-leaderboard";
 import { useHomeCommunityLobbyParams } from "@/components/home/home-community-lobby-params-context";
-import { HomeCommunityReviewSortChips } from "@/components/home/home-community-review-sort-chips";
-import { HomeCuratorSpotlights } from "@/components/home/home-curator-spotlights";
-import { HomeEditorialHighlights } from "@/components/home/home-editorial-highlights";
-import { HomeViralReviewsRail } from "@/components/home/home-viral-reviews-rail";
+import { HomeCommunityLobbyScroll } from "@/components/home/home-community-lobby-scroll";
 import { MembersLeaderboard } from "@/components/members/members-leaderboard";
 import { APP_NAME } from "@/lib/app-brand";
+import { parseHomeCommunityActivityScope } from "@/lib/home-community-activity-scope";
 import type { CommunityFeedSeed } from "@/lib/home-community-core-fetch";
 import {
 	type HomeCommunityFeed,
 	type HomeCommunityRankKind,
+	isFilmTvRankKind,
 	isHomeLeaderboardFeed,
 	isMembersRankKind,
 } from "@/lib/home-community-feed";
+import { HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME } from "@/lib/home-community-lobby-layout";
 import { parseHomeCommunityReviewSort } from "@/lib/home-community-review-sort";
 import {
 	type HomeLeaderboardPeriod,
@@ -47,42 +51,57 @@ function HomeCommunityLobbyRanksFallback({
 		leaderboard,
 	} = useHomeCommunityLobbyParams();
 
-	// Only skeleton while this period's board is still missing — not after hydration.
 	if (leaderboardsLoading && leaderboard == null) {
-		return <CommunityRanksSkeleton />;
+		return (
+			<HomeCommunityLobbyScroll contentKey="ranks-loading">
+				<CommunityRanksSkeleton />
+			</HomeCommunityLobbyScroll>
+		);
 	}
 
 	return (
-		<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12">
-			<HomeCommunityEmpty
-				title={
-					leaderboardsFailed
-						? "Couldn't load rankings"
-						: "No rankings this period"
-				}
-				description={
-					leaderboardsFailed
-						? "Check your connection and try again."
-						: `No film or TV logs ${periodLabel === "all time" ? "yet" : `this ${periodLabel}`}.`
-				}
-				primaryHref={
-					leaderboardsFailed ? undefined : "/home?browse=community&sort=lists"
-				}
-				primaryLabel={leaderboardsFailed ? undefined : "Browse lists"}
-				secondaryHref={signedIn ? "/diary" : "/sign-in"}
-				secondaryLabel={signedIn ? "Your diary" : "Sign in"}
-			/>
-			{leaderboardsFailed ? (
-				<Button
-					type="button"
-					variant="secondary"
-					className="mt-4"
-					onClick={retryLeaderboards}
-				>
-					Try again
-				</Button>
-			) : null}
-		</div>
+		<HomeCommunityLobbyScroll contentKey="ranks-empty">
+			<div className={HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME}>
+				<HomeCommunityEmpty
+					title={
+						leaderboardsFailed
+							? "Unable to load rankings"
+							: "No rankings this period"
+					}
+					description={
+						leaderboardsFailed
+							? "Check your connection and try again."
+							: `No film or TV diary logs ${periodLabel === "all time" ? "yet" : `this ${periodLabel}`}.`
+					}
+					primaryHref={
+						leaderboardsFailed ? undefined : "/home?browse=community&sort=lists"
+					}
+					primaryLabel={leaderboardsFailed ? undefined : "Browse lists"}
+					secondaryHref={signedIn ? "/diary" : "/sign-in"}
+					secondaryLabel={signedIn ? "Your diary" : "Sign in"}
+				/>
+				{leaderboardsFailed ? (
+					<Button
+						type="button"
+						variant="secondary"
+						className="mt-4"
+						onClick={retryLeaderboards}
+					>
+						Try again
+					</Button>
+				) : null}
+			</div>
+		</HomeCommunityLobbyScroll>
+	);
+}
+
+function HomeCommunityLobbyEmpty({ children }: { children: ReactNode }) {
+	return (
+		<HomeCommunityLobbyScroll>
+			<div className={HOME_COMMUNITY_LOBBY_EMPTY_CENTER_CLASSNAME}>
+				{children}
+			</div>
+		</HomeCommunityLobbyScroll>
 	);
 }
 
@@ -120,18 +139,18 @@ export function HomeCommunityLobby({
 	if (isHomeLeaderboardFeed(feed)) {
 		if (isMembersRankKind(rankKind)) {
 			return (
-				<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+				<HomeCommunityLobbyScroll contentKey={`members-${rankKind}-${period}`}>
 					<MembersLeaderboard
 						initialData={membersLeaderboard}
 						memberSort={rankKind}
 						period={period}
 						viewerUserId={viewerUserId}
 					/>
-				</div>
+				</HomeCommunityLobbyScroll>
 			);
 		}
 
-		if (!leaderboard) {
+		if (!leaderboard || !isFilmTvRankKind(rankKind)) {
 			return (
 				<HomeCommunityLobbyRanksFallback
 					periodLabel={periodLabel}
@@ -140,129 +159,173 @@ export function HomeCommunityLobby({
 			);
 		}
 		return (
-			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
+			<HomeCommunityLobbyScroll contentKey={`ranks-${rankKind}-${period}`}>
 				<HomeCommunityLeaderboard
 					kind={rankKind}
 					data={leaderboard}
 					viewerUserId={viewerUserId}
 				/>
-			</div>
+			</HomeCommunityLobbyScroll>
 		);
 	}
 
 	if (feed === "lists") {
 		if (seed.listSeeds.length === 0) {
 			return (
-				<HomeCommunityEmpty
-					title={`No public lists ${period === "all" ? "yet" : `this ${periodLabel}`}`}
-					description="When members publish lists in this window, they show up here — curated lanes, top tens, and shared canons."
-					primaryHref={signedIn ? "/lists/new" : "/sign-up"}
-					primaryLabel={signedIn ? "Create a list" : `Join ${APP_NAME}`}
-					secondaryHref={buildHomeLobbyHref({
-						browse: "movies",
-						sort: "popular",
-					})}
-					secondaryLabel="Browse movies"
-				/>
+				<HomeCommunityLobbyEmpty>
+					<HomeCommunityEmpty
+						title={`No public lists ${period === "all" ? "yet" : `this ${periodLabel}`}`}
+						description="When members publish lists in this window, they show up here — curated lanes, top tens, and shared canons."
+						primaryHref={signedIn ? "/lists/new" : "/sign-up"}
+						primaryLabel={signedIn ? "Create a list" : `Join ${APP_NAME}`}
+						secondaryHref={buildHomeLobbyHref({
+							browse: "movies",
+							sort: "popular",
+						})}
+						secondaryLabel="Browse movies"
+					/>
+				</HomeCommunityLobbyEmpty>
 			);
 		}
 		return (
-			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
-				<CommunityListsHeader total={seed.listTotalCount} />
-				<HomeCuratorSpotlights patrons={seed.curatorSpotlights} />
+			<CommunityListsFeedShell
+				total={seed.listTotalCount}
+				curatorSpotlights={seed.curatorSpotlights}
+				period={period}
+			>
 				<CommunityListsInfinite
 					seeds={seed.listSeeds}
 					initialCursor={seed.initialListCursor}
 					period={period}
 					monochromePeersOnHover={monochromePeersOnHover}
 				/>
-			</div>
+			</CommunityListsFeedShell>
 		);
 	}
 
 	if (feed === "reviews") {
-		const reviewsEmpty = mostLikedReviews
-			? seed.viralReviews.length === 0
-			: seed.reviews.length === 0;
+		const reviewRows = mostLikedReviews ? seed.topRatedReviews : seed.reviews;
+		const reviewsEmpty = reviewRows.length === 0;
 		if (reviewsEmpty) {
 			return (
-				<HomeCommunityEmpty
-					title={
-						mostLikedReviews
-							? `No viral reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
-							: `No published reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
-					}
-					description={
-						mostLikedReviews
-							? "Short, highly liked reviews from the community show up here once members publish and engage in this window."
-							: "Written reviews from the community land here once members publish from a film page in this window."
-					}
-					primaryHref={buildHomeLobbyHref({
-						browse: "movies",
-						sort: "popular",
-					})}
-					primaryLabel="Browse movies"
-					secondaryHref="/diary"
-					secondaryLabel="Your diary"
-				/>
+				<HomeCommunityLobbyEmpty>
+					<HomeCommunityEmpty
+						title={
+							mostLikedReviews
+								? `No top rated reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
+								: `No published reviews ${period === "all" ? "yet" : `this ${periodLabel}`}`
+						}
+						description={
+							mostLikedReviews
+								? "Reviews with the most likes and replies in this window rise to the top."
+								: "New reviews from the community appear here once members publish from a title page."
+						}
+						primaryHref={buildHomeLobbyHref({
+							browse: "movies",
+							sort: "popular",
+						})}
+						primaryLabel="Browse movies"
+						secondaryHref="/diary"
+						secondaryLabel="Your diary"
+					/>
+				</HomeCommunityLobbyEmpty>
 			);
 		}
 		return (
-			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
-				<HomeCommunityReviewSortChips />
-				{!mostLikedReviews && seed.viralReviews.length > 0 ? (
-					<HomeViralReviewsRail reviews={seed.viralReviews} />
-				) : null}
+			<CommunityReviewsFeedShell period={period} reviewSort={reviewSort}>
 				<CommunityReviewsInfinite
-					seeds={mostLikedReviews ? seed.viralReviews : seed.reviews}
-					initialCursor={mostLikedReviews ? null : seed.initialReviewCursor}
+					seeds={reviewRows}
+					initialCursor={
+						mostLikedReviews
+							? seed.initialTopRatedCursor
+							: seed.initialReviewCursor
+					}
 					period={period}
 					reviewSort={reviewSort}
 				/>
-			</div>
+			</CommunityReviewsFeedShell>
 		);
 	}
 
-	// Activity — following feed when signed in, otherwise platform discover highlights.
-	if (seed.activityItems.length === 0) {
+	if (feed === "activity") {
+		const activityScope = parseHomeCommunityActivityScope(
+			searchParams.get("activityScope"),
+		);
+		const isDiscoverScope = !signedIn || activityScope === "discover";
+		const activityRows = isDiscoverScope
+			? seed.discoverActivityItems
+			: seed.activityItems;
+		const hasDiscoverFallback =
+			signedIn && !isDiscoverScope && seed.discoverActivityItems.length > 0;
+
+		if (activityRows.length === 0) {
+			return (
+				<HomeCommunityLobbyEmpty>
+					<HomeCommunityEmpty
+						title={
+							!signedIn
+								? "Sign in for your following feed"
+								: isDiscoverScope
+									? period === "all"
+										? "No public activity yet"
+										: `No public activity this ${periodLabel}`
+									: period === "all"
+										? "No activity from people you follow"
+										: `No activity from people you follow this ${periodLabel}`
+						}
+						description={
+							!signedIn
+								? "Logs, reviews, and lists from people you follow show up here. Browse public highlights on Discover without signing in."
+								: isDiscoverScope
+									? "Public logs, reviews, and lists from the community appear here for this window."
+									: "Follow members whose taste you trust — their logs and lists will show up here when they post."
+						}
+						primaryHref={
+							!signedIn
+								? "/sign-in"
+								: buildHomeLobbyHref({
+										browse: "community",
+										sort: "ranks",
+										rankKind: "reviews",
+									})
+						}
+						primaryLabel={!signedIn ? "Sign in" : "Discover members"}
+						secondaryHref={
+							hasDiscoverFallback
+								? buildHomeLobbyHref({
+										browse: "community",
+										sort: "activity",
+										period,
+										activityScope: "discover",
+									})
+								: buildHomeLobbyHref({
+										browse: "movies",
+										sort: "popular",
+									})
+						}
+						secondaryLabel={
+							hasDiscoverFallback ? "Browse public activity" : "Browse movies"
+						}
+					/>
+				</HomeCommunityLobbyEmpty>
+			);
+		}
+
 		return (
-			<div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible px-0.5 pb-2">
-				<HomeEditorialHighlights />
-				<HomeCommunityEmpty
-					title={
-						signedIn
-							? period === "all"
-								? "Nothing from your circle yet"
-								: `Nothing from your circle this ${periodLabel}`
-							: "Sign in to see friend activity"
-					}
-					description={
-						signedIn
-							? "Follow people whose logs and lists you want here — the feed lights up when they post in this window."
-							: "Your following feed shows logs, reviews, and lists from people you follow. Browse public highlights after you join."
-					}
-					primaryHref={buildHomeLobbyHref({
-						browse: "community",
-						sort: "ranks",
-						rankKind: "reviews",
-					})}
-					primaryLabel={signedIn ? "Discover members" : "Browse members"}
-					secondaryHref={buildHomeLobbyHref({
-						browse: "movies",
-						sort: "popular",
-					})}
-					secondaryLabel="Browse movies"
+			<CommunityActivityFeedShell
+				period={period}
+				signedIn={signedIn}
+				isDiscoverScope={isDiscoverScope}
+			>
+				<CommunityActivityInfinite
+					seeds={activityRows}
+					initialCursor={seed.initialActivityCursor}
+					period={period}
+					paginate={!isDiscoverScope && signedIn}
 				/>
-			</div>
+			</CommunityActivityFeedShell>
 		);
 	}
 
-	return (
-		<CommunityActivityInfinite
-			seeds={seed.activityItems}
-			initialCursor={seed.initialActivityCursor}
-			period={period}
-			signedIn={signedIn}
-		/>
-	);
+	return null;
 }
