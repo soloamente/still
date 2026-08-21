@@ -138,6 +138,7 @@ export function HomeLeaderboardPodium({
 
 	if (!first) return null;
 
+	// Only render filled slots — empty flex-1 placeholders shoved 1–2 patrons off-center.
 	return (
 		<div className={HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME}>
 			<div className="flex items-end justify-center gap-2 sm:gap-3">
@@ -149,9 +150,7 @@ export function HomeLeaderboardPodium({
 						period={period}
 						reduceMotion={Boolean(reduceMotion)}
 					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
+				) : null}
 				<PodiumTile
 					entry={first}
 					slot="first"
@@ -167,9 +166,7 @@ export function HomeLeaderboardPodium({
 						period={period}
 						reduceMotion={Boolean(reduceMotion)}
 					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
+				) : null}
 			</div>
 		</div>
 	);
