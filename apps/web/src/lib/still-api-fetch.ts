@@ -1734,7 +1734,9 @@ export async function fetchCommunityLeaderboard(
 	const url = new URL(`/api/leaderboard/${kind}`, stillApiOrigin());
 	url.searchParams.set("period", period);
 	url.searchParams.set("tz", tz);
-	if (options?.page != null) {
+	// Omit page=1 / unused limit so older API schemas (period+tz only) still validate.
+	// page≥2 and limit need the v0.3.4+ server deploy that accepts those query keys.
+	if (options?.page != null && options.page > 1) {
 		url.searchParams.set("page", String(options.page));
 	}
 	if (options?.limit != null) {

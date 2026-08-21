@@ -24,8 +24,8 @@ export async function fetchHomeLeaderboardsByPeriodClient(
 
 	await Promise.all(
 		HOME_LEADERBOARD_PERIODS.map(async (period) => {
+			// Default first page — do not pass page:1 (older APIs reject unknown query keys).
 			out[period] = await fetchCommunityLeaderboard(kind, period, tz, {
-				page: 1,
 				signal,
 			});
 		}),
