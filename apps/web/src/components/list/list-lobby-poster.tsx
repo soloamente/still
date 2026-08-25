@@ -31,6 +31,7 @@ import { ListLobbyEditDialog } from "@/components/list/list-lobby-edit-dialog";
 import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { api } from "@/lib/api";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import {
 	isListCoverProxySrc,
 	resolveListCoverImageSrc,
@@ -41,7 +42,7 @@ import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 import { uploadListCover } from "@/lib/upload-list-cover";
 
 /**
- * One list in the home-style poster wall — same elevation shell as `MoviePoster` lobby cells.
+ * One list in the home-style poster wall — same hover lift as `MoviePoster` lobby cells.
  */
 export function ListLobbyPoster({
 	list,
@@ -89,12 +90,7 @@ export function ListLobbyPoster({
 	const isSharedList = list.listRole === "collaborator";
 
 	const shellClassName = cn(
-		"group block w-full min-w-0",
-		"relative z-0 overflow-visible transition-[box-shadow,z-index] duration-200 ease-out",
-		"motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:focus-within:shadow-none",
-		"focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]",
-		"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-		"focus-within:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
+		cataloguePosterHoverShellClassName("catalogue"),
 		className,
 	);
 

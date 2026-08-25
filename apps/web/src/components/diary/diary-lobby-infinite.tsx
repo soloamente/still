@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { DiaryTvGroupCell } from "@/components/diary/diary-tv-group-cell";
 import {
@@ -247,7 +248,7 @@ export function DiaryLobbyInfinite({
 
 	return (
 		<>
-			<div
+			<CataloguePosterGroup
 				ref={gridRef}
 				className={cn(
 					HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -256,7 +257,7 @@ export function DiaryLobbyInfinite({
 				)}
 			>
 				{cells}
-			</div>
+			</CataloguePosterGroup>
 
 			{showSentinel ? (
 				<div

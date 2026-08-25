@@ -1,5 +1,6 @@
 "use client";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import {
 	filmographyReleaseYear,
@@ -27,7 +28,7 @@ export function PersonFilmographyGrid({
 	}
 
 	return (
-		<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
+		<CataloguePosterGroup className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
 			{rows.map((m, index) => {
 				const yearLabel = filmographyReleaseYear(m.releaseDate);
 				const listingKind = m.mediaKind === "tv" ? "tv" : "movie";
@@ -48,12 +49,9 @@ export function PersonFilmographyGrid({
 							hoverStacking="sheet"
 							frameClassName={FILMOGRAPHY_POSTER_FRAME_CLASSNAME}
 							posterCaption={m.posterCaption}
+							showTitle
+							titleClassName="text-center"
 						/>
-						{m.posterUrl ? (
-							<p className="mt-2 line-clamp-2 min-w-0 text-pretty text-center text-[0.8rem] text-muted-foreground leading-snug sm:text-sm">
-								{m.title}
-							</p>
-						) : null}
 						<p className="mt-1 line-clamp-3 text-center text-[10px] text-muted-foreground leading-snug">
 							{m.roles.join(" · ")}
 						</p>
@@ -65,6 +63,6 @@ export function PersonFilmographyGrid({
 					</div>
 				);
 			})}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

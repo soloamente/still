@@ -9,6 +9,7 @@ import {
 	useReducedMotion,
 } from "motion/react";
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { OnboardingSearchField } from "@/components/onboarding/onboarding-form-controls";
@@ -298,7 +299,7 @@ function FavoritesCatalogueTile({
 						: `Add ${movie.title} to favorites`
 				}
 				className={cn(
-					"group/fav-poster relative w-full min-w-0 text-left",
+					"t-avatar group/fav-poster relative w-full min-w-0 text-left",
 					showHoverAction &&
 						"cursor-pointer touch-pan-y select-none [-webkit-tap-highlight-color:transparent]",
 					disabled && !selected && "cursor-not-allowed opacity-50",
@@ -316,6 +317,7 @@ function FavoritesCatalogueTile({
 					)}
 				>
 					<MoviePoster
+						avatarGroupItem={false}
 						className="w-full"
 						emptyArtworkClassName={ONBOARDING_EMPTY_ARTWORK_CLASSNAME}
 						frameClassName={ONBOARDING_POSTER_FRAME_CLASSNAME}
@@ -482,7 +484,9 @@ export function FavoritesStepGridPanel({
 											{favorites.length}/{MAX_FAVORITES}
 										</span>
 									</p>
-									<div className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}>
+									<CataloguePosterGroup
+										className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}
+									>
 										<AnimatePresence initial={false} mode="popLayout">
 											{favorites.map((movie) => (
 												<FavoritesCatalogueTile
@@ -495,7 +499,7 @@ export function FavoritesStepGridPanel({
 												/>
 											))}
 										</AnimatePresence>
-									</div>
+									</CataloguePosterGroup>
 								</motion.section>
 							) : null}
 
@@ -533,7 +537,9 @@ export function FavoritesStepGridPanel({
 									<p className="mb-3 text-center font-medium text-muted-foreground text-xs uppercase tracking-wider">
 										Search results
 									</p>
-									<div className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}>
+									<CataloguePosterGroup
+										className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}
+									>
 										<AnimatePresence initial={false} mode="popLayout">
 											{pickableResults.map((movie, index) => (
 												<FavoritesCatalogueTile
@@ -549,7 +555,7 @@ export function FavoritesStepGridPanel({
 												/>
 											))}
 										</AnimatePresence>
-									</div>
+									</CataloguePosterGroup>
 								</motion.section>
 							) : null}
 						</LayoutGroup>

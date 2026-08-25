@@ -31,6 +31,7 @@ import {
 } from "@/components/movie/movie-poster";
 import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { authClient } from "@/lib/auth-client";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import {
 	buildCatalogueRadialItemSpecs,
 	type CatalogueRadialSurface,
@@ -49,24 +50,6 @@ import {
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 
-/** Elevation shell — matches `ListLobbyPoster` so radial aim stacks above neighbors. */
-function cataloguePosterShellClassName(
-	hoverStacking: "catalogue" | "sheet",
-): string {
-	const elevationHoverZ =
-		hoverStacking === "sheet"
-			? "focus-within:z-[1] [@media(hover:hover)]:hover:z-[1]"
-			: "focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]";
-
-	return cn(
-		"group relative z-0 block w-full min-w-0 overflow-visible transition-[box-shadow,z-index] duration-200 ease-out",
-		"motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:focus-within:shadow-none",
-		elevationHoverZ,
-		"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-		"focus-within:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-	);
-}
-
 export type CataloguePosterTileProps = {
 	surface: CatalogueRadialSurface;
 	listingKind: "movie" | "tv";
@@ -81,6 +64,10 @@ export type CataloguePosterTileProps = {
 	hoverStacking?: "catalogue" | "sheet";
 	posterCaption?: string | null;
 	posterCaptionSubline?: string | null;
+	/** Under-frame title (search / filmography) — shown even when art is missing. */
+	showTitle?: boolean;
+	titleLines?: 1 | 2;
+	titleClassName?: string;
 	/** Diary film tile — row used for Edit log. */
 	diaryRow?: DiaryLogRow;
 	/** Diary TV group — latest log for Edit (first row in group). */
@@ -113,6 +100,9 @@ export function CataloguePosterTile({
 	hoverStacking = "catalogue",
 	posterCaption,
 	posterCaptionSubline,
+	showTitle = false,
+	titleLines = 2,
+	titleClassName,
 	diaryRow,
 	diaryTvLogs,
 	children,
@@ -431,7 +421,9 @@ export function CataloguePosterTile({
 			{/* Radial anchor shell — same RMB contract as `ListLobbyPoster` (pointer on wrapper, not inner Link). */}
 			<fieldset
 				className={cn(
-					cataloguePosterShellClassName(hoverStacking),
+					hoverEffect === "elevation"
+						? cataloguePosterHoverShellClassName(hoverStacking)
+						: null,
 					"border-0 p-0",
 					className,
 				)}
@@ -440,6 +432,7 @@ export function CataloguePosterTile({
 			>
 				{children ?? (
 					<MoviePoster
+						avatarGroupItem={false}
 						className="min-w-0"
 						frameClassName={frameClassName}
 						hoverEffect={hoverEffect}
@@ -450,7 +443,9 @@ export function CataloguePosterTile({
 						posterCaptionSubline={posterCaptionSubline}
 						posterUrl={posterUrl}
 						priority={priority}
-						showTitle={false}
+						showTitle={showTitle}
+						titleLines={titleLines}
+						titleClassName={titleClassName}
 						title={title}
 					/>
 				)}

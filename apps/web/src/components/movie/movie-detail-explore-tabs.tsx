@@ -5,6 +5,7 @@ import { cn } from "@still/ui/lib/utils";
 import { Sparkles } from "lucide-react";
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useId, useState } from "react";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
@@ -118,7 +119,7 @@ function RelatedMoviesPosterGrid({
 	listingKind?: "movie" | "tv";
 }) {
 	return (
-		<div
+		<CataloguePosterGroup
 			className={cn(
 				HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 				HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
@@ -142,7 +143,7 @@ function RelatedMoviesPosterGrid({
 					tmdbId={m.id}
 				/>
 			))}
-		</div>
+		</CataloguePosterGroup>
 	);
 }
 

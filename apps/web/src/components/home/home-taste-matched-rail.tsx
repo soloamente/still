@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { HomeTasteMatchedRailSkeleton } from "@/components/home/home-taste-matched-rail-skeleton";
 import { api } from "@/lib/api";
@@ -207,7 +208,10 @@ export function HomeTasteMatchedRail({
 			<h2 className="text-balance text-center font-medium text-muted-foreground text-xs tracking-wide">
 				{tasteMatchedRailTitle(genrePhrase)}
 			</h2>
-			<div ref={trackRef} className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}>
+			<CataloguePosterGroup
+				ref={trackRef}
+				className={HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME}
+			>
 				<AnimatePresence initial={false} mode="popLayout">
 					{visibleMovies.map((film, index) => (
 						<motion.div
@@ -242,7 +246,7 @@ export function HomeTasteMatchedRail({
 						</motion.div>
 					))}
 				</AnimatePresence>
-			</div>
+			</CataloguePosterGroup>
 		</section>
 	);
 }

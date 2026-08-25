@@ -1,6 +1,7 @@
 import { fetchPublicDiaryCommunityStats } from "./fetch-public-diary-community-stats";
 import type { ListingEngagementListingRef } from "./listing-community-stats";
 import { fetchListingCommunityEngagementStats } from "./listing-community-stats";
+import { listingCommunityStatsRefFromLog } from "./listing-community-stats-ref";
 import { getRealtimeRedis } from "./realtime-redis";
 
 const TTL_SECONDS = 300; // 5 minutes
@@ -11,6 +12,16 @@ function communityStatsKey(
 	return "tvId" in ref
 		? `sense:community:tv:v2:${ref.tvId}`
 		: `sense:community:movie:${ref.movieId}`;
+}
+
+/** Drop Redis community stats after diary create / edit / delete. */
+export async function invalidateCommunityStatsForDiaryLog(row: {
+	movieId: number | null;
+	tvId: number | null;
+}): Promise<void> {
+	const ref = listingCommunityStatsRefFromLog(row);
+	if (!ref) return;
+	await invalidateListingCommunityStatsCache(ref);
 }
 
 export async function fetchCachedListingCommunityStats(

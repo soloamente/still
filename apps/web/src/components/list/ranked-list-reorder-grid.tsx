@@ -20,6 +20,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@still/ui/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import {
 	itemIdsFromRows,
 	type RankedListReorderRow,
@@ -366,7 +367,7 @@ export function RankedListReorderGrid({
 		// dnd-kit generates runtime aria ids that can mismatch between SSR and hydration.
 		// Render a static poster grid first, then enable DnD after client mount.
 		return (
-			<div
+			<CataloguePosterGroup
 				className={cn(
 					LIST_DETAIL_FILMS_GRID_CLASSNAME,
 					HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
@@ -399,7 +400,7 @@ export function RankedListReorderGrid({
 						</div>
 					);
 				})}
-			</div>
+			</CataloguePosterGroup>
 		);
 	}
 
@@ -411,7 +412,7 @@ export function RankedListReorderGrid({
 			onDragEnd={handleDragEnd}
 		>
 			<SortableContext items={orderedIds} strategy={rectSortingStrategy}>
-				<div
+				<CataloguePosterGroup
 					className={cn(
 						LIST_DETAIL_FILMS_GRID_CLASSNAME,
 						HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
@@ -439,7 +440,7 @@ export function RankedListReorderGrid({
 							}}
 						/>
 					))}
-				</div>
+				</CataloguePosterGroup>
 			</SortableContext>
 			<DragOverlay>
 				{activeRow ? (

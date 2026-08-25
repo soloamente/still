@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { YearInReviewViewTracker } from "@/components/achievements/year-in-review-view-tracker";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { DetailMotionLink } from "@/components/movie/detail-motion-pressable";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
@@ -193,7 +194,7 @@ export function YearInReviewPageContent({
 									<h2 className="text-center font-medium text-foreground text-sm">
 										Top picks
 									</h2>
-									<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
+									<CataloguePosterGroup className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
 										{payload.topTitles.map((title, index) => {
 											const posterUrl = tmdbPosterUrlFromPath(
 												title.posterPath,
@@ -219,7 +220,7 @@ export function YearInReviewPageContent({
 												/>
 											);
 										})}
-									</div>
+									</CataloguePosterGroup>
 								</div>
 							) : null}
 

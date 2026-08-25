@@ -47,7 +47,7 @@ import {
 import { fetchDiaryWatchPeriods } from "../lib/diary-watch-periods";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
-import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
+import { invalidateCommunityStatsForDiaryLog } from "../lib/listing-community-stats-cache";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -275,11 +275,10 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				});
 			}
 
-			if (movieId != null) {
-				void invalidateListingCommunityStatsCache({ movieId }).catch(() => {});
-			} else if (tvId != null) {
-				void invalidateListingCommunityStatsCache({ tvId }).catch(() => {});
-			}
+			void invalidateCommunityStatsForDiaryLog({
+				movieId: movieId ?? null,
+				tvId: tvId ?? null,
+			}).catch(() => {});
 
 			void db
 				.execute(
@@ -404,6 +403,12 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				await syncLinkedReviewRatingFromLog(updated.id, updated.rating ?? null);
 			}
 
+			// Rating / visibility / liked edits all feed the movie/TV community payload.
+			// Await so Quick Log's router.refresh() does not read the previous 5-minute Redis snapshot.
+			if (updated) {
+				await invalidateCommunityStatsForDiaryLog(updated);
+			}
+
 			return updated;
 		},
 		{
@@ -463,15 +468,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			void backfillWatchStreakFromLogs(user.id).catch((err) => {
 				console.error("[logs] watch streak backfill (delete) failed", err);
 			});
-			if (existing.movieId != null) {
-				void invalidateListingCommunityStatsCache({
-					movieId: existing.movieId,
-				}).catch(() => {});
-			} else if (existing.tvId != null) {
-				void invalidateListingCommunityStatsCache({
-					tvId: existing.tvId,
-				}).catch(() => {});
-			}
+			void invalidateCommunityStatsForDiaryLog(existing).catch(() => {});
 			void db
 				.execute(
 					sql`UPDATE profile SET stats_cache = jsonb_set(COALESCE(stats_cache, '{}'), '{logCount}', to_jsonb(GREATEST(COALESCE((stats_cache->>'logCount')::int, 0) - 1, 0))) WHERE user_id = ${user.id}`,

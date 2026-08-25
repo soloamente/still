@@ -13,6 +13,7 @@ import {
 	useState,
 } from "react";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import {
 	MoviePoster,
@@ -103,7 +104,7 @@ interface PopularMoviesInfiniteProps {
 	posterFrameClassName?: string;
 	/** Lobby-style grids often hide titles; billboard keeps them on. */
 	showTitle?: boolean;
-	/** Replaces translate-hover with card-tinted elevation (e.g. home lobby grid). */
+	/** Replaces translate-hover with transitions.dev group lift (e.g. home lobby grid). */
 	posterHoverEffect?: MoviePosterHoverEffect;
 	/**
 	 * When `posterHoverEffect` is `elevation` and this is `true`, other tiles turn grayscale
@@ -622,7 +623,7 @@ export function PopularMoviesInfinite({
 
 	return (
 		<>
-			<div
+			<CataloguePosterGroup
 				className={cn(
 					gridClassName,
 					// Lobby elevation + preference: when any tile is hovered/focused, other posters read monochrome (pure CSS `:has()`).
@@ -645,7 +646,7 @@ export function PopularMoviesInfinite({
 						);
 					})
 				)}
-			</div>
+			</CataloguePosterGroup>
 
 			{showSentinel ? (
 				<div

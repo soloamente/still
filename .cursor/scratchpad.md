@@ -1,5 +1,238 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Landing `/` mobile (spiral + nav) (2026-08-26) — EXECUTOR
+
+**Status:** Fixed locally — waiting for human QA on `/` at ~432×427.
+
+### 1. Spiral posters stacked
+Agentation still saw huge stacked posters after the first pass. Canvas started at **320px** (`useEffect` after paint), and 66px tiles were still ~15% of a square band.
+
+**Fix:** `useLayoutEffect` sizes before paint; compact mix **48px** tiles at 427, spacing **11**, turns **1.85**; desktop still 320 / 2.7.
+
+### 2. Nav not mobile-friendly
+Island packed Sense + Taste/Diary/Community + Sign in (`min-w-[9.5rem]` hero class) into 432px.
+
+**Fix:** below `sm`, Sense + compact Sign in only; section links stay on `sm+`.
+
+**Pending human QA:** phone `/` — small apart posters; nav is Sense · Sign in; desktop nav still has Taste · Diary · Community.
+
+---
+
+## Continue watching hover clip (2026-08-25) — EXECUTOR
+
+**Status:** Fixed locally — verify `/home?browse=tv` Continue watching rail.
+
+### Bug
+Hovering Continue watching titles sheared the top of the posters. `.t-avatar-group` also had `overflow-x-auto`; CSS then computes `overflow-y: auto` and clips the avatar-group lift (~4px + 1.05 scale).
+
+### Fix
+Scroll on a wrapper (`CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME` + 12px top gutter). `CataloguePosterGroup` stays `overflow: visible`.
+
+**Pending human QA:** hover a Continue watching poster — full top edge, no flat clip.
+
+---
+
+## Settings IA reorganization (2026-08-25) — PLANNER
+
+**Status:** Task 1 implemented locally — waiting for human QA (`ok`) before Task 2 (fold Experience into Appearance).
+
+### Background
+Agentation on `/me/settings/catalogue` (2554×1386) selected Catalogue **Display** `MePreferenceToggle` (`.space-y-3` on the toggle itself). Feedback: *shouldn’t this be in Appearance? organize the whole settings into the right categories, add/remove tabs if needed.*
+
+The annotated toggle is almost certainly **Monochrome neighbors on hover** (visual chrome), sitting next to **Show adult content** (content policy) in the same Display grid.
+
+### Current sidebar (`ME_ACCOUNT_NAV_ITEMS`)
+1. **Profile** — identity, privacy & presence, Discord
+2. **Notifications** — Social / Watching / Milestones (includes `watchlist_now_streaming` mute)
+3. **Catalogue** — watch region, plan-gated watchlist alerts, TMDb language, review translation, **monochrome neighbors**, adult
+4. **Appearance** — color palettes + grayscale portrait until hover
+5. **Subscription**
+6. **Data** — import / export / danger
+7. **Experience** — smooth scroll, monochrome cast & crew, Sense audio
+
+### Problems
+- Three related grayscale prefs live in **three** tabs (catalogue neighbors, appearance portrait, experience cast/crew).
+- Catalogue **Display** mixes look (monochrome) with policy (18+).
+- **Experience** is a leftover bucket; Appearance is thin.
+- Watchlist streaming has **two knobs**: Catalogue plan-gated `watchlistStreamingAlerts` (job opt-in) vs Notifications `watchlist_now_streaming` (inbox mute).
+- `MeProfileExpressionSettings` (banner frames) is **unused**; form still tracks `bannerFrame`.
+- Deep links that must stay: `/me/settings/catalogue` (home region prompt, adult blocked), Discord → Profile, Subscription, Data.
+
+### Recommended approach (Option C)
+**Drop Experience.** Redirect `/me/settings/experience` → `/me/settings/appearance`. Six tabs.
+
+| Control | Home after |
+|---|---|
+| Color themes | **Appearance** (keep) |
+| Grayscale portrait | **Appearance → Picture** |
+| Monochrome neighbors | **Appearance → Picture** (from Catalogue) |
+| Monochrome cast & crew | **Appearance → Picture** (from Experience) |
+| Smooth scroll | **Appearance → Motion** |
+| Sense audio + nested | **Appearance → Sound** |
+| Watch region + catalogue language + review translation | **Catalogue** |
+| Adult content | **Catalogue → Content** (Display section goes away) |
+| Watchlist alerts (plan gate) | **Notifications → Watching** next to the existing mute, hint “uses watch region in Catalogue” |
+| Banner frames | **Profile → Identity** (restore unused UI) — optional same pass |
+
+**Out of scope unless asked:** new nav items (Sound, Privacy, Language). Preferences keys stay the same; only UI homes + redirects change.
+
+### Alternatives (if C is too aggressive)
+- **A:** Keep 7 tabs; only move visual toggles into Appearance; Experience = audio only.
+- **B:** Rename Experience → **Motion & sound**; still move catalogue monochrome to Appearance.
+
+### Executor tasks (after `b` + `go`, one at a time)
+1. **Done (pending QA):** Picture toggles in Appearance; Catalogue Display → Content (adult only). Experience Motion no longer has cast/crew.
+2. Fold Experience motion + audio into Appearance; redirect `experience` → `appearance`; drop nav item; update changelog/docs copy that says Settings → Experience.
+3. Move plan-gated watchlist alerts into Notifications Watching (keep `PlanFeatureGate`).
+4. Restore banner-frame picker on Profile Identity (or skip if `b` says skip).
+5. Browser pass every `/me/settings/*` tab + deep links.
+
+### Success
+Patron looking for “how it looks” only opens Appearance. Catalogue is region / language / 18+. Inbox pings live under Notifications. No dead Experience tab.
+
+---
+
+## Community score stale after log edit (2026-08-25) — EXECUTOR
+
+**Status:** Implemented locally — verify movie/TV detail after editing a diary rating.
+
+### Bug
+Editing a public diary rating (e.g. 9 → 8.8) left the title **Community score** on the previous value even after a full page refresh.
+
+### Cause
+`GET /api/movies|tv/:id` merges community stats from Redis (`sense:community:movie:{id}`, 5-minute TTL). `POST` and `DELETE` `/api/logs` already called `invalidateListingCommunityStatsCache`; **`PATCH` did not**, so the old average stayed until TTL expiry.
+
+### Fix
+- `invalidateCommunityStatsForDiaryLog` after successful log create / **edit** / delete
+- PATCH **awaits** Redis `DEL` so Quick Log `router.refresh()` does not race the previous snapshot
+
+**Pending human QA:** on a title where you are the only public rating, edit 9 → 8.8 (or similar) — the laurel average should match immediately, including after refresh.
+
+---
+
+## Poster gallery hover lift (2026-08-25) — EXECUTOR
+
+**Status:** Implemented locally — verify `/home` catalogue + movie **Related** hover.
+
+### Request
+Replace poster-gallery hover **shadow** (home, related, etc.) with transitions.dev **avatar-group-hover**.
+
+### Fix
+- Shared shell `cataloguePosterHoverShellClassName` — `.t-avatar` lift/scale, no box-shadow
+- `CataloguePosterGroup` wires `useAvatarGroupHover` (pointer + keyboard, nested groups skipped)
+- Grids/rails wrap with the group; tiles keep z-index so the lifted poster stacks above neighbors
+
+**Pending human QA:** hover a lobby poster — neighbors should lift with falloff; no card-tinted glow.
+
+---
+
+## Taste hero mobile scale (2026-08-25) — EXECUTOR
+
+**Status:** Fixed locally — verify `/home` Movies on a phone viewport.
+
+### Bug
+Hero band felt short (~60svh); poster rail tiles looked large and stacked on top of each other.
+
+### Fix
+- Band height mobile → `min(56rem, 85svh)` (taller / nearer full viewport)
+- Poster tiles mobile → `w-11` / `w-12` (was ~3.75–4.25rem)
+- Softer mobile drop (`translate-y-3`); less bottom margin
+- Disable Motion `layout` / `popLayout` on poster rail (FLIP was stacking tiles)
+- Rail `shrink-0 isolate flex-nowrap`
+
+---
+
+## Toast beam + theme (2026-08-25) — EXECUTOR
+
+**Status:** Beam mode corrected — verify `/sign-in` error toast.
+
+### Request
+Agentation: BorderBeam **pulse-outside**, theme bg, beam color by toast type (green success / red error / …).
+
+### Fix
+- `StillToastBeamFrame` — themed `bg-card` pill + BorderBeam
+- `installStillToastBeamPatch` — rewires `toast.success|error|…` → custom beam toasts
+- `globals.css` — status hue filters; toast chrome uses `--card` tokens
+- `sonner.tsx` — drop forced white; `theme="system"`
+
+### Follow-up (same day)
+Pulse-outside looked clipped (thin edge lines). Switched to **rotate `size="md"`** so the stroke travels inside the pill clip.
+
+### Follow-up — error mark (Agentation `/sign-in`)
+Error leading mark is now a bare red **circle-X** (`IconCircleXmarkFill`) — `text-destructive`, **no** tinted pill well. Slot shrinks to `size-5` on error in `StillToastBeamFrame`.
+
+### Follow-up — missing beam
+Inner pill used `relative z-10`, which stacked above BorderBeam’s `::after` (z-index 2–3) and hid the traveling stroke. Removed child z-index; strength clamped to `1`.
+
+### Follow-up — duplicate leading mark + off-center pill
+Sonner still rendered `[data-icon]` (from `stillToast.updated({ icon })`) beside `StillToastBeamFrame`, which already paints the same glyph. The stray mark sat outside the pill (clipped by `overflow: hidden`) and shoved the toast off-center in the 420px slot.
+
+- `beamToastSonnerOptions` strips `icon` from Sonner options; the frame still receives it
+- CSS hides `[data-icon]` on `.still-toast-beam-host` (wins over the global `display:flex !important`)
+- Unwrap `[data-content]` / `[data-title]` with `display: contents` so the pill is the centered flex child
+
+**Pending human QA:** edit a log (Updated “…” toast) — one leading mark, pill centered at the bottom.
+
+### Follow-up — rotate pulse (Agentation `/movies/1071806`)
+Plain rotate (`staticColors`) was a traveling stroke with frozen hue. Success/info/warning now hue-shift while the `sm` stroke travels (BorderBeam rotate pulse). Error stays `staticColors` so the red paint does not wander.
+
+---
+
+## Auth focus ring clip (2026-08-25) — EXECUTOR
+
+**Status:** Fixed locally — verify `/sign-in` mobile focus on email/password.
+
+### Bug
+Agentation on `<SignInForm>`: focus + scale shaved the ring on the sides.
+
+### Cause
+`AuthRouteSlide` uses `overflow-hidden` (page slide) with full-bleed inputs; `whileFocus` scale `1.01` + `ring-offset-2` extended past the clip edge.
+
+### Fix
+- `auth-route-slide.tsx` — `px-2` inset (animated + reduced-motion branches)
+- `auth-motion-field.tsx` — focus scale `1.01` → `1.005`
+
+---
+
+## Missing poster titles (2026-08-25) — EXECUTOR
+
+**Status:** Fixed locally — needs human verify (search + person filmography sheet).
+
+### Bug
+`MoviePoster` only rendered under-frame `showTitle` when `posterUrl` was set; `PersonFilmographyGrid` hid the title the same way. Empty-art tiles showed “No poster available” with no film name.
+
+### Fix
+- `movie-poster.tsx` — always show under-frame title when `showTitle`; pass `title` into `MissingArtworkPlaceholder` only when `!showTitle` (lobby empty covers stay labeled without doubling search titles).
+- `catalogue-poster-tile.tsx` — optional `showTitle` / `titleLines` / `titleClassName`.
+- `person-filmography-grid.tsx` — `showTitle` + centered title via tile (no posterUrl gate).
+
+---
+
+## Community ranks empty (2026-08-21) — EXECUTOR
+
+**Status:** Web hotfix shipped. **Blocker = wrong `API_REWRITE_ORIGIN` on cue-web.**
+
+### Root cause (updated)
+- `https://cue-server-lac.vercel.app` has correct API: films week = **20** public patrons (incl. count 0), episodes **200**, `page=1` OK.
+- `https://cinema.sense.fans/api/leaderboard/*` still hits a **stale** upstream: films = 1 logger only, episodes **404**, no pagination fields.
+- cue-server Git deploys exist, but production traffic uses the lac domain; web rewrite is not pointed there (or points at an old alias).
+
+### Fix (human — Vercel → cue-web → Settings → Environment Variables)
+1. Set **`API_REWRITE_ORIGIN=https://cue-server-lac.vercel.app`** (Production).
+2. Redeploy **cue-web** (env changes need a new deployment).
+3. Smoke via cinema host: films `page=1` → many entries; episodes → 200.
+
+### User report (2026-08-24)
+Reviews rank tab shows **every public patron (incl. count 0)**; Films/Shows/Episodes still show **loggers only**. Expected: two routes (`/api/members/leaderboard` vs `/api/leaderboard/*`) but **same upstream** — split means `cinema.sense.fans` rewrite still stale for film boards (episodes 404) while Reviews may look fuller from RSC seed + tz client refetch. Re-probe 2026-08-24: cinema films week = 5 loggers, episodes 404; lac films week = 21 (20 zeros).
+
+### Also (this session)
+- Podium centering: drop empty `flex-1` placeholders so 1–2 patrons stay centered (`home-leaderboard-podium.tsx`) — needs commit + push after env fix.
+
+### Ignore
+- Permissions-Policy `join-ad-interest-group` / `run-ad-auction` / `browsing-topics` — Chrome Privacy Sandbox noise, unrelated.
+
+---
+
 ## Vercel web typecheck (2026-08-21) — EXECUTOR
 
 **Status:** Local `apps/web` `tsc --noEmit` clean. Needs commit + push (not committed).
@@ -2398,6 +2631,14 @@ existing cinematic identity rather than replacing it.
 
 ## Executor's Feedback or Assistance Requests
 
+### 2026-08-25 — Settings IA Task 1 (Picture → Appearance)
+
+Moved grayscale-until-hover prefs into Appearance → Picture. Catalogue Display is now Content (adult only). Experience Motion is smooth-scroll only.
+
+**Verified in browser** on `/me/settings/appearance`, `/catalogue`, `/experience` (signed-in localhost). Tests: `me-settings-pref-homes` + prefs + dirty-form **30 pass**. `graphify` CLI not on PATH (Windows).
+
+**Pending human QA:** Appearance Picture has all three toggles; Catalogue has no monochrome neighbors. Then `go` for Task 2 (fold Experience).
+
 ### 2026-08-10 — `/home` slow load: runaway fetch loop in `HomeTasteMatchedHero` (fixed)
 
 **Symptom:** shell/skeleton painted fast, posters took seconds to fill in — local and Vercel.
@@ -3868,6 +4109,8 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **Diary `PATCH` must bust listing community Redis:** `GET /api/movies|tv/:id` overlays `fetchCachedListingCommunityStats` (5-minute Redis) on top of the 1-hour TMDb detail cache. Create and delete already invalidated; **rating edits did not**, so a lone patron changing 9 → 8.8 kept showing **9** after refresh until TTL. Await `invalidateCommunityStatsForDiaryLog` on PATCH so Quick Log `router.refresh()` cannot race the old snapshot. Tests that import `listing-community-stats-cache.ts` pull env/DB — keep the listing-ref helper in a pure module.
+- **Beam toast `!m-0` kills bottom-center:** Sonner’s toaster is a 420px centered slot; pills are `width: max-content` and rely on `left:0; right:0; margin-inline:auto`. A host class of `!m-0` zeros those auto margins (`!important`) so the pill sticks to the left of the slot — reads as “not centered” on wide `/home`. Don’t put `!m-0` on `.still-toast-beam-host`. Also strip `icon` from `toast.custom()` options: `stillToast.updated` passes a pencil that Sonner paints in `[data-icon]` *and* `StillToastBeamFrame` paints inside the pill.
 - **Onboarding preview pane height:** do not rely on `size-full` / `h-full` (% height) inside a column-flex aside to center short content — percentage height often collapses to content height, so nested `min-h-full` + `items-center` is a no-op and the specimen sticks top. Prefer `flex-1 min-h-0` on the reveal shell and `absolute inset-0` + `min-h-full` center for fill specimens. **Import QA tip:** “center the import” means the **upload** dropzone step (`import-upload`), not the provider picker.
 - **Onboarding “I've verified” needs a fresh session:** Prefer `GET /api/me/email-verified` (Postgres via `freshContext`). Client `getSession` / cookie-cache stay stale. In **development**, skip the verify step entirely — auth does not `sendOnSignUp` locally.
 - **Import source tiles on `bg-card`:** never translucent hover (`muted/*` or `foreground/8` replaces opaque `bg-background` and the tile vanishes into the card). Use **brightness** filter; serve brand PNGs with plain `<img>` + prefetch.

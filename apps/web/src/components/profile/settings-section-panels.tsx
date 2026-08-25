@@ -320,8 +320,6 @@ export function SettingsCatalogueSection() {
 		setReviewTranslationLanguage,
 		watchlistStreamingAlerts,
 		setWatchlistStreamingAlerts,
-		catalogMonochromePeersOnHover,
-		setCatalogMonochromePeersOnHover,
 		showAdultContent,
 		birthDate,
 		enableAdultContentWithBirthDate,
@@ -341,8 +339,8 @@ export function SettingsCatalogueSection() {
 				}
 			/>
 			{/*
-			 * Ultrawide: Streaming | Language, Display full-width under.
-			 * Same outer `bg-background` cards — no featured wash on one column.
+			 * Ultrawide: Streaming | Language, Content full-width under.
+			 * Picture prefs (grayscale hover) live in Appearance — not here.
 			 */}
 			<div className="grid gap-12 xl:grid-cols-2 xl:items-start xl:gap-14">
 				<MeSettingsSection
@@ -405,17 +403,10 @@ export function SettingsCatalogueSection() {
 				</MeSettingsSection>
 				<MeSettingsSection
 					className="flex-none xl:col-span-2"
-					title="Display"
-					description="How the home catalogue looks, and whether 18+ titles appear."
+					title="Content"
+					description="Whether 18+ titles appear in search, catalogues, and your diary."
 				>
-					<MeSettingsPanel className="grid flex-none gap-8 sm:grid-cols-2">
-						<MePreferenceToggle
-							id="catalog-monochrome-hover"
-							checked={catalogMonochromePeersOnHover}
-							onChange={setCatalogMonochromePeersOnHover}
-							title="Monochrome neighbors on hover"
-							description="On the home catalogue, posters you are not pointing at turn grayscale while one title is hovered. Off keeps every tile in full color."
-						/>
+					<MeSettingsPanel className="flex-none">
 						<MePreferenceToggle
 							id="show-adult-content"
 							checked={showAdultContent}
@@ -454,26 +445,63 @@ export function SettingsAppearanceSection() {
 		setAppTheme,
 		profilePortraitGrayscaleUntilHover,
 		setProfilePortraitGrayscaleUntilHover,
+		catalogMonochromePeersOnHover,
+		setCatalogMonochromePeersOnHover,
+		castCrewMonochromeOnHover,
+		setCastCrewMonochromeOnHover,
 	} = useSettingsForm();
 	const hasAllThemes = hasFeature("all_themes");
 
 	return (
-		<SettingsSectionPage>
-			<MeSettingsSection description="Named color palettes for the whole app.">
-				<MeSettingsPanel>
-					<MeAppearanceSettings
-						isPro={hasAllThemes}
-						appTheme={appTheme}
-						onAppThemeChange={setAppTheme}
-						profilePortraitGrayscaleUntilHover={
-							profilePortraitGrayscaleUntilHover
-						}
-						onProfilePortraitGrayscaleUntilHoverChange={
-							setProfilePortraitGrayscaleUntilHover
-						}
-					/>
-				</MeSettingsPanel>
-			</MeSettingsSection>
+		<SettingsSectionPage fillFirst={false}>
+			{/*
+			 * Color palettes lead; Picture groups every grayscale-until-hover pref.
+			 * Motion + audio stay on Experience until the next IA slice.
+			 */}
+			<div className="flex flex-col gap-12 lg:gap-14">
+				<MeSettingsSection
+					className="flex-none"
+					title="Color"
+					description="Named palettes for the whole app — canvas, cards, and accent. Each name is a mood — Calm is the default settled dark."
+				>
+					<MeSettingsPanel className="flex-none">
+						<MeAppearanceSettings
+							isPro={hasAllThemes}
+							appTheme={appTheme}
+							onAppThemeChange={setAppTheme}
+						/>
+					</MeSettingsPanel>
+				</MeSettingsSection>
+				<MeSettingsSection
+					className="flex-none"
+					title="Picture"
+					description="Grayscale until hover on your portrait, home catalogue posters, and credit stills. Off keeps full color."
+				>
+					<MeSettingsPanel className="grid flex-none gap-8 sm:grid-cols-2 xl:grid-cols-3">
+						<MePreferenceToggle
+							id="profile-portrait-grayscale-hover"
+							checked={profilePortraitGrayscaleUntilHover}
+							onChange={setProfilePortraitGrayscaleUntilHover}
+							title="Grayscale portrait until hover"
+							description="On your public profile, your portrait stays monochrome until a visitor hovers. Off keeps full color on the profile hero. Does not affect small avatars elsewhere."
+						/>
+						<MePreferenceToggle
+							id="catalog-monochrome-hover"
+							checked={catalogMonochromePeersOnHover}
+							onChange={setCatalogMonochromePeersOnHover}
+							title="Monochrome neighbors on hover"
+							description="On the home catalogue, posters you are not pointing at turn grayscale while one title is hovered. Off keeps every tile in full color."
+						/>
+						<MePreferenceToggle
+							id="cast-crew-monochrome-hover"
+							checked={castCrewMonochromeOnHover}
+							onChange={setCastCrewMonochromeOnHover}
+							title="Monochrome cast & crew"
+							description="On film and TV detail pages, cast and crew headshots stay grayscale until you hover. Off by default — previews show full color."
+						/>
+					</MeSettingsPanel>
+				</MeSettingsSection>
+			</div>
 		</SettingsSectionPage>
 	);
 }
@@ -509,22 +537,20 @@ export function SettingsExperienceSection() {
 		setProfileAudioFeedback,
 		smoothScroll,
 		setSmoothScroll,
-		castCrewMonochromeOnHover,
-		setCastCrewMonochromeOnHover,
 	} = useSettingsForm();
 	const prefersReducedMotion = usePrefersReducedMotion();
 
 	return (
 		<SettingsSectionPage fillFirst={false}>
 			{/*
-			 * Ultrawide: motion/picture lead; audio sits beside them.
-			 * One featured slab used to stretch the whole lobby column.
+			 * Ultrawide: motion lead; audio sits beside.
+			 * Picture grayscale prefs moved to Appearance.
 			 */}
 			<div className="grid gap-12 xl:grid-cols-2 xl:items-start xl:gap-14">
 				<MeSettingsSection
 					className="flex-none"
-					title="Motion & picture"
-					description="How the app moves and how stills look. All optional, off by default."
+					title="Motion"
+					description="How the app moves. Optional, off by default."
 				>
 					<MeSettingsPanel className="flex-none space-y-8">
 						<MePreferenceToggle
@@ -533,13 +559,6 @@ export function SettingsExperienceSection() {
 							onChange={setSmoothScroll}
 							title="Smooth scroll"
 							description="Gentle wheel inertia across the app (Lenis). Leave off on slower devices — native scroll stays snappy and lighter on the GPU."
-						/>
-						<MePreferenceToggle
-							id="cast-crew-monochrome-hover"
-							checked={castCrewMonochromeOnHover}
-							onChange={setCastCrewMonochromeOnHover}
-							title="Monochrome cast & crew"
-							description="On film and TV detail pages, cast and crew headshots stay grayscale until you hover. Off by default — previews show full color."
 						/>
 					</MeSettingsPanel>
 				</MeSettingsSection>

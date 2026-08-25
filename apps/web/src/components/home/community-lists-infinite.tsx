@@ -3,6 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { useCallback } from "react";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CommunityInfiniteFooter } from "@/components/home/community-infinite-footer";
 import { ListLobbyPoster } from "@/components/list/list-lobby-poster";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
@@ -65,7 +66,7 @@ export function CommunityListsInfinite({
 
 	return (
 		<>
-			<div
+			<CataloguePosterGroup
 				className={cn(
 					HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 					monochromePeersOnHover &&
@@ -81,7 +82,7 @@ export function CommunityListsInfinite({
 						frameClassName={HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}
 					/>
 				))}
-			</div>
+			</CataloguePosterGroup>
 			<CommunityInfiniteFooter
 				footerState={footerState}
 				sentinelRef={sentinelRef}

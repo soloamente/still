@@ -4,8 +4,10 @@ import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { useReviewDetail } from "@/components/review/review-detail-sheet";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import { listPosterDisplayUrl } from "@/lib/list-cover-image";
 import type {
 	MembersLeaderboardLedgerItem,
@@ -68,7 +70,7 @@ export function PatronMembersLedgerGrid({
 	}
 
 	return (
-		<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
+		<CataloguePosterGroup className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
 			{items.map((item, index) => {
 				if (item.itemKind === "list") {
 					const posterUrl =
@@ -83,14 +85,11 @@ export function PatronMembersLedgerGrid({
 						<div key={item.itemKey} className="min-w-0 text-center">
 							<Link
 								href={`/lists/${item.listId}`}
-								className={cn(
-									"group relative z-0 block w-full min-w-0 overflow-visible",
-									"transition-[box-shadow,z-index] duration-200 ease-out",
-									"[@media(hover:hover)]:hover:z-[1] [@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent)]",
-								)}
+								className={cataloguePosterHoverShellClassName("sheet")}
 								title={`Open list: ${item.title}`}
 							>
 								<MoviePoster
+									avatarGroupItem={false}
 									movieId={0}
 									title={item.title}
 									posterUrl={posterUrl}
@@ -115,10 +114,9 @@ export function PatronMembersLedgerGrid({
 						<button
 							type="button"
 							className={cn(
-								"group relative z-0 block w-full min-w-0 overflow-visible text-left",
-								"cursor-pointer transition-[box-shadow,z-index,transform] duration-150 ease-out",
-								"active:scale-[0.96] motion-reduce:active:scale-100",
-								"[@media(hover:hover)]:hover:z-[1] [@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent)]",
+								cataloguePosterHoverShellClassName("sheet"),
+								"text-left",
+								"cursor-pointer active:scale-[0.96] motion-reduce:active:scale-100",
 							)}
 							aria-haspopup={hasReview ? "dialog" : undefined}
 							aria-label={
@@ -138,6 +136,7 @@ export function PatronMembersLedgerGrid({
 							}}
 						>
 							<MoviePoster
+								avatarGroupItem={false}
 								movieId={item.movieId}
 								title={item.listingTitle}
 								posterUrl={posterUrl}
@@ -153,6 +152,6 @@ export function PatronMembersLedgerGrid({
 					</div>
 				);
 			})}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

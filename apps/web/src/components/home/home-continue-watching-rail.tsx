@@ -1,7 +1,12 @@
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { MoviePoster } from "@/components/movie/movie-poster";
+import {
+	CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME,
+	cataloguePosterHoverShellClassName,
+} from "@/lib/catalogue-poster-hover";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import type { TvWatchBundle } from "@/lib/tv-watch-types";
@@ -31,54 +36,57 @@ export function HomeContinueWatchingRail({
 			<h2 className="font-medium text-muted-foreground text-xs tracking-wide">
 				Continue watching
 			</h2>
-			<div
-				className={cn(
-					"scrollbar-none flex gap-2 overflow-x-auto overscroll-x-contain pb-0.5",
-					"[-webkit-overflow-scrolling:touch]",
-				)}
-			>
-				{items.map((bundle, index) => {
-					const show = bundle.show;
-					if (!show) return null;
-					const nextLine = formatTvNextEpisodeLabel(bundle.nextEpisode);
-					const episodeCaption = nextLine
-						? nextLine.replace(/^Next:\s*/, "")
-						: null;
+			{/*
+			 * Scroll on a wrapper, not on `.t-avatar-group`. Overflow-x:auto
+			 * otherwise forces overflow-y:auto and shears the hover lift.
+			 */}
+			<div className={CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME}>
+				<CataloguePosterGroup className="flex w-max gap-2">
+					{items.map((bundle, index) => {
+						const show = bundle.show;
+						if (!show) return null;
+						const nextLine = formatTvNextEpisodeLabel(bundle.nextEpisode);
+						const episodeCaption = nextLine
+							? nextLine.replace(/^Next:\s*/, "")
+							: null;
 
-					return (
-						<Link
-							key={bundle.watch?.id ?? show.tmdbId}
-							href={`/tv/${show.tmdbId}`}
-							aria-label={
-								episodeCaption ? `${show.title}, ${episodeCaption}` : show.title
-							}
-							className={cn(
-								"flex w-27 shrink-0 flex-col items-center text-center sm:w-30",
-								"min-w-0 rounded-2xl transition-[box-shadow] duration-200 ease-out",
-								"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_8px_24px_-8px_color-mix(in_oklab,var(--card)_80%,transparent)]",
-							)}
-						>
-							<MoviePoster
-								className="w-full"
-								frameClassName={CONTINUE_RAIL_POSTER_FRAME_CLASSNAME}
-								hoverEffect="elevation"
-								linkable={false}
-								listingKind="tv"
-								movieId={show.tmdbId}
-								posterUrl={tmdbPosterUrl(show.posterPath)}
-								priority={index < 4}
-								showTitle
-								titleLines={2}
-								title={show.title}
-							/>
-							{episodeCaption ? (
-								<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
-									{episodeCaption}
-								</p>
-							) : null}
-						</Link>
-					);
-				})}
+						return (
+							<Link
+								key={bundle.watch?.id ?? show.tmdbId}
+								href={`/tv/${show.tmdbId}`}
+								aria-label={
+									episodeCaption
+										? `${show.title}, ${episodeCaption}`
+										: show.title
+								}
+								className={cn(
+									cataloguePosterHoverShellClassName(),
+									"flex w-27 shrink-0 flex-col items-center text-center sm:w-30",
+								)}
+							>
+								<MoviePoster
+									avatarGroupItem={false}
+									className="w-full"
+									frameClassName={CONTINUE_RAIL_POSTER_FRAME_CLASSNAME}
+									hoverEffect="elevation"
+									linkable={false}
+									listingKind="tv"
+									movieId={show.tmdbId}
+									posterUrl={tmdbPosterUrl(show.posterPath)}
+									priority={index < 4}
+									showTitle
+									titleLines={2}
+									title={show.title}
+								/>
+								{episodeCaption ? (
+									<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
+										{episodeCaption}
+									</p>
+								) : null}
+							</Link>
+						);
+					})}
+				</CataloguePosterGroup>
 			</div>
 		</section>
 	);

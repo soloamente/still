@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { ListLobbyPoster } from "@/components/list/list-lobby-poster";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -63,7 +64,7 @@ export function ListsLobbyCatalogue({
 	}, [motionPosterCells, catalogueWaveKeyOverride, seeds]);
 
 	return (
-		<div
+		<CataloguePosterGroup
 			className={cn(
 				HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 				monochromePeersOnHover &&
@@ -83,6 +84,6 @@ export function ListsLobbyCatalogue({
 					/>
 				))
 			)}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

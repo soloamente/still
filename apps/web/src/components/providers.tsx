@@ -4,6 +4,7 @@ import { Toaster } from "@still/ui/components/sonner";
 import { Suspense } from "react";
 import { RootHtmlClassSync } from "@/components/app/root-html-class-sync";
 import { RootHtmlFontClassProvider } from "@/components/app/root-html-font-class-context";
+import { StillToastBeamBootstrap } from "@/components/app/still-toast-beam-bootstrap";
 import { LenisProvider } from "@/components/lenis-provider";
 import { ReferralRefUrlListener } from "@/components/referrals/referral-ref-url-listener";
 import {
@@ -64,8 +65,9 @@ export default function Providers({
 					<RootHtmlClassSync />
 					{children}
 				</LenisProvider>
-				{/* Pill chrome + chip helpers in `@still/ui`; toasts default to bottom-center. */}
-				<Toaster position="bottom-center" />
+				{/* Patch toast.* → BorderBeam rotate + hue pulse; themed card pill underneath. */}
+				<StillToastBeamBootstrap />
+				<Toaster position="bottom-center" theme="system" />
 			</ThemeProvider>
 		</RootHtmlFontClassProvider>
 	);

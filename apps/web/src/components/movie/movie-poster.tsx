@@ -2,9 +2,10 @@ import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
-/** `lift` = slight Y translate (default). `elevation` = card-tinted shadow + stack above neighbors (lobby grid). */
+/** `lift` = slight Y translate (default). `elevation` = transitions.dev group lift + stack above neighbors. */
 export type MoviePosterHoverEffect = "lift" | "elevation";
 
 /**
@@ -20,6 +21,8 @@ export function MoviePoster({
 	showTitle = false,
 	/** Caption under the frame — `1` keeps dense grids on one line. */
 	titleLines = 2,
+	/** Extra classes on the under-frame title (e.g. `text-center` in filmography). */
+	titleClassName,
 	/** Adds a subtle inner bezel so the poster reads like a framed print. */
 	filmFrame = false,
 	/** Merges onto the poster frame (e.g. `rounded-2xl` for lobby grids). */
@@ -28,8 +31,13 @@ export function MoviePoster({
 	emptyArtworkClassName,
 	className,
 	priority = false,
-	/** Lobby catalogue: shadow + z-index instead of translate so the card reads over neighbors. */
+	/** Lobby catalogue: group lift + z-index instead of translate so the card reads over neighbors. */
 	hoverEffect = "lift",
+	/**
+	 * When `hoverEffect` is `elevation`, mark this node as the `.t-avatar` group item.
+	 * Parent tiles (`CataloguePosterTile`) own the class instead — pass `false` to avoid nesting.
+	 */
+	avatarGroupItem,
 	/** `sheet` keeps hover lift under drawer scroll scrims (`z-30`). */
 	hoverStacking = "catalogue",
 	/** Catalogue tiles for TV use `/tv/[id]` (same poster shell as films). */
@@ -48,12 +56,14 @@ export function MoviePoster({
 	size?: "xs" | "sm" | "md" | "lg" | "hero";
 	showTitle?: boolean;
 	titleLines?: 1 | 2;
+	titleClassName?: string;
 	filmFrame?: boolean;
 	frameClassName?: string;
 	emptyArtworkClassName?: string;
 	className?: string;
 	priority?: boolean;
 	hoverEffect?: MoviePosterHoverEffect;
+	avatarGroupItem?: boolean;
 	hoverStacking?: "catalogue" | "sheet";
 	listingKind?: "movie" | "tv";
 	linkable?: boolean;
@@ -85,28 +95,17 @@ export function MoviePoster({
 			: "(max-width: 640px) 38vw, (max-width: 1024px) 28vw, (max-width: 1536px) 220px, 260px";
 
 	const isElevation = hoverEffect === "elevation";
-	const elevationHoverZ =
-		hoverStacking === "sheet"
-			? "focus-within:z-[1] [@media(hover:hover)]:hover:z-[1]"
-			: "focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]";
+	const isAvatarGroupItem = avatarGroupItem ?? isElevation;
 	const detailHref =
 		listingKind === "tv" ? `/tv/${movieId}` : `/movies/${movieId}`;
 
 	const shellClassName = cn(
 		"group block w-full min-w-0",
-		// Shadow + z-index live on the link (not clipped by `overflow-hidden` on the frame).
-		// NOTE: `group-hover:` only targets *descendants* of `.group` — never the group element itself,
-		// so elevation must use `hover:` / `focus-within:` on this `<Link>`.
+		// Lift + z-index live on the link (not clipped by `overflow-hidden` on the frame).
 		isElevation &&
-			cn(
-				"relative z-0 overflow-visible transition-[box-shadow,z-index] duration-200 ease-out",
-				"motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:focus-within:shadow-none",
-				// Card-tinted scrim only (`var(--card)` = same token as `bg-card`) — no black ink,
-				// stacked opaque mixes + large blurs so neighbors read clearly underneath.
-				elevationHoverZ,
-				"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-				"focus-within:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-			),
+			cataloguePosterHoverShellClassName(hoverStacking, {
+				avatarGroupItem: isAvatarGroupItem,
+			}),
 		className,
 	);
 
@@ -142,8 +141,11 @@ export function MoviePoster({
 					/>
 				) : (
 					// Missing TMDb art — morphing dots + “No poster available”.
+					// When `showTitle` is on, the name sits under the frame (search parity);
+					// otherwise print it on the empty cover so lobby tiles stay identifiable.
 					<MissingArtworkPlaceholder
 						label="No poster available"
+						title={showTitle ? undefined : title}
 						aria-label={`${title} (no poster)`}
 						className={emptyArtworkClassName}
 					/>
@@ -161,12 +163,14 @@ export function MoviePoster({
 					</div>
 				) : null}
 			</div>
-			{showTitle && posterUrl ? (
+			{/* Keep the under-frame title even when art is missing (search, dense grids). */}
+			{showTitle ? (
 				<p
 					className={cn(
 						"mt-2 min-w-0 text-[0.8rem] text-muted-foreground leading-snug sm:text-sm",
 						titleLines === 1 ? "truncate" : "line-clamp-2 text-pretty",
 						linkable && "group-hover:text-foreground",
+						titleClassName,
 					)}
 				>
 					{title}

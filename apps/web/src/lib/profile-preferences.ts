@@ -12,7 +12,9 @@ import { normalizeReviewTranslationLanguage } from "@/lib/review-translation-lan
 /**
  * Stable keys under profile `preferences` (opaque JSON; Settings PATCH shallow-merges).
  * Use these constants in the web app so reads/writes stay aligned.
+ * Picture grayscale prefs are edited in Settings → Appearance (see `me-settings-pref-homes.ts`).
  */
+/** Home catalogue: grayscale neighbor posters on hover — Settings → Appearance → Picture. */
 export const PROFILE_PREF_CATALOG_MONOCHROME_PEERS_ON_HOVER =
 	"catalogMonochromePeersOnHover" as const;
 
@@ -49,19 +51,19 @@ export const PROFILE_PREF_SMOOTH_SCROLL = "smoothScroll" as const;
 
 /**
  * Film/TV cast & crew headshots: grayscale until hover on detail previews.
- * Opt-in from Settings → Experience (default off — full color).
+ * Opt-in from Settings → Appearance → Picture (default off — full color).
  */
 export const PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER =
 	"castCrewMonochromeOnHover" as const;
 
-/** 18+ films and anime in catalogue surfaces — opt-in from Settings → Catalogue (default off). */
+/** 18+ films and anime in catalogue surfaces — opt-in from Settings → Catalogue → Content (default off). */
 export const PROFILE_PREF_SHOW_ADULT_CONTENT = "showAdultContent" as const;
 
 /** Optional month/day birthday line on public profile — default off. */
 export const PROFILE_PREF_SHOW_BIRTH_DATE_ON_PROFILE =
 	"showBirthDateOnProfile" as const;
 
-/** Profile portrait: grayscale until hover — default on unless explicitly opted out. */
+/** Profile portrait: grayscale until hover — Settings → Appearance → Picture. Default on unless explicitly opted out. */
 export const PROFILE_PREF_PROFILE_PORTRAIT_GRAYSCALE_UNTIL_HOVER =
 	"profilePortraitGrayscaleUntilHover" as const;
 

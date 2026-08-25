@@ -42,7 +42,7 @@ export function HomeTasteMatchedHeroSkeleton() {
 				>
 					<div
 						className={cn(
-							"relative z-10 mt-auto flex w-full flex-col justify-end gap-2 px-3 sm:mt-0 sm:px-6",
+							"relative z-10 mt-auto flex w-full flex-col justify-end gap-3 px-3 sm:mt-0 sm:gap-2 sm:px-6",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
 						)}
@@ -68,12 +68,12 @@ export function HomeTasteMatchedHeroSkeleton() {
 								"relative z-10",
 								HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME,
 								HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME,
-								"flex justify-end gap-2 py-1 max-sm:pl-3 sm:gap-2.5 sm:py-2 sm:pl-3",
+								"flex justify-end gap-1.5 py-1 max-sm:pl-3 sm:gap-2.5 sm:py-2 sm:pl-3",
 							)}
 						>
-							<ShimmerBone className="h-[4.5rem] w-[3.75rem] rounded-xl bg-card sm:h-48 sm:w-32 sm:rounded-2xl" />
-							<ShimmerBone className="h-[4.5rem] w-[3.75rem] rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
-							<ShimmerBone className="h-[4.5rem] w-[3.75rem] rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
+							<ShimmerBone className="h-[4.5rem] w-12 rounded-xl bg-card sm:h-48 sm:w-32 sm:rounded-2xl" />
+							<ShimmerBone className="h-16 w-11 rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
+							<ShimmerBone className="h-16 w-11 rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
 						</div>
 					</div>
 				</div>

@@ -11,6 +11,7 @@ import {
 	useReducedMotion,
 } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { OnboardingSearchField } from "@/components/onboarding/onboarding-form-controls";
@@ -546,7 +547,7 @@ export function TasteStepGridPanel({
 							</p>
 						) : (
 							<LayoutGroup>
-								<div className={TASTE_STEP_GRID_CLASSNAME}>
+								<CataloguePosterGroup className={TASTE_STEP_GRID_CLASSNAME}>
 									<AnimatePresence initial={false} mode="popLayout">
 										{visibleCatalogue.map((movie, index) =>
 											(() => {
@@ -637,7 +638,7 @@ export function TasteStepGridPanel({
 											})(),
 										)}
 									</AnimatePresence>
-								</div>
+								</CataloguePosterGroup>
 							</LayoutGroup>
 						)}
 					</div>

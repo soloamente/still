@@ -1,6 +1,8 @@
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
 import type { JournalListItem } from "@/lib/fetch-journal";
 import { formatTimeAgoLabel } from "@/lib/format";
@@ -24,7 +26,7 @@ function JournalCatalogueTile({
 		<Link
 			href={`/journal/${post.slug}`}
 			className={cn(
-				"group block w-full min-w-0",
+				cataloguePosterHoverShellClassName(),
 				HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 				DETAIL_MOTION_PRESSABLE_CLASS,
 			)}
@@ -84,12 +86,12 @@ export function JournalCatalogueGrid({ posts }: { posts: JournalListItem[] }) {
 	if (posts.length === 0) return null;
 
 	return (
-		<div className={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}>
+		<CataloguePosterGroup className={HOME_LOBBY_CATALOGUE_GRID_CLASSNAME}>
 			{posts.map((post, index) => (
 				<div key={post.id} className="min-w-0">
 					<JournalCatalogueTile post={post} priority={index < 6} />
 				</div>
 			))}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

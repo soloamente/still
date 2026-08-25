@@ -2283,10 +2283,20 @@ html.theme-lobby-light .cinema-vignette {
 /* ---------------------------------------------------------------------------
  * Sonner — Still pill toasts (overrides injected base styles from the library).
  * Track B: depth comes from shadow tokens, not outline rings on the shell.
+ * Theme tokens (`--card`) so the pill follows Calm / Lucid / etc.
+ * Beam hosts (`still-toast-beam-host`) stay transparent — BorderBeam owns glow.
  * --------------------------------------------------------------------------- */
+[data-sonner-toaster] {
+	overflow: visible !important;
+}
+
 [data-sonner-toaster][data-x-position="center"] {
 	/* Sonner toasts are absolutely positioned — the list needs a real width for translateX(-50%). */
 	width: min(420px, calc(100vw - 32px)) !important;
+}
+
+[data-sonner-toaster] [data-sonner-toast] {
+	overflow: visible !important;
 }
 
 [data-sonner-toaster] [data-sonner-toast] [data-icon] {
@@ -2305,15 +2315,119 @@ html.theme-lobby-light .cinema-vignette {
 	max-width: min(420px, calc(100vw - 32px)) !important;
 	/* Tighter leading inset than trailing: the 28px icon well supplies visual weight. */
 	padding: 5px 14px 5px 5px !important;
-	border: 1px solid rgba(0, 0, 0, 0.08) !important;
-	background: #fff !important;
-	color: #171717 !important;
-	box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.18) !important;
+	border: 1px solid color-mix(in oklab, var(--border) 80%, transparent) !important;
+	background: var(--card) !important;
+	color: var(--card-foreground) !important;
+	box-shadow: 0 12px 40px -12px
+		color-mix(in oklab, var(--foreground) 18%, transparent) !important;
 }
 
-/* bottom-center: library only pins left/right for side positions — center each pill in the slot. */
+/* Custom beam toasts — transparent Sonner chrome; stroke clipped to the pill. */
+[data-sonner-toaster] [data-sonner-toast].still-toast-beam-host {
+	display: flex !important;
+	width: max-content !important;
+	max-width: min(420px, calc(100vw - 32px)) !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	/* Keep beam paint inside the toast slot (no outer bloom spill). */
+	overflow: hidden !important;
+	border-radius: 9999px !important;
+}
+
+/*
+ * Beam frames already include the leading mark. Sonner still mounts `[data-icon]`
+ * (and this file forces it `display:flex`) which peeks outside the pill.
+ */
+[data-sonner-toaster] [data-sonner-toast].still-toast-beam-host [data-icon] {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+	margin: 0 !important;
+	overflow: hidden !important;
+}
+
+/* Unwrap Sonner title/content so the pill is the centered flex child. */
+[data-sonner-toaster] [data-sonner-toast].still-toast-beam-host [data-content],
+[data-sonner-toaster] [data-sonner-toast].still-toast-beam-host [data-title] {
+	display: contents !important;
+}
+
+/*
+ * Bloom still off — it washes the toast fill. Inner `::before` stays hidden too
+ * so only the traveling stroke + hue-shift (rotate pulse) read on the rim.
+ */
+.still-toast-beam[data-still-toast-beam]::before,
+.still-toast-beam[data-still-toast-beam] [data-beam-bloom] {
+	opacity: 0 !important;
+	filter: none !important;
+	box-shadow: none !important;
+}
+
+.still-toast-beam[data-still-toast-beam] [data-beam-bloom] {
+	display: none !important;
+}
+
+/*
+ * border-beam clamps the `strength` prop to 1. Push past that so toast beams
+ * read at full intensity (opacity uses --beam-strength in layer calcs).
+ */
+.still-toast-beam[data-still-toast-beam] {
+	--beam-strength: 2.5 !important;
+}
+
+/* Status hues — error stays pinned red (staticColors). Other kinds hue-shift on rotate. */
+[data-still-toast-beam="success"]::after {
+	filter: hue-rotate(110deg) brightness(1.75) saturate(1.75);
+}
+
+/*
+ * Error must read as red — sunset/mono spots alone aren't crimson.
+ * Paint red radials on the stroke; traveling mask still spins.
+ */
+[data-still-toast-beam="error"]::after {
+	background:
+		radial-gradient(ellipse 9px 18px at 2% 68%, #ff3b40, transparent),
+		radial-gradient(ellipse 4px 8px at 2% 68%, #ff1f28, transparent),
+		radial-gradient(ellipse 59px 9px at 72% -3%, #ff4a4f, transparent),
+		radial-gradient(ellipse 42px 7px at 74% 100%, #df6a6b, transparent),
+		radial-gradient(ellipse 10px 17px at 100% 27%, #ff2a30, transparent),
+		radial-gradient(ellipse 10px 18px at 100% 27%, #e6353c, transparent),
+		radial-gradient(ellipse 5px 10px at 100% 27%, #ff555a, transparent),
+		radial-gradient(ellipse 11px 12px at 100% 27%, #ff3f45, transparent) !important;
+	filter: brightness(1.45) saturate(1.25) !important;
+}
+
+[data-still-toast-beam="warning"]::after {
+	filter: hue-rotate(28deg) brightness(1.75) saturate(1.7);
+}
+
+[data-still-toast-beam="info"]::after {
+	filter: hue-rotate(195deg) brightness(1.65) saturate(1.55);
+}
+
+[data-still-toast-beam="loading"]::after,
+[data-still-toast-beam="default"]::after {
+	filter: brightness(1.5) saturate(0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-still-toast-beam]::before,
+	[data-still-toast-beam]::after,
+	[data-still-toast-beam] [data-beam-bloom] {
+		animation: none !important;
+	}
+}
+
+/* bottom-center: library only pins left/right for side positions — center each pill in the slot.
+ * Do not put `!m-0` on beam hosts — it zeros these auto margins and leaves the pill left-aligned. */
 [data-sonner-toaster][data-x-position="center"]
-	[data-sonner-toast].still-sonner-toast[data-styled="true"] {
+	[data-sonner-toast].still-sonner-toast[data-styled="true"],
+[data-sonner-toaster][data-x-position="center"]
+	[data-sonner-toast].still-toast-beam-host {
 	left: 0 !important;
 	right: 0 !important;
 	margin-left: auto !important;

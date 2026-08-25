@@ -31,6 +31,7 @@ import {
 import type { MyMovieLog } from "@/components/movie/use-movie-detail-user-state";
 import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { authClient } from "@/lib/auth-client";
+import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import {
 	buildListRadialItemSpecs,
 	isListRadialGatedAction,
@@ -44,14 +45,9 @@ import {
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 
-/** Elevation shell — matches catalogue lobby tiles so radial aim stacks above neighbors. */
-const LIST_DETAIL_POSTER_SHELL_CLASSNAME = cn(
-	"group relative z-0 block w-full min-w-0 overflow-visible transition-[box-shadow,z-index] duration-200 ease-out",
-	"motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:focus-within:shadow-none",
-	"focus-within:z-[100] [@media(hover:hover)]:hover:z-[100]",
-	"[@media(hover:hover)]:hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-	"focus-within:shadow-[0_0_0_1px_color-mix(in_oklab,var(--card)_92%,var(--border)),0_3vh_40vh_-12vh_color-mix(in_oklab,var(--card)_94%,transparent),0_0_74vh_0_color-mix(in_oklab,var(--card)_90%,transparent),0_14vh_112vh_-24vh_color-mix(in_oklab,var(--card)_86%,transparent),0_20vh_140vh_-34vh_color-mix(in_oklab,var(--card)_80%,transparent),0_28vh_168vh_-42vh_color-mix(in_oklab,var(--card)_72%,transparent),0_0_98vw_0_color-mix(in_oklab,var(--card)_66%,transparent)]",
-);
+/** Hover shell — matches catalogue lobby tiles so radial aim stacks above neighbors. */
+const LIST_DETAIL_POSTER_SHELL_CLASSNAME =
+	cataloguePosterHoverShellClassName("catalogue");
 
 export type ListDetailPosterTileProps = {
 	listId: string;
@@ -415,6 +411,7 @@ export function ListDetailPosterTile({
 				onPointerDown={onPointerDown}
 			>
 				<MoviePoster
+					avatarGroupItem={false}
 					className="min-w-0"
 					frameClassName={frameClassName}
 					hoverEffect={hoverEffect}

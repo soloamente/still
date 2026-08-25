@@ -76,12 +76,15 @@ export function AuthRouteSlide({
 	const direction = directionRef.current;
 
 	if (reduceMotion) {
-		return <div className="relative w-full">{children}</div>;
+		// Match the animated branch inset so focus chrome never clips on reduced-motion.
+		return <div className="relative w-full px-2">{children}</div>;
 	}
 
 	return (
 		<div
-			className={cn("t-page-slide relative w-full overflow-hidden")}
+			// Horizontal inset keeps focus ring + whileFocus scale inside the clip —
+			// without it, full-bleed inputs get their ring shaved on the sides.
+			className={cn("t-page-slide relative w-full overflow-hidden px-2")}
 			data-auth-slide=""
 			data-direction={direction}
 		>

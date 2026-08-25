@@ -1,6 +1,10 @@
-/** Shared taste-hero band height — width is contextual (content `w-full`, shell bleeds `-left-4 -right-4`). */
+/**
+ * Shared taste-hero band height — mobile leans near full viewport so media +
+ * copy + poster rail have room; `sm+` keeps the shorter cinematic crop.
+ * Width is contextual (content `w-full`, shell bleeds `-left-4 -right-4`).
+ */
 export const HOME_TASTE_HERO_BAND_HEIGHT_CLASSNAME =
-	"h-[min(42rem,60svh)] sm:h-[min(44rem,62svh)] lg:h-[min(48rem,66svh)] xl:h-[min(52rem,68svh)] min-[2000px]:h-[min(58rem,64svh)]";
+	"h-[min(56rem,85svh)] sm:h-[min(44rem,62svh)] lg:h-[min(48rem,66svh)] xl:h-[min(52rem,68svh)] min-[2000px]:h-[min(58rem,64svh)]";
 /** Content column band — full width of the hero section. */
 export const HOME_TASTE_HERO_BAND_CLASSNAME = `w-full ${HOME_TASTE_HERO_BAND_HEIGHT_CLASSNAME}`;
 /** Lobby shell media — bleeds over catalogue padding + filter row baseline. */
@@ -23,30 +27,36 @@ export const HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME = "relative z-10";
 /** Mobile bleed — hero `px-3` + catalogue `p-4` (parity with media `-left-4 -right-4`). */
 export const HOME_TASTE_HERO_POSTER_RAIL_MOBILE_BLEED_CLASSNAME =
 	"max-sm:w-[calc(100%+3.5rem)] max-sm:max-w-none max-sm:-mx-[calc(0.75rem+1rem)]";
-/** Poster rail — mobile full catalogue width; desktop flush right with capped width. */
-export const HOME_TASTE_HERO_POSTER_RAIL_EDGE_FADE_WIDTH_PX = 128;
+/**
+ * Poster rail — mobile full catalogue width; desktop flush right with capped width.
+ * `shrink-0` + `isolate` keep the horizontal row from collapsing under the copy stack.
+ */
+export const HOME_TASTE_HERO_POSTER_RAIL_EDGE_FADE_WIDTH_PX = 96;
 export const HOME_TASTE_HERO_POSTER_RAIL_CLIP_CLASSNAME =
-	"relative min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_2.75rem)] sm:-mr-10 sm:ml-auto sm:w-full sm:max-w-[24rem] sm:[mask-image:linear-gradient(to_right,transparent_0%,black_4.5rem)] lg:max-w-[25.5rem] min-[2000px]:max-w-[27rem] min-[2000px]:[mask-image:linear-gradient(to_right,transparent_0%,black_5rem)]";
+	"relative z-10 min-w-0 shrink-0 isolate overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_2rem)] sm:-mr-10 sm:ml-auto sm:w-full sm:max-w-[24rem] sm:[mask-image:linear-gradient(to_right,transparent_0%,black_4.5rem)] lg:max-w-[25.5rem] min-[2000px]:max-w-[27rem] min-[2000px]:[mask-image:linear-gradient(to_right,transparent_0%,black_5rem)]";
 /**
  * RTL rail — first child sits on the physical right. Inset only that tile from the
  * edge (`mr`), keep the scrollport flush (`pr-0`) so the container does not shift in.
+ * `items-end` + explicit tile widths — never stretch posters into a vertical pile.
  */
 export const HOME_TASTE_HERO_POSTER_RAIL_SCROLL_CLASSNAME =
-	"dir-rtl items-end gap-2 py-1 pl-2 pr-0 max-sm:pl-3 sm:gap-3 sm:py-2 sm:pl-3 [&>*]:dir-ltr [&>*:first-child]:mr-2 max-sm:[&>*:first-child]:mr-3 sm:[&>*:first-child]:mr-3";
-/** Taste-hero poster tile widths — mobile unchanged; larger on desktop. */
-export const HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME =
-	"w-[4.25rem] sm:w-32";
-export const HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME = "w-[3.75rem] sm:w-28";
+	"dir-rtl flex-nowrap items-end gap-1.5 py-1 pl-2 pr-0 max-sm:pl-3 sm:gap-3 sm:py-2 sm:pl-3 [&>*]:dir-ltr [&>*:first-child]:mr-2 max-sm:[&>*:first-child]:mr-3 sm:[&>*:first-child]:mr-3";
+/** Taste-hero poster tile widths — compact on mobile so the rail stays one line. */
+export const HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME = "w-12 sm:w-32";
+export const HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME = "w-11 sm:w-28";
 /** Bottom-anchored spotlight — flush to the band floor on sub-2k desktops. */
 export const HOME_TASTE_HERO_BAND_CONTENT_ALIGN_CLASSNAME = "justify-end";
 export const HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME =
 	"pb-1 sm:pb-2 min-[2000px]:pb-0";
-/** Mobile only — drop title/rating toward filters without overlapping actions/posters. */
+/** Mobile only — slight air under the title block (taller band; no heavy translate). */
 export const HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME =
-	"max-sm:mt-6";
-/** Mobile — drop the whole spotlight row (actions + poster rail move together). */
+	"max-sm:mt-2";
+/**
+ * Mobile — small drop so copy sits lower without shoving posters onto each other
+ * or over the filter row (transforms used to be `translate-y-10` / `14`).
+ */
 export const HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME =
-	"max-sm:translate-y-10";
+	"max-sm:translate-y-3";
 /**
  * 2K+ only — drop the full spotlight row (copy + actions + poster rail).
  * Must not apply to the title/rating block alone or the score slides under the CTAs.
@@ -57,4 +67,4 @@ export const HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME =
 export const HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME =
 	"min-[2000px]:pb-24";
 /** Mobile reserve — keeps poster rail above the filter row without translate overlap. */
-export const HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME = "max-sm:mb-10 sm:mb-0";
+export const HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME = "max-sm:mb-6 sm:mb-0";

@@ -6,7 +6,8 @@ import { AnimatePresence, motion } from "motion/react";
 /**
  * Auth input surface on `bg-card` — keyboard `:focus-visible` uses theme
  * `foreground` (not `--ring` / accent orange). Scale feedback is on
- * `AuthMotionInput`.
+ * `AuthMotionInput`. Ring stays inset enough that `AuthRouteSlide`’s
+ * `overflow-hidden` + `px-2` keeps it from clipping on mobile focus.
  */
 export const AUTH_INPUT_CLASS =
 	"auth-input w-full rounded-2xl bg-input px-3.75 py-3.25 text-base leading-none transition-[color,box-shadow] placeholder:text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-foreground/35 focus-visible:ring-offset-2 focus-visible:ring-offset-card aria-invalid:ring-1 aria-invalid:ring-destructive/30 md:text-[15px]";
@@ -70,7 +71,8 @@ export function AuthMotionInput({
 			className={cn(AUTH_INPUT_CLASS, className)}
 			style={{ willChange: reduceMotion ? undefined : "transform" }}
 			transition={{ duration: 0.2 }}
-			whileFocus={reduceMotion ? undefined : { scale: 1.01 }}
+			// 1.01 was enough to push ring-offset past the slide clip on narrow widths.
+			whileFocus={reduceMotion ? undefined : { scale: 1.005 }}
 			{...props}
 		/>
 	);

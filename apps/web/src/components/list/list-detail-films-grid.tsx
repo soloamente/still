@@ -3,6 +3,7 @@
 import { buttonVariants } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { ListDetailPosterTile } from "@/components/list/list-detail-poster-tile";
 import { ListItemNoteControl } from "@/components/list/list-item-note-control";
 import { ListItemNoteDisplay } from "@/components/list/list-item-note-display";
@@ -76,7 +77,7 @@ export function ListDetailFilmsGrid({
 	}
 
 	return (
-		<div
+		<CataloguePosterGroup
 			className={cn(
 				LIST_DETAIL_FILMS_GRID_CLASSNAME,
 				HOME_LOBBY_CATALOGUE_POSTER_GRID_MONOCHROME_CLASSNAME,
@@ -147,6 +148,6 @@ export function ListDetailFilmsGrid({
 					</div>
 				);
 			})}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

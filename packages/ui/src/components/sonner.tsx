@@ -3,7 +3,6 @@
 import {
 	InfoIcon,
 	Loader2Icon,
-	OctagonXIcon,
 	Pencil,
 	Plus,
 	TriangleAlertIcon,
@@ -11,44 +10,54 @@ import {
 import type { CSSProperties } from "react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
+import IconCircleXmarkFill from "../icons/circle-xmark-fill";
 import { cn } from "../lib/utils";
 
 /** Shared leading-well size — 28px circle; grid centers Lucide glyphs optically. */
 const toastIconCircleClass =
 	"inline-grid size-7 shrink-0 place-items-center rounded-full leading-none";
 
-/** Leading marks for narrative toasts — always on a light pill over the dark app shell. */
+/** Leading marks for narrative toasts — semantic wells on the themed card pill. */
 export const stillToastLeadingIcons = {
 	added: (
-		<span className={cn(toastIconCircleClass, "bg-sky-400 text-white")}>
+		<span className={cn(toastIconCircleClass, "bg-emerald-500/90 text-white")}>
 			<Plus className="block size-4 shrink-0" strokeWidth={2.5} aria-hidden />
 		</span>
 	),
 	updated: (
-		<span className={cn(toastIconCircleClass, "bg-sky-400 text-white")}>
+		<span className={cn(toastIconCircleClass, "bg-sky-500/90 text-white")}>
 			<Pencil className="size-3.5" strokeWidth={2.5} aria-hidden />
 		</span>
 	),
 	info: (
 		<span
-			className={cn(toastIconCircleClass, "bg-neutral-200 text-neutral-600")}
+			className={cn(toastIconCircleClass, "bg-muted text-muted-foreground")}
 		>
 			<InfoIcon className="size-4" aria-hidden />
 		</span>
 	),
 	warning: (
-		<span className={cn(toastIconCircleClass, "bg-amber-100 text-amber-700")}>
+		<span
+			className={cn(
+				toastIconCircleClass,
+				"bg-amber-500/20 text-amber-600 dark:text-amber-400",
+			)}
+		>
 			<TriangleAlertIcon className="size-4" aria-hidden />
 		</span>
 	),
+	/** Bare red circle-X — no tinted pill well behind the glyph. */
 	error: (
-		<span className={cn(toastIconCircleClass, "bg-red-100 text-red-600")}>
-			<OctagonXIcon className="size-4" aria-hidden />
+		<span
+			className="inline-flex size-5 shrink-0 items-center justify-center text-destructive"
+			aria-hidden
+		>
+			<IconCircleXmarkFill className="size-5" />
 		</span>
 	),
 	loading: (
 		<span
-			className={cn(toastIconCircleClass, "bg-neutral-100 text-neutral-600")}
+			className={cn(toastIconCircleClass, "bg-muted text-muted-foreground")}
 		>
 			<Loader2Icon className="size-4 animate-spin" aria-hidden />
 		</span>
@@ -60,36 +69,37 @@ const defaultStillToastClassNames: NonNullable<
 >["classNames"] = {
 	toast: cn(
 		"still-sonner-toast",
-		"border border-neutral-200/90 bg-white text-neutral-900 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)]",
+		"border border-border/80 bg-card text-card-foreground shadow-[0_12px_40px_-12px_color-mix(in_oklab,var(--foreground)_18%,transparent)]",
 		"w-max max-w-[min(420px,calc(100vw-32px))] rounded-full py-2.5 pr-3.5 pl-2.5",
 		"select-none font-sans text-[13px] leading-snug tracking-normal",
-		"[&:focus-visible]:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18),0_0_0_2px_rgba(0,0,0,0.12)]",
+		"[&:focus-visible]:shadow-[0_12px_40px_-12px_color-mix(in_oklab,var(--foreground)_18%,transparent),0_0_0_2px_color-mix(in_oklab,var(--foreground)_12%,transparent)]",
 	),
 	content: "!flex !flex-col !gap-0",
 	title:
 		"!font-normal !leading-snug !text-inherit [&:empty]:min-h-0 [&:empty]:hidden",
 	description:
-		"!mt-0.5 !text-[13px] !font-normal !leading-snug !text-neutral-500",
+		"!mt-0.5 !text-[13px] !font-normal !leading-snug !text-muted-foreground",
 	icon: "!m-0 !flex !size-7 !shrink-0 !items-center !justify-center !self-center [&>span]:!grid [&>span]:!size-7 [&>span]:!place-items-center",
 	closeButton:
-		"border-neutral-200/90 bg-white text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900",
-	success: "!border-0 !bg-white !text-neutral-900",
-	error: "!border-0 !bg-white !text-red-600",
-	info: "!border-0 !bg-white !text-neutral-900",
-	warning: "!border-0 !bg-white !text-neutral-900",
-	loading: "!border-0 !bg-white !text-neutral-900",
-	default: "!border-0 !bg-white !text-neutral-900",
+		"border-border/80 bg-card text-muted-foreground hover:bg-muted hover:text-foreground",
+	success: "!border-0 !bg-card !text-card-foreground",
+	error: "!border-0 !bg-card !text-destructive",
+	info: "!border-0 !bg-card !text-card-foreground",
+	warning: "!border-0 !bg-card !text-card-foreground",
+	loading: "!border-0 !bg-card !text-card-foreground",
+	default: "!border-0 !bg-card !text-card-foreground",
 };
 
 /**
- * Sonner Toaster tuned for Still — **light** pill over the dark shell, action-specific
- * leading marks (plus = added, pencil = updated), bottom-center placement.
+ * Sonner Toaster tuned for Still — theme-token pill (`bg-card`) over the shell,
+ * action-specific leading marks, bottom-center placement. Beam chrome lives in
+ * apps/web (`StillToastBeamFrame` via toast method patch).
  */
 const Toaster = ({
 	className,
 	position = "bottom-center",
 	richColors = false,
-	theme = "light",
+	theme = "system",
 	style,
 	toastOptions,
 	...props
@@ -152,9 +162,15 @@ const Toaster = ({
 	};
 
 	const mergedStyle: CSSProperties = {
-		"--normal-bg": "#ffffff",
-		"--normal-text": "#171717",
-		"--normal-border": "rgba(0, 0, 0, 0.08)",
+		"--normal-bg": "var(--card)",
+		"--normal-text": "var(--card-foreground)",
+		"--normal-border": "color-mix(in oklab, var(--border) 80%, transparent)",
+		"--success-bg": "var(--card)",
+		"--success-text": "var(--card-foreground)",
+		"--success-border": "color-mix(in oklab, var(--border) 80%, transparent)",
+		"--error-bg": "var(--card)",
+		"--error-text": "var(--destructive)",
+		"--error-border": "color-mix(in oklab, var(--border) 80%, transparent)",
 		"--border-radius": "9999px",
 		/* Fixed toaster width — Sonner children are `position:absolute`, so `max-content`
 		 * collapses the list and breaks `bottom-center` anchoring. Pill width stays on each toast. */

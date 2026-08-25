@@ -1,6 +1,7 @@
 "use client";
 
 import { Lock } from "lucide-react";
+import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import type { HomeLeaderboardPeriod } from "@/lib/home-leaderboard-period";
 import type {
@@ -40,7 +41,7 @@ export function PatronWatchLedgerGrid({
 	}
 
 	return (
-		<div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
+		<CataloguePosterGroup className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
 			{items.map((item, index) => {
 				const tmdbId = item.movieId ?? item.tvId;
 				if (tmdbId == null) return null;
@@ -87,6 +88,6 @@ export function PatronWatchLedgerGrid({
 					</div>
 				</div>
 			))}
-		</div>
+		</CataloguePosterGroup>
 	);
 }

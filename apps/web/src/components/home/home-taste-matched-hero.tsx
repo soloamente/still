@@ -514,7 +514,7 @@ export function HomeTasteMatchedHero({
 				>
 					<div
 						className={cn(
-							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-2 overflow-visible px-3 pb-1 sm:mt-0",
+							"relative z-20 mt-auto flex min-h-0 w-full flex-col gap-3 overflow-visible px-3 pb-1 sm:mt-0 sm:gap-2",
 							HOME_TASTE_HERO_BAND_CONTENT_INSET_CLASSNAME,
 							// Nudge title + actions + posters together — rating must not slide under buttons.
 							HOME_TASTE_HERO_BAND_CONTENT_MOBILE_DROP_CLASSNAME,
@@ -524,7 +524,7 @@ export function HomeTasteMatchedHero({
 					>
 						<div
 							className={cn(
-								"mx-auto flex min-w-0 max-w-[min(100%,34rem)] flex-col gap-2 text-center sm:mx-0 sm:gap-3 sm:text-left",
+								"mx-auto flex min-w-0 max-w-[min(100%,34rem)] shrink-0 flex-col gap-2 text-center sm:mx-0 sm:gap-3 sm:text-left",
 							)}
 						>
 							<div
@@ -708,7 +708,7 @@ export function HomeTasteMatchedHero({
 									role="listbox"
 									aria-label="Browse taste-matched films"
 								>
-									<AnimatePresence initial={false} mode="popLayout">
+									<AnimatePresence initial={false} mode="sync">
 										{movies.map((film, index) => {
 											const isActive = index === safeActiveIndex;
 											const shouldEnter =
@@ -721,7 +721,8 @@ export function HomeTasteMatchedHero({
 													role="option"
 													aria-selected={isActive}
 													aria-label={`Show ${film.title}`}
-													layout={!reduceMotion}
+													// No layout FLIP — on mobile it stacks tiles on top of each other.
+													layout={false}
 													initial={
 														shouldEnter ? { opacity: 0, scale: 0.96 } : false
 													}
@@ -742,13 +743,13 @@ export function HomeTasteMatchedHero({
 														}
 													}}
 													className={cn(
-														"shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
+														"relative shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
 														// Keep pointer gestures on the button — not a floating browser image drag.
 														"[&_img]:pointer-events-none [&_img]:[-webkit-user-drag:none]",
 														isActive
 															? cn(
 																	HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
-																	"scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
+																	"z-1 scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
 																)
 															: cn(
 																	HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
@@ -772,7 +773,7 @@ export function HomeTasteMatchedHero({
 															"w342",
 														)}
 														className="aspect-2/3 w-full overflow-hidden rounded-xl sm:rounded-2xl"
-														frameClassName="rounded-xl border-0 sm:rounded-2xl"
+														frameClassName="w-full rounded-xl border-0 sm:rounded-2xl"
 														linkable={false}
 													/>
 												</motion.button>
