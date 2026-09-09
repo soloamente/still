@@ -1,5 +1,158 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Sense iOS — near-web native app (2026-09-09) — PLANNER (brainstorm)
+
+**Status:** Specs approved (**go**, 2026-09-09). Slice 1 implementation plan written, uncommitted. Waiting on execution-mode choice.
+
+**Specs:**
+- `docs/superpowers/specs/2026-09-09-sense-ios-near-web-roadmap-design.md` (program, 15 slices)
+- `docs/superpowers/specs/2026-09-09-sense-ios-foundation-design.md` (slice 1)
+
+**Plan:** `docs/superpowers/plans/2026-09-09-sense-ios-foundation.md` (11 tasks; 1–2 Windows-doable, 3–11 need macOS)
+
+### Locked (brainstorm)
+- **Stack:** true native **SwiftUI** at `apps/ios` — not Expo, not a web shell. **iOS first**, Android (Compose) only after an iOS v1.
+- **Coverage:** **near-web** — every patron surface is on the roadmap. **Staff panel stays web-only.**
+- **Look:** **hybrid** — system `TabView` / `NavigationStack` / sheets + Sense tokens, posters, heroes, 0–10 scores. No pixel parity with web.
+- **Auth:** email/password + **Sign in with Apple** + Discord (Apple required by App Review once Discord login exists).
+- **`apps/native` (Expo) is deleted** in slice 1 — one mobile track.
+- **Order:** Home-first — 1 Foundation · 2a Home Movies/TV · 2b Home Community · 3 Search · 4 Title detail · 5 Quick Log · 6 Library · 7 Profile · 8 Reviews · 9 Inbox · 10 Settings · 11 Onboarding · 12 Billing · 13 Achievements · 14 Quotes · 15 Year in review.
+- **Base URL = the web origin** (`BETTER_AUTH_URL` host), which proxies `/api/*` to Elysia. Calling Elysia directly would split OAuth callbacks and the cookie jar across hosts.
+- **Slice 1 gate:** existing onboarded patrons; sign-up allowed but missing `onboardedAt` → Finish setup on the website until slice 11.
+- **Build env:** human has a **Mac**; project defined by **XcodeGen** (`project.yml` committed, `Sense.xcodeproj` git-ignored).
+- **Session transport (corrected during planning):** **not** the URLSession cookie jar. `ASWebAuthenticationSession` runs in the system browser and iOS does not share that jar with the app, so Discord's session would be invisible. App stores the Better Auth credential in the **Keychain** and sends `Cookie` manually; automatic cookie handling off.
+- **Keep `expo()` Better Auth server plugin** + `@better-auth/expo` in `packages/auth` — it appends `?cookie=<set-cookie>` to the `still://` OAuth redirect and is the only supported native bridge. Only the Expo **app** is deleted.
+- **Discord = 3 hops:** `POST /sign-in/social` → open **`/api/auth/expo-authorization-proxy`** in the browser (sets state cookie there) → provider → `still://…?cookie=…`. Opening the provider URL directly fails state validation.
+- **Apple:** async provider (ES256 client-secret JWT via `jose`, ≤6mo), **`appBundleIdentifier` required** for native idToken (else `aud` mismatch), `https://appleid.apple.com` in `trustedOrigins`. Native idToken path has no redirect, so local HTTP dev works.
+
+### Next
+Choose execution mode for the slice 1 plan (subagent-driven in this session, or a separate executing-plans session).
+
+### Lessons
+- `ASWebAuthenticationSession` does **not** share cookies with `URLSession`. Any native OAuth design that assumes a shared cookie jar is wrong; the credential must come back through the deep link.
+- Epoch check: `1781395200` = **2026-06-14**T00:00:00Z (`1781308800` is 2026-06-13). The onboarding v3 launch constant is easy to get off by one day.
+
+## Community ranks podium + portrait frames (2026-08-26) — PLANNER (brainstorm)
+
+**Status:** Tasks 1–4 **review clean**, uncommitted. Final whole-branch review in flight. Signed-in browser QA still needed.
+
+**Plan:** `docs/superpowers/plans/2026-08-26-community-ranks-medals-and-plan-frames.md`
+
+### Executor board
+- [x] Task 1: Frame paths + kind mapping (TDD) — review clean, uncommitted
+- [x] Task 2: AvatarAura CSS frames + delete WebGL canvas — review clean, uncommitted
+- [x] Task 3: Medal podium tokens (TDD) — review clean, uncommitted
+- [x] Task 4: Podium UI (badge, glow, members spacers) — review clean after lip-badge fix, uncommitted; 9/9 podium tests; browser skipped (unsigned)
+
+**Next:** whole-branch review, then human signed-in QA on `/home?browse=community`.
+
+**Companion:** waiting screen — [tab](http://localhost:64612/?key=d6384f75220b62ddb7f791cf0e398ac78884a41c9453461718cea68dfc37f208)
+`screen_dir`: `.superpowers/brainstorm/1064-1787770961/content`
+`state_dir`: `.superpowers/brainstorm/1064-1787770961/state`
+
+### Background
+Reference splits into two jobs:
+1. **Ranks** — 3D white pillars, numbered silver badges, glow at the base (the podium stage).
+2. **User borders** — scalloped / seal-shaped portrait frames are **subscription identity**, not 1st/2nd/3rd chrome. Teal vs coral in the mockup is different plans, not podium place.
+
+Sense today: Community ranks podium is flat gold/silver/desert-orange pedestals with the count inside. Portraits already have **plan-tier / staff circular rims** via `PatronPortraitWithAura` (Still = none; Attuned → Devoted = gradient rim; staff wins).
+
+### Open
+Execution mode for the medals + frames plan.
+
+### Locked
+- **Ranks surface:** Community ranks **podium only** (Film / Shows / Episodes / Reviews top 3). Rows from #4 and month recap stay as they are.
+- **Frames are not rank chrome:** scalloped borders = subscription look, visible on whoever has that plan — including on the podium if they appear there.
+- **A:** Scalloped frames **replace** the circular plan rim **everywhere** `PatronPortraitWithAura` already paints one (feed, profile, account menu, search, podium, drawers).
+- **Frame shape B:** Attuned simple scallop → Immersed denser → Devoted more ornate; staff its own seal. Still (free) assumed **plain circle**.
+- Colors stay in today’s gold → rainbow → staff language (not the example’s teal/coral), unless we reopen.
+- **Hover C:** Light sheen on hover (`@media (hover: hover)`). No WebGL. Shape still carries the plan ladder. Reduced motion: sheen off.
+- **Build 1:** SVG silhouettes + CSS medal pillars. Online dot stays on the inner photo. Staff still wins over plan.
+- **Architecture:** Frames live in `PatronPortraitWithAura` / `AvatarAura` (all circular portraits). Podium restyle is Community ranks top 3 only (`HomeLeaderboardPodium` + `MembersLeaderboardPodium`). No API change. Out of scope: month recap, rank rows #4+, native, new plan hues, WebGL.
+- **Frame ladder:** Still none · Attuned 8 gold scallops · Immersed denser gold · Devoted ornate + rainbow · Staff slate seal (wins). Inner hairline on photo. Decorative (not announced). Sheen on hover pointers only. Circular portraits only.
+- **Podium stage:** 2nd · 1st · 3rd, gold/silver/bronze 3D pillars, silver numbered badges (no 1st text). Count + View log inside pillar → ledger. Name / @handle / portrait → profile. Center 1–2 patrons (drop Members empty flex slots). Floor glow without backdrop-blur. Same shell for Film / Shows / Episodes / Reviews. #4+ rows unchanged.
+
+---
+
+## Discord live presence via Durable Objects (2026-08-26) — PLANNER (brainstorm)
+
+**Status:** Exploring — waiting on one product/infra lock before approaches.
+
+### Background
+Discord **Listening / Playing** already exists in-app (`GET /api/profiles/:handle/discord-activity`, profile hero + account menu). The **source** is self-hosted **Lanyard + Redis** (`docker/discord-lanyard.compose.yml`), which is why production is still gated on a **presence VPS** / Pro funding strip.
+
+Sense already has Cloudflare DOs in **`apps/realtime`** (`RealtimeHub`) for **in-app** listing/patron occupancy — that is **not** Discord presence.
+
+The ask is to use **Cloudflare Durable Objects** for Discord live presence (stateful compute + storage, globally unique instance per coordination atom).
+
+### Locked from existing specs (unchanged unless we reopen)
+- Connect: Better Auth Discord OAuth + Sense Presence guild (`identify` + `guilds.join`)
+- Surfaces: profile hero + own account menu only
+- Privacy: `presenceVisibility` + `discordActivityEnabled`
+- Sense green/orange online dots stay Redis/Worker occupancy — not Discord
+- Never expose Discord snowflakes to browsers
+
+### Open (clarifying)
+~~What the DO **owns**~~ **Locked: A** — Durable Object replaces Lanyard (Gateway + store). Elysia keep `GET /api/profiles/:handle/discord-activity`; no VPS. Live browser push deferred.
+
+**Next:** worker/sharding approach — **Locked: 1** dedicated worker, one Gateway DO.
+
+**Status:** EXECUTOR — Task 8 waiting on human Discord smoke. Command sheet: `.superpowers/sdd/task-8-smoke.md`.
+
+**Design:** Spec + plan approved. `docs/superpowers/plans/2026-08-26-discord-presence-durable-objects.md`
+
+### Executor board
+- [x] Task 1: Presence mapper + Worker package scaffold (review clean; uncommitted; 11/11 bun tests)
+- [x] Task 2: Worker HTTP + DO SQLite storage (review clean; uncommitted; 20/20 bun tests)
+- [x] Task 3: Gateway protocol + alarm keepalive (review clean after heartbeat fix; uncommitted; 51/51 bun tests)
+- [x] Task 4: Elysia env (Worker URL + secret) (review clean; uncommitted; 8/8 config tests)
+- [x] Task 4: Elysia env (Worker URL + secret) (awaiting verification; uncommitted; 8/8 bun tests)
+- [x] Task 5: `lanyard-client` → `discord-presence-client` (review clean; leftover `lanyard-client` git-rm; uncommitted; 5/5 client + 10/10 profile tests)
+- [x] Task 6: Drop funding bar + API (review clean after pending-copy fix; uncommitted)
+- [x] Task 7: Retire Lanyard Docker + docs (implemented; uncommitted; awaiting verification)
+- [ ] Task 8: Local wrangler smoke (human Discord) — command sheet written; `.dev.vars` missing; server missing Worker URL/secret; wrangler not installed yet
+
+**Locked**
+- A: DO replaces Lanyard (no live browser push)
+- 1: dedicated worker, one Gateway DO
+- Lanyard-shaped `GET /v1/users/:id`
+- Drop VPS funding strip; Pro gate stays
+
+### Executor's Feedback (Task 2)
+- Implemented Worker `fetch` + `DiscordGateway` SQLite RPC. `bun test` 20/20. No commit. No WebSocket.
+- `graphify` not on PATH — skipped.
+- Please verify Task 2 before **go** on Task 3.
+
+### Executor's Feedback (Task 4)
+- Swapped required infra to Worker URL + internal secret; `LANYARD_INTERNAL_URL` stays in env schema (Task 5). `DISCORD_ACTIVITY_PRO_TARGET` left in place (Task 6).
+- TDD: RED 6 pass / 2 fail → GREEN 8/8 (`cd apps/server; bun test src/lib/discord-activity-config.test.ts`).
+- No commit. `graphify` skipped (not on PATH).
+- Please verify Task 4 before **go** on Task 5.
+
+### Executor's Feedback (Task 5)
+- Replaced `lanyard-client` with Worker `discord-presence-client` (Bearer secret; unset URL or secret → null, no fetch). Dropped `LANYARD_INTERNAL_URL` from env schema. `DISCORD_ACTIVITY_PRO_TARGET` left in place (Task 6).
+- TDD: RED 0 pass / 5 fail (missing module) → GREEN 5/5 client + 10/10 profile (`cd apps/server; bun test src/lib/discord-presence-client.test.ts; bun test src/lib/fetch-profile-discord-activity.test.ts`).
+- Leftover `lanyard-client.ts` / `.test.ts` were still in git; `git rm` staged, zero `LANYARD_` / `lanyard-client` in `apps/server`. Renamed profile test title off “Lanyard”.
+- No commit. `graphify` skipped (not on PATH).
+- Task 5 verified. **go** → Task 6.
+
+### Executor's Feedback (Task 6)
+- Deleted funding strip, `/api/discord-activity/funding`, Polar count, `DISCORD_ACTIVITY_PRO_TARGET`. Settings production-off uses `GET /api/me/discord/status` `featureEnabled` + pending teaser + **Support with Pro**.
+- Pending footer was still “once funded”; rewritten to Attuned+ perk copy. Tests: config 8/8, me-discord 9/9, discord-link-status 10/10, product-changelog 8/8.
+- No commit. Please verify Task 6 (Pricing has no bar; Settings production-off has no progressbar) then **go** for Task 7.
+
+### Executor's Feedback (Task 7)
+- Deleted `docker/discord-lanyard.compose.yml`. Env example now Worker URL `http://127.0.0.1:8788` + internal secret + `wrangler dev` notes.
+- 2026-07-28 architecture lock + ops how-to superseded by the 2026-08-26 Worker spec (historical summary/formatter left in place). 2026-08-11 unlock checklist: Worker not VPS; funding strip retired.
+- `AGENTS.md` Discord fact no longer points at compose / `LANYARD_INTERNAL_URL`. No commit. **go** → Task 8 (human Discord smoke).
+
+### Executor's Feedback (Task 8)
+- Command sheet: `.superpowers/sdd/task-8-smoke.md`. Did not start Wrangler (no `.dev.vars`; would use your bot token).
+- On disk: `.dev.vars` missing; `apps/server/.env` has Discord OAuth/bot/guild/flag but not Worker URL/secret; leftover `LANYARD_INTERNAL_URL`; wrangler not in `node_modules` until `bun install`.
+- Human: copy `.dev.vars`, add Worker URL + matching secret to server `.env`, `bun run dev:discord-presence`, then health → ensure → Spotify/game → profile row → stop Worker (silent omit).
+
+---
+
 ## Landing `/` mobile (spiral + nav) (2026-08-26) — EXECUTOR
 
 **Status:** Fixed locally — waiting for human QA on `/` at ~432×427.
