@@ -7,12 +7,13 @@ export function hasDiscordOAuthCredentials(): boolean {
 	);
 }
 
-/** Bot + guild + Lanyard vars required for guild join and activity reads. */
+/** Bot + guild + presence Worker vars required for guild join and activity reads. */
 export function hasDiscordActivityInfrastructure(): boolean {
 	return Boolean(
 		hasDiscordOAuthCredentials() &&
 			env.DISCORD_BOT_TOKEN?.trim() &&
 			env.DISCORD_PRESENCE_GUILD_ID?.trim() &&
-			env.LANYARD_INTERNAL_URL?.trim(),
+			env.DISCORD_PRESENCE_WORKER_URL?.trim() &&
+			env.DISCORD_PRESENCE_INTERNAL_SECRET?.trim(),
 	);
 }

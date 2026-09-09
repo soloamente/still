@@ -1,0 +1,11 @@
+{
+	"name": "discord-presence-still",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-06-01",
+	"durable_objects": {
+		"bindings": [{ "name": "DISCORD_GATEWAY", "class_name": "DiscordGateway" }]
+	},
+	"migrations": [
+		{ "tag": "v1", "new_sqlite_classes": ["DiscordGateway"] }
+	]
+}

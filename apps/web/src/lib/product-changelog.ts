@@ -32,7 +32,7 @@ export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 		dateLabel: "August 20, 2026",
 		headline: "Review translate and reliability",
 		summary:
-			"Translate reviews in the reader, a round of bug fixes, and Discord activity for Pro still funding on Pricing.",
+			"Translate reviews in the reader, a round of bug fixes, and Discord activity as an Attuned+ perk.",
 		items: [
 			{
 				title: "Translate reviews",
@@ -48,7 +48,7 @@ export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 			},
 			{
 				title: "Discord activity for Pro",
-				body: "Listening and Playing on profiles unlocks for every Pro member once paid plans fund the presence server. Live progress stays on Pricing.",
+				body: "Listening and Playing on profiles is an Attuned+ perk. Connect Discord when production is on.",
 			},
 		],
 	},
@@ -58,11 +58,11 @@ export const PRODUCT_CHANGELOG_RELEASES: ProductChangelogRelease[] = [
 		dateLabel: "August 11, 2026",
 		headline: "Discord activity for Pro",
 		summary:
-			"Fund the presence server with Pro — live progress on Pricing; ships for every Pro member when production is ready.",
+			"Discord activity is an Attuned+ perk. Connect Discord when production is on.",
 		items: [
 			{
-				title: "Pro funding progress",
-				body: "Pricing and Settings show how many paying Pro members are toward the Discord activity goal. Connect stays off until the presence server is live.",
+				title: "Discord activity",
+				body: "Listening and Playing on profiles is included with Attuned and above. Connect Discord when production is on.",
 			},
 			{
 				title: "Pro perk",

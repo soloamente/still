@@ -1,6 +1,7 @@
 /**
  * Resolves viewer-scoped Discord activity for a profile handle.
- * Keeps Lanyard reads and visibility rules out of the Elysia route handler.
+ * Keeps Discord presence Worker reads and visibility rules out of the Elysia
+ * route handler.
  */
 
 import {
@@ -14,7 +15,7 @@ import {
 	fetchProfileAccessByHandle,
 } from "./discord-activity-metadata-cache";
 import { canViewerSeeDiscordActivity } from "./discord-activity-visibility";
-import { getCachedLanyardPresence } from "./lanyard-client";
+import { getCachedDiscordPresence } from "./discord-presence-client";
 import { fetchMutualFollowingIds } from "./mutual-follow-cache";
 import { loadPatronEntitlements } from "./patron-entitlements";
 import { patronHasPlanFeature } from "./plan-feature-access";
@@ -80,7 +81,7 @@ export async function fetchProfileDiscordActivity(input: {
 		return { ok: true, body: { visible: false } };
 	}
 
-	const presence = await getCachedLanyardPresence(discordAccountId);
+	const presence = await getCachedDiscordPresence(discordAccountId);
 	const formatted = formatDiscordActivity(presence);
 	if (!formatted) {
 		return { ok: true, body: { visible: false } };

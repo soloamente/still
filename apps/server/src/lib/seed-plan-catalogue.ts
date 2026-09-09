@@ -171,7 +171,7 @@ const FEATURES: FeatureSeed[] = [
 		key: "discord_activity",
 		name: "Discord activity",
 		description:
-			"Show Listening / Playing from Discord on your profile and account menu. Requires Sense's presence server — included with Pro once funded and live.",
+			"Show Listening / Playing from Discord on your profile and account menu. Included with Attuned and above when production is on.",
 		buildStatus: "planned",
 		tiers: ["attuned", "immersed", "devoted"],
 	},

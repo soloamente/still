@@ -3,7 +3,7 @@
 **Status:** Approved (2026-07-29) — brainstorm locked  
 **Date:** 2026-07-28  
 **Topic:** Live Discord activity lines on profile via Sense-owned presence guild + self-hosted Lanyard  
-**Related:** [`2026-06-16-presence-online-visibility-design.md`](./2026-06-16-presence-online-visibility-design.md), [`2026-06-30-presence-self-view-design.md`](./2026-06-30-presence-self-view-design.md)
+**Related:** [`2026-06-16-presence-online-visibility-design.md`](./2026-06-16-presence-online-visibility-design.md), [`2026-06-30-presence-self-view-design.md`](./2026-06-30-presence-self-view-design.md), [`2026-08-26-discord-presence-durable-objects-design.md`](./2026-08-26-discord-presence-durable-objects-design.md) (presence source: Worker + Gateway Durable Object; this spec’s Lanyard/Docker architecture is superseded)
 
 ## Summary
 
@@ -28,7 +28,7 @@ Sense **online/away dots** remain the existing Redis presence system; Discord ac
 | Refresh | Server-side fetch + **~15s cache** per Discord user; account menu **~30s poll on open**; no browser WebSocket to Lanyard in v1 |
 | Recommendation | Settings card + optional post-onboarding nudge; **skippable**, not blocking |
 | Tier gating | **None** for v1 — available to all signed-in patrons who connect |
-| Architecture | **Self-hosted Lanyard (Docker + Redis)** + Better Auth Discord OAuth + Elysia proxy route |
+| Architecture | **Superseded (2026-08-26):** Discord presence Worker + one Gateway Durable Object (`apps/discord-presence`). Historical lock was self-hosted Lanyard (Docker + Redis) + Better Auth Discord OAuth + Elysia proxy route. Compose file retired. |
 
 ## Problem
 
@@ -228,7 +228,7 @@ type DiscordActivityResponse =
 - Compact row under name/handle when self connected.
 - Truncation + `title` attribute for full string.
 
-## Discord & Lanyard operations
+## Discord operations
 
 ### Discord application setup
 
@@ -237,12 +237,13 @@ type DiscordActivityResponse =
 3. Create **Sense Presence** guild; bot is sole admin; no public invite URL marketed.
 4. Configure OAuth redirect via Better Auth.
 
-### Self-hosted Lanyard
+### Discord presence (supersedes self-hosted Lanyard)
 
-- Deploy alongside API or internal network (Docker Compose: `lanyard` + `redis`).
-- **Local dev:** `docker/discord-lanyard.compose.yml` — see Task 0 checklist in file header.
-- `BOT_TOKEN` = same Sense bot token as `DISCORD_BOT_TOKEN`.
-- `LANYARD_INTERNAL_URL` reachable from `apps/server` only (not public internet).
+Local/production presence reads go through the Discord presence Worker — see [`2026-08-26-discord-presence-durable-objects-design.md`](./2026-08-26-discord-presence-durable-objects-design.md). `docker/discord-lanyard.compose.yml` is retired; do not run Docker Redis/Lanyard.
+
+- **Local:** `bun run dev:discord-presence` or `cd apps/discord-presence; bun run dev` (`wrangler dev --port 8788`).
+- Gateway token lives on the Worker `.dev.vars` (same Sense bot as `DISCORD_BOT_TOKEN`).
+- `DISCORD_PRESENCE_WORKER_URL` + `DISCORD_PRESENCE_INTERNAL_SECRET` reachable from `apps/server` only (not public internet).
 
 ### Environment variables (server)
 
@@ -250,10 +251,10 @@ type DiscordActivityResponse =
 |----------|---------|
 | `DISCORD_CLIENT_ID` | OAuth |
 | `DISCORD_CLIENT_SECRET` | OAuth |
-| `DISCORD_BOT_TOKEN` | Guild join/kick + Lanyard |
+| `DISCORD_BOT_TOKEN` | Guild join/kick |
 | `DISCORD_PRESENCE_GUILD_ID` | Presence-only guild snowflake |
-| `LANYARD_INTERNAL_URL` | e.g. `http://lanyard:4001` |
-| `LANYARD_REDIS_URL` | if server cache shares Redis (optional) |
+| `DISCORD_PRESENCE_WORKER_URL` | e.g. `http://127.0.0.1:8788` |
+| `DISCORD_PRESENCE_INTERNAL_SECRET` | Bearer secret shared with the Worker |
 
 Web env: none (all reads proxied through Elysia).
 

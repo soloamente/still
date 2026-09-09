@@ -124,8 +124,8 @@ const serverEnv = {
 	/** Private images bucket (default `cue-assets`). */
 	R2_ASSETS_BUCKET: optionalNonEmptyString(),
 	/**
-	 * Discord profile activity (Lanyard) — opt-in; requires flag plus Discord +
-	 * Lanyard env vars (see `isDiscordActivityEnabled` in server lib).
+	 * Discord profile activity (Worker-backed) — opt-in; requires flag plus Discord +
+	 * presence Worker env vars (see `isDiscordActivityEnabled` in server lib).
 	 */
 	DISCORD_ACTIVITY_ENABLED: z
 		.enum(["true", "false", "1", "0", "yes", "no"])
@@ -133,14 +133,28 @@ const serverEnv = {
 	/** Discord OAuth application id. */
 	DISCORD_CLIENT_ID: optionalNonEmptyString(),
 	DISCORD_CLIENT_SECRET: optionalNonEmptyString(),
-	/** Bot token — guild join/kick and self-hosted Lanyard gateway. */
+	/** Bot token — guild join/kick only. Gateway token lives on the presence Worker. */
 	DISCORD_BOT_TOKEN: optionalNonEmptyString(),
 	/** Sense Presence guild snowflake — minimal guild for reading patron presence. */
 	DISCORD_PRESENCE_GUILD_ID: optionalNonEmptyString(),
 	/** Public funding bar target — counting Polar-paid Pro toward Discord VPS. */
 	DISCORD_ACTIVITY_PRO_TARGET: optionalNonEmptyString(),
-	/** Internal Lanyard REST base, e.g. `http://lanyard:4001` (not public). */
-	LANYARD_INTERNAL_URL: optionalUrl(),
+	/** Discord presence Worker base, e.g. `http://127.0.0.1:8788` (not public). */
+	DISCORD_PRESENCE_WORKER_URL: optionalUrl(),
+	/** Bearer secret shared with the Discord presence Worker internal routes. */
+	DISCORD_PRESENCE_INTERNAL_SECRET: optionalNonEmptyString(),
+	/**
+	 * Sign in with Apple — optional, mirrors the Discord block. Without these the
+	 * provider is not registered and iOS falls back to email sign-in.
+	 * `APPLE_CLIENT_ID` is the Services ID (web flow); `APPLE_APP_BUNDLE_IDENTIFIER`
+	 * is the iOS bundle ID and is required for native idToken sign-in.
+	 */
+	APPLE_CLIENT_ID: optionalNonEmptyString(),
+	APPLE_TEAM_ID: optionalNonEmptyString(),
+	APPLE_KEY_ID: optionalNonEmptyString(),
+	/** Contents of the .p8 private key, newlines may be escaped as \n. */
+	APPLE_PRIVATE_KEY: optionalNonEmptyString(),
+	APPLE_APP_BUNDLE_IDENTIFIER: optionalNonEmptyString(),
 };
 
 export const env = createEnv<undefined, typeof serverEnv>({

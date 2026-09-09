@@ -96,14 +96,14 @@ export const CURRENT_WHATS_NEW_RELEASE: WhatsNewRelease = {
 		{
 			title: "Discord activity for Pro",
 			description:
-				"Listening and Playing on profiles needs a dedicated presence server. We're funding it with paid plans so the feature can stay reliable for everyone who unlocks it.",
+				"Discord activity is an Attuned+ perk. Connect Discord so Listening, Playing, and Streaming can show on your profile and account menu.",
 			bodyParagraphs: [
-				"Listening and Playing on profiles needs a dedicated presence server. We're funding it with paid plans so the feature can stay reliable for everyone who unlocks it.",
-				"When enough Pro members are in, Discord activity turns on for Attuned and above — not only early supporters. Live progress is on Pricing.",
+				"Discord activity is an Attuned+ perk. Connect Discord so Listening, Playing, and Streaming can show on your profile and account menu.",
+				"Connect ships when production is on — not on the free Still plan.",
 			],
 			detailCard: {
 				title: "What you unlock",
-				body: "Connect Discord once, then Listening, Playing, and Streaming can show on your profile and account menu. Privacy follows your existing presence settings. Production stays off until the server is funded.",
+				body: "Connect Discord once, then Listening, Playing, and Streaming can show on your profile and account menu. Privacy follows your existing presence settings.",
 			},
 			media: WHATS_NEW_DEFAULT_VIDEO,
 		},

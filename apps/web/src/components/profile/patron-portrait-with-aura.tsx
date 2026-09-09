@@ -41,7 +41,7 @@ export type PatronPortraitWithAuraProps = PatronPortraitAvatarProps & {
 };
 
 /**
- * Patron portrait with plan-tier rim or staff seal — static, no hover motion.
+ * Patron portrait with plan-tier or staff scallop frame; hover sheen lives on AvatarAura.
  */
 export function PatronPortraitWithAura({
 	planTier,
@@ -132,10 +132,12 @@ export function PatronPortraitWithAura({
 					{portrait}
 				</span>
 			)}
+			{/* 14 must match AVATAR_AURA_WELL_INSET_PERCENT — static Tailwind so JIT keeps the class. */}
 			<PatronOnlineDot
 				presenceState={resolvedPresenceState}
 				label={dotLabel}
 				size={resolvePatronOnlineDotSize(width)}
+				className={showAura ? "right-[14%] bottom-[14%]" : undefined}
 			/>
 		</span>
 	);

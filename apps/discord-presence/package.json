@@ -1,0 +1,15 @@
+{
+	"name": "@still/discord-presence-worker",
+	"private": true,
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "wrangler dev --port 8788",
+		"deploy": "wrangler deploy",
+		"type-check": "tsc --noEmit",
+		"test": "bun test"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250617.0",
+		"wrangler": "^4.40.0"
+	}
+}

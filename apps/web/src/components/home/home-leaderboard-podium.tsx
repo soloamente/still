@@ -7,7 +7,10 @@ import { CommunityRanksPodiumCount } from "@/components/home/community-ranks-pod
 import { openPatronWatchLedger } from "@/components/home/patron-watch-ledger-drawer";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
+	COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME,
+	COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME,
 	type CommunityRanksPodiumSlot,
+	communityRanksPodiumFilled,
 	communityRanksPodiumSlotLabel,
 	HOME_COMMUNITY_RANKS_PODIUM_COLUMN_CLASSNAME,
 	leaderboardKindLedgerCta,
@@ -49,9 +52,6 @@ function PodiumTile({
 				delay: slot === "first" ? 0.1 : slot === "second" ? 0 : 0.2,
 			}}
 		>
-			<p className="font-medium text-muted-foreground text-xs tracking-wide">
-				{rankLabel}
-			</p>
 			<Link
 				href={`/profile/${entry.handle}`}
 				className="relative mt-2 overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -100,7 +100,7 @@ function PodiumTile({
 				count={entry.count}
 				ctaLabel={leaderboardKindLedgerCta(kind)}
 				title="View watch log for this period"
-				ariaLabel={`${entry.count} ${leaderboardKindCountLabel(kind, entry.count)} — view watch list`}
+				ariaLabel={`${rankLabel}. ${entry.count} ${leaderboardKindCountLabel(kind, entry.count)} — view watch list`}
 				onClick={() =>
 					openPatronWatchLedger({
 						userId: entry.userId,
@@ -132,16 +132,17 @@ export function HomeLeaderboardPodium({
 	period: HomeLeaderboardPeriod;
 }) {
 	const reduceMotion = useReducedMotion();
-	const first = entries[0];
-	const second = entries[1];
-	const third = entries[2];
+	const filled = communityRanksPodiumFilled(entries);
+	if (!filled) return null;
+	const { first, second, third } = filled;
 
-	if (!first) return null;
-
-	// Only render filled slots — empty flex-1 placeholders shoved 1–2 patrons off-center.
 	return (
 		<div className={HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME}>
-			<div className="flex items-end justify-center gap-2 sm:gap-3">
+			<div className={COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME}>
+				<div
+					className={COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME}
+					aria-hidden
+				/>
 				{second ? (
 					<PodiumTile
 						entry={second}

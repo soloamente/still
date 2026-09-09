@@ -3,7 +3,7 @@
 **Status:** Approved (brainstorm 2026-08-11)  
 **Date:** 2026-08-11  
 **Apps:** `apps/web`, `apps/server`, `packages/plans`  
-**Related:** [`2026-07-28-discord-profile-activity-design.md`](./2026-07-28-discord-profile-activity-design.md), [`2026-07-06-sense-support-campaign-dialogs-design.md`](./2026-07-06-sense-support-campaign-dialogs-design.md), [`2026-07-04-sense-subscriptions-design.md`](./2026-07-04-sense-subscriptions-design.md)
+**Related:** [`2026-07-28-discord-profile-activity-design.md`](./2026-07-28-discord-profile-activity-design.md), [`2026-07-06-sense-support-campaign-dialogs-design.md`](./2026-07-06-sense-support-campaign-dialogs-design.md), [`2026-07-04-sense-subscriptions-design.md`](./2026-07-04-sense-subscriptions-design.md), [`2026-08-26-discord-presence-durable-objects-design.md`](./2026-08-26-discord-presence-durable-objects-design.md) (presence Worker, not VPS; funding strip retired)
 
 ## Summary
 
@@ -180,11 +180,13 @@ Tunable via env e.g. `DISCORD_ACTIVITY_PRO_TARGET` with a safe default placehold
 
 ## Unlock day checklist (ops)
 
-1. Presence VPS + Lanyard healthy; Discord bot + guild configured.
-2. Set all Discord/Lanyard env vars on server (and web only if required today — prefer server-only).
+Superseded 2026-08-26: no presence VPS. Discord presence Worker (`wrangler` / `apps/discord-presence`); Polar funding strip retired. Unlock is still ops — hitting a subscriber target does not auto-enable.
+
+1. Discord presence Worker live (`wrangler` / `apps/discord-presence`); Discord bot + guild configured.
+2. Set Worker URL + internal secret + Discord OAuth/bot/guild on the server (web needs none).
 3. Set `DISCORD_ACTIVITY_ENABLED=true`.
 4. Flip plan feature `discord_activity` to `exists` / clear coming-soon on Pricing.
-5. Smoke: Pro Connect works; Still sees upgrade; funding strip gone or post-ship quiet state.
+5. Smoke: Pro Connect works; Still sees upgrade; no funding strip on Pricing or Settings.
 
 ## Files (expected)
 

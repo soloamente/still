@@ -51,7 +51,8 @@ export function discordLinkStatusCopy(state: DiscordLinkVisualState): {
 		case "pending":
 			return {
 				pill: "Soon",
-				footer: "Listening and Playing ship for every Pro member once funded",
+				footer:
+					"Listening, Playing, and Streaming are an Attuned+ perk when production is on.",
 			};
 		case "locked":
 			return {

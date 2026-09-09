@@ -1591,7 +1591,11 @@ html.theme-lobby-light .cinema-vignette {
 		background: linear-gradient(
 			105deg,
 			transparent 42%,
-			color-mix(in oklab, var(--subscription-card-sheen, oklch(0.8 0.08 70)) 28%, transparent)
+			color-mix(
+					in oklab,
+					var(--subscription-card-sheen, oklch(0.8 0.08 70)) 28%,
+					transparent
+				)
 				50%,
 			transparent 58%
 		);
@@ -1683,40 +1687,48 @@ html.theme-lobby-light .cinema-vignette {
 	}
 
 	/* Soft GPU / reduced-motion: keep a quiet tint, drop the expensive blur wash. */
-	.subscription-card-fx:not(.subscription-card-fx--live) .subscription-card-fx__aurora {
+	.subscription-card-fx:not(.subscription-card-fx--live)
+	.subscription-card-fx__aurora {
 		filter: none;
 		opacity: 0.28;
 	}
 
-	.subscription-card-fx:not(.subscription-card-fx--live) .subscription-card-fx__sheen {
+	.subscription-card-fx:not(.subscription-card-fx--live)
+		.subscription-card-fx__sheen {
 		display: none;
 	}
 
 	/* Live motion — gated by React (`--live`) so soft GPU / reduced-motion stay static. */
-	.subscription-card-fx--live.subscription-card-fx--attuned .subscription-card-fx__sheen {
+	.subscription-card-fx--live.subscription-card-fx--attuned
+	.subscription-card-fx__sheen {
 		opacity: 0.85;
 		animation: subscription-card-sheen 4.2s ease-in-out infinite;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--immersed .subscription-card-fx__rim-spin {
+	.subscription-card-fx--live.subscription-card-fx--immersed
+		.subscription-card-fx__rim-spin {
 		animation: subscription-card-rim-spin 4.5s linear infinite;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--immersed .subscription-card-fx__sheen {
+	.subscription-card-fx--live.subscription-card-fx--immersed
+		.subscription-card-fx__sheen {
 		opacity: 0.9;
 		animation: subscription-card-sheen 3.2s ease-in-out infinite;
 		animation-delay: 0.6s;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__rim-spin {
+	.subscription-card-fx--live.subscription-card-fx--devoted
+		.subscription-card-fx__rim-spin {
 		animation: subscription-card-rim-spin 7s linear infinite;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__aurora {
+	.subscription-card-fx--live.subscription-card-fx--devoted
+		.subscription-card-fx__aurora {
 		animation: subscription-card-aurora 9s ease-in-out infinite alternate;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__sheen {
+	.subscription-card-fx--live.subscription-card-fx--devoted
+		.subscription-card-fx__sheen {
 		opacity: 0.75;
 		animation: subscription-card-sheen 5s ease-in-out infinite;
 		animation-delay: 1.2s;
@@ -1727,7 +1739,8 @@ html.theme-lobby-light .cinema-vignette {
 		opacity: 1;
 	}
 
-	.subscription-card-fx--hot.subscription-card-fx--devoted .subscription-card-fx__aurora {
+	.subscription-card-fx--hot.subscription-card-fx--devoted
+		.subscription-card-fx__aurora {
 		opacity: 0.75;
 	}
 }
@@ -1777,7 +1790,8 @@ html.theme-lobby-light .cinema-vignette {
 		opacity: 0 !important;
 	}
 
-	.subscription-card-fx--live.subscription-card-fx--devoted .subscription-card-fx__aurora {
+	.subscription-card-fx--live.subscription-card-fx--devoted
+		.subscription-card-fx__aurora {
 		opacity: 0.4;
 		transform: none;
 	}
@@ -1800,13 +1814,13 @@ html.theme-lobby-light .cinema-vignette {
 		/* Edge catch: each border lights by how much it faces the viewer (--edge-*). */
 		box-shadow:
 			inset calc(var(--edge-l, 0) * 1.5px) 0 calc(var(--edge-l, 0) * 10px)
-				rgba(255, 255, 255, calc(var(--edge-l, 0) * 0.5)),
+			rgba(255, 255, 255, calc(var(--edge-l, 0) * 0.5)),
 			inset calc(var(--edge-r, 0) * -1.5px) 0 calc(var(--edge-r, 0) * 10px)
-				rgba(255, 255, 255, calc(var(--edge-r, 0) * 0.5)),
+			rgba(255, 255, 255, calc(var(--edge-r, 0) * 0.5)),
 			inset 0 calc(var(--edge-t, 0) * 1.5px) calc(var(--edge-t, 0) * 10px)
-				rgba(255, 255, 255, calc(var(--edge-t, 0) * 0.5)),
+			rgba(255, 255, 255, calc(var(--edge-t, 0) * 0.5)),
 			inset 0 calc(var(--edge-b, 0) * -1.5px) calc(var(--edge-b, 0) * 10px)
-				rgba(255, 255, 255, calc(var(--edge-b, 0) * 0.5));
+			rgba(255, 255, 255, calc(var(--edge-b, 0) * 0.5));
 	}
 
 	/*
@@ -1944,8 +1958,8 @@ html.theme-lobby-light .cinema-vignette {
 		justify-content: space-between;
 		padding: 1.25rem 1.35rem;
 		color: oklch(0.22 0.02 280);
-		text-shadow: calc(var(--emboss-x, 0px) * -1) calc(var(--emboss-y, 0px) * -1) 0
-			rgba(255, 255, 255, 0.35);
+		text-shadow: calc(var(--emboss-x, 0px) * -1) calc(var(--emboss-y, 0px) * -1)
+			0 rgba(255, 255, 255, 0.35);
 	}
 
 	.holo-tile {
@@ -2024,13 +2038,32 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
-/* Avatar plan auras — subtle static tier rim; no hover motion. */
+/* Avatar plan frames — SVG-masked metal; circular photo well; hover sheen only. */
 @layer components {
 	.avatar-aura-rim {
 		position: relative;
 		box-sizing: border-box;
-		padding: 1.5px;
-		border-radius: 9999px;
+		/* Scallops live in the metal mask — do not clip with border-radius. */
+		border-radius: 0;
+		padding: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	.avatar-aura-metal,
+	.avatar-aura-sheen {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		-webkit-mask-image: var(--avatar-aura-frame-mask);
+		mask-image: var(--avatar-aura-frame-mask);
+		-webkit-mask-size: 100% 100%;
+		mask-size: 100% 100%;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+	}
+
+	.avatar-aura-metal {
 		background: conic-gradient(
 			from 210deg,
 			var(--avatar-aura-rim-a, oklch(0.62 0.06 70)),
@@ -2038,8 +2071,45 @@ html.theme-lobby-light .cinema-vignette {
 			var(--avatar-aura-rim-c, oklch(0.58 0.05 55)),
 			var(--avatar-aura-rim-a, oklch(0.62 0.06 70))
 		);
-		/* Hairline separation from canvas — no outer bloom or glow. */
-		box-shadow: 0 0 0 1px oklch(0 0 0 / 0.18);
+	}
+
+	.avatar-aura-well {
+		/* Fill the flex root minus 14% margin so the circular photo does not collapse. */
+		flex: 1 1 auto;
+		min-width: 0;
+		min-height: 0;
+		align-self: stretch;
+		box-shadow: inset 0 0 0 1.5px var(--background);
+	}
+
+	.avatar-aura-sheen {
+		z-index: 2;
+		opacity: 0;
+		background: linear-gradient(
+			105deg,
+			transparent 42%,
+			oklch(1 0 0 / 0.32) 50%,
+			transparent 58%
+		);
+		background-size: 220% 100%;
+		background-position: 100% 0;
+		transition: opacity 0.2s ease-out;
+	}
+
+	@media (hover: hover) {
+		.avatar-aura-root:hover .avatar-aura-sheen {
+			opacity: 1;
+			background-position: 0 0;
+			transition:
+				opacity 0.2s ease-out,
+				background-position 0.2s linear;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.avatar-aura-sheen {
+			display: none;
+		}
 	}
 
 	.avatar-aura-rim--attuned {
@@ -2060,17 +2130,12 @@ html.theme-lobby-light .cinema-vignette {
 		--avatar-aura-rim-c: oklch(0.68 0.09 130);
 	}
 
-	/* Staff — quadrant seal (cool slate), distinct from warm plan gradients. */
-	.avatar-aura-rim--staff {
-		padding: 2px;
+	.avatar-aura-rim--staff .avatar-aura-metal {
 		background: repeating-conic-gradient(
 			from -22.5deg,
 			oklch(0.74 0.03 255) 0deg 45deg,
 			oklch(0.5 0.045 268) 45deg 90deg
 		);
-		box-shadow:
-			0 0 0 1px oklch(0.42 0.04 265 / 0.55),
-			inset 0 0 0 0.5px oklch(0.9 0.02 255 / 0.28);
 	}
 }
 
@@ -2143,10 +2208,18 @@ html.theme-lobby-light .cinema-vignette {
 			radial-gradient(ellipse at center, #000 0%, transparent 62%);
 		-webkit-mask-repeat: no-repeat, no-repeat;
 		mask-repeat: no-repeat, no-repeat;
-		-webkit-mask-size: 72% 62%, 52% 52%;
-		mask-size: 72% 62%, 52% 52%;
-		-webkit-mask-position: 16% 20%, 30% 32%;
-		mask-position: 16% 20%, 30% 32%;
+		-webkit-mask-size:
+			72% 62%,
+			52% 52%;
+		mask-size:
+			72% 62%,
+			52% 52%;
+		-webkit-mask-position:
+			16% 20%,
+			30% 32%;
+		mask-position:
+			16% 20%,
+			30% 32%;
 		animation:
 			missing-artwork-morph 4.2s cubic-bezier(0.35, 1.55, 0.65, 1) infinite,
 			missing-artwork-breathe 1.9s cubic-bezier(0.66, 0, 0.34, 1) infinite;
@@ -2154,34 +2227,74 @@ html.theme-lobby-light .cinema-vignette {
 
 	@keyframes missing-artwork-morph {
 		0% {
-			-webkit-mask-size: 52% 46%, 40% 40%;
-			mask-size: 52% 46%, 40% 40%;
-			-webkit-mask-position: 16% 20%, 30% 32%;
-			mask-position: 16% 20%, 30% 32%;
+			-webkit-mask-size:
+				52% 46%,
+				40% 40%;
+			mask-size:
+				52% 46%,
+				40% 40%;
+			-webkit-mask-position:
+				16% 20%,
+				30% 32%;
+			mask-position:
+				16% 20%,
+				30% 32%;
 		}
 		25% {
-			-webkit-mask-size: 46% 58%, 44% 38%;
-			mask-size: 46% 58%, 44% 38%;
-			-webkit-mask-position: 84% 16%, 66% 30%;
-			mask-position: 84% 16%, 66% 30%;
+			-webkit-mask-size:
+				46% 58%,
+				44% 38%;
+			mask-size:
+				46% 58%,
+				44% 38%;
+			-webkit-mask-position:
+				84% 16%,
+				66% 30%;
+			mask-position:
+				84% 16%,
+				66% 30%;
 		}
 		50% {
-			-webkit-mask-size: 60% 44%, 38% 46%;
-			mask-size: 60% 44%, 38% 46%;
-			-webkit-mask-position: 82% 84%, 62% 68%;
-			mask-position: 82% 84%, 62% 68%;
+			-webkit-mask-size:
+				60% 44%,
+				38% 46%;
+			mask-size:
+				60% 44%,
+				38% 46%;
+			-webkit-mask-position:
+				82% 84%,
+				62% 68%;
+			mask-position:
+				82% 84%,
+				62% 68%;
 		}
 		75% {
-			-webkit-mask-size: 48% 54%, 46% 40%;
-			mask-size: 48% 54%, 46% 40%;
-			-webkit-mask-position: 14% 82%, 34% 66%;
-			mask-position: 14% 82%, 34% 66%;
+			-webkit-mask-size:
+				48% 54%,
+				46% 40%;
+			mask-size:
+				48% 54%,
+				46% 40%;
+			-webkit-mask-position:
+				14% 82%,
+				34% 66%;
+			mask-position:
+				14% 82%,
+				34% 66%;
 		}
 		100% {
-			-webkit-mask-size: 52% 46%, 40% 40%;
-			mask-size: 52% 46%, 40% 40%;
-			-webkit-mask-position: 16% 20%, 30% 32%;
-			mask-position: 16% 20%, 30% 32%;
+			-webkit-mask-size:
+				52% 46%,
+				40% 40%;
+			mask-size:
+				52% 46%,
+				40% 40%;
+			-webkit-mask-position:
+				16% 20%,
+				30% 32%;
+			mask-position:
+				16% 20%,
+				30% 32%;
 		}
 	}
 
@@ -3438,11 +3551,16 @@ html[data-software-gpu] .modal-overlay-scrim {
 .discord-link-flow__track {
 	position: absolute;
 	inset: 0;
-	border-top: 2px dotted color-mix(in oklab, var(--muted-foreground) 35%, transparent);
+	border-top: 2px dotted
+		color-mix(in oklab, var(--muted-foreground) 35%, transparent);
 }
 
 .discord-link-flow.is-live .discord-link-flow__track {
-	border-top-color: color-mix(in oklab, var(--muted-foreground) 28%, transparent);
+	border-top-color: color-mix(
+		in oklab,
+		var(--muted-foreground) 28%,
+		transparent
+	);
 }
 
 .discord-link-flow__pulse {
@@ -3463,11 +3581,13 @@ html[data-software-gpu] .modal-overlay-scrim {
 }
 
 .discord-link-flow.is-live[data-toward="trailing"] .discord-link-flow__pulse {
-	animation: discord-link-flow-to-end var(--discord-link-flow-dur) linear infinite;
+	animation: discord-link-flow-to-end var(--discord-link-flow-dur) linear
+		infinite;
 }
 
 .discord-link-flow.is-live[data-toward="leading"] .discord-link-flow__pulse {
-	animation: discord-link-flow-to-start var(--discord-link-flow-dur) linear infinite;
+	animation: discord-link-flow-to-start var(--discord-link-flow-dur) linear
+		infinite;
 }
 
 .discord-link-flow.is-paused .discord-link-flow__pulse {

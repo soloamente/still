@@ -6,14 +6,15 @@ export function isDiscordActivityFeatureFlagEnabled(): boolean {
 	return raw === "true" || raw === "1" || raw === "yes";
 }
 
-/** All secrets/URLs required before Connect Discord or Lanyard reads run. */
+/** All secrets/URLs required before Connect Discord or presence Worker reads run. */
 export function hasDiscordActivityInfrastructure(): boolean {
 	return Boolean(
 		env.DISCORD_CLIENT_ID &&
 			env.DISCORD_CLIENT_SECRET &&
 			env.DISCORD_BOT_TOKEN &&
 			env.DISCORD_PRESENCE_GUILD_ID &&
-			env.LANYARD_INTERNAL_URL,
+			env.DISCORD_PRESENCE_WORKER_URL &&
+			env.DISCORD_PRESENCE_INTERNAL_SECRET,
 	);
 }
 

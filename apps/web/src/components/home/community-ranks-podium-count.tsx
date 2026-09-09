@@ -5,8 +5,11 @@ import { ChevronRight } from "lucide-react";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import {
+	COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME,
 	COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME,
+	COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME,
 	type CommunityRanksPodiumSlot,
+	communityRanksPodiumBadgeDigit,
 	communityRanksPodiumCountTextClass,
 	communityRanksPodiumPedestalButtonClass,
 } from "@/lib/community-ranks-podium";
@@ -39,6 +42,10 @@ export function CommunityRanksPodiumCount({
 			aria-label={ariaLabel}
 			onClick={onClick}
 		>
+			{/* Silver place badge — decorative; place stays on the button aria-label. */}
+			<span className={COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME} aria-hidden>
+				{communityRanksPodiumBadgeDigit(slot)}
+			</span>
 			<span
 				className={cn(
 					"tabular-nums leading-none",
@@ -47,7 +54,7 @@ export function CommunityRanksPodiumCount({
 			>
 				{count}
 			</span>
-			<span className={COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME}>
+			<span className={COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME}>
 				{ctaLabel}
 				<ChevronRight className="size-3 shrink-0 opacity-80" aria-hidden />
 			</span>

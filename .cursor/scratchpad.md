@@ -2,7 +2,12 @@
 
 ## Sense iOS — near-web native app (2026-09-09) — PLANNER (brainstorm)
 
-**Status:** Specs approved (**go**, 2026-09-09). Slice 1 implementation plan written, uncommitted. Waiting on execution-mode choice.
+**Status:** Specs + plan committed (`b63c3f6`). **Tasks 1–2 approved by human (`ok`, 2026-09-09), still uncommitted.** Commit order decided: human commits the in-flight **Discord presence** work first; then Tasks 1–2 land as two commits on top (`chore(mobile): remove Expo app`, `feat(auth): register Sign in with Apple provider`) — `bun.lock` and `packages/env/src/server.ts` become clean once Discord is committed. Windows-doable work is exhausted; **Task 3 (XcodeGen scaffold) onward runs on the Mac** — resume from the plan's Task 3 there after pulling the Task 1–2 commits. Execution mode: subagent-driven, human **go/ok** between tasks.
+
+### Executor's Feedback (Task 2)
+- Plan's test could not import `./apple-oauth-config` bare: `@still/env/server` validates required vars at import and `packages/auth` has no `.env`. Used the repo's existing `mock.module("@still/env/server", () => ({ env: {} }))` + dynamic import pattern from `apps/server/src/lib/discord-activity-config.test.ts`. Assertions unchanged.
+- `jose` declared as a plain range in `packages/auth/package.json` (not in the root catalog; root `package.json` has unrelated in-flight edits).
+- Env docs went to a **new** `apps/server/.env.example` rather than `docker/discord-setup.env.example`, which carries unrelated in-flight Discord edits.
 
 **Specs:**
 - `docs/superpowers/specs/2026-09-09-sense-ios-near-web-roadmap-design.md` (program, 15 slices)
@@ -25,10 +30,16 @@
 - **Discord = 3 hops:** `POST /sign-in/social` → open **`/api/auth/expo-authorization-proxy`** in the browser (sets state cookie there) → provider → `still://…?cookie=…`. Opening the provider URL directly fails state validation.
 - **Apple:** async provider (ES256 client-secret JWT via `jose`, ≤6mo), **`appBundleIdentifier` required** for native idToken (else `aud` mismatch), `https://appleid.apple.com` in `trustedOrigins`. Native idToken path has no redirect, so local HTTP dev works.
 
-### Next
-Choose execution mode for the slice 1 plan (subagent-driven in this session, or a separate executing-plans session).
+### Project Status Board (slice 1)
+- [x] Task 1: Delete the Expo app — `git rm -r apps/native`, `packages/env/src/native.ts` + `./native` export, `dev:native` script, `exp://` + `localhost:8081` dev `trustedOrigins`, README. `expo()` plugin / import / `still://` intact. `bun install` ok; `rg` clean (only hits are the bundled Better Auth code inside `apps/server/src/index.*.mjs`); `tsc` clean for `@still/env` + `@still/auth`; biome clean on the 4 edited files. Uncommitted — awaiting human verify.
+- [x] Task 2: Apple provider on the server — `APPLE_*` env vars in `packages/env/src/server.ts`; new `packages/auth/src/lib/apple-oauth-config.ts` (+ test, 4/4 pass; ES256 client-secret JWT via `jose ^6.2.12`, 180-day TTL); async `apple` provider merged with Discord in `packages/auth/src/index.ts`; `https://appleid.apple.com` in `trustedOrigins`; new `apps/server/.env.example` (Apple block only). `tsc` clean for env + auth; biome read-only clean. Human approved Tasks 1 and 2 (**ok**, 2026-09-09); uncommitted.
+- [ ] Tasks 3–11: need macOS (XcodeGen scaffold next)
+
+### Executor's Feedback (Task 1)
+- Monorepo `bun run check-types` fails, but **not from Task 1**: `@still/plans` `entitlements.test.ts(43)` types `leaderboard_visibility: "still"` against an `"attuned" | "immersed"` field, and `apps/server/src/server/app.ts:14` still imports the deleted `../routes/discord-activity-funding` (in-flight Discord presence work), plus pre-existing strict-index errors in server libs. Both packages Task 1 touched typecheck clean in isolation.
 
 ### Lessons
+- **`bun run check` is `biome check --write .`** — it is a formatter, not a linter. Running it as "verification" rewrote ~4,460 tracked files (mostly CRLF→LF under `core.autocrlf=true`, ~60 real reformats) plus untracked in-flight sources. Recovered with `git checkout --pathspec-from-file` limited to files that were clean at session start. Verify with **`bunx biome check <files>`** (no `--write`) scoped to the files you edited. Also: PowerShell `Set-Content -Encoding utf8` writes a BOM that git reads as part of the first pathspec — use `[IO.File]::WriteAllLines(..., UTF8Encoding($false))`.
 - `ASWebAuthenticationSession` does **not** share cookies with `URLSession`. Any native OAuth design that assumes a shared cookie jar is wrong; the credential must come back through the deep link.
 - Epoch check: `1781395200` = **2026-06-14**T00:00:00Z (`1781308800` is 2026-06-13). The onboarding v3 launch constant is easy to get off by one day.
 

@@ -32,7 +32,7 @@ const fetchMutualFollowingIdsMock = mock(
 	async (_viewerId: string) => [] as string[],
 );
 
-const getCachedLanyardPresenceMock = mock(async (_discordId: string) => ({
+const getCachedDiscordPresenceMock = mock(async (_discordId: string) => ({
 	listening_to_spotify: true,
 	spotify: {
 		song: "Let Go",
@@ -68,8 +68,8 @@ mock.module("./mutual-follow-cache", () => ({
 	fetchMutualFollowingIds: fetchMutualFollowingIdsMock,
 }));
 
-mock.module("./lanyard-client", () => ({
-	getCachedLanyardPresence: getCachedLanyardPresenceMock,
+mock.module("./discord-presence-client", () => ({
+	getCachedDiscordPresence: getCachedDiscordPresenceMock,
 }));
 
 mock.module("./discord-activity-cover-palette", () => ({
@@ -102,7 +102,7 @@ describe("fetchProfileDiscordActivity", () => {
 		isDiscordActivityEnabledMock.mockClear();
 		fetchProfileAccessByHandleMock.mockClear();
 		fetchMutualFollowingIdsMock.mockClear();
-		getCachedLanyardPresenceMock.mockClear();
+		getCachedDiscordPresenceMock.mockClear();
 		fetchDiscordActivityProfileMetadataMock.mockClear();
 		entitlementByOwner.clear();
 		entitlementByOwner.set(OWNER_ID, {
@@ -118,7 +118,7 @@ describe("fetchProfileDiscordActivity", () => {
 			preferences: {},
 			discordAccountId: DISCORD_ID,
 		}));
-		getCachedLanyardPresenceMock.mockImplementation(async () => ({
+		getCachedDiscordPresenceMock.mockImplementation(async () => ({
 			listening_to_spotify: true,
 			spotify: {
 				song: "Let Go",
@@ -185,7 +185,7 @@ describe("fetchProfileDiscordActivity", () => {
 		});
 
 		expect(result).toEqual({ ok: true, body: { visible: false } });
-		expect(getCachedLanyardPresenceMock).not.toHaveBeenCalled();
+		expect(getCachedDiscordPresenceMock).not.toHaveBeenCalled();
 	});
 
 	test("returns activity for mutual follower on friends-only profile", async () => {
@@ -200,7 +200,7 @@ describe("fetchProfileDiscordActivity", () => {
 			ok: true,
 			body: { visible: true, activity: sampleActivity },
 		});
-		expect(getCachedLanyardPresenceMock).toHaveBeenCalledWith(DISCORD_ID);
+		expect(getCachedDiscordPresenceMock).toHaveBeenCalledWith(DISCORD_ID);
 	});
 
 	test("hides activity from non-mutual viewer when friends-only", async () => {
@@ -226,7 +226,7 @@ describe("fetchProfileDiscordActivity", () => {
 		});
 
 		expect(result).toEqual({ ok: true, body: { visible: false } });
-		expect(getCachedLanyardPresenceMock).not.toHaveBeenCalled();
+		expect(getCachedDiscordPresenceMock).not.toHaveBeenCalled();
 	});
 
 	test("returns visible false when owner lacks discord_activity entitlement", async () => {
@@ -241,11 +241,11 @@ describe("fetchProfileDiscordActivity", () => {
 		});
 
 		expect(result).toEqual({ ok: true, body: { visible: false } });
-		expect(getCachedLanyardPresenceMock).not.toHaveBeenCalled();
+		expect(getCachedDiscordPresenceMock).not.toHaveBeenCalled();
 	});
 
-	test("returns visible false when Lanyard has no activity", async () => {
-		getCachedLanyardPresenceMock.mockImplementation(async () => null);
+	test("returns visible false when Discord presence has no activity", async () => {
+		getCachedDiscordPresenceMock.mockImplementation(async () => null);
 
 		const result = await fetchProfileDiscordActivity({
 			handle: "owner",

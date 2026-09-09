@@ -6,8 +6,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 
 - **TypeScript** - For type safety and improved developer experience
 - **Next.js** - Full-stack React framework
-- **React Native** - Build mobile apps using React
-- **Expo** - Tools for React Native development
+- **SwiftUI** - Native iOS app (apps/ios)
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **Shared UI package** - shadcn/ui primitives live in `packages/ui`
 - **Elysia** - Type-safe, high-performance framework
@@ -47,7 +46,7 @@ bun run dev
 ```
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
-Use the Expo Go app to run the mobile application.
+The iOS app lives in apps/ios — see docs/superpowers/specs/2026-09-09-sense-ios-foundation-design.md.
 The API is running at [http://localhost:3000](http://localhost:3000).
 
 ### Local env (`apps/web/.env`)
@@ -122,7 +121,7 @@ If you want to add app-specific blocks instead of shared primitives, run the sha
 still/
 ├── apps/
 │   ├── web/         # Frontend application (Next.js)
-│   ├── native/      # Mobile application (React Native, Expo)
+│   ├── ios/         # Mobile application (SwiftUI)
 │   └── server/      # Backend API (Elysia)
 ├── packages/
 │   ├── ui/          # Shared shadcn/ui components and styles
@@ -137,7 +136,6 @@ still/
 - `bun run dev:web`: Start only the web application
 - `bun run dev:server`: Start only the server
 - `bun run check-types`: Check TypeScript types across all apps
-- `bun run dev:native`: Start the React Native/Expo development server
 - `bun run db:push`: Push schema changes to database
 - `bun run db:generate`: Generate database client/types
 - `bun run db:migrate`: Run database migrations

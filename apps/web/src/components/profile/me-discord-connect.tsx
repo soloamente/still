@@ -8,17 +8,12 @@ import { useRouter } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-import { DiscordActivityFundingStrip } from "@/components/discord/discord-activity-funding-strip";
 import { MeDiscordLinkStatus } from "@/components/profile/me-discord-link-status";
 import { MePreferenceToggle } from "@/components/profile/me-preference-toggle";
 import { MeSettingsPanel } from "@/components/profile/me-settings-layout";
 import { useSettingsForm } from "@/components/profile/settings-form-context";
 import { authClient } from "@/lib/auth-client";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
-import {
-	type DiscordActivityFundingPayload,
-	fetchDiscordActivityFunding,
-} from "@/lib/discord-activity-funding";
 import { resolveDiscordLinkVisualState } from "@/lib/discord-link-status";
 import {
 	disconnectMeDiscord,
@@ -61,8 +56,8 @@ type MeDiscordConnectProps = {
 };
 
 /**
- * Settings → Profile Discord section — funding teaser, Pro lock, or connect flow.
- * Always visible: funding strip before production ships; locked or full UI after.
+ * Settings → Profile Discord section — production-off teaser, Pro lock, or connect flow.
+ * Production-off uses `GET /api/me/discord/status` `featureEnabled` (no funding API).
  */
 export function MeDiscordConnect({
 	surface = "panel",
@@ -72,9 +67,6 @@ export function MeDiscordConnect({
 	const { profile, discordActivityEnabled, setDiscordActivityEnabled, saving } =
 		useSettingsForm();
 
-	const [funding, setFunding] = useState<DiscordActivityFundingPayload | null>(
-		null,
-	);
 	const [status, setStatus] = useState<MeDiscordStatusResponse | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [connecting, setConnecting] = useState(false);
@@ -84,13 +76,8 @@ export function MeDiscordConnect({
 	const refreshData = useCallback(async () => {
 		setLoading(true);
 		try {
-			// Funding drives the three UI states; status also supplies Discord username.
-			const [fundingResult, statusResult] = await Promise.all([
-				fetchDiscordActivityFunding(),
-				fetchMeDiscordStatus(),
-			]);
-			setFunding(fundingResult);
-			setStatus(statusResult);
+			// Production-off vs connect UI is `featureEnabled` on this payload — no funding fetch.
+			setStatus(await fetchMeDiscordStatus());
 		} finally {
 			setLoading(false);
 		}
@@ -111,7 +98,7 @@ export function MeDiscordConnect({
 			</MeSettingsPanel>
 		);
 
-	// Keep panel height stable while funding/status resolve — never unmount to null.
+	// Keep panel height stable while status resolves — diagram skeleton, not a progress bar.
 	if (loading) {
 		return wrap(
 			<div className="space-y-4" aria-busy="true" aria-live="polite">
@@ -133,7 +120,7 @@ export function MeDiscordConnect({
 		);
 	}
 
-	const productionEnabled = funding?.productionEnabled === true;
+	const productionEnabled = status?.featureEnabled === true;
 	const canUseDiscordActivity = status?.canUseDiscordActivity === true;
 
 	const handleConnect = async () => {
@@ -208,21 +195,14 @@ export function MeDiscordConnect({
 		</Link>
 	);
 
-	// Pre-production: same Sense ↔ Discord diagram, funding bar under it — no OAuth.
+	// Production off: same Sense ↔ Discord diagram + Pro CTA — no OAuth, no funding bar.
 	if (!productionEnabled) {
 		return wrap(
-			<>
-				<MeDiscordLinkStatus
-					state="pending"
-					{...linkStatusProps}
-					footerAction={pricingLink("Support with Pro")}
-				/>
-				<DiscordActivityFundingStrip
-					funding={funding}
-					loading={loading}
-					layout="progress"
-				/>
-			</>,
+			<MeDiscordLinkStatus
+				state="pending"
+				{...linkStatusProps}
+				footerAction={pricingLink("Support with Pro")}
+			/>,
 		);
 	}
 

@@ -13,6 +13,10 @@ import { DeleteAccountEmail } from "./emails/delete-account";
 import { renderAuthEmail } from "./emails/render-email";
 import { ResetPasswordEmail } from "./emails/reset-password";
 import { VerifyEmail } from "./emails/verify-email";
+import {
+	generateAppleClientSecret,
+	hasAppleOAuthCredentials,
+} from "./lib/apple-oauth-config";
 import { deleteUserBlobAssets } from "./lib/delete-user-cleanup";
 import { hasDiscordOAuthCredentials } from "./lib/discord-activity-config";
 import {
@@ -77,6 +81,26 @@ function buildDiscordSocialProviders(): BetterAuthOptions["socialProviders"] {
 	};
 }
 
+/**
+ * Sign in with Apple — only registered when the .p8 credentials exist. The
+ * entry is an async provider function (not a static object) because Apple's
+ * client secret is a short-lived ES256 JWT that must be minted on demand.
+ */
+function buildAppleSocialProviders(): BetterAuthOptions["socialProviders"] {
+	if (!hasAppleOAuthCredentials()) return undefined;
+	return {
+		apple: async () => ({
+			clientId: env.APPLE_CLIENT_ID as string,
+			clientSecret: await generateAppleClientSecret(),
+			// Native iOS sends the bundle ID as the token audience, not the
+			// Services ID — without this, idToken sign-in fails aud validation.
+			...(env.APPLE_APP_BUNDLE_IDENTIFIER
+				? { appBundleIdentifier: env.APPLE_APP_BUNDLE_IDENTIFIER }
+				: {}),
+		}),
+	};
+}
+
 /** Guild join + profile prefs after Discord account link/unlink. */
 function buildDiscordDatabaseHooks(): BetterAuthOptions["databaseHooks"] {
 	if (!hasDiscordOAuthCredentials()) return undefined;
@@ -118,6 +142,13 @@ function buildDiscordDatabaseHooks(): BetterAuthOptions["databaseHooks"] {
 export function createAuth() {
 	const polarPlugin = buildPolarPlugin();
 	const discordSocialProviders = buildDiscordSocialProviders();
+	const appleSocialProviders = buildAppleSocialProviders();
+	// Each provider is opt-in on its own env vars; merge whichever are configured
+	// and leave `socialProviders` out entirely when neither is.
+	const socialProviders =
+		discordSocialProviders || appleSocialProviders
+			? { ...discordSocialProviders, ...appleSocialProviders }
+			: undefined;
 	const discordDatabaseHooks = buildDiscordDatabaseHooks();
 	const isDevelopment = env.NODE_ENV === "development";
 	const shouldSendVerificationEmail = !isDevelopment;
@@ -128,9 +159,7 @@ export function createAuth() {
 
 			schema: schema,
 		}),
-		...(discordSocialProviders
-			? { socialProviders: discordSocialProviders }
-			: {}),
+		...(socialProviders ? { socialProviders } : {}),
 		...(discordDatabaseHooks ? { databaseHooks: discordDatabaseHooks } : {}),
 		...(hasDiscordOAuthCredentials()
 			? {
@@ -147,16 +176,14 @@ export function createAuth() {
 		trustedOrigins: [
 			env.CORS_ORIGIN,
 			"still://",
+			// Required for Sign in with Apple.
+			"https://appleid.apple.com",
 			...(env.NODE_ENV === "development"
 				? [
-						// Web app may be opened via localhost or 127.0.0.1 even when
-						// CORS_ORIGIN is a LAN IP (Expo / phone testing).
+						// Web may be opened via localhost or 127.0.0.1 even when
+						// CORS_ORIGIN is a LAN IP (phone testing against a dev machine).
 						"http://localhost:3001",
 						"http://127.0.0.1:3001",
-						"exp://",
-						"exp://**",
-						"exp://192.168.*.*:*/**",
-						"http://localhost:8081",
 					]
 				: []),
 		],

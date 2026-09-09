@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 
 import {
+	avatarAuraFrameKind,
 	avatarAuraRimStyle,
 	avatarAuraTierClassName,
 	avatarAuraVisualClassName,
@@ -74,5 +75,27 @@ describe("hasAvatarAuraVisual", () => {
 describe("avatarAuraRimStyle", () => {
 	it("returns an empty object — rim paint lives in CSS", () => {
 		expect(avatarAuraRimStyle("attuned")).toEqual({});
+	});
+});
+
+describe("avatarAuraFrameKind", () => {
+	it("maps none to null", () => {
+		expect(avatarAuraFrameKind({ kind: "none" })).toBeNull();
+	});
+
+	it("maps each paid plan to its own kind", () => {
+		expect(avatarAuraFrameKind({ kind: "plan", tier: "attuned" })).toBe(
+			"attuned",
+		);
+		expect(avatarAuraFrameKind({ kind: "plan", tier: "immersed" })).toBe(
+			"immersed",
+		);
+		expect(avatarAuraFrameKind({ kind: "plan", tier: "devoted" })).toBe(
+			"devoted",
+		);
+	});
+
+	it("staff wins even when a plan is present", () => {
+		expect(avatarAuraFrameKind({ kind: "staff" })).toBe("staff");
 	});
 });

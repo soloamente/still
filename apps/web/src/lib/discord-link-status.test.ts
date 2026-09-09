@@ -62,6 +62,9 @@ describe("discordLinkStatusCopy", () => {
 
 	test("pending and locked cover pre-production and Still-tier", () => {
 		expect(discordLinkStatusCopy("pending").pill).toBe("Soon");
+		expect(discordLinkStatusCopy("pending").footer).toBe(
+			"Listening, Playing, and Streaming are an Attuned+ perk when production is on.",
+		);
 		expect(discordLinkStatusCopy("locked").pill).toBe("Pro");
 	});
 });

@@ -10,7 +10,10 @@ import {
 } from "@/components/home/patron-members-ledger-drawer";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
+	COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME,
+	COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME,
 	type CommunityRanksPodiumSlot,
+	communityRanksPodiumFilled,
 	communityRanksPodiumSlotLabel,
 	HOME_COMMUNITY_RANKS_PODIUM_COLUMN_CLASSNAME,
 } from "@/lib/community-ranks-podium";
@@ -55,9 +58,6 @@ function MembersPodiumTile({
 				delay: slot === "first" ? 0.1 : slot === "second" ? 0 : 0.2,
 			}}
 		>
-			<p className="font-medium text-muted-foreground text-xs tracking-wide">
-				{rankLabel}
-			</p>
 			<Link
 				href={`/profile/${entry.handle}`}
 				className="relative mt-2 overflow-visible rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -105,7 +105,7 @@ function MembersPodiumTile({
 				count={entry.count}
 				ctaLabel={membersLeaderboardLedgerCta(sort)}
 				title={`View ${statNoun} for this period`}
-				ariaLabel={`${entry.count} ${statNoun} — view details`}
+				ariaLabel={`${rankLabel}. ${entry.count} ${statNoun} — view details`}
 				onClick={() =>
 					openPatronMembersLedger(
 						buildPatronMembersLedgerSeed(entry, sort, period),
@@ -129,15 +129,17 @@ export function MembersLeaderboardPodium({
 	period: HomeLeaderboardPeriod;
 }) {
 	const reduceMotion = useReducedMotion();
-	const first = items[0];
-	const second = items[1];
-	const third = items[2];
-
-	if (!first) return null;
+	const filled = communityRanksPodiumFilled(items);
+	if (!filled) return null;
+	const { first, second, third } = filled;
 
 	return (
 		<div className={HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME}>
-			<div className="flex items-end justify-center gap-2 sm:gap-3">
+			<div className={COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME}>
+				<div
+					className={COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME}
+					aria-hidden
+				/>
 				{second ? (
 					<MembersPodiumTile
 						entry={second}
@@ -146,9 +148,7 @@ export function MembersLeaderboardPodium({
 						period={period}
 						reduceMotion={Boolean(reduceMotion)}
 					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
+				) : null}
 				<MembersPodiumTile
 					entry={first}
 					slot="first"
@@ -164,9 +164,7 @@ export function MembersLeaderboardPodium({
 						period={period}
 						reduceMotion={Boolean(reduceMotion)}
 					/>
-				) : (
-					<div className="min-w-0 flex-1" aria-hidden />
-				)}
+				) : null}
 			</div>
 		</div>
 	);

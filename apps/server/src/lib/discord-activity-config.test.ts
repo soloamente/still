@@ -17,7 +17,8 @@ const fullInfra = {
 	DISCORD_CLIENT_SECRET: "client-secret",
 	DISCORD_BOT_TOKEN: "bot-token",
 	DISCORD_PRESENCE_GUILD_ID: "guild-id",
-	LANYARD_INTERNAL_URL: "http://lanyard:4001",
+	DISCORD_PRESENCE_WORKER_URL: "http://127.0.0.1:8788",
+	DISCORD_PRESENCE_INTERNAL_SECRET: "test-secret",
 } as const;
 
 afterEach(() => {
@@ -40,9 +41,15 @@ describe("isDiscordActivityFeatureFlagEnabled", () => {
 });
 
 describe("hasDiscordActivityInfrastructure", () => {
-	test("false when any required var is missing", () => {
+	test("false when Worker URL is missing", () => {
 		Object.assign(envMock, fullInfra);
-		delete envMock.LANYARD_INTERNAL_URL;
+		delete envMock.DISCORD_PRESENCE_WORKER_URL;
+		expect(hasDiscordActivityInfrastructure()).toBe(false);
+	});
+
+	test("false when internal secret is missing", () => {
+		Object.assign(envMock, fullInfra);
+		delete envMock.DISCORD_PRESENCE_INTERNAL_SECRET;
 		expect(hasDiscordActivityInfrastructure()).toBe(false);
 	});
 

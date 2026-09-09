@@ -40,6 +40,17 @@ export function hasAvatarAuraVisual(visual: AvatarAuraVisual): boolean {
 	return visual.kind !== "none";
 }
 
+export type AvatarAuraFrameKind = "attuned" | "immersed" | "devoted" | "staff";
+
+/** Silhouette id for SVG frames — null means plain circle (Still). */
+export function avatarAuraFrameKind(
+	visual: AvatarAuraVisual,
+): AvatarAuraFrameKind | null {
+	if (visual.kind === "staff") return "staff";
+	if (visual.kind === "plan") return visual.tier;
+	return null;
+}
+
 /** Modifier class for tier-specific static rims in globals.css. */
 export function avatarAuraTierClassName(tier: PaidTier): string {
 	return `avatar-aura-rim--${tier}`;
