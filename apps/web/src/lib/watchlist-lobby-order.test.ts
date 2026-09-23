@@ -150,4 +150,31 @@ describe("watchlist decision seeds", () => {
 		);
 		expect(seed?.watchlistStreamingLabel).toBe("Continue");
 	});
+	test("continue seed accepts Date timestamps from Eden (no crash)", () => {
+		// Eden deserializes date-like JSON strings into `Date` at runtime,
+		// even though `TvWatchBundle` types them as strings.
+		const bundle = {
+			watch: null,
+			show: { tmdbId: 9, title: "X", posterPath: null },
+			watchedEpisodes: [],
+			nextEpisode: {
+				seasonNumber: 1,
+				episodeNumber: 2,
+				airDate: new Date("2026-09-20T00:00:00Z"),
+			},
+		} as unknown as Parameters<typeof tvWatchBundleToContinueSeed>[0];
+		const seed = tvWatchBundleToContinueSeed(bundle, "2026-09-23");
+		expect(seed?.hasNewEpisode).toBe(true);
+		const invalid = {
+			...bundle,
+			nextEpisode: {
+				seasonNumber: 1,
+				episodeNumber: 2,
+				airDate: new Date("nope"),
+			},
+		} as unknown as Parameters<typeof tvWatchBundleToContinueSeed>[0];
+		expect(
+			tvWatchBundleToContinueSeed(invalid, "2026-09-23")?.hasNewEpisode,
+		).toBe(false);
+	});
 });

@@ -158,17 +158,27 @@ export function tvWatchBundleToContinueSeed(
 		watchlistStreamingLabel: next
 			? `S${next.seasonNumber} · E${next.episodeNumber} next`
 			: "Continue",
-		hasNewEpisode: Boolean(
-			next?.airDate && next.airDate.slice(0, 10) <= todayYmd,
-		),
+		hasNewEpisode: isAiredOnOrBefore(next?.airDate, todayYmd),
 		// Eden may deserialize timestamps as `Date` — normalize to an ISO string for sorting.
-		changedAt: normalizeChangedAt(bundle.watch?.statusChangedAt),
+		changedAt: timestampToIso(bundle.watch?.statusChangedAt),
 	};
 }
 
-function normalizeChangedAt(raw: unknown): string {
+/** True when an episode air date (string or Eden `Date`) is on or before `todayYmd`. */
+function isAiredOnOrBefore(raw: unknown, todayYmd: string): boolean {
+	const iso = timestampToIso(raw);
+	return iso !== "" && iso.slice(0, 10) <= todayYmd;
+}
+
+/**
+ * Eden deserializes date-like JSON strings into `Date` at runtime even when the
+ * type says `string` — accept both; invalid dates become "" (never throw).
+ */
+function timestampToIso(raw: unknown): string {
 	if (typeof raw === "string") return raw;
-	if (raw instanceof Date) return raw.toISOString();
+	if (raw instanceof Date) {
+		return Number.isNaN(raw.getTime()) ? "" : raw.toISOString();
+	}
 	return "";
 }
 
