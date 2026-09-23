@@ -75,6 +75,7 @@ import {
 	backfillWatchStreakFromLogs,
 	syncWatchStreakForUser,
 } from "../lib/watch-streak-sync";
+import { invalidateWatchlistTonightSocial } from "../lib/watchlist-tonight-signals";
 import { clearWatchlistItemForUserTitle } from "../lib/watchlist-upsert";
 
 /** `inArray` wrapper that no-ops to a false predicate on an empty list. */
@@ -302,6 +303,8 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				movieId: movieId ?? null,
 				tvId: tvId ?? null,
 			}).catch(() => {});
+			// Logged titles leave Watch tonight / Now available (hide-watched) at once.
+			invalidateWatchlistTonightSocial(user.id);
 
 			void db
 				.execute(
@@ -498,6 +501,8 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				console.error("[logs] watch streak backfill (delete) failed", err);
 			});
 			void invalidateCommunityStatsForDiaryLog(existing).catch(() => {});
+			// Un-logged saves can re-enter the ranked watchlist modes.
+			invalidateWatchlistTonightSocial(user.id);
 			void db
 				.execute(
 					sql`UPDATE profile SET stats_cache = jsonb_set(COALESCE(stats_cache, '{}'), '{logCount}', to_jsonb(GREATEST(COALESCE((stats_cache->>'logCount')::int, 0) - 1, 0))) WHERE user_id = ${user.id}`,
