@@ -20,6 +20,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 import { toast } from "sonner";
@@ -55,6 +56,12 @@ import {
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import { watchlistAlertOnToastCopy } from "@/lib/watchlist-streaming-display";
+import {
+	type WatchlistReasonKind,
+	type WatchlistTileAction,
+	watchlistTileActionForRadialId,
+	watchlistTileActionProps,
+} from "@/lib/watchlist-tile-analytics";
 
 export type CataloguePosterTileProps = {
 	surface: CatalogueRadialSurface;
@@ -89,17 +96,14 @@ export type CataloguePosterTileProps = {
 	watchlistIsStreaming?: boolean;
 	/** Watchlist — patron's chosen watch region, named in the alert toast. */
 	watchlistStreamingRegion?: string | null;
-	/** Watchlist lobby `?order=` — sent as `mode` on `watchlist.tile_action`. */
+	/**
+	 * Lobby `?order=` — sent as `mode` on `watchlist.tile_action`. Presence
+	 * turns tracking on (watchlist grid and Continue watching tiles alike).
+	 */
 	watchlistMode?: string;
+	/** Watch tonight reason bucket — the only reason value analytics may send. */
+	watchlistReasonKind?: WatchlistReasonKind | null;
 };
-
-/** Radial actions reported as `watchlist.tile_action` on the watchlist surface. */
-const TRACKED_WATCHLIST_ACTIONS = new Set([
-	"open",
-	"quick-log",
-	"remove-watchlist",
-	"add-to-list",
-]);
 
 function detailHref(listingKind: "movie" | "tv", tmdbId: number): string {
 	return listingKind === "tv" ? `/tv/${tmdbId}` : `/movies/${tmdbId}`;
@@ -134,6 +138,7 @@ export function CataloguePosterTile({
 	watchlistIsStreaming,
 	watchlistStreamingRegion,
 	watchlistMode,
+	watchlistReasonKind,
 }: CataloguePosterTileProps) {
 	const isHomeLikeSurface =
 		surface === "home" || surface === "taste-rail" || surface === "drawer";
@@ -396,11 +401,14 @@ export function CataloguePosterTile({
 							? watchlistAlertOnToastCopy(watchlistStreamingRegion)
 							: "Streaming alert off",
 					);
-					trackSenseProductEvent("watchlist.tile_action", {
-						mode: watchlistMode ?? "watchlist",
-						action: next ? "alert_on" : "alert_off",
-						reason: null,
-					});
+					trackSenseProductEvent(
+						"watchlist.tile_action",
+						watchlistTileActionProps({
+							mode: watchlistMode,
+							action: next ? "alert_on" : "alert_off",
+							reasonKind: watchlistReasonKind,
+						}),
+					);
 					return;
 				}
 				setAlertOn(!next); // roll back
@@ -418,8 +426,44 @@ export function CataloguePosterTile({
 		onOpenChange,
 		tmdbId,
 		watchlistMode,
+		watchlistReasonKind,
 		watchlistStreamingRegion,
 	]);
+
+	/** One `watchlist.tile_action` per action — only when a tracking mode is set. */
+	const trackTileAction = useCallback(
+		(action: WatchlistTileAction) => {
+			if (watchlistMode == null) return;
+			trackSenseProductEvent(
+				"watchlist.tile_action",
+				watchlistTileActionProps({
+					mode: watchlistMode,
+					action,
+					reasonKind: watchlistReasonKind,
+				}),
+			);
+		},
+		[watchlistMode, watchlistReasonKind],
+	);
+
+	/**
+	 * Plain left-click on the poster link counts as `open` (once per click).
+	 * A passive native listener observes the inner `<Link>` click — analytics
+	 * only, so the shell doesn't become a (keyboard-less) click target.
+	 */
+	const shellRef = useRef<HTMLFieldSetElement>(null);
+	useEffect(() => {
+		const shell = shellRef.current;
+		if (!shell || watchlistMode == null) return;
+		const onClick = (event: MouseEvent) => {
+			if (event.button !== 0) return;
+			if (!(event.target instanceof Element) || !event.target.closest("a"))
+				return;
+			trackTileAction("open");
+		};
+		shell.addEventListener("click", onClick);
+		return () => shell.removeEventListener("click", onClick);
+	}, [trackTileAction, watchlistMode]);
 
 	const closeAlertPreview = useCallback(() => setAlertPreview(null), []);
 
@@ -487,13 +531,8 @@ export function CataloguePosterTile({
 					onOpenChange(false);
 					return;
 				}
-				if (surface === "watchlist" && TRACKED_WATCHLIST_ACTIONS.has(spec.id)) {
-					trackSenseProductEvent("watchlist.tile_action", {
-						mode: watchlistMode ?? "watchlist",
-						action: spec.id,
-						reason: posterCaption ?? null,
-					});
-				}
+				const tracked = watchlistTileActionForRadialId(spec.id);
+				if (tracked) trackTileAction(tracked);
 				handlers[spec.id]?.();
 			},
 		}));
@@ -510,16 +549,14 @@ export function CataloguePosterTile({
 		notifySignIn,
 		onNotInterested,
 		onOpenChange,
-		posterCaption,
 		removeFromWatchlist,
 		router,
 		signedIn,
-		surface,
 		toggleStreamingAlert,
 		toggleWatchlist,
 		tmdbId,
+		trackTileAction,
 		watchlistBusy,
-		watchlistMode,
 	]);
 
 	return (
@@ -533,6 +570,7 @@ export function CataloguePosterTile({
 					"border-0 p-0",
 					className,
 				)}
+				ref={shellRef}
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
 			>

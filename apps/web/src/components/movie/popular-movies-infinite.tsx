@@ -32,6 +32,7 @@ import {
 	fetchTvPopular,
 	isFetchAbortError,
 } from "@/lib/still-api-fetch";
+import type { WatchlistReasonKind } from "@/lib/watchlist-tile-analytics";
 
 export type PopularMovieSeed = {
 	id: number;
@@ -52,6 +53,8 @@ export type PopularMovieSeed = {
 	watchlistIsStreaming?: boolean;
 	/** Watchlist lobby — patron's chosen watch region (alert toast copy). */
 	watchlistStreamingRegion?: string | null;
+	/** Watchlist lobby — reason bucket sent on `watchlist.tile_action` (never the pill text). */
+	watchlistReasonKind?: WatchlistReasonKind | null;
 	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
 	patronLogId?: string;
 	patronLogLiked?: boolean;
@@ -146,7 +149,10 @@ interface PopularMoviesInfiniteProps {
 	getPosterCellKey?: (movie: PopularMovieSeed, index: number) => string;
 	/** When set with `signedIn`, lobby cells use `CataloguePosterTile` radial menus. */
 	catalogueRadialSurface?: CatalogueRadialSurface;
-	/** Watchlist lobby `?order=` — forwarded to tiles as `mode` on `watchlist.tile_action`. */
+	/**
+	 * Watchlist lobby `?order=` — forwarded to tiles as `mode` on
+	 * `watchlist.tile_action`; tiles only track when this is set.
+	 */
 	catalogueTrackingMode?: string;
 	signedIn?: boolean;
 	/**
@@ -551,6 +557,7 @@ export function PopularMoviesInfinite({
 						tmdbId={m.id}
 						watchlistIsStreaming={m.watchlistIsStreaming}
 						watchlistMode={catalogueTrackingMode}
+						watchlistReasonKind={m.watchlistReasonKind}
 						watchlistStreamingAlert={m.watchlistStreamingAlert}
 						watchlistStreamingRegion={m.watchlistStreamingRegion}
 					/>

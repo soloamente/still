@@ -48,7 +48,10 @@ import {
 	readCatalogWatchRegionPref,
 	readCatalogWatchRegionPrefOrNull,
 } from "../lib/watchlist-streaming-alerts";
-import { rankWatchlistTonight } from "../lib/watchlist-tonight-score";
+import {
+	rankWatchlistTonight,
+	type WatchlistTonightReasonKind,
+} from "../lib/watchlist-tonight-score";
 import {
 	invalidateWatchlistTonightSocial,
 	listingKey,
@@ -96,6 +99,8 @@ type WatchlistRankedEntry = {
 	row: WatchlistSelectRow;
 	providerName: string | null;
 	reason: string | null;
+	/** Analytics-safe reason bucket — never the label (it carries names/list titles). */
+	reasonKind: WatchlistTonightReasonKind | null;
 };
 
 type WatchlistSelectRow = {
@@ -120,6 +125,7 @@ function toWatchlistRow(
 	opts: {
 		providerName: string | null;
 		reason: string | null;
+		reasonKind: WatchlistTonightReasonKind | null;
 		chosenRegion: string | null;
 		/** Streams on a flatrate service in `chosenRegion`; null without one. */
 		streamingInRegion: boolean | null;
@@ -146,6 +152,7 @@ function toWatchlistRow(
 				: null,
 		streaming_provider_name: providerName,
 		tonight_reason: reason,
+		tonight_reason_kind: opts.reasonKind,
 		streaming_alert: row.streamingAlert,
 		streaming_region: opts.chosenRegion,
 		streaming_in_region: opts.chosenRegion ? opts.streamingInRegion : null,
@@ -313,7 +320,11 @@ async function rankWatchlistDecisionPool(args: {
 	if (order === "available") {
 		return withProvider
 			.filter((r) => r.providerName != null)
-			.map((r) => ({ ...r, reason: `Now on ${r.providerName}` }));
+			.map((r) => ({
+				...r,
+				reason: `Now on ${r.providerName}`,
+				reasonKind: "available" as const,
+			}));
 	}
 
 	const social = await traceTiming("db", "watchlist.tonight.social", () =>
@@ -342,6 +353,7 @@ async function rankWatchlistDecisionPool(args: {
 	).map((ranked) => ({
 		...ranked.r,
 		reason: ranked.reason?.label ?? null,
+		reasonKind: ranked.reason?.kind ?? null,
 	}));
 }
 
@@ -409,6 +421,7 @@ export const watchlistRoute = new Elysia({
 						toWatchlistRow(r.row, {
 							providerName: r.providerName,
 							reason: r.reason,
+							reasonKind: r.reasonKind,
 							chosenRegion,
 							// Pool providers are evaluated in `chosenRegion` only.
 							streamingInRegion: r.providerName != null,
@@ -470,6 +483,7 @@ export const watchlistRoute = new Elysia({
 					return toWatchlistRow(row, {
 						providerName,
 						reason: null,
+						reasonKind: null,
 						chosenRegion,
 						streamingInRegion: providerName != null,
 					});

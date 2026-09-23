@@ -103,6 +103,16 @@ describe("watchlist decision seeds", () => {
 		expect(seed.watchlistIsStreaming).toBe(true);
 		expect(seed.watchlistStreamingRegion).toBe("US");
 	});
+	test("carries the reason kind for analytics, separate from the pill text", () => {
+		const seed = watchlistRowToPopularSeed({
+			...base,
+			tonight_reason: "Finishes Heist nights",
+			tonight_reason_kind: "list",
+		});
+		expect(seed.watchlistStreamingLabel).toBe("Finishes Heist nights");
+		expect(seed.watchlistReasonKind).toBe("list");
+		expect(watchlistRowToPopularSeed(base).watchlistReasonKind).toBeNull();
+	});
 	test("no chosen region → streaming unknown even with a US-fallback pill", () => {
 		const seed = watchlistRowToPopularSeed({
 			...base,

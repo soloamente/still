@@ -6,6 +6,7 @@ import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinit
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import type { TvWatchBundle } from "@/lib/tv-watch-types";
 import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
+import type { WatchlistReasonKind } from "@/lib/watchlist-tile-analytics";
 
 export type WatchlistLobbyOrder =
 	| "tonight"
@@ -43,6 +44,8 @@ export type WatchlistLobbyRow = {
 	streaming_provider_name?: string | null;
 	/** Watch tonight — strongest ranking signal as a short pill (e.g. `Maya recommended`). */
 	tonight_reason?: string | null;
+	/** Enum bucket behind `tonight_reason` — the only reason value analytics may send. */
+	tonight_reason_kind?: WatchlistReasonKind | null;
 	/** Patron asked to be alerted when this title starts streaming in their region. */
 	streaming_alert?: boolean;
 	/** Region the patron chose (ISO alpha-2); `null` when unset — no US guess. */
@@ -133,6 +136,7 @@ export function watchlistRowToPopularSeed(
 			? (row.streaming_in_region ?? undefined)
 			: undefined,
 		watchlistStreamingRegion: row.streaming_region ?? null,
+		watchlistReasonKind: row.tonight_reason_kind ?? null,
 	};
 }
 
