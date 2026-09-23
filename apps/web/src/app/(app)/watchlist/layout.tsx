@@ -2,8 +2,8 @@ import { type ReactNode, Suspense } from "react";
 
 import { WatchlistChrome } from "@/components/watchlist/watchlist-lobby-chrome";
 import { WatchlistLobbyDisplayPrefsProvider } from "@/components/watchlist/watchlist-lobby-display-prefs";
+import { WatchlistLobbyTopRsc } from "@/components/watchlist/watchlist-lobby-top-rsc";
 import { WatchlistPatronLobbyShell } from "@/components/watchlist/watchlist-patron-lobby-shell";
-import { WatchlistTonightHeroRsc } from "@/components/watchlist/watchlist-tonight-hero-rsc";
 import { WatchlistTonightHeroSkeleton } from "@/components/watchlist/watchlist-tonight-hero-skeleton";
 
 /**
@@ -22,7 +22,7 @@ export default function WatchlistLayout({ children }: { children: ReactNode }) {
 				<WatchlistPatronLobbyShell
 					top={
 						<Suspense fallback={<WatchlistTonightHeroSkeleton />}>
-							<WatchlistTonightHeroRsc />
+							<WatchlistLobbyTopRsc />
 						</Suspense>
 					}
 				>

@@ -26,15 +26,18 @@ function tmdbPosterUrl(posterPath: string | null): string | null {
  */
 export function HomeContinueWatchingRail({
 	items,
+	heading = "Continue watching",
 }: {
 	items: TvWatchBundle[];
+	/** Section label — watchlist uses “Or continue watching”. */
+	heading?: string;
 }) {
 	if (items.length === 0) return null;
 
 	return (
-		<section aria-label="Continue watching" className="shrink-0 space-y-2.5">
+		<section aria-label={heading} className="shrink-0 space-y-2.5">
 			<h2 className="font-medium text-muted-foreground text-xs tracking-wide">
-				Continue watching
+				{heading}
 			</h2>
 			{/*
 			 * Scroll on a wrapper, not on `.t-avatar-group`. Overflow-x:auto
