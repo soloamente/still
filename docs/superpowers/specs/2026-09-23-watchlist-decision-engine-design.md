@@ -1,6 +1,6 @@
 # Sense — Watchlist decision engine
 
-**Status:** Approved in brainstorm (2026-09-23) — awaiting written-spec review
+**Status:** Implemented on `feat/watchlist-decision-engine` (2026-09-23) — see "As built" below
 **Date:** 2026-09-23
 **Topic:** Turn `/watchlist` from storage into "what should I watch tonight?" — ranked mode, availability filter, TV continue-watching, per-title streaming alerts with a natural Attuned moment
 **Related:**
@@ -125,6 +125,18 @@ Watchlist → watched conversion: existing diary events joined to `watchlist.til
 - Continue watching: new-episode detection edge cases (missing `last_episode_to_air`, season rollover).
 - Alert PATCH: owner only, free → 403, Attuned → persists; job eligibility truth table.
 - Web: empty/region-missing/error states per mode; free preview dialog opens without saving.
+
+## As built (deviations from the sections above)
+
+- **Continue watching** reuses `GET /api/tv-watch/me` (limit 24, now adult-filtered) instead of a new endpoint. Pill: aired → "S2 · E5 next"; unaired with date → "S2 · E5 · Oct 3"; unknown → no pill.
+- **Region:** alert surfaces use the patron's *chosen* region only. No chosen region → the Alert me action is hidden and `PATCH /alert` enable returns `409 NEEDS_REGION`; Now available shows the inline region prompt; Watch tonight shows a quiet "Set your streaming region…" note. Legacy streaming pills and the alerts job keep the US fallback.
+- **Alerts job** skips all snapshot work for patrons without `watchlist_alerts` (Neon cost); feature holders keep a baseline even when opted out.
+- **Pill copy:** "On your {list} list"; "{name} and N others recommended"; "Added recently" only for saves < 3 days old (score unchanged). Captions truncate to one line.
+- **Performance:** region-scoped `watch/providers` projection (bound parameter); ranked-key cache per user/order/region (60s, size-capped) so page 2+ are slices; batched recommendation gate (3 queries total); caches cleared after watchlist, alert, diary, import, onboarding-backfill, and library-clear writes.
+- **Analytics:** `watchlist.tile_action` sends `reason` as a kind (`available | friend | list | taste | recent`), never pill text; actions `open | watched | remove | add_to_list | alert_on | alert_off`; mode fallback `null`.
+- **Access:** the poster action toolkit opens by touch long-press (tap-after-lift to choose; page scroll locked while open) and by `Shift+F10` / `ContextMenu` key, in addition to right-click, on every surface that uses it. A bell mark shows armed alerts; **Stop streaming alert** is always available when armed.
+- **Preview dialog** leads with the tapped title, names the region, and traps focus.
+- **Own-list signal** excludes removed lists; recommenders de-duped by sender id.
 
 ## Out of scope (later)
 
