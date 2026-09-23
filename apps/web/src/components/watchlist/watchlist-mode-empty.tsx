@@ -69,7 +69,8 @@ export function WatchlistModeEmpty({
 	return (
 		<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
 			<div
-				role="status"
+				// Errors announce assertively; empty/region states stay polite.
+				role={failed ? "alert" : "status"}
 				className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl bg-background px-6 py-12 text-center sm:px-10 sm:py-14"
 			>
 				<div className="space-y-2">

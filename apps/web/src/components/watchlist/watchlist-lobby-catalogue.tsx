@@ -53,10 +53,12 @@ export function WatchlistLobbyCatalogue({
 	/** Page-1 request errored — show retry instead of empty copy. */
 	failed: boolean;
 }) {
-	useTrackImpressionOnce("watchlist.mode_viewed", {
-		mode: order,
-		count: seeds.length,
-	});
+	// Error state is not a mode view — skip the impression when page 1 failed.
+	useTrackImpressionOnce(
+		"watchlist.mode_viewed",
+		{ mode: order, count: seeds.length },
+		!failed,
+	);
 	const { reportSeedOrder } = useWatchlistLobbyParams();
 	const { monochromePeersOnHover, signedIn } = useWatchlistLobbyDisplayPrefs();
 	useLayoutEffect(() => {
@@ -96,7 +98,10 @@ export function WatchlistLobbyCatalogue({
 		<PopularMoviesInfinite
 			key={watchlistCatalogueWaveKey(order)}
 			blockedReason={null}
-			catalogueRadialSurface="watchlist"
+			// Continue tiles come from `tv_watch`, not the watchlist — use home actions
+			// (watchlist toggle hydrates real state) so "Remove from watchlist" can't
+			// delete a watchlist row the tile doesn't represent.
+			catalogueRadialSurface={order === "continue" ? "home" : "watchlist"}
 			signedIn={signedIn}
 			catalogMedia="movie"
 			catalogExhaustedScope="your watchlist"

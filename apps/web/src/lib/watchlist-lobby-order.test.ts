@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	buildWatchlistLobbyHref,
 	parseWatchlistLobbyOrder,
+	sortContinueSeeds,
 	tvWatchBundleToContinueSeed,
 	watchlistCatalogueWaveKey,
 	watchlistOrderGridIsStale,
@@ -126,6 +127,16 @@ describe("watchlist decision seeds", () => {
 		);
 		expect(seed?.listingKind).toBe("tv");
 		expect(seed?.watchlistStreamingLabel).toBe("S2 · E5 next");
+		expect(seed?.hasNewEpisode).toBe(true);
+	});
+	test("sortContinueSeeds puts new episodes first, then newest change", () => {
+		const sorted = sortContinueSeeds([
+			{ id: 1, hasNewEpisode: false, changedAt: "2026-09-22" },
+			{ id: 2, hasNewEpisode: true, changedAt: "2026-09-01" },
+			{ id: 3, hasNewEpisode: false, changedAt: "2026-09-23" },
+			{ id: 4, hasNewEpisode: true, changedAt: "2026-09-10" },
+		]);
+		expect(sorted.map((s) => s.id)).toEqual([4, 2, 3, 1]);
 	});
 	test("continue seed without next episode data", () => {
 		const seed = tvWatchBundleToContinueSeed(

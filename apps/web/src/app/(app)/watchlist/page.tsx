@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { WatchlistLobbyCatalogue } from "@/components/watchlist/watchlist-lobby-catalogue";
 import { WatchlistLobbyFallback } from "@/components/watchlist/watchlist-lobby-fallback";
 import { fetchMyWatchlistServer } from "@/lib/fetch-my-watchlist-server";
-import { fetchTvWatchMeServer } from "@/lib/fetch-tv-watch-me-server";
+import { fetchTvWatchMeServerResult } from "@/lib/fetch-tv-watch-me-server";
 import {
 	parseWatchlistLobbyOrder,
 	sortContinueSeeds,
@@ -31,7 +31,8 @@ async function WatchlistLobbyData({
 
 	// Continue watching is served by `GET /api/tv-watch/me` — never `/api/watchlist`.
 	if (order === "continue") {
-		const bundles = await fetchTvWatchMeServer(undefined, {
+		// Result variant so a tv-watch failure shows the retry state, not "No shows in progress".
+		const { bundles, failed } = await fetchTvWatchMeServerResult(undefined, {
 			status: "watching,rewatching",
 			limit: 60,
 		});
@@ -49,7 +50,7 @@ async function WatchlistLobbyData({
 				totalPages={1}
 				totalResults={seeds.length}
 				needsRegion={false}
-				failed={false}
+				failed={failed}
 			/>
 		);
 	}
