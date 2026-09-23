@@ -125,6 +125,7 @@ export default async function PersonPage({
 			title={person.name}
 			hero={
 				<PersonDetailHero
+					personId={person.id}
 					name={person.name}
 					knownForDepartment={person.knownForDepartment}
 					profilePath={person.profilePath}

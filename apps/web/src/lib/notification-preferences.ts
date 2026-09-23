@@ -15,7 +15,9 @@ export type NotificationKind =
 	| "review.liked"
 	| "chat.message"
 	| "tv.new_episode"
-	| "watchlist_now_streaming";
+	| "watchlist_now_streaming"
+	| "person_favorite_release"
+	| "person_favorite_now_streaming";
 
 /** Mirrors server registry for Settings labels (keep ids in sync with `notification-delivery.ts`). */
 export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
@@ -82,6 +84,22 @@ export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
 		defaultEnabled: true,
 	},
 	{
+		id: "person_favorite_release",
+		group: "watching",
+		label: "Favorite people releases",
+		description:
+			"When someone you Favorited appears in a new film or show near release.",
+		defaultEnabled: true,
+	},
+	{
+		id: "person_favorite_now_streaming",
+		group: "watching",
+		label: "Favorite people streaming",
+		description:
+			"When a title featuring someone you Favorited starts streaming in your region.",
+		defaultEnabled: true,
+	},
+	{
 		id: "import.completed",
 		group: "watching",
 		label: "Diary imports",
@@ -124,7 +142,7 @@ const NOTIFICATION_SETTINGS_SECTIONS: ReadonlyArray<{
 	{
 		group: "watching",
 		title: "Watching",
-		description: "New episodes, streaming, and imports.",
+		description: "New episodes, streaming, favorites, and imports.",
 	},
 	{
 		group: "milestones",

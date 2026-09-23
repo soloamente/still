@@ -14,6 +14,7 @@ import {
 	MessageCircle,
 	Play,
 	ShieldCheck,
+	Star,
 	Trophy,
 	Tv,
 	UserPlus,
@@ -54,6 +55,8 @@ function iconForKind(kind: string): LucideIcon {
 	if (kind.startsWith("achievement.")) return Trophy;
 	if (kind === "tv.new_episode") return Tv;
 	if (kind === "watchlist_now_streaming") return Play;
+	if (kind === "person_favorite_release") return Star;
+	if (kind === "person_favorite_now_streaming") return Play;
 	if (kind === "taste.challenge") return Trophy;
 	if (kind === "challenge.completed") return Trophy;
 	if (kind === "review.liked") return Heart;

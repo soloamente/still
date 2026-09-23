@@ -66,23 +66,20 @@ export function SearchDialogStudioRail({
 	const catalogueLabel = listingKind === "tv" ? "shows" : "films";
 
 	return (
-		<div className="mb-4 min-w-0">
-			<div className="mb-2 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
-				Studios
-			</div>
+		<div className="min-w-0">
 			{/* Fade scrims hide the horizontal clip; Lenis ignores wheel on this rail. */}
 			<div className="relative w-full min-w-0 overflow-hidden">
 				<div
 					aria-hidden
 					className={cn(
-						"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-card via-card/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+						"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-background via-background/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
 						showStartFade ? "opacity-100" : "opacity-0",
 					)}
 				/>
 				<div
 					aria-hidden
 					className={cn(
-						"pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+						"pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background via-background/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
 						showEndFade ? "opacity-100" : "opacity-0",
 					)}
 				/>
@@ -92,7 +89,7 @@ export function SearchDialogStudioRail({
 						data-lenis-prevent-wheel
 						className={cn(
 							HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
-							"items-center gap-3 pb-0.5",
+							"items-center gap-2.5 pb-0",
 						)}
 						role="toolbar"
 						aria-label="Filter by production company"

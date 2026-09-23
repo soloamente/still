@@ -117,6 +117,7 @@ type ProfileData = {
 		likedTv: number;
 		reviews: number;
 	};
+	personFavoritesCount?: number;
 	pinnedReviews: ProfileReviewRow[];
 	showcaseResolved?: { items: ProfileShowcaseTile[] };
 	lists: {
@@ -297,6 +298,7 @@ export default async function ProfilePage({
 			totalResults={filmographyPage1.totalResults}
 			venueCounts={filmographyPage1.venueCounts}
 			filmographyCounts={counts}
+			personFavoritesCount={data.personFavoritesCount ?? 0}
 			pinnedReviews={data.pinnedReviews ?? []}
 			showcaseItems={showcaseItems}
 			savedQuotesPreview={savedQuotesPreview}

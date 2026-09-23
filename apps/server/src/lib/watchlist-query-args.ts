@@ -38,3 +38,25 @@ export function watchlistTotalPages(total: number, limit: number): number {
 	if (total <= 0 || limit <= 0) return 0;
 	return Math.ceil(total / limit);
 }
+
+/**
+ * Page window from a `LIMIT limit+1` fetch. Avoids a second `COUNT(*)` that
+ * must scan the whole hide-watched watchlist just to know whether to load more.
+ */
+export function watchlistLookaheadPageMeta(args: {
+	page: number;
+	limit: number;
+	fetchedCount: number;
+}): { visibleCount: number; hasMore: boolean; totalPages: number } {
+	const hasMore = args.fetchedCount > args.limit;
+	const visibleCount = Math.min(args.fetchedCount, args.limit);
+	const totalPages =
+		visibleCount === 0
+			? args.page === 1
+				? 0
+				: args.page - 1
+			: hasMore
+				? args.page + 1
+				: args.page;
+	return { visibleCount, hasMore, totalPages };
+}

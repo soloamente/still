@@ -20,8 +20,9 @@ export type SearchDialogBrowsePreviewItem = {
 	listingKind: "movie" | "tv";
 };
 
-const PREVIEW_LIMIT = 4;
-const STUDIO_PREVIEW_LIMIT = 8;
+/** Horizontal poster rail shows more than the old 2×2 browse column. */
+const PREVIEW_LIMIT = 10;
+const STUDIO_PREVIEW_LIMIT = 12;
 
 type TmdbSheetRow = {
 	id: number;
@@ -122,7 +123,7 @@ async function fetchBrowsePreview(
 }
 
 /**
- * Loads up to four suggested posters for the empty search dialog’s browse column.
+ * Loads suggested posters for the empty search dialog’s horizontal title rail.
  */
 export function useSearchDialogBrowsePreview(
 	category: SearchDialogBrowseCategory,

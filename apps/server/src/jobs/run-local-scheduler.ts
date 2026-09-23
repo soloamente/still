@@ -3,6 +3,7 @@
  * Production must use Cloudflare Cron / GitHub Actions — not this module.
  */
 
+import { syncPersonFavoriteReleaseAlerts } from "../lib/person-favorite-release-alerts";
 import { syncWatchlistStreamingAlerts } from "../lib/watchlist-streaming-alerts";
 import { runEvaluator } from "./badge-evaluator";
 import { ingestRss } from "./rss-ingest";
@@ -17,6 +18,7 @@ export const LOCAL_JOB_INTERVALS = {
 	tmdbStaleMs: 24 * 60 * 60_000,
 	tvNewEpisodeMs: 6 * 60 * 60_000,
 	watchlistStreamingMs: 24 * 60 * 60_000,
+	personFavoriteReleaseMs: 24 * 60 * 60_000,
 } as const;
 
 /** Explicit opt-in — ordinary `bun dev` must not schedule DB work against Neon. */
@@ -85,6 +87,16 @@ export function startLocalJobScheduler(): SchedulerHandle {
 		setInterval(
 			() => void safeRun("watchlist-streaming", syncWatchlistStreamingAlerts),
 			LOCAL_JOB_INTERVALS.watchlistStreamingMs,
+		),
+	);
+	timers.push(
+		setInterval(
+			() =>
+				void safeRun(
+					"person-favorite-release",
+					syncPersonFavoriteReleaseAlerts,
+				),
+			LOCAL_JOB_INTERVALS.personFavoriteReleaseMs,
 		),
 	);
 

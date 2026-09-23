@@ -10,7 +10,6 @@ import {
 } from "@/components/home/patron-members-ledger-drawer";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
-	COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME,
 	COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME,
 	type CommunityRanksPodiumSlot,
 	communityRanksPodiumFilled,
@@ -136,10 +135,6 @@ export function MembersLeaderboardPodium({
 	return (
 		<div className={HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME}>
 			<div className={COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME}>
-				<div
-					className={COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME}
-					aria-hidden
-				/>
 				{second ? (
 					<MembersPodiumTile
 						entry={second}

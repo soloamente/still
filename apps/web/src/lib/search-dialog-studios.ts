@@ -5,11 +5,12 @@ export type SearchDialogStudio = {
 	logoUrl: string | null;
 };
 
-/** Canvas studio logo tile on search `bg-card` (`.studio-logo-chip` in globals.css). */
+/** TMDb-fallback studio mark — canvas well when the themed PNG is missing. */
 export const SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS = "studio-logo-chip";
 
-/** Studio rail chip — baked tiles read best at 64px; keep in sync with logo + skeleton. */
-export const SEARCH_DIALOG_STUDIO_RAIL_CHIP_CLASS = "size-16 rounded-2xl";
+/** Studio rail / selected-studio tile — raised `bg-card` on the nested body well. */
+export const SEARCH_DIALOG_STUDIO_RAIL_CHIP_CLASS =
+	"size-16 rounded-2xl bg-card";
 
 export function findSearchDialogStudio(
 	studios: SearchDialogStudio[],

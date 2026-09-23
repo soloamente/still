@@ -5,7 +5,11 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
 
-import { DEFAULT_APP_THEME_CLASS, resolveAppTheme } from "@/lib/app-themes";
+import {
+	DEFAULT_APP_THEME_CLASS,
+	isAppThemeLight,
+	resolveAppTheme,
+} from "@/lib/app-themes";
 import { resolveStudioThemedLogoUrl } from "@/lib/search-dialog-studio-logo";
 import {
 	SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
@@ -16,7 +20,8 @@ type SearchDialogStudioLogoVariant =
 	| "rail"
 	| "suggestion"
 	| "pill"
-	| "pillCompact";
+	| "pillCompact"
+	| "pillTiny";
 
 const VARIANT_CLASS: Record<
 	SearchDialogStudioLogoVariant,
@@ -38,11 +43,34 @@ const VARIANT_CLASS: Record<
 		frame: "size-4 rounded-[5px]",
 		image: "size-4 rounded-[5px] object-cover",
 	},
+	pillTiny: {
+		frame: "size-8 rounded-full",
+		image: "size-8 rounded-full object-cover",
+	},
 };
 
+function variantPixelSize(variant: SearchDialogStudioLogoVariant): number {
+	switch (variant) {
+		case "rail":
+			return 64;
+		case "suggestion":
+			return 36;
+		case "pillCompact":
+			return 18;
+		case "pill":
+			return 20;
+		case "pillTiny":
+			return 32;
+		default: {
+			const _exhaustive: never = variant;
+			return _exhaustive;
+		}
+	}
+}
+
 /**
- * Studio mark for search UI — prefers baked `public/studios/{slug}/{slug}_{theme}.png`
- * tiles (background included) and falls back to TMDb `logo_url` on missing assets.
+ * Studio mark for search UI — prefers TMDb `logo_url` from the API; falls back to
+ * baked `public/studios/{slug}/{slug}_{theme}.png` tiles when the API has no logo.
  */
 export function SearchDialogStudioLogo({
 	studioId,
@@ -63,52 +91,66 @@ export function SearchDialogStudioLogo({
 		() => resolveStudioThemedLogoUrl(studioId, appTheme),
 		[studioId, appTheme],
 	);
-	const prefersThemedTile = themedUrl != null;
-	const [src, setSrc] = useState(() => themedUrl ?? fallbackLogoUrl ?? "");
-	const [useChipSurface, setUseChipSurface] = useState(!prefersThemedTile);
+	// API logo first; themed PNG only when TMDb has nothing.
+	const prefersApiLogo = Boolean(fallbackLogoUrl);
+	const [src, setSrc] = useState(
+		() => fallbackLogoUrl ?? themedUrl ?? "",
+	);
+	const [useChipSurface, setUseChipSurface] = useState(prefersApiLogo);
 
 	useEffect(() => {
-		if (prefersThemedTile) {
-			setSrc(themedUrl);
-			setUseChipSurface(false);
+		if (fallbackLogoUrl) {
+			setSrc(fallbackLogoUrl);
+			setUseChipSurface(true);
 			return;
 		}
-		setSrc(fallbackLogoUrl ?? "");
-		setUseChipSurface(true);
-	}, [prefersThemedTile, themedUrl, fallbackLogoUrl]);
+		setSrc(themedUrl ?? "");
+		setUseChipSurface(false);
+	}, [fallbackLogoUrl, themedUrl]);
 
 	if (!src) return null;
 
 	const { frame, image } = VARIANT_CLASS[variant];
 	const isRemote = src.startsWith("http");
+	const pixelSize = variantPixelSize(variant);
+	// TMDb company logos are dark ink — invert to white on dark shells (not Lucid).
+	const invertApiLogoForDark = useChipSurface && !isAppThemeLight(appTheme);
 
 	return (
 		<span
 			className={cn(
 				"inline-flex shrink-0 items-center justify-center overflow-hidden",
 				frame,
-				useChipSurface && [
-					SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
-					variant === "suggestion" && "studio-logo-chip-outline shadow-sm",
-				],
+				// Search-bar tag marks sit on `bg-background` pills — match the raised shell.
+				useChipSurface &&
+					variant === "pillTiny" &&
+					"bg-card",
+				useChipSurface &&
+					variant !== "pillTiny" && [
+						SEARCH_DIALOG_STUDIO_LOGO_CHIP_CLASS,
+						variant === "suggestion" && "studio-logo-chip-outline shadow-sm",
+					],
 				className,
 			)}
 		>
 			<Image
 				src={src}
 				alt=""
-				width={variant === "rail" ? 64 : variant === "suggestion" ? 36 : 20}
-				height={variant === "rail" ? 64 : variant === "suggestion" ? 36 : 20}
+				width={pixelSize}
+				height={pixelSize}
 				className={cn(
 					useChipSurface ? "object-contain p-0.5" : image,
 					useChipSurface && variant === "rail" && "size-14 p-1.5",
-					useChipSurface && variant === "suggestion" && "size-7 p-0.5",
+					useChipSurface && variant === "suggestion" && "size-8 p-0.5",
+					useChipSurface && variant === "pillTiny" && "size-7 p-0.5",
+					invertApiLogoForDark && "brightness-0 invert",
 				)}
 				unoptimized={isRemote}
 				onError={() => {
-					if (prefersThemedTile && fallbackLogoUrl) {
-						setSrc(fallbackLogoUrl);
-						setUseChipSurface(true);
+					// API logo failed — try themed tile if we have one.
+					if (fallbackLogoUrl && themedUrl && src === fallbackLogoUrl) {
+						setSrc(themedUrl);
+						setUseChipSurface(false);
 					}
 				}}
 			/>

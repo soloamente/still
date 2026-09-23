@@ -28,7 +28,7 @@ const CHIPS: readonly {
 ] as const;
 
 /**
- * Left chip rail on `/watchlist` — liquid-gooey Move pill (diary parity).
+ * Left chip rail on `/watchlist` — sliding `bg-card` pill (diary parity).
  */
 export function WatchlistCatalogOrderChips() {
 	const { order, selectOrder } = useWatchlistLobbyParams();

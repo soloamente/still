@@ -43,6 +43,18 @@ export function notificationPayloadHref(
 	const quoteHref = buildQuoteSubmissionNotificationHref(payload);
 	if (quoteHref) return quoteHref;
 
+	// Favorite-people release/streaming alerts — mediaKind + tmdbId listing deep link.
+	const mediaKind = payload.mediaKind;
+	const tmdbId = payload.tmdbId;
+	if (
+		(mediaKind === "movie" || mediaKind === "tv") &&
+		typeof tmdbId === "number" &&
+		Number.isFinite(tmdbId) &&
+		tmdbId >= 1
+	) {
+		return mediaKind === "movie" ? `/movies/${tmdbId}` : `/tv/${tmdbId}`;
+	}
+
 	const feedbackId = feedbackIdFromNotificationPayload(payload);
 	if (feedbackId) return buildFeedbackNotificationHref(feedbackId);
 

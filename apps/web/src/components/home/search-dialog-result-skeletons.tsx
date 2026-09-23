@@ -22,6 +22,43 @@ const BROWSE_PREVIEW_SKELETON_SLOTS = ["a", "b", "c", "d"] as const;
 
 const STUDIO_CHIP_SKELETON_SLOTS = ["a", "b", "c", "d", "e", "f"] as const;
 
+const GENRE_CHIP_SKELETON_SLOTS = [
+	"a",
+	"b",
+	"c",
+	"d",
+	"e",
+	"f",
+	"g",
+	"h",
+] as const;
+
+const POSTER_RAIL_SKELETON_SLOTS = ["a", "b", "c", "d", "e"] as const;
+
+const POSTER_GRID_SKELETON_SLOTS = [
+	"a",
+	"b",
+	"c",
+	"d",
+	"e",
+	"f",
+	"g",
+	"h",
+	"i",
+	"j",
+] as const;
+
+const PEOPLE_RAIL_SKELETON_SLOTS = [
+	"a",
+	"b",
+	"c",
+	"d",
+	"e",
+	"f",
+	"g",
+	"h",
+] as const;
+
 /** Poster grid placeholder — same track layout as search results (no layout shift). */
 export function SearchDialogPosterSkeletonGrid({
 	count = 8,
@@ -47,17 +84,73 @@ export function SearchDialogPosterSkeletonGrid({
 	);
 }
 
-/** Empty-state browse column — matches 2×2 / 4-up poster preview grid. */
+/** Empty-state browse column — matches the horizontal poster rail. */
 export function SearchDialogBrowsePreviewSkeleton() {
 	return (
-		<div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-4" aria-hidden>
+		<div className="flex gap-2.5 overflow-hidden" aria-hidden>
 			{BROWSE_PREVIEW_SKELETON_SLOTS.map((slot) => (
-				<div key={`browse-preview-skel-${slot}`} className="min-w-0">
-					<Skeleton className="aspect-2/3 w-full rounded-2xl" />
-					<Skeleton className="mt-2 h-3.5 w-4/5 max-w-full rounded-md" />
-				</div>
+				<Skeleton
+					key={`browse-preview-skel-${slot}`}
+					className="aspect-2/3 w-[9.4rem] shrink-0 rounded-2xl"
+				/>
 			))}
 		</div>
+	);
+}
+
+/** Genre chip placeholders while TMDb genres load. */
+export function SearchDialogGenreRailSkeleton() {
+	return (
+		<>
+			{GENRE_CHIP_SKELETON_SLOTS.map((slot) => (
+				<Skeleton
+					key={`genre-skel-${slot}`}
+					className="h-[26px] w-[4.75rem] shrink-0 rounded-full"
+				/>
+			))}
+		</>
+	);
+}
+
+/** Wrapping poster placeholders matching the Figma search-results grid. */
+export function SearchDialogPosterGridSkeleton() {
+	return (
+		<>
+			{POSTER_GRID_SKELETON_SLOTS.map((slot) => (
+				<Skeleton
+					key={`poster-grid-skel-${slot}`}
+					className="aspect-2/3 w-full rounded-[10px]"
+				/>
+			))}
+		</>
+	);
+}
+
+/** Horizontal poster placeholders matching the Figma title rail. */
+export function SearchDialogPosterRailSkeleton() {
+	return (
+		<>
+			{POSTER_RAIL_SKELETON_SLOTS.map((slot) => (
+				<Skeleton
+					key={`poster-rail-skel-${slot}`}
+					className="aspect-2/3 w-[9.4rem] shrink-0 rounded-2xl"
+				/>
+			))}
+		</>
+	);
+}
+
+/** Square portrait placeholders for the people rail. */
+export function SearchDialogPeopleRailSkeleton() {
+	return (
+		<>
+			{PEOPLE_RAIL_SKELETON_SLOTS.map((slot) => (
+				<Skeleton
+					key={`people-rail-skel-${slot}`}
+					className="size-16 shrink-0 rounded-2xl"
+				/>
+			))}
+		</>
 	);
 }
 

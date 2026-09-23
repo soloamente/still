@@ -25,6 +25,10 @@ import {
 	NotificationsDropdownPanel,
 } from "@/components/notifications/notifications-dropdown-panel";
 import { useNotificationsInbox } from "@/components/notifications/notifications-inbox-provider";
+import {
+	BELL_RING_ORIGIN_CLASS,
+	ringBellElement,
+} from "@/lib/bell-ring-animation";
 import { notificationPayloadHref } from "@/lib/notification-href";
 import type { NotificationsInboxFilter } from "@/lib/notifications-inbox-filter";
 
@@ -55,11 +59,14 @@ export function NotificationsBellMenu({
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [filter, setFilter] = useState<NotificationsInboxFilter>("unread");
 	const menuActionsRef = useRef<DropdownMenuActions | null>(null);
+	const bellIconRef = useRef<HTMLSpanElement>(null);
 
 	function handleMenuOpenChange(next: boolean) {
 		setMenuOpen(next);
-		if (next && authenticated) {
-			void refresh();
+		if (next) {
+			// Only opening rings — closing the menu is not an event to celebrate.
+			ringBellElement(bellIconRef.current);
+			if (authenticated) void refresh();
 		}
 	}
 
@@ -102,7 +109,13 @@ export function NotificationsBellMenu({
 							"data-popup-open:bg-card",
 						)}
 					>
-						<span className="relative z-10 text-foreground">
+						<span
+							ref={bellIconRef}
+							className={cn(
+								"relative z-10 inline-flex text-foreground",
+								BELL_RING_ORIGIN_CLASS,
+							)}
+						>
 							{hasUnread ? (
 								<IconBellFilled aria-hidden className={LOBBY_ICON_CLASS} />
 							) : (
@@ -128,11 +141,16 @@ export function NotificationsBellMenu({
 							"data-popup-open:bg-muted/35",
 						)}
 					>
-						{hasUnread ? (
-							<IconBellFilled aria-hidden className="size-5 shrink-0" />
-						) : (
-							<IconBell aria-hidden className="size-5 shrink-0" />
-						)}
+						<span
+							ref={bellIconRef}
+							className={cn("inline-flex", BELL_RING_ORIGIN_CLASS)}
+						>
+							{hasUnread ? (
+								<IconBellFilled aria-hidden className="size-5 shrink-0" />
+							) : (
+								<IconBell aria-hidden className="size-5 shrink-0" />
+							)}
+						</span>
 						{hasUnread ? (
 							<span
 								className="absolute top-1 right-1 size-2 rounded-full bg-desert-orange ring-2 ring-card"

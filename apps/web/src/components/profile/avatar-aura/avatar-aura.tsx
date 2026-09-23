@@ -21,11 +21,13 @@ export function AvatarAura({
 	staffRole,
 	children,
 	className,
+	style,
 }: {
 	planTier?: unknown;
 	staffRole?: unknown;
 	children: ReactNode;
 	className?: string;
+	style?: CSSProperties;
 }) {
 	const visual = resolveAvatarAuraVisual({ planTier, staffRole });
 	if (!hasAvatarAuraVisual(visual)) {
@@ -47,7 +49,7 @@ export function AvatarAura({
 				rimClass,
 				className,
 			)}
-			style={maskStyle as CSSProperties}
+			style={{ ...maskStyle, ...style } as CSSProperties}
 		>
 			<span className="avatar-aura-metal" aria-hidden />
 			<span

@@ -2,12 +2,13 @@
 
 import { buttonVariants } from "@still/ui/components/button";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useCallback, useLayoutEffect } from "react";
 
 import {
 	type PopularMovieSeed,
 	PopularMoviesInfinite,
 } from "@/components/movie/popular-movies-infinite";
+import { useWatchlistLobbyDisplayPrefs } from "@/components/watchlist/watchlist-lobby-display-prefs";
 import { useWatchlistLobbyParams } from "@/components/watchlist/watchlist-lobby-params-context";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
@@ -15,26 +16,38 @@ import {
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
 import { fetchMyWatchlist } from "@/lib/still-api-fetch";
+import {
+	type WatchlistLobbyOrder,
+	watchlistCatalogueWaveKey,
+} from "@/lib/watchlist-lobby-order";
 
 /**
  * Client boundary for the `/watchlist` poster wall — seeds page 1 (server-rendered)
  * and pages the personal list on scroll via `fetchMyWatchlist` (see `loadPage`).
+ *
+ * `order` is the RSC seed sort, not the optimistic chip value. The chip rail
+ * updates immediately; this wall waits for the matching first page so we do not
+ * remount onto stale posters (then swap again when the new payload lands).
+ * `key` remounts `PopularMoviesInfinite` so tile state initializes from the new
+ * seeds on the first paint (the wave-key effect would otherwise lag one frame).
+ * Hover prefs come from layout chrome so `?order=` does not wait on `profiles.me`.
  */
 export function WatchlistLobbyCatalogue({
+	order,
 	seeds,
 	totalPages,
 	totalResults,
-	monochromePeersOnHover,
-	signedIn = false,
 }: {
+	order: WatchlistLobbyOrder;
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
-	monochromePeersOnHover: boolean;
-	signedIn?: boolean;
 }) {
-	const { order } = useWatchlistLobbyParams();
-
+	const { reportSeedOrder } = useWatchlistLobbyParams();
+	const { monochromePeersOnHover, signedIn } = useWatchlistLobbyDisplayPrefs();
+	useLayoutEffect(() => {
+		reportSeedOrder(order);
+	}, [order, reportSeedOrder]);
 	// Stable, media-aware key — used for both React cell keys and cross-page dedupe.
 	const cellKey = useCallback(
 		(m: PopularMovieSeed) => `${m.listingKind ?? "movie"}:${m.id}`,
@@ -77,12 +90,13 @@ export function WatchlistLobbyCatalogue({
 
 	return (
 		<PopularMoviesInfinite
+			key={watchlistCatalogueWaveKey(order)}
 			blockedReason={null}
 			catalogueRadialSurface="watchlist"
 			signedIn={signedIn}
 			catalogMedia="movie"
 			catalogExhaustedScope="your watchlist"
-			catalogueWaveKeyOverride={`watchlist:${order}`}
+			catalogueWaveKeyOverride={watchlistCatalogueWaveKey(order)}
 			getPosterCellKey={cellKey}
 			getDedupeKey={cellKey}
 			loadPage={loadPage}

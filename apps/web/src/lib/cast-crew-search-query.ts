@@ -5,6 +5,8 @@ export interface CastCrewSearchHit {
 	profileUrl: string | null;
 	knownForDepartment: string | null;
 	knownForTitles: string[];
+	/** Viewer-scoped Favorite mark from the people search API. */
+	isFavorited?: boolean;
 }
 
 /** Secondary line for a cast/crew row, e.g. "Director · Inception, Oppenheimer". */

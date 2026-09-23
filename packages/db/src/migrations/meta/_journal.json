@@ -295,6 +295,27 @@
 			"when": 1779203700000,
 			"tag": "0041_review_translation",
 			"breakpoints": true
+		},
+		{
+			"idx": 42,
+			"version": "7",
+			"when": 1779203800000,
+			"tag": "0042_person_search_traffic",
+			"breakpoints": true
+		},
+		{
+			"idx": 43,
+			"version": "7",
+			"when": 1779203900000,
+			"tag": "0043_person_favorite",
+			"breakpoints": true
+		},
+		{
+			"idx": 44,
+			"version": "7",
+			"when": 1779204000000,
+			"tag": "0044_person_favorite_alerts_enabled",
+			"breakpoints": true
 		}
 	]
 }

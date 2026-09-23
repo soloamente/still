@@ -1,8 +1,9 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { X } from "lucide-react";
+import { List, Search, X } from "lucide-react";
 
+import { SearchDialogGenreIcon } from "@/components/home/search-dialog-genre-icon";
 import { SearchDialogStudioLogo } from "@/components/home/search-dialog-studio-logo";
 import { searchDialogStudioHasLogo } from "@/lib/search-dialog-studio-logo";
 import type { SearchTag } from "@/lib/search-query-tags";
@@ -17,7 +18,35 @@ function pillLabel(tag: SearchTag): string {
 	return "Lists";
 }
 
-/** Committed filter chip — canvas surface on the search dialog card, no rings. */
+function DialogTagMark({ tag }: { tag: SearchTag }) {
+	if (tag.kind === "studio") {
+		const hasLogo = searchDialogStudioHasLogo(tag.id, tag.logoUrl);
+		if (hasLogo) {
+			return (
+				<SearchDialogStudioLogo
+					studioId={tag.id}
+					fallbackLogoUrl={tag.logoUrl}
+					variant="pillTiny"
+				/>
+			);
+		}
+		return <Search className="size-5 shrink-0 opacity-80" aria-hidden />;
+	}
+	if (tag.kind === "genre" || tag.kind === "curated") {
+		return (
+			<SearchDialogGenreIcon
+				name={tag.kind === "genre" ? tag.name : tag.label}
+				className="size-5"
+			/>
+		);
+	}
+	if (tag.kind === "lists") {
+		return <List className="size-5 shrink-0 opacity-80" aria-hidden />;
+	}
+	return <Search className="size-5 shrink-0 opacity-80" aria-hidden />;
+}
+
+/** Committed filter chip — inset `bg-background` on the raised dialog shell, no rings. */
 export function SearchTagPill({
 	tag,
 	onRemove,
@@ -28,14 +57,45 @@ export function SearchTagPill({
 	onRemove?: () => void;
 	/** Display-only chips omit the remove control (sticky pill summary). */
 	variant?: "editable" | "display";
-	/** Compact density fits the sticky search pill without growing its height. */
-	density?: "default" | "compact";
+	/** `dialog` — search-bar token row (icon + label, tap to remove). */
+	density?: "default" | "compact" | "dialog";
 }) {
 	const label = pillLabel(tag);
 	const hasLogo =
 		tag.kind === "studio" && searchDialogStudioHasLogo(tag.id, tag.logoUrl);
 	const editable = variant === "editable" && onRemove != null;
 	const compact = density === "compact";
+	const dialog = density === "dialog";
+
+	if (dialog) {
+		const isStudio = tag.kind === "studio";
+		const chipClass = cn(
+			"inline-flex max-w-[18rem] shrink-0 items-center rounded-full bg-background font-medium text-base text-foreground leading-none",
+			// Studio marks need room for a larger logo; genre/curated get padded icon+label.
+			isStudio
+				? "h-10 gap-2 py-1 pr-3 pl-1.5"
+				: "h-10 gap-2 py-1.5 pr-3 pl-2.5",
+		);
+		const inner = (
+			<>
+				<DialogTagMark tag={tag} />
+				<span className="truncate">{label}</span>
+			</>
+		);
+		if (editable) {
+			return (
+				<button
+					type="button"
+					aria-label={`Remove ${label} filter`}
+					onClick={onRemove}
+					className={chipClass}
+				>
+					{inner}
+				</button>
+			);
+		}
+		return <span className={chipClass}>{inner}</span>;
+	}
 
 	return (
 		<span

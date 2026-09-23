@@ -18,6 +18,7 @@ import {
 	type ProfileUnlockedAchievement,
 } from "@/components/profile/profile-patron-milestones";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfilePersonFavoritesDrawerRoot } from "@/components/profile/profile-person-favorites-drawer";
 import { ProfileTabPanels } from "@/components/profile/profile-tab-panels";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { ProfileTopBar } from "@/components/profile/profile-top-bar";
@@ -61,6 +62,7 @@ export interface ProfilePatronLobbyShellProps {
 		likedTv: number;
 		reviews: number;
 	};
+	personFavoritesCount: number;
 	lists: ListBoardRow[];
 	socialTabs: readonly ProfileSocialTabId[];
 	earnedBadges: ProfileEarnedBadge[];
@@ -106,6 +108,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 		totalResults,
 		venueCounts,
 		filmographyCounts,
+		personFavoritesCount,
 		lists,
 		socialTabs,
 		earnedBadges,
@@ -190,6 +193,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 	return (
 		<>
 			<ProfileFollowsDrawerRoot viewerId={viewerId} />
+			<ProfilePersonFavoritesDrawerRoot />
 			<ProfileTopBar displayName={displayName} sharePath={sharePath} />
 			<section
 				className={cn(
@@ -216,6 +220,7 @@ function ProfilePatronLobbyBody(props: ProfilePatronLobbyShellProps) {
 						accentColor={accentColor}
 						moviesCount={moviesAllCount}
 						tvCount={tvAllCount}
+						personFavoritesCount={personFavoritesCount}
 						tasteSignature={tasteSignature}
 						pinnedReviews={pinnedReviews}
 						showcaseItems={showcaseItems}

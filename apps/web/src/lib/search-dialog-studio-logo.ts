@@ -45,7 +45,7 @@ export function studioThemedLogoPath(
 	return `/studios/${slug}/${slug}_${suffix}.png`;
 }
 
-/** Theme tile when we host assets; otherwise null (caller falls back to TMDb `logo_url`). */
+/** Theme tile fallback when TMDb has no `logo_url` for this company. */
 export function resolveStudioThemedLogoUrl(
 	studioId: number,
 	appTheme: AppThemeClass = DEFAULT_APP_THEME_CLASS,
@@ -55,10 +55,10 @@ export function resolveStudioThemedLogoUrl(
 	return studioThemedLogoPath(slug, appTheme);
 }
 
-/** True when the rail/pill can show a hosted tile and/or a TMDb fallback logo. */
+/** True when the rail/pill can show a TMDb logo and/or a hosted theme tile. */
 export function searchDialogStudioHasLogo(
 	studioId: number,
 	fallbackLogoUrl: string | null | undefined,
 ): boolean {
-	return Boolean(SEARCH_DIALOG_STUDIO_ASSET_SLUGS[studioId] || fallbackLogoUrl);
+	return Boolean(fallbackLogoUrl || SEARCH_DIALOG_STUDIO_ASSET_SLUGS[studioId]);
 }

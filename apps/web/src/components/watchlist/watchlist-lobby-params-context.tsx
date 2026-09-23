@@ -7,6 +7,7 @@ import {
 	useCallback,
 	useContext,
 	useMemo,
+	useState,
 } from "react";
 
 import { useLobbyNavigation } from "@/components/lobby/lobby-navigation-provider";
@@ -19,7 +20,10 @@ import {
 
 interface WatchlistLobbyParamsContextValue {
 	order: WatchlistLobbyOrder;
+	/** RSC seed sort currently mounted in the poster wall — null before first report. */
+	seedOrder: WatchlistLobbyOrder | null;
 	selectOrder: (order: WatchlistLobbyOrder) => void;
+	reportSeedOrder: (order: WatchlistLobbyOrder) => void;
 }
 
 const WatchlistLobbyParamsContext =
@@ -34,6 +38,7 @@ export function WatchlistLobbyParamsProvider({
 	const { navigate } = useLobbyNavigation();
 	const urlOrder = parseWatchlistLobbyOrder(searchParams.get("order"));
 	const orderState = useOptimisticLobbyParam(urlOrder);
+	const [seedOrder, setSeedOrder] = useState<WatchlistLobbyOrder | null>(null);
 
 	const selectOrder = useCallback(
 		(order: WatchlistLobbyOrder) => {
@@ -43,12 +48,18 @@ export function WatchlistLobbyParamsProvider({
 		[navigate, orderState],
 	);
 
+	const reportSeedOrder = useCallback((order: WatchlistLobbyOrder) => {
+		setSeedOrder((prev) => (prev === order ? prev : order));
+	}, []);
+
 	const value = useMemo(
 		() => ({
 			order: orderState.value,
+			seedOrder,
 			selectOrder,
+			reportSeedOrder,
 		}),
-		[orderState.value, selectOrder],
+		[orderState.value, reportSeedOrder, seedOrder, selectOrder],
 	);
 
 	return (

@@ -81,6 +81,37 @@ describe("notification-href", () => {
 		).toBe("/home?feedback=fb_abc");
 	});
 
+	test("person favorite release/streaming resolves from mediaKind + tmdbId", () => {
+		expect(
+			notificationPayloadHref({
+				mediaKind: "movie",
+				tmdbId: 550,
+				personId: 287,
+				title: "Fight Club",
+				roleLabel: "stars in",
+			}),
+		).toBe("/movies/550");
+		expect(
+			notificationPayloadHref({
+				mediaKind: "tv",
+				tmdbId: 1399,
+				personId: 1223,
+				title: "Game of Thrones",
+				roleLabel: "directed",
+			}),
+		).toBe("/tv/1399");
+	});
+
+	test("explicit href wins over mediaKind for person favorite payloads", () => {
+		expect(
+			notificationPayloadHref({
+				href: "/movies/550",
+				mediaKind: "tv",
+				tmdbId: 1399,
+			}),
+		).toBe("/movies/550");
+	});
+
 	test("profileTasteCompareFromSearch", () => {
 		expect(profileTasteCompareFromSearch("?tasteCompare=1")).toBe(true);
 		expect(profileTasteCompareFromSearch("?tasteCompare=true")).toBe(true);

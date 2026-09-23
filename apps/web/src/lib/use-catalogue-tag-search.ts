@@ -53,6 +53,7 @@ export function useCatalogueTagSearch(
 	const [catalogueResults, setCatalogueResults] = useState<
 		CatalogTextSearchHit[]
 	>([]);
+	const [catalogueTotalResults, setCatalogueTotalResults] = useState(0);
 	const [listResults, setListResults] = useState<ListBoardRow[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [setupHint, setSetupHint] = useState<string | null>(null);
@@ -72,6 +73,7 @@ export function useCatalogueTagSearch(
 	useEffect(() => {
 		if (!active) {
 			setCatalogueResults([]);
+			setCatalogueTotalResults(0);
 			setListResults([]);
 			setSetupHint(null);
 			setNeedsSignIn(false);
@@ -90,6 +92,7 @@ export function useCatalogueTagSearch(
 					if (res.response.status === 401) {
 						setListResults([]);
 						setCatalogueResults([]);
+						setCatalogueTotalResults(0);
 						setNeedsSignIn(true);
 						setSetupHint(null);
 						return;
@@ -104,6 +107,7 @@ export function useCatalogueTagSearch(
 						: [];
 					setListResults(rows);
 					setCatalogueResults([]);
+					setCatalogueTotalResults(0);
 					setSetupHint(null);
 					return;
 				}
@@ -129,14 +133,24 @@ export function useCatalogueTagSearch(
 							? await fetchTvDiscover(1, discoverOpts)
 							: await fetchMoviesDiscover(1, discoverOpts);
 					if (ctrl.signal.aborted) return;
-					const payload = res.data as { results?: TmdbSheetRow[] } | null;
+					const payload = res.data as {
+						results?: TmdbSheetRow[];
+						total_results?: number;
+					} | null;
 					setSetupHint(tmdbSetupHint(payload));
-					setCatalogueResults(mapCatalogueRows(payload?.results ?? []));
+					const rows = mapCatalogueRows(payload?.results ?? []);
+					setCatalogueResults(rows);
+					setCatalogueTotalResults(
+						typeof payload?.total_results === "number"
+							? payload.total_results
+							: rows.length,
+					);
 					return;
 				}
 
 				if (plan.mode === "none") {
 					setCatalogueResults([]);
+					setCatalogueTotalResults(0);
 					setSetupHint(null);
 					return;
 				}
@@ -155,16 +169,27 @@ export function useCatalogueTagSearch(
 				if (ctrl.signal.aborted) return;
 				if (res.error) {
 					setCatalogueResults([]);
+					setCatalogueTotalResults(0);
 					setSetupHint(null);
 					return;
 				}
 
-				const payload = res.data as { results?: TmdbSheetRow[] } | null;
+				const payload = res.data as {
+					results?: TmdbSheetRow[];
+					total_results?: number;
+				} | null;
 				setSetupHint(tmdbSetupHint(payload));
-				setCatalogueResults(mapCatalogueRows(payload?.results ?? []));
+				const rows = mapCatalogueRows(payload?.results ?? []);
+				setCatalogueResults(rows);
+				setCatalogueTotalResults(
+					typeof payload?.total_results === "number"
+						? payload.total_results
+						: rows.length,
+				);
 			} catch {
 				if (!ctrl.signal.aborted) {
 					setCatalogueResults([]);
+					setCatalogueTotalResults(0);
 					setListResults([]);
 					setSetupHint(null);
 				}
@@ -193,6 +218,7 @@ export function useCatalogueTagSearch(
 		active,
 		resultMode,
 		catalogueResults,
+		catalogueTotalResults,
 		listResults,
 		loading,
 		setupHint,

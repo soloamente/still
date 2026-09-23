@@ -1,8 +1,105 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Today on Sense (2026-09-23) — PLANNER (brainstorm)
+
+**Status:** Task 12 (final) complete — all 12 plan tasks committed on `feat/today-on-sense`. Waiting on human QA of Tasks 6–12 before merge (Planner sign-off).
+**Task 12:** `6905873` — Kinds registered on server + web: client-allowed `today.viewed`, `today.pick.viewed|action`, `today.week.viewed|action`, `today.circle.viewed|action`, `rating.category_saved|skipped`, `rating.suggestion_applied`; **server-only** `recommendation.sent|opened|accepted|answered` (not in `CLIENT_PRODUCT_EVENT_KINDS` → browsers can't inflate the funnel; test asserts it). `routes/recommendations.ts` records each funnel step only on the real transition (`.returning()` on openedAt/answeredAt updates; accepted only when `acceptedAt` was null). Web: `useTrackImpressionOnce(kind, props, enabled)` (once per mount, props read at first enable) + `TodayImpressionTracker` for the RSC shell. Pick actions (Today only): `watched` (after log saved, `rewatch`), `watchlist`, `not_interested`, `pick_another` (`chosenFromRail`, only when a pick was complete), `undo`, `open_detail`. Pick impression `state: pick|empty|error`. Week `state: pulse|empty|error`, actions `log_a_title|open_diary`. Circle `state: activity|invite|error`, actions `recommend_back|invite`. Category panel gained required `surface: today|quick_log`; saved after PATCH ok, skipped only on explicit **Skip**, suggestion `kind: offer|switch`. Tests: server 20 pass (`--env-file`), web 39 pass; web tsc clean for touched files; biome clean. Pre-existing server tsc noise in `product-event-kinds.test.ts` `toContain` typing (not new).
+**Please verify (Task 12):** DevTools → Network, filter `product-events`: load `/home` signed-in → one `today.viewed`, `today.pick.viewed`, `today.week.viewed`, `today.circle.viewed` (no repeats while idle). Watched → `today.pick.action {action:"watched"}`; Undo → `undo`; Pick another → `pick_another`. Rate by category → Next/Skip fire `rating.category_saved` / `rating.category_skipped`. Send a recommendation → `product_event` row `recommendation.sent` in DB; recipient opens notification → `recommendation.opened` once (reopen = no new row).
+**Task 11 (prior):**
+**Task 11:** `830341c` — `lib/today-pick-continuity.ts` (7 tests): sessionStorage `still:today-pick:v1` `{ tmdbId, mediaKind, reason, film snapshot, setAt, completedVia }`, 2h TTL, malformed/expired removed, storage failures swallowed; `markTodayPickContinuityCompleted` only for the matching title, diary never downgraded. Written on Today pick title-link click; cleared on **Pick another**, **Not interested**, **Undo**. `TodayPickDetailCue` under the movie `<h1>`: **Today’s pick · {same reason as Home}** (post-mount read, no hydration mismatch). Cross-surface sync: `dispatchTasteTitleConsumed` gained `via` (quick log → diary, `postWatchlistAdd` → watchlist, Today instant log → diary) and persists completion before firing the CustomEvent; Home hero on (re)mount reads it → pins the finished film (snapshot when the server already dropped it) + new reducer event `restored_complete` (from active only) → shows **Added to your diary / watchlist** instead of rotating. Back/scroll: untouched — existing lobby restore + detail-only scroll reset (no new scroll system). TV detail has no cue (Today pick is movies-only). web tsc 0; biome clean; 26 tests in touched libs. Not browser-verified.
+**Please verify (Task 11):** Today pick → tap title → detail shows **Today’s pick · Because…** → Add to Watched (Quick Log) → Back → Home shows the same film as **Added to your diary** + **Pick another** (not rotated). Repeat with watchlist → **Added to your watchlist**. Open the same film from search in a new session → no cue.
+**Task 10:** `e1c4959` — `RecommendBackSheet` (`DetailVaulSheet appStack`) opened globally via `openRecommendBackSheet(target, onSent)` / `RecommendBackSheetRoot` in `AppShell` (zustand, remount per open). Pick step: **What should {name} watch next?** + 3 suggestions (score / Favorite meta, **Already watched** pill) + **Search titles** (Films/Shows `SegmentedPillToolbar`, reuses `useCatalogTextSearch`, 6 rows). Confirm step: poster + title, optional reason chips (no **Because you liked…** until a real shared title exists), optional note (280 counter), **Send to {name}**; adult → inline **Send anyway** panel (suggestions pre-flagged; search hits via server 409 `confirm_sensitive`); errors inline by the button. Circle card **Recommend back** → sheet → card shows **Recommendation sent** (aria-live). Inbox `recommendation.received` row (`NotificationRecommendationRow`) in bell dropdown + `/notifications`: tap = open title (+ fire-and-forget `/open`), **Add to watchlist** (`/accept` → **On your watchlist**), **Recommend something back** (sheet with `answerToRecommendationId`; dropdown closes menu + toast since row unmounts). Server payload now carries `fromName`. Web helpers `lib/title-recommendation.ts` 7 tests; web tsc 0; biome clean on touched files. Not browser-verified. Detail-page `?recommend=` open tracking not wired (inbox tap covers `opened`).
+**Please verify (Task 10):** `/home` with a followee's recent log → **Recommend back** → pick suggestion → add note → **Send to X** → card says **Recommendation sent**. Recipient: bell → row shows both actions; **Add to watchlist** adds it; **Recommend something back** opens the sheet for the sender. Adult title → **Send anyway** prompt; recipient preview hides title/poster.
+**Task 9:** `c1a103f` — pure rules `lib/title-recommendation.ts` (15 tests): follow-in-either-direction gate (self / not_connected / unavailable for block+ban), note trim ≤280, reason codes + labels, `rankRecommendationSuggestions` (sender's loved logs ≥7.0 or favorite, dedupe film/TV by kind+id, skip titles already sent to this patron, recipient's **visible** watched titles flagged + sunk, max 3), notification copy **"{sender} thinks you’d like {title}"** with reason/note body; sensitive (adult) sends → **"{sender} sent you a recommendation"**, no title/poster/note in preview. DB layer `title-recommendation-query.ts` (recipient diary read only through `contentVisibilityWhere(sender, …)`; never lists/watchlist; projects only `_stillAdult` JSON path). Routes `/api/recommendations`: `GET /suggest?recipientUserId=`, `POST /` (30/h rate limit, 409 `already_recommended` / `confirm_sensitive`, optional `answerToRecommendationId` sets original `answeredAt`), `POST /:id/open`, `POST /:id/accept` (adds to watchlist only if missing — keeps existing note/priority). New kind `recommendation.received` (Settings → Social, default on); deep link `payload.href` = `/movies|tv/{id}?recommend={recId}`. Server/web touched-file tsc clean (pre-existing `tv-watch.ts` / `staff.test.ts` errors untouched); biome clean. No UI yet (Task 10), not exercised against a live DB.
+**Please verify (Task 9):** Settings → Notifications → Social shows **Recommendations**. Optional API smoke with two mutually-following accounts: `POST /api/recommendations {recipientUserId, movieId}` → recipient inbox row + tap lands on the film.
+**Lesson:** worktree has no `apps/server/.env` — env-dependent server tests need `bun test --env-file=../../../../apps/server/.env …`.
+**Task 8:** `c8a1305` — `lib/log-category-ratings.ts` client mirror (`LOG_CATEGORIES`, suggested overall = mean of rated keys to 1 decimal, `categorySuggestionAction` none/offer/switch, 9 tests). `LogCategoryRatingsPanel`: collapsed toggle → one category at a time (N of 7, Skip↔Next, Done saves current first) → summary with **Use X** (overall unset) / **Switch to X** (overall set) / Keep as is. Each rated category PATCHes immediately (partial progress persists; skips never stored). Mounted in Today **How was it?** (suggestion fills the slider, Save rating confirms) and Quick Log celebration (`align="center"`; PATCHes overall + updates shown score + week refresh). Not in Quick Log **edit** mode yet (spec: non-blocking). `rating.category_*` events deferred to Task 12. tsc 0 / biome clean. Not browser-verified.  
+**Please verify (Task 8):** Quick Log a film → celebration shows **Rate by category · Optional** → rate 2, skip rest → summary suggests mean → Switch/Use updates the big score; DB `log.category_ratings` has only the rated keys. Today pick **Watched** → same panel under How was it?; Use X fills the slider.  
+**Task 7:** `912c2ab` — Today **+** = instant **Watched** (label **Log a rewatch** when prior logs): `buildTodayInstantLogPayload` (local-noon today, `watchVenue: null`, no visibility → account default, `rewatch` client-side) → `postLog`. Pick shows **Added to your diary** + **Undo** (`deleteLog`, focus returns to Watched) + inline `TodayPickHowWasIt` (compact `LogRatingSlider` from 0/"Rate", **Save rating** PATCHes overall, **Skip**). Reducer: new `rating_settled` → `complete` via `diary` (ends Undo). Week refresh after log/undo/rating. Standalone hero (non-Today) keeps Quick Log sheet. Category panel deliberately **not** stubbed — lands in Task 8. Tests 17 (reducer + payload); web tsc 0; biome clean. Not browser-verified.  
+**Please verify (Task 7):** on `/home` pick tap **+** → "Added to your diary", Undo, How was it? (no sheet); check DB row `watch_venue` NULL + today's date; **Undo** → log gone, week count drops, actions return; Save rating → week "N rated" bumps and Undo disappears; title never rotates until **Pick another**.  
+**Task 6:** `87b7bf0` — `TodayOnSense` (server shell) mounted at top of `HomeLobbyCatalogueSection`, **outside** `HomeLobbyBodyGate`, for every browse surface (hidden during committed catalogue search); removed the movies-only taste hero branch. Pure `today-pick-state.ts` reducer (12 tests): `active` → `just_logged` (keeps `logId` for Task 7 Undo) / `complete` (`watchlist` | `elsewhere`) → **Pick another**; Not interested still advances. `HomeTasteMatchedHero` `completionMode="today-shell"`: consumed spotlight stays in place, status line + **Pick another** replace actions, tapping another rail poster = pick another, completed title pinned if a fresh RSC payload arrives, honest empty/error tile (`TodayPickEmptyTile`) instead of `null`. Perf: `startTodayOnSenseReads()` (`lib/today-on-sense-reads.ts`) fires pick/week/circle in `HomePage` **before** the body's auth/profile/catalogue waves; card RSCs await the passed promises. Quick Log `onSuccess` now receives `{ logId }` on create and dispatches `still:today-week-refresh` after create/edit/delete. web tsc 0 errors; biome clean. **Not browser-verified** (no dev server / session in agent).  
+**Please verify:** signed in on `/home` (Movies, TV, Community): Today pick + Your week + From your circle above the filter row; **Add to watchlist** → "Added to your watchlist" + **Pick another** (no auto-swap); **+** Quick Log → "Added to your diary", week card count bumps; **Pick another** → next title; **Not interested** → immediate advance; account under taste threshold → empty tile with **Log a film**.  
+**Task 5:** `35854bb` — `GET /api/today/circle`: newest (30d, by `log.createdAt`) followee log the viewer may see (`contentVisibilityWhere` on log + linked review, viewer adult pref, blocks both ways, bans) else `{kind:"invite"}`; spoiler reviews never excerpted; mention tokens → labels. Web `TodayCircleCard` (+ skeleton/RSC; invite → `openInviteEarnDialog`; null payload → quiet error). **Recommend back** renders only when a handler is passed (Task 10). Shared tile tokens in `lib/today-card-layout.ts`. Tests 11 server + 4 web; live dev-DB 70–190ms, all returned logs public (no private followee logs in dev data to prove exclusion). Note: `blockedUserIdsForViewer` now duplicated 4× (leaderboard, members, engagement, today) — dedupe later.  
+**Task 4:** `1cb7b1d` — `summarizeTodayWeekPulse` (distinct titles; TV episodes/rewatches collapse; rating 0 counts) + `fetchTodayWeekPulse` (scoped cols) + `GET /api/today/week?tz=`; web `TodayWeekCard` (+ skeleton, RSC seed via `still-tz` cookie → client refetch on zone mismatch / `still:today-week-refresh`; empty CTA opens ⌘K search, else **Open diary**). Not mounted until Task 6. Tests 14 server + 6 web; live dev-DB check OK. Also `6eacee8` — removed dead `discord-activity-funding` import (branch server couldn't boot; Eden `App` type was `any`).  
+**Task 3:** `336a5cd` — `POST /api/logs` `watchVenue: null` = unset (omitted still **streaming**); `PATCH` `categoryRatings` per-key merge (`null` clears; empty → column null) + venue clear; new `log-watch-venue.ts` (`diaryVenueSliceWhere` coalesces NULL — bare `NOT IN` dropped unset rows from `/diary` + profile venue slices). Rewatch = client sends `rewatch` (no server detection). Tests 25/25 new; `diary-metal-tier.test.ts` fails in worktree only for missing `.env` (unrelated).  
+**Task 2:** `b9bdf7d` schema + `f892c74` renumber → **`0045_today_on_sense`** (journal `when` 1779204100000). Applied to Neon dev: `log.category_ratings` jsonb, `log.watch_venue` nullable, `title_recommendation` table. No venue-nullability type errors in server/web (both have pre-existing unrelated tsc errors).  
+**Spec:** `docs/superpowers/specs/2026-09-23-today-on-sense-design.md` (`0fd009f`)  
+**Plan:** `docs/superpowers/plans/2026-09-23-today-on-sense.md` (`dafc80c`)  
+**Branch / worktree:** `feat/today-on-sense` at `.worktrees/today-on-sense`  
+**Task 1:** `7f9e059` — category + week pure helpers, 21/21 tests; review approved (minor: TZ fallback / leaderboard-period dedupe later)
+
+### Locked so far
+- Home Today = “what next?”; title detail = “is this the one?” (continuity cue only)
+- Shell at top of `/home` main (under sticky chrome), before browse/watchlist/activity
+- Pick = reuse taste-hero **presentation**; shell owns complete / **Pick another** (no legacy auto-swap)
+- Supporting: **Your week** + **From your circle** (equal compact cards); honest empties; no fake activity
+- Recommend back = 2-step bottom sheet; measurable open/save/reply
+- Watched = instant diary save + Undo; venue unset; optional overall then collapsed categories
+- Categories: Plot…Enjoyment; suggested overall; in watch-log (Home + Quick Log), not Today payload
+- Parallel Suspense streams for pick / week / circle; APIs only for mutations
+- Detail: “Today’s pick” label + reason; Back restores scroll; no special Today-only action
+
+---
+
+## Favorite people + alerts (2026-09-21) — EXECUTOR
+
+**Status:** Task 9 done — waiting on human verify before Task 10.
+
+**Task 9:**
+- Pure core: `planPersonFavoriteReleaseDiff` + `resolvePersonFavoriteReleaseActions` (pref-off still marks seen)
+- Job: `syncPersonFavoriteReleaseAlerts` — Notify-on favorites, TMDb credits cached per person/run, `deliverNotification` + seen insert + `person_favorite_alert.sent`
+- Scheduler: daily `"person-favorite-release"` in `run-local-scheduler.ts` (`PERSON_FAVORITE_RELEASE_ALERTS_ENABLED!==false`)
+- Tests: `person-favorite-release-alerts.test.ts` 7/7
+
+**Please verify (optional dry-run):** with `RUN_LOCAL_JOBS=true`, favorite + Notify a person who has a credit in the ±30/7 window that isn’t baselined yet → inbox `person_favorite_release` deep-links to the title. Reply **go** for Task 10 (streaming scan job).
+
+---
+
+## Favorite people + alerts (2026-09-21) — PLANNER
+
+**Status:** Plan approved; execution started at Task 1.  
+- Spec: `docs/superpowers/specs/2026-09-21-favorite-people-alerts-design.md` (`3474e8a`)  
+- Plan: `docs/superpowers/plans/2026-09-21-favorite-people-alerts.md` (`04d9d83`)
+
+---
+
+## Search Tab — Movies → Shows → People (2026-09-21) — EXECUTOR
+
+**Status:** Code in; waiting on human QA.
+
+**Change:** Tab / media chip cycles **Movies → Shows → People → Movies**. People mode runs cast/crew search (`useCastCrewSearch`) and shows `SearchDialogCastCrewResults`. Empty People browse hides studio/genre/poster rails and keeps the popular people rail.
+
+**Please verify:** ⌘K → Tab twice lands on People; type a name → cast/crew rows; Tab again returns to Movies.
+
+---
+
+**Status:** Code in; waiting on human QA. Scrim samples via same-origin `/_next/image` (TMDb CORS was returning null → black) and prefers **chromatic** dark swatches over crushed black studio backgrounds.
+
+**Please verify:** hard-refresh ⌘K → People rail — each tile fade should show a real hue from the photo (burgundy / olive / navy…), not flat black.
+
+---
+
+## Community ranks podium — drop medal pedestals (2026-09-21) — EXECUTOR
+
+**Status:** Code in; waiting on human QA. Agentation: pedestals off-brand.
+
+**Change:** Removed gold/silver/bronze pedestal blocks, silver lip badges, and floor glow. Top 3 keep portrait size hierarchy + quiet `bg-background` count pills (muted ordinal + large count + ledger CTA). Shared by Film/Shows/Episodes and Members Reviews podiums. Tests: `community-ranks-podium.test.ts` 8/8.
+
+**Please verify:** `/home?browse=community&sort=ranks` — no metal pillars; tap count still opens the watch ledger.
+
+---
+
+## Search dialog restyle (2026-09-18) — EXECUTOR
+
+**Status:** Shell `bg-card` + nested body `bg-background` (swapped per human). Header/footer chips `bg-background`; studio/genre/people wells `bg-card`.
+
+**Please verify:** reopen ⌘K — raised shell with a lighter nested well under the search bar.
+
+---
+
 ## Sense iOS — near-web native app (2026-09-09) — PLANNER (brainstorm)
 
-**Status:** Specs + plan committed (`b63c3f6`). **Tasks 1–2 approved by human (`ok`, 2026-09-09), still uncommitted.** Commit order decided: human commits the in-flight **Discord presence** work first; then Tasks 1–2 land as two commits on top (`chore(mobile): remove Expo app`, `feat(auth): register Sign in with Apple provider`) — `bun.lock` and `packages/env/src/server.ts` become clean once Discord is committed. Windows-doable work is exhausted; **Task 3 (XcodeGen scaffold) onward runs on the Mac** — resume from the plan's Task 3 there after pulling the Task 1–2 commits. Execution mode: subagent-driven, human **go/ok** between tasks.
+**Status:** Specs + plan committed (`b63c3f6`). **Tasks 1–2 approved and committed** — they landed inside the human's `82a1892 discord activity` commit (pushed to `origin/main`) rather than as separate iOS commits; nothing iOS-related is left uncommitted on Windows. **Next: Task 3 (XcodeGen scaffold) on the Mac** — pull `main`, resume from the plan's Task 3. Windows-doable work is exhausted; **Task 3 (XcodeGen scaffold) onward runs on the Mac** — resume from the plan's Task 3 there after pulling the Task 1–2 commits. Execution mode: subagent-driven, human **go/ok** between tasks.
 
 ### Executor's Feedback (Task 2)
 - Plan's test could not import `./apple-oauth-config` bare: `@still/env/server` validates required vars at import and `packages/auth` has no `.env`. Used the repo's existing `mock.module("@still/env/server", () => ({ env: {} }))` + dynamic import pattern from `apps/server/src/lib/discord-activity-config.test.ts`. Assertions unchanged.
@@ -32,16 +129,44 @@
 
 ### Project Status Board (slice 1)
 - [x] Task 1: Delete the Expo app — `git rm -r apps/native`, `packages/env/src/native.ts` + `./native` export, `dev:native` script, `exp://` + `localhost:8081` dev `trustedOrigins`, README. `expo()` plugin / import / `still://` intact. `bun install` ok; `rg` clean (only hits are the bundled Better Auth code inside `apps/server/src/index.*.mjs`); `tsc` clean for `@still/env` + `@still/auth`; biome clean on the 4 edited files. Uncommitted — awaiting human verify.
-- [x] Task 2: Apple provider on the server — `APPLE_*` env vars in `packages/env/src/server.ts`; new `packages/auth/src/lib/apple-oauth-config.ts` (+ test, 4/4 pass; ES256 client-secret JWT via `jose ^6.2.12`, 180-day TTL); async `apple` provider merged with Discord in `packages/auth/src/index.ts`; `https://appleid.apple.com` in `trustedOrigins`; new `apps/server/.env.example` (Apple block only). `tsc` clean for env + auth; biome read-only clean. Human approved Tasks 1 and 2 (**ok**, 2026-09-09); uncommitted.
+- [x] Task 2: Apple provider on the server — `APPLE_*` env vars in `packages/env/src/server.ts`; new `packages/auth/src/lib/apple-oauth-config.ts` (+ test, 4/4 pass; ES256 client-secret JWT via `jose ^6.2.12`, 180-day TTL); async `apple` provider merged with Discord in `packages/auth/src/index.ts`; `https://appleid.apple.com` in `trustedOrigins`; new `apps/server/.env.example` (Apple block only). `tsc` clean for env + auth; biome read-only clean. Human approved Tasks 1 and 2 (**ok**, 2026-09-09); committed in `82a1892`.
 - [ ] Tasks 3–11: need macOS (XcodeGen scaffold next)
 
+### Hotfix (2026-09-18): Watchlist order chips double-paint + missing pill
+**Status:** EXECUTOR — code in; waiting on human signed-in QA. Agent browser has no session (`/sign-in?from=/watchlist`). Tests: `watchlist-lobby-order.test.ts` 3/3. Biome clean on edited files. `graphify` not on PATH.
+
+**Cause:**
+1. `WatchlistLobbyCatalogue` keyed `catalogueWaveKeyOverride` off the **optimistic** chip value, so tap remounted the wall onto **stale RSC seeds**, then remounted again when the new page arrived.
+2. Page `await searchParams` + `watchlist/loading.tsx` remounted `WatchlistPatronLobbyShell` (chips) on query navigations, killing the pill motion. `layoutId` on an `overflow-hidden` track also failed to slide.
+
+**Fix:** persist chips in `watchlist/layout.tsx`; await `searchParams` only inside the grid Suspense; grid `order` = seed order; measured sliding pill in `SegmentedPillToolbar`.
+
+**Please verify:** `/watchlist` → tap Recently added / Oldest saves / By title. Expect one grid update to the new sort (not a replay of the previous order), and the `bg-card` pill should slide.
+
+### Hotfix (2026-09-18): Watchlist slow load
+**Status:** EXECUTOR — code in; waiting on human signed-in QA. The order-chip fix waited for matching RSC seeds without a pending shimmer, and `GET /api/watchlist` selected whole `movie`/`tv` rows (`tmdb_json` ~85KB each) plus a second `profiles.me` on every `?order=` flight.
+
+**Fix:**
+1. Project only `tmdb_json -> 'watch/providers'`; select poster columns; one profile prefs query (adult + region).
+2. Drop the parallel hide-watched `COUNT(*)` — page with `LIMIT+1` (`watchlistLookaheadPageMeta`).
+3. Grid RSC fetches watchlist only; hover prefs hydrate from layout chrome.
+4. Pending chip nav shows the poster shimmer while keeping the page Suspense mounted (`hidden`, not unmount — unmounting cancels the RSC).
+5. **Stale-grid flash (follow-up):** `isPending` going false unhid `PopularMoviesInfinite` while `items` still held the previous sort (`useState` + post-paint wave-key effect). Keep shimmer until `seedOrder === chipOrder` (`watchlistOrderGridIsStale`); `key={watchlistCatalogueWaveKey(order)}` so the new wall’s first paint is the new seeds.
+
+**Please verify:** `/watchlist` first paint and order chips. Shimmer, then the new sort once — no flash of the previous posters.
+
+### Hotfix (2026-09-18): Vercel `82a1892` build
+Discord presence Task 6 deleted `discord-activity-funding` but left the import + `.use(discordActivityFundingRoute)` in `apps/server/src/server/app.ts`. Web Turbo `server#build` and server `build:vercel` both failed on that unresolved module. Removed the leftover; both local builds now pass. Waiting to commit/push.
+
 ### Executor's Feedback (Task 1)
-- Monorepo `bun run check-types` fails, but **not from Task 1**: `@still/plans` `entitlements.test.ts(43)` types `leaderboard_visibility: "still"` against an `"attuned" | "immersed"` field, and `apps/server/src/server/app.ts:14` still imports the deleted `../routes/discord-activity-funding` (in-flight Discord presence work), plus pre-existing strict-index errors in server libs. Both packages Task 1 touched typecheck clean in isolation.
+- Monorepo `bun run check-types` fails, but **not from Task 1**: `@still/plans` `entitlements.test.ts(43)` types `leaderboard_visibility: "still"` against an `"attuned" | "immersed"` field, plus pre-existing strict-index errors in server libs. Both packages Task 1 touched typecheck clean in isolation. The `discord-activity-funding` leftover in `app.ts` was the Vercel break and is now removed.
 
 ### Lessons
 - **`bun run check` is `biome check --write .`** — it is a formatter, not a linter. Running it as "verification" rewrote ~4,460 tracked files (mostly CRLF→LF under `core.autocrlf=true`, ~60 real reformats) plus untracked in-flight sources. Recovered with `git checkout --pathspec-from-file` limited to files that were clean at session start. Verify with **`bunx biome check <files>`** (no `--write`) scoped to the files you edited. Also: PowerShell `Set-Content -Encoding utf8` writes a BOM that git reads as part of the first pathspec — use `[IO.File]::WriteAllLines(..., UTF8Encoding($false))`.
 - `ASWebAuthenticationSession` does **not** share cookies with `URLSession`. Any native OAuth design that assumes a shared cookie jar is wrong; the credential must come back through the deep link.
 - Epoch check: `1781395200` = **2026-06-14**T00:00:00Z (`1781308800` is 2026-06-13). The onboarding v3 launch constant is easy to get off by one day.
+- Watchlist-style lobbies: do **not** key `PopularMoviesInfinite` `catalogueWaveKeyOverride` off the optimistic chip value — that remounts the wall onto stale RSC seeds (old sort paints, then the real one). Await `searchParams` inside the grid Suspense, keep chips in `layout.tsx` so `loading.tsx` cannot remount the pill rail. Sliding chip indicator: measured `x/width` pill, not `layoutId`, when the track is `overflow-hidden`.
+- `GET /api/watchlist` must not `.select({ item, movie, tv })` — `movie.tmdb_json` / `tv.tmdb_json` are ~85KB each; project `watch/providers` only. Order-chip RSC must not wait on `profiles.me`. Pending `startTransition` nav: hide the wall and show shimmer, but **keep `{children}` mounted** (`hidden`) or the in-flight RSC is cancelled. Do not unhide on `isPending` alone — `PopularMoviesInfinite` still paints the previous `items` until its wave-key effect; keep shimmer until the RSC `seedOrder` matches the chip and remount the grid with `key={watchlistCatalogueWaveKey(order)}`.
 
 ## Community ranks podium + portrait frames (2026-08-26) — PLANNER (brainstorm)
 
@@ -4273,6 +4398,8 @@ Say **Phase 1 ok** to start Phase 2, or request tweaks.
 
 ## Lessons
 
+- **One broken import in `apps/server/src/server/app.ts` silently erases every Eden type:** a missing route module makes `App` degrade so `api.api.*` callbacks become implicit `any` across the web app (`TS7006 Parameter 'res'` in taste hero, chat, follow button…). If a new Eden call looks untyped, typecheck `app.ts` first. Also: web tests must not import `still-api-origin` (env validation at load) — keep pure helpers in a separate module from fetch code.
+- **Worktree migrations must number after the dev DB, not the branch journal:** Drizzle's migrator only applies files whose journal `when` is newer than the latest `drizzle.__drizzle_migrations.created_at`. The dev Neon already had main's uncommitted `0042`–`0044` (`when` up to 1779204000000), so a worktree `0042_today_on_sense` reusing `when` 1779203800000 would be **silently skipped**. Check the dev DB's last `created_at` and take the next idx + `when` above it (idx gaps on the branch are fine).
 - **Diary `PATCH` must bust listing community Redis:** `GET /api/movies|tv/:id` overlays `fetchCachedListingCommunityStats` (5-minute Redis) on top of the 1-hour TMDb detail cache. Create and delete already invalidated; **rating edits did not**, so a lone patron changing 9 → 8.8 kept showing **9** after refresh until TTL. Await `invalidateCommunityStatsForDiaryLog` on PATCH so Quick Log `router.refresh()` cannot race the old snapshot. Tests that import `listing-community-stats-cache.ts` pull env/DB — keep the listing-ref helper in a pure module.
 - **Beam toast `!m-0` kills bottom-center:** Sonner’s toaster is a 420px centered slot; pills are `width: max-content` and rely on `left:0; right:0; margin-inline:auto`. A host class of `!m-0` zeros those auto margins (`!important`) so the pill sticks to the left of the slot — reads as “not centered” on wide `/home`. Don’t put `!m-0` on `.still-toast-beam-host`. Also strip `icon` from `toast.custom()` options: `stillToast.updated` passes a pencil that Sonner paints in `[data-icon]` *and* `StillToastBeamFrame` paints inside the pill.
 - **Onboarding preview pane height:** do not rely on `size-full` / `h-full` (% height) inside a column-flex aside to center short content — percentage height often collapses to content height, so nested `min-h-full` + `items-center` is a no-op and the specimen sticks top. Prefer `flex-1 min-h-0` on the reveal shell and `absolute inset-0` + `min-h-full` center for fill specimens. **Import QA tip:** “center the import” means the **upload** dropzone step (`import-upload`), not the provider picker.

@@ -45,14 +45,14 @@ export function SearchDialogRecentSearches({
 				<div
 					aria-hidden
 					className={cn(
-						"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-card via-card/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+						"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-background via-background/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
 						showStartFade ? "opacity-100" : "opacity-0",
 					)}
 				/>
 				<div
 					aria-hidden
 					className={cn(
-						"pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-card via-card/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
+						"pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-background via-background/85 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
 						showEndFade ? "opacity-100" : "opacity-0",
 					)}
 				/>

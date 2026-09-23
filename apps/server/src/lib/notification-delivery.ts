@@ -116,6 +116,22 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		requiresOptIn: false,
 	},
 	{
+		id: "person_favorite_release",
+		label: "Favorite people releases",
+		description:
+			"When someone you Favorited appears in a new film or show near release.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
+		id: "person_favorite_now_streaming",
+		label: "Favorite people streaming",
+		description:
+			"When a title featuring someone you Favorited starts streaming in your region.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
 		id: "referral.qualified",
 		label: "Referral qualified",
 		description: "When someone you invited finishes onboarding.",

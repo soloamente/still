@@ -1,7 +1,14 @@
 import type { AvatarAuraFrameKind } from "./avatar-aura-tier";
 
 export const AVATAR_AURA_FRAME_VIEWBOX = 100;
+/** Photo well inset inside the scallop mask (percent of the aura root). */
 export const AVATAR_AURA_WELL_INSET_PERCENT = 14;
+/**
+ * Scale the layout box when a frame is present so the photo well stays the
+ * intended portrait size (rim grows outward instead of eating the face).
+ */
+export const AVATAR_AURA_OUTER_SCALE =
+	100 / (100 - 2 * AVATAR_AURA_WELL_INSET_PERCENT);
 
 const CX = 50;
 const CY = 50;

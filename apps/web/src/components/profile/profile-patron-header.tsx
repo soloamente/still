@@ -13,6 +13,7 @@ import { ProfileHeroMediaLayer } from "@/components/profile/profile-hero-media-l
 import { ProfilePatronActions } from "@/components/profile/profile-patron-actions";
 import { ProfilePinnedReviewsStrip } from "@/components/profile/profile-pinned-reviews-strip";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { openProfilePersonFavorites } from "@/components/profile/profile-person-favorites-drawer";
 import { ProfileSavedQuotesStrip } from "@/components/profile/profile-saved-quotes-strip";
 import { ProfileShowcaseStrip } from "@/components/profile/profile-showcase-strip";
 import { ProfileStatCell } from "@/components/profile/profile-stat-cell";
@@ -68,6 +69,8 @@ type ProfilePatronHeaderProps = {
 	/** Diary title counts for the stats grid (distinct films vs TV shows). */
 	moviesCount: number;
 	tvCount: number;
+	/** Saved cast/crew Favorites — opens drawer; show 0 for owner parity. */
+	personFavoritesCount: number;
 	tasteSignature?: TasteSignatureJson | null;
 	pinnedReviews?: ProfileReviewRow[];
 	showcaseItems?: ProfileShowcaseTile[];
@@ -109,6 +112,7 @@ export function ProfilePatronHeader({
 	accentColor,
 	moviesCount,
 	tvCount,
+	personFavoritesCount,
 	tasteSignature,
 	pinnedReviews = [],
 	showcaseItems = [],
@@ -218,6 +222,15 @@ export function ProfilePatronHeader({
 								label="films"
 							/>
 							<ProfileStatCell variant="pill" value={tvCount} label="shows" />
+							<ProfileStatCell
+								variant="pill"
+								value={personFavoritesCount}
+								label="Favorites"
+								ariaLabel={`${personFavoritesCount} Favorites`}
+								onClick={() =>
+									openProfilePersonFavorites({ handle, isOwner: isMe })
+								}
+							/>
 							{tasteSignature ? (
 								<ProfileTasteCategoryPill
 									tasteSignature={tasteSignature}

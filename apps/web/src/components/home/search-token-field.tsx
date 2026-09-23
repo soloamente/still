@@ -37,8 +37,13 @@ export type SearchTokenFieldProps = {
 	genres: SearchDialogGenre[];
 	listingKind: "movie" | "tv";
 	onSubmit?: () => void;
+	/** Tab with no suggestion open — cycle Movies / Shows (Figma header chip). */
+	onTabCycleListingKind?: () => void;
+	/** Parent owns the tag chips (catalog search dialog header row). */
+	hideTags?: boolean;
 	inputId: string;
 	placeholder?: string;
+	inputClassName?: string;
 };
 
 /** Shared metrics so inline ghost completion lines up with the combobox input. */
@@ -112,8 +117,11 @@ export function SearchTokenField({
 	genres,
 	listingKind,
 	onSubmit,
+	onTabCycleListingKind,
+	hideTags = false,
 	inputId,
-	placeholder = "Films, TV shows, people…",
+	placeholder = "Search",
+	inputClassName,
 }: SearchTokenFieldProps) {
 	const reduceMotion = useReducedMotion();
 	const listboxId = useId();
@@ -142,9 +150,20 @@ export function SearchTokenField({
 	);
 
 	const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === "Tab" && showPanel && topSuggestion) {
+		if (event.key === "Tab" && !event.shiftKey && showPanel && topSuggestion) {
 			event.preventDefault();
 			commitSuggestion(topSuggestion);
+			return;
+		}
+
+		if (
+			event.key === "Tab" &&
+			!event.shiftKey &&
+			onTabCycleListingKind &&
+			!showPanel
+		) {
+			event.preventDefault();
+			onTabCycleListingKind();
 			return;
 		}
 
@@ -191,46 +210,73 @@ export function SearchTokenField({
 	const showGhost = Boolean(ghostSuffix && showPanel);
 
 	return (
-		<div className="catalog-search-query relative min-w-0 flex-1">
+		<div
+			className={cn(
+				"catalog-search-query relative min-w-0",
+				hideTags ? "w-auto max-w-[min(100%,20rem)] shrink-0" : "flex-1",
+			)}
+		>
 			<p id={tabHintId} className="sr-only">
 				Type to filter. Press Tab to accept the highlighted suggestion. Press
 				Enter to search.
 			</p>
-			<div className="flex min-h-10 min-w-0 flex-1 flex-wrap items-center gap-1.5">
-				<AnimatePresence initial={false}>
-					{tags.map((tag) => (
-						<motion.span
-							key={searchTagKey(tag)}
-							initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.92 }}
-							transition={
-								reduceMotion
-									? { duration: 0 }
-									: { duration: 0.12, ease: [0.165, 0.84, 0.44, 1] }
-							}
-							className="inline-flex"
-						>
-							<SearchTagPill
-								tag={tag}
-								onRemove={() =>
-									onTagsChange(
-										tags.filter((t) => searchTagKey(t) !== searchTagKey(tag)),
-									)
+			<div
+				className={cn(
+					"flex min-w-0 items-center gap-1.5",
+					hideTags ? "min-h-[27px]" : "min-h-10 min-w-0 flex-1 flex-wrap",
+				)}
+			>
+				{hideTags ? null : (
+					<AnimatePresence initial={false}>
+						{tags.map((tag) => (
+							<motion.span
+								key={searchTagKey(tag)}
+								initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+								animate={{ opacity: 1, scale: 1 }}
+								exit={
+									reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.92 }
 								}
-							/>
-						</motion.span>
-					))}
-				</AnimatePresence>
+								transition={
+									reduceMotion
+										? { duration: 0 }
+										: { duration: 0.12, ease: [0.165, 0.84, 0.44, 1] }
+								}
+								className="inline-flex"
+							>
+								<SearchTagPill
+									tag={tag}
+									onRemove={() =>
+										onTagsChange(
+											tags.filter((t) => searchTagKey(t) !== searchTagKey(tag)),
+										)
+									}
+								/>
+							</motion.span>
+						))}
+					</AnimatePresence>
+				)}
 
-				<div className="relative min-h-10 min-w-20 flex-1">
-					<div className="grid min-h-10 min-w-0 *:col-start-1 *:row-start-1">
+				<div
+					className={cn(
+						"relative",
+						hideTags
+							? "min-h-[27px] min-w-[5.5rem]"
+							: "min-h-10 min-w-20 flex-1",
+					)}
+				>
+					<div
+						className={cn(
+							"grid min-w-0 *:col-start-1 *:row-start-1",
+							hideTags ? "min-h-[27px]" : "min-h-10",
+						)}
+					>
 						{showGhost ? (
 							<p
 								aria-hidden
 								className={cn(
 									SEARCH_QUERY_INPUT_CLASS,
 									"pointer-events-none z-0 self-center whitespace-pre text-foreground",
+									hideTags && "text-[18px] leading-[21px] md:text-[18px]",
 								)}
 							>
 								<span className="invisible">{inputValue}</span>
@@ -258,6 +304,9 @@ export function SearchTokenField({
 							className={cn(
 								SEARCH_QUERY_INPUT_CLASS,
 								"relative z-10 self-center text-foreground caret-foreground outline-none selection:bg-muted selection:text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none focus-visible:ring-0",
+								hideTags &&
+									"field-sizing-content w-auto min-w-[5.5rem] max-w-[min(100%,20rem)] text-[18px] leading-[21px] md:text-[18px]",
+								inputClassName,
 							)}
 							onChange={(e) => {
 								onInputValueChange(e.target.value);

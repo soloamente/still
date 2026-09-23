@@ -1,5 +1,6 @@
 "use client";
 
+import IconStarFilled from "@still/ui/icons/star-filled";
 import { cn } from "@still/ui/lib/utils";
 import type { CastCrewSearchHit } from "@/lib/cast-crew-search-query";
 import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
@@ -14,6 +15,7 @@ export function SearchDialogCastCrewRow({
 }) {
 	const meta = castCrewMetaLine(hit);
 	const initial = hit.name.trim().charAt(0).toUpperCase() || "?";
+	const favorited = Boolean(hit.isFavorited);
 	return (
 		<li>
 			<button
@@ -41,8 +43,15 @@ export function SearchDialogCastCrewRow({
 					</span>
 				)}
 				<div className="min-w-0 flex-1">
-					<p className="truncate font-semibold text-foreground text-sm leading-snug">
-						{hit.name}
+					<p className="flex min-w-0 items-center gap-1.5 font-semibold text-foreground text-sm leading-snug">
+						<span className="truncate">{hit.name}</span>
+						{favorited ? (
+							<IconStarFilled
+								size="14px"
+								className="shrink-0 text-foreground"
+								aria-label="Favorited"
+							/>
+						) : null}
 					</p>
 					{meta ? (
 						<p className="truncate text-muted-foreground text-xs leading-snug">

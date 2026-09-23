@@ -3,8 +3,29 @@ import { Elysia, t } from "elysia";
 
 import { context } from "../context";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
-import { mapTmdbPersonToSearchRow } from "../lib/people-search-row";
+import {
+	mergeTrafficLedPeople,
+	rankPeopleBySearchTraffic,
+	rankPeopleFavoritesFirst,
+} from "../lib/people-search-rank";
+import {
+	mapTmdbPersonToSearchRow,
+	withPersonFavoriteFlags,
+} from "../lib/people-search-row";
+import {
+	addPersonFavorite,
+	getPersonFavoriteState,
+	listFavoritedPersonIdsAmong,
+	removePersonFavorite,
+	setPersonFavoriteAlerts,
+} from "../lib/person-favorite";
 import { buildPersonGallerySlides } from "../lib/person-gallery-slides";
+import {
+	getPersonSearchTrafficCounts,
+	incrementPersonSearchTraffic,
+	listTopPersonSearchTraffic,
+} from "../lib/person-search-traffic";
+import { recordProductEvent } from "../lib/record-product-event";
 import { tmdbApi, tmdbImg } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 
@@ -45,13 +66,27 @@ export const peopleRoute = new Elysia({
 				language,
 				showAdultContent,
 			});
-			// Sort by TMDb popularity (desc) so the web row index is a true
-			// popularity rank (1 = most popular among the matches).
-			const ranked = [...data.results].sort(
-				(a, b) => (b.popularity ?? 0) - (a.popularity ?? 0),
+			// Rank by Sense search traffic first; TMDb popularity only breaks ties.
+			const traffic = await getPersonSearchTrafficCounts(
+				data.results.map((person) => person.id),
+			);
+			const favoritedIds = user?.id
+				? await listFavoritedPersonIdsAmong(
+						user.id,
+						data.results.map((person) => person.id),
+					)
+				: new Set<number>();
+			// Favorites float above traffic; within each band traffic still decides.
+			const ranked = rankPeopleFavoritesFirst(
+				data.results,
+				favoritedIds,
+				(slice) => rankPeopleBySearchTraffic(slice, traffic),
 			);
 			return {
-				results: ranked.map(mapTmdbPersonToSearchRow),
+				results: withPersonFavoriteFlags(
+					ranked.map(mapTmdbPersonToSearchRow),
+					favoritedIds,
+				),
 				page: data.page,
 				total_pages: data.total_pages,
 				total_results: data.total_results,
@@ -63,6 +98,190 @@ export const peopleRoute = new Elysia({
 				page: t.Optional(t.String()),
 			}),
 		},
+	)
+	// Static `/popular` must register before `/:id` or Elysia treats "popular" as an id.
+	.get(
+		"/popular",
+		async ({ query, user }) => {
+			const page = Number(query.page ?? 1) || 1;
+			if (!env.TMDB_API_KEY) {
+				const trafficLeaders = await listTopPersonSearchTraffic(12);
+				const favoritedIds = user?.id
+					? await listFavoritedPersonIdsAmong(
+							user.id,
+							trafficLeaders.map((row) => row.id),
+						)
+					: new Set<number>();
+				const ranked = rankPeopleFavoritesFirst(
+					trafficLeaders,
+					favoritedIds,
+					(slice) => slice,
+				);
+				return {
+					...TMDB_UNCONFIGURED,
+					results: withPersonFavoriteFlags(ranked, favoritedIds),
+					page,
+					total_pages: trafficLeaders.length > 0 ? 1 : 0,
+					total_results: trafficLeaders.length,
+				};
+			}
+			const language = await getTmdbLanguageForUser(user?.id);
+			const showAdultContent = await getShowAdultContentForUser(user?.id);
+			const [trafficLeaders, data] = await Promise.all([
+				listTopPersonSearchTraffic(12),
+				tmdbApi.personPopular(page, {
+					language,
+					showAdultContent,
+				}),
+			]);
+			const tmdbRows = data.results.map(mapTmdbPersonToSearchRow);
+			const merged = mergeTrafficLedPeople(trafficLeaders, tmdbRows, 20);
+			const favoritedIds = user?.id
+				? await listFavoritedPersonIdsAmong(
+						user.id,
+						merged.map((row) => row.id),
+					)
+				: new Set<number>();
+			const ranked = rankPeopleFavoritesFirst(
+				merged,
+				favoritedIds,
+				(slice) => slice,
+			);
+			return {
+				results: withPersonFavoriteFlags(ranked, favoritedIds),
+				page: data.page,
+				total_pages: data.total_pages,
+				total_results: data.total_results,
+			};
+		},
+		{
+			query: t.Object({
+				page: t.Optional(t.String()),
+			}),
+		},
+	)
+	.post(
+		"/search-hit",
+		async ({ body }) => {
+			const id = Number(body.id);
+			if (!Number.isFinite(id) || id < 1) return { ok: false };
+			await incrementPersonSearchTraffic({
+				tmdbId: id,
+				name: body.name ?? "",
+				profileUrl: body.profileUrl ?? null,
+			});
+			return { ok: true };
+		},
+		{
+			body: t.Object({
+				id: t.Number(),
+				name: t.Optional(t.String()),
+				profileUrl: t.Optional(t.Union([t.String(), t.Null()])),
+			}),
+		},
+	)
+	.get(
+		"/:id/favorite",
+		async ({ params, status, user }) => {
+			if (!user) return status(401, { error: "Sign in" });
+			const id = Number(params.id);
+			if (!Number.isFinite(id) || id < 1) {
+				return status(400, { error: "Invalid id" });
+			}
+			return getPersonFavoriteState(user.id, id);
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	.post(
+		"/:id/favorite",
+		async ({ params, status, user }) => {
+			if (!user) return status(401, { error: "Sign in" });
+			const id = Number(params.id);
+			if (!Number.isFinite(id) || id < 1) {
+				return status(400, { error: "Invalid id" });
+			}
+			if (!env.TMDB_API_KEY) {
+				return status(503, { error: "TMDb not configured", ...TMDB_UNCONFIGURED });
+			}
+			try {
+				const result = await addPersonFavorite({
+					userId: user.id,
+					tmdbPersonId: id,
+				});
+				if (!result) return status(404, { error: "Person not found" });
+				void recordProductEvent(user.id, "person_favorite.add", {
+					tmdbPersonId: result.tmdbPersonId,
+					name: result.name,
+				});
+				return {
+					favorited: true as const,
+					alertsEnabled: result.alertsEnabled,
+				};
+			} catch (err) {
+				console.error("[people] favorite add failed", { id, err });
+				return status(500, { error: "Could not favorite person" });
+			}
+		},
+		{ params: t.Object({ id: t.String() }) },
+	)
+	.patch(
+		"/:id/favorite",
+		async ({ params, body, status, user }) => {
+			if (!user) return status(401, { error: "Sign in" });
+			const id = Number(params.id);
+			if (!Number.isFinite(id) || id < 1) {
+				return status(400, { error: "Invalid id" });
+			}
+			if (typeof body.alertsEnabled !== "boolean") {
+				return status(400, { error: "alertsEnabled required" });
+			}
+			if (body.alertsEnabled && !env.TMDB_API_KEY) {
+				return status(503, { error: "TMDb not configured", ...TMDB_UNCONFIGURED });
+			}
+			try {
+				const state = await setPersonFavoriteAlerts({
+					userId: user.id,
+					tmdbPersonId: id,
+					alertsEnabled: body.alertsEnabled,
+				});
+				if (!state) return status(404, { error: "Person not found" });
+				return state;
+			} catch (err) {
+				console.error("[people] favorite alerts patch failed", { id, err });
+				return status(500, { error: "Could not update alerts" });
+			}
+		},
+		{
+			params: t.Object({ id: t.String() }),
+			body: t.Object({
+				alertsEnabled: t.Boolean(),
+			}),
+		},
+	)
+	.delete(
+		"/:id/favorite",
+		async ({ params, status, user }) => {
+			if (!user) return status(401, { error: "Sign in" });
+			const id = Number(params.id);
+			if (!Number.isFinite(id) || id < 1) {
+				return status(400, { error: "Invalid id" });
+			}
+			const { removed } = await removePersonFavorite({
+				userId: user.id,
+				tmdbPersonId: id,
+			});
+			if (removed) {
+				void recordProductEvent(user.id, "person_favorite.remove", {
+					tmdbPersonId: id,
+				});
+			}
+			return {
+				favorited: false as const,
+				alertsEnabled: false as const,
+				removed,
+			};
+		},
+		{ params: t.Object({ id: t.String() }) },
 	)
 	.get(
 		"/:id",

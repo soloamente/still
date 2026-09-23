@@ -137,6 +137,10 @@ import {
 	hydrateShowcaseTiles,
 	validateShowcaseItemsForUser,
 } from "../lib/profile-showcase";
+import {
+	countPersonFavoritesForUser,
+	listPersonFavoritesForUser,
+} from "../lib/person-favorite-list";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -1540,6 +1544,46 @@ export const profilesRoute = new Elysia({
 			params: t.Object({ handle: t.String(), year: t.String() }),
 		},
 	)
+	/** Paginated person Favorites for profile drawer — public profiles (or owner). */
+	.get(
+		"/:handle/person-favorites",
+		async ({ params, query, user: viewer, status }) => {
+			const handle = params.handle.toLowerCase();
+			const [row] = await db
+				.select({ userId: profile.userId, isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.handle, handle))
+				.limit(1);
+			if (!row) return status(404, "Not found");
+
+			const isOwner = viewer?.id === row.userId;
+			if (row.isPrivate && !isOwner) return status(404, "Not found");
+
+			const page = await listPersonFavoritesForUser({
+				userId: row.userId,
+				before: query.before ?? null,
+				limit: query.limit != null ? Number(query.limit) : undefined,
+			});
+			return {
+				results: page.items.map((item) => ({
+					tmdbPersonId: item.tmdbPersonId,
+					name: item.name,
+					profileUrl: item.profileUrl,
+					knownForDepartment: item.knownForDepartment,
+					alertsEnabled: item.alertsEnabled,
+					createdAt: item.createdAt,
+				})),
+				nextBefore: page.nextBefore,
+			};
+		},
+		{
+			params: t.Object({ handle: t.String() }),
+			query: t.Object({
+				before: t.Optional(t.String()),
+				limit: t.Optional(t.String()),
+			}),
+		},
+	)
 	// Public profile by handle (case-insensitive) — must stay last (catch-all).
 	.get(
 		"/:handle",
@@ -1620,6 +1664,7 @@ export const profilesRoute = new Elysia({
 				followingCount,
 				isFollowing,
 				filmographyCounts,
+				personFavoritesCount,
 				pinnedReviews,
 				lists,
 				pinned,
@@ -1661,6 +1706,7 @@ export const profilesRoute = new Elysia({
 							.then((r) => Boolean(r[0]))
 					: Promise.resolve(false),
 				filmographyCountsPromise,
+				countPersonFavoritesForUser(targetUserId),
 				hydratePinnedReviews(targetUserId, row.profile.pinnedReviewIds),
 				// Popular lists (public only) — poster paths hydrated for profile list rows.
 				db
@@ -1791,6 +1837,7 @@ export const profilesRoute = new Elysia({
 				creator: curator,
 				isFollowing,
 				filmographyCounts,
+				personFavoritesCount,
 				pinnedReviews: pinnedReviewsEnabled ? pinnedReviews : [],
 				showcaseResolved,
 				lists,

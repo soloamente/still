@@ -5,19 +5,18 @@ import { ChevronRight } from "lucide-react";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import {
-	COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME,
 	COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME,
-	COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME,
+	COMMUNITY_RANKS_PODIUM_ORDINAL_CLASSNAME,
 	type CommunityRanksPodiumSlot,
 	communityRanksPodiumBadgeDigit,
+	communityRanksPodiumCountButtonClass,
 	communityRanksPodiumCountTextClass,
-	communityRanksPodiumPedestalButtonClass,
 } from "@/lib/community-ranks-podium";
 import { leaderboardCountButtonClassName } from "@/lib/home-leaderboard-interactive";
 
 /**
- * Podium pedestal control — big count + always-visible "View …" CTA so the bar
- * reads as tappable, not decorative chrome.
+ * Podium ledger control — large count on a quiet `bg-background` pill (Sense elevation).
+ * Place is muted ordinal type; plan frames on the portrait carry identity, not medals.
  */
 export function CommunityRanksPodiumCount({
 	slot,
@@ -37,13 +36,13 @@ export function CommunityRanksPodiumCount({
 	return (
 		<DetailMotionButton
 			type="button"
-			className={communityRanksPodiumPedestalButtonClass(slot)}
+			className={communityRanksPodiumCountButtonClass(slot)}
 			title={title}
 			aria-label={ariaLabel}
 			onClick={onClick}
 		>
-			{/* Silver place badge — decorative; place stays on the button aria-label. */}
-			<span className={COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME} aria-hidden>
+			{/* Quiet place mark — decorative; place stays on the button aria-label. */}
+			<span className={COMMUNITY_RANKS_PODIUM_ORDINAL_CLASSNAME} aria-hidden>
 				{communityRanksPodiumBadgeDigit(slot)}
 			</span>
 			<span
@@ -54,7 +53,7 @@ export function CommunityRanksPodiumCount({
 			>
 				{count}
 			</span>
-			<span className={COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME}>
+			<span className={COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME}>
 				{ctaLabel}
 				<ChevronRight className="size-3 shrink-0 opacity-80" aria-hidden />
 			</span>
@@ -62,7 +61,7 @@ export function CommunityRanksPodiumCount({
 	);
 }
 
-/** Compact rank-row count — same ledger CTA language as the podium pedestals. */
+/** Compact rank-row count — same ledger CTA language as the podium control. */
 export function CommunityRanksRowCount({
 	count,
 	ctaLabel,

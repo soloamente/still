@@ -11,6 +11,8 @@ export * from "./list";
 export * from "./movie";
 export * from "./news";
 export * from "./notification";
+export * from "./person-favorite";
+export * from "./person-search-traffic";
 export * from "./plan";
 export * from "./product-event";
 export * from "./profile";

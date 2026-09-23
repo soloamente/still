@@ -7,10 +7,12 @@ import {
 	evaluateWatchlistStreamingDiff,
 	flatrateProvidersForRegion,
 	formatWatchlistStreamingPill,
+	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
 	readWatchlistStreamingAlertsPref,
 	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
+	watchProvidersFromTmdbJson,
 } from "./watchlist-streaming-alerts";
 
 const US_PROVIDERS: TmdbWatchProvidersByCountry = {
@@ -77,6 +79,24 @@ describe("flatrateProvidersForRegion", () => {
 
 	test("returns empty when region missing", () => {
 		expect(flatrateProvidersForRegion(US_PROVIDERS, "DE")).toEqual([]);
+	});
+});
+
+describe("watchProvidersFromTmdbJson + primaryFlatrateProviderName", () => {
+	test("reads the SQL-projected watch/providers object (not a full tmdb_json row)", () => {
+		const projected = {
+			"watch/providers": { results: US_PROVIDERS },
+		};
+		expect(watchProvidersFromTmdbJson(projected)).toEqual(US_PROVIDERS);
+		expect(primaryFlatrateProviderName(projected, "US")).toBe("Netflix");
+		expect(primaryFlatrateProviderName(projected, "DE")).toBe(null);
+	});
+
+	test("returns null when the projection has no providers blob", () => {
+		expect(primaryFlatrateProviderName({ "watch/providers": null }, "US")).toBe(
+			null,
+		);
+		expect(primaryFlatrateProviderName(null, "US")).toBe(null);
 	});
 });
 

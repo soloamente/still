@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	AVATAR_AURA_FRAME_VIEWBOX,
+	AVATAR_AURA_OUTER_SCALE,
 	AVATAR_AURA_WELL_INSET_PERCENT,
 	avatarAuraFrameMaskStyle,
 	avatarAuraFrameMaskSvg,
@@ -64,5 +65,13 @@ describe("avatarAuraFrameMaskStyle", () => {
 describe("AVATAR_AURA_WELL_INSET_PERCENT", () => {
 	test("is 14 so the photo sits inside scallops", () => {
 		expect(AVATAR_AURA_WELL_INSET_PERCENT).toBe(14);
+	});
+
+	test("outer scale restores face size after well inset", () => {
+		expect(AVATAR_AURA_OUTER_SCALE).toBeCloseTo(
+			100 / (100 - 2 * AVATAR_AURA_WELL_INSET_PERCENT),
+		);
+		// 32px intended face → ~44.4px layout; well stays 32px.
+		expect(32 * AVATAR_AURA_OUTER_SCALE * (1 - 0.28)).toBeCloseTo(32);
 	});
 });

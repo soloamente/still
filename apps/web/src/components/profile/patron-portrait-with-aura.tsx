@@ -2,8 +2,10 @@
 
 import type { PlanTierId } from "@still/plans";
 import { cn } from "@still/ui/lib/utils";
+import type { CSSProperties } from "react";
 
 import { AvatarAura } from "@/components/profile/avatar-aura/avatar-aura";
+import { AVATAR_AURA_OUTER_SCALE } from "@/components/profile/avatar-aura/avatar-aura-frame-path";
 import {
 	hasAvatarAuraVisual,
 	resolveAvatarAuraVisual,
@@ -89,10 +91,28 @@ export function PatronPortraitWithAura({
 	);
 
 	const auraVisual = resolveAvatarAuraVisual({ planTier, staffRole });
-	// Aura rim extends past the portrait — only the inner well clips.
+	// Scale the layout box so the inset well keeps the intended face size; rim grows out.
 	const showAura = hasAvatarAuraVisual(auraVisual) && circularPortrait;
+	const layoutWidth = showAura ? width * AVATAR_AURA_OUTER_SCALE : width;
+	const layoutHeight = showAura ? height * AVATAR_AURA_OUTER_SCALE : height;
+
+	const auraExpandStyle: CSSProperties | undefined =
+		showAura && fillsParent
+			? {
+					width: `${AVATAR_AURA_OUTER_SCALE * 100}%`,
+					height: `${AVATAR_AURA_OUTER_SCALE * 100}%`,
+					left: `${((1 - AVATAR_AURA_OUTER_SCALE) / 2) * 100}%`,
+					top: `${((1 - AVATAR_AURA_OUTER_SCALE) / 2) * 100}%`,
+				}
+			: undefined;
+
 	const portrait = showAura ? (
-		<AvatarAura planTier={planTier} staffRole={staffRole} className="size-full">
+		<AvatarAura
+			planTier={planTier}
+			staffRole={staffRole}
+			className={fillsParent ? "absolute" : "size-full"}
+			style={auraExpandStyle}
+		>
 			<PatronPortraitAvatar
 				handle={handle}
 				{...avatarProps}
@@ -118,7 +138,10 @@ export function PatronPortraitWithAura({
 				fillsParent && "size-full",
 				className,
 			)}
-			style={style ?? (fillsParent ? undefined : { width, height })}
+			style={
+				style ??
+				(fillsParent ? undefined : { width: layoutWidth, height: layoutHeight })
+			}
 		>
 			{showAura ? (
 				portrait

@@ -7,7 +7,6 @@ import { CommunityRanksPodiumCount } from "@/components/home/community-ranks-pod
 import { openPatronWatchLedger } from "@/components/home/patron-watch-ledger-drawer";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import {
-	COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME,
 	COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME,
 	type CommunityRanksPodiumSlot,
 	communityRanksPodiumFilled,
@@ -120,7 +119,7 @@ function PodiumTile({
 }
 
 /**
- * Tier-card podium — 2nd · 1st · 3rd on one `bg-card` tray with pedestal blocks.
+ * Top-3 ranks — 2nd · 1st · 3rd on one tray; portraits + quiet count pills, no medal pedestals.
  */
 export function HomeLeaderboardPodium({
 	entries,
@@ -139,10 +138,6 @@ export function HomeLeaderboardPodium({
 	return (
 		<div className={HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME}>
 			<div className={COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME}>
-				<div
-					className={COMMUNITY_RANKS_PODIUM_FLOOR_GLOW_CLASSNAME}
-					aria-hidden
-				/>
 				{second ? (
 					<PodiumTile
 						entry={second}

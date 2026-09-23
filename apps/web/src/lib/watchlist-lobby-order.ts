@@ -58,6 +58,27 @@ export function buildWatchlistLobbyHref(opts: {
 	return `/watchlist?${params.toString()}`;
 }
 
+/**
+ * Presence/reset key for the watchlist poster wall. Must follow the **RSC seed
+ * order** (the sort that fetched page 1), not the optimistic chip value — wiring
+ * the chip into this key remounts the grid onto stale seeds before the new
+ * payload arrives (double paint: old order, then the real one).
+ */
+export function watchlistCatalogueWaveKey(order: WatchlistLobbyOrder): string {
+	return `watchlist:${order}`;
+}
+
+/**
+ * True when the chip has moved on but the RSC poster wall still belongs to the
+ * previous sort. Used to keep the shimmer up so we never unhide stale tiles.
+ */
+export function watchlistOrderGridIsStale(
+	chipOrder: WatchlistLobbyOrder,
+	seedOrder: WatchlistLobbyOrder | null,
+): boolean {
+	return seedOrder !== null && seedOrder !== chipOrder;
+}
+
 export function isWatchlistRowWithListing(
 	row: WatchlistLobbyRow,
 ): row is WatchlistLobbyRowWithListing {

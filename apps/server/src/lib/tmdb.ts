@@ -396,6 +396,17 @@ export const tmdbApi = {
 			fetchOpts,
 		);
 	},
+	/** TMDb `/person/popular` — already ranked by popularity; used by empty catalog search. */
+	personPopular(page = 1, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<TmdbPaged<TmdbPersonSummary>>(
+			"/person/popular",
+			{
+				page,
+				include_adult: tmdbIncludeAdult(fetchOpts.showAdultContent),
+			},
+			fetchOpts,
+		);
+	},
 	movieDetail(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		// `keywords` surfaces user-facing tags (often festivals, movements); keep append list in sync with movie UI.
 		// `include_image_language` keeps language-less backdrops (most stills) when patron locale filters images.

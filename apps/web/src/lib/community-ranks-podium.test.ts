@@ -1,14 +1,11 @@
 import { describe, expect, test } from "bun:test";
 
 import {
-	COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME,
 	COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME,
-	COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME,
+	COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME,
 	communityRanksPodiumBadgeDigit,
+	communityRanksPodiumCountButtonClass,
 	communityRanksPodiumFilled,
-	communityRanksPodiumPedestalButtonClass,
-	communityRanksPodiumPedestalClass,
-	communityRanksPodiumPedestalHeightClass,
 	communityRanksPodiumSlotLabel,
 } from "./community-ranks-podium";
 
@@ -28,41 +25,33 @@ describe("communityRanksPodiumSlotLabel", () => {
 	});
 });
 
-describe("communityRanksPodiumPedestalHeightClass", () => {
-	test("1st is taller than 2nd and 3rd", () => {
-		expect(communityRanksPodiumPedestalHeightClass("first")).toContain("h-22");
-		expect(communityRanksPodiumPedestalHeightClass("second")).toContain("h-18");
-		expect(communityRanksPodiumPedestalHeightClass("third")).toContain("h-16");
+describe("communityRanksPodiumCountButtonClass", () => {
+	test("uses Sense surface depth — no medal gradients or pedestal heights", () => {
+		const first = communityRanksPodiumCountButtonClass("first");
+		const second = communityRanksPodiumCountButtonClass("second");
+		const third = communityRanksPodiumCountButtonClass("third");
+
+		for (const cls of [first, second, third]) {
+			expect(cls).toContain("bg-background");
+			expect(cls).toContain("rounded-2xl");
+			expect(cls).not.toContain("linear-gradient");
+			expect(cls).not.toContain("desert-orange");
+			expect(cls).not.toMatch(/\bh-1[68]\b|\bh-2[26]\b/);
+		}
+	});
+
+	test("same quiet control chrome for every place", () => {
+		// Hierarchy lives in portrait size + count type — not gold/silver/bronze blocks.
+		const first = communityRanksPodiumCountButtonClass("first");
+		const second = communityRanksPodiumCountButtonClass("second");
+		expect(first).toBe(second);
 	});
 });
 
-describe("COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME", () => {
-	test("hangs on the pillar lip so it cannot sit over the count", () => {
-		expect(COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME).toContain("top-0");
-		expect(COMMUNITY_RANKS_PODIUM_BADGE_CLASSNAME).toContain(
-			"-translate-y-1/2",
-		);
-	});
-});
-
-describe("communityRanksPodiumPedestalButtonClass", () => {
-	test("third pedestal stays relative and centers count without pt-10", () => {
-		const third = communityRanksPodiumPedestalButtonClass("third");
-		expect(third).toContain("relative");
-		expect(third).toContain("justify-center");
-		expect(third.split(/\s+/).includes("pt-10")).toBe(false);
-	});
-});
-
-describe("communityRanksPodiumPedestalClass", () => {
-	test("three medal materials are distinct", () => {
-		const first = communityRanksPodiumPedestalClass("first");
-		const second = communityRanksPodiumPedestalClass("second");
-		const third = communityRanksPodiumPedestalClass("third");
-		expect(first).not.toBe(second);
-		expect(second).not.toBe(third);
-		expect(first).toContain("linear-gradient");
-		expect(third).toContain("desert-orange");
+describe("COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME", () => {
+	test("aligns columns from the top — no pedestal stage floor", () => {
+		expect(COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME).toContain("items-start");
+		expect(COMMUNITY_RANKS_PODIUM_STAGE_CLASSNAME).not.toContain("items-end");
 	});
 });
 
@@ -80,14 +69,8 @@ describe("communityRanksPodiumFilled", () => {
 });
 
 describe("podium CTA contrast", () => {
-	test("rank rows keep muted foreground; pedestals use zinc on medal faces", () => {
+	test("rank rows and podium share muted foreground CTA ink", () => {
 		expect(COMMUNITY_RANKS_PODIUM_CTA_CLASSNAME).toContain(
-			"text-foreground/75",
-		);
-		expect(COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME).toContain(
-			"text-zinc-950/70",
-		);
-		expect(COMMUNITY_RANKS_PODIUM_PEDESTAL_CTA_CLASSNAME).not.toContain(
 			"text-foreground/75",
 		);
 	});

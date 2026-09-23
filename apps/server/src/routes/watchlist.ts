@@ -2,7 +2,6 @@ import { db, log, movie, profile, tv, watchlistItem } from "@still/db";
 import {
 	and,
 	asc,
-	count,
 	desc,
 	eq,
 	isNotNull,
@@ -14,21 +13,22 @@ import {
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
-import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
+import { traceTiming } from "../lib/trace-timing";
+import { WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION } from "../lib/watchlist-lobby-tmdb-json";
 import {
 	parseWatchlistLimit,
 	parseWatchlistOrder,
 	parseWatchlistPage,
+	watchlistLookaheadPageMeta,
 	watchlistOffset,
-	watchlistTotalPages,
 } from "../lib/watchlist-query-args";
 import {
-	flatrateProvidersForRegion,
+	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
-	watchProvidersFromTmdbJson,
 } from "../lib/watchlist-streaming-alerts";
 
 type WatchlistUpsertBody = {
@@ -53,7 +53,6 @@ export const watchlistRoute = new Elysia({
 		"/",
 		async ({ user, status, query }) => {
 			if (!user) return status(401, "Sign in");
-			const showAdultContent = await getShowAdultContentForUser(user.id);
 			const page = parseWatchlistPage(query.page);
 			const limit = parseWatchlistLimit(query.limit);
 			const order = parseWatchlistOrder(query.order);
@@ -64,9 +63,10 @@ export const watchlistRoute = new Elysia({
 				.from(profile)
 				.where(eq(profile.userId, user.id))
 				.limit(1);
-			const watchRegion = readCatalogWatchRegionPref(
-				(prefRow?.preferences as Record<string, unknown> | null) ?? null,
-			);
+			const prefs =
+				(prefRow?.preferences as Record<string, unknown> | null) ?? null;
+			const showAdultContent = readShowAdultContentPref(prefs);
+			const watchRegion = readCatalogWatchRegionPref(prefs);
 
 			// Hide-watched (Letterbox-shaped): drop any saved title with a diary log.
 			// As a SQL clause so LIMIT/OFFSET apply *after* filtering.
@@ -111,53 +111,59 @@ export const watchlistRoute = new Elysia({
 						? [asc(titleExpr), desc(watchlistItem.addedAt), tiebreak]
 						: [desc(watchlistItem.addedAt), tiebreak];
 
-			const [rows, totals] = await Promise.all([
+			const fetched = await traceTiming("db", "watchlist.list", () =>
 				db
-					.select({ item: watchlistItem, movie, tv })
+					.select({
+						item: watchlistItem,
+						movieTmdbId: movie.tmdbId,
+						movieTitle: movie.title,
+						moviePosterPath: movie.posterPath,
+						tvTmdbId: tv.tmdbId,
+						tvTitle: tv.title,
+						tvPosterPath: tv.posterPath,
+						tmdbJson: WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION,
+					})
 					.from(watchlistItem)
 					.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
 					.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
 					.where(whereClause)
 					.orderBy(...orderBy)
-					.limit(limit)
+					.limit(limit + 1)
 					.offset(offset),
-				db
-					.select({ total: count() })
-					.from(watchlistItem)
-					.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
-					.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
-					.where(whereClause),
-			]);
+			);
 
-			const total = Number(totals[0]?.total ?? 0);
+			const { visibleCount, totalPages } = watchlistLookaheadPageMeta({
+				page,
+				limit,
+				fetchedCount: fetched.length,
+			});
+			const rows = fetched.slice(0, visibleCount);
 			return {
-				results: rows.map(({ item, movie: movieRow, tv: tvRow }) => {
-					const tmdbJson = movieRow?.tmdbJson ?? tvRow?.tmdbJson;
-					const providers = flatrateProvidersForRegion(
-						watchProvidersFromTmdbJson(tmdbJson),
+				results: rows.map((row) => ({
+					item: row.item,
+					movie:
+						row.movieTmdbId != null
+							? {
+									tmdbId: row.movieTmdbId,
+									title: row.movieTitle ?? "",
+									posterPath: row.moviePosterPath,
+								}
+							: null,
+					tv:
+						row.tvTmdbId != null
+							? {
+									tmdbId: row.tvTmdbId,
+									title: row.tvTitle ?? "",
+									posterPath: row.tvPosterPath,
+								}
+							: null,
+					streaming_provider_name: primaryFlatrateProviderName(
+						row.tmdbJson,
 						watchRegion,
-					);
-					return {
-						item,
-						movie: movieRow
-							? {
-									tmdbId: movieRow.tmdbId,
-									title: movieRow.title,
-									posterPath: movieRow.posterPath,
-								}
-							: null,
-						tv: tvRow
-							? {
-									tmdbId: tvRow.tmdbId,
-									title: tvRow.title,
-									posterPath: tvRow.posterPath,
-								}
-							: null,
-						streaming_provider_name: providers[0]?.providerName ?? null,
-					};
-				}),
-				total_pages: watchlistTotalPages(total, limit),
-				total_results: total,
+					),
+				})),
+				total_pages: totalPages,
+				total_results: offset + rows.length,
 			};
 		},
 		{

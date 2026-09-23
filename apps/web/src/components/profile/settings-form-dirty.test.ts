@@ -48,6 +48,8 @@ function snap(
 			"chat.message": true,
 			"tv.new_episode": true,
 			watchlist_now_streaming: true,
+			person_favorite_release: true,
+			person_favorite_now_streaming: true,
 		},
 		...overrides,
 	};

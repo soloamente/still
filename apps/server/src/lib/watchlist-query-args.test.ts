@@ -6,6 +6,7 @@ import {
 	parseWatchlistPage,
 	WATCHLIST_DEFAULT_LIMIT,
 	WATCHLIST_MAX_LIMIT,
+	watchlistLookaheadPageMeta,
 	watchlistOffset,
 	watchlistTotalPages,
 } from "./watchlist-query-args";
@@ -61,5 +62,37 @@ describe("watchlistTotalPages", () => {
 		expect(watchlistTotalPages(0, 24)).toBe(0);
 		expect(watchlistTotalPages(24, 24)).toBe(1);
 		expect(watchlistTotalPages(25, 24)).toBe(2);
+	});
+});
+
+describe("watchlistLookaheadPageMeta", () => {
+	test("page 1 empty → 0 pages", () => {
+		expect(
+			watchlistLookaheadPageMeta({ page: 1, limit: 24, fetchedCount: 0 }),
+		).toEqual({ visibleCount: 0, hasMore: false, totalPages: 0 });
+	});
+
+	test("page 1 partial → one page, no lookahead", () => {
+		expect(
+			watchlistLookaheadPageMeta({ page: 1, limit: 24, fetchedCount: 10 }),
+		).toEqual({ visibleCount: 10, hasMore: false, totalPages: 1 });
+	});
+
+	test("page 1 full with lookahead row → at least page 2", () => {
+		expect(
+			watchlistLookaheadPageMeta({ page: 1, limit: 24, fetchedCount: 25 }),
+		).toEqual({ visibleCount: 24, hasMore: true, totalPages: 2 });
+	});
+
+	test("page 2 empty (past the end) → clamp to page 1", () => {
+		expect(
+			watchlistLookaheadPageMeta({ page: 2, limit: 24, fetchedCount: 0 }),
+		).toEqual({ visibleCount: 0, hasMore: false, totalPages: 1 });
+	});
+
+	test("page 2 partial → last page is 2", () => {
+		expect(
+			watchlistLookaheadPageMeta({ page: 2, limit: 24, fetchedCount: 3 }),
+		).toEqual({ visibleCount: 3, hasMore: false, totalPages: 2 });
 	});
 });

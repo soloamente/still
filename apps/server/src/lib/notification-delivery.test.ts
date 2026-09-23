@@ -13,6 +13,8 @@ describe("notification-delivery", () => {
 		expect(prefs["follow.created"]).toBe(true);
 		expect(prefs["review.liked"]).toBe(false);
 		expect(prefs["mention.in_review_or_comment"]).toBe(true);
+		expect(prefs.person_favorite_release).toBe(true);
+		expect(prefs.person_favorite_now_streaming).toBe(true);
 	});
 
 	test("readNotificationPrefs merges stored overrides", () => {

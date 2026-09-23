@@ -3,6 +3,7 @@
 import { cn } from "@still/ui/lib/utils";
 import { useEffect, useState } from "react";
 
+import { SearchDialogPeopleRail } from "@/components/home/search-dialog-people-rail";
 import { SearchDialogPeopleRow } from "@/components/home/search-dialog-people-row";
 import { SearchDialogListSkeleton } from "@/components/home/search-dialog-result-skeletons";
 import {
@@ -21,12 +22,15 @@ export function SearchDialogPeopleSuggestions({
 	onSelect,
 	className,
 	showEmptyState = false,
+	layout = "list",
 }: {
 	enabled: boolean;
 	onSelect: (handle: string) => void;
 	className?: string;
 	/** When true, show copy if suggestions load empty (browse column). */
 	showEmptyState?: boolean;
+	/** `rail` = Figma square portraits; `list` = named rows. */
+	layout?: "list" | "rail";
 }) {
 	const [tasteRows, setTasteRows] = useState<TasteSuggestedPatronRow[]>([]);
 	const [networkRows, setNetworkRows] = useState<FollowSuggestionRow[]>([]);
@@ -89,7 +93,7 @@ export function SearchDialogPeopleSuggestions({
 	const hasTaste = tasteRows.length > 0;
 	const hasNetwork = networkRows.length > 0;
 	if (!loading && !hasTaste && !hasNetwork) {
-		if (!showEmptyState) return null;
+		if (layout === "rail" || !showEmptyState) return null;
 		return (
 			<p className="text-muted-foreground text-xs leading-relaxed">
 				No suggestions right now — try again in a moment.
@@ -99,7 +103,48 @@ export function SearchDialogPeopleSuggestions({
 
 	// Reserve list space while patron suggestions load so the browse column does not collapse.
 	if (loading && !hasTaste && !hasNetwork) {
+		if (layout === "rail") {
+			return (
+				<SearchDialogPeopleRail items={[]} loading onPick={() => undefined} />
+			);
+		}
 		return <SearchDialogListSkeleton count={4} />;
+	}
+
+	if (layout === "rail") {
+		const railItems = [
+			...tasteRows.map((row) => ({
+				id: row.userId,
+				name: row.displayName?.trim() || row.handle.trim(),
+				imageUrl: row.image,
+			})),
+			...networkRows.flatMap((row) => {
+				const handle = row.handle?.trim();
+				if (!handle) return [];
+				return [
+					{
+						id: row.user_id,
+						name: row.name?.trim() || handle,
+						imageUrl: row.image,
+					},
+				];
+			}),
+		];
+		return (
+			<SearchDialogPeopleRail
+				items={railItems}
+				onPick={(item) => {
+					const taste = tasteRows.find((row) => row.userId === item.id);
+					if (taste) {
+						onSelect(taste.handle.trim());
+						return;
+					}
+					const network = networkRows.find((row) => row.user_id === item.id);
+					if (network?.handle) onSelect(network.handle.trim());
+				}}
+				label="Suggested patrons"
+			/>
+		);
 	}
 
 	return (

@@ -241,6 +241,52 @@ export async function fetchTvSearch(
 	};
 }
 
+/** TMDb `/person/popular` proxy — same slim rows as `fetchPeopleSearch`. */
+export async function fetchPeoplePopular(
+	init?: Pick<RequestInit, "signal"> & { page?: number; cookieHeader?: string },
+) {
+	const url = new URL("/api/people/popular", stillApiOrigin());
+	const page = init?.page;
+	if (page !== undefined && Number.isFinite(page) && page >= 1) {
+		url.searchParams.set("page", String(Math.floor(page)));
+	}
+	const { cookieHeader, signal } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Fire-and-forget Sense search hit so cast/crew ranks follow on-site traffic. */
+export async function recordPersonSearchHit(
+	tmdbId: number,
+	snapshot?: { name?: string; profileUrl?: string | null },
+): Promise<void> {
+	if (!Number.isFinite(tmdbId) || tmdbId < 1) return;
+	const url = new URL("/api/people/search-hit", stillApiOrigin());
+	try {
+		await fetch(url, {
+			method: "POST",
+			credentials: "include",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({
+				id: Math.floor(tmdbId),
+				name: snapshot?.name ?? "",
+				profileUrl: snapshot?.profileUrl ?? null,
+			}),
+		});
+	} catch {
+		// Ranking is best-effort — opening the person page still proceeds.
+	}
+}
+
 /** TMDb person search proxy — rows are slim `PeopleSearchRow`s ({id,name,profileUrl,knownForDepartment,knownForTitles}). */
 export async function fetchPeopleSearch(
 	qRaw: string,
@@ -989,6 +1035,132 @@ export async function fetchPersonFilmography(
 		data: response.ok ? data : null,
 		error: response.ok ? null : { status: response.status, raw: data },
 		response,
+	};
+}
+
+/** Hydrate person Favorite pill — signed-in only. */
+export async function fetchPersonFavorite(
+	personId: number,
+	init?: Pick<RequestInit, "signal">,
+) {
+	const url = new URL(
+		`/api/people/${encodeURIComponent(String(personId))}/favorite`,
+		stillApiOrigin(),
+	);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	const data = (await parseJsonBlob(response)) as {
+		favorited?: boolean;
+		alertsEnabled?: boolean;
+	} | null;
+	return {
+		ok: response.ok,
+		favorited: response.ok ? Boolean(data?.favorited) : false,
+		alertsEnabled: response.ok ? Boolean(data?.alertsEnabled) : false,
+		status: response.status,
+	};
+}
+
+/** Optimistic Favorite toggle — POST to add, DELETE to remove. */
+export async function setPersonFavorite(
+	personId: number,
+	favorited: boolean,
+) {
+	const url = new URL(
+		`/api/people/${encodeURIComponent(String(personId))}/favorite`,
+		stillApiOrigin(),
+	);
+	const response = await fetch(url, {
+		method: favorited ? "POST" : "DELETE",
+		credentials: "include",
+		headers: { Accept: "application/json" },
+	});
+	const data = (await parseJsonBlob(response)) as {
+		favorited?: boolean;
+		alertsEnabled?: boolean;
+	} | null;
+	return {
+		ok: response.ok,
+		favorited: response.ok ? Boolean(data?.favorited ?? favorited) : !favorited,
+		alertsEnabled: response.ok
+			? Boolean(data?.alertsEnabled ?? (favorited ? true : false))
+			: false,
+		status: response.status,
+	};
+}
+
+/** Per-person Notify bell — enables Favorite when turning alerts on. */
+export async function setPersonFavoriteAlerts(
+	personId: number,
+	alertsEnabled: boolean,
+) {
+	const url = new URL(
+		`/api/people/${encodeURIComponent(String(personId))}/favorite`,
+		stillApiOrigin(),
+	);
+	const response = await fetch(url, {
+		method: "PATCH",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		body: JSON.stringify({ alertsEnabled }),
+	});
+	const data = (await parseJsonBlob(response)) as {
+		favorited?: boolean;
+		alertsEnabled?: boolean;
+	} | null;
+	return {
+		ok: response.ok,
+		favorited: response.ok ? Boolean(data?.favorited) : false,
+		alertsEnabled: response.ok
+			? Boolean(data?.alertsEnabled)
+			: !alertsEnabled,
+		status: response.status,
+	};
+}
+
+/** Profile Favorites drawer — paginated person favorites for a public handle. */
+export async function fetchProfilePersonFavorites(
+	handle: string,
+	opts?: { before?: string | null; limit?: number; signal?: AbortSignal },
+) {
+	const url = new URL(
+		`/api/profiles/${encodeURIComponent(handle)}/person-favorites`,
+		stillApiOrigin(),
+	);
+	if (opts?.before) url.searchParams.set("before", opts.before);
+	if (opts?.limit != null) url.searchParams.set("limit", String(opts.limit));
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: opts?.signal,
+	});
+	const data = (await parseJsonBlob(response)) as {
+		results?: Array<{
+			tmdbPersonId: number;
+			name: string;
+			profileUrl: string | null;
+			knownForDepartment: string | null;
+			alertsEnabled: boolean;
+			createdAt: string | Date;
+		}>;
+		nextBefore?: string | null;
+	} | null;
+	const results = (data?.results ?? []).map((row) => ({
+		...row,
+		createdAt:
+			typeof row.createdAt === "string"
+				? row.createdAt
+				: new Date(row.createdAt).toISOString(),
+	}));
+	return {
+		ok: response.ok,
+		results,
+		nextBefore: data?.nextBefore ?? null,
+		status: response.status,
 	};
 }
 

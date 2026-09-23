@@ -3,15 +3,17 @@ import Image from "next/image";
 
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
+import { PersonDetailFavoriteActions } from "@/components/people/person-detail-favorite-actions";
 import { PersonDetailInfoCards } from "@/components/people/person-detail-info-cards";
 import type { PersonDetailInfoCard } from "@/lib/person-detail-facts";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
 /**
- * Centered person hero — portrait, department, name, fact cards, and biography
- * synopsis drawer (same rhythm as film/TV detail heroes).
+ * Centered person hero — portrait, department, name, Favorite + Notify, fact cards,
+ * and biography synopsis drawer (same rhythm as film/TV detail heroes).
  */
 export function PersonDetailHero({
+	personId,
 	name,
 	knownForDepartment,
 	profilePath,
@@ -19,6 +21,7 @@ export function PersonDetailHero({
 	biography,
 	infoCards,
 }: {
+	personId: number;
 	name: string;
 	knownForDepartment?: string | null;
 	profilePath: string | null;
@@ -71,6 +74,9 @@ export function PersonDetailHero({
 			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.05] tracking-[-0.02em] sm:text-4xl">
 				{name}
 			</h1>
+
+			{/* Signed-in Favorite + Notify — hides when unsigned (share crawlers). */}
+			<PersonDetailFavoriteActions personId={personId} />
 
 			<PersonDetailInfoCards cards={infoCards} />
 

@@ -13,6 +13,7 @@ export function useCastCrewSearch(
 	debounceMs = 240,
 ) {
 	const [results, setResults] = useState<CastCrewSearchHit[]>([]);
+	const [totalResults, setTotalResults] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [setupHint, setSetupHint] = useState<string | null>(null);
 
@@ -20,6 +21,7 @@ export function useCastCrewSearch(
 		const q = query.trim();
 		if (!enabled || !q) {
 			setResults([]);
+			setTotalResults(0);
 			setSetupHint(null);
 			setLoading(false);
 			return;
@@ -32,17 +34,26 @@ export function useCastCrewSearch(
 				if (ctrl.signal.aborted) return;
 				if (res.error) {
 					setResults([]);
+					setTotalResults(0);
 					setSetupHint(null);
 					return;
 				}
 				const data = res.data as {
 					results?: CastCrewSearchHit[];
+					total_results?: number;
 				} | null;
 				setSetupHint(tmdbSetupHint(data));
-				setResults((data?.results ?? []) as CastCrewSearchHit[]);
+				const rows = (data?.results ?? []) as CastCrewSearchHit[];
+				setResults(rows);
+				setTotalResults(
+					typeof data?.total_results === "number"
+						? data.total_results
+						: rows.length,
+				);
 			} catch {
 				if (!ctrl.signal.aborted) {
 					setResults([]);
+					setTotalResults(0);
 					setSetupHint(null);
 				}
 			} finally {
@@ -55,5 +66,5 @@ export function useCastCrewSearch(
 		};
 	}, [query, enabled, debounceMs]);
 
-	return { results, loading, setupHint };
+	return { results, totalResults, loading, setupHint };
 }

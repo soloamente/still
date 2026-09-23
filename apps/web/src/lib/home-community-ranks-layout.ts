@@ -16,6 +16,6 @@ export const HOME_COMMUNITY_RANKS_ROW_CLASSNAME =
 export const HOME_COMMUNITY_RANKS_VIEWER_ROW_CLASSNAME =
 	"bg-[color-mix(in_oklab,var(--color-desert-orange)_14%,var(--background))]";
 
-/** Podium stage — one raised tray; pedestals carry rank tint, not nested cards. */
+/** Podium stage — one tray; quiet count pills sit on `bg-background` inside. */
 export const HOME_COMMUNITY_RANKS_PODIUM_TRAY_CLASSNAME =
-	"rounded-2xl bg-card px-4 pt-4 pb-0 sm:px-6 sm:pt-5";
+	"rounded-2xl bg-card px-4 py-4 sm:px-6 sm:py-5";
