@@ -36,6 +36,7 @@ const LIST_POINTS = 20;
 const TASTE_MAX = 20;
 const RECENT_MAX = 10;
 const RECENT_WINDOW_DAYS = 30;
+const RECENT_PILL_MAX_DAYS = 3;
 const DAY_MS = 86_400_000;
 
 /** Names the first visible sender; scrubbed (sensitive) senders are never named. */
@@ -46,9 +47,8 @@ function friendLabel(
 	const first = named[0];
 	if (!first) return "Recommended to you";
 	const others = recommenders.length - 1;
-	return others > 0
-		? `${first.name} + ${others} recommended`
-		: `${first.name} recommended`;
+	if (others <= 0) return `${first.name} recommended`;
+	return `${first.name} and ${others} ${others === 1 ? "other" : "others"} recommended`;
 }
 
 export function scoreWatchlistTonight(signals: WatchlistTonightSignals): {
@@ -85,7 +85,7 @@ export function scoreWatchlistTonight(signals: WatchlistTonightSignals): {
 		parts.push({
 			kind: "list",
 			points: LIST_POINTS,
-			label: `Finishes ${signals.ownListTitle.trim()}`,
+			label: `On your ${signals.ownListTitle.trim()} list`,
 		});
 	}
 	// Clamp affinity to 0–1 so out-of-range inputs cannot exceed TASTE_MAX.
@@ -107,9 +107,13 @@ export function scoreWatchlistTonight(signals: WatchlistTonightSignals): {
 	}
 
 	const score = parts.reduce((sum, p) => sum + p.points, 0);
+	// Recency always scores, but only very fresh saves earn the pill — otherwise
+	// no-signal watchlists read wall-to-wall "Added recently".
+	const recentPillEligible = ageDays < RECENT_PILL_MAX_DAYS;
 	// Strict `>` keeps the earliest part on ties, so table order breaks ties.
 	let best: (typeof parts)[number] | null = null;
 	for (const part of parts) {
+		if (part.kind === "recent" && !recentPillEligible) continue;
 		if (part.points > 0 && (best == null || part.points > best.points))
 			best = part;
 	}

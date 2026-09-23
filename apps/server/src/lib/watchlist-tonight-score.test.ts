@@ -44,7 +44,21 @@ describe("scoreWatchlistTonight", () => {
 		}));
 		const r = scoreWatchlistTonight(signals({ recommenders: many }));
 		expect(r.score).toBe(40);
-		expect(r.reason).toEqual({ kind: "friend", label: "P0 + 4 recommended" });
+		expect(r.reason).toEqual({
+			kind: "friend",
+			label: "P0 and 4 others recommended",
+		});
+	});
+	test("two friends → singular 'other'", () => {
+		const r = scoreWatchlistTonight(
+			signals({
+				recommenders: [
+					{ name: "Maya", scrubbed: false },
+					{ name: "Ben", scrubbed: false },
+				],
+			}),
+		);
+		expect(r.reason?.label).toBe("Maya and 1 other recommended");
 	});
 	test("single friend label", () => {
 		const r = scoreWatchlistTonight(
@@ -63,7 +77,7 @@ describe("scoreWatchlistTonight", () => {
 		const r = scoreWatchlistTonight(signals({ ownListTitle: "Heist nights" }));
 		expect(r).toEqual({
 			score: 20,
-			reason: { kind: "list", label: "Finishes Heist nights" },
+			reason: { kind: "list", label: "On your Heist nights list" },
 		});
 	});
 	test("taste affinity scales 0–20 and clamps", () => {
@@ -84,6 +98,23 @@ describe("scoreWatchlistTonight", () => {
 		);
 		const old = new Date(NOW.getTime() - 31 * 86_400_000);
 		expect(scoreWatchlistTonight(signals({ addedAt: old })).score).toBe(0);
+	});
+	test("recency pill only under 3 days; older saves still score", () => {
+		const twoDays = new Date(NOW.getTime() - 2 * 86_400_000);
+		expect(
+			scoreWatchlistTonight(signals({ addedAt: twoDays })).reason?.label,
+		).toBe("Added recently");
+		const fiveDays = new Date(NOW.getTime() - 5 * 86_400_000);
+		const r = scoreWatchlistTonight(signals({ addedAt: fiveDays }));
+		expect(r.score).toBeGreaterThan(0);
+		expect(r.reason).toBeNull();
+	});
+	test("stale recency never outranks a weaker real signal for the pill", () => {
+		const fiveDays = new Date(NOW.getTime() - 5 * 86_400_000);
+		const r = scoreWatchlistTonight(
+			signals({ addedAt: fiveDays, tasteAffinity: 0.1 }),
+		);
+		expect(r.reason?.kind).toBe("taste");
 	});
 	test("tie in contribution breaks in table order (list beats taste)", () => {
 		const r = scoreWatchlistTonight(

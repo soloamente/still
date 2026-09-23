@@ -152,11 +152,18 @@ export function MoviePoster({
 				)}
 				{posterCaption ? (
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3 text-center sm:pt-16 sm:pb-3.5">
-						<p className="max-w-full font-semibold text-sm text-white leading-snug tracking-wide drop-shadow-sm">
+						{/* One line on every grid; `pointer-events-auto` so the `title` tooltip can surface the full text. */}
+						<p
+							className="pointer-events-auto w-full truncate font-semibold text-sm text-white leading-snug tracking-wide drop-shadow-sm"
+							title={posterCaption}
+						>
 							{posterCaption}
 						</p>
 						{posterCaptionSubline ? (
-							<p className="mt-0.5 max-w-full text-white/75 text-xs leading-snug">
+							<p
+								className="pointer-events-auto mt-0.5 w-full truncate text-white/75 text-xs leading-snug"
+								title={posterCaptionSubline}
+							>
 								{posterCaptionSubline}
 							</p>
 						) : null}
