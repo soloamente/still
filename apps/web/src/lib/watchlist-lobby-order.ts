@@ -168,13 +168,36 @@ export function tvWatchBundleToContinueSeed(
 				? tmdbPosterUrlFromPath(posterPath, "w342")
 				: posterPath,
 		listingKind: "tv",
-		watchlistStreamingLabel: next
-			? `S${next.seasonNumber} · E${next.episodeNumber} next`
-			: "Continue",
+		watchlistStreamingLabel: continueEpisodeLabel(next, todayYmd),
 		hasNewEpisode: isAiredOnOrBefore(next?.airDate, todayYmd),
 		// Eden may deserialize timestamps as `Date` — normalize to an ISO string for sorting.
 		changedAt: timestampToIso(bundle.watch?.statusChangedAt),
 	};
+}
+
+/** `Oct 3` — UTC so a `YYYY-MM-DD` air date never shifts a day by viewer timezone. */
+const SHORT_AIR_DATE = new Intl.DateTimeFormat("en", {
+	month: "short",
+	day: "numeric",
+	timeZone: "UTC",
+});
+
+/**
+ * Continue watching pill: aired → `S2 · E5 next`; announced → `S2 · E5 · Oct 3`;
+ * no next-episode data → `null` (no pill — never a vague "Continue").
+ */
+function continueEpisodeLabel(
+	next: TvWatchBundle["nextEpisode"],
+	todayYmd: string,
+): string | null {
+	if (!next) return null;
+	const episode = `S${next.seasonNumber} · E${next.episodeNumber}`;
+	const iso = timestampToIso(next.airDate);
+	const airYmd = iso.slice(0, 10);
+	if (iso === "" || airYmd <= todayYmd) return `${episode} next`;
+	const airDate = new Date(`${airYmd}T00:00:00Z`);
+	if (Number.isNaN(airDate.getTime())) return `${episode} next`;
+	return `${episode} · ${SHORT_AIR_DATE.format(airDate)}`;
 }
 
 /** True when an episode air date (string or Eden `Date`) is on or before `todayYmd`. */

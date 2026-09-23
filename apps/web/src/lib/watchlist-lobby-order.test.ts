@@ -106,10 +106,10 @@ describe("watchlist decision seeds", () => {
 	test("carries the reason kind for analytics, separate from the pill text", () => {
 		const seed = watchlistRowToPopularSeed({
 			...base,
-			tonight_reason: "Finishes Heist nights",
+			tonight_reason: "On your Heist nights list",
 			tonight_reason_kind: "list",
 		});
-		expect(seed.watchlistStreamingLabel).toBe("Finishes Heist nights");
+		expect(seed.watchlistStreamingLabel).toBe("On your Heist nights list");
 		expect(seed.watchlistReasonKind).toBe("list");
 		expect(watchlistRowToPopularSeed(base).watchlistReasonKind).toBeNull();
 	});
@@ -187,7 +187,40 @@ describe("watchlist decision seeds", () => {
 			},
 			"2026-09-23",
 		);
-		expect(seed?.watchlistStreamingLabel).toBe("Continue");
+		expect(seed?.watchlistStreamingLabel).toBeNull();
+	});
+	test("unaired next episode names its air date, not 'next'", () => {
+		const seed = tvWatchBundleToContinueSeed(
+			{
+				watch: null,
+				show: { tmdbId: 9, title: "X", posterPath: null },
+				watchedEpisodes: [],
+				nextEpisode: {
+					seasonNumber: 2,
+					episodeNumber: 5,
+					airDate: "2026-10-03",
+				},
+			},
+			"2026-09-23",
+		);
+		expect(seed?.watchlistStreamingLabel).toBe("S2 · E5 · Oct 3");
+		expect(seed?.hasNewEpisode).toBe(false);
+	});
+	test("next episode airing today counts as aired", () => {
+		const seed = tvWatchBundleToContinueSeed(
+			{
+				watch: null,
+				show: { tmdbId: 9, title: "X", posterPath: null },
+				watchedEpisodes: [],
+				nextEpisode: {
+					seasonNumber: 1,
+					episodeNumber: 3,
+					airDate: "2026-09-23",
+				},
+			},
+			"2026-09-23",
+		);
+		expect(seed?.watchlistStreamingLabel).toBe("S1 · E3 next");
 	});
 	test("continue seed accepts Date timestamps from Eden (no crash)", () => {
 		// Eden deserializes date-like JSON strings into `Date` at runtime,
