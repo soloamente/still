@@ -29,6 +29,7 @@ import {
 	HomeTmdbCatalogueGrid,
 	HomeTmdbLobbyChrome,
 } from "@/components/home/home-tmdb-lobby-chrome";
+import { HomeTodayBrowseGate } from "@/components/home/home-today-browse-gate";
 import { TmdbLobbySkeleton } from "@/components/home/tmdb-lobby-skeleton";
 import { TodayOnSense } from "@/components/home/today-on-sense";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
@@ -387,9 +388,11 @@ export default async function HomePage({
 	// `(app)/layout` guarantees a session here. Start Today reads now so they run
 	// alongside the body's auth/profile/catalogue waves instead of after them.
 	// Committed catalogue search replaces Today, so skip the reads entirely.
-	const todayReads = params.catalogueSearchActive
-		? null
-		: startTodayOnSenseReads();
+	// Today is a Movies-lobby layer — TV and Community never start its reads.
+	const todayReads =
+		params.catalogueSearchActive || browse !== "movies"
+			? null
+			: startTodayOnSenseReads();
 
 	return (
 		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
@@ -844,10 +847,14 @@ async function HomeLobbyBody({
 
 			<HomeLobbyCatalogueSection>
 				{/*
-					Today on Sense sits above every browse surface (Movies · TV · Community)
-					and outside the body gate, so browse-rail switches never remount it.
+					Today on Sense is Movies-only. The client gate hides it the moment the
+					browse pill leaves Movies, before the TV/Community RSC payload lands.
 				*/}
-				{session && todayReads ? <TodayOnSense reads={todayReads} /> : null}
+				{session && todayReads ? (
+					<HomeTodayBrowseGate>
+						<TodayOnSense reads={todayReads} />
+					</HomeTodayBrowseGate>
+				) : null}
 				{/*
 					`useSearchParams` — keep inside Suspense so the home RSC shell can still
 					stream; the bar is tiny so a short fallback is acceptable.
