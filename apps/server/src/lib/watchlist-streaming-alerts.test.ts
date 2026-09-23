@@ -13,6 +13,7 @@ import {
 	readWatchlistStreamingAlertsPref,
 	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
+	watchlistItemAlertEligible,
 	watchProvidersFromTmdbJson,
 } from "./watchlist-streaming-alerts";
 
@@ -196,5 +197,38 @@ describe("readCatalogWatchRegionPrefOrNull", () => {
 		expect(
 			readCatalogWatchRegionPrefOrNull({ catalogTmdbWatchRegion: "xyz" }),
 		).toBeNull();
+	});
+});
+
+describe("watchlistItemAlertEligible", () => {
+	test("needs the feature, then either the global pref or the item flag", () => {
+		expect(
+			watchlistItemAlertEligible({
+				globalPref: true,
+				itemFlag: false,
+				hasFeature: false,
+			}),
+		).toBe(false);
+		expect(
+			watchlistItemAlertEligible({
+				globalPref: true,
+				itemFlag: false,
+				hasFeature: true,
+			}),
+		).toBe(true);
+		expect(
+			watchlistItemAlertEligible({
+				globalPref: false,
+				itemFlag: true,
+				hasFeature: true,
+			}),
+		).toBe(true);
+		expect(
+			watchlistItemAlertEligible({
+				globalPref: false,
+				itemFlag: false,
+				hasFeature: true,
+			}),
+		).toBe(false);
 	});
 });

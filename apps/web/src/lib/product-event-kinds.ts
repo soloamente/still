@@ -42,6 +42,10 @@ export const PRODUCT_EVENT_KINDS = [
 	"recommendation.opened",
 	"recommendation.accepted",
 	"recommendation.answered",
+	"watchlist.alert_requested",
+	"watchlist.mode_viewed",
+	"watchlist.tile_action",
+	"upgrade.prompt_viewed",
 ] as const;
 
 export type ProductEventKind = (typeof PRODUCT_EVENT_KINDS)[number];
@@ -70,6 +74,9 @@ export const CLIENT_PRODUCT_EVENT_KINDS = [
 	"rating.category_saved",
 	"rating.category_skipped",
 	"rating.suggestion_applied",
+	"watchlist.mode_viewed",
+	"watchlist.tile_action",
+	"upgrade.prompt_viewed",
 ] as const;
 
 export type ClientProductEventKind =

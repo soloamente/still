@@ -16,7 +16,14 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
+import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
+import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import {
+	patronHasPlanFeature,
+	planFeatureRequiredBody,
+} from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
+import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { traceTiming } from "../lib/trace-timing";
 import { WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION } from "../lib/watchlist-lobby-tmdb-json";
@@ -39,6 +46,10 @@ import {
 	loadWatchlistTonightSocial,
 	normalizedGenreAffinity,
 } from "../lib/watchlist-tonight-signals";
+import {
+	upsertMovieWatchlistItem,
+	upsertTvWatchlistItem,
+} from "../lib/watchlist-upsert";
 
 type WatchlistUpsertBody = {
 	movieId?: number;
@@ -62,8 +73,7 @@ const watchlistSelectShape = {
 	tvPosterPath: tv.posterPath,
 	tvGenreIds: tv.genreIds,
 	tmdbJson: WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION,
-	// Placeholder until watchlist_item.streaming_alert exists (migration 0046).
-	streamingAlert: sql<boolean>`false`,
+	streamingAlert: watchlistItem.streamingAlert,
 };
 
 type WatchlistSelectRow = {
@@ -74,7 +84,7 @@ type WatchlistSelectRow = {
 	tvTmdbId: number | null;
 	tvTitle: string | null;
 	tvPosterPath: string | null;
-	streamingAlert: boolean | null;
+	streamingAlert: boolean;
 };
 
 /** Lobby row shape shared by every `?order=` mode. */
@@ -103,15 +113,127 @@ function toWatchlistRow(
 				: null,
 		streaming_provider_name: providerName,
 		tonight_reason: reason,
-		streaming_alert: Boolean(row.streamingAlert),
+		streaming_alert: row.streamingAlert,
 	};
 }
 
-import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
-import {
-	upsertMovieWatchlistItem,
-	upsertTvWatchlistItem,
-} from "../lib/watchlist-upsert";
+/** Patron `profile.preferences` blob (null when the profile row is missing). */
+async function loadPatronPreferences(
+	userId: string,
+): Promise<Record<string, unknown> | null> {
+	const [prefRow] = await db
+		.select({ preferences: profile.preferences })
+		.from(profile)
+		.where(eq(profile.userId, userId))
+		.limit(1);
+	return (prefRow?.preferences as Record<string, unknown> | null) ?? null;
+}
+
+/**
+ * Lobby-visible watchlist rows: the patron's saves, minus anything with a diary
+ * log (hide-watched, Letterbox-shaped) and adult titles unless opted in.
+ * As a SQL clause so LIMIT/OFFSET apply *after* filtering.
+ */
+function watchlistVisibleWhere(userId: string, showAdultContent: boolean) {
+	const notWatched = notExists(
+		db
+			.select({ one: sql`1` })
+			.from(log)
+			.where(
+				and(
+					eq(log.userId, userId),
+					isNull(log.removedAt),
+					or(
+						and(
+							isNotNull(watchlistItem.movieId),
+							eq(log.movieId, watchlistItem.movieId),
+						),
+						and(
+							isNotNull(watchlistItem.tvId),
+							eq(log.tvId, watchlistItem.tvId),
+						),
+					),
+				),
+			),
+	);
+
+	return and(
+		eq(watchlistItem.userId, userId),
+		notWatched,
+		joinedTitleItemNotAdultSql(showAdultContent, {
+			movieId: watchlistItem.movieId,
+			tvId: watchlistItem.tvId,
+		}),
+	);
+}
+
+/** Rows scanned for the Attuned upsell preview (not a full-watchlist count). */
+const WATCHLIST_ALERT_PREVIEW_POOL_LIMIT = 200;
+
+/**
+ * 403 upsell payload for `PATCH /alert` — how many visible saves are not on a
+ * subscription service in the patron's region (US fallback), plus 3 samples.
+ */
+type WatchlistAlertPreviewSample = {
+	listingKind: "movie" | "tv";
+	tmdbId: number;
+	title: string;
+	posterPath: string | null;
+};
+
+async function loadWatchlistAlertPreview(userId: string): Promise<{
+	notStreamingCount: number;
+	sample: WatchlistAlertPreviewSample[];
+}> {
+	const prefs = await loadPatronPreferences(userId);
+	const region = readCatalogWatchRegionPref(prefs);
+	const rows = await db
+		.select({
+			movieTmdbId: movie.tmdbId,
+			movieTitle: movie.title,
+			moviePosterPath: movie.posterPath,
+			tvTmdbId: tv.tmdbId,
+			tvTitle: tv.title,
+			tvPosterPath: tv.posterPath,
+			tmdbJson: WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION,
+		})
+		.from(watchlistItem)
+		.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
+		.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
+		.where(watchlistVisibleWhere(userId, readShowAdultContentPref(prefs)))
+		.orderBy(desc(watchlistItem.addedAt))
+		.limit(WATCHLIST_ALERT_PREVIEW_POOL_LIMIT);
+
+	const notStreaming = rows.filter(
+		(row) => primaryFlatrateProviderName(row.tmdbJson, region) == null,
+	);
+	const sample = notStreaming
+		.slice(0, 3)
+		.flatMap((row): WatchlistAlertPreviewSample[] => {
+			if (row.movieTmdbId != null) {
+				return [
+					{
+						listingKind: "movie",
+						tmdbId: row.movieTmdbId,
+						title: row.movieTitle ?? "",
+						posterPath: row.moviePosterPath,
+					},
+				];
+			}
+			if (row.tvTmdbId != null) {
+				return [
+					{
+						listingKind: "tv",
+						tmdbId: row.tvTmdbId,
+						title: row.tvTitle ?? "",
+						posterPath: row.tvPosterPath,
+					},
+				];
+			}
+			return [];
+		});
+	return { notStreamingCount: notStreaming.length, sample };
+}
 
 export const watchlistRoute = new Elysia({
 	prefix: "/api/watchlist",
@@ -127,50 +249,14 @@ export const watchlistRoute = new Elysia({
 			const order = parseWatchlistOrder(query.order);
 			const offset = watchlistOffset(page, limit);
 
-			const [prefRow] = await db
-				.select({ preferences: profile.preferences })
-				.from(profile)
-				.where(eq(profile.userId, user.id))
-				.limit(1);
-			const prefs =
-				(prefRow?.preferences as Record<string, unknown> | null) ?? null;
+			const prefs = await loadPatronPreferences(user.id);
 			const showAdultContent = readShowAdultContentPref(prefs);
 			const watchRegion = readCatalogWatchRegionPref(prefs);
 			// Decision modes need an explicit region — the US fallback would mislead.
 			const chosenRegion = readCatalogWatchRegionPrefOrNull(prefs);
 
 			// Hide-watched (Letterbox-shaped): drop any saved title with a diary log.
-			// As a SQL clause so LIMIT/OFFSET apply *after* filtering.
-			const notWatched = notExists(
-				db
-					.select({ one: sql`1` })
-					.from(log)
-					.where(
-						and(
-							eq(log.userId, user.id),
-							isNull(log.removedAt),
-							or(
-								and(
-									isNotNull(watchlistItem.movieId),
-									eq(log.movieId, watchlistItem.movieId),
-								),
-								and(
-									isNotNull(watchlistItem.tvId),
-									eq(log.tvId, watchlistItem.tvId),
-								),
-							),
-						),
-					),
-			);
-
-			const whereClause = and(
-				eq(watchlistItem.userId, user.id),
-				notWatched,
-				joinedTitleItemNotAdultSql(showAdultContent, {
-					movieId: watchlistItem.movieId,
-					tvId: watchlistItem.tvId,
-				}),
-			);
+			const whereClause = watchlistVisibleWhere(user.id, showAdultContent);
 
 			// Deterministic tiebreaker so pages never overlap or skip.
 			const tiebreak = sql`coalesce(${watchlistItem.movieId}, ${watchlistItem.tvId})`;
@@ -354,6 +440,61 @@ export const watchlistRoute = new Elysia({
 				tvId: t.Optional(t.Number()),
 				priority: t.Optional(t.Integer({ minimum: 0, maximum: 100 })),
 				note: t.Optional(t.String({ maxLength: 500 })),
+			}),
+		},
+	)
+	/** Per-title streaming alert toggle — enabling needs Attuned (`watchlist_alerts`). */
+	.patch(
+		"/alert",
+		async ({ body: rawBody, user, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (!hit(`wl:alert:${user.id}`, { limit: 30, windowMs: 60_000 }).ok)
+				return status(429, "Slow down");
+			const body = routeBody<{
+				movieId?: number;
+				tvId?: number;
+				enabled: boolean;
+			}>(rawBody);
+			if ((body.movieId == null) === (body.tvId == null)) {
+				return status(400, "Send exactly one of movieId or tvId");
+			}
+			// Owner-scoped: a missing row (not on this patron's watchlist) → 404 below.
+			const itemWhere = and(
+				eq(watchlistItem.userId, user.id),
+				body.movieId != null
+					? eq(watchlistItem.movieId, body.movieId)
+					: eq(watchlistItem.tvId, body.tvId as number),
+			);
+			// Turning alerts off is always allowed (e.g. after a downgrade).
+			if (body.enabled) {
+				const entitlements = await loadPatronEntitlements(user.id);
+				if (!patronHasPlanFeature(entitlements, "watchlist_alerts")) {
+					return status(403, {
+						...planFeatureRequiredBody(
+							"watchlist_alerts",
+							"Streaming alerts are part of Attuned",
+						),
+						preview: await loadWatchlistAlertPreview(user.id),
+					});
+				}
+			}
+			const updated = await db
+				.update(watchlistItem)
+				.set({ streamingAlert: body.enabled })
+				.where(itemWhere)
+				.returning({ movieId: watchlistItem.movieId });
+			if (updated.length === 0) return status(404, "Not on your watchlist");
+			await recordProductEvent(user.id, "watchlist.alert_requested", {
+				enabled: body.enabled,
+				listingKind: body.movieId != null ? "movie" : "tv",
+			});
+			return { ok: true as const, enabled: body.enabled };
+		},
+		{
+			body: t.Object({
+				movieId: t.Optional(t.Number()),
+				tvId: t.Optional(t.Number()),
+				enabled: t.Boolean(),
 			}),
 		},
 	)

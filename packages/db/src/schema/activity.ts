@@ -214,6 +214,8 @@ export const watchlistItem = pgTable(
 		remindAt: timestamp("remind_at"),
 		priority: smallint("priority").default(50).notNull(),
 		note: text("note"),
+		/** Per-title Attuned alert request — job alerts when this OR the global pref is on. */
+		streamingAlert: boolean("streaming_alert").default(false).notNull(),
 	},
 	(table) => [
 		check(

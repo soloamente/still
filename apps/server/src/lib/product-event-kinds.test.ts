@@ -93,3 +93,17 @@ describe("liveblocks realtime kinds", () => {
 		expect(isClientProductEventKind("realtime.list.sync_conflict")).toBe(false);
 	});
 });
+
+describe("watchlist decision kinds", () => {
+	test("mode/tile/upgrade are client kinds; alert_requested is server-only", () => {
+		for (const kind of [
+			"watchlist.mode_viewed",
+			"watchlist.tile_action",
+			"upgrade.prompt_viewed",
+		]) {
+			expect(isClientProductEventKind(kind)).toBe(true);
+		}
+		expect(isProductEventKind("watchlist.alert_requested")).toBe(true);
+		expect(isClientProductEventKind("watchlist.alert_requested")).toBe(false);
+	});
+});

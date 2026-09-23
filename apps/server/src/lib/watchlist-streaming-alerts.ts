@@ -219,6 +219,16 @@ export function shouldProcessWatchlistStreamingAlerts(
 	return patronHasPlanFeature(entitlements, "watchlist_alerts");
 }
 
+/** Per-item alert gate: Attuned feature, then global opt-in or this title's flag. */
+export function watchlistItemAlertEligible(args: {
+	globalPref: boolean;
+	itemFlag: boolean;
+	hasFeature: boolean;
+}): boolean {
+	if (!args.hasFeature) return false;
+	return args.globalPref || args.itemFlag;
+}
+
 async function sendProWatchlistStreamingEmail(args: {
 	userId: string;
 	title: string;
@@ -434,16 +444,27 @@ export type WatchlistStreamingRow = {
 	title: string;
 	tmdbJson: unknown;
 	preferences: Record<string, unknown> | null;
+	/** `watchlist_item.streaming_alert` — per-title opt-in on top of the global pref. */
+	streamingAlert: boolean;
 };
 
-/** Process one watchlist row — exported for tests and the sync job. */
+/**
+ * Process one watchlist row — exported for tests and the sync job.
+ * The snapshot always updates (so baselines stay correct if the patron opts in
+ * later); only the notification step is gated by `watchlistItemAlertEligible`.
+ * Pass `entitlements` to reuse one lookup across a patron's rows.
+ */
 export async function processWatchlistStreamingRow(
 	row: WatchlistStreamingRow,
+	entitlements?: PatronEntitlements,
 ): Promise<{ notified: number; baselined: boolean }> {
-	const entitlements = await loadPatronEntitlements(row.userId);
-	if (!shouldProcessWatchlistStreamingAlerts(row.preferences, entitlements)) {
-		return { notified: 0, baselined: false };
-	}
+	const resolvedEntitlements =
+		entitlements ?? (await loadPatronEntitlements(row.userId));
+	const eligible = watchlistItemAlertEligible({
+		globalPref: readWatchlistStreamingAlertsPref(row.preferences),
+		itemFlag: row.streamingAlert,
+		hasFeature: patronHasPlanFeature(resolvedEntitlements, "watchlist_alerts"),
+	});
 
 	const region = readCatalogWatchRegionPref(row.preferences);
 	const previousProviderIds = await loadSnapshotProviderIds({
@@ -470,6 +491,8 @@ export async function processWatchlistStreamingRow(
 	if (diff.isFirstSnapshot || diff.newProviders.length === 0) {
 		return { notified: 0, baselined: diff.isFirstSnapshot };
 	}
+	// Baseline advanced above; ineligible items never notify.
+	if (!eligible) return { notified: 0, baselined: false };
 
 	let notified = 0;
 	for (const provider of diff.newProviders) {
@@ -504,30 +527,43 @@ export async function syncWatchlistStreamingAlerts(): Promise<void> {
 			movieTmdbJson: movie.tmdbJson,
 			tvTmdbJson: tv.tmdbJson,
 			preferences: profile.preferences,
+			streamingAlert: watchlistItem.streamingAlert,
 		})
 		.from(watchlistItem)
 		.innerJoin(profile, eq(watchlistItem.userId, profile.userId))
 		.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId));
 
+	// One entitlements lookup per patron, not per watchlist row.
+	const entitlementsByUser = new Map<string, PatronEntitlements>();
+
 	for (const row of rows) {
 		try {
+			let entitlements = entitlementsByUser.get(row.userId);
+			if (!entitlements) {
+				entitlements = await loadPatronEntitlements(row.userId);
+				entitlementsByUser.set(row.userId, entitlements);
+			}
 			const title =
 				row.movieId != null
 					? (row.movieTitle?.trim() ?? "Film")
 					: (row.tvTitle?.trim() ?? "Series");
 			const tmdbJson = row.movieId != null ? row.movieTmdbJson : row.tvTmdbJson;
 
-			await processWatchlistStreamingRow({
-				userId: row.userId,
-				movieId: row.movieId,
-				tvId: row.tvId,
-				title,
-				tmdbJson,
-				preferences:
-					(row.preferences as Record<string, unknown> | null | undefined) ??
-					null,
-			});
+			await processWatchlistStreamingRow(
+				{
+					userId: row.userId,
+					movieId: row.movieId,
+					tvId: row.tvId,
+					title,
+					tmdbJson,
+					preferences:
+						(row.preferences as Record<string, unknown> | null | undefined) ??
+						null,
+					streamingAlert: row.streamingAlert,
+				},
+				entitlements,
+			);
 		} catch (err) {
 			console.error(
 				`[watchlist-streaming] user=${row.userId} movie=${row.movieId} tv=${row.tvId}`,
