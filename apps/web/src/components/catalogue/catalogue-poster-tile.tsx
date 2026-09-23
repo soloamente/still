@@ -474,6 +474,10 @@ export function CataloguePosterTile({
 	}, [trackTileAction, watchlistMode]);
 
 	const closeAlertPreview = useCallback(() => setAlertPreview(null), []);
+	const previewTappedTitle = useMemo(
+		() => ({ listingKind, tmdbId, title, posterUrl }),
+		[listingKind, tmdbId, title, posterUrl],
+	);
 
 	const radialItems = useMemo((): RadialToolkitItem[] => {
 		const handlers: Record<string, () => void> = {
@@ -631,6 +635,8 @@ export function CataloguePosterTile({
 				<WatchlistAlertPreviewDialog
 					preview={alertPreview}
 					onClose={closeAlertPreview}
+					tappedTitle={previewTappedTitle}
+					region={watchlistStreamingRegion}
 				/>
 			) : null}
 		</>

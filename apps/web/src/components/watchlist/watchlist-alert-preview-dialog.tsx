@@ -6,19 +6,37 @@ import { cn } from "@still/ui/lib/utils";
 import { X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useId,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { createPortal } from "react-dom";
 
 import { DetailMotionButtonWrap } from "@/components/movie/detail-motion-pressable";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { pricingHrefForPlanUpgrade } from "@/lib/patron-plan-upgrade";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import type { WatchlistAlertPreview } from "@/lib/still-api-fetch";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
-import { watchlistAlertPreviewBodyCopy } from "@/lib/watchlist-streaming-display";
+import {
+	type WatchlistAlertPreviewPoster,
+	watchlistAlertPreviewBodyCopy,
+	watchlistAlertPreviewPosters,
+} from "@/lib/watchlist-streaming-display";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
+
+const FOCUSABLE_SELECTOR =
+	'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+/** Attuned card on `/pricing` (`id={tier.id}`). */
+const ATTUNED_PRICING_HREF = pricingHrefForPlanUpgrade("still") ?? "/pricing";
 
 /**
  * Free-patron upsell after **Alert me when it streams** hits the plan gate —
@@ -28,11 +46,32 @@ const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
 export function WatchlistAlertPreviewDialog({
 	preview,
 	onClose,
+	tappedTitle,
+	region,
 }: {
 	preview: WatchlistAlertPreview | null;
 	onClose: () => void;
+	/** Tile that triggered the gate — leads the poster sample. */
+	tappedTitle?: WatchlistAlertPreviewPoster | null;
+	/** Patron's chosen region (ISO), named in the body copy. */
+	region?: string | null;
 }) {
 	const open = preview !== null;
+	const posters = useMemo(
+		() =>
+			preview
+				? watchlistAlertPreviewPosters(
+						tappedTitle,
+						preview.sample.map((item) => ({
+							listingKind: item.listingKind,
+							tmdbId: item.tmdbId,
+							title: item.title,
+							posterUrl: tmdbPosterUrlFromPath(item.posterPath, "w185"),
+						})),
+					)
+				: [],
+		[preview, tappedTitle],
+	);
 	const reduceMotion = useReducedMotion();
 	const titleId = useId();
 	const descriptionId = useId();
@@ -90,7 +129,29 @@ export function WatchlistAlertPreviewDialog({
 
 	const handleKey = useCallback(
 		(event: KeyboardEvent) => {
-			if (event.key === "Escape") onClose();
+			if (event.key === "Escape") {
+				onClose();
+				return;
+			}
+			if (event.key !== "Tab") return;
+			// Focus loop: Tab / Shift+Tab wrap inside the panel (`aria-modal`).
+			const panel = panelRef.current;
+			if (!panel) return;
+			const focusables = Array.from(
+				panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+			).filter((el) => !el.hasAttribute("disabled"));
+			const first = focusables[0];
+			const last = focusables[focusables.length - 1];
+			if (!first || !last) return;
+			const active = document.activeElement;
+			const inside = active instanceof Node && panel.contains(active);
+			if (event.shiftKey && (active === first || !inside)) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && (active === last || !inside)) {
+				event.preventDefault();
+				first.focus();
+			}
 		},
 		[onClose],
 	);
@@ -169,12 +230,15 @@ export function WatchlistAlertPreviewDialog({
 								id={descriptionId}
 								className="mx-auto mt-3 w-full max-w-prose text-balance text-muted-foreground text-sm leading-snug sm:text-base"
 							>
-								{watchlistAlertPreviewBodyCopy(preview.notStreamingCount)}
+								{watchlistAlertPreviewBodyCopy(
+									preview.notStreamingCount,
+									region,
+								)}
 							</p>
 
-							{preview.sample.length > 0 ? (
+							{posters.length > 0 ? (
 								<ul className="mt-6 flex justify-center gap-3">
-									{preview.sample.slice(0, 3).map((item) => (
+									{posters.map((item) => (
 										<li key={`${item.listingKind}-${item.tmdbId}`}>
 											{/* Fixed 2∶3 frame — missing art falls back to the no-poster placeholder. */}
 											<MoviePoster
@@ -182,10 +246,7 @@ export function WatchlistAlertPreviewDialog({
 												listingKind={item.listingKind}
 												movieId={item.tmdbId}
 												title={item.title}
-												posterUrl={tmdbPosterUrlFromPath(
-													item.posterPath,
-													"w185",
-												)}
+												posterUrl={item.posterUrl}
 												className="w-20"
 												frameClassName="aspect-2/3 w-20 rounded-xl border-0"
 											/>
@@ -212,7 +273,7 @@ export function WatchlistAlertPreviewDialog({
 								<DetailMotionButtonWrap>
 									<Button
 										data-initial-focus=""
-										render={<Link href="/pricing" />}
+										render={<Link href={ATTUNED_PRICING_HREF} />}
 										nativeButton={false}
 										variant="default"
 										size="pill"

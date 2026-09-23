@@ -4,6 +4,7 @@ import {
 	formatWatchlistStreamingPill,
 	watchlistAlertOnToastCopy,
 	watchlistAlertPreviewBodyCopy,
+	watchlistAlertPreviewPosters,
 	watchlistRegionLabel,
 } from "./watchlist-streaming-display";
 
@@ -42,5 +43,46 @@ describe("watchlist alert copy", () => {
 		expect(watchlistAlertPreviewBodyCopy(4)).toContain(
 			"4 of your saved titles",
 		);
+	});
+
+	test("preview body names the region when known", () => {
+		expect(watchlistAlertPreviewBodyCopy(4, "IT")).toBe(
+			"4 of your saved titles aren't streaming in Italy yet — Attuned tells you the day they land.",
+		);
+		expect(watchlistAlertPreviewBodyCopy(1, "IT")).toBe(
+			"1 of your saved titles isn't streaming in Italy yet — Attuned tells you the day it lands.",
+		);
+		expect(watchlistAlertPreviewBodyCopy(2, null)).toContain(
+			"aren't streaming yet",
+		);
+	});
+});
+
+describe("watchlistAlertPreviewPosters", () => {
+	const p = (tmdbId: number, listingKind: "movie" | "tv" = "movie") => ({
+		listingKind,
+		tmdbId,
+		title: `T${tmdbId}`,
+		posterUrl: null,
+	});
+	test("tapped title leads and is de-duped against the sample", () => {
+		expect(
+			watchlistAlertPreviewPosters(p(2), [p(1), p(2), p(3)]).map(
+				(x) => x.tmdbId,
+			),
+		).toEqual([2, 1, 3]);
+	});
+	test("caps at 3", () => {
+		expect(
+			watchlistAlertPreviewPosters(p(9), [p(1), p(2), p(3)]).map(
+				(x) => x.tmdbId,
+			),
+		).toEqual([9, 1, 2]);
+	});
+	test("same id across kinds is not a duplicate", () => {
+		expect(watchlistAlertPreviewPosters(p(5, "tv"), [p(5)]).length).toBe(2);
+	});
+	test("no tapped title → sample only", () => {
+		expect(watchlistAlertPreviewPosters(null, [p(1)]).length).toBe(1);
 	});
 });
