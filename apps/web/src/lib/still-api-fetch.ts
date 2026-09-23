@@ -25,7 +25,9 @@ import type {
 	TvWatchStatus,
 } from "@/lib/tv-watch-types";
 import {
+	decorateWatchlistSeedsForMode,
 	isWatchlistRowWithListing,
+	parseWatchlistLobbyOrder,
 	type WatchlistLobbyRow,
 	watchlistRowToPopularSeed,
 } from "@/lib/watchlist-lobby-order";
@@ -1437,9 +1439,13 @@ export async function fetchMyWatchlist(
 		total_pages?: number;
 	} | null;
 	if (!raw || !Array.isArray(raw.results)) return { error: true };
-	const results = raw.results
+	const lobbyOrder = parseWatchlistLobbyOrder(opts.order);
+	const mapped = raw.results
 		.filter(isWatchlistRowWithListing)
-		.map(watchlistRowToPopularSeed);
+		.map((row) => watchlistRowToPopularSeed(row, lobbyOrder));
+	// Rank sublines only belong on the first page of Watch tonight.
+	const results =
+		page === 1 ? decorateWatchlistSeedsForMode(mapped, lobbyOrder) : mapped;
 	return {
 		results,
 		total_pages: typeof raw.total_pages === "number" ? raw.total_pages : page,

@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import {
 	buildWatchlistLobbyHref,
+	decorateWatchlistSeedsForMode,
 	parseWatchlistLobbyOrder,
 	sortContinueSeeds,
 	tvWatchBundleToContinueSeed,
@@ -41,33 +42,54 @@ describe("watchlistOrderGridIsStale", () => {
 });
 
 describe("watchlistRowToPopularSeed", () => {
-	test("maps streaming provider to lobby pill label", () => {
-		const seed = watchlistRowToPopularSeed({
-			item: { addedAt: "2026-01-01", movieId: 550, tvId: null },
-			movie: {
-				tmdbId: 550,
-				title: "Fight Club",
-				posterPath: "/p.jpg",
-			},
-			tv: null,
-			streaming_provider_name: "Netflix",
-		});
+	const fightClubRow = {
+		item: { addedAt: "2026-01-01", movieId: 550, tvId: null },
+		movie: {
+			tmdbId: 550,
+			title: "Fight Club",
+			posterPath: "/p.jpg",
+		},
+		tv: null,
+		streaming_provider_name: "Netflix",
+	} as const;
+
+	test("Now available maps streaming provider to lobby pill label", () => {
+		const seed = watchlistRowToPopularSeed(fightClubRow, "available");
 		expect(seed.watchlistStreamingLabel).toBe(
 			formatWatchlistStreamingPill("Netflix"),
 		);
 	});
 
-	test("omits pill when provider missing", () => {
-		const seed = watchlistRowToPopularSeed({
-			item: { addedAt: "2026-01-01", movieId: 550, tvId: null },
-			movie: {
-				tmdbId: 550,
-				title: "Fight Club",
-				posterPath: "/p.jpg",
-			},
-			tv: null,
-		});
+	test("Recently added shows the title on the scrim, not streaming noise", () => {
+		const seed = watchlistRowToPopularSeed(fightClubRow, "latest_added");
+		expect(seed.watchlistStreamingLabel).toBe("Fight Club");
+	});
+
+	test("Tonight shows only the ranked reason, not a streaming fallback", () => {
+		const seed = watchlistRowToPopularSeed(fightClubRow, "tonight");
 		expect(seed.watchlistStreamingLabel).toBeNull();
+		const withReason = watchlistRowToPopularSeed(
+			{ ...fightClubRow, tonight_reason: "Maya recommended" },
+			"tonight",
+		);
+		expect(withReason.watchlistStreamingLabel).toBe("Maya recommended");
+	});
+});
+
+describe("decorateWatchlistSeedsForMode", () => {
+	test("adds rank sublines on the first three tonight tiles", () => {
+		const seeds = decorateWatchlistSeedsForMode(
+			[
+				{ id: 1, title: "A", poster_url: null },
+				{ id: 2, title: "B", poster_url: null },
+				{ id: 3, title: "C", poster_url: null },
+				{ id: 4, title: "D", poster_url: null },
+			],
+			"tonight",
+		);
+		expect(seeds[0]?.watchlistCaptionSubline).toBe("Top pick");
+		expect(seeds[2]?.watchlistCaptionSubline).toBe("3rd pick");
+		expect(seeds[3]?.watchlistCaptionSubline).toBeUndefined();
 	});
 });
 
@@ -90,53 +112,69 @@ describe("watchlist decision seeds", () => {
 		tv: null,
 	};
 	test("tonight reason wins the pill slot over the streaming pill", () => {
-		const seed = watchlistRowToPopularSeed({
-			...base,
-			streaming_provider_name: "Netflix",
-			tonight_reason: "Maya recommended",
-			streaming_alert: true,
-			streaming_region: "US",
-			streaming_in_region: true,
-		});
+		const seed = watchlistRowToPopularSeed(
+			{
+				...base,
+				streaming_provider_name: "Netflix",
+				tonight_reason: "Maya recommended",
+				streaming_alert: true,
+				streaming_region: "US",
+				streaming_in_region: true,
+			},
+			"tonight",
+		);
 		expect(seed.watchlistStreamingLabel).toBe("Maya recommended");
 		expect(seed.watchlistStreamingAlert).toBe(true);
 		expect(seed.watchlistIsStreaming).toBe(true);
 		expect(seed.watchlistStreamingRegion).toBe("US");
 	});
 	test("carries the reason kind for analytics, separate from the pill text", () => {
-		const seed = watchlistRowToPopularSeed({
-			...base,
-			tonight_reason: "On your Heist nights list",
-			tonight_reason_kind: "list",
-		});
+		const seed = watchlistRowToPopularSeed(
+			{
+				...base,
+				tonight_reason: "On your Heist nights list",
+				tonight_reason_kind: "list",
+			},
+			"tonight",
+		);
 		expect(seed.watchlistStreamingLabel).toBe("On your Heist nights list");
 		expect(seed.watchlistReasonKind).toBe("list");
-		expect(watchlistRowToPopularSeed(base).watchlistReasonKind).toBeNull();
+		expect(
+			watchlistRowToPopularSeed(base, "tonight").watchlistReasonKind,
+		).toBeNull();
 	});
 	test("no chosen region → streaming unknown even with a US-fallback pill", () => {
-		const seed = watchlistRowToPopularSeed({
-			...base,
-			streaming_provider_name: "Netflix",
-			streaming_region: null,
-			streaming_in_region: null,
-		});
-		// Pill still shows (legacy US fallback) but the alert slot stays hidden.
+		const seed = watchlistRowToPopularSeed(
+			{
+				...base,
+				streaming_provider_name: "Netflix",
+				streaming_region: null,
+				streaming_in_region: null,
+			},
+			"available",
+		);
 		expect(seed.watchlistStreamingLabel).toBe("Now on Netflix");
 		expect(seed.watchlistIsStreaming).toBeUndefined();
 		expect(seed.watchlistStreamingRegion).toBeNull();
 	});
 	test("chosen region drives the flag, not the pill provider", () => {
-		const off = watchlistRowToPopularSeed({
-			...base,
-			streaming_provider_name: null,
-			streaming_region: "IT",
-			streaming_in_region: false,
-		});
+		const off = watchlistRowToPopularSeed(
+			{
+				...base,
+				streaming_provider_name: null,
+				streaming_region: "IT",
+				streaming_in_region: false,
+			},
+			"available",
+		);
 		expect(off.watchlistIsStreaming).toBe(false);
-		const legacyPayload = watchlistRowToPopularSeed({
-			...base,
-			streaming_provider_name: "Netflix",
-		});
+		const legacyPayload = watchlistRowToPopularSeed(
+			{
+				...base,
+				streaming_provider_name: "Netflix",
+			},
+			"available",
+		);
 		expect(legacyPayload.watchlistIsStreaming).toBeUndefined();
 	});
 	test("continue seed shows next episode and flags aired ones", () => {

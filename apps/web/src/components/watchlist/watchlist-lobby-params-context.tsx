@@ -22,8 +22,14 @@ interface WatchlistLobbyParamsContextValue {
 	order: WatchlistLobbyOrder;
 	/** RSC seed sort currently mounted in the poster wall — null before first report. */
 	seedOrder: WatchlistLobbyOrder | null;
+	/** Total saves for the mounted grid — null until the catalogue reports page 1. */
+	gridTotalResults: number | null;
 	selectOrder: (order: WatchlistLobbyOrder) => void;
 	reportSeedOrder: (order: WatchlistLobbyOrder) => void;
+	reportGridTotalResults: (
+		order: WatchlistLobbyOrder,
+		totalResults: number,
+	) => void;
 }
 
 const WatchlistLobbyParamsContext =
@@ -39,10 +45,13 @@ export function WatchlistLobbyParamsProvider({
 	const urlOrder = parseWatchlistLobbyOrder(searchParams.get("order"));
 	const orderState = useOptimisticLobbyParam(urlOrder);
 	const [seedOrder, setSeedOrder] = useState<WatchlistLobbyOrder | null>(null);
+	const [gridTotalResults, setGridTotalResults] = useState<number | null>(null);
 
 	const selectOrder = useCallback(
 		(order: WatchlistLobbyOrder) => {
 			orderState.setOptimistic(order);
+			// Drop the count until the new mode's RSC reports — avoids stale "N saves".
+			setGridTotalResults(null);
 			navigate(buildWatchlistLobbyHref({ order }));
 		},
 		[navigate, orderState],
@@ -52,14 +61,32 @@ export function WatchlistLobbyParamsProvider({
 		setSeedOrder((prev) => (prev === order ? prev : order));
 	}, []);
 
+	const reportGridTotalResults = useCallback(
+		(_order: WatchlistLobbyOrder, totalResults: number) => {
+			setGridTotalResults((prev) =>
+				prev === totalResults ? prev : totalResults,
+			);
+		},
+		[],
+	);
+
 	const value = useMemo(
 		() => ({
 			order: orderState.value,
 			seedOrder,
+			gridTotalResults,
 			selectOrder,
 			reportSeedOrder,
+			reportGridTotalResults,
 		}),
-		[orderState.value, reportSeedOrder, seedOrder, selectOrder],
+		[
+			orderState.value,
+			gridTotalResults,
+			reportSeedOrder,
+			reportGridTotalResults,
+			seedOrder,
+			selectOrder,
+		],
 	);
 
 	return (

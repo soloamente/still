@@ -13,6 +13,7 @@ import {
 	useWatchlistLobbyParams,
 	WatchlistLobbyParamsProvider,
 } from "@/components/watchlist/watchlist-lobby-params-context";
+import { WatchlistModeIntroLine } from "@/components/watchlist/watchlist-mode-intro-line";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { watchlistOrderGridIsStale } from "@/lib/watchlist-lobby-order";
 
@@ -34,8 +35,11 @@ export function WatchlistPatronLobbyShell({
 						"overflow-visible",
 					)}
 				>
-					<div className="flex shrink-0 items-center">
-						<WatchlistCatalogOrderChips />
+					<div className="flex shrink-0 flex-col gap-2">
+						<div className="flex items-center">
+							<WatchlistCatalogOrderChips />
+						</div>
+						<WatchlistModeIntroLine />
 					</div>
 					<WatchlistLobbyGridSlot>{children}</WatchlistLobbyGridSlot>
 				</section>

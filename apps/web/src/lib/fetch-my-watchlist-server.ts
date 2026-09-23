@@ -3,7 +3,9 @@ import "server-only";
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { serverApi } from "@/lib/server-api";
 import {
+	decorateWatchlistSeedsForMode,
 	isWatchlistRowWithListing,
+	parseWatchlistLobbyOrder,
 	WATCHLIST_PAGE_SIZE,
 	type WatchlistLobbyRow,
 	watchlistRowToPopularSeed,
@@ -54,9 +56,13 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 			region?: string | null;
 		} | null;
 		const rows = Array.isArray(data?.results) ? data.results : [];
-		const seeds = rows
-			.filter(isWatchlistRowWithListing)
-			.map(watchlistRowToPopularSeed);
+		const lobbyOrder = parseWatchlistLobbyOrder(opts.order);
+		const seeds = decorateWatchlistSeedsForMode(
+			rows
+				.filter(isWatchlistRowWithListing)
+				.map((row) => watchlistRowToPopularSeed(row, lobbyOrder)),
+			lobbyOrder,
+		);
 		return {
 			seeds,
 			totalPages: typeof data?.total_pages === "number" ? data.total_pages : 1,

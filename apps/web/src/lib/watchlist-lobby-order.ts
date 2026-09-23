@@ -106,9 +106,54 @@ export function isWatchlistRowWithListing(
 /** @deprecated Use `isWatchlistRowWithListing`. */
 export const isWatchlistRowWithMovie = isWatchlistRowWithListing;
 
+/** Poster scrim copy depends on the active mode — not every sort is a streaming view. */
+function watchlistPosterCaptionForOrder(
+	row: WatchlistLobbyRowWithListing,
+	order: WatchlistLobbyOrder,
+): string | null {
+	const listing = row.movie ?? row.tv;
+	if (!listing) return null;
+	switch (order) {
+		case "tonight":
+			// Only the ranked reason — no fallback streaming noise on every tile.
+			return row.tonight_reason ?? null;
+		case "available":
+			return row.streaming_provider_name
+				? formatWatchlistStreamingPill(row.streaming_provider_name)
+				: null;
+		case "continue":
+			return null;
+		case "latest_added":
+		case "earliest_added":
+		case "title_az":
+			// Library-style wall: title on the scrim, like `/lists`.
+			return listing.title;
+		default: {
+			const unreachable: never = order;
+			return unreachable;
+		}
+	}
+}
+
+const TONIGHT_RANK_SUBLINE = ["Top pick", "2nd pick", "3rd pick"] as const;
+
+/** Adds tonight rank sublines on the first three ranked tiles (page 1 only). */
+export function decorateWatchlistSeedsForMode(
+	seeds: PopularMovieSeed[],
+	order: WatchlistLobbyOrder,
+): PopularMovieSeed[] {
+	if (order !== "tonight") return seeds;
+	return seeds.map((seed, index) => {
+		const subline = TONIGHT_RANK_SUBLINE[index];
+		if (!subline) return seed;
+		return { ...seed, watchlistCaptionSubline: subline };
+	});
+}
+
 /** Map a joined watchlist row to the poster seed shape the lobby grid renders. */
 export function watchlistRowToPopularSeed(
 	row: WatchlistLobbyRowWithListing,
+	order: WatchlistLobbyOrder = "latest_added",
 ): PopularMovieSeed {
 	const listing = row.movie ?? row.tv;
 	if (!listing) {
@@ -123,12 +168,7 @@ export function watchlistRowToPopularSeed(
 		title: listing.title,
 		poster_url,
 		listingKind: row.tv != null ? "tv" : "movie",
-		// Watch tonight's reason pill owns the caption slot; streaming pill otherwise.
-		watchlistStreamingLabel:
-			row.tonight_reason ??
-			(row.streaming_provider_name
-				? formatWatchlistStreamingPill(row.streaming_provider_name)
-				: null),
+		watchlistStreamingLabel: watchlistPosterCaptionForOrder(row, order),
 		watchlistStreamingAlert: row.streaming_alert === true,
 		// Alerts only fire for the chosen region — without one the state is
 		// unknown (`undefined` hides the alert slot), never the US-fallback pill.

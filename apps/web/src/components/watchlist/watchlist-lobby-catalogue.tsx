@@ -67,11 +67,12 @@ export function WatchlistLobbyCatalogue({
 		{ mode: order, count: seeds.length },
 		!failed,
 	);
-	const { reportSeedOrder } = useWatchlistLobbyParams();
+	const { reportSeedOrder, reportGridTotalResults } = useWatchlistLobbyParams();
 	const { monochromePeersOnHover, signedIn } = useWatchlistLobbyDisplayPrefs();
 	useLayoutEffect(() => {
 		reportSeedOrder(order);
-	}, [order, reportSeedOrder]);
+		reportGridTotalResults(order, totalResults);
+	}, [order, reportGridTotalResults, reportSeedOrder, totalResults]);
 	// Stable, media-aware key — used for both React cell keys and cross-page dedupe.
 	const cellKey = useCallback(
 		(m: PopularMovieSeed) => `${m.listingKind ?? "movie"}:${m.id}`,

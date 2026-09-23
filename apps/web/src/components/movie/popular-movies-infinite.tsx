@@ -55,6 +55,8 @@ export type PopularMovieSeed = {
 	watchlistStreamingRegion?: string | null;
 	/** Watchlist lobby — reason bucket sent on `watchlist.tile_action` (never the pill text). */
 	watchlistReasonKind?: WatchlistReasonKind | null;
+	/** Watchlist lobby — secondary scrim line (e.g. tonight rank on the top three tiles). */
+	watchlistCaptionSubline?: string | null;
 	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
 	patronLogId?: string;
 	patronLogLiked?: boolean;
@@ -550,6 +552,7 @@ export function PopularMoviesInfinite({
 						hoverEffect={posterHoverEffect}
 						listingKind={listingKind}
 						posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
+						posterCaptionSubline={m.watchlistCaptionSubline}
 						posterUrl={m.poster_url}
 						priority={index < 6}
 						surface={catalogueRadialSurface}
@@ -573,6 +576,7 @@ export function PopularMoviesInfinite({
 					posterUrl={m.poster_url}
 					priority={index < 6}
 					posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
+					posterCaptionSubline={m.watchlistCaptionSubline}
 					showTitle={showTitle}
 					title={m.title}
 				/>
