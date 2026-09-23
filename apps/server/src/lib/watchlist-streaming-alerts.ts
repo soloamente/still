@@ -229,6 +229,29 @@ export function watchlistItemAlertEligible(args: {
 	return args.globalPref || args.itemFlag;
 }
 
+export type WatchlistSnapshotAction =
+	| "skip"
+	| "snapshot_only"
+	| "snapshot_and_notify";
+
+/**
+ * What the daily job does for one watchlist row. Snapshots are kept only for
+ * patrons who can receive alerts (`watchlist_alerts`) — skipping everyone else
+ * keeps Neon reads/writes off the bulk of the watchlist table. Feature holders
+ * keep a baseline even while opted out, so opting in later never fires for
+ * changes that happened before.
+ */
+export function watchlistSnapshotAction(args: {
+	hasFeature: boolean;
+	globalPref: boolean;
+	itemFlag: boolean;
+}): WatchlistSnapshotAction {
+	if (!args.hasFeature) return "skip";
+	return watchlistItemAlertEligible(args)
+		? "snapshot_and_notify"
+		: "snapshot_only";
+}
+
 async function sendProWatchlistStreamingEmail(args: {
 	userId: string;
 	title: string;
@@ -450,8 +473,9 @@ export type WatchlistStreamingRow = {
 
 /**
  * Process one watchlist row — exported for tests and the sync job.
- * The snapshot always updates (so baselines stay correct if the patron opts in
- * later); only the notification step is gated by `watchlistItemAlertEligible`.
+ * Gated by `watchlistSnapshotAction`: no snapshot work at all without the
+ * `watchlist_alerts` feature; feature holders always refresh the baseline and
+ * only notify when the global pref or this title's flag is on.
  * Pass `entitlements` to reuse one lookup across a patron's rows.
  */
 export async function processWatchlistStreamingRow(
@@ -460,11 +484,12 @@ export async function processWatchlistStreamingRow(
 ): Promise<{ notified: number; baselined: boolean }> {
 	const resolvedEntitlements =
 		entitlements ?? (await loadPatronEntitlements(row.userId));
-	const eligible = watchlistItemAlertEligible({
+	const action = watchlistSnapshotAction({
+		hasFeature: patronHasPlanFeature(resolvedEntitlements, "watchlist_alerts"),
 		globalPref: readWatchlistStreamingAlertsPref(row.preferences),
 		itemFlag: row.streamingAlert,
-		hasFeature: patronHasPlanFeature(resolvedEntitlements, "watchlist_alerts"),
 	});
+	if (action === "skip") return { notified: 0, baselined: false };
 
 	const region = readCatalogWatchRegionPref(row.preferences);
 	const previousProviderIds = await loadSnapshotProviderIds({
@@ -491,8 +516,8 @@ export async function processWatchlistStreamingRow(
 	if (diff.isFirstSnapshot || diff.newProviders.length === 0) {
 		return { notified: 0, baselined: diff.isFirstSnapshot };
 	}
-	// Baseline advanced above; ineligible items never notify.
-	if (!eligible) return { notified: 0, baselined: false };
+	// Baseline advanced above; opted-out items never notify.
+	if (action === "snapshot_only") return { notified: 0, baselined: false };
 
 	let notified = 0;
 	for (const provider of diff.newProviders) {

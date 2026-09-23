@@ -14,6 +14,7 @@ import {
 	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
 	watchlistItemAlertEligible,
+	watchlistSnapshotAction,
 	watchProvidersFromTmdbJson,
 } from "./watchlist-streaming-alerts";
 
@@ -230,5 +231,48 @@ describe("watchlistItemAlertEligible", () => {
 				hasFeature: true,
 			}),
 		).toBe(false);
+	});
+});
+
+describe("watchlistSnapshotAction", () => {
+	test("no snapshot work without the feature, whatever the prefs", () => {
+		for (const globalPref of [true, false]) {
+			for (const itemFlag of [true, false]) {
+				expect(
+					watchlistSnapshotAction({ hasFeature: false, globalPref, itemFlag }),
+				).toBe("skip");
+			}
+		}
+	});
+
+	test("feature holders keep a baseline and notify only when opted in", () => {
+		expect(
+			watchlistSnapshotAction({
+				hasFeature: true,
+				globalPref: false,
+				itemFlag: false,
+			}),
+		).toBe("snapshot_only");
+		expect(
+			watchlistSnapshotAction({
+				hasFeature: true,
+				globalPref: true,
+				itemFlag: false,
+			}),
+		).toBe("snapshot_and_notify");
+		expect(
+			watchlistSnapshotAction({
+				hasFeature: true,
+				globalPref: false,
+				itemFlag: true,
+			}),
+		).toBe("snapshot_and_notify");
+		expect(
+			watchlistSnapshotAction({
+				hasFeature: true,
+				globalPref: true,
+				itemFlag: true,
+			}),
+		).toBe("snapshot_and_notify");
 	});
 });
