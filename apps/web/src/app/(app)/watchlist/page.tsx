@@ -34,7 +34,8 @@ async function WatchlistLobbyData({
 		// Result variant so a tv-watch failure shows the retry state, not "No shows in progress".
 		const { bundles, failed } = await fetchTvWatchMeServerResult(undefined, {
 			status: "watching,rewatching",
-			limit: 60,
+			// Each row runs `buildWatchDto` (season/episode lookups) — keep it one lobby page.
+			limit: 24,
 		});
 		const todayYmd = new Date().toISOString().slice(0, 10);
 		const seeds = sortContinueSeeds(

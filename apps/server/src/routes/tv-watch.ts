@@ -6,10 +6,22 @@ import {
 	tvWatch,
 	tvWatchEpisode,
 } from "@still/db";
-import { and, asc, desc, eq, inArray } from "drizzle-orm";
+import {
+	and,
+	asc,
+	desc,
+	eq,
+	getTableColumns,
+	inArray,
+	isNull,
+	or,
+	type SQL,
+} from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { tvNotAdultSql } from "../lib/adult-content-sql";
+import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { makeId } from "../lib/cuid";
 import { hit } from "../lib/rate-limit";
 import { routeBody } from "../lib/route-body";
@@ -117,16 +129,25 @@ export const tvWatchRoute = new Elysia({
 				.filter((s): s is TvWatchStatus =>
 					(TV_WATCH_STATUSES as readonly string[]).includes(s),
 				);
-			const language = await getTmdbLanguageForUser(user.id);
+			const [language, showAdultContent] = await Promise.all([
+				getTmdbLanguageForUser(user.id),
+				getShowAdultContentForUser(user.id),
+			]);
 
-			const conditions = [eq(tvWatch.userId, user.id)];
+			const conditions: (SQL | undefined)[] = [eq(tvWatch.userId, user.id)];
 			if (statusFilter && statusFilter.length > 0) {
 				conditions.push(inArray(tvWatch.status, statusFilter));
 			}
+			// Continue watching + the `/home` rail honor the adult-content pref.
+			// A show not cached yet (no joined row) stays visible, as before.
+			if (!showAdultContent) {
+				conditions.push(or(isNull(tv.tmdbId), tvNotAdultSql(false)));
+			}
 
 			const rows = await db
-				.select()
+				.select(getTableColumns(tvWatch))
 				.from(tvWatch)
+				.leftJoin(tv, eq(tv.tmdbId, tvWatch.tvId))
 				.where(and(...conditions))
 				.orderBy(desc(tvWatch.updatedAt))
 				.limit(limit);
