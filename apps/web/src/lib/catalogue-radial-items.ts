@@ -136,15 +136,21 @@ export function buildCatalogueRadialItemSpecs(
 		});
 	}
 
-	// Hidden when streaming state is unknown (undefined) or already streaming.
-	if (catalogueSurface === "watchlist" && isStreaming === false) {
-		specs.push({
-			id: "streaming-alert",
-			label: streamingAlert
-				? "Stop streaming alert"
-				: "Alert me when it streams",
-			shortcut: "S",
-		});
+	// An armed alert is always switch-off-able; arming needs a known "not streaming".
+	if (catalogueSurface === "watchlist") {
+		if (streamingAlert) {
+			specs.push({
+				id: "streaming-alert",
+				label: "Stop streaming alert",
+				shortcut: "S",
+			});
+		} else if (isStreaming === false) {
+			specs.push({
+				id: "streaming-alert",
+				label: "Alert me when it streams",
+				shortcut: "S",
+			});
+		}
 	}
 
 	if (catalogueSurface === "watchlist") {

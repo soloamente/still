@@ -1,6 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
 import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
@@ -48,6 +49,10 @@ export function MoviePoster({
 	posterCaption,
 	/** Second line on the bottom scrim (e.g. diary entry count). */
 	posterCaptionSubline,
+	/** Decorative corner mark (top-right); convey its meaning via `accessibleLabelSuffix`. */
+	posterBadge,
+	/** Appended to the link's accessible name (e.g. `, streaming alert on`). */
+	accessibleLabelSuffix,
 }: {
 	movieId: number;
 	title: string;
@@ -69,6 +74,8 @@ export function MoviePoster({
 	linkable?: boolean;
 	posterCaption?: string | null;
 	posterCaptionSubline?: string | null;
+	posterBadge?: ReactNode;
+	accessibleLabelSuffix?: string;
 }) {
 	/** Default `md` stretches with grid tracks so ultra-wide shells don’t strand tiny thumbnails. */
 	const dim =
@@ -150,6 +157,11 @@ export function MoviePoster({
 						className={emptyArtworkClassName}
 					/>
 				)}
+				{posterBadge ? (
+					<div className="pointer-events-none absolute top-2 right-2 z-10">
+						{posterBadge}
+					</div>
+				) : null}
 				{posterCaption ? (
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3 text-center sm:pt-16 sm:pb-3.5">
 						{/* One line on every grid; `pointer-events-auto` so the `title` tooltip can surface the full text. */}
@@ -186,7 +198,7 @@ export function MoviePoster({
 		</>
 	);
 
-	const linkAriaLabel = posterUrl ? title : `${title} (no poster)`;
+	const linkAriaLabel = `${posterUrl ? title : `${title} (no poster)`}${accessibleLabelSuffix ?? ""}`;
 
 	if (linkable) {
 		return (

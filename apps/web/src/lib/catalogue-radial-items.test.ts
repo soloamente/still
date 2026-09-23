@@ -226,6 +226,31 @@ describe("watchlist streaming alert slot", () => {
 		).toBe(false);
 	});
 
+	test("armed alert can always be switched off, even when streaming state is unknown or true", () => {
+		for (const isStreaming of [undefined, true, false]) {
+			expect(
+				buildCatalogueRadialItemSpecs({
+					surface: "watchlist",
+					listingKind: "movie",
+					signedIn: true,
+					streamingAlert: true,
+					isStreaming,
+				}).find((s) => s.id === "streaming-alert")?.label,
+			).toBe("Stop streaming alert");
+		}
+	});
+
+	test("Alert me only when known not streaming", () => {
+		expect(
+			buildCatalogueRadialItemSpecs({
+				surface: "watchlist",
+				listingKind: "movie",
+				signedIn: true,
+				streamingAlert: false,
+			}).some((s) => s.id === "streaming-alert"),
+		).toBe(false);
+	});
+
 	test("hidden for signed-out patrons", () => {
 		expect(
 			buildCatalogueRadialItemSpecs({

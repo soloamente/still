@@ -176,6 +176,8 @@ export function CataloguePosterTile({
 
 	const isMovie = listingKind === "movie";
 	const href = detailHref(listingKind, tmdbId);
+	/** Follows the optimistic toggle so the mark appears/clears with the toast. */
+	const showAlertMark = surface === "watchlist" && alertOn;
 
 	const editRow = useMemo(() => {
 		if (diaryRow) return diaryRow;
@@ -592,6 +594,19 @@ export function CataloguePosterTile({
 						movieId={tmdbId}
 						posterCaption={posterCaption}
 						posterCaptionSubline={posterCaptionSubline}
+						posterBadge={
+							showAlertMark ? (
+								<span
+									aria-hidden
+									className="grid size-7 place-items-center rounded-full bg-background/80 text-foreground"
+								>
+									<IconBellFilled className="size-3.5" aria-hidden />
+								</span>
+							) : null
+						}
+						accessibleLabelSuffix={
+							showAlertMark ? ", streaming alert on" : undefined
+						}
 						posterUrl={posterUrl}
 						priority={priority}
 						showTitle={showTitle}
