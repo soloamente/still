@@ -97,6 +97,8 @@ describe("liveblocks realtime kinds", () => {
 describe("watchlist decision kinds", () => {
 	test("mode/tile/upgrade are client kinds; alert_requested is server-only", () => {
 		for (const kind of [
+			"watchlist.hero_viewed",
+			"watchlist.hero_action",
 			"watchlist.mode_viewed",
 			"watchlist.tile_action",
 			"upgrade.prompt_viewed",
