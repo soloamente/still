@@ -31,6 +31,7 @@ import {
 	type RecommendationSuggestion,
 	type RecommendationSuggestionCandidate,
 	rankRecommendationSuggestions,
+	recommendationGatesForSenders,
 	titleKey,
 } from "./title-recommendation";
 import { ensureTvCached } from "./tv-cache";
@@ -100,6 +101,74 @@ export async function loadRecommendationGate(
 		),
 		blocked: blockRows.length > 0,
 		recipientBanned: recipient.banned === true,
+	});
+}
+
+/**
+ * `loadRecommendationGate(sender, recipient)` for many senders in three
+ * queries total (recipient ban, follow edges, block edges) instead of three
+ * per sender. Same decisions — see `recommendationGatesForSenders`.
+ */
+export async function loadRecommendationGatesFromSenders(
+	senderIds: readonly string[],
+	recipientId: string,
+): Promise<Map<string, RecommendationGate>> {
+	const others = [...new Set(senderIds)].filter((id) => id !== recipientId);
+	if (others.length === 0) {
+		return recommendationGatesForSenders({
+			senderIds,
+			recipientId,
+			recipient: null,
+			follows: [],
+			blocks: [],
+		});
+	}
+	const [recipientRows, follows, blocks] = await Promise.all([
+		db
+			.select({ banned: user.banned })
+			.from(user)
+			.where(eq(user.id, recipientId))
+			.limit(1),
+		db
+			.select({
+				followerId: follow.followerId,
+				followingId: follow.followingId,
+			})
+			.from(follow)
+			.where(
+				or(
+					and(
+						inArray(follow.followerId, others),
+						eq(follow.followingId, recipientId),
+					),
+					and(
+						eq(follow.followerId, recipientId),
+						inArray(follow.followingId, others),
+					),
+				),
+			),
+		db
+			.select({ blockerId: block.blockerId, blockedId: block.blockedId })
+			.from(block)
+			.where(
+				or(
+					and(
+						inArray(block.blockerId, others),
+						eq(block.blockedId, recipientId),
+					),
+					and(
+						eq(block.blockerId, recipientId),
+						inArray(block.blockedId, others),
+					),
+				),
+			),
+	]);
+	return recommendationGatesForSenders({
+		senderIds,
+		recipientId,
+		recipient: recipientRows[0] ?? null,
+		follows,
+		blocks,
 	});
 }
 

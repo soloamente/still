@@ -90,6 +90,57 @@ export function canRecommendBetween(args: {
 	return { ok: true };
 }
 
+/**
+ * Batch form of `loadRecommendationGate` — maps rows from one follow query,
+ * one block query, and one recipient read to a gate per sender. Must stay
+ * decision-for-decision identical to the single-sender loader: `self` before
+ * any lookup, a missing recipient reads as `unavailable`, then
+ * `canRecommendBetween`.
+ */
+export function recommendationGatesForSenders(args: {
+	senderIds: readonly string[];
+	recipientId: string;
+	/** `null` when the recipient row is missing. */
+	recipient: { banned: boolean | null } | null;
+	/** Follow edges between the recipient and any sender, either direction. */
+	follows: readonly { followerId: string; followingId: string }[];
+	/** Block edges between the recipient and any sender, either direction. */
+	blocks: readonly { blockerId: string; blockedId: string }[];
+}): Map<string, RecommendationGate> {
+	const { recipientId } = args;
+	const gates = new Map<string, RecommendationGate>();
+	for (const senderId of args.senderIds) {
+		if (senderId === recipientId) {
+			gates.set(senderId, { ok: false, reason: "self" });
+			continue;
+		}
+		if (!args.recipient) {
+			gates.set(senderId, { ok: false, reason: "unavailable" });
+			continue;
+		}
+		gates.set(
+			senderId,
+			canRecommendBetween({
+				senderId,
+				recipientId,
+				senderFollowsRecipient: args.follows.some(
+					(f) => f.followerId === senderId && f.followingId === recipientId,
+				),
+				recipientFollowsSender: args.follows.some(
+					(f) => f.followerId === recipientId && f.followingId === senderId,
+				),
+				blocked: args.blocks.some(
+					(b) =>
+						(b.blockerId === senderId && b.blockedId === recipientId) ||
+						(b.blockerId === recipientId && b.blockedId === senderId),
+				),
+				recipientBanned: args.recipient.banned === true,
+			}),
+		);
+	}
+	return gates;
+}
+
 /** One of the sender's own diary logs (already filtered by the sender's adult pref). */
 export type RecommendationSuggestionCandidate = {
 	mediaKind: RecommendationMediaKind;

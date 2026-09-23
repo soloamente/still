@@ -10,11 +10,13 @@ import {
 } from "@still/db";
 import { and, desc, eq, isNull } from "drizzle-orm";
 
+import { BoundedTtlCache } from "./bounded-ttl-cache";
 import {
 	buildWeightedTasteProfile,
 	type TasteProfileSlice,
 } from "./taste-profile";
-import { loadRecommendationGate } from "./title-recommendation-query";
+import { loadRecommendationGatesFromSenders } from "./title-recommendation-query";
+import { invalidateWatchlistRanked } from "./watchlist-ranked-cache";
 
 /** Media-aware key — TMDb film and TV ids share the integer namespace. */
 export function listingKey(
@@ -43,16 +45,20 @@ export type WatchlistTonightSocial = {
 	genreWeights: Map<number, number>;
 };
 
-type CacheEntry = { at: number; value: WatchlistTonightSocial };
 const CACHE_MS = 60_000;
-const cache = new Map<string, CacheEntry>();
+/** Hard cap so the per-patron cache can't grow unbounded; oldest evicted first. */
+const CACHE_MAX_ENTRIES = 500;
+const cache = new BoundedTtlCache<WatchlistTonightSocial>(
+	CACHE_MS,
+	CACHE_MAX_ENTRIES,
+);
 
 /** Received recs (visible senders only), own-list membership, and diary genre weights. */
 export async function loadWatchlistTonightSocial(
 	userId: string,
 ): Promise<WatchlistTonightSocial> {
 	const hit = cache.get(userId);
-	if (hit && Date.now() - hit.at < CACHE_MS) return hit.value;
+	if (hit) return hit;
 
 	const [recRows, listRows, diaryRows] = await Promise.all([
 		db
@@ -89,15 +95,13 @@ export async function loadWatchlistTonightSocial(
 			.limit(400),
 	]);
 
-	// Recommendation visibility — the sender must still pass the same gate as sending.
+	// Recommendation visibility — the sender must still pass the same gate as
+	// sending. One batched gate read for all senders (3 queries, not 3 × N).
 	const senderIds = [...new Set(recRows.map((r) => r.senderId))].slice(0, 25);
-	const gates = await Promise.all(
-		senderIds.map(
-			async (id) =>
-				[id, (await loadRecommendationGate(id, userId)).ok] as const,
-		),
+	const gates = await loadRecommendationGatesFromSenders(senderIds, userId);
+	const visible = new Set(
+		[...gates].filter(([, gate]) => gate.ok).map(([id]) => id),
 	);
-	const visible = new Set(gates.filter(([, ok]) => ok).map(([id]) => id));
 
 	// One entry per sender per title, even when they sent the same title twice.
 	const recommenders = new Map<string, { name: string; scrubbed: boolean }[]>();
@@ -135,11 +139,15 @@ export async function loadWatchlistTonightSocial(
 	const genreWeights = buildWeightedTasteProfile(slices).genreWeights;
 
 	const value = { recommenders, ownListTitles, genreWeights };
-	cache.set(userId, { at: Date.now(), value });
+	cache.set(userId, value);
 	return value;
 }
 
-/** Drop a patron's cached signals after a watchlist mutation. */
+/**
+ * Drop a patron's cached signals and ranked tonight/available lists after a
+ * watchlist mutation (add, remove, alert toggle).
+ */
 export function invalidateWatchlistTonightSocial(userId: string): void {
 	cache.delete(userId);
+	invalidateWatchlistRanked(userId);
 }

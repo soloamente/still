@@ -26,7 +26,10 @@ import { hit } from "../lib/rate-limit";
 import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { traceTiming } from "../lib/trace-timing";
-import { WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION } from "../lib/watchlist-lobby-tmdb-json";
+import {
+	WATCHLIST_NO_PROVIDERS_TMDB_JSON,
+	watchlistProvidersTmdbJsonForRegion,
+} from "../lib/watchlist-lobby-tmdb-json";
 import {
 	parseWatchlistLimit,
 	parseWatchlistOrder,
@@ -34,6 +37,12 @@ import {
 	watchlistLookaheadPageMeta,
 	watchlistOffset,
 } from "../lib/watchlist-query-args";
+import {
+	readWatchlistRanked,
+	sliceWatchlistRankedPage,
+	watchlistRankedCacheKey,
+	writeWatchlistRanked,
+} from "../lib/watchlist-ranked-cache";
 import {
 	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
@@ -61,19 +70,32 @@ type WatchlistUpsertBody = {
 /** Upper bound on titles ranked in TS for `tonight` / `available`. */
 const WATCHLIST_DECISION_POOL_LIMIT = 500;
 
-/** Shared column set for the legacy paged query and the decision pool query. */
-const watchlistSelectShape = {
-	item: watchlistItem,
-	movieTmdbId: movie.tmdbId,
-	movieTitle: movie.title,
-	moviePosterPath: movie.posterPath,
-	movieGenreIds: movie.genreIds,
-	tvTmdbId: tv.tmdbId,
-	tvTitle: tv.title,
-	tvPosterPath: tv.posterPath,
-	tvGenreIds: tv.genreIds,
-	tmdbJson: WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION,
-	streamingAlert: watchlistItem.streamingAlert,
+/**
+ * Shared column set for the legacy paged query and the decision pool query.
+ * `tmdbJson` is the region-scoped provider projection for the one region the
+ * caller evaluates (or a null literal when there is none).
+ */
+function watchlistSelectShape(tmdbJson: SQL<Record<string, unknown> | null>) {
+	return {
+		item: watchlistItem,
+		movieTmdbId: movie.tmdbId,
+		movieTitle: movie.title,
+		moviePosterPath: movie.posterPath,
+		movieGenreIds: movie.genreIds,
+		tvTmdbId: tv.tmdbId,
+		tvTitle: tv.title,
+		tvPosterPath: tv.posterPath,
+		tvGenreIds: tv.genreIds,
+		tmdbJson,
+		streamingAlert: watchlistItem.streamingAlert,
+	};
+}
+
+/** One ranked tonight/available entry — cached, so no `tmdbJson` is kept. */
+type WatchlistRankedEntry = {
+	row: WatchlistSelectRow;
+	providerName: string | null;
+	reason: string | null;
 };
 
 type WatchlistSelectRow = {
@@ -195,7 +217,7 @@ async function loadWatchlistAlertPreview(userId: string): Promise<{
 			tvTmdbId: tv.tmdbId,
 			tvTitle: tv.title,
 			tvPosterPath: tv.posterPath,
-			tmdbJson: WATCHLIST_PROVIDERS_TMDB_JSON_PROJECTION,
+			tmdbJson: watchlistProvidersTmdbJsonForRegion(region),
 		})
 		.from(watchlistItem)
 		.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
@@ -235,6 +257,78 @@ async function loadWatchlistAlertPreview(userId: string): Promise<{
 	return { notStreamingCount: notStreaming.length, sample };
 }
 
+/**
+ * Bounded candidate pool for `tonight` / `available` — filter/score in TS.
+ * Only the chosen region's providers are projected; with no chosen region
+ * availability contributes nothing (no guess), so no JSON is read at all.
+ */
+async function rankWatchlistDecisionPool(args: {
+	userId: string;
+	order: "tonight" | "available";
+	chosenRegion: string | null;
+	whereClause: SQL | undefined;
+	tiebreak: SQL;
+}): Promise<WatchlistRankedEntry[]> {
+	const { userId, order, chosenRegion } = args;
+	const pool = await traceTiming("db", `watchlist.${order}.pool`, () =>
+		db
+			.select(
+				watchlistSelectShape(
+					chosenRegion
+						? watchlistProvidersTmdbJsonForRegion(chosenRegion)
+						: WATCHLIST_NO_PROVIDERS_TMDB_JSON,
+				),
+			)
+			.from(watchlistItem)
+			.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
+			.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
+			.where(args.whereClause)
+			.orderBy(desc(watchlistItem.addedAt), args.tiebreak)
+			.limit(WATCHLIST_DECISION_POOL_LIMIT),
+	);
+	// Drop `tmdbJson` once the provider is read — ranked entries are cached.
+	const withProvider = pool.map(({ tmdbJson, ...row }) => ({
+		row,
+		providerName: chosenRegion
+			? primaryFlatrateProviderName(tmdbJson, chosenRegion)
+			: null,
+	}));
+
+	if (order === "available") {
+		return withProvider
+			.filter((r) => r.providerName != null)
+			.map((r) => ({ ...r, reason: `Now on ${r.providerName}` }));
+	}
+
+	const social = await traceTiming("db", "watchlist.tonight.social", () =>
+		loadWatchlistTonightSocial(userId),
+	);
+	const now = new Date();
+	return rankWatchlistTonight(
+		withProvider.map((r) => {
+			const key = listingKey(r.row.item.movieId, r.row.item.tvId);
+			return {
+				key,
+				r,
+				signals: {
+					providerName: r.providerName,
+					recommenders: social.recommenders.get(key) ?? [],
+					ownListTitle: social.ownListTitles.get(key) ?? null,
+					tasteAffinity: normalizedGenreAffinity(
+						r.row.movieGenreIds ?? r.row.tvGenreIds ?? [],
+						social.genreWeights,
+					),
+					addedAt: new Date(r.row.item.addedAt),
+					now,
+				},
+			};
+		}),
+	).map((ranked) => ({
+		...ranked.r,
+		reason: ranked.reason?.label ?? null,
+	}));
+}
+
 export const watchlistRoute = new Elysia({
 	prefix: "/api/watchlist",
 	tags: ["watchlist"],
@@ -271,76 +365,35 @@ export const watchlistRoute = new Elysia({
 				};
 			}
 			if (order === "available" || order === "tonight") {
-				// Bounded candidate pool — rank/filter in TS, then page.
-				const pool = await traceTiming("db", `watchlist.${order}.pool`, () =>
-					db
-						.select(watchlistSelectShape)
-						.from(watchlistItem)
-						.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
-						.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
-						.where(whereClause)
-						.orderBy(desc(watchlistItem.addedAt), tiebreak)
-						.limit(WATCHLIST_DECISION_POOL_LIMIT),
-				);
-				// No chosen region → availability contributes nothing to `tonight`.
-				const withProvider = pool.map((row) => ({
-					row,
-					providerName: chosenRegion
-						? primaryFlatrateProviderName(row.tmdbJson, chosenRegion)
-						: null,
-				}));
-				let ordered: {
-					row: (typeof pool)[number];
-					providerName: string | null;
-					reason: string | null;
-				}[];
-				if (order === "available") {
-					ordered = withProvider
-						.filter((r) => r.providerName != null)
-						.map((r) => ({ ...r, reason: `Now on ${r.providerName}` }));
-				} else {
-					const social = await traceTiming(
-						"db",
-						"watchlist.tonight.social",
-						() => loadWatchlistTonightSocial(user.id),
-					);
-					const now = new Date();
-					ordered = rankWatchlistTonight(
-						withProvider.map((r) => {
-							const key = listingKey(r.row.item.movieId, r.row.item.tvId);
-							return {
-								key,
-								r,
-								signals: {
-									providerName: r.providerName,
-									recommenders: social.recommenders.get(key) ?? [],
-									ownListTitle: social.ownListTitles.get(key) ?? null,
-									tasteAffinity: normalizedGenreAffinity(
-										r.row.movieGenreIds ?? r.row.tvGenreIds ?? [],
-										social.genreWeights,
-									),
-									addedAt: new Date(r.row.item.addedAt),
-									now,
-								},
-							};
-						}),
-					).map((ranked) => ({
-						...ranked.r,
-						reason: ranked.reason?.label ?? null,
-					}));
-				}
-				const pageRows = ordered.slice(offset, offset + limit + 1);
-				const meta = watchlistLookaheadPageMeta({
-					page,
-					limit,
-					fetchedCount: pageRows.length,
+				const cacheKey = watchlistRankedCacheKey({
+					userId: user.id,
+					order,
+					region: chosenRegion,
+					showAdultContent,
 				});
+				// Page 1 always re-ranks (fresh after a log / refresh); later pages
+				// slice the ranking page 1 cached so the scroll session stays stable.
+				let ranked =
+					page > 1
+						? readWatchlistRanked<WatchlistRankedEntry>(cacheKey)
+						: undefined;
+				if (!ranked) {
+					ranked = await rankWatchlistDecisionPool({
+						userId: user.id,
+						order,
+						chosenRegion,
+						whereClause,
+						tiebreak,
+					});
+					writeWatchlistRanked(cacheKey, ranked);
+				}
+				const slice = sliceWatchlistRankedPage(ranked, page, limit);
 				return {
-					results: pageRows
-						.slice(0, meta.visibleCount)
-						.map((r) => toWatchlistRow(r.row, r.providerName, r.reason)),
-					total_pages: meta.totalPages,
-					total_results: offset + meta.visibleCount,
+					results: slice.rows.map((r) =>
+						toWatchlistRow(r.row, r.providerName, r.reason),
+					),
+					total_pages: slice.totalPages,
+					total_results: slice.totalResults,
 				};
 			}
 
@@ -364,7 +417,11 @@ export const watchlistRoute = new Elysia({
 
 			const fetched = await traceTiming("db", "watchlist.list", () =>
 				db
-					.select(watchlistSelectShape)
+					.select(
+						watchlistSelectShape(
+							watchlistProvidersTmdbJsonForRegion(watchRegion),
+						),
+					)
 					.from(watchlistItem)
 					.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
 					.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
@@ -484,6 +541,8 @@ export const watchlistRoute = new Elysia({
 				.where(itemWhere)
 				.returning({ movieId: watchlistItem.movieId });
 			if (updated.length === 0) return status(404, "Not on your watchlist");
+			// Cached ranked rows carry `streaming_alert` — drop them.
+			invalidateWatchlistTonightSocial(user.id);
 			await recordProductEvent(user.id, "watchlist.alert_requested", {
 				enabled: body.enabled,
 				listingKind: body.movieId != null ? "movie" : "tv",

@@ -7,6 +7,7 @@ import {
 	parseRecommendationReasonCode,
 	type RecommendationSuggestionCandidate,
 	rankRecommendationSuggestions,
+	recommendationGatesForSenders,
 	recommendationHref,
 	titleKey,
 } from "./title-recommendation";
@@ -143,6 +144,67 @@ describe("canRecommendBetween", () => {
 			ok: false,
 			reason: "unavailable",
 		});
+	});
+});
+
+describe("recommendationGatesForSenders", () => {
+	const viewer = "v";
+
+	test("maps each sender exactly like the single-sender gate", () => {
+		const gates = recommendationGatesForSenders({
+			senderIds: [
+				"follower",
+				"followed",
+				"stranger",
+				"blocker",
+				"blocked",
+				"v",
+			],
+			recipientId: viewer,
+			recipient: { banned: false },
+			follows: [
+				{ followerId: "follower", followingId: viewer },
+				{ followerId: viewer, followingId: "followed" },
+				{ followerId: "blocker", followingId: viewer },
+				// Edge between two senders — irrelevant to the viewer gate.
+				{ followerId: "stranger", followingId: "follower" },
+			],
+			blocks: [
+				{ blockerId: "blocker", blockedId: viewer },
+				{ blockerId: viewer, blockedId: "blocked" },
+			],
+		});
+		expect(gates.get("follower")).toEqual({ ok: true });
+		expect(gates.get("followed")).toEqual({ ok: true });
+		expect(gates.get("stranger")).toEqual({
+			ok: false,
+			reason: "not_connected",
+		});
+		expect(gates.get("blocker")).toEqual({ ok: false, reason: "unavailable" });
+		expect(gates.get("blocked")).toEqual({ ok: false, reason: "unavailable" });
+		expect(gates.get("v")).toEqual({ ok: false, reason: "self" });
+	});
+
+	test("banned or missing recipient refuses everyone but self stays self", () => {
+		const follows = [{ followerId: "a", followingId: viewer }];
+		expect(
+			recommendationGatesForSenders({
+				senderIds: ["a"],
+				recipientId: viewer,
+				recipient: { banned: true },
+				follows,
+				blocks: [],
+			}).get("a"),
+		).toEqual({ ok: false, reason: "unavailable" });
+		const missing = recommendationGatesForSenders({
+			senderIds: ["a", viewer],
+			recipientId: viewer,
+			recipient: null,
+			follows,
+			blocks: [],
+		});
+		expect(missing.get("a")).toEqual({ ok: false, reason: "unavailable" });
+		expect(missing.get(viewer)).toEqual({ ok: false, reason: "self" });
 	});
 });
 
