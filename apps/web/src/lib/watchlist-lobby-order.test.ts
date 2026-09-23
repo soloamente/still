@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	buildWatchlistLobbyHref,
 	parseWatchlistLobbyOrder,
+	tvWatchBundleToContinueSeed,
 	watchlistCatalogueWaveKey,
 	watchlistOrderGridIsStale,
 	watchlistRowToPopularSeed,
@@ -78,5 +79,64 @@ describe("parseWatchlistLobbyOrder decision modes", () => {
 		expect(buildWatchlistLobbyHref({ order: "tonight" })).toBe(
 			"/watchlist?order=tonight",
 		);
+	});
+});
+
+describe("watchlist decision seeds", () => {
+	const base = {
+		item: { addedAt: "2026-09-01T00:00:00Z", movieId: 5, tvId: null },
+		movie: { tmdbId: 5, title: "Heat", posterPath: null },
+		tv: null,
+	};
+	test("tonight reason wins the pill slot over the streaming pill", () => {
+		const seed = watchlistRowToPopularSeed({
+			...base,
+			streaming_provider_name: "Netflix",
+			tonight_reason: "Maya recommended",
+			streaming_alert: true,
+		});
+		expect(seed.watchlistStreamingLabel).toBe("Maya recommended");
+		expect(seed.watchlistStreamingAlert).toBe(true);
+		expect(seed.watchlistIsStreaming).toBe(true);
+	});
+	test("continue seed shows next episode and flags aired ones", () => {
+		const seed = tvWatchBundleToContinueSeed(
+			{
+				watch: {
+					id: "w",
+					userId: "u",
+					tvId: 9,
+					status: "watching",
+					progressMode: "episode",
+					lastSeason: 2,
+					lastEpisode: 4,
+					notifyNewEpisodes: true,
+					startedAt: "2026-01-01",
+					statusChangedAt: "2026-09-01",
+				},
+				show: { tmdbId: 9, title: "Severance", posterPath: null },
+				watchedEpisodes: [],
+				nextEpisode: {
+					seasonNumber: 2,
+					episodeNumber: 5,
+					airDate: "2026-09-20",
+				},
+			},
+			"2026-09-23",
+		);
+		expect(seed?.listingKind).toBe("tv");
+		expect(seed?.watchlistStreamingLabel).toBe("S2 · E5 next");
+	});
+	test("continue seed without next episode data", () => {
+		const seed = tvWatchBundleToContinueSeed(
+			{
+				watch: null,
+				show: { tmdbId: 9, title: "X", posterPath: null },
+				watchedEpisodes: [],
+				nextEpisode: null,
+			},
+			"2026-09-23",
+		);
+		expect(seed?.watchlistStreamingLabel).toBe("Continue");
 	});
 });

@@ -4,6 +4,7 @@
  */
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import type { TvWatchBundle } from "@/lib/tv-watch-types";
 import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
 
 export type WatchlistLobbyOrder =
@@ -40,6 +41,10 @@ export type WatchlistLobbyRow = {
 	tv: { tmdbId: number; title: string; posterPath: string | null } | null;
 	/** First flatrate provider in the patron's watch region, when cached on the listing. */
 	streaming_provider_name?: string | null;
+	/** Watch tonight — strongest ranking signal as a short pill (e.g. `Maya recommended`). */
+	tonight_reason?: string | null;
+	/** Patron asked to be alerted when this title starts streaming in their region. */
+	streaming_alert?: boolean;
 };
 
 export type WatchlistLobbyRowWithListing =
@@ -111,8 +116,68 @@ export function watchlistRowToPopularSeed(
 		title: listing.title,
 		poster_url,
 		listingKind: row.tv != null ? "tv" : "movie",
-		watchlistStreamingLabel: row.streaming_provider_name
-			? formatWatchlistStreamingPill(row.streaming_provider_name)
-			: null,
+		// Watch tonight's reason pill owns the caption slot; streaming pill otherwise.
+		watchlistStreamingLabel:
+			row.tonight_reason ??
+			(row.streaming_provider_name
+				? formatWatchlistStreamingPill(row.streaming_provider_name)
+				: null),
+		watchlistStreamingAlert: row.streaming_alert === true,
+		watchlistIsStreaming: Boolean(row.streaming_provider_name),
 	};
+}
+
+/** Continue watching seed plus the fields `sortContinueSeeds` orders by. */
+export type ContinueWatchingSeed = PopularMovieSeed & {
+	/** Next episode has already aired (on or before `todayYmd`). */
+	hasNewEpisode: boolean;
+	/** `tv_watch.statusChangedAt` — most recently touched shows sort first. */
+	changedAt: string;
+};
+
+/**
+ * Continue watching tile (from `GET /api/tv-watch/me`, never `/api/watchlist`) —
+ * the pill names the next episode; aired ones sort first.
+ */
+export function tvWatchBundleToContinueSeed(
+	bundle: TvWatchBundle,
+	todayYmd: string,
+): ContinueWatchingSeed | null {
+	const show = bundle.show;
+	if (!show) return null;
+	const next = bundle.nextEpisode;
+	const posterPath = show.posterPath;
+	return {
+		id: show.tmdbId,
+		title: show.title,
+		poster_url:
+			posterPath && !posterPath.startsWith("http")
+				? tmdbPosterUrlFromPath(posterPath, "w342")
+				: posterPath,
+		listingKind: "tv",
+		watchlistStreamingLabel: next
+			? `S${next.seasonNumber} · E${next.episodeNumber} next`
+			: "Continue",
+		hasNewEpisode: Boolean(
+			next?.airDate && next.airDate.slice(0, 10) <= todayYmd,
+		),
+		// Eden may deserialize timestamps as `Date` — normalize to an ISO string for sorting.
+		changedAt: normalizeChangedAt(bundle.watch?.statusChangedAt),
+	};
+}
+
+function normalizeChangedAt(raw: unknown): string {
+	if (typeof raw === "string") return raw;
+	if (raw instanceof Date) return raw.toISOString();
+	return "";
+}
+
+/** New-episode shows first, then most recently changed. */
+export function sortContinueSeeds<
+	T extends { hasNewEpisode: boolean; changedAt: string },
+>(seeds: T[]): T[] {
+	return [...seeds].sort((a, b) => {
+		if (a.hasNewEpisode !== b.hasNewEpisode) return a.hasNewEpisode ? -1 : 1;
+		return b.changedAt.localeCompare(a.changedAt);
+	});
 }

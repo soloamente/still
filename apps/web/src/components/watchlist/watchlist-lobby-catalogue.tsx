@@ -1,7 +1,5 @@
 "use client";
 
-import { buttonVariants } from "@still/ui/components/button";
-import Link from "next/link";
 import { useCallback, useLayoutEffect } from "react";
 
 import {
@@ -10,12 +8,14 @@ import {
 } from "@/components/movie/popular-movies-infinite";
 import { useWatchlistLobbyDisplayPrefs } from "@/components/watchlist/watchlist-lobby-display-prefs";
 import { useWatchlistLobbyParams } from "@/components/watchlist/watchlist-lobby-params-context";
+import { WatchlistModeEmpty } from "@/components/watchlist/watchlist-mode-empty";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
 } from "@/lib/home-lobby-catalogue-layout";
 import { fetchMyWatchlist } from "@/lib/still-api-fetch";
+import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
 import {
 	type WatchlistLobbyOrder,
 	watchlistCatalogueWaveKey,
@@ -31,18 +31,32 @@ import {
  * `key` remounts `PopularMoviesInfinite` so tile state initializes from the new
  * seeds on the first paint (the wave-key effect would otherwise lag one frame).
  * Hover prefs come from layout chrome so `?order=` does not wait on `profiles.me`.
+ *
+ * `continue` seeds come from `GET /api/tv-watch/me` as one page — `loadPage` is a
+ * no-op there so scrolling never asks `/api/watchlist` for `order=continue`.
+ * The page keys this component by `order`, so the mode impression fires once per mode.
  */
 export function WatchlistLobbyCatalogue({
 	order,
 	seeds,
 	totalPages,
 	totalResults,
+	needsRegion,
+	failed,
 }: {
 	order: WatchlistLobbyOrder;
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
+	/** `order=available` without a chosen watch region. */
+	needsRegion: boolean;
+	/** Page-1 request errored — show retry instead of empty copy. */
+	failed: boolean;
 }) {
+	useTrackImpressionOnce("watchlist.mode_viewed", {
+		mode: order,
+		count: seeds.length,
+	});
 	const { reportSeedOrder } = useWatchlistLobbyParams();
 	const { monochromePeersOnHover, signedIn } = useWatchlistLobbyDisplayPrefs();
 	useLayoutEffect(() => {
@@ -55,36 +69,26 @@ export function WatchlistLobbyCatalogue({
 	);
 
 	const loadPage = useCallback(
-		(page: number, signal?: AbortSignal) =>
-			fetchMyWatchlist(page, { order, signal }),
+		async (
+			page: number,
+			signal?: AbortSignal,
+		): Promise<
+			{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
+		> => {
+			// Continue watching is a single page from `tv-watch/me` — nothing more to load.
+			if (order === "continue") return { results: [], total_pages: 1 };
+			return fetchMyWatchlist(page, { order, signal });
+		},
 		[order],
 	);
 
-	if (seeds.length === 0) {
+	if (seeds.length === 0 || failed) {
 		return (
-			<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
-				<div
-					className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
-					role="status"
-				>
-					<div className="space-y-2">
-						<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
-							Your watchlist is empty
-						</p>
-						<p className="text-muted-foreground text-sm leading-relaxed">
-							When something catches your eye, open its page and tap{" "}
-							<strong className="text-foreground">Watchlist</strong> — it will
-							show up in this lobby wall.
-						</p>
-					</div>
-					<Link
-						href="/home"
-						className={buttonVariants({ variant: "outline", size: "pill" })}
-					>
-						Search films and shows
-					</Link>
-				</div>
-			</div>
+			<WatchlistModeEmpty
+				order={order}
+				needsRegion={needsRegion}
+				failed={failed}
+			/>
 		);
 	}
 

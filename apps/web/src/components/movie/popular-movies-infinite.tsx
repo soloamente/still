@@ -46,6 +46,10 @@ export type PopularMovieSeed = {
 	scopeLabel?: string | null;
 	/** Watchlist lobby — `Now on Netflix` when flatrate providers exist in patron region. */
 	watchlistStreamingLabel?: string | null;
+	/** Watchlist lobby — patron has a streaming alert set on this title (Task 6 toolkit). */
+	watchlistStreamingAlert?: boolean;
+	/** Watchlist lobby — title already streams in the patron region (hides "Alert me"). */
+	watchlistIsStreaming?: boolean;
 	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
 	patronLogId?: string;
 	patronLogLiked?: boolean;

@@ -14,8 +14,11 @@ import {
 	useHorizontalScrollFades,
 } from "@/lib/use-horizontal-scroll-fades";
 
-/** Horizontal scroll + edge fades when sort/feed chips overflow on narrow viewports. */
-function HomeLobbyFilterScrollRail({
+/**
+ * Horizontal scroll + edge fades when sort/feed chips overflow on narrow viewports.
+ * Exported so lobbies without a trailing rail (e.g. `/watchlist`) reuse the same chrome.
+ */
+export function HomeLobbyFilterScrollRail({
 	children,
 	contentKey = "",
 }: {
