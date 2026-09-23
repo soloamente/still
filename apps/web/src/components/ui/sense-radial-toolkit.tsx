@@ -2,6 +2,7 @@
 
 import {
 	RadialToolkit,
+	type RadialToolkitAnchor,
 	type RadialToolkitItem,
 } from "@still/ui/components/radial-toolkit";
 
@@ -20,7 +21,7 @@ export function SenseRadialToolkit({
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
-	anchor: { x: number; y: number } | null;
+	anchor: RadialToolkitAnchor | null;
 	items: RadialToolkitItem[];
 	title?: string;
 }) {

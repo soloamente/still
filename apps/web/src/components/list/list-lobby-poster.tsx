@@ -61,8 +61,14 @@ export function ListLobbyPoster({
 	const hasPrivateLists = hasFeature("private_lists");
 	const coverInputId = useId();
 	const coverInputRef = useRef<HTMLInputElement>(null);
-	const { open, anchor, onContextMenu, onPointerDown, onOpenChange } =
-		useRadialToolkitAnchor();
+	const {
+		open,
+		anchor,
+		onContextMenu,
+		onPointerDown,
+		onKeyDown,
+		onOpenChange,
+	} = useRadialToolkitAnchor();
 	const [deleting, setDeleting] = useState(false);
 	const [togglingPrivacy, setTogglingPrivacy] = useState(false);
 	const [uploadingCover, setUploadingCover] = useState(false);
@@ -315,6 +321,7 @@ export function ListLobbyPoster({
 				aria-label={`${displayTitle} — ${metaLine}, ${likesLine}`}
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
+				onKeyDown={onKeyDown}
 			>
 				<div className={frameShellClassName}>
 					{displayPosterUrl ? (

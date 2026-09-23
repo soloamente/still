@@ -147,8 +147,14 @@ export function CataloguePosterTile({
 	const signedIn = Boolean(session?.user);
 	const openQuickLog = useQuickLog((s) => s.open);
 
-	const { open, anchor, onContextMenu, onPointerDown, onOpenChange } =
-		useRadialToolkitAnchor();
+	const {
+		open,
+		anchor,
+		onContextMenu,
+		onPointerDown,
+		onKeyDown,
+		onOpenChange,
+	} = useRadialToolkitAnchor();
 
 	const [inWatchlist, setInWatchlist] = useState(false);
 	const [priorLogCount, setPriorLogCount] = useState(0);
@@ -573,6 +579,7 @@ export function CataloguePosterTile({
 				ref={shellRef}
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
+				onKeyDown={onKeyDown}
 			>
 				{children ?? (
 					<MoviePoster

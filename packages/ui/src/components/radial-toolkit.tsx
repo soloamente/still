@@ -22,6 +22,32 @@ import {
 import { createPortal } from "react-dom";
 
 import IconXmarkFill12 from "../icons/xmark-fill-12";
+import {
+	exceedsLongPressSlop,
+	isRadialToolkitKeyboardTrigger,
+	LONG_PRESS_CLICK_SUPPRESS_MS,
+	LONG_PRESS_DELAY_MS,
+	pointerAngleDeg,
+	radialShortcutIndex,
+	radialTapTarget,
+	segmentIndex,
+	stepRadialIndex,
+} from "./radial-toolkit-gestures";
+
+/** How the toolkit was opened — drives the selection model while it is open. */
+export type RadialToolkitInput = "mouse" | "touch" | "keyboard";
+
+/**
+ * Viewport anchor for the hub. `input` defaults to `"mouse"` (RMB hold → aim →
+ * release) so hand-built `{ x, y }` anchors keep the original contract.
+ */
+export type RadialToolkitAnchor = {
+	x: number;
+	y: number;
+	input?: RadialToolkitInput;
+	/** Touch pointer that performed the long-press (drag-to-aim follows it). */
+	pointerId?: number;
+};
 
 export interface RadialToolkitItem {
 	id: string;
@@ -227,23 +253,6 @@ function polarToXY(radius: number, angleDeg: number) {
 	};
 }
 
-/** Pointer angle from hub: 0° = top, clockwise. */
-function pointerAngleDeg(
-	centerX: number,
-	centerY: number,
-	clientX: number,
-	clientY: number,
-) {
-	const rad = Math.atan2(clientX - centerX, -(clientY - centerY));
-	let deg = (rad * 180) / Math.PI;
-	if (deg < 0) deg += 360;
-	return deg;
-}
-
-function segmentIndex(deg: number, count: number, stepDeg: number) {
-	return Math.floor((deg + stepDeg / 2) / stepDeg) % count;
-}
-
 /** Wedge pointing up (0°); parent rotates to the active segment. */
 function wedgePathUp(sweepDeg: number, innerR: number, outerR: number) {
 	return wedgePath(0, sweepDeg, innerR, outerR);
@@ -301,20 +310,48 @@ function activeLabelAnchor(angleDeg: number, orbitRadiusPx = ORBIT_RADIUS_PX) {
 	return { pos, motion: { x: "-100%", y: "-50%" } as const };
 }
 
+/** Swallow the one click a browser may synthesize after a fired long-press. */
+function suppressNextClick() {
+	const swallow = (event: MouseEvent) => {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		document.removeEventListener("click", swallow, true);
+	};
+	document.addEventListener("click", swallow, true);
+	window.setTimeout(
+		() => document.removeEventListener("click", swallow, true),
+		LONG_PRESS_CLICK_SUPPRESS_MS,
+	);
+}
+
 /**
- * Hold right-click and drag to aim; release to confirm the highlighted action.
- * Attach `triggerProps` to the surface (e.g. poster tile).
+ * Opens the radial toolkit three ways:
+ * - **Mouse:** hold right-click and drag to aim; release to confirm.
+ * - **Touch:** long-press (~450ms, cancelled by >10px travel or early lift),
+ *   then drag to aim and lift — or lift first and tap an action.
+ * - **Keyboard:** `ContextMenu` / `Shift+F10` on the focused trigger (needs
+ *   `onKeyDown` on the surface); arrows move, Enter confirms, Esc closes.
+ * Attach `onContextMenu`, `onPointerDown`, and `onKeyDown` to the surface.
  */
 export function useRadialToolkitAnchor() {
 	const [open, setOpen] = useState(false);
-	const [anchor, setAnchor] = useState<{ x: number; y: number } | null>(null);
+	const [anchor, setAnchor] = useState<RadialToolkitAnchor | null>(null);
 	const draggingRef = useRef(false);
+	/** Tears down a pending / active long-press (timer + window listeners). */
+	const longPressCleanupRef = useRef<(() => void) | null>(null);
+	/** Keyboard opens hand focus back to the trigger on close. */
+	const returnFocusRef = useRef<HTMLElement | null>(null);
+
+	useEffect(() => () => longPressCleanupRef.current?.(), []);
 
 	const onOpenChange = useCallback((next: boolean) => {
 		setOpen(next);
 		if (!next) {
 			setAnchor(null);
 			draggingRef.current = false;
+			const returnTo = returnFocusRef.current;
+			returnFocusRef.current = null;
+			if (returnTo?.isConnected) returnTo.focus({ preventScroll: true });
 		}
 	}, []);
 
@@ -323,12 +360,91 @@ export function useRadialToolkitAnchor() {
 		event.stopPropagation();
 	}, []);
 
-	const onPointerDown = useCallback((event: ReactPointerEvent) => {
-		if (event.button !== 2) return;
+	const startLongPress = useCallback((event: ReactPointerEvent) => {
+		longPressCleanupRef.current?.();
+		const element = event.currentTarget as HTMLElement;
+		const pointerId = event.pointerId;
+		const start = { x: event.clientX, y: event.clientY };
+		let fired = false;
+
+		// Only after the hold fires: blocks scroll so the finger can aim.
+		// Before that, `touch-action` stays untouched so the grid scrolls normally.
+		const blockScroll = (touchEvent: TouchEvent) => {
+			if (touchEvent.cancelable) touchEvent.preventDefault();
+		};
+		const finish = () => {
+			window.clearTimeout(timer);
+			window.removeEventListener("pointermove", onMove);
+			window.removeEventListener("pointerup", onEnd);
+			window.removeEventListener("pointercancel", onEnd);
+			window.removeEventListener("touchmove", blockScroll);
+			if (fired) {
+				element.style.removeProperty("-webkit-touch-callout");
+				suppressNextClick();
+			}
+			longPressCleanupRef.current = null;
+		};
+		const onMove = (moveEvent: PointerEvent) => {
+			if (moveEvent.pointerId !== pointerId || fired) return;
+			if (
+				exceedsLongPressSlop(start, {
+					x: moveEvent.clientX,
+					y: moveEvent.clientY,
+				})
+			)
+				finish();
+		};
+		const onEnd = (endEvent: PointerEvent) => {
+			if (endEvent.pointerId === pointerId) finish();
+		};
+		const timer = window.setTimeout(() => {
+			fired = true;
+			// iOS reads this when its link callout would appear (~500ms) — set only once we own the gesture.
+			element.style.setProperty("-webkit-touch-callout", "none");
+			window.addEventListener("touchmove", blockScroll, { passive: false });
+			window.getSelection()?.removeAllRanges();
+			draggingRef.current = true;
+			setAnchor({ x: start.x, y: start.y, input: "touch", pointerId });
+			setOpen(true);
+		}, LONG_PRESS_DELAY_MS);
+
+		window.addEventListener("pointermove", onMove);
+		window.addEventListener("pointerup", onEnd);
+		window.addEventListener("pointercancel", onEnd);
+		longPressCleanupRef.current = finish;
+	}, []);
+
+	const onPointerDown = useCallback(
+		(event: ReactPointerEvent) => {
+			if (event.pointerType === "touch") {
+				if (event.isPrimary) startLongPress(event);
+				return;
+			}
+			if (event.button !== 2) return;
+			event.preventDefault();
+			event.stopPropagation();
+			draggingRef.current = true;
+			setAnchor({ x: event.clientX, y: event.clientY, input: "mouse" });
+			setOpen(true);
+		},
+		[startLongPress],
+	);
+
+	const onKeyDown = useCallback((event: React.KeyboardEvent) => {
+		if (!isRadialToolkitKeyboardTrigger(event)) return;
 		event.preventDefault();
 		event.stopPropagation();
-		draggingRef.current = true;
-		setAnchor({ x: event.clientX, y: event.clientY });
+		const target =
+			event.target instanceof HTMLElement
+				? event.target
+				: (event.currentTarget as HTMLElement);
+		const rect = target.getBoundingClientRect();
+		returnFocusRef.current = target;
+		setAnchor({
+			x: rect.left + rect.width / 2,
+			y: rect.top + rect.height / 2,
+			input: "keyboard",
+		});
 		setOpen(true);
 	}, []);
 
@@ -338,6 +454,7 @@ export function useRadialToolkitAnchor() {
 		onOpenChange,
 		onContextMenu,
 		onPointerDown,
+		onKeyDown,
 	};
 }
 
@@ -351,7 +468,7 @@ export function RadialToolkit({
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
-	anchor: { x: number; y: number } | null;
+	anchor: RadialToolkitAnchor | null;
 	items: RadialToolkitItem[];
 	title?: string;
 	/**
@@ -383,6 +500,9 @@ export function RadialToolkit({
 		if (!anchor) return null;
 		return clampAnchor(anchor.x, anchor.y);
 	}, [anchor]);
+	const input: RadialToolkitInput = anchor?.input ?? "mouse";
+	const touchPointerId = anchor?.pointerId;
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	const count = items.length;
 	const sessionRef = useRef(false);
@@ -452,6 +572,25 @@ export function RadialToolkit({
 		setWedgeRotate(0);
 	}, [open]);
 
+	// Keyboard opens: focus the menu so `aria-activedescendant` is announced, and
+	// preselect the first enabled action so Enter works immediately.
+	const itemsRef = useRef(items);
+	itemsRef.current = items;
+	useEffect(() => {
+		if (!open || input !== "keyboard") return;
+		const first = stepRadialIndex(
+			NO_SELECTION,
+			1,
+			itemsRef.current.map((item) => Boolean(item.disabled)),
+		);
+		setActiveIndex(first);
+		activeIndexRef.current = first;
+		const frame = requestAnimationFrame(() =>
+			menuRef.current?.focus({ preventScroll: true }),
+		);
+		return () => cancelAnimationFrame(frame);
+	}, [open, input]);
+
 	useEffect(() => {
 		if (activeIndex < 0) return;
 
@@ -504,6 +643,21 @@ export function RadialToolkit({
 		[clampedAnchor, count, hubDeadZonePx, items, stepDeg],
 	);
 
+	/**
+	 * `drag` = the opening press is still down and aims (RMB, or the long-press
+	 * finger). `tap` = nothing held: a fresh tap picks an action, the hub or
+	 * outside the ring dismisses. Refs (not effect locals) so an `items` refresh
+	 * mid-session — e.g. log/watchlist hydration — can't reset the phase.
+	 */
+	const phaseRef = useRef<"drag" | "tap">("drag");
+	/** Tap phase only acts on a pointerup whose pointerdown it also saw. */
+	const tapArmedRef = useRef(false);
+	useEffect(() => {
+		if (!open) return;
+		phaseRef.current = input === "keyboard" ? "tap" : "drag";
+		tapArmedRef.current = false;
+	}, [open, input]);
+
 	useEffect(() => {
 		if (!open) return;
 		sessionRef.current = true;
@@ -518,22 +672,123 @@ export function RadialToolkit({
 			close();
 		};
 
-		const onPointerMove = (event: PointerEvent) => {
-			if ((event.buttons & 2) === 0) return;
+		const setAim = (index: number) => {
+			setActiveIndex(index);
+			activeIndexRef.current = index;
+		};
+
+		const onPointerDown = (event: PointerEvent) => {
+			if (input === "mouse" || phaseRef.current !== "tap") return;
+			tapArmedRef.current = true;
 			updateAimFromPointer(event.clientX, event.clientY);
 		};
 
+		const onPointerMove = (event: PointerEvent) => {
+			if (input === "mouse") {
+				if ((event.buttons & 2) === 0) return;
+				updateAimFromPointer(event.clientX, event.clientY);
+				return;
+			}
+			if (phaseRef.current === "drag") {
+				if (event.pointerId !== touchPointerId) return;
+				updateAimFromPointer(event.clientX, event.clientY);
+				return;
+			}
+			if (tapArmedRef.current)
+				updateAimFromPointer(event.clientX, event.clientY);
+		};
+
 		const onPointerUp = (event: PointerEvent) => {
-			if (event.button !== 2) return;
+			if (input === "mouse") {
+				if (event.button !== 2) return;
+				event.preventDefault();
+				event.stopPropagation();
+				endSession(true);
+				return;
+			}
+			if (phaseRef.current === "drag") {
+				if (event.pointerId !== touchPointerId) return;
+				if (activeIndexRef.current >= 0) {
+					endSession(true);
+					return;
+				}
+				// Lifted on the hub without aiming — stay open for a tap.
+				phaseRef.current = "tap";
+				return;
+			}
+			if (!tapArmedRef.current || !clampedAnchor) return;
+			tapArmedRef.current = false;
 			event.preventDefault();
-			event.stopPropagation();
-			endSession(true);
+			const target = radialTapTarget({
+				dx: event.clientX - clampedAnchor.x,
+				dy: event.clientY - clampedAnchor.y,
+				hubDeadZonePx,
+				reachPx: orbitRadiusPx + ICON_CELL_PX,
+				disabled: items.map((item) => Boolean(item.disabled)),
+			});
+			switch (target.kind) {
+				case "item":
+					setAim(target.index);
+					endSession(true);
+					return;
+				case "disabled":
+					setAim(NO_SELECTION);
+					return;
+				case "hub":
+				case "outside":
+					endSession(false);
+					return;
+				default: {
+					const unhandled: never = target;
+					return unhandled;
+				}
+			}
+		};
+
+		const onPointerCancel = (event: PointerEvent) => {
+			// The browser reclaimed the long-press finger — keep the menu for a tap.
+			if (input === "mouse" || phaseRef.current !== "drag") return;
+			if (event.pointerId !== touchPointerId) return;
+			phaseRef.current = "tap";
+			setAim(NO_SELECTION);
 		};
 
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
 				event.preventDefault();
 				endSession(false);
+				return;
+			}
+			if (input !== "keyboard") return;
+			const disabled = items.map((item) => Boolean(item.disabled));
+			switch (event.key) {
+				case "ArrowRight":
+				case "ArrowDown":
+					event.preventDefault();
+					setAim(stepRadialIndex(activeIndexRef.current, 1, disabled));
+					return;
+				case "ArrowLeft":
+				case "ArrowUp":
+					event.preventDefault();
+					setAim(stepRadialIndex(activeIndexRef.current, -1, disabled));
+					return;
+				case "Enter":
+				case " ":
+					event.preventDefault();
+					endSession(activeIndexRef.current >= 0);
+					return;
+				case "Tab":
+					// Menu semantics: Tab leaves the menu instead of cycling inside it.
+					event.preventDefault();
+					endSession(false);
+					return;
+				default: {
+					const index = radialShortcutIndex(event.key, items);
+					if (index < 0) return;
+					event.preventDefault();
+					setAim(index);
+					endSession(true);
+				}
 			}
 		};
 
@@ -541,18 +796,33 @@ export function RadialToolkit({
 			event.preventDefault();
 		};
 
+		window.addEventListener("pointerdown", onPointerDown);
 		window.addEventListener("pointermove", onPointerMove);
 		window.addEventListener("pointerup", onPointerUp);
+		window.addEventListener("pointercancel", onPointerCancel);
 		window.addEventListener("keydown", onKeyDown);
 		window.addEventListener("contextmenu", onContextMenu, true);
 		return () => {
+			window.removeEventListener("pointerdown", onPointerDown);
 			window.removeEventListener("pointermove", onPointerMove);
 			window.removeEventListener("pointerup", onPointerUp);
+			window.removeEventListener("pointercancel", onPointerCancel);
 			window.removeEventListener("keydown", onKeyDown);
 			window.removeEventListener("contextmenu", onContextMenu, true);
 			sessionRef.current = false;
 		};
-	}, [open, close, activateIndex, updateAimFromPointer]);
+	}, [
+		open,
+		close,
+		activateIndex,
+		updateAimFromPointer,
+		input,
+		touchPointerId,
+		clampedAnchor,
+		hubDeadZonePx,
+		orbitRadiusPx,
+		items,
+	]);
 
 	if (!mounted || !clampedAnchor || count === 0) return null;
 
@@ -574,7 +844,6 @@ export function RadialToolkit({
 			{open ? (
 				<motion.div
 					role="presentation"
-					aria-hidden
 					className="fixed inset-0 z-[200] touch-none select-none bg-black/45"
 					initial={reduceMotion ? false : { opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -582,13 +851,15 @@ export function RadialToolkit({
 					transition={exitTransition}
 				>
 					<motion.div
+						ref={menuRef}
 						role="menu"
 						id={menuId}
+						tabIndex={-1}
 						aria-label={title}
 						aria-activedescendant={
 							activeItem ? `${menuId}-${activeItem.id}` : undefined
 						}
-						className="pointer-events-none fixed"
+						className="pointer-events-none fixed outline-none"
 						style={{
 							left: clampedAnchor.x,
 							top: clampedAnchor.y,

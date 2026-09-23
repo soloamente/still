@@ -99,8 +99,14 @@ export function ListDetailPosterTile({
 	const signedIn = Boolean(session?.user);
 	const openQuickLog = useQuickLog((s) => s.open);
 
-	const { open, anchor, onContextMenu, onPointerDown, onOpenChange } =
-		useRadialToolkitAnchor();
+	const {
+		open,
+		anchor,
+		onContextMenu,
+		onPointerDown,
+		onKeyDown,
+		onOpenChange,
+	} = useRadialToolkitAnchor();
 
 	const [priorLogCount, setPriorLogCount] = useState(0);
 	const [priorTvLogs, setPriorTvLogs] = useState<MyTvLog[]>([]);
@@ -409,6 +415,7 @@ export function ListDetailPosterTile({
 				)}
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
+				onKeyDown={onKeyDown}
 			>
 				<MoviePoster
 					avatarGroupItem={false}
