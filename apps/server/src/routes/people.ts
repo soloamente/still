@@ -115,7 +115,8 @@ export const peopleRoute = new Elysia({
 				const ranked = rankPeopleFavoritesFirst(
 					trafficLeaders,
 					favoritedIds,
-					(slice) => slice,
+					// Copy — `thenRank` must return mutable `T[]`, not `readonly T[]`.
+					(slice) => [...slice],
 				);
 				return {
 					...TMDB_UNCONFIGURED,
@@ -142,11 +143,9 @@ export const peopleRoute = new Elysia({
 						merged.map((row) => row.id),
 					)
 				: new Set<number>();
-			const ranked = rankPeopleFavoritesFirst(
-				merged,
-				favoritedIds,
-				(slice) => slice,
-			);
+			const ranked = rankPeopleFavoritesFirst(merged, favoritedIds, (slice) => [
+				...slice,
+			]);
 			return {
 				results: withPersonFavoriteFlags(ranked, favoritedIds),
 				page: data.page,
@@ -201,7 +200,10 @@ export const peopleRoute = new Elysia({
 				return status(400, { error: "Invalid id" });
 			}
 			if (!env.TMDB_API_KEY) {
-				return status(503, { error: "TMDb not configured", ...TMDB_UNCONFIGURED });
+				return status(503, {
+					error: "TMDb not configured",
+					...TMDB_UNCONFIGURED,
+				});
 			}
 			try {
 				const result = await addPersonFavorite({
@@ -236,7 +238,10 @@ export const peopleRoute = new Elysia({
 				return status(400, { error: "alertsEnabled required" });
 			}
 			if (body.alertsEnabled && !env.TMDB_API_KEY) {
-				return status(503, { error: "TMDb not configured", ...TMDB_UNCONFIGURED });
+				return status(503, {
+					error: "TMDb not configured",
+					...TMDB_UNCONFIGURED,
+				});
 			}
 			try {
 				const state = await setPersonFavoriteAlerts({
