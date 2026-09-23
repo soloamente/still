@@ -33,8 +33,10 @@ export function SenseRadialToolkit({
 
 	// `RadialToolkit` locks `html`/`body` overflow for touch sessions; Lenis
 	// must pause too or it keeps driving window scroll during drag-to-aim.
+	// Only undo our own pause — a drawer (`useLockDrawerScroll`) may already have
+	// stopped Lenis, and restarting it would scroll the page behind the sheet.
 	useEffect(() => {
-		if (!touchSession || !lenis) return;
+		if (!touchSession || !lenis || lenis.isStopped) return;
 		lenis.stop();
 		return () => lenis.start();
 	}, [touchSession, lenis]);

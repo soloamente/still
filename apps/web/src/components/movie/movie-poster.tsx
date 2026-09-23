@@ -53,7 +53,7 @@ export function MoviePoster({
 	posterBadge,
 	/** Appended to the link's accessible name (e.g. `, streaming alert on`). */
 	accessibleLabelSuffix,
-	/** Link opens a `RadialToolkit` via `Shift+F10` / ContextMenu — announce it. */
+	/** Link opens a `RadialToolkit` via `Shift+F10` / ContextMenu — advertise the keys. */
 	radialMenuTrigger = false,
 }: {
 	movieId: number;
@@ -209,8 +209,10 @@ export function MoviePoster({
 				href={detailHref}
 				className={shellClassName}
 				aria-label={linkAriaLabel}
-				aria-haspopup={radialMenuTrigger ? "menu" : undefined}
-				aria-keyshortcuts={radialMenuTrigger ? "Shift+F10" : undefined}
+				// No `aria-haspopup`: Enter navigates; the menu is a secondary shortcut.
+				aria-keyshortcuts={
+					radialMenuTrigger ? "Shift+F10 ContextMenu" : undefined
+				}
 			>
 				{posterInner}
 			</Link>

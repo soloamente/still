@@ -730,13 +730,19 @@ export function RadialToolkit({
 		const prevHtmlOverflow = html.style.overflow;
 		const prevBodyOverflow = body.style.overflow;
 		const prevHtmlOverscroll = html.style.overscrollBehavior;
+		const prevHtmlPaddingRight = html.style.paddingRight;
+		// Classic scrollbars: reserve the gutter so hiding it doesn't shift the page
+		// (same compensation as the web app's `useLockDrawerScroll`).
+		const scrollbarGutter = window.innerWidth - html.clientWidth;
 		html.style.overflow = "hidden";
 		body.style.overflow = "hidden";
 		html.style.overscrollBehavior = "none";
+		if (scrollbarGutter > 0) html.style.paddingRight = `${scrollbarGutter}px`;
 		return () => {
 			html.style.overflow = prevHtmlOverflow;
 			body.style.overflow = prevBodyOverflow;
 			html.style.overscrollBehavior = prevHtmlOverscroll;
+			html.style.paddingRight = prevHtmlPaddingRight;
 		};
 	}, [open, input]);
 

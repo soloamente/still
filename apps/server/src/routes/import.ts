@@ -79,12 +79,14 @@ export const importRoute = new Elysia({
 				userId: user.id,
 				files: uploaded,
 			});
-			invalidateWatchlistTonightSocial(user.id);
 		} catch (err) {
 			console.error("[import/letterboxd] apply failed", err);
 			return status(500, {
 				error: "Import failed — try again in a moment",
 			});
+		} finally {
+			// A partial import may already have written rows — always drop rankings.
+			invalidateWatchlistTonightSocial(user.id);
 		}
 
 		if (applyResult.totalRows === 0) {
@@ -242,12 +244,14 @@ export const importRoute = new Elysia({
 					resolveTvId: (entry) => resolveAnilistMediaToTmdbTvId(entry.media),
 					ensureTv: ensureTvCached,
 				});
-				invalidateWatchlistTonightSocial(user.id);
 			} catch (err) {
 				console.error("[import/anilist] apply failed", err);
 				return status(500, {
 					error: "Import failed — try again in a moment",
 				});
+			} finally {
+				// A partial import may already have written rows — always drop rankings.
+				invalidateWatchlistTonightSocial(user.id);
 			}
 
 			const [prof] = await db

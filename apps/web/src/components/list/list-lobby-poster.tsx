@@ -320,8 +320,7 @@ export function ListLobbyPoster({
 				href={listHref}
 				className={cn(shellClassName, RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME)}
 				aria-label={`${displayTitle} — ${metaLine}, ${likesLine}`}
-				aria-haspopup="menu"
-				aria-keyshortcuts="Shift+F10"
+				aria-keyshortcuts="Shift+F10 ContextMenu"
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
 				onKeyDown={onKeyDown}

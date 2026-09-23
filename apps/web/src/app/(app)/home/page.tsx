@@ -1005,7 +1005,7 @@ async function HomeLobbyBody({
 										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
 											At home — titles TMDb lists with subscription streaming in
 											the catalogue region. You can set your streaming region
-											(or all regions) in{" "}
+											(or all countries) in{" "}
 											<Link
 												href="/me/settings/catalogue"
 												className="underline underline-offset-2 hover:text-foreground"
@@ -1021,7 +1021,7 @@ async function HomeLobbyBody({
 										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
 											At home — shows TMDb lists with subscription streaming in
 											the catalogue region from today’s first-air dates onward.
-											Set your streaming region (or all regions) in{" "}
+											Set your streaming region (or all countries) in{" "}
 											<Link
 												href="/me/settings/catalogue"
 												className="underline underline-offset-2 hover:text-foreground"
