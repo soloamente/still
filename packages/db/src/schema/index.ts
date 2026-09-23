@@ -20,6 +20,7 @@ export * from "./social";
 export * from "./staff";
 export * from "./streak";
 export * from "./taste-dismissed-movie";
+export * from "./title-recommendation";
 export * from "./tv";
 export * from "./tv-watch";
 export * from "./visibility";

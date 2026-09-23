@@ -4,6 +4,7 @@ import {
 	check,
 	index,
 	integer,
+	jsonb,
 	pgTable,
 	smallint,
 	text,
@@ -21,6 +22,21 @@ export type LogWatchVenue = "theaters" | "streaming";
 
 /** TV diary granularity — whole series, one season, or a single episode. */
 export type TvLogScope = "show" | "season" | "episode";
+
+/** Category keys for optional per-dimension diary ratings (Today on Sense). */
+export const LOG_CATEGORY_KEYS = [
+	"plot",
+	"characters",
+	"writing",
+	"acting",
+	"visuals",
+	"sound",
+	"enjoyment",
+] as const;
+export type LogCategoryKey = (typeof LOG_CATEGORY_KEYS)[number];
+
+/** Tenths 0–100 per category; omitted keys were skipped by the patron. */
+export type LogCategoryRatings = Partial<Record<LogCategoryKey, number>>;
 
 /**
  * A "watch" record — Letterboxd's diary entry. Exactly one of `movieId` or `tvId`
@@ -50,11 +66,18 @@ export const log = pgTable(
 		note: text("note"),
 		containsSpoilers: boolean("contains_spoilers").default(false).notNull(),
 		visibility: contentVisibility("visibility").default("public").notNull(),
-		/** In-cinema vs at-home — drives `/diary?venue=` filtering; default **streaming**. */
+		/**
+		 * In-cinema vs at-home — drives `/diary?venue=` filtering.
+		 * `null` = unset (legacy rows and Today instant-log path show in both venue slices).
+		 * New Quick Log still defaults to **streaming** when the column is omitted.
+		 */
 		watchVenue: text("watch_venue")
-			.$type<LogWatchVenue>()
-			.notNull()
+			.$type<LogWatchVenue | null>()
 			.default("streaming"),
+		/** Optional structured category scores (tenths 0–100) alongside overall `rating`. */
+		categoryRatings: jsonb(
+			"category_ratings",
+		).$type<LogCategoryRatings | null>(),
 		/** TV-only — `show` is default for legacy rows and whole-series logs. */
 		logScope: text("log_scope").$type<TvLogScope>().notNull().default("show"),
 		seasonNumber: smallint("season_number"),
