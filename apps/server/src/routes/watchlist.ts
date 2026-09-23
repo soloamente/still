@@ -18,14 +18,12 @@ import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
 import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
-import {
-	patronHasPlanFeature,
-	planFeatureRequiredBody,
-} from "../lib/plan-feature-access";
+import { patronHasPlanFeature } from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 import { recordProductEvent } from "../lib/record-product-event";
 import { routeBody } from "../lib/route-body";
 import { traceTiming } from "../lib/trace-timing";
+import { handleWatchlistAlertPatch } from "../lib/watchlist-alert-patch";
 import {
 	WATCHLIST_NO_PROVIDERS_TMDB_JSON,
 	watchlistProvidersTmdbJsonForRegion,
@@ -555,56 +553,68 @@ export const watchlistRoute = new Elysia({
 				tvId?: number;
 				enabled: boolean;
 			}>(rawBody);
-			if ((body.movieId == null) === (body.tvId == null)) {
-				return status(400, "Send exactly one of movieId or tvId");
-			}
-			// Owner-scoped: a missing row (not on this patron's watchlist) → 404 below.
-			const itemWhere = and(
-				eq(watchlistItem.userId, user.id),
-				body.movieId != null
-					? eq(watchlistItem.movieId, body.movieId)
-					: eq(watchlistItem.tvId, body.tvId as number),
-			);
-			// Turning alerts off is always allowed (e.g. after a downgrade).
-			if (body.enabled) {
-				// Region first: without a chosen region the job would evaluate US,
-				// so "we'll tell you" would be a promise nobody keeps.
-				const prefs = await loadPatronPreferences(user.id);
-				const chosenRegion = readCatalogWatchRegionPrefOrNull(prefs);
-				if (chosenRegion == null) {
-					return status(409, {
-						error: "Set your streaming region first",
-						code: "NEEDS_REGION" as const,
-					});
-				}
-				const entitlements = await loadPatronEntitlements(user.id);
-				if (!patronHasPlanFeature(entitlements, "watchlist_alerts")) {
-					return status(403, {
-						...planFeatureRequiredBody(
+			// One prefs read per request, shared by the region gate and preview.
+			let prefsPromise: Promise<Record<string, unknown> | null> | null = null;
+			const prefs = () => {
+				prefsPromise ??= loadPatronPreferences(user.id);
+				return prefsPromise;
+			};
+			const result = await handleWatchlistAlertPatch(
+				{ userId: user.id, body },
+				{
+					loadChosenRegion: async () =>
+						readCatalogWatchRegionPrefOrNull(await prefs()),
+					hasAlertsFeature: async (userId) =>
+						patronHasPlanFeature(
+							await loadPatronEntitlements(userId),
 							"watchlist_alerts",
-							"Streaming alerts are part of Attuned",
 						),
-						preview: await loadWatchlistAlertPreview(
-							user.id,
-							chosenRegion,
-							prefs,
-						),
-					});
+					loadPreview: async (userId, region) =>
+						loadWatchlistAlertPreview(userId, region, await prefs()),
+					setAlert: async (userId, target, enabled) => {
+						// Owner-scoped: a title not on this patron's watchlist updates nothing.
+						const updated = await db
+							.update(watchlistItem)
+							.set({ streamingAlert: enabled })
+							.where(
+								and(
+									eq(watchlistItem.userId, userId),
+									target.listingKind === "movie"
+										? eq(watchlistItem.movieId, target.tmdbId)
+										: eq(watchlistItem.tvId, target.tmdbId),
+								),
+							)
+							.returning({ movieId: watchlistItem.movieId });
+						return updated.length > 0;
+					},
+					onUpdated: async (userId, target, enabled) => {
+						// Cached ranked rows carry `streaming_alert` — drop them.
+						invalidateWatchlistTonightSocial(userId);
+						await recordProductEvent(userId, "watchlist.alert_requested", {
+							enabled,
+							listingKind: target.listingKind,
+						});
+					},
+				},
+			);
+			switch (result.status) {
+				case 200:
+					return result.body;
+				case 400:
+					return status(400, result.body);
+				case 401:
+					return status(401, result.body);
+				case 403:
+					return status(403, result.body);
+				case 404:
+					return status(404, result.body);
+				case 409:
+					return status(409, result.body);
+				default: {
+					const unhandled: never = result;
+					throw new Error(`Unhandled alert result: ${String(unhandled)}`);
 				}
 			}
-			const updated = await db
-				.update(watchlistItem)
-				.set({ streamingAlert: body.enabled })
-				.where(itemWhere)
-				.returning({ movieId: watchlistItem.movieId });
-			if (updated.length === 0) return status(404, "Not on your watchlist");
-			// Cached ranked rows carry `streaming_alert` — drop them.
-			invalidateWatchlistTonightSocial(user.id);
-			await recordProductEvent(user.id, "watchlist.alert_requested", {
-				enabled: body.enabled,
-				listingKind: body.movieId != null ? "movie" : "tv",
-			});
-			return { ok: true as const, enabled: body.enabled };
 		},
 		{
 			body: t.Object({
