@@ -10,6 +10,7 @@ import {
 	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
 	readCatalogWatchRegionPrefOrNull,
+	readCatalogWatchRegionSignal,
 	readWatchlistStreamingAlertsPref,
 	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
@@ -197,6 +198,21 @@ describe("readCatalogWatchRegionPrefOrNull", () => {
 		).toBe("IT");
 		expect(
 			readCatalogWatchRegionPrefOrNull({ catalogTmdbWatchRegion: "xyz" }),
+		).toBeNull();
+	});
+});
+
+describe("readCatalogWatchRegionSignal", () => {
+	test("ISO region, explicit ALL, or null", () => {
+		expect(readCatalogWatchRegionSignal(null)).toBeNull();
+		expect(readCatalogWatchRegionSignal({ catalogTmdbWatchRegion: "it" })).toBe(
+			"IT",
+		);
+		expect(
+			readCatalogWatchRegionSignal({ catalogTmdbWatchRegion: " all " }),
+		).toBe("ALL");
+		expect(
+			readCatalogWatchRegionSignal({ catalogTmdbWatchRegion: "WORLD" }),
 		).toBeNull();
 	});
 });

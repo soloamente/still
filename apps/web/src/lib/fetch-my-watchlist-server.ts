@@ -22,6 +22,8 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 	totalPages: number;
 	totalResults: number;
 	needsRegion: boolean;
+	/** ISO code, `"ALL"` (all countries), or null (unset); `undefined` when unknown. */
+	region: string | null | undefined;
 	failed: boolean;
 }> {
 	try {
@@ -40,6 +42,7 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 				totalPages: 0,
 				totalResults: 0,
 				needsRegion: false,
+				region: undefined,
 				failed: true,
 			};
 		}
@@ -48,6 +51,7 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 			total_pages?: number;
 			total_results?: number;
 			needs_region?: boolean;
+			region?: string | null;
 		} | null;
 		const rows = Array.isArray(data?.results) ? data.results : [];
 		const seeds = rows
@@ -61,6 +65,11 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 					? data.total_results
 					: seeds.length,
 			needsRegion: data?.needs_region === true,
+			// Older servers omit the field — treat as unknown so no guidance shows.
+			region:
+				typeof data?.region === "string" || data?.region === null
+					? data.region
+					: undefined,
 			failed: false,
 		};
 	} catch (err) {
@@ -70,6 +79,7 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 			totalPages: 0,
 			totalResults: 0,
 			needsRegion: false,
+			region: undefined,
 			failed: true,
 		};
 	}

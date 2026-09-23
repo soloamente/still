@@ -45,6 +45,7 @@ import {
 	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
 	readCatalogWatchRegionPrefOrNull,
+	readCatalogWatchRegionSignal,
 } from "../lib/watchlist-streaming-alerts";
 import {
 	rankWatchlistTonight,
@@ -374,6 +375,8 @@ export const watchlistRoute = new Elysia({
 			const watchRegion = readCatalogWatchRegionPref(prefs);
 			// Decision modes need an explicit region — the US fallback would mislead.
 			const chosenRegion = readCatalogWatchRegionPrefOrNull(prefs);
+			/** Lobby guidance only: ISO code, `"ALL"` (all countries), or null (unset). */
+			const region = readCatalogWatchRegionSignal(prefs);
 
 			// Hide-watched (Letterbox-shaped): drop any saved title with a diary log.
 			const whereClause = watchlistVisibleWhere(user.id, showAdultContent);
@@ -388,6 +391,7 @@ export const watchlistRoute = new Elysia({
 					total_pages: 0,
 					total_results: 0,
 					needs_region: true as const,
+					region,
 				};
 			}
 			if (order === "available" || order === "tonight") {
@@ -427,6 +431,7 @@ export const watchlistRoute = new Elysia({
 					),
 					total_pages: slice.totalPages,
 					total_results: slice.totalResults,
+					region,
 				};
 			}
 
@@ -488,6 +493,7 @@ export const watchlistRoute = new Elysia({
 				}),
 				total_pages: totalPages,
 				total_results: offset + rows.length,
+				region,
 			};
 		},
 		{

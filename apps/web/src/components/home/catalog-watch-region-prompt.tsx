@@ -42,8 +42,18 @@ const REGION_SELECT_OPTIONS = CATALOG_WATCH_REGION_OPTIONS.map(
 /**
  * First-run prompt on `/home`: signed-in patrons who have not saved
  * `catalogTmdbWatchRegion` yet — same modal shell as list delete / account leave confirms.
+ *
+ * On-demand use (e.g. `/watchlist` guidance): pass `onClose` — the prompt becomes
+ * dismissible (Escape / backdrop) and reports `saved` so the caller can refresh.
+ * Re-open by toggling `open` false → true.
  */
-export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
+export function CatalogWatchRegionPrompt({
+	open,
+	onClose,
+}: {
+	open: boolean;
+	onClose?: (saved: boolean) => void;
+}) {
 	const reduceMotion = useReducedMotion();
 	const isMobileVaul = useSyncExternalStore(
 		subscribeAppMobileVaul,
@@ -72,6 +82,18 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 		return () => setWatchRegionPromptActive(false);
 	}, [visible]);
 
+	const dismissible = onClose != null;
+	useEffect(() => {
+		if (!visible || !dismissible) return;
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "Escape") return;
+			setVisible(false);
+			onClose?.(false);
+		};
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
+	}, [visible, dismissible, onClose]);
+
 	useEffect(() => {
 		if (!visible) return;
 		const prev = document.body.style.overflow;
@@ -93,6 +115,7 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 					: "Catalogue region saved.",
 			);
 			setVisible(false);
+			onClose?.(true);
 		} catch (err) {
 			console.error(err);
 			toast.error("Could not save — try Account settings.");
@@ -230,7 +253,10 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 		return (
 			<Drawer.Root
 				open={visible}
-				onOpenChange={setVisible}
+				onOpenChange={(next) => {
+					setVisible(next);
+					if (!next) onClose?.(false);
+				}}
 				handleOnly
 				shouldScaleBackground={!reduceMotion}
 			>
@@ -273,6 +299,14 @@ export function CatalogWatchRegionPrompt({ open }: { open: boolean }) {
 					transition={backdropTransition}
 					aria-hidden
 					className={APP_MODAL_OVERLAY_CLASS}
+					onClick={
+						dismissible
+							? () => {
+									setVisible(false);
+									onClose?.(false);
+								}
+							: undefined
+					}
 				>
 					<motion.div
 						role="dialog"

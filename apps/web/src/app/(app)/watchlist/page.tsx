@@ -51,12 +51,13 @@ async function WatchlistLobbyData({
 				totalPages={1}
 				totalResults={seeds.length}
 				needsRegion={false}
+				region={undefined}
 				failed={failed}
 			/>
 		);
 	}
 
-	const { seeds, totalPages, totalResults, needsRegion, failed } =
+	const { seeds, totalPages, totalResults, needsRegion, region, failed } =
 		await fetchMyWatchlistServer({ order });
 	return (
 		<WatchlistLobbyCatalogue
@@ -66,6 +67,7 @@ async function WatchlistLobbyData({
 			totalPages={totalPages}
 			totalResults={totalResults}
 			needsRegion={needsRegion}
+			region={region}
 			failed={failed}
 		/>
 	);

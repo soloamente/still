@@ -96,6 +96,21 @@ export function readCatalogWatchRegionPrefOrNull(
 	return /^[A-Z]{2}$/.test(region) ? region : null;
 }
 
+/**
+ * `/watchlist` region guidance signal: the ISO region when chosen, `"ALL"`
+ * when the patron explicitly picked all countries, else null (never chosen).
+ */
+export function readCatalogWatchRegionSignal(
+	preferences: Record<string, unknown> | null | undefined,
+): string | null {
+	const chosen = readCatalogWatchRegionPrefOrNull(preferences);
+	if (chosen) return chosen;
+	const raw = preferences?.[PROFILE_PREF_CATALOG_TMDB_WATCH_REGION];
+	return typeof raw === "string" && raw.trim().toUpperCase() === "ALL"
+		? "ALL"
+		: null;
+}
+
 /** Flatrate subscription services available in a TMDb watch region. */
 export function flatrateProvidersForRegion(
 	watchProviders: TmdbWatchProvidersByCountry | undefined,
