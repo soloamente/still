@@ -1,6 +1,10 @@
 import { describe, expect, test } from "bun:test";
 
-import { patronWeekDayMarks, startOfPatronWeek } from "./today-week-pulse";
+import {
+	patronWeekDayMarks,
+	startOfPatronWeek,
+	summarizeTodayWeekPulse,
+} from "./today-week-pulse";
 
 describe("startOfPatronWeek", () => {
 	test("Monday 00:00 in America/New_York for a mid-week instant", () => {
@@ -78,5 +82,132 @@ describe("patronWeekDayMarks", () => {
 	test("defaults now to current instant when omitted", () => {
 		const marks = patronWeekDayMarks([], "UTC");
 		expect(marks).toHaveLength(7);
+	});
+});
+
+describe("summarizeTodayWeekPulse", () => {
+	// Thu 2026-09-24 — ISO week Mon Sep 21 … Sun Sep 27
+	const now = new Date("2026-09-24T18:00:00.000Z");
+
+	test("empty week", () => {
+		expect(summarizeTodayWeekPulse([], "UTC", now)).toEqual({
+			titlesLogged: 0,
+			titlesRated: 0,
+			dayMarks: [false, false, false, false, false, false, false],
+			empty: true,
+		});
+	});
+
+	test("counts distinct titles — rewatches and TV episode logs collapse", () => {
+		const pulse = summarizeTodayWeekPulse(
+			[
+				{
+					watchedAt: "2026-09-21T10:00:00.000Z",
+					rating: null,
+					movieId: 1,
+					tvId: null,
+				},
+				{
+					watchedAt: "2026-09-22T10:00:00.000Z",
+					rating: null,
+					movieId: 1,
+					tvId: null,
+				},
+				{
+					watchedAt: "2026-09-22T11:00:00.000Z",
+					rating: null,
+					movieId: null,
+					tvId: 9,
+				},
+				{
+					watchedAt: "2026-09-23T11:00:00.000Z",
+					rating: null,
+					movieId: null,
+					tvId: 9,
+				},
+			],
+			"UTC",
+			now,
+		);
+		expect(pulse.titlesLogged).toBe(2);
+		expect(pulse.titlesRated).toBe(0);
+		expect(pulse.empty).toBe(false);
+		expect(pulse.dayMarks).toEqual([
+			true,
+			true,
+			true,
+			false,
+			false,
+			false,
+			false,
+		]);
+	});
+
+	test("a title is rated when any week log has a score — 0 counts as rated", () => {
+		const pulse = summarizeTodayWeekPulse(
+			[
+				{
+					watchedAt: "2026-09-21T10:00:00.000Z",
+					rating: null,
+					movieId: 1,
+					tvId: null,
+				},
+				{
+					watchedAt: "2026-09-22T10:00:00.000Z",
+					rating: 80,
+					movieId: 1,
+					tvId: null,
+				},
+				{
+					watchedAt: "2026-09-22T12:00:00.000Z",
+					rating: 0,
+					movieId: 2,
+					tvId: null,
+				},
+				{
+					watchedAt: "2026-09-23T12:00:00.000Z",
+					rating: null,
+					movieId: 3,
+					tvId: null,
+				},
+			],
+			"UTC",
+			now,
+		);
+		expect(pulse.titlesLogged).toBe(3);
+		expect(pulse.titlesRated).toBe(2);
+	});
+
+	test("ignores logs outside the patron week (Date inputs accepted)", () => {
+		const pulse = summarizeTodayWeekPulse(
+			[
+				{
+					watchedAt: new Date("2026-09-15T12:00:00.000Z"),
+					rating: 70,
+					movieId: 1,
+					tvId: null,
+				},
+			],
+			"UTC",
+			now,
+		);
+		expect(pulse.empty).toBe(true);
+		expect(pulse.titlesRated).toBe(0);
+	});
+
+	test("week boundary follows the patron timezone", () => {
+		// Mon 02:00 UTC = Sun Sep 20 22:00 EDT → previous week in New York
+		const rows = [
+			{
+				watchedAt: "2026-09-21T02:00:00.000Z",
+				rating: null,
+				movieId: 5,
+				tvId: null,
+			},
+		];
+		expect(summarizeTodayWeekPulse(rows, "UTC", now).titlesLogged).toBe(1);
+		expect(
+			summarizeTodayWeekPulse(rows, "America/New_York", now).titlesLogged,
+		).toBe(0);
 	});
 });

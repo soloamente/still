@@ -42,6 +42,7 @@ import { staffRoute } from "../routes/staff";
 import { staffFeedbackRoute } from "../routes/staff-feedback";
 import { streaksRoute } from "../routes/streaks";
 import { tasteRoute } from "../routes/taste";
+import { todayRoute } from "../routes/today";
 import { tvRoute } from "../routes/tv";
 import { tvWatchRoute } from "../routes/tv-watch";
 import { watchlistRoute } from "../routes/watchlist";
@@ -136,6 +137,7 @@ export const app = new Elysia({ aot: false })
 	.use(profilesRoute)
 	.use(productEventsRoute)
 	.use(tasteRoute)
+	.use(todayRoute)
 	.use(challengesRoute)
 	.use(streaksRoute)
 	.use(importRoute)

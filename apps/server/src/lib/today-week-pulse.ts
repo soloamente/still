@@ -159,16 +159,8 @@ export function startOfPatronWeek(now: Date, timeZone: string): Date {
 	);
 }
 
-/**
- * Seven booleans for Mon→Sun of the current patron week: true when any watch
- * falls on that calendar day in `timeZone`.
- */
-export function patronWeekDayMarks(
-	watchedAtIsoList: readonly string[],
-	timeZone: string,
-	now = new Date(),
-): boolean[] {
-	const tz = normalizePatronTimeZone(timeZone);
+/** `YYYY-MM-DD` keys for Mon→Sun of the patron week containing `now` (normalized `tz`). */
+function patronWeekDayKeys(now: Date, tz: string): string[] {
 	const weekStart = startOfPatronWeek(now, tz);
 	const startParts = getZonedParts(weekStart, tz);
 
@@ -184,6 +176,20 @@ export function patronWeekDayMarks(
 		const day = String(wall.day).padStart(2, "0");
 		dayKeysInWeek.push(`${wall.year}-${month}-${day}`);
 	}
+	return dayKeysInWeek;
+}
+
+/**
+ * Seven booleans for Mon→Sun of the current patron week: true when any watch
+ * falls on that calendar day in `timeZone`.
+ */
+export function patronWeekDayMarks(
+	watchedAtIsoList: readonly string[],
+	timeZone: string,
+	now = new Date(),
+): boolean[] {
+	const tz = normalizePatronTimeZone(timeZone);
+	const dayKeysInWeek = patronWeekDayKeys(now, tz);
 
 	const watchedDayKeys = new Set<string>();
 	for (const iso of watchedAtIsoList) {
@@ -193,4 +199,64 @@ export function patronWeekDayMarks(
 	}
 
 	return dayKeysInWeek.map((key) => watchedDayKeys.has(key));
+}
+
+/** Diary log columns the week pulse needs (`rating` in tenths; 0 is a real score). */
+export type TodayWeekLogRow = {
+	watchedAt: Date | string;
+	rating: number | null;
+	movieId: number | null;
+	tvId: number | null;
+};
+
+/** `GET /api/today/week` payload — viewer's own stats only. */
+export type TodayWeekPulse = {
+	/** Distinct titles (rewatches and TV episode logs of one show collapse). */
+	titlesLogged: number;
+	/** Distinct titles with at least one scored log this week. */
+	titlesRated: number;
+	/** Mon→Sun in patron TZ. */
+	dayMarks: boolean[];
+	empty: boolean;
+};
+
+/**
+ * Aggregate diary rows into the week pulse. Rows outside the patron week are
+ * ignored, so callers may over-fetch around the UTC window.
+ */
+export function summarizeTodayWeekPulse(
+	rows: readonly TodayWeekLogRow[],
+	timeZone: string,
+	now = new Date(),
+): TodayWeekPulse {
+	const tz = normalizePatronTimeZone(timeZone);
+	const dayKeysInWeek = patronWeekDayKeys(now, tz);
+	const weekDaySet = new Set(dayKeysInWeek);
+
+	const watchedDayKeys = new Set<string>();
+	const loggedTitles = new Set<string>();
+	const ratedTitles = new Set<string>();
+
+	for (const row of rows) {
+		const at =
+			row.watchedAt instanceof Date
+				? row.watchedAt
+				: new Date(Date.parse(row.watchedAt));
+		if (!Number.isFinite(at.getTime())) continue;
+		const dayKey = zonedDayKey(at, tz);
+		if (!weekDaySet.has(dayKey)) continue;
+
+		const titleKey =
+			row.movieId != null ? `movie:${row.movieId}` : `tv:${row.tvId}`;
+		watchedDayKeys.add(dayKey);
+		loggedTitles.add(titleKey);
+		if (row.rating != null) ratedTitles.add(titleKey);
+	}
+
+	return {
+		titlesLogged: loggedTitles.size,
+		titlesRated: ratedTitles.size,
+		dayMarks: dayKeysInWeek.map((key) => watchedDayKeys.has(key)),
+		empty: loggedTitles.size === 0,
+	};
 }
