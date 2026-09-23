@@ -11,7 +11,6 @@ import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
 import { devotedRequestRoute } from "../routes/devoted-request";
-import { discordActivityFundingRoute } from "../routes/discord-activity-funding";
 import { feedRoute } from "../routes/feed";
 import { feedbackRoute } from "../routes/feedback";
 import { followsRoute } from "../routes/follows";
@@ -142,7 +141,6 @@ export const app = new Elysia({ aot: false })
 	.use(importRoute)
 	.use(meDataRoute)
 	.use(meDiscordRoute)
-	.use(discordActivityFundingRoute)
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(feedbackRoute)

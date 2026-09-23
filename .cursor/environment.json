@@ -1,0 +1,20 @@
+{
+	"name": "Sense (still) monorepo",
+	"install": "bash .cursor/install.sh",
+	"start": "bash .cursor/start.sh",
+	"terminals": [
+		{
+			"name": "neon-proxy",
+			"command": "bash .cursor/run-neon-proxy.sh"
+		},
+		{
+			"name": "server",
+			"command": "bash .cursor/run-server.sh"
+		},
+		{
+			"name": "web",
+			"command": "bash .cursor/run-web.sh"
+		}
+	],
+	"ports": [3000, 3001, 4444]
+}
