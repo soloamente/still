@@ -1023,7 +1023,7 @@ export async function patchWatchlistAlert(args: {
 }): Promise<
 	| { ok: true; enabled: boolean }
 	| { ok: false; planRequired: true; preview: WatchlistAlertPreview }
-	| { ok: false; planRequired: false }
+	| { ok: false; planRequired: false; needsRegion: boolean }
 > {
 	const response = await fetch(
 		new URL("/api/watchlist/alert", stillApiOrigin()),
@@ -1039,7 +1039,7 @@ export async function patchWatchlistAlert(args: {
 			}),
 		},
 	).catch(() => null);
-	if (!response) return { ok: false, planRequired: false };
+	if (!response) return { ok: false, planRequired: false, needsRegion: false };
 	const data = (await response.json().catch(() => null)) as {
 		enabled?: boolean;
 		code?: string;
@@ -1054,7 +1054,12 @@ export async function patchWatchlistAlert(args: {
 	) {
 		return { ok: false, planRequired: true, preview: data.preview };
 	}
-	return { ok: false, planRequired: false };
+	// 409: alerts are region-scoped — enabling without a chosen region is refused.
+	return {
+		ok: false,
+		planRequired: false,
+		needsRegion: response.status === 409 && data?.code === "NEEDS_REGION",
+	};
 }
 
 export async function deleteLog(logId: string) {

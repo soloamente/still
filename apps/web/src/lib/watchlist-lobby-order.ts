@@ -45,6 +45,10 @@ export type WatchlistLobbyRow = {
 	tonight_reason?: string | null;
 	/** Patron asked to be alerted when this title starts streaming in their region. */
 	streaming_alert?: boolean;
+	/** Region the patron chose (ISO alpha-2); `null` when unset — no US guess. */
+	streaming_region?: string | null;
+	/** Streams on a subscription service in `streaming_region`; `null` without one. */
+	streaming_in_region?: boolean | null;
 };
 
 export type WatchlistLobbyRowWithListing =
@@ -123,7 +127,12 @@ export function watchlistRowToPopularSeed(
 				? formatWatchlistStreamingPill(row.streaming_provider_name)
 				: null),
 		watchlistStreamingAlert: row.streaming_alert === true,
-		watchlistIsStreaming: Boolean(row.streaming_provider_name),
+		// Alerts only fire for the chosen region — without one the state is
+		// unknown (`undefined` hides the alert slot), never the US-fallback pill.
+		watchlistIsStreaming: row.streaming_region
+			? (row.streaming_in_region ?? undefined)
+			: undefined,
+		watchlistStreamingRegion: row.streaming_region ?? null,
 	};
 }
 

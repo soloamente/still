@@ -109,12 +109,23 @@ type WatchlistSelectRow = {
 	streamingAlert: boolean;
 };
 
-/** Lobby row shape shared by every `?order=` mode. */
+/**
+ * Lobby row shape shared by every `?order=` mode.
+ * `providerName` is the pill provider (legacy modes keep the US fallback);
+ * `chosenRegion` / `streamingInRegion` are the patron's own region only, so
+ * the alert affordance never promises an alert the job can't deliver.
+ */
 function toWatchlistRow(
 	row: WatchlistSelectRow,
-	providerName: string | null,
-	reason: string | null,
+	opts: {
+		providerName: string | null;
+		reason: string | null;
+		chosenRegion: string | null;
+		/** Streams on a flatrate service in `chosenRegion`; null without one. */
+		streamingInRegion: boolean | null;
+	},
 ) {
+	const { providerName, reason } = opts;
 	return {
 		item: row.item,
 		movie:
@@ -136,6 +147,8 @@ function toWatchlistRow(
 		streaming_provider_name: providerName,
 		tonight_reason: reason,
 		streaming_alert: row.streamingAlert,
+		streaming_region: opts.chosenRegion,
+		streaming_in_region: opts.chosenRegion ? opts.streamingInRegion : null,
 	};
 }
 
@@ -194,7 +207,8 @@ const WATCHLIST_ALERT_PREVIEW_POOL_LIMIT = 200;
 
 /**
  * 403 upsell payload for `PATCH /alert` — how many visible saves are not on a
- * subscription service in the patron's region (US fallback), plus 3 samples.
+ * subscription service in the patron's chosen region, plus 3 samples. Only
+ * reachable with a chosen region (the PATCH answers `NEEDS_REGION` first).
  */
 type WatchlistAlertPreviewSample = {
 	listingKind: "movie" | "tv";
@@ -203,12 +217,14 @@ type WatchlistAlertPreviewSample = {
 	posterPath: string | null;
 };
 
-async function loadWatchlistAlertPreview(userId: string): Promise<{
+async function loadWatchlistAlertPreview(
+	userId: string,
+	region: string,
+	prefs: Record<string, unknown> | null,
+): Promise<{
 	notStreamingCount: number;
 	sample: WatchlistAlertPreviewSample[];
 }> {
-	const prefs = await loadPatronPreferences(userId);
-	const region = readCatalogWatchRegionPref(prefs);
 	const rows = await db
 		.select({
 			movieTmdbId: movie.tmdbId,
@@ -390,7 +406,13 @@ export const watchlistRoute = new Elysia({
 				const slice = sliceWatchlistRankedPage(ranked, page, limit);
 				return {
 					results: slice.rows.map((r) =>
-						toWatchlistRow(r.row, r.providerName, r.reason),
+						toWatchlistRow(r.row, {
+							providerName: r.providerName,
+							reason: r.reason,
+							chosenRegion,
+							// Pool providers are evaluated in `chosenRegion` only.
+							streamingInRegion: r.providerName != null,
+						}),
 					),
 					total_pages: slice.totalPages,
 					total_results: slice.totalResults,
@@ -438,13 +460,20 @@ export const watchlistRoute = new Elysia({
 			});
 			const rows = fetched.slice(0, visibleCount);
 			return {
-				results: rows.map((row) =>
-					toWatchlistRow(
-						row,
-						primaryFlatrateProviderName(row.tmdbJson, watchRegion),
-						null,
-					),
-				),
+				results: rows.map((row) => {
+					// `watchRegion` === `chosenRegion` whenever one is chosen, so the
+					// same projection answers both the pill and "streams in region".
+					const providerName = primaryFlatrateProviderName(
+						row.tmdbJson,
+						watchRegion,
+					);
+					return toWatchlistRow(row, {
+						providerName,
+						reason: null,
+						chosenRegion,
+						streamingInRegion: providerName != null,
+					});
+				}),
 				total_pages: totalPages,
 				total_results: offset + rows.length,
 			};
@@ -524,6 +553,16 @@ export const watchlistRoute = new Elysia({
 			);
 			// Turning alerts off is always allowed (e.g. after a downgrade).
 			if (body.enabled) {
+				// Region first: without a chosen region the job would evaluate US,
+				// so "we'll tell you" would be a promise nobody keeps.
+				const prefs = await loadPatronPreferences(user.id);
+				const chosenRegion = readCatalogWatchRegionPrefOrNull(prefs);
+				if (chosenRegion == null) {
+					return status(409, {
+						error: "Set your streaming region first",
+						code: "NEEDS_REGION" as const,
+					});
+				}
 				const entitlements = await loadPatronEntitlements(user.id);
 				if (!patronHasPlanFeature(entitlements, "watchlist_alerts")) {
 					return status(403, {
@@ -531,7 +570,11 @@ export const watchlistRoute = new Elysia({
 							"watchlist_alerts",
 							"Streaming alerts are part of Attuned",
 						),
-						preview: await loadWatchlistAlertPreview(user.id),
+						preview: await loadWatchlistAlertPreview(
+							user.id,
+							chosenRegion,
+							prefs,
+						),
 					});
 				}
 			}

@@ -95,10 +95,39 @@ describe("watchlist decision seeds", () => {
 			streaming_provider_name: "Netflix",
 			tonight_reason: "Maya recommended",
 			streaming_alert: true,
+			streaming_region: "US",
+			streaming_in_region: true,
 		});
 		expect(seed.watchlistStreamingLabel).toBe("Maya recommended");
 		expect(seed.watchlistStreamingAlert).toBe(true);
 		expect(seed.watchlistIsStreaming).toBe(true);
+		expect(seed.watchlistStreamingRegion).toBe("US");
+	});
+	test("no chosen region → streaming unknown even with a US-fallback pill", () => {
+		const seed = watchlistRowToPopularSeed({
+			...base,
+			streaming_provider_name: "Netflix",
+			streaming_region: null,
+			streaming_in_region: null,
+		});
+		// Pill still shows (legacy US fallback) but the alert slot stays hidden.
+		expect(seed.watchlistStreamingLabel).toBe("Now on Netflix");
+		expect(seed.watchlistIsStreaming).toBeUndefined();
+		expect(seed.watchlistStreamingRegion).toBeNull();
+	});
+	test("chosen region drives the flag, not the pill provider", () => {
+		const off = watchlistRowToPopularSeed({
+			...base,
+			streaming_provider_name: null,
+			streaming_region: "IT",
+			streaming_in_region: false,
+		});
+		expect(off.watchlistIsStreaming).toBe(false);
+		const legacyPayload = watchlistRowToPopularSeed({
+			...base,
+			streaming_provider_name: "Netflix",
+		});
+		expect(legacyPayload.watchlistIsStreaming).toBeUndefined();
 	});
 	test("continue seed shows next episode and flags aired ones", () => {
 		const seed = tvWatchBundleToContinueSeed(

@@ -16,14 +16,9 @@ import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import type { WatchlistAlertPreview } from "@/lib/still-api-fetch";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import { watchlistAlertPreviewBodyCopy } from "@/lib/watchlist-streaming-display";
 
 const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
-
-function previewBodyCopy(count: number): string {
-	return count === 1
-		? "1 of your saved titles isn't streaming yet — Attuned tells you the day it lands."
-		: `${count} of your saved titles aren't streaming yet — Attuned tells you the day they land.`;
-}
 
 /**
  * Free-patron upsell after **Alert me when it streams** hits the plan gate —
@@ -174,7 +169,7 @@ export function WatchlistAlertPreviewDialog({
 								id={descriptionId}
 								className="mx-auto mt-3 w-full max-w-prose text-balance text-muted-foreground text-sm leading-snug sm:text-base"
 							>
-								{previewBodyCopy(preview.notStreamingCount)}
+								{watchlistAlertPreviewBodyCopy(preview.notStreamingCount)}
 							</p>
 
 							{preview.sample.length > 0 ? (

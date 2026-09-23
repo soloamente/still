@@ -54,6 +54,7 @@ import {
 	type WatchlistAlertPreview,
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
+import { watchlistAlertOnToastCopy } from "@/lib/watchlist-streaming-display";
 
 export type CataloguePosterTileProps = {
 	surface: CatalogueRadialSurface;
@@ -86,6 +87,8 @@ export type CataloguePosterTileProps = {
 	watchlistStreamingAlert?: boolean;
 	/** Watchlist — `undefined` (unknown) hides the alert slot, like `true`. */
 	watchlistIsStreaming?: boolean;
+	/** Watchlist — patron's chosen watch region, named in the alert toast. */
+	watchlistStreamingRegion?: string | null;
 	/** Watchlist lobby `?order=` — sent as `mode` on `watchlist.tile_action`. */
 	watchlistMode?: string;
 };
@@ -129,6 +132,7 @@ export function CataloguePosterTile({
 	onNotInterested,
 	watchlistStreamingAlert,
 	watchlistIsStreaming,
+	watchlistStreamingRegion,
 	watchlistMode,
 }: CataloguePosterTileProps) {
 	const isHomeLikeSurface =
@@ -388,7 +392,9 @@ export function CataloguePosterTile({
 				setAlertBusy(false);
 				if (result.ok) {
 					toast.success(
-						next ? "We'll tell you when it streams" : "Streaming alert off",
+						next
+							? watchlistAlertOnToastCopy(watchlistStreamingRegion)
+							: "Streaming alert off",
 					);
 					trackSenseProductEvent("watchlist.tile_action", {
 						mode: watchlistMode ?? "watchlist",
@@ -400,10 +406,20 @@ export function CataloguePosterTile({
 				setAlertOn(!next); // roll back
 				// Plan gate: show the Attuned preview instead of an error toast.
 				if (result.planRequired) setAlertPreview(result.preview);
+				else if (result.needsRegion)
+					toast.error("Set your streaming region first");
 				else toast.error("Couldn't update the alert");
 			},
 		);
-	}, [alertBusy, alertOn, listingKind, onOpenChange, tmdbId, watchlistMode]);
+	}, [
+		alertBusy,
+		alertOn,
+		listingKind,
+		onOpenChange,
+		tmdbId,
+		watchlistMode,
+		watchlistStreamingRegion,
+	]);
 
 	const closeAlertPreview = useCallback(() => setAlertPreview(null), []);
 

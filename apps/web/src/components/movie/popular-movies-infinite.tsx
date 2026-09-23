@@ -50,6 +50,8 @@ export type PopularMovieSeed = {
 	watchlistStreamingAlert?: boolean;
 	/** Watchlist lobby — title already streams in the patron region (hides "Alert me"). */
 	watchlistIsStreaming?: boolean;
+	/** Watchlist lobby — patron's chosen watch region (alert toast copy). */
+	watchlistStreamingRegion?: string | null;
 	/** Profile filmography — patron log id for radial edit/favorite on own profile. */
 	patronLogId?: string;
 	patronLogLiked?: boolean;
@@ -550,6 +552,7 @@ export function PopularMoviesInfinite({
 						watchlistIsStreaming={m.watchlistIsStreaming}
 						watchlistMode={catalogueTrackingMode}
 						watchlistStreamingAlert={m.watchlistStreamingAlert}
+						watchlistStreamingRegion={m.watchlistStreamingRegion}
 					/>
 				);
 			}
