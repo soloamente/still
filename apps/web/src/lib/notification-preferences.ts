@@ -14,6 +14,7 @@ export type NotificationKind =
 	| "challenge.completed"
 	| "review.liked"
 	| "chat.message"
+	| "recommendation.received"
 	| "tv.new_episode"
 	| "watchlist_now_streaming";
 
@@ -65,6 +66,13 @@ export const NOTIFICATION_KIND_SETTINGS: ReadonlyArray<{
 		group: "social",
 		label: "Chat messages",
 		description: "New messages in threads you belong to.",
+		defaultEnabled: true,
+	},
+	{
+		id: "recommendation.received",
+		group: "social",
+		label: "Recommendations",
+		description: "When someone you follow sends you a film or show.",
 		defaultEnabled: true,
 	},
 	{

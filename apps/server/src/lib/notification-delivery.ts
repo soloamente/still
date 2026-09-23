@@ -116,6 +116,13 @@ export const NOTIFICATION_KIND_REGISTRY = [
 		requiresOptIn: false,
 	},
 	{
+		id: "recommendation.received",
+		label: "Recommendations",
+		description: "When someone you follow sends you a film or show.",
+		defaultEnabled: true,
+		requiresOptIn: false,
+	},
+	{
 		id: "referral.qualified",
 		label: "Referral qualified",
 		description: "When someone you invited finishes onboarding.",

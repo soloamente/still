@@ -46,6 +46,7 @@ function snap(
 			"challenge.completed": true,
 			"review.liked": false,
 			"chat.message": true,
+			"recommendation.received": true,
 			"tv.new_episode": true,
 			watchlist_now_streaming: true,
 		},
