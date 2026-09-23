@@ -1,16 +1,17 @@
 "use client";
 
-import { buttonVariants } from "@still/ui/components/button";
 import { cn } from "@still/ui/lib/utils";
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-import {
-	TODAY_SUPPORTING_CARD_CLASSNAME,
-	TodayWeekCardSkeletonBody,
-} from "@/components/home/today-week-card-skeleton";
+import { TodayWeekCardSkeletonBody } from "@/components/home/today-week-card-skeleton";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
+import {
+	TODAY_CARD_ACTION_CLASSNAME as CARD_ACTION_CLASSNAME,
+	TODAY_CARD_HEADING_CLASSNAME,
+	TODAY_SUPPORTING_CARD_CLASSNAME,
+} from "@/lib/today-card-layout";
 import {
 	TODAY_WEEK_DAYS,
 	TODAY_WEEK_REFRESH_EVENT,
@@ -22,11 +23,6 @@ import {
 	fetchTodayWeekPulseClient,
 	writeTodayTimeZoneCookie,
 } from "@/lib/today-week-pulse-client";
-
-const CARD_ACTION_CLASSNAME = cn(
-	buttonVariants({ variant: "secondary", size: "pill" }),
-	"mt-auto self-start",
-);
 
 type WeekCardState = {
 	pulse: TodayWeekPulse | null;
@@ -97,7 +93,7 @@ export function TodayWeekCard({
 			aria-labelledby={headingId}
 			aria-busy={pulse == null && !failed}
 		>
-			<h3 id={headingId} className="font-medium text-muted-foreground text-sm">
+			<h3 id={headingId} className={TODAY_CARD_HEADING_CLASSNAME}>
 				Your week
 			</h3>
 
