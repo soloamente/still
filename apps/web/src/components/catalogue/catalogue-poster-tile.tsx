@@ -1,6 +1,7 @@
 "use client";
 
 import {
+	RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -579,6 +580,7 @@ export function CataloguePosterTile({
 					hoverEffect === "elevation"
 						? cataloguePosterHoverShellClassName(hoverStacking)
 						: null,
+					RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME,
 					"border-0 p-0",
 					className,
 				)}
@@ -589,6 +591,7 @@ export function CataloguePosterTile({
 			>
 				{children ?? (
 					<MoviePoster
+						radialMenuTrigger
 						avatarGroupItem={false}
 						className="min-w-0"
 						frameClassName={frameClassName}

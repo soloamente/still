@@ -53,6 +53,8 @@ export function MoviePoster({
 	posterBadge,
 	/** Appended to the link's accessible name (e.g. `, streaming alert on`). */
 	accessibleLabelSuffix,
+	/** Link opens a `RadialToolkit` via `Shift+F10` / ContextMenu — announce it. */
+	radialMenuTrigger = false,
 }: {
 	movieId: number;
 	title: string;
@@ -76,6 +78,7 @@ export function MoviePoster({
 	posterCaptionSubline?: string | null;
 	posterBadge?: ReactNode;
 	accessibleLabelSuffix?: string;
+	radialMenuTrigger?: boolean;
 }) {
 	/** Default `md` stretches with grid tracks so ultra-wide shells don’t strand tiny thumbnails. */
 	const dim =
@@ -206,6 +209,8 @@ export function MoviePoster({
 				href={detailHref}
 				className={shellClassName}
 				aria-label={linkAriaLabel}
+				aria-haspopup={radialMenuTrigger ? "menu" : undefined}
+				aria-keyshortcuts={radialMenuTrigger ? "Shift+F10" : undefined}
 			>
 				{posterInner}
 			</Link>

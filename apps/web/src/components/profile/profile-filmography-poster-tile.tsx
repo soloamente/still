@@ -1,6 +1,7 @@
 "use client";
 
 import {
+	RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -408,6 +409,7 @@ export function ProfileFilmographyPosterTile({
 			<fieldset
 				className={cn(
 					PROFILE_POSTER_SHELL_CLASSNAME,
+					RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME,
 					"border-0 p-0",
 					className,
 				)}
@@ -416,6 +418,7 @@ export function ProfileFilmographyPosterTile({
 				onKeyDown={onKeyDown}
 			>
 				<MoviePoster
+					radialMenuTrigger
 					avatarGroupItem={false}
 					className="min-w-0"
 					frameClassName={frameClassName}

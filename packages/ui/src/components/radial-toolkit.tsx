@@ -325,6 +325,71 @@ function suppressNextClick() {
 }
 
 /**
+ * Put on every long-press surface: iOS decides on its link preview before the
+ * 450ms hold fires, so the callout must be off statically (coarse pointers only).
+ */
+export const RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME =
+	"[@media(pointer:coarse)]:[-webkit-touch-callout:none]";
+
+/** How long after a keyboard close we keep watching for the trigger being removed. */
+const FOCUS_FALLBACK_WATCH_MS = 5000;
+
+/**
+ * Keyboard close: focus the trigger. Actions like Remove from watchlist delete
+ * the tile *after* the menu closes, so watch its grid briefly and, if the
+ * trigger disappears while it held focus, move to the next (else previous)
+ * link in that grid, else the grid itself.
+ */
+function restoreRadialTriggerFocus(trigger: HTMLElement) {
+	const grid = radialTriggerGrid(trigger);
+	const links = grid
+		? Array.from(grid.querySelectorAll<HTMLElement>("a[href]"))
+		: [];
+	const index = links.indexOf(trigger);
+	const neighbors =
+		index >= 0
+			? [...links.slice(index + 1), ...links.slice(0, index).reverse()]
+			: [];
+	const focusFallback = () => {
+		const next = neighbors.find((el) => el.isConnected);
+		if (next) next.focus({ preventScroll: true });
+		else if (grid?.isConnected) {
+			if (!grid.hasAttribute("tabindex")) grid.setAttribute("tabindex", "-1");
+			grid.focus({ preventScroll: true });
+		}
+	};
+	if (!trigger.isConnected) {
+		focusFallback();
+		return;
+	}
+	trigger.focus({ preventScroll: true });
+	if (!grid || typeof MutationObserver === "undefined") return;
+	const observer = new MutationObserver(() => {
+		if (trigger.isConnected) return;
+		observer.disconnect();
+		window.clearTimeout(stopTimer);
+		const active = document.activeElement;
+		// Only take focus back if nobody else claimed it (e.g. an opened sheet).
+		if (active === null || active === document.body) focusFallback();
+	});
+	observer.observe(grid, { childList: true, subtree: true });
+	const stopTimer = window.setTimeout(
+		() => observer.disconnect(),
+		FOCUS_FALLBACK_WATCH_MS,
+	);
+}
+
+/** Closest list/grid ancestor holding sibling poster links. */
+function radialTriggerGrid(trigger: HTMLElement): HTMLElement | null {
+	let node = trigger.parentElement;
+	while (node && node !== document.body) {
+		if (node.querySelectorAll("a[href]").length > 1) return node;
+		node = node.parentElement;
+	}
+	return null;
+}
+
+/**
  * Opens the radial toolkit three ways:
  * - **Mouse:** hold right-click and drag to aim; release to confirm.
  * - **Touch:** long-press (~450ms, cancelled by >10px travel or early lift),
@@ -351,7 +416,7 @@ export function useRadialToolkitAnchor() {
 			draggingRef.current = false;
 			const returnTo = returnFocusRef.current;
 			returnFocusRef.current = null;
-			if (returnTo?.isConnected) returnTo.focus({ preventScroll: true });
+			if (returnTo) restoreRadialTriggerFocus(returnTo);
 		}
 	}, []);
 
@@ -362,13 +427,14 @@ export function useRadialToolkitAnchor() {
 
 	const startLongPress = useCallback((event: ReactPointerEvent) => {
 		longPressCleanupRef.current?.();
-		const element = event.currentTarget as HTMLElement;
 		const pointerId = event.pointerId;
 		const start = { x: event.clientX, y: event.clientY };
 		let fired = false;
 
-		// Only after the hold fires: blocks scroll so the finger can aim.
-		// Before that, `touch-action` stays untouched so the grid scrolls normally.
+		// Best-effort only: Chrome marks `touchmove` non-cancelable when no blocking
+		// listener existed at touchstart, so this can't stop a pan there. The real
+		// guard is the toolkit's page scroll lock while a touch session is open;
+		// tap-after-lift stays the reliable touch model.
 		const blockScroll = (touchEvent: TouchEvent) => {
 			if (touchEvent.cancelable) touchEvent.preventDefault();
 		};
@@ -378,10 +444,7 @@ export function useRadialToolkitAnchor() {
 			window.removeEventListener("pointerup", onEnd);
 			window.removeEventListener("pointercancel", onEnd);
 			window.removeEventListener("touchmove", blockScroll);
-			if (fired) {
-				element.style.removeProperty("-webkit-touch-callout");
-				suppressNextClick();
-			}
+			if (fired) suppressNextClick();
 			longPressCleanupRef.current = null;
 		};
 		const onMove = (moveEvent: PointerEvent) => {
@@ -399,8 +462,6 @@ export function useRadialToolkitAnchor() {
 		};
 		const timer = window.setTimeout(() => {
 			fired = true;
-			// iOS reads this when its link callout would appear (~500ms) — set only once we own the gesture.
-			element.style.setProperty("-webkit-touch-callout", "none");
 			window.addEventListener("touchmove", blockScroll, { passive: false });
 			window.getSelection()?.removeAllRanges();
 			draggingRef.current = true;
@@ -656,6 +717,27 @@ export function RadialToolkit({
 		if (!open) return;
 		phaseRef.current = input === "keyboard" ? "tap" : "drag";
 		tapArmedRef.current = false;
+	}, [open, input]);
+
+	// Touch sessions lock page scroll: Chrome can't cancel the in-flight
+	// `touchmove` stream, so drag-to-aim would otherwise pan the grid under the
+	// overlay. Hosts with a smooth-scroll engine (Lenis) pause it themselves.
+	// Cleanup runs on every close path (select, dismiss, unmount).
+	useEffect(() => {
+		if (!open || input !== "touch") return;
+		const html = document.documentElement;
+		const body = document.body;
+		const prevHtmlOverflow = html.style.overflow;
+		const prevBodyOverflow = body.style.overflow;
+		const prevHtmlOverscroll = html.style.overscrollBehavior;
+		html.style.overflow = "hidden";
+		body.style.overflow = "hidden";
+		html.style.overscrollBehavior = "none";
+		return () => {
+			html.style.overflow = prevHtmlOverflow;
+			body.style.overflow = prevBodyOverflow;
+			html.style.overscrollBehavior = prevHtmlOverscroll;
+		};
 	}, [open, input]);
 
 	useEffect(() => {

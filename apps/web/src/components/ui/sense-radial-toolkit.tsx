@@ -5,6 +5,8 @@ import {
 	type RadialToolkitAnchor,
 	type RadialToolkitItem,
 } from "@still/ui/components/radial-toolkit";
+import { useLenis } from "lenis/react";
+import { useEffect } from "react";
 
 import { useSenseRadialLiquidSlot } from "@/components/ui/sense-radial-liquid";
 
@@ -26,6 +28,17 @@ export function SenseRadialToolkit({
 	title?: string;
 }) {
 	const liquid = useSenseRadialLiquidSlot();
+	const lenis = useLenis();
+	const touchSession = open && anchor?.input === "touch";
+
+	// `RadialToolkit` locks `html`/`body` overflow for touch sessions; Lenis
+	// must pause too or it keeps driving window scroll during drag-to-aim.
+	useEffect(() => {
+		if (!touchSession || !lenis) return;
+		lenis.stop();
+		return () => lenis.start();
+	}, [touchSession, lenis]);
+
 	return (
 		<RadialToolkit
 			open={open}

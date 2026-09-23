@@ -1,6 +1,7 @@
 "use client";
 
 import {
+	RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME,
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
@@ -317,8 +318,10 @@ export function ListLobbyPoster({
 		<>
 			<Link
 				href={listHref}
-				className={shellClassName}
+				className={cn(shellClassName, RADIAL_TOOLKIT_TOUCH_SURFACE_CLASSNAME)}
 				aria-label={`${displayTitle} — ${metaLine}, ${likesLine}`}
+				aria-haspopup="menu"
+				aria-keyshortcuts="Shift+F10"
 				onContextMenu={onContextMenu}
 				onPointerDown={onPointerDown}
 				onKeyDown={onKeyDown}
