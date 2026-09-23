@@ -3,6 +3,7 @@ import { describe, expect, test } from "bun:test";
 import {
 	formatWatchlistProviderQuery,
 	parseWatchlistProviderIds,
+	watchlistProviderIdsEqual,
 } from "./watchlist-provider-filter";
 
 describe("parseWatchlistProviderIds", () => {
@@ -18,5 +19,12 @@ describe("parseWatchlistProviderIds", () => {
 describe("formatWatchlistProviderQuery", () => {
 	test("sorts and joins ids", () => {
 		expect(formatWatchlistProviderQuery([350, 8])).toBe("8,350");
+	});
+});
+
+describe("watchlistProviderIdsEqual", () => {
+	test("compares sorted id lists", () => {
+		expect(watchlistProviderIdsEqual([8, 350], [8, 350])).toBe(true);
+		expect(watchlistProviderIdsEqual([8], [8, 350])).toBe(false);
 	});
 });

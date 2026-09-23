@@ -6,6 +6,7 @@ import {
 	type ReactNode,
 	useCallback,
 	useContext,
+	useEffect,
 	useMemo,
 	useState,
 } from "react";
@@ -17,15 +18,23 @@ import {
 	parseWatchlistLobbyOrder,
 	type WatchlistLobbyOrder,
 } from "@/lib/watchlist-lobby-order";
-import { parseWatchlistProviderIds } from "@/lib/watchlist-provider-filter";
+import {
+	parseWatchlistProviderIds,
+	watchlistProviderIdsEqual,
+} from "@/lib/watchlist-provider-filter";
 
 interface WatchlistLobbyParamsContextValue {
 	order: WatchlistLobbyOrder;
+	/** Active AND streaming filter from `?providers=` (optimistic while navigating). */
+	providers: readonly number[];
 	/** RSC seed sort currently mounted in the poster wall — null before first report. */
 	seedOrder: WatchlistLobbyOrder | null;
 	/** Total saves for the mounted grid — null until the catalogue reports page 1. */
 	gridTotalResults: number | null;
 	selectOrder: (order: WatchlistLobbyOrder) => void;
+	selectProvider: (providerId: number) => void;
+	removeProvider: (providerId: number) => void;
+	clearProviders: () => void;
 	reportSeedOrder: (order: WatchlistLobbyOrder) => void;
 	reportGridTotalResults: (
 		order: WatchlistLobbyOrder,
@@ -46,18 +55,66 @@ export function WatchlistLobbyParamsProvider({
 	const urlOrder = parseWatchlistLobbyOrder(searchParams.get("order"));
 	const urlProviders = parseWatchlistProviderIds(searchParams.get("providers"));
 	const orderState = useOptimisticLobbyParam(urlOrder);
+	const [providerOverride, setProviderOverride] = useState<number[] | null>(
+		null,
+	);
+	const providers = providerOverride ?? urlProviders;
 	const [seedOrder, setSeedOrder] = useState<WatchlistLobbyOrder | null>(null);
 	const [gridTotalResults, setGridTotalResults] = useState<number | null>(null);
+
+	useEffect(() => {
+		if (
+			providerOverride !== null &&
+			watchlistProviderIdsEqual(providerOverride, urlProviders)
+		) {
+			setProviderOverride(null);
+		}
+	}, [providerOverride, urlProviders]);
+
+	const pushProviders = useCallback(
+		(next: readonly number[]) => {
+			setProviderOverride([...next]);
+			setGridTotalResults(null);
+			navigate(
+				buildWatchlistLobbyHref({
+					order: orderState.value,
+					providers: next,
+				}),
+			);
+		},
+		[navigate, orderState.value],
+	);
 
 	const selectOrder = useCallback(
 		(order: WatchlistLobbyOrder) => {
 			orderState.setOptimistic(order);
 			// Drop the count until the new mode's RSC reports — avoids stale "N saves".
 			setGridTotalResults(null);
-			navigate(buildWatchlistLobbyHref({ order, providers: urlProviders }));
+			navigate(buildWatchlistLobbyHref({ order, providers }));
 		},
-		[navigate, orderState, urlProviders],
+		[navigate, orderState, providers],
 	);
+
+	const selectProvider = useCallback(
+		(providerId: number) => {
+			if (providers.includes(providerId)) return;
+			const next = [...providers, providerId].sort((a, b) => a - b);
+			pushProviders(next);
+		},
+		[providers, pushProviders],
+	);
+
+	const removeProvider = useCallback(
+		(providerId: number) => {
+			const next = providers.filter((id) => id !== providerId);
+			pushProviders(next);
+		},
+		[providers, pushProviders],
+	);
+
+	const clearProviders = useCallback(() => {
+		pushProviders([]);
+	}, [pushProviders]);
 
 	const reportSeedOrder = useCallback((order: WatchlistLobbyOrder) => {
 		setSeedOrder((prev) => (prev === order ? prev : order));
@@ -75,19 +132,27 @@ export function WatchlistLobbyParamsProvider({
 	const value = useMemo(
 		() => ({
 			order: orderState.value,
+			providers,
 			seedOrder,
 			gridTotalResults,
 			selectOrder,
+			selectProvider,
+			removeProvider,
+			clearProviders,
 			reportSeedOrder,
 			reportGridTotalResults,
 		}),
 		[
 			orderState.value,
+			providers,
 			gridTotalResults,
 			reportSeedOrder,
 			reportGridTotalResults,
 			seedOrder,
 			selectOrder,
+			selectProvider,
+			removeProvider,
+			clearProviders,
 		],
 	);
 

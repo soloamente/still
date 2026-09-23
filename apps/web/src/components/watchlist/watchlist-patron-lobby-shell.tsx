@@ -23,10 +23,13 @@ import { watchlistOrderGridIsStale } from "@/lib/watchlist-lobby-order";
  */
 export function WatchlistPatronLobbyShell({
 	top,
+	providerChrome,
 	children,
 }: {
 	/** Tonight hero — lives inside the lobby card so media bleed cannot paint over sticky chrome. */
 	top?: ReactNode;
+	/** Platform row + composite pill — streamed beside the filter row from layout. */
+	providerChrome?: ReactNode;
 	children: ReactNode;
 }) {
 	return (
@@ -49,6 +52,7 @@ export function WatchlistPatronLobbyShell({
 						)}
 					>
 						<WatchlistLobbyFilterRow />
+						{providerChrome}
 					</div>
 					<WatchlistLobbyGridSlot>{children}</WatchlistLobbyGridSlot>
 				</section>

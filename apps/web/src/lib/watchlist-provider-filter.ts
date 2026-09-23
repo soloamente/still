@@ -23,3 +23,15 @@ export function parseWatchlistProviderIds(
 export function formatWatchlistProviderQuery(ids: readonly number[]): string {
 	return [...ids].sort((a, b) => a - b).join(",");
 }
+
+/** Optimistic provider chip state — sorted id lists compared element-wise. */
+export function watchlistProviderIdsEqual(
+	a: readonly number[],
+	b: readonly number[],
+): boolean {
+	if (a.length !== b.length) return false;
+	for (let i = 0; i < a.length; i += 1) {
+		if (a[i] !== b[i]) return false;
+	}
+	return true;
+}

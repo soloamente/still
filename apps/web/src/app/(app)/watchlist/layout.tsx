@@ -4,6 +4,7 @@ import { WatchlistChrome } from "@/components/watchlist/watchlist-lobby-chrome";
 import { WatchlistLobbyDisplayPrefsProvider } from "@/components/watchlist/watchlist-lobby-display-prefs";
 import { WatchlistLobbyTopRsc } from "@/components/watchlist/watchlist-lobby-top-rsc";
 import { WatchlistPatronLobbyShell } from "@/components/watchlist/watchlist-patron-lobby-shell";
+import { WatchlistProvidersCatalogRsc } from "@/components/watchlist/watchlist-providers-catalog-rsc";
 import { WatchlistTonightHeroSkeleton } from "@/components/watchlist/watchlist-tonight-hero-skeleton";
 
 /**
@@ -23,6 +24,11 @@ export default function WatchlistLayout({ children }: { children: ReactNode }) {
 					top={
 						<Suspense fallback={<WatchlistTonightHeroSkeleton />}>
 							<WatchlistLobbyTopRsc />
+						</Suspense>
+					}
+					providerChrome={
+						<Suspense fallback={null}>
+							<WatchlistProvidersCatalogRsc />
 						</Suspense>
 					}
 				>
