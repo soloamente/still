@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { LogCategoryRatingsPanel } from "@/components/log/log-category-ratings-panel";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
 import { clampLogRatingDisplay, logRatingToStored } from "@/lib/log-rating";
 import { patchLog } from "@/lib/still-api-fetch";
@@ -86,6 +87,15 @@ export function TodayPickHowWasIt({
 					Skip
 				</button>
 			</div>
+			<LogCategoryRatingsPanel
+				logId={logId}
+				overallDisplay={touched ? ratingDisplay : null}
+				// Fill the overall slider; the patron still confirms with Save rating.
+				onApplySuggestion={(display) => {
+					setRatingDisplay(display);
+					setTouched(true);
+				}}
+			/>
 		</fieldset>
 	);
 }

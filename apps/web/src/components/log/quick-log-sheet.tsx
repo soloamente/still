@@ -636,6 +636,35 @@ export function QuickLogRoot() {
 		});
 	}, [celebration, handleClose, openReviewComposer]);
 
+	const celebrationLogId = celebration?.logId ?? "";
+
+	/** Category panel "Use / Switch to" — the log already exists, so PATCH the overall now. */
+	const handleCelebrationApplySuggestion = useCallback(
+		async (display: number) => {
+			if (!celebrationLogId) return;
+			const stored = logRatingToStored(display);
+			const result = await patchLog(celebrationLogId, { rating: stored });
+			if (!result.ok) {
+				console.error(
+					"[quick-log] suggested rating patch failed",
+					result.error,
+				);
+				toast.error("Couldn't update your rating");
+				return;
+			}
+			setCelebration((prev) =>
+				prev && prev.logId === celebrationLogId
+					? { ...prev, ratingStored: stored }
+					: prev,
+			);
+			dispatchTodayWeekRefresh();
+			if (shouldRefreshRouteAfterMutation(pathname)) {
+				router.refresh();
+			}
+		},
+		[celebrationLogId, pathname, router],
+	);
+
 	useEffect(() => {
 		if (!isOpen || isMobileVaul) return;
 		const onKey = (e: KeyboardEvent) => {
@@ -1124,6 +1153,9 @@ export function QuickLogRoot() {
 			canWriteReview={celebration.movieId != null}
 			onWriteReview={handleCelebrationWriteReview}
 			onDismiss={handleCelebrationDismiss}
+			onApplyCategorySuggestion={(display) =>
+				void handleCelebrationApplySuggestion(display)
+			}
 		/>
 	) : (
 		quickLogFormFields

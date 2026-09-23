@@ -5,6 +5,7 @@ import type {
 	LeaderboardPayload,
 } from "@/lib/home-leaderboard-types";
 import type { HomeVenue } from "@/lib/home-venue";
+import type { LogCategoryRatingsPatch } from "@/lib/log-category-ratings";
 import type {
 	MembersLeaderboardPayload,
 	MembersLeaderboardSort,
@@ -1056,6 +1057,8 @@ export async function patchLog(
 		seasonNumber?: number | null;
 		episodeNumber?: number | null;
 		visibility?: "public" | "followers" | "friends" | "private";
+		/** Per-key merge server-side: number sets (tenths), `null` clears, omitted untouched. */
+		categoryRatings?: LogCategoryRatingsPatch;
 	}>,
 ) {
 	const response = await fetch(
