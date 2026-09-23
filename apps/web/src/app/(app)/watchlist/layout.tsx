@@ -19,10 +19,15 @@ export default function WatchlistLayout({ children }: { children: ReactNode }) {
 				<Suspense fallback={null}>
 					<WatchlistChrome />
 				</Suspense>
-				<Suspense fallback={<WatchlistTonightHeroSkeleton />}>
-					<WatchlistTonightHeroRsc />
-				</Suspense>
-				<WatchlistPatronLobbyShell>{children}</WatchlistPatronLobbyShell>
+				<WatchlistPatronLobbyShell
+					top={
+						<Suspense fallback={<WatchlistTonightHeroSkeleton />}>
+							<WatchlistTonightHeroRsc />
+						</Suspense>
+					}
+				>
+					{children}
+				</WatchlistPatronLobbyShell>
 			</WatchlistLobbyDisplayPrefsProvider>
 		</div>
 	);

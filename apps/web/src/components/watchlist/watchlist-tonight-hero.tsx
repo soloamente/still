@@ -72,7 +72,7 @@ function WatchlistTonightHeroEmpty({
 	return (
 		<section
 			aria-label="Watch tonight"
-			className="mb-6 w-full min-w-0 rounded-[2rem] bg-card px-6 py-10 text-center sm:px-10"
+			className="mb-2 w-full min-w-0 rounded-[2rem] bg-background px-6 py-10 text-center sm:px-10"
 		>
 			{failed ? (
 				<>
@@ -218,7 +218,7 @@ export function WatchlistTonightHero({
 		<section
 			aria-label="Watch tonight"
 			className={cn(
-				"relative isolate mb-6 w-full min-w-0",
+				"relative isolate w-full min-w-0 pb-2",
 				HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME,
 				HOME_TASTE_HERO_BOTTOM_GAP_CLASSNAME,
 			)}

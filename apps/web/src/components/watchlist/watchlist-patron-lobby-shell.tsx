@@ -15,6 +15,7 @@ import {
 } from "@/components/watchlist/watchlist-lobby-params-context";
 import { WatchlistModeIntroLine } from "@/components/watchlist/watchlist-mode-intro-line";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import { HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME } from "@/lib/home-taste-hero-layout";
 import { watchlistOrderGridIsStale } from "@/lib/watchlist-lobby-order";
 
 /**
@@ -22,8 +23,11 @@ import { watchlistOrderGridIsStale } from "@/lib/watchlist-lobby-order";
  * Search lives in sticky chrome / mobile tab bar — no redundant filters rail here.
  */
 export function WatchlistPatronLobbyShell({
+	top,
 	children,
 }: {
+	/** Tonight hero — lives inside the lobby card so media bleed cannot paint over sticky chrome. */
+	top?: ReactNode;
 	children: ReactNode;
 }) {
 	return (
@@ -32,10 +36,19 @@ export function WatchlistPatronLobbyShell({
 				<section
 					className={cn(
 						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-						"overflow-visible",
+						// Match `/home` lobby card — clips taste-hero backdrop/trailer bleed.
+						"relative overflow-hidden",
 					)}
 				>
-					<div className="flex shrink-0 flex-col gap-2">
+					{top ? (
+						<div className="relative z-0 min-w-0 shrink-0">{top}</div>
+					) : null}
+					<div
+						className={cn(
+							"flex shrink-0 flex-col gap-2",
+							HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME,
+						)}
+					>
 						<div className="flex items-center">
 							<WatchlistCatalogOrderChips />
 						</div>
