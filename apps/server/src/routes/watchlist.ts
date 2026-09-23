@@ -28,6 +28,7 @@ import {
 	WATCHLIST_NO_PROVIDERS_TMDB_JSON,
 	watchlistProvidersTmdbJsonForRegion,
 } from "../lib/watchlist-lobby-tmdb-json";
+import { loadWatchlistProviderCatalogue } from "../lib/watchlist-provider-catalogue";
 import {
 	parseWatchlistProviderIds,
 	titleFlatrateIncludesAllProviders,
@@ -564,6 +565,36 @@ export const watchlistRoute = new Elysia({
 			}),
 		},
 	)
+	.get("/providers", async ({ user, status }) => {
+		if (!user) return status(401, "Sign in");
+
+		const prefs = await loadPatronPreferences(user.id);
+		const showAdultContent = readShowAdultContentPref(prefs);
+		const chosenRegion = readCatalogWatchRegionPrefOrNull(prefs);
+		const region = readCatalogWatchRegionSignal(prefs);
+
+		if (chosenRegion == null) {
+			return {
+				providers: [],
+				region,
+				needs_region: true as const,
+			};
+		}
+
+		const providers = await traceTiming(
+			"db",
+			"watchlist.providers.catalogue",
+			() =>
+				loadWatchlistProviderCatalogue({
+					userId: user.id,
+					region: chosenRegion,
+					showAdultContent,
+					whereClause: watchlistVisibleWhere(user.id, showAdultContent),
+				}),
+		);
+
+		return { providers, region };
+	})
 	.post(
 		"/",
 		async ({ body: rawBody, user, status }) => {

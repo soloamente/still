@@ -16,6 +16,7 @@ import {
 	type TasteProfileSlice,
 } from "./taste-profile";
 import { loadRecommendationGatesFromSenders } from "./title-recommendation-query";
+import { invalidateWatchlistProviderCatalogue } from "./watchlist-provider-catalogue";
 import { invalidateWatchlistRanked } from "./watchlist-ranked-cache";
 
 /** Media-aware key — TMDb film and TV ids share the integer namespace. */
@@ -150,4 +151,5 @@ export async function loadWatchlistTonightSocial(
 export function invalidateWatchlistTonightSocial(userId: string): void {
 	cache.delete(userId);
 	invalidateWatchlistRanked(userId);
+	invalidateWatchlistProviderCatalogue(userId);
 }
