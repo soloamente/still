@@ -164,6 +164,80 @@ describe("buildCatalogueRadialItemSpecs", () => {
 	});
 });
 
+describe("watchlist streaming alert slot", () => {
+	test("shown on watchlist when not streaming; label flips with state", () => {
+		const off = buildCatalogueRadialItemSpecs({
+			surface: "watchlist",
+			listingKind: "movie",
+			signedIn: true,
+			streamingAlert: false,
+			isStreaming: false,
+		});
+		expect(off.find((s) => s.id === "streaming-alert")?.label).toBe(
+			"Alert me when it streams",
+		);
+		const on = buildCatalogueRadialItemSpecs({
+			surface: "watchlist",
+			listingKind: "movie",
+			signedIn: true,
+			streamingAlert: true,
+			isStreaming: false,
+		});
+		expect(on.find((s) => s.id === "streaming-alert")?.label).toBe(
+			"Stop streaming alert",
+		);
+	});
+
+	test("sits after add-to-list and before destructive remove", () => {
+		expect(
+			ids(
+				buildCatalogueRadialItemSpecs({
+					surface: "watchlist",
+					listingKind: "tv",
+					signedIn: true,
+					isStreaming: false,
+				}),
+			),
+		).toEqual([
+			"open",
+			"copy",
+			"quick-log",
+			"add-to-list",
+			"streaming-alert",
+			"remove-watchlist",
+		]);
+	});
+
+	test("hidden when already streaming or off the watchlist surface", () => {
+		expect(
+			buildCatalogueRadialItemSpecs({
+				surface: "watchlist",
+				listingKind: "movie",
+				signedIn: true,
+				isStreaming: true,
+			}).some((s) => s.id === "streaming-alert"),
+		).toBe(false);
+		expect(
+			buildCatalogueRadialItemSpecs({
+				surface: "home",
+				listingKind: "movie",
+				signedIn: true,
+			}).some((s) => s.id === "streaming-alert"),
+		).toBe(false);
+	});
+
+	test("hidden for signed-out patrons", () => {
+		expect(
+			buildCatalogueRadialItemSpecs({
+				surface: "watchlist",
+				listingKind: "movie",
+				signedIn: false,
+				isStreaming: false,
+			}).some((s) => s.id === "streaming-alert"),
+		).toBe(false);
+	});
+});
+
 describe("isCatalogueRadialGatedAction", () => {
 	test("gates everything except open and copy", () => {
 		expect(isCatalogueRadialGatedAction("quick-log")).toBe(true);

@@ -4,6 +4,7 @@ import {
 	type RadialToolkitItem,
 	useRadialToolkitAnchor,
 } from "@still/ui/components/radial-toolkit";
+import IconBellFilled from "@still/ui/icons/bell-filled";
 import IconClockRotateClockwise from "@still/ui/icons/clock-rotate-clockwise";
 import IconLinkFill from "@still/ui/icons/link-fill";
 import IconListPlay from "@still/ui/icons/list-play";
@@ -30,6 +31,7 @@ import {
 	type MoviePosterHoverEffect,
 } from "@/components/movie/movie-poster";
 import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
+import { WatchlistAlertPreviewDialog } from "@/components/watchlist/watchlist-alert-preview-dialog";
 import { authClient } from "@/lib/auth-client";
 import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import {
@@ -39,6 +41,7 @@ import {
 } from "@/lib/catalogue-radial-items";
 import { diaryLogToQuickLogOpenPayload } from "@/lib/diary-open-log";
 import type { MyTvLog } from "@/lib/my-tv-log";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
 	deleteWatchlistItem,
 	deleteWatchlistTvItem,
@@ -46,7 +49,9 @@ import {
 	fetchMyLogsForTv,
 	fetchWatchlistCheck,
 	fetchWatchlistCheckTv,
+	patchWatchlistAlert,
 	postWatchlistAdd,
+	type WatchlistAlertPreview,
 } from "@/lib/still-api-fetch";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 
@@ -77,7 +82,21 @@ export type CataloguePosterTileProps = {
 	onActionComplete?: () => void;
 	/** Taste rails — forever-hide this suggestion and swap in a replacement. */
 	onNotInterested?: (tmdbId: number) => void | Promise<void>;
+	/** Watchlist — patron already enabled the streaming alert for this title. */
+	watchlistStreamingAlert?: boolean;
+	/** Watchlist — `undefined` (unknown) hides the alert slot, like `true`. */
+	watchlistIsStreaming?: boolean;
+	/** Watchlist lobby `?order=` — sent as `mode` on `watchlist.tile_action`. */
+	watchlistMode?: string;
 };
+
+/** Radial actions reported as `watchlist.tile_action` on the watchlist surface. */
+const TRACKED_WATCHLIST_ACTIONS = new Set([
+	"open",
+	"quick-log",
+	"remove-watchlist",
+	"add-to-list",
+]);
 
 function detailHref(listingKind: "movie" | "tv", tmdbId: number): string {
 	return listingKind === "tv" ? `/tv/${tmdbId}` : `/movies/${tmdbId}`;
@@ -108,6 +127,9 @@ export function CataloguePosterTile({
 	children,
 	onActionComplete,
 	onNotInterested,
+	watchlistStreamingAlert,
+	watchlistIsStreaming,
+	watchlistMode,
 }: CataloguePosterTileProps) {
 	const isHomeLikeSurface =
 		surface === "home" || surface === "taste-rail" || surface === "drawer";
@@ -124,6 +146,18 @@ export function CataloguePosterTile({
 	/** TV radial quick log — full rows for scope-aware rewatch in the sheet. */
 	const [priorTvLogs, setPriorTvLogs] = useState<MyTvLog[]>([]);
 	const [watchlistBusy, setWatchlistBusy] = useState(false);
+	/** Optimistic streaming-alert state — rolled back when the PATCH fails. */
+	const [alertOn, setAlertOn] = useState(Boolean(watchlistStreamingAlert));
+	/** Non-null opens the free-patron Attuned preview (plan gate hit, nothing saved). */
+	const [alertPreview, setAlertPreview] =
+		useState<WatchlistAlertPreview | null>(null);
+	/** Blocks duplicate PATCHes while one is in flight. */
+	const [alertBusy, setAlertBusy] = useState(false);
+
+	// Re-sync when the lobby refreshes the seed (e.g. after `router.refresh()`).
+	useEffect(() => {
+		setAlertOn(Boolean(watchlistStreamingAlert));
+	}, [watchlistStreamingAlert]);
 
 	const isMovie = listingKind === "movie";
 	const href = detailHref(listingKind, tmdbId);
@@ -328,9 +362,50 @@ export function CataloguePosterTile({
 				canEditLog,
 				hasPriorLog: priorLogCount > 0,
 				inWatchlist,
+				streamingAlert: alertOn,
+				isStreaming: watchlistIsStreaming,
 			}),
-		[surface, listingKind, signedIn, canEditLog, inWatchlist, priorLogCount],
+		[
+			surface,
+			listingKind,
+			signedIn,
+			canEditLog,
+			inWatchlist,
+			priorLogCount,
+			alertOn,
+			watchlistIsStreaming,
+		],
 	);
+
+	const toggleStreamingAlert = useCallback(() => {
+		onOpenChange(false);
+		if (alertBusy) return;
+		setAlertBusy(true);
+		const next = !alertOn;
+		setAlertOn(next); // optimistic
+		void patchWatchlistAlert({ listingKind, tmdbId, enabled: next }).then(
+			(result) => {
+				setAlertBusy(false);
+				if (result.ok) {
+					toast.success(
+						next ? "We'll tell you when it streams" : "Streaming alert off",
+					);
+					trackSenseProductEvent("watchlist.tile_action", {
+						mode: watchlistMode ?? "watchlist",
+						action: next ? "alert_on" : "alert_off",
+						reason: null,
+					});
+					return;
+				}
+				setAlertOn(!next); // roll back
+				// Plan gate: show the Attuned preview instead of an error toast.
+				if (result.planRequired) setAlertPreview(result.preview);
+				else toast.error("Couldn't update the alert");
+			},
+		);
+	}, [alertBusy, alertOn, listingKind, onOpenChange, tmdbId, watchlistMode]);
+
+	const closeAlertPreview = useCallback(() => setAlertPreview(null), []);
 
 	const radialItems = useMemo((): RadialToolkitItem[] => {
 		const handlers: Record<string, () => void> = {
@@ -347,6 +422,7 @@ export function CataloguePosterTile({
 				void addToList.openPicker();
 			},
 			"remove-watchlist": () => void removeFromWatchlist(),
+			"streaming-alert": toggleStreamingAlert,
 			"not-interested": () => {
 				if (!onNotInterested) return;
 				onOpenChange(false);
@@ -370,6 +446,7 @@ export function CataloguePosterTile({
 				<IconClockRotateClockwise className="opacity-90" aria-hidden />
 			),
 			"add-to-list": <IconListPlay className="opacity-90" aria-hidden />,
+			"streaming-alert": <IconBellFilled className="opacity-90" aria-hidden />,
 			"remove-watchlist": (
 				<IconTrashXmarkFill className="opacity-90" aria-hidden />
 			),
@@ -384,8 +461,9 @@ export function CataloguePosterTile({
 			shortcut: spec.shortcut,
 			variant: spec.variant,
 			disabled:
-				watchlistBusy &&
-				(spec.id === "watchlist" || spec.id === "remove-watchlist"),
+				(watchlistBusy &&
+					(spec.id === "watchlist" || spec.id === "remove-watchlist")) ||
+				(alertBusy && spec.id === "streaming-alert"),
 			icon: icons[spec.id] ?? null,
 			onSelect: () => {
 				if (!signedIn && isCatalogueRadialGatedAction(spec.id)) {
@@ -393,11 +471,19 @@ export function CataloguePosterTile({
 					onOpenChange(false);
 					return;
 				}
+				if (surface === "watchlist" && TRACKED_WATCHLIST_ACTIONS.has(spec.id)) {
+					trackSenseProductEvent("watchlist.tile_action", {
+						mode: watchlistMode ?? "watchlist",
+						action: spec.id,
+						reason: posterCaption ?? null,
+					});
+				}
 				handlers[spec.id]?.();
 			},
 		}));
 	}, [
 		addToList,
+		alertBusy,
 		handleCopyLink,
 		handleEditLog,
 		handleQuickLog,
@@ -408,12 +494,16 @@ export function CataloguePosterTile({
 		notifySignIn,
 		onNotInterested,
 		onOpenChange,
+		posterCaption,
 		removeFromWatchlist,
 		router,
 		signedIn,
+		surface,
+		toggleStreamingAlert,
 		toggleWatchlist,
 		tmdbId,
 		watchlistBusy,
+		watchlistMode,
 	]);
 
 	return (
@@ -460,6 +550,13 @@ export function CataloguePosterTile({
 			/>
 
 			{isMovie ? addToList.pickerHost : null}
+
+			{surface === "watchlist" ? (
+				<WatchlistAlertPreviewDialog
+					preview={alertPreview}
+					onClose={closeAlertPreview}
+				/>
+			) : null}
 		</>
 	);
 }

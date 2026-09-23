@@ -144,6 +144,8 @@ interface PopularMoviesInfiniteProps {
 	getPosterCellKey?: (movie: PopularMovieSeed, index: number) => string;
 	/** When set with `signedIn`, lobby cells use `CataloguePosterTile` radial menus. */
 	catalogueRadialSurface?: CatalogueRadialSurface;
+	/** Watchlist lobby `?order=` — forwarded to tiles as `mode` on `watchlist.tile_action`. */
+	catalogueTrackingMode?: string;
 	signedIn?: boolean;
 	/**
 	 * Personal-list pager. When provided, `loadMore` calls this instead of the TMDb
@@ -199,6 +201,7 @@ export function PopularMoviesInfinite({
 	catalogueWaveKeyOverride,
 	getPosterCellKey,
 	catalogueRadialSurface,
+	catalogueTrackingMode,
 	signedIn: _signedIn = false,
 	loadPage,
 	getDedupeKey,
@@ -544,6 +547,9 @@ export function PopularMoviesInfinite({
 						surface={catalogueRadialSurface}
 						title={m.title}
 						tmdbId={m.id}
+						watchlistIsStreaming={m.watchlistIsStreaming}
+						watchlistMode={catalogueTrackingMode}
+						watchlistStreamingAlert={m.watchlistStreamingAlert}
 					/>
 				);
 			}
@@ -565,6 +571,7 @@ export function PopularMoviesInfinite({
 		[
 			renderPoster,
 			catalogueRadialSurface,
+			catalogueTrackingMode,
 			posterLinkClassName,
 			posterFrameClassName,
 			posterHoverEffect,

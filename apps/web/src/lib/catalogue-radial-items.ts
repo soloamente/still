@@ -27,9 +27,13 @@ export type BuildCatalogueRadialSpecsInput = {
 	inWatchlist?: boolean;
 	/** Home / watchlist — patron already has diary row(s) for this title. */
 	hasPriorLog?: boolean;
+	/** Watchlist — patron already asked to be told when this title streams. */
+	streamingAlert?: boolean;
+	/** Watchlist — `undefined` means unknown availability, which hides the alert slot. */
+	isStreaming?: boolean;
 };
 
-/** Stable slot order: Open → Copy → Log → Edit → Watchlist → Add to list → Remove. */
+/** Stable slot order: Open → Copy → Log → Edit → Watchlist → Add to list → Alert → Remove. */
 const SLOT_ORDER: string[] = [
 	"open",
 	"copy",
@@ -37,6 +41,7 @@ const SLOT_ORDER: string[] = [
 	"edit-log",
 	"watchlist",
 	"add-to-list",
+	"streaming-alert",
 	"not-interested",
 	"remove-watchlist",
 ];
@@ -63,6 +68,8 @@ export function buildCatalogueRadialItemSpecs(
 		canEditLog,
 		inWatchlist,
 		hasPriorLog,
+		streamingAlert,
+		isStreaming,
 	} = input;
 	const isTasteRail = surface === "taste-rail";
 	// Taste rails and drawer catalogues reuse home lobby actions (log, watchlist, lists).
@@ -126,6 +133,17 @@ export function buildCatalogueRadialItemSpecs(
 			id: "add-to-list",
 			label: "Add to list",
 			shortcut: "A",
+		});
+	}
+
+	// Hidden when streaming state is unknown (undefined) or already streaming.
+	if (catalogueSurface === "watchlist" && isStreaming === false) {
+		specs.push({
+			id: "streaming-alert",
+			label: streamingAlert
+				? "Stop streaming alert"
+				: "Alert me when it streams",
+			shortcut: "S",
 		});
 	}
 

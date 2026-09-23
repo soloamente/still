@@ -102,6 +102,7 @@ export function WatchlistLobbyCatalogue({
 			// (watchlist toggle hydrates real state) so "Remove from watchlist" can't
 			// delete a watchlist row the tile doesn't represent.
 			catalogueRadialSurface={order === "continue" ? "home" : "watchlist"}
+			catalogueTrackingMode={order}
 			signedIn={signedIn}
 			catalogMedia="movie"
 			catalogExhaustedScope="your watchlist"

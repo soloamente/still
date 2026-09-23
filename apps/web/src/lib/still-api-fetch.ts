@@ -1005,6 +1005,58 @@ export async function deleteWatchlistTvItem(tvId: number) {
 	};
 }
 
+export type WatchlistAlertPreview = {
+	notStreamingCount: number;
+	sample: {
+		listingKind: "movie" | "tv";
+		tmdbId: number;
+		title: string;
+		posterPath: string | null;
+	}[];
+};
+
+/** Toggle a per-title streaming alert; free patrons get the Attuned preview back. */
+export async function patchWatchlistAlert(args: {
+	listingKind: "movie" | "tv";
+	tmdbId: number;
+	enabled: boolean;
+}): Promise<
+	| { ok: true; enabled: boolean }
+	| { ok: false; planRequired: true; preview: WatchlistAlertPreview }
+	| { ok: false; planRequired: false }
+> {
+	const response = await fetch(
+		new URL("/api/watchlist/alert", stillApiOrigin()),
+		{
+			method: "PATCH",
+			credentials: "include",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				...(args.listingKind === "movie"
+					? { movieId: args.tmdbId }
+					: { tvId: args.tmdbId }),
+				enabled: args.enabled,
+			}),
+		},
+	).catch(() => null);
+	if (!response) return { ok: false, planRequired: false };
+	const data = (await response.json().catch(() => null)) as {
+		enabled?: boolean;
+		code?: string;
+		preview?: WatchlistAlertPreview;
+	} | null;
+	if (response.ok) return { ok: true, enabled: data?.enabled === true };
+	// 403 plan gate carries the Attuned preview — the tile opens the upsell dialog instead of a toast.
+	if (
+		response.status === 403 &&
+		data?.code === "PLAN_FEATURE_REQUIRED" &&
+		data.preview
+	) {
+		return { ok: false, planRequired: true, preview: data.preview };
+	}
+	return { ok: false, planRequired: false };
+}
+
 export async function deleteLog(logId: string) {
 	const url = new URL(
 		`/api/logs/${encodeURIComponent(logId)}`,
