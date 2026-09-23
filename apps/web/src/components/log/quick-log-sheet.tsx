@@ -75,6 +75,7 @@ import {
 import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
+import { dispatchTodayWeekRefresh } from "@/lib/today-week-pulse";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
@@ -153,7 +154,12 @@ export type QuickLogArgs = {
 	episodeNumber?: number;
 	/** Prefills the visibility picker when editing an existing log. */
 	visibility?: "public" | "followers" | "friends" | "private";
-	onSuccess?: () => void;
+	/** `logId` is set only for a freshly created log (edits and removals omit it). */
+	onSuccess?: (result?: QuickLogSuccessResult) => void;
+};
+
+export type QuickLogSuccessResult = {
+	logId: string | null;
 };
 
 /** Post-log micro-moment — keeps the sheet open after a successful create. */
@@ -670,6 +676,8 @@ export function QuickLogRoot() {
 				stillToast.updated(
 					movieTitle.trim() ? `Updated “${movieTitle}”` : "Diary log updated",
 				);
+				// Watched date or rating may have moved in/out of this week.
+				dispatchTodayWeekRefresh();
 				args.onSuccess?.();
 				if (shouldRefreshRouteAfterMutation(pathname)) {
 					router.refresh();
@@ -718,11 +726,14 @@ export function QuickLogRoot() {
 			if (movieId != null) {
 				dispatchTasteTitleConsumed({ tmdbId: movieId });
 			}
-			args.onSuccess?.();
+			dispatchTodayWeekRefresh();
+			const created = result.data as { id?: string };
+			args.onSuccess?.({
+				logId: typeof created?.id === "string" ? created.id : null,
+			});
 			if (shouldRefreshRouteAfterMutation(pathname)) {
 				router.refresh();
 			}
-			const created = result.data as { id?: string };
 			setCelebration({
 				logId: typeof created?.id === "string" ? created.id : "",
 				title: movieTitle,
@@ -755,6 +766,7 @@ export function QuickLogRoot() {
 			const label = movieTitle.trim() || "This title";
 			stillToast.updated(`Removed “${label}” from watched`);
 			setRemoveConfirmOpen(false);
+			dispatchTodayWeekRefresh();
 			args.onSuccess?.();
 			if (
 				pathname.startsWith("/home") ||

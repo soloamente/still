@@ -25,13 +25,12 @@ import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
 import { HomeLobbyNavigationRoot } from "@/components/home/home-lobby-navigation-root";
 import { HomeLobbySessionRestore } from "@/components/home/home-lobby-session-restore";
 import { HomeStickyChrome } from "@/components/home/home-sticky-chrome";
-import { HomeTasteMatchedHeroRsc } from "@/components/home/home-taste-matched-hero-rsc";
-import { HomeTasteMatchedHeroSkeleton } from "@/components/home/home-taste-matched-hero-skeleton";
 import {
 	HomeTmdbCatalogueGrid,
 	HomeTmdbLobbyChrome,
 } from "@/components/home/home-tmdb-lobby-chrome";
 import { TmdbLobbySkeleton } from "@/components/home/tmdb-lobby-skeleton";
+import { TodayOnSense } from "@/components/home/today-on-sense";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
 import { APP_NAME } from "@/lib/app-brand";
 import { authServer } from "@/lib/auth-server";
@@ -96,6 +95,10 @@ import {
 	fetchTvPopular,
 } from "@/lib/still-api-fetch";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
+import {
+	startTodayOnSenseReads,
+	type TodayOnSenseReads,
+} from "@/lib/today-on-sense-reads";
 import { traceTiming } from "@/lib/trace-timing";
 export const dynamic = "force-dynamic";
 
@@ -381,6 +384,13 @@ export default async function HomePage({
 		);
 	}
 
+	// `(app)/layout` guarantees a session here. Start Today reads now so they run
+	// alongside the body's auth/profile/catalogue waves instead of after them.
+	// Committed catalogue search replaces Today, so skip the reads entirely.
+	const todayReads = params.catalogueSearchActive
+		? null
+		: startTodayOnSenseReads();
+
 	return (
 		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
 		<div className="flex flex-1 flex-col overflow-visible bg-background">
@@ -392,14 +402,20 @@ export default async function HomePage({
 					and catalogue round-trips (remote DB ⇒ this matters a lot).
 				*/}
 				<Suspense fallback={<HomeLobbyShellFallback browse={browse} />}>
-					<HomeLobbyBody params={params} />
+					<HomeLobbyBody params={params} todayReads={todayReads} />
 				</Suspense>
 			</HomeLobbyNavigationRoot>
 		</div>
 	);
 }
 
-async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
+async function HomeLobbyBody({
+	params,
+	todayReads,
+}: {
+	params: HomeLobbyParams;
+	todayReads: TodayOnSenseReads | null;
+}) {
 	const {
 		browse,
 		committedSearchRaw,
@@ -828,6 +844,11 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 
 			<HomeLobbyCatalogueSection>
 				{/*
+					Today on Sense sits above every browse surface (Movies · TV · Community)
+					and outside the body gate, so browse-rail switches never remount it.
+				*/}
+				{session && todayReads ? <TodayOnSense reads={todayReads} /> : null}
+				{/*
 					`useSearchParams` — keep inside Suspense so the home RSC shell can still
 					stream; the bar is tiny so a short fallback is acceptable.
 				*/}
@@ -868,17 +889,10 @@ async function HomeLobbyBody({ params }: { params: HomeLobbyParams }) {
 						</Suspense>
 					) : (
 						<HomeTmdbLobbyChrome>
-							{!catalogueSearchActive && session && browse === "movies" ? (
-								<Suspense fallback={<HomeTasteMatchedHeroSkeleton />}>
-									<HomeTasteMatchedHeroRsc />
-								</Suspense>
-							) : null}
-
 							<div
 								className={cn(
-									!catalogueSearchActive &&
-										session &&
-										browse === "movies" &&
+									session &&
+										todayReads &&
 										HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME,
 								)}
 							>

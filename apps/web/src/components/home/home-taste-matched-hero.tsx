@@ -6,10 +6,17 @@ import IconPatronScoreLeafLeft from "@still/ui/icons/patron-score-leaf-left";
 import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import IconTrashXmarkFill from "@still/ui/icons/trash-xmark-fill";
 import { cn } from "@still/ui/lib/utils";
-import { Plus } from "lucide-react";
+import { Check, Plus } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useId,
+	useReducer,
+	useRef,
+	useState,
+} from "react";
 import { toast } from "sonner";
 import { HomeTasteHeroMediaLayer } from "@/components/home/home-taste-hero-media-layer";
 import { HomeTasteMatchedHeroSkeleton } from "@/components/home/home-taste-matched-hero-skeleton";
@@ -18,6 +25,7 @@ import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { FestivalRecognitionIcon } from "@/components/movie/festival-recognition-icon";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { api } from "@/lib/api";
+import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
@@ -70,6 +78,17 @@ import {
 import { tmdbBackdropUrlFromPath } from "@/lib/tmdb-backdrop-url";
 import { tmdbLogoUrlFromPath } from "@/lib/tmdb-logo-url";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
+import {
+	TODAY_CARD_ACTION_CLASSNAME,
+	TODAY_CARD_HEADING_CLASSNAME,
+	TODAY_SUPPORTING_CARD_CLASSNAME,
+} from "@/lib/today-card-layout";
+import {
+	INITIAL_TODAY_PICK_STATE,
+	reduceTodayPick,
+	todayPickCompletedTmdbId,
+	todayPickStatusCopy,
+} from "@/lib/today-pick-state";
 import { useHorizontalRailPointerDrag } from "@/lib/use-horizontal-rail-pointer-drag";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
@@ -95,14 +114,82 @@ function formatHeroRatingsCountLabel(count: number): string {
 	return count === 1 ? "Rating" : "Ratings";
 }
 
+/**
+ * `legacy-autoswap` — consumed titles leave the queue immediately (standalone hero).
+ * `today-shell` — Today on Sense owns completion: watched / watchlist keep the
+ * title in place until the patron taps **Pick another**.
+ */
+export type HomeTasteHeroCompletionMode = "legacy-autoswap" | "today-shell";
+
+/** Honest pick empty / error tile — Today keeps rendering week + circle beside it. */
+function TodayPickEmptyTile({
+	failed,
+	onRetry,
+}: {
+	failed: boolean;
+	onRetry: () => void;
+}) {
+	const headingId = useId();
+	const requestSearch = useCatalogSearchDialog((s) => s.requestOpen);
+	return (
+		<section
+			aria-labelledby={headingId}
+			className={cn(TODAY_SUPPORTING_CARD_CLASSNAME, "min-h-0")}
+		>
+			<h3 id={headingId} className={TODAY_CARD_HEADING_CLASSNAME}>
+				Today’s pick
+			</h3>
+			{failed ? (
+				<>
+					<p className="text-muted-foreground text-sm">
+						Couldn’t load today’s pick.
+					</p>
+					<button
+						type="button"
+						className={TODAY_CARD_ACTION_CLASSNAME}
+						onClick={onRetry}
+					>
+						Try again
+					</button>
+				</>
+			) : (
+				<>
+					<p className="max-w-prose text-balance font-semibold text-foreground text-lg leading-snug tracking-tight">
+						Log a few more films and a pick matched to your taste will be
+						waiting here.
+					</p>
+					<button
+						type="button"
+						className={TODAY_CARD_ACTION_CLASSNAME}
+						onClick={() => requestSearch()}
+					>
+						Log a film
+					</button>
+				</>
+			)}
+		</section>
+	);
+}
+
 export function HomeTasteMatchedHero({
 	initial,
+	completionMode = "legacy-autoswap",
 }: {
 	initial?: TasteMatchedDiscoveryPayload | null;
+	completionMode?: HomeTasteHeroCompletionMode;
 }) {
+	const isTodayShell = completionMode === "today-shell";
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
+	const [pickState, dispatchPick] = useReducer(
+		reduceTodayPick,
+		INITIAL_TODAY_PICK_STATE,
+	);
+	const pickStateRef = useRef(pickState);
+	const pickAnotherButtonRef = useRef<HTMLButtonElement>(null);
+	/** Once the queue met the quality bar, a short backfill gap must not flash the empty tile. */
+	const queueQualifiedRef = useRef(false);
 	const [payload, setPayload] = useState<TasteMatchedDiscoveryPayload | null>(
 		initial ?? null,
 	);
@@ -137,11 +224,18 @@ export function HomeTasteMatchedHero({
 
 	useEffect(() => {
 		moviesRef.current = movies;
+		if (movies.length >= TASTE_MATCH_MIN_RESULTS) {
+			queueQualifiedRef.current = true;
+		}
 	}, [movies]);
 
 	useEffect(() => {
 		activeIndexRef.current = activeIndex;
 	}, [activeIndex]);
+
+	useEffect(() => {
+		pickStateRef.current = pickState;
+	}, [pickState]);
 
 	const fetchTasteForYou = useCallback(async () => {
 		try {
@@ -152,6 +246,17 @@ export function HomeTasteMatchedHero({
 			return null;
 		}
 	}, []);
+
+	/** Today empty-tile **Try again** — refetch for-you after a failed load. */
+	const handleRetryPick = useCallback(async () => {
+		setLoading(true);
+		const data = await fetchTasteForYou();
+		setPayload(data);
+		setMovies(data ? moviesFromTastePayload(data) : []);
+		setGenrePhrase(data && !data.coldStart ? (data.genrePhrase ?? null) : null);
+		setActiveIndex(0);
+		setLoading(false);
+	}, [fetchTasteForYou]);
 
 	const applyMoviesFromBackfill = useCallback((next: TasteMatchMovie[]) => {
 		const prev = moviesRef.current;
@@ -215,12 +320,31 @@ export function HomeTasteMatchedHero({
 	 * object and would otherwise retrigger them in an endless fetch loop.
 	 */
 	const spotlightTmdbId = spotlight?.tmdbId ?? null;
+	const spotlightTmdbIdRef = useRef(spotlightTmdbId);
+
+	useEffect(() => {
+		spotlightTmdbIdRef.current = spotlightTmdbId;
+	}, [spotlightTmdbId]);
 
 	useEffect(() => {
 		if (initial === undefined) return;
+		const fresh =
+			initial && !initial.coldStart ? moviesFromTastePayload(initial) : [];
+		// A server refresh drops consumed titles — keep a completed Today pick
+		// pinned in front so it never silently rotates before **Pick another**.
+		const completedId = todayPickCompletedTmdbId(pickStateRef.current);
+		const completedFilm =
+			completedId == null
+				? undefined
+				: moviesRef.current.find((film) => film.tmdbId === completedId);
 		setPayload(initial);
 		setMovies(
-			initial && !initial.coldStart ? moviesFromTastePayload(initial) : [],
+			completedFilm
+				? [
+						completedFilm,
+						...fresh.filter((film) => film.tmdbId !== completedId),
+					]
+				: fresh,
 		);
 		setGenrePhrase(
 			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null,
@@ -389,6 +513,8 @@ export function HomeTasteMatchedHero({
 		setActiveIndex((prev) =>
 			activeIndexAfterRemoval(index, prev, snapshot.length - 1),
 		);
+		// Not interested may advance immediately — unlike watched / watchlist.
+		dispatchPick({ type: "not_interested_advanced" });
 
 		try {
 			const res = await api.api.taste.dismiss.post({
@@ -406,7 +532,37 @@ export function HomeTasteMatchedHero({
 
 	const handleTitleConsumed = useCallback(
 		(tmdbId: number) => {
+			// Today keeps the spotlight in place (complete) — only other queue titles leave.
+			if (isTodayShell && tmdbId === spotlightTmdbIdRef.current) {
+				dispatchPick({ type: "consumed_elsewhere", tmdbId });
+				return;
+			}
 			removeFromQueue(tmdbId);
+		},
+		[isTodayShell, removeFromQueue],
+	);
+
+	/** Retire the finished title and show the next one (or `targetTmdbId` when chosen). */
+	const handlePickAnother = useCallback(
+		(targetTmdbId?: number) => {
+			const completedId = todayPickCompletedTmdbId(pickStateRef.current);
+			dispatchPick({ type: "pick_another" });
+			if (completedId == null) return;
+			if (targetTmdbId == null) {
+				removeFromQueue(completedId);
+				return;
+			}
+			const remaining = moviesRef.current.filter(
+				(film) => film.tmdbId !== completedId,
+			);
+			setMovies(remaining);
+			setActiveIndex(
+				Math.max(
+					0,
+					remaining.findIndex((film) => film.tmdbId === targetTmdbId),
+				),
+			);
+			backfillSchedulerRef.current?.schedule();
 		},
 		[removeFromQueue],
 	);
@@ -417,13 +573,17 @@ export function HomeTasteMatchedHero({
 		try {
 			const result = await postWatchlistAdd({ movieId: spotlight.tmdbId });
 			if (!result.ok) throw new Error("watchlist failed");
-			void handleTitleConsumed(spotlight.tmdbId);
+			if (isTodayShell) {
+				dispatchPick({ type: "watchlisted", tmdbId: spotlight.tmdbId });
+			} else {
+				handleTitleConsumed(spotlight.tmdbId);
+			}
 		} catch {
 			toast.error("Couldn't update watchlist");
 		} finally {
 			setWatchlistBusy(false);
 		}
-	}, [handleTitleConsumed, spotlight, watchlistBusy]);
+	}, [handleTitleConsumed, isTodayShell, spotlight, watchlistBusy]);
 
 	const handleOpenQuickLog = useCallback(() => {
 		if (!spotlight) return;
@@ -435,11 +595,25 @@ export function HomeTasteMatchedHero({
 			averageRating: spotlight.communityAverage ?? undefined,
 			priorLogCount,
 			rewatch: priorLogCount > 0,
-			onSuccess: () => {
+			onSuccess: (result) => {
+				if (isTodayShell) {
+					dispatchPick({
+						type: "logged",
+						tmdbId: spotlight.tmdbId,
+						logId: result?.logId ?? null,
+					});
+					return;
+				}
 				handleTitleConsumed(spotlight.tmdbId);
 			},
 		});
-	}, [handleTitleConsumed, openQuickLog, priorLogCount, spotlight]);
+	}, [
+		handleTitleConsumed,
+		isTodayShell,
+		openQuickLog,
+		priorLogCount,
+		spotlight,
+	]);
 
 	const quickLogLabel = priorLogCount > 0 ? "Rewatch" : "Add to Watched";
 
@@ -453,8 +627,39 @@ export function HomeTasteMatchedHero({
 			window.removeEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
 	}, [handleTitleConsumed]);
 
+	const pickDone =
+		isTodayShell &&
+		pickState.phase !== "active" &&
+		pickState.tmdbId === spotlightTmdbId;
+	const pickStatusCopy = pickDone ? todayPickStatusCopy(pickState) : null;
+
+	useEffect(() => {
+		if (!pickDone) return;
+		// The pressed action unmounts on completion — keep keyboard focus in the hero.
+		const focused = document.activeElement;
+		if (!focused || focused === document.body) {
+			pickAnotherButtonRef.current?.focus();
+		}
+	}, [pickDone]);
+
 	if (loading) return <HomeTasteMatchedHeroSkeleton />;
-	if (!payload || payload.coldStart || tasteHeroIsEmpty(movies) || !spotlight) {
+	if (isTodayShell) {
+		const belowQualityBar =
+			tasteHeroIsEmpty(movies) && !queueQualifiedRef.current;
+		if (!payload || payload.coldStart || belowQualityBar || !spotlight) {
+			return (
+				<TodayPickEmptyTile
+					failed={payload == null}
+					onRetry={() => void handleRetryPick()}
+				/>
+			);
+		}
+	} else if (
+		!payload ||
+		payload.coldStart ||
+		tasteHeroIsEmpty(movies) ||
+		!spotlight
+	) {
 		return null;
 	}
 
@@ -492,7 +697,7 @@ export function HomeTasteMatchedHero({
 
 	return (
 		<section
-			aria-label="Films matched to your taste"
+			aria-label={isTodayShell ? "Today’s pick" : "Films matched to your taste"}
 			className={cn(
 				"relative isolate w-full min-w-0",
 				HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME,
@@ -552,6 +757,14 @@ export function HomeTasteMatchedHero({
 											fill="rgba(255, 255, 255, 1)"
 										/>
 									</svg>
+									{isTodayShell ? (
+										<>
+											<span className="font-semibold text-foreground">
+												Today’s pick
+											</span>
+											<span aria-hidden>·</span>
+										</>
+									) : null}
 									{tasteMatchedRailTitle(genrePhrase)}
 								</p>
 								<Link
@@ -619,73 +832,103 @@ export function HomeTasteMatchedHero({
 									) : null}
 								</div>
 							</div>
-							<TooltipProvider delay={0} closeDelay={80}>
-								<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
-									<DetailIconTooltip label={quickLogLabel}>
-										<motion.button
-											type="button"
-											className={cn(
-												"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground sm:size-12",
-												DETAIL_MOTION_PRESSABLE_CLASS,
-												"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-											)}
-											style={motionProps.style}
-											whileHover={motionProps.hover}
-											whileTap={motionProps.tap}
-											transition={motionProps.buttonTransition}
-											aria-label={quickLogLabel}
-											onClick={handleOpenQuickLog}
-										>
-											<Plus
-												className="size-4 shrink-0 stroke-[2.25] sm:size-5"
-												aria-hidden
-											/>
-										</motion.button>
-									</DetailIconTooltip>
-									<div className="flex items-center gap-1.5 sm:gap-2">
-										<button
-											type="button"
-											className={cn(
-												"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
-												"disabled:pointer-events-none disabled:opacity-50",
-											)}
-											disabled={watchlistBusy}
-											onClick={() => void handleAddToWatchlist()}
-										>
-											Add to watchlist
-										</button>
-										<DetailIconTooltip label="Not interested">
+							{isTodayShell ? (
+								<p className="sr-only" aria-live="polite">
+									{pickStatusCopy ?? ""}
+								</p>
+							) : null}
+							{pickDone ? (
+								<div className="relative z-30 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 pt-0.5 sm:justify-start sm:pt-1">
+									<p className="inline-flex items-center gap-1.5 font-medium text-foreground text-sm">
+										<Check
+											className="size-4 shrink-0 stroke-[2.5]"
+											aria-hidden
+										/>
+										{pickStatusCopy}
+									</p>
+									<button
+										ref={pickAnotherButtonRef}
+										type="button"
+										className={cn(
+											"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
+											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+										)}
+										onClick={() => handlePickAnother()}
+									>
+										Pick another
+									</button>
+								</div>
+							) : (
+								<TooltipProvider delay={0} closeDelay={80}>
+									<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
+										<DetailIconTooltip label={quickLogLabel}>
+											<motion.button
+												type="button"
+												className={cn(
+													"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground sm:size-12",
+													DETAIL_MOTION_PRESSABLE_CLASS,
+													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+												)}
+												style={motionProps.style}
+												whileHover={motionProps.hover}
+												whileTap={motionProps.tap}
+												transition={motionProps.buttonTransition}
+												aria-label={quickLogLabel}
+												onClick={handleOpenQuickLog}
+											>
+												<Plus
+													className="size-4 shrink-0 stroke-[2.25] sm:size-5"
+													aria-hidden
+												/>
+											</motion.button>
+										</DetailIconTooltip>
+										<div className="flex items-center gap-1.5 sm:gap-2">
 											<button
 												type="button"
 												className={cn(
-													"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background/55 text-foreground backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:hidden",
-													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+													"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
+													"disabled:pointer-events-none disabled:opacity-50",
 												)}
-												aria-label="Not interested"
+												disabled={watchlistBusy}
+												onClick={() => void handleAddToWatchlist()}
+											>
+												Add to watchlist
+											</button>
+											<DetailIconTooltip label="Not interested">
+												<button
+													type="button"
+													className={cn(
+														"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background/55 text-foreground backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:hidden",
+														DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+														"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+													)}
+													aria-label="Not interested"
+													onClick={() =>
+														void handleNotInterested(spotlight.tmdbId)
+													}
+												>
+													<IconTrashXmarkFill
+														className="size-4 shrink-0 sm:size-5"
+														aria-hidden
+													/>
+												</button>
+											</DetailIconTooltip>
+											<button
+												type="button"
+												className={cn(
+													"hidden min-h-11 items-center justify-center rounded-full bg-background/55 px-5 font-medium text-foreground text-sm backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:inline-flex",
+													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+												)}
 												onClick={() =>
 													void handleNotInterested(spotlight.tmdbId)
 												}
 											>
-												<IconTrashXmarkFill
-													className="size-4 shrink-0 sm:size-5"
-													aria-hidden
-												/>
+												Not interested
 											</button>
-										</DetailIconTooltip>
-										<button
-											type="button"
-											className={cn(
-												"hidden min-h-11 items-center justify-center rounded-full bg-background/55 px-5 font-medium text-foreground text-sm backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:inline-flex",
-												DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-											)}
-											onClick={() => void handleNotInterested(spotlight.tmdbId)}
-										>
-											Not interested
-										</button>
+										</div>
 									</div>
-								</div>
-							</TooltipProvider>
+								</TooltipProvider>
+							)}
 						</div>
 
 						{movies.length > 0 ? (
@@ -762,6 +1005,11 @@ export function HomeTasteMatchedHero({
 													onClick={() => {
 														// Grab-drag should not change the spotlight title.
 														if (shouldSuppressClick()) return;
+														// Choosing a different poster after completion is an explicit pick-another.
+														if (pickDone) {
+															if (!isActive) handlePickAnother(film.tmdbId);
+															return;
+														}
 														setActiveIndex(index);
 													}}
 												>
