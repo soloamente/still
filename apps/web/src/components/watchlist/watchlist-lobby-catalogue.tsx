@@ -114,7 +114,7 @@ export function WatchlistLobbyCatalogue({
 					<span className="text-pretty">
 						{watchlistRegionGuidanceCopy(region ?? null)}
 					</span>
-					<WatchlistRegionAction className="rounded-full px-2 py-0.5 font-medium text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline">
+					<WatchlistRegionAction className="inline-flex min-h-10 items-center rounded-full px-3 font-medium text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline">
 						Choose region
 					</WatchlistRegionAction>
 				</div>

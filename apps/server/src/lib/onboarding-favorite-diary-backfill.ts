@@ -5,6 +5,7 @@ import { makeId } from "./cuid";
 import { ensureMovieCached } from "./ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "./favorites-list-sync";
 import { migrateLegacyFavoriteMovies } from "./profile-showcase";
+import { invalidateWatchlistTonightSocial } from "./watchlist-tonight-signals";
 
 /** Normalize onboarding favorite ids — unique, finite, stable order. */
 function uniqueFavoriteMovieIds(favoriteMovieIds: number[]): number[] {
@@ -129,6 +130,8 @@ export async function backfillOnboardingFavoriteDiaryLogs(
 			});
 		}
 	}
+	// New diary rows hide these titles from the ranked watchlist modes.
+	invalidateWatchlistTonightSocial(userId);
 }
 
 /**

@@ -17,6 +17,7 @@ import { resolveAnilistMediaToTmdbTvId } from "../lib/resolve-anilist-tv-tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
 import { backfillWatchStreakFromLogs } from "../lib/watch-streak-sync";
+import { invalidateWatchlistTonightSocial } from "../lib/watchlist-tonight-signals";
 
 /**
  * Sense Tier 0 — Letterboxd CSV import (diary export).
@@ -78,6 +79,7 @@ export const importRoute = new Elysia({
 				userId: user.id,
 				files: uploaded,
 			});
+			invalidateWatchlistTonightSocial(user.id);
 		} catch (err) {
 			console.error("[import/letterboxd] apply failed", err);
 			return status(500, {
@@ -240,6 +242,7 @@ export const importRoute = new Elysia({
 					resolveTvId: (entry) => resolveAnilistMediaToTmdbTvId(entry.media),
 					ensureTv: ensureTvCached,
 				});
+				invalidateWatchlistTonightSocial(user.id);
 			} catch (err) {
 				console.error("[import/anilist] apply failed", err);
 				return status(500, {

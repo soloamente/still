@@ -12,6 +12,7 @@ import { loadPatronEntitlements } from "../lib/patron-entitlements";
 import { canAccessYearInReviewYear } from "../lib/plan-feature-access";
 import { fetchMyQuoteSubmissions } from "../lib/quote-submission";
 import { hit } from "../lib/rate-limit";
+import { invalidateWatchlistTonightSocial } from "../lib/watchlist-tonight-signals";
 import {
 	fetchYearInReviewForUser,
 	parseYearInReviewYear,
@@ -86,6 +87,8 @@ export function buildMeDataRoute(options: MeDataRouteOptions = {}): Elysia {
 				};
 				if (!user) return status(401, "Sign in");
 				const counts = await clearUserLibrary(user.id);
+				// Watchlist + diary are gone — drop cached tonight/available rankings.
+				invalidateWatchlistTonightSocial(user.id);
 				return { ok: true as const, counts };
 			})
 			.get("/year/:year", async (ctx) => {

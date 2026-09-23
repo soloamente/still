@@ -240,6 +240,18 @@ describe("watchlist streaming alert slot", () => {
 		}
 	});
 
+	test("already streaming and no alert → slot hidden", () => {
+		expect(
+			buildCatalogueRadialItemSpecs({
+				surface: "watchlist",
+				listingKind: "movie",
+				signedIn: true,
+				streamingAlert: false,
+				isStreaming: true,
+			}).some((s) => s.id === "streaming-alert"),
+		).toBe(false);
+	});
+
 	test("Alert me only when known not streaming", () => {
 		expect(
 			buildCatalogueRadialItemSpecs({

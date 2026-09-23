@@ -7,7 +7,13 @@ import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import {
+	useEffect,
+	useId,
+	useRef,
+	useState,
+	useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
 import { toast } from "sonner";
 import { Drawer } from "vaul";
@@ -86,13 +92,38 @@ export function CatalogWatchRegionPrompt({
 	useEffect(() => {
 		if (!visible || !dismissible) return;
 		const onKeyDown = (event: KeyboardEvent) => {
-			if (event.key !== "Escape") return;
+			if (event.key !== "Escape" || event.defaultPrevented) return;
+			// Escape with the region popover open closes the popover, not the prompt.
+			if (
+				document.querySelector(
+					'#catalog-watch-region-select[aria-expanded="true"]',
+				)
+			)
+				return;
 			setVisible(false);
 			onClose?.(false);
 		};
 		window.addEventListener("keydown", onKeyDown);
 		return () => window.removeEventListener("keydown", onKeyDown);
 	}, [visible, dismissible, onClose]);
+
+	// Desktop modal: move focus into the panel on open, hand it back on close
+	// (Vaul manages focus itself on the mobile sheet).
+	const panelRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		if (!visible || isMobileVaul) return;
+		const returnTo =
+			document.activeElement instanceof HTMLElement
+				? document.activeElement
+				: null;
+		const frame = requestAnimationFrame(() =>
+			panelRef.current?.focus({ preventScroll: true }),
+		);
+		return () => {
+			cancelAnimationFrame(frame);
+			if (returnTo?.isConnected) returnTo.focus({ preventScroll: true });
+		};
+	}, [visible, isMobileVaul]);
 
 	useEffect(() => {
 		if (!visible) return;
@@ -111,7 +142,7 @@ export function CatalogWatchRegionPrompt({
 			});
 			toast.success(
 				value === "ALL"
-					? "Streaming catalogues will follow all regions."
+					? "Streaming catalogues will follow all countries."
 					: "Catalogue region saved.",
 			);
 			setVisible(false);
@@ -158,7 +189,7 @@ export function CatalogWatchRegionPrompt({
 				className="mx-auto mt-3 w-full max-w-prose text-balance text-muted-foreground text-sm leading-tight sm:text-base"
 			>
 				“At home” rows use subscription streaming availability for a country or
-				region. Pick where you subscribe, or choose all regions for a global
+				region. Pick where you subscribe, or choose all countries for a global
 				slice. You can change this anytime in{" "}
 				<Link
 					href="/me/settings/catalogue"
@@ -227,7 +258,7 @@ export function CatalogWatchRegionPrompt({
 						{pending === "ALL" ? (
 							<Loader2 className="size-3.5 animate-spin" aria-hidden />
 						) : null}
-						All regions
+						All countries
 					</Button>
 				</DetailMotionButtonWrap>
 				<DetailMotionButtonWrap>
@@ -297,7 +328,8 @@ export function CatalogWatchRegionPrompt({
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={backdropTransition}
-					aria-hidden
+					// Scrim wraps the dialog — `presentation`, never `aria-hidden`, or AT loses the panel.
+					role="presentation"
 					className={APP_MODAL_OVERLAY_CLASS}
 					onClick={
 						dismissible
@@ -309,6 +341,8 @@ export function CatalogWatchRegionPrompt({
 					}
 				>
 					<motion.div
+						ref={panelRef}
+						tabIndex={-1}
 						role="dialog"
 						aria-modal="true"
 						aria-labelledby={titleId}
@@ -319,7 +353,7 @@ export function CatalogWatchRegionPrompt({
 						transition={panelTransition}
 						onClick={(event) => event.stopPropagation()}
 						className={cn(
-							"relative flex min-h-[22rem] w-full max-w-md flex-col overflow-visible rounded-[2rem] bg-card text-foreground shadow-mobbin-xl sm:min-h-[24rem] sm:rounded-[2.25rem]",
+							"relative flex min-h-[22rem] w-full max-w-md flex-col overflow-visible rounded-[2rem] bg-card text-foreground shadow-mobbin-xl outline-none sm:min-h-[24rem] sm:rounded-[2.25rem]",
 						)}
 					>
 						{content}
