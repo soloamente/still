@@ -10,6 +10,7 @@ import {
 	user,
 	validateTvLogScope,
 } from "@still/db";
+import type { LogWatchVenue } from "@still/db/schema/activity";
 import {
 	and,
 	asc,
@@ -19,7 +20,6 @@ import {
 	inArray,
 	isNotNull,
 	isNull,
-	or,
 	sql,
 } from "drizzle-orm";
 import { Elysia, t } from "elysia";
@@ -48,6 +48,16 @@ import { fetchDiaryWatchPeriods } from "../lib/diary-watch-periods";
 import { ensureMovieCached } from "../lib/ensure-movie-cached";
 import { syncFavoritesListForUserTitle } from "../lib/favorites-list-sync";
 import { invalidateCommunityStatsForDiaryLog } from "../lib/listing-community-stats-cache";
+import {
+	LOG_CATEGORY_KEYS,
+	type LogCategoryRatingsPatch,
+	mergeCategoryRatings,
+} from "../lib/log-category-ratings";
+import {
+	diaryVenueSliceWhere,
+	resolveCreateWatchVenue,
+	resolvePatchWatchVenue,
+} from "../lib/log-watch-venue";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -84,9 +94,12 @@ const logCreateFields = {
 	watchedAt: t.Optional(t.String()),
 	note: t.Optional(t.String({ maxLength: 500 })),
 	containsSpoilers: t.Optional(t.Boolean()),
-	/** In-cinema vs at-home — matches `/diary?venue=`; default **streaming**. */
+	/**
+	 * In-cinema vs at-home — matches `/diary?venue=`. Omitted → **streaming**;
+	 * explicit `null` → unset (Today instant log; shows in both venue slices).
+	 */
 	watchVenue: t.Optional(
-		t.Union([t.Literal("theaters"), t.Literal("streaming")]),
+		t.Union([t.Literal("theaters"), t.Literal("streaming"), t.Null()]),
 	),
 	logScope: t.Optional(
 		t.Union([t.Literal("show"), t.Literal("season"), t.Literal("episode")]),
@@ -106,7 +119,7 @@ type LogCreateBody = {
 	watchedAt?: string;
 	note?: string;
 	containsSpoilers?: boolean;
-	watchVenue?: "theaters" | "streaming";
+	watchVenue?: LogWatchVenue | null;
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
 	episodeNumber?: number;
@@ -120,12 +133,25 @@ type LogPatchBody = {
 	watchedAt?: string;
 	note?: string | null;
 	containsSpoilers?: boolean;
-	watchVenue?: "theaters" | "streaming";
+	watchVenue?: LogWatchVenue | null;
+	/** Per-key merge: number sets, `null` clears, omitted keys untouched. */
+	categoryRatings?: LogCategoryRatingsPatch;
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number | null;
 	episodeNumber?: number | null;
 	visibility?: ContentVisibility;
 };
+
+/** One optional nullable tenths field per category key for the PATCH schema. */
+const categoryRatingsPatchSchema = t.Object(
+	Object.fromEntries(
+		LOG_CATEGORY_KEYS.map((key) => [
+			key,
+			t.Optional(t.Union([t.Integer({ minimum: 0, maximum: 100 }), t.Null()])),
+		]),
+	),
+	{ additionalProperties: false },
+);
 
 export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 	.use(context)
@@ -169,10 +195,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 
 			const id = makeId("log");
 			const watchedAt = body.watchedAt ? new Date(body.watchedAt) : new Date();
-			const watchVenue =
-				body.watchVenue === "theaters" || body.watchVenue === "streaming"
-					? body.watchVenue
-					: "streaming";
+			const watchVenue = resolveCreateWatchVenue(body.watchVenue);
 
 			const [priorLogRow] = await db
 				.select({ id: log.id })
@@ -369,13 +392,18 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						body.containsSpoilers === undefined
 							? existing.containsSpoilers
 							: body.containsSpoilers,
-					watchVenue:
-						body.watchVenue === undefined
-							? existing.watchVenue
-							: body.watchVenue === "theaters" ||
-									body.watchVenue === "streaming"
-								? body.watchVenue
-								: existing.watchVenue,
+					watchVenue: resolvePatchWatchVenue(
+						body.watchVenue,
+						existing.watchVenue,
+					),
+					...(body.categoryRatings !== undefined
+						? {
+								categoryRatings: mergeCategoryRatings(
+									existing.categoryRatings,
+									body.categoryRatings,
+								),
+							}
+						: {}),
 					logScope: scopeFields.logScope,
 					seasonNumber: scopeFields.seasonNumber,
 					episodeNumber: scopeFields.episodeNumber,
@@ -423,8 +451,9 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				note: t.Optional(t.Union([t.String({ maxLength: 500 }), t.Null()])),
 				containsSpoilers: t.Optional(t.Boolean()),
 				watchVenue: t.Optional(
-					t.Union([t.Literal("theaters"), t.Literal("streaming")]),
+					t.Union([t.Literal("theaters"), t.Literal("streaming"), t.Null()]),
 				),
+				categoryRatings: t.Optional(categoryRatingsPatchSchema),
 				logScope: t.Optional(
 					t.Union([
 						t.Literal("show"),
@@ -535,10 +564,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			// Venue filter: legacy/unset venue matches both slices (mirrors the web
 			// `diaryLogMatchesDiaryLobbyVenue` rule).
 			const venueWhere = venue
-				? or(
-						eq(log.watchVenue, venue),
-						sql`${log.watchVenue} not in ('theaters','streaming')`,
-					)
+				? diaryVenueSliceWhere(log.watchVenue, venue)
 				: undefined;
 
 			// Tab counts are venue-independent so tab defaults + empty states are stable.
@@ -676,10 +702,7 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 				.as("dedup");
 
 			const outerVenueWhere = venue
-				? or(
-						eq(deduped.watchVenue, venue),
-						sql`${deduped.watchVenue} not in ('theaters','streaming')`,
-					)
+				? diaryVenueSliceWhere(deduped.watchVenue, venue)
 				: undefined;
 			const orderBy =
 				order === "earliest"

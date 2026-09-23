@@ -59,3 +59,28 @@ export function suggestedOverallFromCategories(
 	const displaySum = values.reduce((sum, tenths) => sum + tenths / 10, 0);
 	return displaySum / values.length;
 }
+
+/** `PATCH` body shape: a number sets the key, `null` clears it, omitted keys are untouched. */
+export type LogCategoryRatingsPatch = Partial<
+	Record<LogCategoryKey, number | null>
+>;
+
+/**
+ * Merge a category patch onto the stored map. Unknown keys / invalid values in the
+ * patch are ignored. Returns `null` when nothing is left so the column stays empty.
+ */
+export function mergeCategoryRatings(
+	prev: unknown,
+	patch: LogCategoryRatingsPatch | Record<string, unknown>,
+): LogCategoryRatings | null {
+	const next = parseLogCategoryRatings(prev);
+	for (const [key, value] of Object.entries(patch)) {
+		if (!LOG_CATEGORY_KEY_SET.has(key)) continue;
+		if (value === null) {
+			delete next[key as LogCategoryKey];
+		} else if (isValidCategoryTenth(value)) {
+			next[key as LogCategoryKey] = value;
+		}
+	}
+	return Object.keys(next).length > 0 ? next : null;
+}

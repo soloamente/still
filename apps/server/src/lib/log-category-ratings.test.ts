@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	LOG_CATEGORY_KEYS,
+	mergeCategoryRatings,
 	parseLogCategoryRatings,
 	suggestedOverallFromCategories,
 } from "./log-category-ratings";
@@ -105,5 +106,45 @@ describe("suggestedOverallFromCategories", () => {
 				characters: 100,
 			}),
 		).toBe(10);
+	});
+});
+
+describe("mergeCategoryRatings", () => {
+	test("adds new keys onto an empty map", () => {
+		expect(mergeCategoryRatings(null, { plot: 80 })).toEqual({ plot: 80 });
+	});
+
+	test("replaces provided keys and keeps the rest", () => {
+		expect(
+			mergeCategoryRatings({ plot: 80, acting: 60 }, { acting: 75 }),
+		).toEqual({ plot: 80, acting: 75 });
+	});
+
+	test("null clears a single key", () => {
+		expect(
+			mergeCategoryRatings({ plot: 80, acting: 60 }, { acting: null }),
+		).toEqual({ plot: 80 });
+	});
+
+	test("returns null when every key is cleared", () => {
+		expect(mergeCategoryRatings({ plot: 80 }, { plot: null })).toBeNull();
+	});
+
+	test("ignores unknown keys and invalid values in the patch", () => {
+		expect(
+			mergeCategoryRatings({ plot: 80 }, {
+				vibes: 90,
+				acting: 101,
+				sound: 7.5,
+			} as Record<string, unknown>),
+		).toEqual({ plot: 80 });
+	});
+
+	test("sanitizes a malformed stored map before merging", () => {
+		expect(
+			mergeCategoryRatings({ plot: "x", enjoyment: 90 } as unknown, {
+				sound: 40,
+			}),
+		).toEqual({ enjoyment: 90, sound: 40 });
 	});
 });
