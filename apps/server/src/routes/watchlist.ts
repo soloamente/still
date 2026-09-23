@@ -29,6 +29,10 @@ import {
 	watchlistProvidersTmdbJsonForRegion,
 } from "../lib/watchlist-lobby-tmdb-json";
 import {
+	parseWatchlistProviderIds,
+	titleFlatrateIncludesAllProviders,
+} from "../lib/watchlist-provider-filter";
+import {
 	parseWatchlistLimit,
 	parseWatchlistOrder,
 	parseWatchlistPage,
@@ -368,6 +372,7 @@ export const watchlistRoute = new Elysia({
 			const page = parseWatchlistPage(query.page);
 			const limit = parseWatchlistLimit(query.limit);
 			const order = parseWatchlistOrder(query.order);
+			const providerIds = parseWatchlistProviderIds(query.providers);
 			const offset = watchlistOffset(page, limit);
 
 			const prefs = await loadPatronPreferences(user.id);
@@ -453,6 +458,59 @@ export const watchlistRoute = new Elysia({
 				}
 			}
 
+			// Platform morph filter — AND flatrate match in the patron's chosen region.
+			if (providerIds.length > 0) {
+				if (chosenRegion == null) {
+					return {
+						results: [],
+						total_pages: 0,
+						total_results: 0,
+						needs_region: true as const,
+						region,
+					};
+				}
+				const pool = await traceTiming("db", "watchlist.providers.pool", () =>
+					db
+						.select(
+							watchlistSelectShape(
+								watchlistProvidersTmdbJsonForRegion(chosenRegion),
+							),
+						)
+						.from(watchlistItem)
+						.leftJoin(movie, eq(watchlistItem.movieId, movie.tmdbId))
+						.leftJoin(tv, eq(watchlistItem.tvId, tv.tmdbId))
+						.where(whereClause)
+						.orderBy(...orderBy)
+						.limit(WATCHLIST_DECISION_POOL_LIMIT),
+				);
+				const filtered = pool.filter((row) =>
+					titleFlatrateIncludesAllProviders(
+						row.tmdbJson,
+						chosenRegion,
+						providerIds,
+					),
+				);
+				const slice = sliceWatchlistRankedPage(filtered, page, limit);
+				return {
+					results: slice.rows.map((row) => {
+						const providerName = primaryFlatrateProviderName(
+							row.tmdbJson,
+							chosenRegion,
+						);
+						return toWatchlistRow(row, {
+							providerName,
+							reason: null,
+							reasonKind: null,
+							chosenRegion,
+							streamingInRegion: providerName != null,
+						});
+					}),
+					total_pages: slice.totalPages,
+					total_results: slice.totalResults,
+					region,
+				};
+			}
+
 			const fetched = await traceTiming("db", "watchlist.list", () =>
 				db
 					.select(
@@ -501,6 +559,8 @@ export const watchlistRoute = new Elysia({
 				page: t.Optional(t.String()),
 				limit: t.Optional(t.String()),
 				order: t.Optional(t.String()),
+				/** Comma-separated TMDb provider ids — AND flatrate filter in chosen region. */
+				providers: t.Optional(t.String()),
 			}),
 		},
 	)
