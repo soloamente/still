@@ -7,11 +7,24 @@ import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
 
 export type WatchlistLobbyOrder =
+	| "tonight"
+	| "available"
+	| "continue"
 	| "latest_added"
 	| "earliest_added"
 	| "title_az";
 
 const DEFAULT_ORDER: WatchlistLobbyOrder = "latest_added";
+
+/** Every accepted `?order=` value — unknown values fall back to `DEFAULT_ORDER`. */
+const WATCHLIST_LOBBY_ORDERS: readonly WatchlistLobbyOrder[] = [
+	"tonight",
+	"available",
+	"continue",
+	"latest_added",
+	"earliest_added",
+	"title_az",
+];
 
 /** First-page size; mirrors the server `WATCHLIST_DEFAULT_LIMIT`. */
 export const WATCHLIST_PAGE_SIZE = 24;
@@ -39,14 +52,7 @@ export type WatchlistLobbyRowWithMovie = WatchlistLobbyRowWithListing;
 export function parseWatchlistLobbyOrder(
 	raw: string | null | undefined,
 ): WatchlistLobbyOrder {
-	if (
-		raw === "latest_added" ||
-		raw === "earliest_added" ||
-		raw === "title_az"
-	) {
-		return raw;
-	}
-	return DEFAULT_ORDER;
+	return WATCHLIST_LOBBY_ORDERS.find((order) => order === raw) ?? DEFAULT_ORDER;
 }
 
 export function buildWatchlistLobbyHref(opts: {

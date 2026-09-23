@@ -9,6 +9,7 @@ import {
 	formatWatchlistStreamingPill,
 	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
+	readCatalogWatchRegionPrefOrNull,
 	readWatchlistStreamingAlertsPref,
 	shouldProcessWatchlistStreamingAlerts,
 	type TmdbWatchProvidersByCountry,
@@ -180,5 +181,20 @@ describe("evaluateWatchlistStreamingDiff", () => {
 		expect(diff.newProviders).toEqual([
 			{ providerId: 8, providerName: "Netflix" },
 		]);
+	});
+});
+
+describe("readCatalogWatchRegionPrefOrNull", () => {
+	test("null when unset or world-ish; region when valid", () => {
+		expect(readCatalogWatchRegionPrefOrNull(null)).toBeNull();
+		expect(
+			readCatalogWatchRegionPrefOrNull({ catalogTmdbWatchRegion: "ALL" }),
+		).toBeNull();
+		expect(
+			readCatalogWatchRegionPrefOrNull({ catalogTmdbWatchRegion: "it" }),
+		).toBe("IT");
+		expect(
+			readCatalogWatchRegionPrefOrNull({ catalogTmdbWatchRegion: "xyz" }),
+		).toBeNull();
 	});
 });

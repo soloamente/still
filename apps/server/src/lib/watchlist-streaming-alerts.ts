@@ -82,6 +82,20 @@ export function readCatalogWatchRegionPref(
 	return "US";
 }
 
+/**
+ * Region the patron actually chose, or `null` — Now available must not guess
+ * (the alerts job keeps the US fallback via `readCatalogWatchRegionPref`).
+ */
+export function readCatalogWatchRegionPrefOrNull(
+	preferences: Record<string, unknown> | null | undefined,
+): string | null {
+	const raw = preferences?.[PROFILE_PREF_CATALOG_TMDB_WATCH_REGION];
+	if (typeof raw !== "string") return null;
+	const region = raw.trim().toUpperCase();
+	// Two-letter ISO only — "ALL" / "WORLD" / junk read as "no region chosen".
+	return /^[A-Z]{2}$/.test(region) ? region : null;
+}
+
 /** Flatrate subscription services available in a TMDb watch region. */
 export function flatrateProvidersForRegion(
 	watchProviders: TmdbWatchProvidersByCountry | undefined,

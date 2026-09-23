@@ -2,7 +2,16 @@
  * Pure query-arg helpers for `GET /api/watchlist` pagination + sort. Kept separate
  * from the route so the parsing/clamp/offset math is unit-testable without a DB.
  */
-export type WatchlistOrder = "latest_added" | "earliest_added" | "title_az";
+/**
+ * `tonight` / `available` are the decision-engine modes; `continue` is web-only
+ * (served by `/api/tv-watch/me`), so it falls back to `latest_added` here.
+ */
+export type WatchlistOrder =
+	| "tonight"
+	| "available"
+	| "latest_added"
+	| "earliest_added"
+	| "title_az";
 
 export const WATCHLIST_DEFAULT_LIMIT = 24;
 export const WATCHLIST_MAX_LIMIT = 60;
@@ -21,6 +30,8 @@ export function parseWatchlistLimit(raw: string | undefined): number {
 
 export function parseWatchlistOrder(raw: string | undefined): WatchlistOrder {
 	if (
+		raw === "tonight" ||
+		raw === "available" ||
 		raw === "earliest_added" ||
 		raw === "title_az" ||
 		raw === "latest_added"

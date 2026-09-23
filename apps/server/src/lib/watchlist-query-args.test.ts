@@ -96,3 +96,13 @@ describe("watchlistLookaheadPageMeta", () => {
 		).toEqual({ visibleCount: 3, hasMore: false, totalPages: 2 });
 	});
 });
+
+describe("parseWatchlistOrder decision modes", () => {
+	test("accepts tonight + available, keeps legacy, rejects continue/garbage", () => {
+		expect(parseWatchlistOrder("tonight")).toBe("tonight");
+		expect(parseWatchlistOrder("available")).toBe("available");
+		expect(parseWatchlistOrder("title_az")).toBe("title_az");
+		expect(parseWatchlistOrder("continue")).toBe("latest_added");
+		expect(parseWatchlistOrder("nope")).toBe("latest_added");
+	});
+});

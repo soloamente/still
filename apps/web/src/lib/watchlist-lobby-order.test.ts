@@ -1,5 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import {
+	buildWatchlistLobbyHref,
+	parseWatchlistLobbyOrder,
 	watchlistCatalogueWaveKey,
 	watchlistOrderGridIsStale,
 	watchlistRowToPopularSeed,
@@ -64,5 +66,17 @@ describe("watchlistRowToPopularSeed", () => {
 			tv: null,
 		});
 		expect(seed.watchlistStreamingLabel).toBeNull();
+	});
+});
+
+describe("parseWatchlistLobbyOrder decision modes", () => {
+	test("accepts the three new modes and keeps the default", () => {
+		expect(parseWatchlistLobbyOrder("tonight")).toBe("tonight");
+		expect(parseWatchlistLobbyOrder("available")).toBe("available");
+		expect(parseWatchlistLobbyOrder("continue")).toBe("continue");
+		expect(parseWatchlistLobbyOrder(undefined)).toBe("latest_added");
+		expect(buildWatchlistLobbyHref({ order: "tonight" })).toBe(
+			"/watchlist?order=tonight",
+		);
 	});
 });
