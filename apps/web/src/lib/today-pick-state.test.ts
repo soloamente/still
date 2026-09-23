@@ -73,6 +73,33 @@ describe("reduceTodayPick", () => {
 		).toBe(watchlisted);
 	});
 
+	test("restored completion (finished on the title page) keeps how it was finished", () => {
+		expect(
+			reduceTodayPick(active, {
+				type: "restored_complete",
+				tmdbId: 10,
+				via: "diary",
+			}),
+		).toEqual({ phase: "complete", tmdbId: 10, via: "diary" });
+		expect(
+			reduceTodayPick(active, {
+				type: "restored_complete",
+				tmdbId: 10,
+				via: "watchlist",
+			}),
+		).toEqual({ phase: "complete", tmdbId: 10, via: "watchlist" });
+	});
+
+	test("restored completion never overrides a live Home completion", () => {
+		expect(
+			reduceTodayPick(logged, {
+				type: "restored_complete",
+				tmdbId: 10,
+				via: "watchlist",
+			}),
+		).toBe(logged);
+	});
+
 	test("pick another returns to active from any completed phase", () => {
 		expect(reduceTodayPick(logged, { type: "pick_another" })).toEqual(active);
 		expect(reduceTodayPick(watchlisted, { type: "pick_another" })).toEqual(

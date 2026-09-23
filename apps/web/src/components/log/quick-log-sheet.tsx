@@ -753,7 +753,7 @@ export function QuickLogRoot() {
 				movieTitle.trim() ? `Logged “${movieTitle}”` : "Saved to diary",
 			);
 			if (movieId != null) {
-				dispatchTasteTitleConsumed({ tmdbId: movieId });
+				dispatchTasteTitleConsumed({ tmdbId: movieId, via: "diary" });
 			}
 			dispatchTodayWeekRefresh();
 			const created = result.data as { id?: string };

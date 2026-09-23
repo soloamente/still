@@ -90,6 +90,11 @@ import {
 } from "@/lib/today-card-layout";
 import { buildTodayInstantLogPayload } from "@/lib/today-instant-log";
 import {
+	clearTodayPickContinuity,
+	readTodayPickContinuity,
+	writeTodayPickContinuity,
+} from "@/lib/today-pick-continuity";
+import {
 	INITIAL_TODAY_PICK_STATE,
 	reduceTodayPick,
 	todayPickCompletedTmdbId,
@@ -348,21 +353,39 @@ export function HomeTasteMatchedHero({
 			completedId == null
 				? undefined
 				: moviesRef.current.find((film) => film.tmdbId === completedId);
+		// Home remounts after a title-page visit: a pick finished there comes back
+		// as done (snapshot, since the server already dropped it) — never rotated away.
+		const continuity =
+			isTodayShell && completedId == null ? readTodayPickContinuity() : null;
+		const restoredVia = continuity?.completedVia ?? null;
+		const restoredFilm =
+			continuity && restoredVia
+				? (fresh.find((film) => film.tmdbId === continuity.tmdbId) ??
+					continuity.film)
+				: undefined;
+		const pinnedFilm = completedFilm ?? restoredFilm;
 		setPayload(initial);
 		setMovies(
-			completedFilm
+			pinnedFilm
 				? [
-						completedFilm,
-						...fresh.filter((film) => film.tmdbId !== completedId),
+						pinnedFilm,
+						...fresh.filter((film) => film.tmdbId !== pinnedFilm.tmdbId),
 					]
 				: fresh,
 		);
+		if (restoredFilm && restoredVia) {
+			dispatchPick({
+				type: "restored_complete",
+				tmdbId: restoredFilm.tmdbId,
+				via: restoredVia,
+			});
+		}
 		setGenrePhrase(
 			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null,
 		);
 		setLoading(false);
 		setActiveIndex(0);
-	}, [initial]);
+	}, [initial, isTodayShell]);
 
 	useEffect(() => {
 		if (initial !== undefined) return;
@@ -526,6 +549,7 @@ export function HomeTasteMatchedHero({
 		);
 		// Not interested may advance immediately — unlike watched / watchlist.
 		dispatchPick({ type: "not_interested_advanced" });
+		clearTodayPickContinuity();
 
 		try {
 			const res = await api.api.taste.dismiss.post({
@@ -558,6 +582,8 @@ export function HomeTasteMatchedHero({
 		(targetTmdbId?: number) => {
 			const completedId = todayPickCompletedTmdbId(pickStateRef.current);
 			dispatchPick({ type: "pick_another" });
+			// The detail cue belongs to the retired pick — the next one starts clean.
+			clearTodayPickContinuity();
 			if (completedId == null) return;
 			if (targetTmdbId == null) {
 				removeFromQueue(completedId);
@@ -651,7 +677,7 @@ export function HomeTasteMatchedHero({
 				logId: typeof created?.id === "string" ? created.id : null,
 			});
 			setPriorLogCount((count) => count + 1);
-			dispatchTasteTitleConsumed({ tmdbId });
+			dispatchTasteTitleConsumed({ tmdbId, via: "diary" });
 			dispatchTodayWeekRefresh();
 		} catch {
 			toast.error("Couldn't save to your diary");
@@ -672,6 +698,8 @@ export function HomeTasteMatchedHero({
 				throw new Error("undo failed");
 			}
 			dispatchPick({ type: "undo" });
+			// Don't restore a deleted log as "done" if Home remounts later.
+			clearTodayPickContinuity();
 			setPriorLogCount((count) => Math.max(0, count - 1));
 			dispatchTodayWeekRefresh();
 			focusWatchedAfterUndoRef.current = true;
@@ -853,6 +881,15 @@ export function HomeTasteMatchedHero({
 								<Link
 									href={`/movies/${spotlight.tmdbId}`}
 									className="group mx-auto block min-w-0 sm:mx-0"
+									onClick={
+										isTodayShell
+											? () =>
+													writeTodayPickContinuity({
+														film: spotlight,
+														reason: tasteMatchedRailTitle(genrePhrase),
+													})
+											: undefined
+									}
 								>
 									{titleLogoUrl ? (
 										<div className="relative mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-full max-w-[min(100%,14rem)] sm:mx-0 sm:max-w-[min(100%,32rem)]">

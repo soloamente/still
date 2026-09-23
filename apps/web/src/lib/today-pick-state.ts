@@ -28,6 +28,12 @@ export type TodayPickEvent =
 	| { type: "rating_settled" }
 	| { type: "watchlisted"; tmdbId: number }
 	| { type: "consumed_elsewhere"; tmdbId: number }
+	/** Home remounted after the pick was logged / watchlisted on its title page. */
+	| {
+			type: "restored_complete";
+			tmdbId: number;
+			via: "diary" | "watchlist";
+	  }
 	| { type: "pick_another" }
 	| { type: "not_interested_advanced" };
 
@@ -55,6 +61,10 @@ export function reduceTodayPick(
 			// The consumed event also echoes our own actions — never downgrade them.
 			return state.phase === "active"
 				? { phase: "complete", tmdbId: event.tmdbId, via: "elsewhere" }
+				: state;
+		case "restored_complete":
+			return state.phase === "active"
+				? { phase: "complete", tmdbId: event.tmdbId, via: event.via }
 				: state;
 		case "pick_another":
 		case "not_interested_advanced":

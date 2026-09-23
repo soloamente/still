@@ -1105,7 +1105,7 @@ export async function postWatchlistAdd(
 		"movieId" in payload &&
 		typeof payload.movieId === "number"
 	) {
-		dispatchTasteTitleConsumed({ tmdbId: payload.movieId });
+		dispatchTasteTitleConsumed({ tmdbId: payload.movieId, via: "watchlist" });
 	}
 	return {
 		ok: response.ok,
