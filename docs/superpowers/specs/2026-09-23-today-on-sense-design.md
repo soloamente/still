@@ -27,7 +27,7 @@ This is **slice 1** of a larger habit/social program. Watchlist decision engine,
 |-------|----------|
 | Program scope | Slice 1 only — Today + minimal recommend + category ratings in watch-log |
 | Architecture | **A + selective C** — `TodayOnSense` shell reuses taste-hero **presentation**; parallel Suspense streams; no blocking aggregate `GET /api/today` |
-| Placement | Top of `/home` main content, under sticky chrome, **before** browse/watchlist/activity |
+| Placement | Top of `/home` main content, under sticky chrome, **before** browse/watchlist/activity — **Movies browse only** (hidden on TV Shows and Community; revised 2026-09-23 after QA) |
 | Pick behavior | Shell owns **complete** / **Pick another**; no legacy auto-swap after watch |
 | Supporting row | Exactly two cards: **Your week** · **From your circle** |
 | Friend activity | One real event or honest invite empty — never fabricate |
