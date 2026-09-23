@@ -4,6 +4,7 @@ import { Button } from "@still/ui/components/button";
 import { useReducedMotion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef } from "react";
 
+import { LogCategoryRatingsPanel } from "@/components/log/log-category-ratings-panel";
 import { formatLogRatingDisplay, logRatingToDisplay } from "@/lib/log-rating";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import { SHEET_PRIMARY_PILL_CLASS } from "@/lib/sheet-chrome";
@@ -41,6 +42,7 @@ export function QuickLogCelebrationStrip({
 	canWriteReview,
 	onWriteReview,
 	onDismiss,
+	onApplyCategorySuggestion,
 }: {
 	logId: string;
 	title: string;
@@ -49,6 +51,8 @@ export function QuickLogCelebrationStrip({
 	canWriteReview: boolean;
 	onWriteReview: () => void;
 	onDismiss: () => void;
+	/** Patron chose the category-suggested overall (0–10 display) — host saves it. */
+	onApplyCategorySuggestion: (display: number) => void;
 }) {
 	const reduceMotion = useReducedMotion();
 	const digitGroupRef = useRef<HTMLSpanElement>(null);
@@ -124,6 +128,17 @@ export function QuickLogCelebrationStrip({
 					Saved to your diary
 				</p>
 			)}
+
+			{/* Empty `logId` = the create response had no id — nothing to PATCH. */}
+			{logId ? (
+				<LogCategoryRatingsPanel
+					logId={logId}
+					surface="quick_log"
+					overallDisplay={displayRating}
+					onApplySuggestion={onApplyCategorySuggestion}
+					align="center"
+				/>
+			) : null}
 
 			<div className="flex w-full flex-col items-center gap-3">
 				{canWriteReview ? (

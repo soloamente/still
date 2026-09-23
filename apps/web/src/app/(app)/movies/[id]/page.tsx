@@ -13,6 +13,7 @@ import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-prima
 import { MovieDetailQuotesPanel } from "@/components/movie/movie-detail-quotes-panel";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
+import { TodayPickDetailCue } from "@/components/movie/today-pick-detail-cue";
 import { accentFromGenres } from "@/lib/cinema-accents";
 import { requireListingDetailApiData } from "@/lib/eden-api-error";
 import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
@@ -328,6 +329,7 @@ export default async function MoviePage({
 			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.12] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
+			<TodayPickDetailCue mediaKind="movie" tmdbId={data.tmdbId} />
 			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />
 			<MovieDetailCommunityRatingHero
 				variant="compact"

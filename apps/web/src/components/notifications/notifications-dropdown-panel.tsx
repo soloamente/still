@@ -10,6 +10,7 @@ import {
 	Bell,
 	Download,
 	Flame,
+	Gift,
 	Heart,
 	MessageCircle,
 	Play,
@@ -25,6 +26,7 @@ import {
 	ACHIEVEMENT_HEPTAGON_CLASS,
 	HEPTAGON_CLIP,
 } from "@/components/gamification/milestone-badge-glyph";
+import { NotificationRecommendationRow } from "@/components/notifications/notification-recommendation-row";
 import { NotificationTasteChallengeRow } from "@/components/notifications/notification-taste-challenge-row";
 import { NotificationsInboxFilterChips } from "@/components/notifications/notifications-inbox-filter-chips";
 import { BADGE_ARTWORK_IMAGE_CLASS } from "@/lib/badge-artwork";
@@ -59,6 +61,7 @@ function iconForKind(kind: string): LucideIcon {
 	if (kind === "person_favorite_now_streaming") return Play;
 	if (kind === "taste.challenge") return Trophy;
 	if (kind === "challenge.completed") return Trophy;
+	if (kind === "recommendation.received") return Gift;
 	if (kind === "review.liked") return Heart;
 	if (kind === "import.completed") return Download;
 	return Bell;
@@ -210,6 +213,8 @@ function NotificationScrollList({
 	onRowActivate,
 	onTasteChallengeAccept,
 	onTasteChallengeDecline,
+	onRowMarkRead,
+	onBeforeSheetOpen,
 	loading,
 	emptyTitle,
 	emptyBody,
@@ -218,6 +223,8 @@ function NotificationScrollList({
 	onRowActivate: (row: NotificationPreviewRow) => void;
 	onTasteChallengeAccept?: (row: NotificationPreviewRow) => void;
 	onTasteChallengeDecline?: (row: NotificationPreviewRow) => void;
+	onRowMarkRead?: (row: NotificationPreviewRow) => void;
+	onBeforeSheetOpen?: () => void;
 	loading: boolean;
 	emptyTitle: string;
 	emptyBody: string;
@@ -271,6 +278,14 @@ function NotificationScrollList({
 								onAccept={onTasteChallengeAccept}
 								onDecline={onTasteChallengeDecline}
 							/>
+						) : row.kind === "recommendation.received" && onRowMarkRead ? (
+							<NotificationRecommendationRow
+								key={row.id}
+								row={row}
+								onOpen={onRowActivate}
+								onMarkRead={onRowMarkRead}
+								onBeforeSheetOpen={onBeforeSheetOpen}
+							/>
 						) : (
 							<NotificationRowButton
 								key={row.id}
@@ -299,6 +314,8 @@ export function NotificationsDropdownPanel({
 	onRowActivate,
 	onTasteChallengeAccept,
 	onTasteChallengeDecline,
+	onRowMarkRead,
+	onBeforeSheetOpen,
 	onSignIn,
 }: {
 	authenticated: boolean;
@@ -311,6 +328,10 @@ export function NotificationsDropdownPanel({
 	onRowActivate: (row: NotificationPreviewRow) => void;
 	onTasteChallengeAccept?: (row: NotificationPreviewRow) => void;
 	onTasteChallengeDecline?: (row: NotificationPreviewRow) => void;
+	/** Recommendation row actions mark read without navigating. */
+	onRowMarkRead?: (row: NotificationPreviewRow) => void;
+	/** Close the host menu before an action opens a sheet on top. */
+	onBeforeSheetOpen?: () => void;
 	onSignIn: () => void;
 }) {
 	const sorted = useMemo(
@@ -375,6 +396,8 @@ export function NotificationsDropdownPanel({
 				onRowActivate={onRowActivate}
 				onTasteChallengeAccept={onTasteChallengeAccept}
 				onTasteChallengeDecline={onTasteChallengeDecline}
+				onRowMarkRead={onRowMarkRead}
+				onBeforeSheetOpen={onBeforeSheetOpen}
 				loading={loading}
 				emptyTitle={emptyCopy.title}
 				emptyBody={emptyCopy.body}

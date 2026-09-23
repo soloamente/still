@@ -199,6 +199,8 @@ export function NotificationsBellMenu({
 					onRowActivate={handleRowActivate}
 					onTasteChallengeAccept={handleTasteChallengeAccept}
 					onTasteChallengeDecline={handleTasteChallengeDecline}
+					onRowMarkRead={(row) => void markOneRead(row)}
+					onBeforeSheetOpen={() => menuActionsRef.current?.close()}
 					onSignIn={() => {
 						menuActionsRef.current?.close();
 						router.push("/sign-in");

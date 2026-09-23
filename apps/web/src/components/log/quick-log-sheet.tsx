@@ -75,6 +75,7 @@ import {
 import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
+import { dispatchTodayWeekRefresh } from "@/lib/today-week-pulse";
 import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
 import type { TvLogScope } from "@/lib/tv-watch-types";
 import { useLockDrawerScroll } from "@/lib/use-lock-drawer-scroll";
@@ -153,7 +154,12 @@ export type QuickLogArgs = {
 	episodeNumber?: number;
 	/** Prefills the visibility picker when editing an existing log. */
 	visibility?: "public" | "followers" | "friends" | "private";
-	onSuccess?: () => void;
+	/** `logId` is set only for a freshly created log (edits and removals omit it). */
+	onSuccess?: (result?: QuickLogSuccessResult) => void;
+};
+
+export type QuickLogSuccessResult = {
+	logId: string | null;
 };
 
 /** Post-log micro-moment — keeps the sheet open after a successful create. */
@@ -630,6 +636,35 @@ export function QuickLogRoot() {
 		});
 	}, [celebration, handleClose, openReviewComposer]);
 
+	const celebrationLogId = celebration?.logId ?? "";
+
+	/** Category panel "Use / Switch to" — the log already exists, so PATCH the overall now. */
+	const handleCelebrationApplySuggestion = useCallback(
+		async (display: number) => {
+			if (!celebrationLogId) return;
+			const stored = logRatingToStored(display);
+			const result = await patchLog(celebrationLogId, { rating: stored });
+			if (!result.ok) {
+				console.error(
+					"[quick-log] suggested rating patch failed",
+					result.error,
+				);
+				toast.error("Couldn't update your rating");
+				return;
+			}
+			setCelebration((prev) =>
+				prev && prev.logId === celebrationLogId
+					? { ...prev, ratingStored: stored }
+					: prev,
+			);
+			dispatchTodayWeekRefresh();
+			if (shouldRefreshRouteAfterMutation(pathname)) {
+				router.refresh();
+			}
+		},
+		[celebrationLogId, pathname, router],
+	);
+
 	useEffect(() => {
 		if (!isOpen || isMobileVaul) return;
 		const onKey = (e: KeyboardEvent) => {
@@ -670,6 +705,8 @@ export function QuickLogRoot() {
 				stillToast.updated(
 					movieTitle.trim() ? `Updated “${movieTitle}”` : "Diary log updated",
 				);
+				// Watched date or rating may have moved in/out of this week.
+				dispatchTodayWeekRefresh();
 				args.onSuccess?.();
 				if (shouldRefreshRouteAfterMutation(pathname)) {
 					router.refresh();
@@ -716,13 +753,16 @@ export function QuickLogRoot() {
 				movieTitle.trim() ? `Logged “${movieTitle}”` : "Saved to diary",
 			);
 			if (movieId != null) {
-				dispatchTasteTitleConsumed({ tmdbId: movieId });
+				dispatchTasteTitleConsumed({ tmdbId: movieId, via: "diary" });
 			}
-			args.onSuccess?.();
+			dispatchTodayWeekRefresh();
+			const created = result.data as { id?: string };
+			args.onSuccess?.({
+				logId: typeof created?.id === "string" ? created.id : null,
+			});
 			if (shouldRefreshRouteAfterMutation(pathname)) {
 				router.refresh();
 			}
-			const created = result.data as { id?: string };
 			setCelebration({
 				logId: typeof created?.id === "string" ? created.id : "",
 				title: movieTitle,
@@ -755,6 +795,7 @@ export function QuickLogRoot() {
 			const label = movieTitle.trim() || "This title";
 			stillToast.updated(`Removed “${label}” from watched`);
 			setRemoveConfirmOpen(false);
+			dispatchTodayWeekRefresh();
 			args.onSuccess?.();
 			if (
 				pathname.startsWith("/home") ||
@@ -1112,6 +1153,9 @@ export function QuickLogRoot() {
 			canWriteReview={celebration.movieId != null}
 			onWriteReview={handleCelebrationWriteReview}
 			onDismiss={handleCelebrationDismiss}
+			onApplyCategorySuggestion={(display) =>
+				void handleCelebrationApplySuggestion(display)
+			}
 		/>
 	) : (
 		quickLogFormFields

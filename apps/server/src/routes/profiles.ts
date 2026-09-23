@@ -62,6 +62,7 @@ import { fetchProfileDiscordActivity } from "../lib/fetch-profile-discord-activi
 import { withCoverPosterPaths } from "../lib/list-cover-posters";
 import { resolveListingPosterPath } from "../lib/listing-poster-path";
 import { fetchProfilePinnedQuotes } from "../lib/listing-quote-saves-query";
+import { diaryVenueSliceWhere } from "../lib/log-watch-venue";
 import {
 	backfillOnboardingFavoriteDiaryLogs,
 	parseProfileFavoriteMovieIds,
@@ -81,6 +82,10 @@ import {
 	type PatronEntitlements,
 } from "../lib/patron-entitlements";
 import { parseStaffRoleFromUserRole } from "../lib/patron-staff-role";
+import {
+	countPersonFavoritesForUser,
+	listPersonFavoritesForUser,
+} from "../lib/person-favorite-list";
 import {
 	canAccessYearInReviewYear,
 	patronHasPlanFeature,
@@ -137,10 +142,6 @@ import {
 	hydrateShowcaseTiles,
 	validateShowcaseItemsForUser,
 } from "../lib/profile-showcase";
-import {
-	countPersonFavoritesForUser,
-	listPersonFavoritesForUser,
-} from "../lib/person-favorite-list";
 import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -1271,10 +1272,7 @@ export const profilesRoute = new Elysia({
 			// "Latest seen" + "At home" reflects the latest at-home watch, not the
 			// globally newest log that may belong to the other venue.
 			const venueLogWhere = venue
-				? or(
-						eq(log.watchVenue, venue),
-						sql`${log.watchVenue} not in ('theaters','streaming')`,
-					)
+				? diaryVenueSliceWhere(log.watchVenue, venue)
 				: undefined;
 
 			// Newest log per title within the active slice (DISTINCT ON media id).

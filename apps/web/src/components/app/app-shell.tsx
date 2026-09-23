@@ -16,6 +16,7 @@ import { PatronWatchLedgerDrawerRoot } from "@/components/home/patron-watch-ledg
 import { CreateListDrawerRoot } from "@/components/list/create-list-drawer";
 import { QuickLogRoot } from "@/components/log/quick-log-sheet";
 import { PersonFilmographyDrawerRoot } from "@/components/movie/person-filmography-drawer";
+import { RecommendBackSheetRoot } from "@/components/recommend/recommend-back-sheet-root";
 import { InviteEarnDialogRoot } from "@/components/referrals/invite-earn-dialog-root";
 import { ReviewComposerRoot } from "@/components/review/review-composer";
 import { ReviewDetailRoot } from "@/components/review/review-detail-sheet";
@@ -120,6 +121,7 @@ export function AppShell({
 					</Suspense>
 					<RoleChangeDialogRoot />
 					<InviteEarnDialogRoot />
+					<RecommendBackSheetRoot />
 					<MobileTabBar
 						user={{
 							id: user.id,
