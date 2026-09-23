@@ -26,26 +26,8 @@ const EMPTY_WATCHLIST_COPY: WatchlistModeEmptyCopy = {
 	cta: "Search films and shows",
 };
 
-/** Exhaustive by type — a new mode fails to compile until it has copy. */
+/** Exhaustive by type — a new sort fails to compile until it has copy. */
 const COPY: Record<WatchlistLobbyOrder, WatchlistModeEmptyCopy> = {
-	tonight: {
-		title: "Nothing lined up yet",
-		body: "Save a few titles and we'll line up tonight's.",
-		href: "/home",
-		cta: "Browse films",
-	},
-	available: {
-		title: "Nothing on your services yet",
-		body: "We'll show titles here as they land on your streaming services.",
-		href: "/home",
-		cta: "Browse films",
-	},
-	continue: {
-		title: "No shows in progress",
-		body: "Start a show and it'll wait for you here.",
-		href: "/home?browse=tv",
-		cta: "Browse TV",
-	},
 	latest_added: EMPTY_WATCHLIST_COPY,
 	earliest_added: EMPTY_WATCHLIST_COPY,
 	title_az: EMPTY_WATCHLIST_COPY,
@@ -72,12 +54,15 @@ export function WatchlistModeEmpty({
 	needsRegion,
 	region,
 	failed,
+	activeProviderCount = 0,
 }: {
 	order: WatchlistLobbyOrder;
 	needsRegion: boolean;
 	/** Server region signal: ISO code, `"ALL"`, or null (unset). */
 	region: string | null;
 	failed: boolean;
+	/** Non-zero when `?providers=` filtered the grid to zero rows. */
+	activeProviderCount?: number;
 }) {
 	const router = useRouter();
 	const copy = COPY[order];
@@ -124,8 +109,8 @@ export function WatchlistModeEmpty({
 						<Link href={copy.href} className={EMPTY_PRIMARY_PILL_CLASS}>
 							{copy.cta}
 						</Link>
-						{order === "available" ? (
-							// Region is set but nothing streams yet — the saves still exist.
+						{activeProviderCount > 0 ? (
+							// AND filter with zero matches — unfiltered saves may still exist.
 							<Link href="/watchlist" className={EMPTY_SECONDARY_PILL_CLASS}>
 								See all saves
 							</Link>

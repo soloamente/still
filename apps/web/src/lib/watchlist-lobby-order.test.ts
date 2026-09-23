@@ -3,6 +3,7 @@ import {
 	buildWatchlistLobbyHref,
 	decorateWatchlistSeedsForMode,
 	parseWatchlistLobbyOrder,
+	resolveWatchlistLegacyRedirect,
 	sortContinueSeeds,
 	tvWatchBundleToContinueSeed,
 	watchlistCatalogueWaveKey,
@@ -93,14 +94,72 @@ describe("decorateWatchlistSeedsForMode", () => {
 	});
 });
 
-describe("parseWatchlistLobbyOrder decision modes", () => {
-	test("accepts the three new modes and keeps the default", () => {
-		expect(parseWatchlistLobbyOrder("tonight")).toBe("tonight");
-		expect(parseWatchlistLobbyOrder("available")).toBe("available");
-		expect(parseWatchlistLobbyOrder("continue")).toBe("continue");
+describe("parseWatchlistLobbyOrder", () => {
+	test("accepts the three grid sorts and keeps the default", () => {
+		expect(parseWatchlistLobbyOrder("latest_added")).toBe("latest_added");
+		expect(parseWatchlistLobbyOrder("earliest_added")).toBe("earliest_added");
+		expect(parseWatchlistLobbyOrder("title_az")).toBe("title_az");
 		expect(parseWatchlistLobbyOrder(undefined)).toBe("latest_added");
-		expect(buildWatchlistLobbyHref({ order: "tonight" })).toBe(
-			"/watchlist?order=tonight",
+	});
+
+	test("legacy decision modes fall back to recently added", () => {
+		expect(parseWatchlistLobbyOrder("tonight")).toBe("latest_added");
+		expect(parseWatchlistLobbyOrder("available")).toBe("latest_added");
+		expect(parseWatchlistLobbyOrder("continue")).toBe("latest_added");
+	});
+});
+
+describe("buildWatchlistLobbyHref", () => {
+	test("default sort omits order param", () => {
+		expect(buildWatchlistLobbyHref({ order: "latest_added" })).toBe(
+			"/watchlist",
+		);
+	});
+
+	test("includes providers and non-default order", () => {
+		expect(
+			buildWatchlistLobbyHref({
+				order: "title_az",
+				providers: [350, 8],
+			}),
+		).toBe("/watchlist?order=title_az&providers=8%2C350");
+	});
+});
+
+describe("resolveWatchlistLegacyRedirect", () => {
+	test("tonight and continue strip order", () => {
+		expect(resolveWatchlistLegacyRedirect({ order: "tonight" })).toBe(
+			"/watchlist",
+		);
+		expect(resolveWatchlistLegacyRedirect({ order: "continue" })).toBe(
+			"/watchlist",
+		);
+	});
+
+	test("available opens filters once", () => {
+		expect(resolveWatchlistLegacyRedirect({ order: "available" })).toBe(
+			"/watchlist?filters=1",
+		);
+	});
+
+	test("preserves providers while redirecting", () => {
+		expect(
+			resolveWatchlistLegacyRedirect({
+				order: "tonight",
+				providers: "8,350",
+			}),
+		).toBe("/watchlist?providers=8%2C350");
+	});
+
+	test("non-legacy order → no redirect", () => {
+		expect(resolveWatchlistLegacyRedirect({ order: "title_az" })).toBeNull();
+	});
+});
+
+describe("watchlistCatalogueWaveKey providers", () => {
+	test("includes provider ids in the wave key", () => {
+		expect(watchlistCatalogueWaveKey("latest_added", [8, 350])).toBe(
+			"watchlist:latest_added:8,350",
 		);
 	});
 });

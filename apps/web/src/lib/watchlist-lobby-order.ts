@@ -5,27 +5,40 @@
 import type { PopularMovieSeed } from "@/components/movie/popular-movies-infinite";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import type { TvWatchBundle } from "@/lib/tv-watch-types";
+import {
+	formatWatchlistProviderQuery,
+	parseWatchlistProviderIds,
+} from "@/lib/watchlist-provider-filter";
 import { formatWatchlistStreamingPill } from "@/lib/watchlist-streaming-display";
 import type { WatchlistReasonKind } from "@/lib/watchlist-tile-analytics";
 
+/** Grid sort chips on `/watchlist` — hero/continue use separate data paths. */
 export type WatchlistLobbyOrder =
-	| "tonight"
-	| "available"
-	| "continue"
 	| "latest_added"
 	| "earliest_added"
 	| "title_az";
+
+/** Legacy `?order=` values redirected at the page boundary (hero-platforms IA). */
+export type WatchlistLegacyLobbyOrder = "tonight" | "available" | "continue";
+
+/** Poster scrim modes — includes legacy sorts still used by hero prefetch/tests. */
+export type WatchlistPosterCaptionMode =
+	| WatchlistLobbyOrder
+	| WatchlistLegacyLobbyOrder;
 
 const DEFAULT_ORDER: WatchlistLobbyOrder = "latest_added";
 
 /** Every accepted `?order=` value — unknown values fall back to `DEFAULT_ORDER`. */
 const WATCHLIST_LOBBY_ORDERS: readonly WatchlistLobbyOrder[] = [
-	"tonight",
-	"available",
-	"continue",
 	"latest_added",
 	"earliest_added",
 	"title_az",
+];
+
+const WATCHLIST_LEGACY_LOBBY_ORDERS: readonly WatchlistLegacyLobbyOrder[] = [
+	"tonight",
+	"available",
+	"continue",
 ];
 
 /** First-page size; mirrors the server `WATCHLIST_DEFAULT_LIMIT`. */
@@ -61,19 +74,67 @@ export type WatchlistLobbyRowWithListing =
 /** @deprecated Use `WatchlistLobbyRowWithListing`. */
 export type WatchlistLobbyRowWithMovie = WatchlistLobbyRowWithListing;
 
+export function isWatchlistLegacyLobbyOrder(
+	raw: string | null | undefined,
+): raw is WatchlistLegacyLobbyOrder {
+	return (
+		raw != null &&
+		(WATCHLIST_LEGACY_LOBBY_ORDERS as readonly string[]).includes(raw)
+	);
+}
+
 export function parseWatchlistLobbyOrder(
 	raw: string | null | undefined,
 ): WatchlistLobbyOrder {
+	if (isWatchlistLegacyLobbyOrder(raw)) return DEFAULT_ORDER;
 	return WATCHLIST_LOBBY_ORDERS.find((order) => order === raw) ?? DEFAULT_ORDER;
 }
 
-export function buildWatchlistLobbyHref(opts: {
-	order: WatchlistLobbyOrder;
-}): string {
-	if (opts.order === DEFAULT_ORDER) return "/watchlist";
+function watchlistSearchParamFirst(
+	raw: string | string[] | undefined,
+): string | undefined {
+	return Array.isArray(raw) ? raw[0] : raw;
+}
+
+/**
+ * When old decision-engine URLs land, strip legacy `order` and map
+ * `available` → `?filters=1` (popover opens in Task 6).
+ */
+export function resolveWatchlistLegacyRedirect(sp: {
+	order?: string | string[];
+	providers?: string | string[];
+}): string | null {
+	const order = watchlistSearchParamFirst(sp.order);
+	if (!isWatchlistLegacyLobbyOrder(order)) return null;
+
 	const params = new URLSearchParams();
-	params.set("order", opts.order);
-	return `/watchlist?${params.toString()}`;
+	const providersRaw = watchlistSearchParamFirst(sp.providers);
+	const providers = parseWatchlistProviderIds(providersRaw);
+	if (providers.length > 0) {
+		params.set("providers", formatWatchlistProviderQuery(providers));
+	}
+	if (order === "available") params.set("filters", "1");
+
+	const query = params.toString();
+	return query ? `/watchlist?${query}` : "/watchlist";
+}
+
+export function buildWatchlistLobbyHref(opts: {
+	order?: WatchlistLobbyOrder;
+	providers?: readonly number[];
+	/** One-shot open for filters popover (`?filters=1`). */
+	filters?: boolean;
+}): string {
+	const order = opts.order ?? DEFAULT_ORDER;
+	const params = new URLSearchParams();
+	if (order !== DEFAULT_ORDER) params.set("order", order);
+	const providers = opts.providers ?? [];
+	if (providers.length > 0) {
+		params.set("providers", formatWatchlistProviderQuery(providers));
+	}
+	if (opts.filters) params.set("filters", "1");
+	const query = params.toString();
+	return query ? `/watchlist?${query}` : "/watchlist";
 }
 
 /**
@@ -82,8 +143,15 @@ export function buildWatchlistLobbyHref(opts: {
  * the chip into this key remounts the grid onto stale seeds before the new
  * payload arrives (double paint: old order, then the real one).
  */
-export function watchlistCatalogueWaveKey(order: WatchlistLobbyOrder): string {
-	return `watchlist:${order}`;
+export function watchlistCatalogueWaveKey(
+	order: WatchlistLobbyOrder,
+	providers: readonly number[] = [],
+): string {
+	const providerKey =
+		providers.length > 0 ? formatWatchlistProviderQuery(providers) : "";
+	return providerKey
+		? `watchlist:${order}:${providerKey}`
+		: `watchlist:${order}`;
 }
 
 /**
@@ -109,7 +177,7 @@ export const isWatchlistRowWithMovie = isWatchlistRowWithListing;
 /** Poster scrim copy depends on the active mode — not every sort is a streaming view. */
 function watchlistPosterCaptionForOrder(
 	row: WatchlistLobbyRowWithListing,
-	order: WatchlistLobbyOrder,
+	order: WatchlistPosterCaptionMode,
 ): string | null {
 	const listing = row.movie ?? row.tv;
 	if (!listing) return null;
@@ -140,7 +208,7 @@ const TONIGHT_RANK_SUBLINE = ["Top pick", "2nd pick", "3rd pick"] as const;
 /** Adds tonight rank sublines on the first three ranked tiles (page 1 only). */
 export function decorateWatchlistSeedsForMode(
 	seeds: PopularMovieSeed[],
-	order: WatchlistLobbyOrder,
+	order: WatchlistPosterCaptionMode,
 ): PopularMovieSeed[] {
 	if (order !== "tonight") return seeds;
 	return seeds.map((seed, index) => {
@@ -153,7 +221,7 @@ export function decorateWatchlistSeedsForMode(
 /** Map a joined watchlist row to the poster seed shape the lobby grid renders. */
 export function watchlistRowToPopularSeed(
 	row: WatchlistLobbyRowWithListing,
-	order: WatchlistLobbyOrder = "latest_added",
+	order: WatchlistPosterCaptionMode = "latest_added",
 ): PopularMovieSeed {
 	const listing = row.movie ?? row.tv;
 	if (!listing) {

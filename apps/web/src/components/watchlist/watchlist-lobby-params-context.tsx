@@ -17,6 +17,7 @@ import {
 	parseWatchlistLobbyOrder,
 	type WatchlistLobbyOrder,
 } from "@/lib/watchlist-lobby-order";
+import { parseWatchlistProviderIds } from "@/lib/watchlist-provider-filter";
 
 interface WatchlistLobbyParamsContextValue {
 	order: WatchlistLobbyOrder;
@@ -43,6 +44,7 @@ export function WatchlistLobbyParamsProvider({
 	const searchParams = useSearchParams();
 	const { navigate } = useLobbyNavigation();
 	const urlOrder = parseWatchlistLobbyOrder(searchParams.get("order"));
+	const urlProviders = parseWatchlistProviderIds(searchParams.get("providers"));
 	const orderState = useOptimisticLobbyParam(urlOrder);
 	const [seedOrder, setSeedOrder] = useState<WatchlistLobbyOrder | null>(null);
 	const [gridTotalResults, setGridTotalResults] = useState<number | null>(null);
@@ -52,9 +54,9 @@ export function WatchlistLobbyParamsProvider({
 			orderState.setOptimistic(order);
 			// Drop the count until the new mode's RSC reports — avoids stale "N saves".
 			setGridTotalResults(null);
-			navigate(buildWatchlistLobbyHref({ order }));
+			navigate(buildWatchlistLobbyHref({ order, providers: urlProviders }));
 		},
-		[navigate, orderState],
+		[navigate, orderState, urlProviders],
 	);
 
 	const reportSeedOrder = useCallback((order: WatchlistLobbyOrder) => {

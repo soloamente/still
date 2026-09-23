@@ -10,11 +10,6 @@ import { useWatchlistLobbyDisplayPrefs } from "@/components/watchlist/watchlist-
 import { useWatchlistLobbyParams } from "@/components/watchlist/watchlist-lobby-params-context";
 import { WatchlistModeEmpty } from "@/components/watchlist/watchlist-mode-empty";
 import {
-	WatchlistRegionAction,
-	watchlistRegionGuidanceCopy,
-	watchlistRegionNeedsGuidance,
-} from "@/components/watchlist/watchlist-region-action";
-import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME,
@@ -37,12 +32,12 @@ import {
  * seeds on the first paint (the wave-key effect would otherwise lag one frame).
  * Hover prefs come from layout chrome so `?order=` does not wait on `profiles.me`.
  *
- * `continue` seeds come from `GET /api/tv-watch/me` as one page — `loadPage` is a
- * no-op there so scrolling never asks `/api/watchlist` for `order=continue`.
- * The page keys this component by `order`, so the mode impression fires once per mode.
+ * The page keys this component by sort + providers so the mode impression fires once
+ * per distinct grid view.
  */
 export function WatchlistLobbyCatalogue({
 	order,
+	providers,
 	seeds,
 	totalPages,
 	totalResults,
@@ -51,10 +46,12 @@ export function WatchlistLobbyCatalogue({
 	failed,
 }: {
 	order: WatchlistLobbyOrder;
+	/** Active AND streaming filter — forwarded to `fetchMyWatchlist`. */
+	providers: readonly number[];
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
-	/** `order=available` without a chosen watch region. */
+	/** Provider filter without a chosen watch region. */
 	needsRegion: boolean;
 	/** ISO code, `"ALL"`, or null (unset); `undefined` when unknown (skip guidance). */
 	region: string | null | undefined;
@@ -86,11 +83,9 @@ export function WatchlistLobbyCatalogue({
 		): Promise<
 			{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
 		> => {
-			// Continue watching is a single page from `tv-watch/me` — nothing more to load.
-			if (order === "continue") return { results: [], total_pages: 1 };
-			return fetchMyWatchlist(page, { order, signal });
+			return fetchMyWatchlist(page, { order, providers, signal });
 		},
-		[order],
+		[order, providers],
 	);
 
 	if (seeds.length === 0 || failed) {
@@ -100,38 +95,22 @@ export function WatchlistLobbyCatalogue({
 				needsRegion={needsRegion}
 				region={region ?? null}
 				failed={failed}
+				activeProviderCount={providers.length}
 			/>
 		);
 	}
 
-	// Ranking still works without a region; availability just can't contribute.
-	const showTonightRegionNote =
-		order === "tonight" && watchlistRegionNeedsGuidance(region);
-
 	return (
 		<>
-			{showTonightRegionNote ? (
-				<div className="mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-2 text-center text-muted-foreground text-sm">
-					<span className="text-pretty">
-						{watchlistRegionGuidanceCopy(region ?? null)}
-					</span>
-					<WatchlistRegionAction className="inline-flex min-h-10 items-center rounded-full px-3 font-medium text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline">
-						Choose region
-					</WatchlistRegionAction>
-				</div>
-			) : null}
 			<PopularMoviesInfinite
-				key={watchlistCatalogueWaveKey(order)}
+				key={watchlistCatalogueWaveKey(order, providers)}
 				blockedReason={null}
-				// Continue tiles come from `tv_watch`, not the watchlist — use home actions
-				// (watchlist toggle hydrates real state) so "Remove from watchlist" can't
-				// delete a watchlist row the tile doesn't represent.
-				catalogueRadialSurface={order === "continue" ? "home" : "watchlist"}
+				catalogueRadialSurface="watchlist"
 				catalogueTrackingMode={order}
 				signedIn={signedIn}
 				catalogMedia="movie"
 				catalogExhaustedScope="your watchlist"
-				catalogueWaveKeyOverride={watchlistCatalogueWaveKey(order)}
+				catalogueWaveKeyOverride={watchlistCatalogueWaveKey(order, providers)}
 				getPosterCellKey={cellKey}
 				getDedupeKey={cellKey}
 				loadPage={loadPage}

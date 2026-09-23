@@ -16,24 +16,6 @@ const CHIPS: readonly {
 	title: string;
 }[] = [
 	{
-		id: "tonight",
-		label: "Watch tonight",
-		shortLabel: "Tonight",
-		title: "Ranked for tonight — streaming, friends, lists, taste",
-	},
-	{
-		id: "available",
-		label: "Now available",
-		shortLabel: "Streaming",
-		title: "Streaming on your services in your region",
-	},
-	{
-		id: "continue",
-		label: "Continue watching",
-		shortLabel: "In progress",
-		title: "Shows you're in the middle of",
-	},
-	{
 		id: "latest_added",
 		label: "Recently added",
 		shortLabel: "Recent",
@@ -84,8 +66,7 @@ function horizontalScrollParent(element: HTMLElement): HTMLElement | null {
 
 /**
  * Left chip rail on `/watchlist` — sliding `bg-card` pill (diary parity).
- * Six modes stay on one line: the track keeps its natural width (`w-max`) inside the
- * shared lobby scroll rail (horizontal scroll + edge fades on narrow viewports).
+ * Three sort modes on one line inside the shared lobby scroll rail.
  */
 export function WatchlistCatalogOrderChips() {
 	const { order, selectOrder } = useWatchlistLobbyParams();
@@ -120,8 +101,8 @@ export function WatchlistCatalogOrderChips() {
 	return (
 		<div ref={rootRef} className="flex min-w-0 flex-1 flex-col gap-1">
 			<p id="watchlist-catalog-order-desc" className="sr-only">
-				Choose how your watchlist is shown — ranked for tonight, streaming now,
-				shows in progress, or by save date and title.
+				Choose how your watchlist is sorted — recently added, oldest saves, or
+				by title.
 			</p>
 			<HomeLobbyFilterScrollRail>
 				<SegmentedPillToolbar

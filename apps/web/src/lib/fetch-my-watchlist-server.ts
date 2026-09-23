@@ -10,6 +10,7 @@ import {
 	type WatchlistLobbyRow,
 	watchlistRowToPopularSeed,
 } from "@/lib/watchlist-lobby-order";
+import { formatWatchlistProviderQuery } from "@/lib/watchlist-provider-filter";
 
 /**
  * RSC helper for page 1 of **`GET /api/watchlist`** — forwards the visitor's
@@ -19,7 +20,10 @@ import {
  * empty page flagged `needs_region`). `failed` — request errored; the lobby shows a
  * retry state instead of the empty-watchlist copy.
  */
-export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
+export async function fetchMyWatchlistServer(opts: {
+	order: string;
+	providers?: readonly number[];
+}): Promise<{
 	seeds: PopularMovieSeed[];
 	totalPages: number;
 	totalResults: number;
@@ -30,11 +34,15 @@ export async function fetchMyWatchlistServer(opts: { order: string }): Promise<{
 }> {
 	try {
 		const client = await serverApi();
+		const providers = opts.providers ?? [];
 		const res = await client.api.watchlist.get({
 			query: {
 				page: "1",
 				limit: String(WATCHLIST_PAGE_SIZE),
 				order: opts.order,
+				...(providers.length > 0
+					? { providers: formatWatchlistProviderQuery(providers) }
+					: {}),
 			},
 		});
 		if (res.error != null) {

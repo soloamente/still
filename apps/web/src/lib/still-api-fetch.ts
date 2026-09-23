@@ -31,6 +31,7 @@ import {
 	type WatchlistLobbyRow,
 	watchlistRowToPopularSeed,
 } from "@/lib/watchlist-lobby-order";
+import { formatWatchlistProviderQuery } from "@/lib/watchlist-provider-filter";
 
 /**
  * Hand-rolled GET helpers for URLs that Eden Treaty mishandles today:
@@ -1421,13 +1422,21 @@ export async function postRecommendationAction(
  */
 export async function fetchMyWatchlist(
 	page: number,
-	opts: { order: string; signal?: AbortSignal },
+	opts: {
+		order: string;
+		providers?: readonly number[];
+		signal?: AbortSignal;
+	},
 ): Promise<
 	{ results: PopularMovieSeed[]; total_pages: number } | { error: true }
 > {
 	const url = new URL("/api/watchlist", stillApiOrigin());
 	url.searchParams.set("page", String(Math.max(1, Math.floor(page)) || 1));
 	url.searchParams.set("order", opts.order);
+	const providers = opts.providers ?? [];
+	if (providers.length > 0) {
+		url.searchParams.set("providers", formatWatchlistProviderQuery(providers));
+	}
 	const response = await fetch(url, {
 		credentials: "include",
 		cache: "no-store",
