@@ -20,6 +20,7 @@ import {
 import { toast } from "sonner";
 import { HomeTasteHeroMediaLayer } from "@/components/home/home-taste-hero-media-layer";
 import { HomeTasteMatchedHeroSkeleton } from "@/components/home/home-taste-matched-hero-skeleton";
+import { TodayPickHowWasIt } from "@/components/home/today-pick-how-was-it";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { FestivalRecognitionIcon } from "@/components/movie/festival-recognition-icon";
@@ -52,11 +53,14 @@ import {
 	clampLogRatingDisplay,
 	formatLogRatingDisplay,
 } from "@/lib/log-rating";
+import { formatTodayYmd } from "@/lib/log-watched-date";
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
 import {
+	deleteLog,
 	fetchMovieTitleLogoPath,
 	fetchMovieTrailer,
 	fetchMyLogsForMovie,
+	postLog,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
 import {
@@ -72,6 +76,7 @@ import {
 	tasteMatchedRailTitle,
 } from "@/lib/taste-matched-discovery";
 import {
+	dispatchTasteTitleConsumed,
 	TASTE_TITLE_CONSUMED_EVENT,
 	type TasteTitleConsumedDetail,
 } from "@/lib/taste-title-consumed-events";
@@ -83,12 +88,14 @@ import {
 	TODAY_CARD_HEADING_CLASSNAME,
 	TODAY_SUPPORTING_CARD_CLASSNAME,
 } from "@/lib/today-card-layout";
+import { buildTodayInstantLogPayload } from "@/lib/today-instant-log";
 import {
 	INITIAL_TODAY_PICK_STATE,
 	reduceTodayPick,
 	todayPickCompletedTmdbId,
 	todayPickStatusCopy,
 } from "@/lib/today-pick-state";
+import { dispatchTodayWeekRefresh } from "@/lib/today-week-pulse";
 import { useHorizontalRailPointerDrag } from "@/lib/use-horizontal-rail-pointer-drag";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
@@ -202,6 +209,10 @@ export function HomeTasteMatchedHero({
 	const [loading, setLoading] = useState(initial === undefined);
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [watchlistBusy, setWatchlistBusy] = useState(false);
+	const [instantLogBusy, setInstantLogBusy] = useState(false);
+	const [undoBusy, setUndoBusy] = useState(false);
+	const watchedButtonRef = useRef<HTMLButtonElement>(null);
+	const focusWatchedAfterUndoRef = useRef(false);
 	const [priorLogCount, setPriorLogCount] = useState(0);
 	const [spotlightLogoPath, setSpotlightLogoPath] = useState<string | null>(
 		null,
@@ -615,7 +626,69 @@ export function HomeTasteMatchedHero({
 		spotlight,
 	]);
 
-	const quickLogLabel = priorLogCount > 0 ? "Rewatch" : "Add to Watched";
+	/** Today **Watched** — saves the diary log immediately (no sheet); rating comes after. */
+	const handleInstantWatched = useCallback(async () => {
+		if (!spotlight || instantLogBusy) return;
+		const tmdbId = spotlight.tmdbId;
+		setInstantLogBusy(true);
+		try {
+			const result = await postLog(
+				buildTodayInstantLogPayload({
+					tmdbId,
+					priorLogCount,
+					todayYmd: formatTodayYmd(),
+				}),
+			);
+			if (!result.ok) {
+				console.error("[today] instant log failed", result.error);
+				throw new Error("instant log failed");
+			}
+			const created = result.data as { id?: unknown } | null;
+			// Dispatch before the consumed echo so the shell records a local log (Undo).
+			dispatchPick({
+				type: "logged",
+				tmdbId,
+				logId: typeof created?.id === "string" ? created.id : null,
+			});
+			setPriorLogCount((count) => count + 1);
+			dispatchTasteTitleConsumed({ tmdbId });
+			dispatchTodayWeekRefresh();
+		} catch {
+			toast.error("Couldn't save to your diary");
+		} finally {
+			setInstantLogBusy(false);
+		}
+	}, [instantLogBusy, priorLogCount, spotlight]);
+
+	/** Deletes the log Today just created and reopens the pick's actions. */
+	const handleUndoLog = useCallback(async () => {
+		const state = pickStateRef.current;
+		if (state.phase !== "just_logged" || !state.logId || undoBusy) return;
+		setUndoBusy(true);
+		try {
+			const result = await deleteLog(state.logId);
+			if (!result.ok) {
+				console.error("[today] undo log failed", result.error);
+				throw new Error("undo failed");
+			}
+			dispatchPick({ type: "undo" });
+			setPriorLogCount((count) => Math.max(0, count - 1));
+			dispatchTodayWeekRefresh();
+			focusWatchedAfterUndoRef.current = true;
+		} catch {
+			toast.error("Couldn't undo — the log is still in your diary");
+		} finally {
+			setUndoBusy(false);
+		}
+	}, [undoBusy]);
+
+	const quickLogLabel = isTodayShell
+		? priorLogCount > 0
+			? "Log a rewatch"
+			: "Watched"
+		: priorLogCount > 0
+			? "Rewatch"
+			: "Add to Watched";
 
 	useEffect(() => {
 		const onConsumed = (event: Event) => {
@@ -633,14 +706,24 @@ export function HomeTasteMatchedHero({
 		pickState.tmdbId === spotlightTmdbId;
 	const pickStatusCopy = pickDone ? todayPickStatusCopy(pickState) : null;
 
+	const pickPhase = pickState.phase;
+	const justLoggedId =
+		pickDone && pickState.phase === "just_logged" ? pickState.logId : null;
+
 	useEffect(() => {
+		// Undo remounts the actions — return focus to Watched, where the patron started.
+		if (pickPhase === "active" && focusWatchedAfterUndoRef.current) {
+			focusWatchedAfterUndoRef.current = false;
+			watchedButtonRef.current?.focus();
+			return;
+		}
 		if (!pickDone) return;
-		// The pressed action unmounts on completion — keep keyboard focus in the hero.
+		// Pressed actions (Watched, Save/Skip) unmount — keep keyboard focus in the hero.
 		const focused = document.activeElement;
 		if (!focused || focused === document.body) {
 			pickAnotherButtonRef.current?.focus();
 		}
-	}, [pickDone]);
+	}, [pickDone, pickPhase]);
 
 	if (loading) return <HomeTasteMatchedHeroSkeleton />;
 	if (isTodayShell) {
@@ -838,35 +921,61 @@ export function HomeTasteMatchedHero({
 								</p>
 							) : null}
 							{pickDone ? (
-								<div className="relative z-30 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 pt-0.5 sm:justify-start sm:pt-1">
-									<p className="inline-flex items-center gap-1.5 font-medium text-foreground text-sm">
-										<Check
-											className="size-4 shrink-0 stroke-[2.5]"
-											aria-hidden
+								<div className="relative z-30 flex flex-col items-center gap-3 pt-0.5 sm:items-start sm:pt-1">
+									<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-start">
+										<p className="inline-flex items-center gap-1.5 font-medium text-foreground text-sm">
+											<Check
+												className="size-4 shrink-0 stroke-[2.5]"
+												aria-hidden
+											/>
+											{pickStatusCopy}
+										</p>
+										{justLoggedId ? (
+											<button
+												type="button"
+												className={cn(
+													"inline-flex min-h-10 items-center rounded-full px-2 font-medium text-foreground/75 text-sm underline-offset-4 transition-colors duration-200 motion-reduce:transition-none [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:underline",
+													"disabled:pointer-events-none disabled:opacity-50",
+													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+												)}
+												disabled={undoBusy}
+												onClick={() => void handleUndoLog()}
+											>
+												Undo
+											</button>
+										) : null}
+										<button
+											ref={pickAnotherButtonRef}
+											type="button"
+											className={cn(
+												"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
+												"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+											)}
+											onClick={() => handlePickAnother()}
+										>
+											Pick another
+										</button>
+									</div>
+									{justLoggedId ? (
+										<TodayPickHowWasIt
+											key={justLoggedId}
+											logId={justLoggedId}
+											averageRating={displayAverage}
+											onSettled={() => dispatchPick({ type: "rating_settled" })}
 										/>
-										{pickStatusCopy}
-									</p>
-									<button
-										ref={pickAnotherButtonRef}
-										type="button"
-										className={cn(
-											"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
-											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-										)}
-										onClick={() => handlePickAnother()}
-									>
-										Pick another
-									</button>
+									) : null}
 								</div>
 							) : (
 								<TooltipProvider delay={0} closeDelay={80}>
 									<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
 										<DetailIconTooltip label={quickLogLabel}>
 											<motion.button
+												ref={watchedButtonRef}
 												type="button"
 												className={cn(
 													"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground sm:size-12",
 													DETAIL_MOTION_PRESSABLE_CLASS,
+													"disabled:pointer-events-none disabled:opacity-50",
 													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 												)}
 												style={motionProps.style}
@@ -874,7 +983,13 @@ export function HomeTasteMatchedHero({
 												whileTap={motionProps.tap}
 												transition={motionProps.buttonTransition}
 												aria-label={quickLogLabel}
-												onClick={handleOpenQuickLog}
+												// Today saves instantly; the standalone hero keeps the Quick Log sheet.
+												disabled={instantLogBusy}
+												onClick={
+													isTodayShell
+														? () => void handleInstantWatched()
+														: handleOpenQuickLog
+												}
 											>
 												<Plus
 													className="size-4 shrink-0 stroke-[2.25] sm:size-5"

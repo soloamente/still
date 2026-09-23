@@ -80,6 +80,21 @@ describe("reduceTodayPick", () => {
 		);
 	});
 
+	test("settling the rating (save or skip) closes Undo but keeps the pick complete", () => {
+		expect(reduceTodayPick(logged, { type: "rating_settled" })).toEqual({
+			phase: "complete",
+			tmdbId: 10,
+			via: "diary",
+		});
+	});
+
+	test("rating_settled is a no-op outside just_logged", () => {
+		expect(reduceTodayPick(active, { type: "rating_settled" })).toBe(active);
+		expect(reduceTodayPick(watchlisted, { type: "rating_settled" })).toBe(
+			watchlisted,
+		);
+	});
+
 	test("not interested advance always lands on active", () => {
 		expect(reduceTodayPick(active, { type: "not_interested_advanced" })).toBe(
 			active,
@@ -103,6 +118,9 @@ describe("todayPickStatusCopy", () => {
 		expect(todayPickStatusCopy(active)).toBeNull();
 		expect(todayPickStatusCopy(logged)).toBe("Added to your diary");
 		expect(todayPickStatusCopy(watchlisted)).toBe("Added to your watchlist");
+		expect(
+			todayPickStatusCopy({ phase: "complete", tmdbId: 1, via: "diary" }),
+		).toBe("Added to your diary");
 		expect(
 			todayPickStatusCopy({ phase: "complete", tmdbId: 1, via: "elsewhere" }),
 		).toBe("Done for today");

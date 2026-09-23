@@ -1012,8 +1012,8 @@ export async function postLog(payload: {
 	rewatch?: boolean;
 	rating?: number;
 	note?: string;
-	/** In-cinema vs at-home — server defaults to **streaming**. */
-	watchVenue?: HomeVenue;
+	/** In-cinema vs at-home — omitted defaults to **streaming**; `null` = unset (Today instant log). */
+	watchVenue?: HomeVenue | null;
 	logScope?: "show" | "season" | "episode";
 	seasonNumber?: number;
 	episodeNumber?: number;

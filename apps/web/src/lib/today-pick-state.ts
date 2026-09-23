@@ -14,13 +14,18 @@ export type TodayPickState =
 	| {
 			phase: "complete";
 			tmdbId: number;
-			/** `elsewhere` = logged/watchlisted from detail or another surface. */
-			via: "watchlist" | "elsewhere";
+			/**
+			 * `diary` = logged here and the rating step was saved or skipped;
+			 * `elsewhere` = logged/watchlisted from detail or another surface.
+			 */
+			via: "watchlist" | "diary" | "elsewhere";
 	  };
 
 export type TodayPickEvent =
 	| { type: "logged"; tmdbId: number; logId: string | null }
 	| { type: "undo" }
+	/** How was it? saved or skipped — Undo is no longer offered. */
+	| { type: "rating_settled" }
 	| { type: "watchlisted"; tmdbId: number }
 	| { type: "consumed_elsewhere"; tmdbId: number }
 	| { type: "pick_another" }
@@ -37,6 +42,10 @@ export function reduceTodayPick(
 			return { phase: "just_logged", tmdbId: event.tmdbId, logId: event.logId };
 		case "undo":
 			return state.phase === "just_logged" ? INITIAL_TODAY_PICK_STATE : state;
+		case "rating_settled":
+			return state.phase === "just_logged"
+				? { phase: "complete", tmdbId: state.tmdbId, via: "diary" }
+				: state;
 		case "watchlisted":
 			// A fresh log outranks the watchlist add — keep Undo reachable.
 			return state.phase === "just_logged"
@@ -70,9 +79,18 @@ export function todayPickStatusCopy(state: TodayPickState): string | null {
 		case "just_logged":
 			return "Added to your diary";
 		case "complete":
-			return state.via === "watchlist"
-				? "Added to your watchlist"
-				: "Done for today";
+			switch (state.via) {
+				case "watchlist":
+					return "Added to your watchlist";
+				case "diary":
+					return "Added to your diary";
+				case "elsewhere":
+					return "Done for today";
+				default: {
+					const unhandled: never = state.via;
+					return unhandled;
+				}
+			}
 		default: {
 			const unhandled: never = state;
 			return unhandled;
