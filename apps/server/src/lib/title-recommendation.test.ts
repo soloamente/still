@@ -206,6 +206,7 @@ describe("buildRecommendationNotification", () => {
 		expect(out.payload).toMatchObject({
 			recommendationId: "rec_1",
 			fromUserId: "a",
+			fromName: "Anselmo",
 			movieId: 603,
 			mediaKind: "movie",
 			posterPath: "/p.jpg",

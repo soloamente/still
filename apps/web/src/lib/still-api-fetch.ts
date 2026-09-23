@@ -14,6 +14,10 @@ import { isStillApiErrorPayload } from "@/lib/still-api-error-payload";
 import { stillApiOrigin } from "@/lib/still-api-origin";
 import { dispatchTasteTitleConsumed } from "@/lib/taste-title-consumed-events";
 import type {
+	RecommendReasonCode,
+	RecommendSuggestion,
+} from "@/lib/title-recommendation";
+import type {
 	TvEpisodeSummary,
 	TvProgressMode,
 	TvSeasonSummary,
@@ -1109,6 +1113,80 @@ export async function postWatchlistAdd(
 		data: response.ok ? data : null,
 		error: response.ok ? null : { status: response.status, raw: data },
 	};
+}
+
+/** Three picks from the viewer's loved logs for this recipient (`GET /api/recommendations/suggest`). */
+export async function fetchRecommendSuggestions(
+	recipientUserId: string,
+	opts?: { signal?: AbortSignal },
+): Promise<RecommendSuggestion[] | null> {
+	const url = new URL("/api/recommendations/suggest", stillApiOrigin());
+	url.searchParams.set("recipientUserId", recipientUserId);
+	try {
+		const response = await fetch(url, {
+			credentials: "include",
+			headers: { Accept: "application/json" },
+			signal: opts?.signal,
+		});
+		if (!response.ok) return null;
+		const data = (await parseJsonBlob(response)) as {
+			suggestions?: RecommendSuggestion[];
+		} | null;
+		return data?.suggestions ?? [];
+	} catch {
+		// Aborted on sheet close or offline — the sheet shows search instead.
+		return null;
+	}
+}
+
+/** Send a recommendation; `error.raw` carries `{ code }` for inline sheet copy. */
+export async function postRecommendation(payload: {
+	recipientUserId: string;
+	movieId?: number;
+	tvId?: number;
+	reasonCode?: RecommendReasonCode;
+	note?: string;
+	confirmSensitive?: boolean;
+	answerToRecommendationId?: string;
+}) {
+	const response = await fetch(
+		new URL("/api/recommendations", stillApiOrigin()),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(payload),
+		},
+	);
+	const data = await parseJsonBlob(response);
+	return {
+		ok: response.ok,
+		status: response.status,
+		data: response.ok ? (data as { id: string } | null) : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+	};
+}
+
+/** Recipient opened / accepted a recommendation (funnel timestamps; accept also watchlists). */
+export async function postRecommendationAction(
+	recommendationId: string,
+	action: "open" | "accept",
+) {
+	const response = await fetch(
+		new URL(
+			`/api/recommendations/${encodeURIComponent(recommendationId)}/${action}`,
+			stillApiOrigin(),
+		),
+		{
+			method: "POST",
+			credentials: "include",
+			headers: { Accept: "application/json" },
+		},
+	);
+	return { ok: response.ok, status: response.status };
 }
 
 /**

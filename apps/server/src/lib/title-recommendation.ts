@@ -193,6 +193,8 @@ export function buildRecommendationNotification(
 	const payload: Record<string, unknown> = {
 		recommendationId: input.recommendationId,
 		fromUserId: input.senderUserId,
+		/** Sender name for **Recommend something back** — never sensitive. */
+		fromName: sender,
 		mediaKind: input.mediaKind,
 		...idField,
 		sensitive: input.sensitive,

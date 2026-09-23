@@ -7,6 +7,7 @@ import {
 	Award,
 	Bell,
 	Download,
+	Gift,
 	Heart,
 	MessageCircle,
 	Play,
@@ -20,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { NotificationRecommendationRow } from "@/components/notifications/notification-recommendation-row";
 import { NotificationTasteChallengeRow } from "@/components/notifications/notification-taste-challenge-row";
 import type { NotificationPreviewRow } from "@/components/notifications/notifications-dropdown-panel";
 import { api } from "@/lib/api";
@@ -80,6 +82,7 @@ function iconForKind(kind: string) {
 	if (kind === "tv.new_episode") return Tv;
 	if (kind === "watchlist_now_streaming") return Play;
 	if (kind === "taste.challenge") return Trophy;
+	if (kind === "recommendation.received") return Gift;
 	if (kind === "review.liked") return Heart;
 	if (kind === "import.completed") return Download;
 	return Bell;
@@ -211,6 +214,24 @@ export function NotificationsList({ items }: { items: Row[] }) {
 											row={row as NotificationPreviewRow}
 											onAccept={(r) => handleTasteChallengeAccept(r as Row)}
 											onDecline={(r) => handleTasteChallengeDecline(r as Row)}
+										/>
+									</li>
+								);
+							}
+
+							if (row.kind === "recommendation.received") {
+								return (
+									<li
+										key={row.id}
+										className={cn(
+											"rounded-[1.75rem]",
+											row.readAt ? "bg-card/40" : "bg-card/70",
+										)}
+									>
+										<NotificationRecommendationRow
+											row={row as NotificationPreviewRow}
+											onOpen={(r) => void activateRow(r as Row)}
+											onMarkRead={(r) => void markOneRead(r as Row)}
 										/>
 									</li>
 								);

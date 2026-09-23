@@ -1,10 +1,12 @@
 "use client";
 
+import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useId } from "react";
+import { useId, useState } from "react";
 
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
+import { openRecommendBackSheet } from "@/components/recommend/recommend-back-sheet-root";
 import { openInviteEarnDialog } from "@/components/referrals/invite-earn-dialog-root";
 import { isTmdbCdnUrl, tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import {
@@ -25,12 +27,9 @@ import {
  */
 export function TodayCircleCard({
 	payload,
-	onRecommendBack,
 }: {
 	/** `null` = the read failed — quiet error, not a fake invite or activity. */
 	payload: TodayCirclePayload | null;
-	/** Recipient-preselected recommend flow; the action is hidden until provided. */
-	onRecommendBack?: (activity: TodayCircleActivity) => void;
 }) {
 	const headingId = useId();
 
@@ -47,10 +46,7 @@ export function TodayCircleCard({
 					Couldn’t load activity from people you follow right now.
 				</p>
 			) : payload.kind === "activity" ? (
-				<TodayCircleActivityBody
-					activity={payload}
-					onRecommendBack={onRecommendBack}
-				/>
+				<TodayCircleActivityBody activity={payload} />
 			) : (
 				<>
 					<p className="text-balance font-semibold text-foreground text-lg leading-snug tracking-tight">
@@ -71,12 +67,19 @@ export function TodayCircleCard({
 
 function TodayCircleActivityBody({
 	activity,
-	onRecommendBack,
 }: {
 	activity: TodayCircleActivity;
-	onRecommendBack?: (activity: TodayCircleActivity) => void;
 }) {
 	const { actor, title } = activity;
+	/** Title just sent from this card — the action swaps to a quiet confirmation. */
+	const [sentTitle, setSentTitle] = useState<string | null>(null);
+
+	function handleRecommendBack() {
+		openRecommendBackSheet(
+			{ recipientUserId: actor.userId, recipientName: actor.displayName },
+			(pick) => setSentTitle(pick.title),
+		);
+	}
 	const titleHref = todayCircleTitleHref(title);
 	const posterUrl = tmdbPosterUrlFromPath(title.posterPath, "w185");
 
@@ -140,15 +143,25 @@ function TodayCircleActivityBody({
 					) : null}
 				</div>
 			</div>
-			{onRecommendBack ? (
-				<button
-					type="button"
-					className={TODAY_CARD_ACTION_CLASSNAME}
-					onClick={() => onRecommendBack(activity)}
-				>
-					Recommend back
-				</button>
-			) : null}
+			<div className="mt-auto" aria-live="polite">
+				{sentTitle ? (
+					<p className="inline-flex min-h-10 items-center gap-2 font-medium text-foreground text-sm">
+						<Check className="size-4 shrink-0" aria-hidden />
+						Recommendation sent
+						<span className="sr-only">
+							{`: ${sentTitle} to ${actor.displayName}`}
+						</span>
+					</p>
+				) : (
+					<button
+						type="button"
+						className={TODAY_CARD_ACTION_CLASSNAME}
+						onClick={handleRecommendBack}
+					>
+						Recommend back
+					</button>
+				)}
+			</div>
 		</>
 	);
 }
