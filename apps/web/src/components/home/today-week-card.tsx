@@ -7,6 +7,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { TodayWeekCardSkeletonBody } from "@/components/home/today-week-card-skeleton";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
 	TODAY_CARD_ACTION_CLASSNAME as CARD_ACTION_CLASSNAME,
 	TODAY_CARD_HEADING_CLASSNAME,
@@ -23,6 +24,7 @@ import {
 	fetchTodayWeekPulseClient,
 	writeTodayTimeZoneCookie,
 } from "@/lib/today-week-pulse-client";
+import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
 
 type WeekCardState = {
 	pulse: TodayWeekPulse | null;
@@ -86,6 +88,11 @@ export function TodayWeekCard({
 	};
 
 	const { pulse, failed } = state;
+	useTrackImpressionOnce(
+		"today.week.viewed",
+		{ state: failed ? "error" : pulse?.empty ? "empty" : "pulse" },
+		pulse != null || failed,
+	);
 
 	return (
 		<section
@@ -131,12 +138,25 @@ export function TodayWeekCard({
 						<button
 							type="button"
 							className={CARD_ACTION_CLASSNAME}
-							onClick={() => requestSearch()}
+							onClick={() => {
+								trackSenseProductEvent("today.week.action", {
+									action: "log_a_title",
+								});
+								requestSearch();
+							}}
 						>
 							Log a title
 						</button>
 					) : (
-						<Link href="/diary" className={CARD_ACTION_CLASSNAME}>
+						<Link
+							href="/diary"
+							className={CARD_ACTION_CLASSNAME}
+							onClick={() =>
+								trackSenseProductEvent("today.week.action", {
+									action: "open_diary",
+								})
+							}
+						>
 							Open diary
 						</Link>
 					)}

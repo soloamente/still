@@ -25,6 +25,20 @@ export const PRODUCT_EVENT_KINDS = [
 	"realtime.comment.received_live",
 	"realtime.notification.push_received",
 	"realtime.list.sync_conflict",
+	"today.viewed",
+	"today.pick.viewed",
+	"today.pick.action",
+	"today.week.viewed",
+	"today.week.action",
+	"today.circle.viewed",
+	"today.circle.action",
+	"rating.category_saved",
+	"rating.category_skipped",
+	"rating.suggestion_applied",
+	"recommendation.sent",
+	"recommendation.opened",
+	"recommendation.accepted",
+	"recommendation.answered",
 ] as const;
 
 export type ProductEventKind = (typeof PRODUCT_EVENT_KINDS)[number];
@@ -43,6 +57,16 @@ export const CLIENT_PRODUCT_EVENT_KINDS = [
 	"realtime.presence.leave",
 	"realtime.comment.received_live",
 	"realtime.notification.push_received",
+	"today.viewed",
+	"today.pick.viewed",
+	"today.pick.action",
+	"today.week.viewed",
+	"today.week.action",
+	"today.circle.viewed",
+	"today.circle.action",
+	"rating.category_saved",
+	"rating.category_skipped",
+	"rating.suggestion_applied",
 ] as const;
 
 export type ClientProductEventKind =

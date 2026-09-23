@@ -55,6 +55,7 @@ import {
 } from "@/lib/log-rating";
 import { formatTodayYmd } from "@/lib/log-watched-date";
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
 	deleteLog,
 	fetchMovieTitleLogoPath,
@@ -106,6 +107,7 @@ import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
 	useHorizontalRailPosterEdgeOpacity,
 } from "@/lib/use-horizontal-scroll-fades";
+import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
 
 function moviesFromTastePayload(
 	data: TasteMatchedDiscoveryPayload,
@@ -116,6 +118,23 @@ function moviesFromTastePayload(
 
 function tasteHeroIsEmpty(movies: TasteMatchMovie[]): boolean {
 	return movies.length < TASTE_MATCH_MIN_RESULTS;
+}
+
+type TodayPickAction =
+	| "watched"
+	| "watchlist"
+	| "not_interested"
+	| "pick_another"
+	| "undo"
+	| "open_detail";
+
+/** Today pick funnel — fired once per completed action (after the server confirms). */
+function trackTodayPickAction(
+	action: TodayPickAction,
+	tmdbId: number | null,
+	extra: Record<string, unknown> = {},
+): void {
+	trackSenseProductEvent("today.pick.action", { action, tmdbId, ...extra });
 }
 
 function formatHeroRatingsCountValue(count: number): string {
@@ -191,6 +210,9 @@ export function HomeTasteMatchedHero({
 	completionMode?: HomeTasteHeroCompletionMode;
 }) {
 	const isTodayShell = completionMode === "today-shell";
+	/** Stable read for callbacks shared with the standalone hero (no dep churn). */
+	const isTodayShellRef = useRef(isTodayShell);
+	isTodayShellRef.current = isTodayShell;
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
@@ -542,6 +564,7 @@ export function HomeTasteMatchedHero({
 		const activeSnapshot = activeIndexRef.current;
 		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
 		if (index < 0) return;
+		if (isTodayShellRef.current) trackTodayPickAction("not_interested", tmdbId);
 
 		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
 		setActiveIndex((prev) =>
@@ -581,6 +604,12 @@ export function HomeTasteMatchedHero({
 	const handlePickAnother = useCallback(
 		(targetTmdbId?: number) => {
 			const completedId = todayPickCompletedTmdbId(pickStateRef.current);
+			// Only a real transition counts — the reducer ignores it while active.
+			if (completedId != null) {
+				trackTodayPickAction("pick_another", completedId, {
+					chosenFromRail: targetTmdbId != null,
+				});
+			}
 			dispatchPick({ type: "pick_another" });
 			// The detail cue belongs to the retired pick — the next one starts clean.
 			clearTodayPickContinuity();
@@ -611,6 +640,7 @@ export function HomeTasteMatchedHero({
 			const result = await postWatchlistAdd({ movieId: spotlight.tmdbId });
 			if (!result.ok) throw new Error("watchlist failed");
 			if (isTodayShell) {
+				trackTodayPickAction("watchlist", spotlight.tmdbId);
 				dispatchPick({ type: "watchlisted", tmdbId: spotlight.tmdbId });
 			} else {
 				handleTitleConsumed(spotlight.tmdbId);
@@ -670,6 +700,9 @@ export function HomeTasteMatchedHero({
 				throw new Error("instant log failed");
 			}
 			const created = result.data as { id?: unknown } | null;
+			trackTodayPickAction("watched", tmdbId, {
+				rewatch: priorLogCount > 0,
+			});
 			// Dispatch before the consumed echo so the shell records a local log (Undo).
 			dispatchPick({
 				type: "logged",
@@ -697,6 +730,7 @@ export function HomeTasteMatchedHero({
 				console.error("[today] undo log failed", result.error);
 				throw new Error("undo failed");
 			}
+			trackTodayPickAction("undo", state.tmdbId);
 			dispatchPick({ type: "undo" });
 			// Don't restore a deleted log as "done" if Home remounts later.
 			clearTodayPickContinuity();
@@ -753,11 +787,23 @@ export function HomeTasteMatchedHero({
 		}
 	}, [pickDone, pickPhase]);
 
+	const todayShowsEmptyTile =
+		!payload ||
+		payload.coldStart ||
+		(tasteHeroIsEmpty(movies) && !queueQualifiedRef.current) ||
+		!spotlight;
+	useTrackImpressionOnce(
+		"today.pick.viewed",
+		{
+			state: payload == null ? "error" : todayShowsEmptyTile ? "empty" : "pick",
+			tmdbId: todayShowsEmptyTile ? null : spotlightTmdbId,
+		},
+		isTodayShell && !loading,
+	);
+
 	if (loading) return <HomeTasteMatchedHeroSkeleton />;
 	if (isTodayShell) {
-		const belowQualityBar =
-			tasteHeroIsEmpty(movies) && !queueQualifiedRef.current;
-		if (!payload || payload.coldStart || belowQualityBar || !spotlight) {
+		if (todayShowsEmptyTile) {
 			return (
 				<TodayPickEmptyTile
 					failed={payload == null}
@@ -883,11 +929,13 @@ export function HomeTasteMatchedHero({
 									className="group mx-auto block min-w-0 sm:mx-0"
 									onClick={
 										isTodayShell
-											? () =>
+											? () => {
+													trackTodayPickAction("open_detail", spotlight.tmdbId);
 													writeTodayPickContinuity({
 														film: spotlight,
 														reason: tasteMatchedRailTitle(genrePhrase),
-													})
+													});
+												}
 											: undefined
 									}
 								>

@@ -8,6 +8,7 @@ import { useId, useState } from "react";
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
 import { openRecommendBackSheet } from "@/components/recommend/recommend-back-sheet-root";
 import { openInviteEarnDialog } from "@/components/referrals/invite-earn-dialog-root";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import { isTmdbCdnUrl, tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import {
 	TODAY_CARD_ACTION_CLASSNAME,
@@ -20,6 +21,7 @@ import {
 	todayCircleActionLabel,
 	todayCircleTitleHref,
 } from "@/lib/today-circle";
+import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
 
 /**
  * Today "From your circle" — one recent visible watch from someone the viewer
@@ -32,6 +34,9 @@ export function TodayCircleCard({
 	payload: TodayCirclePayload | null;
 }) {
 	const headingId = useId();
+	useTrackImpressionOnce("today.circle.viewed", {
+		state: payload == null ? "error" : payload.kind,
+	});
 
 	return (
 		<section
@@ -55,7 +60,12 @@ export function TodayCircleCard({
 					<button
 						type="button"
 						className={TODAY_CARD_ACTION_CLASSNAME}
-						onClick={openInviteEarnDialog}
+						onClick={() => {
+							trackSenseProductEvent("today.circle.action", {
+								action: "invite",
+							});
+							openInviteEarnDialog();
+						}}
 					>
 						Invite a friend
 					</button>
@@ -75,6 +85,9 @@ function TodayCircleActivityBody({
 	const [sentTitle, setSentTitle] = useState<string | null>(null);
 
 	function handleRecommendBack() {
+		trackSenseProductEvent("today.circle.action", {
+			action: "recommend_back",
+		});
 		openRecommendBackSheet(
 			{ recipientUserId: actor.userId, recipientName: actor.displayName },
 			(pick) => setSentTitle(pick.title),

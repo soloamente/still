@@ -133,6 +133,7 @@ export function QuickLogCelebrationStrip({
 			{logId ? (
 				<LogCategoryRatingsPanel
 					logId={logId}
+					surface="quick_log"
 					overallDisplay={displayRating}
 					onApplySuggestion={onApplyCategorySuggestion}
 					align="center"

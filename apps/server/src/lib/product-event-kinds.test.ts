@@ -27,6 +27,43 @@ describe("letterboxd pillar kinds", () => {
 	});
 });
 
+describe("today on sense kinds", () => {
+	const clientKinds = [
+		"today.viewed",
+		"today.pick.viewed",
+		"today.pick.action",
+		"today.week.viewed",
+		"today.week.action",
+		"today.circle.viewed",
+		"today.circle.action",
+		"rating.category_saved",
+		"rating.category_skipped",
+		"rating.suggestion_applied",
+	];
+	const serverKinds = [
+		"recommendation.sent",
+		"recommendation.opened",
+		"recommendation.accepted",
+		"recommendation.answered",
+	];
+
+	test("registers every Today, category, and recommendation kind", () => {
+		for (const kind of [...clientKinds, ...serverKinds]) {
+			expect(isProductEventKind(kind)).toBe(true);
+		}
+	});
+
+	test("browser may emit Today + category kinds, never the recommendation funnel", () => {
+		for (const kind of clientKinds) {
+			expect(isClientProductEventKind(kind)).toBe(true);
+		}
+		// Funnel steps are recorded by the recommendation routes — clients can't inflate them.
+		for (const kind of serverKinds) {
+			expect(isClientProductEventKind(kind)).toBe(false);
+		}
+	});
+});
+
 describe("liveblocks realtime kinds", () => {
 	test("includes server-recorded realtime funnel kinds", () => {
 		for (const kind of [

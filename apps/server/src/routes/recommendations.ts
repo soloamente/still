@@ -6,6 +6,7 @@ import { context } from "../context";
 import { makeId } from "../lib/cuid";
 import { deliverNotification } from "../lib/notification-delivery";
 import { hit } from "../lib/rate-limit";
+import { recordProductEvent } from "../lib/record-product-event";
 import {
 	buildRecommendationNotification,
 	normalizeRecommendationNote,
@@ -166,8 +167,17 @@ export const recommendationsRoute = new Elysia({
 				sensitiveScrub: title.sensitive,
 				answerRecommendationId: answerToId,
 			});
+			void recordProductEvent(user.id, "recommendation.sent", {
+				recommendationId: id,
+				mediaKind,
+				tmdbId,
+				hasReason: reasonCode != null,
+				hasNote: note.note != null,
+				sensitive: title.sensitive,
+				isAnswer: answerToId != null,
+			});
 			if (answerToId) {
-				await db
+				const answered = await db
 					.update(titleRecommendation)
 					.set({ answeredAt: new Date() })
 					.where(
@@ -175,7 +185,15 @@ export const recommendationsRoute = new Elysia({
 							eq(titleRecommendation.id, answerToId),
 							isNull(titleRecommendation.answeredAt),
 						),
-					);
+					)
+					.returning({ id: titleRecommendation.id });
+				// Funnel counts the first answer only — later replies are plain sends.
+				if (answered.length > 0) {
+					void recordProductEvent(user.id, "recommendation.answered", {
+						recommendationId: answerToId,
+						answerRecommendationId: id,
+					});
+				}
 			}
 
 			const [senderProfile] = await db
@@ -228,7 +246,7 @@ export const recommendationsRoute = new Elysia({
 		const row = await loadOwnRecommendation(params.id, user.id);
 		if (!row) return status(404, "Not found");
 		if (!row.openedAt) {
-			await db
+			const opened = await db
 				.update(titleRecommendation)
 				.set({ openedAt: new Date() })
 				.where(
@@ -236,7 +254,13 @@ export const recommendationsRoute = new Elysia({
 						eq(titleRecommendation.id, row.id),
 						isNull(titleRecommendation.openedAt),
 					),
-				);
+				)
+				.returning({ id: titleRecommendation.id });
+			if (opened.length > 0) {
+				void recordProductEvent(user.id, "recommendation.opened", {
+					recommendationId: row.id,
+				});
+			}
 		}
 		return { ok: true };
 	})
@@ -275,5 +299,11 @@ export const recommendationsRoute = new Elysia({
 				openedAt: row.openedAt ?? now,
 			})
 			.where(eq(titleRecommendation.id, row.id));
+		if (!row.acceptedAt) {
+			void recordProductEvent(user.id, "recommendation.accepted", {
+				recommendationId: row.id,
+				alreadyOnWatchlist: existing != null,
+			});
+		}
 		return { ok: true, watchlisted: true };
 	});

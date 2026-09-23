@@ -4,6 +4,7 @@ import { HomeTasteMatchedHeroRsc } from "@/components/home/home-taste-matched-he
 import { HomeTasteMatchedHeroSkeleton } from "@/components/home/home-taste-matched-hero-skeleton";
 import { TodayCircleCardRsc } from "@/components/home/today-circle-card-rsc";
 import { TodayCircleCardSkeleton } from "@/components/home/today-circle-card-skeleton";
+import { TodayImpressionTracker } from "@/components/home/today-impression-tracker";
 import { TodayWeekCardRsc } from "@/components/home/today-week-card-rsc";
 import { TodayWeekCardSkeleton } from "@/components/home/today-week-card-skeleton";
 import type { TodayOnSenseReads } from "@/lib/today-on-sense-reads";
@@ -22,6 +23,7 @@ export function TodayOnSense({ reads }: { reads: TodayOnSenseReads }) {
 			<h2 id="today-on-sense-heading" className="sr-only">
 				Today on Sense
 			</h2>
+			<TodayImpressionTracker kind="today.viewed" />
 			<Suspense fallback={<HomeTasteMatchedHeroSkeleton />}>
 				<HomeTasteMatchedHeroRsc
 					completionMode="today-shell"

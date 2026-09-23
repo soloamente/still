@@ -89,6 +89,7 @@ export function TodayPickHowWasIt({
 			</div>
 			<LogCategoryRatingsPanel
 				logId={logId}
+				surface="today"
 				overallDisplay={touched ? ratingDisplay : null}
 				// Fill the overall slider; the patron still confirms with Save rating.
 				onApplySuggestion={(display) => {

@@ -18,6 +18,7 @@ import {
 	formatLogRatingDisplay,
 	logRatingToStored,
 } from "@/lib/log-rating";
+import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import { patchLog } from "@/lib/still-api-fetch";
 
 const PANEL_PILL_CLASSNAME = cn(
@@ -49,10 +50,13 @@ export function LogCategoryRatingsPanel({
 	logId,
 	overallDisplay,
 	onApplySuggestion,
+	surface,
 	align = "responsive",
 	className,
 }: {
 	logId: string;
+	/** Which log flow hosts the panel — product-event context only. */
+	surface: "today" | "quick_log";
 	/** Current overall on 0–10 display, or `null` when the patron hasn't set one. */
 	overallDisplay: number | null;
 	/** Patron chose the suggested overall — the host decides whether to save it. */
@@ -101,6 +105,13 @@ export function LogCategoryRatingsPanel({
 		const advance = () =>
 			finish ? setStep({ kind: "finished" }) : goToIndex(index + 1);
 		if (!touched) {
+			// Only the explicit **Skip** counts — **Done** on an untouched step just exits.
+			if (!finish) {
+				trackSenseProductEvent("rating.category_skipped", {
+					category: category.key,
+					surface,
+				});
+			}
 			advance();
 			return;
 		}
@@ -112,6 +123,10 @@ export function LogCategoryRatingsPanel({
 				categoryRatings: { [category.key]: tenths },
 			});
 			if (!result.ok) throw new Error("category patch failed");
+			trackSenseProductEvent("rating.category_saved", {
+				category: category.key,
+				surface,
+			});
 			setRated((prev) => ({ ...prev, [category.key]: tenths }));
 			advance();
 		} catch (err) {
@@ -231,6 +246,11 @@ export function LogCategoryRatingsPanel({
 										type="button"
 										className={PANEL_PRIMARY_PILL_CLASSNAME}
 										onClick={() => {
+											trackSenseProductEvent("rating.suggestion_applied", {
+												kind: suggestion.kind,
+												ratedCount,
+												surface,
+											});
 											onApplySuggestion(suggestion.display);
 											handleClose();
 										}}
