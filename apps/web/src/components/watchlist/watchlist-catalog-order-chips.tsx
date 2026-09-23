@@ -3,7 +3,6 @@
 import { useReducedMotion } from "motion/react";
 import { useLayoutEffect, useRef } from "react";
 
-import { HomeLobbyFilterScrollRail } from "@/components/home/home-lobby-filter-row";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { useWatchlistLobbyParams } from "@/components/watchlist/watchlist-lobby-params-context";
 import type { WatchlistLobbyOrder } from "@/lib/watchlist-lobby-order";
@@ -65,10 +64,9 @@ function horizontalScrollParent(element: HTMLElement): HTMLElement | null {
 }
 
 /**
- * Left chip rail on `/watchlist` — sliding `bg-card` pill (diary parity).
- * Three sort modes on one line inside the shared lobby scroll rail.
+ * Sort toolbar only — parent `HomeLobbyFilterRow` owns the horizontal scroll rail.
  */
-export function WatchlistCatalogOrderChips() {
+export function WatchlistCatalogSortToolbar() {
 	const { order, selectOrder } = useWatchlistLobbyParams();
 	const reduceMotion = useReducedMotion();
 	const rootRef = useRef<HTMLDivElement>(null);
@@ -99,22 +97,20 @@ export function WatchlistCatalogOrderChips() {
 	}, []);
 
 	return (
-		<div ref={rootRef} className="flex min-w-0 flex-1 flex-col gap-1">
+		<div ref={rootRef} className="flex min-w-0 shrink-0 flex-col gap-1">
 			<p id="watchlist-catalog-order-desc" className="sr-only">
 				Choose how your watchlist is sorted — recently added, oldest saves, or
 				by title.
 			</p>
-			<HomeLobbyFilterScrollRail>
-				<SegmentedPillToolbar
-					layoutId="watchlist-catalog-order-pill"
-					aria-label="Watchlist order"
-					value={order}
-					onChange={selectOrder}
-					options={CHIP_OPTIONS}
-					compact
-					className="w-max max-w-none shrink-0 flex-nowrap justify-start"
-				/>
-			</HomeLobbyFilterScrollRail>
+			<SegmentedPillToolbar
+				layoutId="watchlist-catalog-order-pill"
+				aria-label="Watchlist order"
+				value={order}
+				onChange={selectOrder}
+				options={CHIP_OPTIONS}
+				compact
+				className="w-max max-w-none shrink-0 flex-nowrap justify-start"
+			/>
 		</div>
 	);
 }

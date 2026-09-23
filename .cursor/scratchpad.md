@@ -3,8 +3,9 @@
 ## Watchlist hero + platform morph (2026-09-23) — PLANNER (brainstorm)
 
 **Background:** Human rejected six-chip IA; wants Netflix-style **Tonight hero** (Pick another), **Continue** rail, sort chips + **filters popover**, **platform logo row** with morph-to-**composite pill** (stacked logos/names) beside filter button, grid filtered **AND** by selected services in region.
-**Status:** Spec **`docs/superpowers/specs/2026-09-23-watchlist-hero-platforms-design.md`** approved. Plan **`docs/superpowers/plans/2026-09-23-watchlist-hero-platforms.md`** (9 tasks). Tasks 1–5 ✅ (through Continue rail under hero). Waiting on **go** for Task 6 (filters popover + filter row). Supersedes decision-engine **UI** only; scorer + alerts stay.
+**Status:** Spec **`docs/superpowers/specs/2026-09-23-watchlist-hero-platforms-design.md`** approved. Plan **`docs/superpowers/plans/2026-09-23-watchlist-hero-platforms.md`** (9 tasks). Tasks 1–6 ✅ (filter row + filters popover; uncommitted). Waiting on **go** for Task 7 (platform row + static pill). Supersedes decision-engine **UI** only; scorer + alerts stay.
 **Locked:** hero C · continue hidden if empty · sorts Recent/Oldest/A–Z · Now available in popover · multi-provider AND · remove via pill popover.
+**Executor Task 6 (2026-09-24):** `WatchlistLobbyFilterRow` (`HomeLobbyFilterRow` parity) — sort scroll rail + `#watchlist-provider-pill-slot` + filters in chip track; `WatchlistCatalogFiltersPopover` (region via `WatchlistRegionAction`, streaming AND copy, alerts hint); `?filters=1` one-shot from legacy `available` redirect; removed `WatchlistModeIntroLine` + `watchlist-mode-intro*`. Tests: `watchlist-lobby-order.test.ts` 27 pass. **Please verify:** `/watchlist` filter icon opens popover; `/watchlist?filters=1` opens once then URL strips `filters`; legacy `/watchlist?order=available` → filters open; mobile one-line filter row.
 
 ## Watchlist decision engine (2026-09-23) — PLANNER (brainstorm approved `b`)
 

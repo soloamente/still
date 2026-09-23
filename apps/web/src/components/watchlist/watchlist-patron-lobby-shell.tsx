@@ -7,13 +7,12 @@ import {
 	LobbyNavigationProvider,
 	useLobbyNavigation,
 } from "@/components/lobby/lobby-navigation-provider";
-import { WatchlistCatalogOrderChips } from "@/components/watchlist/watchlist-catalog-order-chips";
 import { WatchlistLobbyFallback } from "@/components/watchlist/watchlist-lobby-fallback";
+import { WatchlistLobbyFilterRow } from "@/components/watchlist/watchlist-lobby-filter-row";
 import {
 	useWatchlistLobbyParams,
 	WatchlistLobbyParamsProvider,
 } from "@/components/watchlist/watchlist-lobby-params-context";
-import { WatchlistModeIntroLine } from "@/components/watchlist/watchlist-mode-intro-line";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME } from "@/lib/home-taste-hero-layout";
 import { watchlistOrderGridIsStale } from "@/lib/watchlist-lobby-order";
@@ -45,14 +44,11 @@ export function WatchlistPatronLobbyShell({
 					) : null}
 					<div
 						className={cn(
-							"flex shrink-0 flex-col gap-2",
+							"relative z-10 flex shrink-0 flex-col",
 							HOME_TASTE_HERO_FILTER_ROW_STACK_CLASSNAME,
 						)}
 					>
-						<div className="flex items-center">
-							<WatchlistCatalogOrderChips />
-						</div>
-						<WatchlistModeIntroLine />
+						<WatchlistLobbyFilterRow />
 					</div>
 					<WatchlistLobbyGridSlot>{children}</WatchlistLobbyGridSlot>
 				</section>
