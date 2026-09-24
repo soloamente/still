@@ -53,6 +53,13 @@ export function TodayWeekCard({
 		pulse: initial,
 		failed: false,
 	});
+	// A Movies ↔ TV swap reuses this card. Drop the other catalogue's pulse
+	// before paint so show week never keeps film logs (and the reverse).
+	const [seenMedia, setSeenMedia] = useState(media);
+	if (seenMedia !== media) {
+		setSeenMedia(media);
+		setState({ pulse: initial, failed: false });
+	}
 	const abortRef = useRef<AbortController | null>(null);
 
 	const refetch = useCallback(async () => {

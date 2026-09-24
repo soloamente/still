@@ -864,10 +864,17 @@ async function HomeLobbyBody({
 				{session && todayReads && todayMedia ? (
 					<HomeTodayBrowseGate
 						inactive={
-							<HomeTodayPrefetch media={todayMedia === "tv" ? "movie" : "tv"} />
+							<HomeTodayPrefetch
+								key={todayMedia === "tv" ? "movie" : "tv"}
+								media={todayMedia === "tv" ? "movie" : "tv"}
+							/>
 						}
 					>
-						<TodayOnSense media={todayMedia} reads={todayReads} />
+						<TodayOnSense
+							key={todayMedia}
+							media={todayMedia}
+							reads={todayReads}
+						/>
 					</HomeTodayBrowseGate>
 				) : null}
 				{/*

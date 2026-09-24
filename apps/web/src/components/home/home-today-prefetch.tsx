@@ -105,6 +105,14 @@ function InactiveTodaySkeleton() {
 export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 	const [inactiveRequested, setInactiveRequested] = useState(false);
 	const [payload, setPayload] = useState<InactiveTodayPayload | null>(null);
+	// This instance flips between the inactive catalogues. Clear the previous
+	// payload before paint so a show is never drawn with film routes.
+	const [seenMedia, setSeenMedia] = useState(media);
+	if (seenMedia !== media) {
+		setSeenMedia(media);
+		setPayload(null);
+		setInactiveRequested(false);
+	}
 
 	const requestInactive = useCallback((trigger: TodayPrefetchTrigger) => {
 		setInactiveRequested((already) =>
@@ -120,7 +128,7 @@ export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 	// After this subtree paints with the active Today — not on mount.
 	useEffect(() => {
 		requestInactive("painted");
-	}, [requestInactive]);
+	}, [requestInactive, media]);
 
 	// The other Movies / TV Shows pill. Community hover does not start Today.
 	useEffect(() => {

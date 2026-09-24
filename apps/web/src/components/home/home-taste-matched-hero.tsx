@@ -449,13 +449,23 @@ export function HomeTasteMatchedHero({
 		spotlightTmdbIdRef.current = spotlightTmdbId;
 	}, [spotlightTmdbId]);
 
+	const mediaBoundRef = useRef(media);
 	useEffect(() => {
 		if (initial === undefined) return;
 		const fresh =
 			initial && !initial.coldStart ? moviesFromTastePayload(initial) : [];
+		// Same component instance serves both catalogues. A finished film pick
+		// must not stay logged, or pin that film, when this hero becomes a show.
+		const mediaChanged = mediaBoundRef.current !== media;
+		if (mediaChanged) {
+			mediaBoundRef.current = media;
+			dispatchPick({ type: "pick_another" });
+		}
 		// A server refresh drops consumed titles — keep a completed Today pick
 		// pinned in front so it never silently rotates before **Pick another**.
-		const completedId = todayPickCompletedTmdbId(pickStateRef.current);
+		const completedId = mediaChanged
+			? null
+			: todayPickCompletedTmdbId(pickStateRef.current);
 		const completedFilm =
 			completedId == null
 				? undefined
