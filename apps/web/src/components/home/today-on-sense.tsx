@@ -7,26 +7,37 @@ import { TodayCircleCardSkeleton } from "@/components/home/today-circle-card-ske
 import { TodayImpressionTracker } from "@/components/home/today-impression-tracker";
 import { TodayWeekCardRsc } from "@/components/home/today-week-card-rsc";
 import { TodayWeekCardSkeleton } from "@/components/home/today-week-card-skeleton";
-import type { TodayOnSenseReads } from "@/lib/today-on-sense-reads";
+import type { TodayMedia, TodayOnSenseReads } from "@/lib/today-on-sense-reads";
 
 /**
  * Today on Sense — signed-in habit layer at the top of the `/home` lobby card.
  * Pick · Your week · From your circle stream behind independent Suspense
  * boundaries so one slow read never blocks the others (no aggregate fetch).
+ * `media` selects the movie or show catalogue; week and circle use the reads
+ * the page already filtered.
  */
-export function TodayOnSense({ reads }: { reads: TodayOnSenseReads }) {
+export function TodayOnSense({
+	reads,
+	media,
+}: {
+	reads: TodayOnSenseReads;
+	media: TodayMedia;
+}) {
+	const headingId =
+		media === "tv" ? "today-on-sense-heading-tv" : "today-on-sense-heading";
 	return (
 		<section
-			aria-labelledby="today-on-sense-heading"
+			aria-labelledby={headingId}
 			className="flex min-w-0 flex-col gap-3 pb-2"
 		>
-			<h2 id="today-on-sense-heading" className="sr-only">
+			<h2 id={headingId} className="sr-only">
 				Today on Sense
 			</h2>
 			<TodayImpressionTracker kind="today.viewed" />
 			<Suspense fallback={<HomeTasteMatchedHeroSkeleton />}>
 				<HomeTasteMatchedHeroRsc
 					completionMode="today-shell"
+					media={media}
 					read={reads.pick}
 				/>
 			</Suspense>

@@ -56,14 +56,17 @@ import {
 import { formatTodayYmd } from "@/lib/log-watched-date";
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
+import { isStillApiErrorPayload } from "@/lib/still-api-error-payload";
 import {
 	deleteLog,
 	fetchMovieTitleLogoPath,
 	fetchMovieTrailer,
 	fetchMyLogsForMovie,
+	fetchMyLogsForTv,
 	postLog,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 import {
 	activeIndexAfterRemoval,
 	buildTasteQueueBackfillRunner,
@@ -133,8 +136,83 @@ function trackTodayPickAction(
 	action: TodayPickAction,
 	tmdbId: number | null,
 	extra: Record<string, unknown> = {},
+	media: "movie" | "tv" = "movie",
 ): void {
-	trackSenseProductEvent("today.pick.action", { action, tmdbId, ...extra });
+	trackSenseProductEvent("today.pick.action", {
+		action,
+		tmdbId,
+		// Movie payloads stay as they are. TV picks carry `media: "tv"`.
+		...(media === "tv" ? { media: "tv" as const } : {}),
+		...extra,
+	});
+}
+
+type TodayHeroMedia = "movie" | "tv";
+
+/** Wordmark fallback. TV uses the show route — never `/api/movies/:id/title-logo`. */
+async function fetchSpotlightTitleLogoPath(
+	media: TodayHeroMedia,
+	tmdbId: number,
+): Promise<string | null> {
+	switch (media) {
+		case "movie":
+			return fetchMovieTitleLogoPath(tmdbId);
+		case "tv": {
+			const url = new URL(`/api/tv/${tmdbId}/title-logo`, stillApiOrigin());
+			const response = await fetch(url, { credentials: "include" });
+			if (!response.ok) return null;
+			const data = (await response.json()) as unknown;
+			if (isStillApiErrorPayload(data)) return null;
+			const payload = data as { logoPath?: string | null };
+			return typeof payload.logoPath === "string" && payload.logoPath.length > 0
+				? payload.logoPath
+				: null;
+		}
+		default: {
+			const unhandled: never = media;
+			return unhandled;
+		}
+	}
+}
+
+/** Trailer fallback. TV uses the show route — never `/api/movies/:id/trailer`. */
+async function fetchSpotlightTrailer(
+	media: TodayHeroMedia,
+	tmdbId: number,
+): Promise<{ trailerKey: string; trailerSite: string } | null> {
+	switch (media) {
+		case "movie":
+			return fetchMovieTrailer(tmdbId);
+		case "tv": {
+			const url = new URL(`/api/tv/${tmdbId}/trailer`, stillApiOrigin());
+			const response = await fetch(url, { credentials: "include" });
+			if (!response.ok) return null;
+			const data = (await response.json()) as unknown;
+			if (isStillApiErrorPayload(data)) return null;
+			const payload = data as {
+				trailerKey?: string | null;
+				trailerSite?: string | null;
+			};
+			if (
+				typeof payload.trailerKey !== "string" ||
+				payload.trailerKey.length === 0
+			) {
+				return null;
+			}
+			return {
+				trailerKey: payload.trailerKey,
+				trailerSite:
+					typeof payload.trailerSite === "string" &&
+					payload.trailerSite.length > 0
+						? payload.trailerSite
+						: "YouTube",
+			};
+		}
+		default: {
+			const unhandled: never = media;
+			return unhandled;
+		}
+	}
 }
 
 function formatHeroRatingsCountValue(count: number): string {
@@ -205,9 +283,12 @@ function TodayPickEmptyTile({
 export function HomeTasteMatchedHero({
 	initial,
 	completionMode = "legacy-autoswap",
+	media = "movie",
 }: {
 	initial?: TasteMatchedDiscoveryPayload | null;
 	completionMode?: HomeTasteHeroCompletionMode;
+	/** Movie keeps film routes and instant Watched. TV is show-scoped. */
+	media?: TodayHeroMedia;
 }) {
 	const isTodayShell = completionMode === "today-shell";
 	/** Stable read for callbacks shared with the standalone hero (no dep churn). */
@@ -277,13 +358,17 @@ export function HomeTasteMatchedHero({
 
 	const fetchTasteForYou = useCallback(async () => {
 		try {
-			const res = await api.api.taste["for-you"].get();
+			// Movie for-you stays parameter-free. TV retries the show catalogue.
+			const res =
+				media === "tv"
+					? await api.api.taste["for-you"].get({ query: { media: "tv" } })
+					: await api.api.taste["for-you"].get();
 			if (res.error || !res.data) return null;
 			return res.data as TasteMatchedDiscoveryPayload;
 		} catch {
 			return null;
 		}
-	}, []);
+	}, [media]);
 
 	/** Today empty-tile **Try again** — refetch for-you after a failed load. */
 	const handleRetryPick = useCallback(async () => {
@@ -378,7 +463,9 @@ export function HomeTasteMatchedHero({
 		// Home remounts after a title-page visit: a pick finished there comes back
 		// as done (snapshot, since the server already dropped it) — never rotated away.
 		const continuity =
-			isTodayShell && completedId == null ? readTodayPickContinuity() : null;
+			isTodayShell && completedId == null
+				? readTodayPickContinuity({ media })
+				: null;
 		const restoredVia = continuity?.completedVia ?? null;
 		const restoredFilm =
 			continuity && restoredVia
@@ -407,14 +494,17 @@ export function HomeTasteMatchedHero({
 		);
 		setLoading(false);
 		setActiveIndex(0);
-	}, [initial, isTodayShell]);
+	}, [initial, isTodayShell, media]);
 
 	useEffect(() => {
 		if (initial !== undefined) return;
 		let cancelled = false;
 		async function load() {
 			try {
-				const res = await api.api.taste["for-you"].get();
+				const res =
+					media === "tv"
+						? await api.api.taste["for-you"].get({ query: { media: "tv" } })
+						: await api.api.taste["for-you"].get();
 				if (cancelled) return;
 				if (res.error || !res.data) {
 					setPayload(null);
@@ -438,7 +528,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [initial]);
+	}, [initial, media]);
 
 	useEffect(() => {
 		const rail = posterRailRef.current;
@@ -464,24 +554,26 @@ export function HomeTasteMatchedHero({
 				?.logoPath ?? null,
 		);
 		let cancelled = false;
-		void fetchMovieTitleLogoPath(spotlightTmdbId).then((logoPath) => {
-			if (cancelled || !logoPath) return;
-			setSpotlightLogoPath(logoPath);
-			setMovies((prev) =>
-				prev.some(
-					(film) =>
-						film.tmdbId === spotlightTmdbId && film.logoPath !== logoPath,
-				)
-					? prev.map((film) =>
-							film.tmdbId === spotlightTmdbId ? { ...film, logoPath } : film,
-						)
-					: prev,
-			);
-		});
+		void fetchSpotlightTitleLogoPath(media, spotlightTmdbId).then(
+			(logoPath) => {
+				if (cancelled || !logoPath) return;
+				setSpotlightLogoPath(logoPath);
+				setMovies((prev) =>
+					prev.some(
+						(film) =>
+							film.tmdbId === spotlightTmdbId && film.logoPath !== logoPath,
+					)
+						? prev.map((film) =>
+								film.tmdbId === spotlightTmdbId ? { ...film, logoPath } : film,
+							)
+						: prev,
+				);
+			},
+		);
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlightTmdbId]);
+	}, [media, spotlightTmdbId]);
 
 	useEffect(() => {
 		if (spotlightTmdbId == null) {
@@ -499,7 +591,7 @@ export function HomeTasteMatchedHero({
 				: null,
 		);
 		let cancelled = false;
-		void fetchMovieTrailer(spotlightTmdbId).then((row) => {
+		void fetchSpotlightTrailer(media, spotlightTmdbId).then((row) => {
 			if (cancelled || !row?.trailerKey) return;
 			setResolvedTrailer(row);
 			setMovies((prev) =>
@@ -524,7 +616,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlightTmdbId]);
+	}, [media, spotlightTmdbId]);
 
 	useEffect(() => {
 		if (spotlightTmdbId == null) {
@@ -532,7 +624,8 @@ export function HomeTasteMatchedHero({
 			return;
 		}
 		let cancelled = false;
-		void fetchMyLogsForMovie(spotlightTmdbId)
+		const fetchLogs = media === "tv" ? fetchMyLogsForTv : fetchMyLogsForMovie;
+		void fetchLogs(spotlightTmdbId)
 			.then((res) => {
 				if (cancelled) return;
 				const rows = Array.isArray(res.data) ? res.data : [];
@@ -544,7 +637,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [spotlightTmdbId]);
+	}, [media, spotlightTmdbId]);
 
 	const removeFromQueue = useCallback((tmdbId: number) => {
 		const snapshot = moviesRef.current;
@@ -559,34 +652,42 @@ export function HomeTasteMatchedHero({
 		return true;
 	}, []);
 
-	const handleNotInterested = useCallback(async (tmdbId: number) => {
-		const snapshot = moviesRef.current;
-		const activeSnapshot = activeIndexRef.current;
-		const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
-		if (index < 0) return;
-		if (isTodayShellRef.current) trackTodayPickAction("not_interested", tmdbId);
+	const handleNotInterested = useCallback(
+		async (tmdbId: number) => {
+			const snapshot = moviesRef.current;
+			const activeSnapshot = activeIndexRef.current;
+			const index = snapshot.findIndex((film) => film.tmdbId === tmdbId);
+			if (index < 0) return;
+			if (isTodayShellRef.current) {
+				trackTodayPickAction("not_interested", tmdbId, {}, media);
+			}
 
-		setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
-		setActiveIndex((prev) =>
-			activeIndexAfterRemoval(index, prev, snapshot.length - 1),
-		);
-		// Not interested may advance immediately — unlike watched / watchlist.
-		dispatchPick({ type: "not_interested_advanced" });
-		clearTodayPickContinuity();
+			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
+			setActiveIndex((prev) =>
+				activeIndexAfterRemoval(index, prev, snapshot.length - 1),
+			);
+			// Not interested may advance immediately — unlike watched / watchlist.
+			dispatchPick({ type: "not_interested_advanced" });
+			// Only this catalogue's continuity key — a TV dismiss must not clear a film pick.
+			clearTodayPickContinuity({ media });
 
-		try {
-			const res = await api.api.taste.dismiss.post({
-				movieTmdbId: tmdbId,
-				excludeTmdbIds: snapshot.map((film) => film.tmdbId),
-			});
-			if (res.error || !res.data) throw new Error("dismiss failed");
-			backfillSchedulerRef.current?.schedule();
-		} catch {
-			setMovies(snapshot);
-			setActiveIndex(activeSnapshot);
-			toast.error("Couldn't update suggestions");
-		}
-	}, []);
+			try {
+				const excludeTmdbIds = snapshot.map((film) => film.tmdbId);
+				const res = await api.api.taste.dismiss.post(
+					media === "tv"
+						? { tvTmdbId: tmdbId, excludeTmdbIds }
+						: { movieTmdbId: tmdbId, excludeTmdbIds },
+				);
+				if (res.error || !res.data) throw new Error("dismiss failed");
+				backfillSchedulerRef.current?.schedule();
+			} catch {
+				setMovies(snapshot);
+				setActiveIndex(activeSnapshot);
+				toast.error("Couldn't update suggestions");
+			}
+		},
+		[media],
+	);
 
 	const handleTitleConsumed = useCallback(
 		(tmdbId: number) => {
@@ -606,13 +707,18 @@ export function HomeTasteMatchedHero({
 			const completedId = todayPickCompletedTmdbId(pickStateRef.current);
 			// Only a real transition counts — the reducer ignores it while active.
 			if (completedId != null) {
-				trackTodayPickAction("pick_another", completedId, {
-					chosenFromRail: targetTmdbId != null,
-				});
+				trackTodayPickAction(
+					"pick_another",
+					completedId,
+					{
+						chosenFromRail: targetTmdbId != null,
+					},
+					media,
+				);
 			}
 			dispatchPick({ type: "pick_another" });
 			// The detail cue belongs to the retired pick — the next one starts clean.
-			clearTodayPickContinuity();
+			clearTodayPickContinuity({ media });
 			if (completedId == null) return;
 			if (targetTmdbId == null) {
 				removeFromQueue(completedId);
@@ -630,17 +736,21 @@ export function HomeTasteMatchedHero({
 			);
 			backfillSchedulerRef.current?.schedule();
 		},
-		[removeFromQueue],
+		[media, removeFromQueue],
 	);
 
 	const handleAddToWatchlist = useCallback(async () => {
 		if (!spotlight || watchlistBusy) return;
 		setWatchlistBusy(true);
 		try {
-			const result = await postWatchlistAdd({ movieId: spotlight.tmdbId });
+			const result = await postWatchlistAdd(
+				media === "tv"
+					? { tvId: spotlight.tmdbId }
+					: { movieId: spotlight.tmdbId },
+			);
 			if (!result.ok) throw new Error("watchlist failed");
 			if (isTodayShell) {
-				trackTodayPickAction("watchlist", spotlight.tmdbId);
+				trackTodayPickAction("watchlist", spotlight.tmdbId, {}, media);
 				dispatchPick({ type: "watchlisted", tmdbId: spotlight.tmdbId });
 			} else {
 				handleTitleConsumed(spotlight.tmdbId);
@@ -650,24 +760,34 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setWatchlistBusy(false);
 		}
-	}, [handleTitleConsumed, isTodayShell, spotlight, watchlistBusy]);
+	}, [handleTitleConsumed, isTodayShell, media, spotlight, watchlistBusy]);
 
 	const handleOpenQuickLog = useCallback(() => {
 		if (!spotlight) return;
+		const posterUrl =
+			tmdbPosterUrlFromPath(spotlight.posterPath, "w342") ?? undefined;
 		openQuickLog({
-			movieId: spotlight.tmdbId,
+			...(media === "tv"
+				? {
+						tvId: spotlight.tmdbId,
+						logScope: "show" as const,
+					}
+				: { movieId: spotlight.tmdbId }),
 			movieTitle: spotlight.title,
-			posterUrl:
-				tmdbPosterUrlFromPath(spotlight.posterPath, "w342") ?? undefined,
+			posterUrl,
 			averageRating: spotlight.communityAverage ?? undefined,
 			priorLogCount,
 			rewatch: priorLogCount > 0,
 			onSuccess: (result) => {
 				if (isTodayShell) {
+					if (media === "tv") {
+						trackTodayPickAction("watched", spotlight.tmdbId, {}, media);
+					}
 					dispatchPick({
 						type: "logged",
 						tmdbId: spotlight.tmdbId,
-						logId: result?.logId ?? null,
+						// TV Quick Log already collected the rating — no Undo / how-was-it step.
+						logId: media === "tv" ? null : (result?.logId ?? null),
 					});
 					return;
 				}
@@ -677,6 +797,7 @@ export function HomeTasteMatchedHero({
 	}, [
 		handleTitleConsumed,
 		isTodayShell,
+		media,
 		openQuickLog,
 		priorLogCount,
 		spotlight,
@@ -700,9 +821,14 @@ export function HomeTasteMatchedHero({
 				throw new Error("instant log failed");
 			}
 			const created = result.data as { id?: unknown } | null;
-			trackTodayPickAction("watched", tmdbId, {
-				rewatch: priorLogCount > 0,
-			});
+			trackTodayPickAction(
+				"watched",
+				tmdbId,
+				{
+					rewatch: priorLogCount > 0,
+				},
+				media,
+			);
 			// Dispatch before the consumed echo so the shell records a local log (Undo).
 			dispatchPick({
 				type: "logged",
@@ -717,7 +843,7 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setInstantLogBusy(false);
 		}
-	}, [instantLogBusy, priorLogCount, spotlight]);
+	}, [instantLogBusy, media, priorLogCount, spotlight]);
 
 	/** Deletes the log Today just created and reopens the pick's actions. */
 	const handleUndoLog = useCallback(async () => {
@@ -730,10 +856,10 @@ export function HomeTasteMatchedHero({
 				console.error("[today] undo log failed", result.error);
 				throw new Error("undo failed");
 			}
-			trackTodayPickAction("undo", state.tmdbId);
+			trackTodayPickAction("undo", state.tmdbId, {}, media);
 			dispatchPick({ type: "undo" });
 			// Don't restore a deleted log as "done" if Home remounts later.
-			clearTodayPickContinuity();
+			clearTodayPickContinuity({ media });
 			setPriorLogCount((count) => Math.max(0, count - 1));
 			dispatchTodayWeekRefresh();
 			focusWatchedAfterUndoRef.current = true;
@@ -742,7 +868,7 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setUndoBusy(false);
 		}
-	}, [undoBusy]);
+	}, [media, undoBusy]);
 
 	const quickLogLabel = isTodayShell
 		? priorLogCount > 0
@@ -755,12 +881,16 @@ export function HomeTasteMatchedHero({
 	useEffect(() => {
 		const onConsumed = (event: Event) => {
 			const detail = (event as CustomEvent<TasteTitleConsumedDetail>).detail;
-			if (detail?.tmdbId != null) handleTitleConsumed(detail.tmdbId);
+			if (detail?.tmdbId == null) return;
+			// Missing media is a movie event — TV completion must not clear a film pick.
+			const eventMedia = detail.media ?? "movie";
+			if (eventMedia !== media) return;
+			handleTitleConsumed(detail.tmdbId);
 		};
 		window.addEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
 		return () =>
 			window.removeEventListener(TASTE_TITLE_CONSUMED_EVENT, onConsumed);
-	}, [handleTitleConsumed]);
+	}, [handleTitleConsumed, media]);
 
 	const pickDone =
 		isTodayShell &&
@@ -925,15 +1055,25 @@ export function HomeTasteMatchedHero({
 									{tasteMatchedRailTitle(genrePhrase)}
 								</p>
 								<Link
-									href={`/movies/${spotlight.tmdbId}`}
+									href={
+										media === "tv"
+											? `/tv/${spotlight.tmdbId}`
+											: `/movies/${spotlight.tmdbId}`
+									}
 									className="group mx-auto block min-w-0 sm:mx-0"
 									onClick={
 										isTodayShell
 											? () => {
-													trackTodayPickAction("open_detail", spotlight.tmdbId);
+													trackTodayPickAction(
+														"open_detail",
+														spotlight.tmdbId,
+														{},
+														media,
+													);
 													writeTodayPickContinuity({
 														film: spotlight,
 														reason: tasteMatchedRailTitle(genrePhrase),
+														media,
 													});
 												}
 											: undefined
@@ -1068,10 +1208,11 @@ export function HomeTasteMatchedHero({
 												whileTap={motionProps.tap}
 												transition={motionProps.buttonTransition}
 												aria-label={quickLogLabel}
-												// Today saves instantly; the standalone hero keeps the Quick Log sheet.
-												disabled={instantLogBusy}
+												// Movie Today saves instantly. TV Today opens Quick Log (show scope).
+												// The standalone hero keeps the Quick Log sheet.
+												disabled={media === "tv" ? false : instantLogBusy}
 												onClick={
-													isTodayShell
+													isTodayShell && media !== "tv"
 														? () => void handleInstantWatched()
 														: handleOpenQuickLog
 												}

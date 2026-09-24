@@ -3,7 +3,7 @@ import {
 	HomeTasteMatchedHero,
 } from "@/components/home/home-taste-matched-hero";
 import type { TasteMatchedDiscoveryPayload } from "@/lib/taste-matched-discovery";
-import { fetchTodayPick } from "@/lib/today-on-sense-reads";
+import { fetchTodayPick, type TodayMedia } from "@/lib/today-on-sense-reads";
 
 /**
  * Isolated RSC boundary for the taste hero — keeps slow `/api/taste/for-you` off the
@@ -13,16 +13,19 @@ import { fetchTodayPick } from "@/lib/today-on-sense-reads";
 export async function HomeTasteMatchedHeroRsc({
 	completionMode,
 	read,
+	media = "movie",
 }: {
 	completionMode?: HomeTasteHeroCompletionMode;
 	read?: Promise<TasteMatchedDiscoveryPayload | null>;
+	media?: TodayMedia;
 }) {
-	const tasteMatchedRail = await (read ?? fetchTodayPick());
+	const tasteMatchedRail = await (read ?? fetchTodayPick(media));
 
 	return (
 		<HomeTasteMatchedHero
 			initial={tasteMatchedRail}
 			completionMode={completionMode}
+			media={media}
 		/>
 	);
 }

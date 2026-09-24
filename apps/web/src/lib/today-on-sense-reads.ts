@@ -12,6 +12,9 @@ export type TodayWeekRead = {
 	timeZone: string;
 };
 
+/** Client catalogue for Today. Movie reads stay parameter-free; TV adds `media=tv`. */
+export type TodayMedia = "movie" | "tv";
+
 /**
  * In-flight Today reads. Started by the `/home` page shell (before auth, profile,
  * and catalogue waves) and awaited inside each card's own Suspense boundary.
@@ -33,11 +36,17 @@ function decodeCookieTimeZone(raw: string | undefined): string {
 	}
 }
 
-export async function fetchTodayPick(): Promise<TasteMatchedDiscoveryPayload | null> {
+export async function fetchTodayPick(
+	media: TodayMedia = "movie",
+): Promise<TasteMatchedDiscoveryPayload | null> {
 	const api = await serverApi();
+	// Movie for-you stays the call with no query. `media=tv` is the only filter.
+	const request =
+		media === "tv"
+			? api.api.taste["for-you"].get({ query: { media: "tv" } })
+			: api.api.taste["for-you"].get();
 	return traceTiming("home", "taste for-you", () =>
-		api.api.taste["for-you"]
-			.get()
+		request
 			.then((res) => {
 				if (res.error || !res.data) return null;
 				return res.data as TasteMatchedDiscoveryPayload;
@@ -47,13 +56,18 @@ export async function fetchTodayPick(): Promise<TasteMatchedDiscoveryPayload | n
 }
 
 /** Week pulse in the device-timezone cookie (UTC on first visit). */
-export async function fetchTodayWeek(): Promise<TodayWeekRead> {
+export async function fetchTodayWeek(
+	media: TodayMedia = "movie",
+): Promise<TodayWeekRead> {
 	const store = await cookies();
 	const timeZone = decodeCookieTimeZone(store.get(TODAY_TZ_COOKIE)?.value);
 	const api = await serverApi();
 	const pulse = await traceTiming("home", "today week", () =>
 		api.api.today.week
-			.get({ query: { tz: timeZone } })
+			.get({
+				query:
+					media === "tv" ? { tz: timeZone, media: "tv" } : { tz: timeZone },
+			})
 			.then((res) => {
 				if (res.error || !res.data) return null;
 				return res.data as TodayWeekPulse;
@@ -63,11 +77,16 @@ export async function fetchTodayWeek(): Promise<TodayWeekRead> {
 	return { pulse, timeZone };
 }
 
-export async function fetchTodayCircle(): Promise<TodayCirclePayload | null> {
+export async function fetchTodayCircle(
+	media: TodayMedia = "movie",
+): Promise<TodayCirclePayload | null> {
 	const api = await serverApi();
+	const request =
+		media === "tv"
+			? api.api.today.circle.get({ query: { media: "tv" } })
+			: api.api.today.circle.get();
 	return traceTiming("home", "today circle", () =>
-		api.api.today.circle
-			.get()
+		request
 			.then((res) => {
 				if (res.error || !res.data) return null;
 				return res.data as TodayCirclePayload;
@@ -76,10 +95,12 @@ export async function fetchTodayCircle(): Promise<TodayCirclePayload | null> {
 	);
 }
 
-export function startTodayOnSenseReads(): TodayOnSenseReads {
+export function startTodayOnSenseReads(
+	media: TodayMedia = "movie",
+): TodayOnSenseReads {
 	return {
-		pick: fetchTodayPick(),
-		week: fetchTodayWeek(),
-		circle: fetchTodayCircle(),
+		pick: fetchTodayPick(media),
+		week: fetchTodayWeek(media),
+		circle: fetchTodayCircle(media),
 	};
 }

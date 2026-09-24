@@ -30,6 +30,7 @@ import {
 	HomeTmdbLobbyChrome,
 } from "@/components/home/home-tmdb-lobby-chrome";
 import { HomeTodayBrowseGate } from "@/components/home/home-today-browse-gate";
+import { HomeTodayPrefetch } from "@/components/home/home-today-prefetch";
 import { TmdbLobbySkeleton } from "@/components/home/tmdb-lobby-skeleton";
 import { TodayOnSense } from "@/components/home/today-on-sense";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
@@ -98,6 +99,7 @@ import {
 import { tmdbSetupHint } from "@/lib/tmdb-config";
 import {
 	startTodayOnSenseReads,
+	type TodayMedia,
 	type TodayOnSenseReads,
 } from "@/lib/today-on-sense-reads";
 import { traceTiming } from "@/lib/trace-timing";
@@ -388,11 +390,13 @@ export default async function HomePage({
 	// `(app)/layout` guarantees a session here. Start Today reads now so they run
 	// alongside the body's auth/profile/catalogue waves instead of after them.
 	// Committed catalogue search replaces Today, so skip the reads entirely.
-	// Today is a Movies-lobby layer — TV and Community never start its reads.
+	// Movies and TV Shows each start their own three reads. Community does not.
+	const todayMedia =
+		browse === "tv" ? "tv" : browse === "movies" ? "movie" : null;
 	const todayReads =
-		params.catalogueSearchActive || browse !== "movies"
+		params.catalogueSearchActive || todayMedia == null
 			? null
-			: startTodayOnSenseReads();
+			: startTodayOnSenseReads(todayMedia);
 
 	return (
 		// Fills `<main>` from `AppShell` (`flex-1 min-h-0` + bottom reserve) — do not use `min-h-svh` here or the card ignores shell padding above the nav inset.
@@ -405,7 +409,11 @@ export default async function HomePage({
 					and catalogue round-trips (remote DB ⇒ this matters a lot).
 				*/}
 				<Suspense fallback={<HomeLobbyShellFallback browse={browse} />}>
-					<HomeLobbyBody params={params} todayReads={todayReads} />
+					<HomeLobbyBody
+						params={params}
+						todayMedia={todayMedia}
+						todayReads={todayReads}
+					/>
 				</Suspense>
 			</HomeLobbyNavigationRoot>
 		</div>
@@ -414,9 +422,11 @@ export default async function HomePage({
 
 async function HomeLobbyBody({
 	params,
+	todayMedia,
 	todayReads,
 }: {
 	params: HomeLobbyParams;
+	todayMedia: TodayMedia | null;
 	todayReads: TodayOnSenseReads | null;
 }) {
 	const {
@@ -847,12 +857,17 @@ async function HomeLobbyBody({
 
 			<HomeLobbyCatalogueSection>
 				{/*
-					Today on Sense is Movies-only. The client gate hides it the moment the
-					browse pill leaves Movies, before the TV/Community RSC payload lands.
+					Today on Sense is Movies and TV Shows. The client gate hides it the
+					moment the browse pill lands on Community, before that RSC payload
+					lands. Catalogue search passes no reads, so this stays unmounted.
 				*/}
-				{session && todayReads ? (
-					<HomeTodayBrowseGate>
-						<TodayOnSense reads={todayReads} />
+				{session && todayReads && todayMedia ? (
+					<HomeTodayBrowseGate
+						inactive={
+							<HomeTodayPrefetch media={todayMedia === "tv" ? "movie" : "tv"} />
+						}
+					>
+						<TodayOnSense media={todayMedia} reads={todayReads} />
 					</HomeTodayBrowseGate>
 				) : null}
 				{/*
