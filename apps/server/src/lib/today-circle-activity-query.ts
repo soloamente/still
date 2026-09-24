@@ -9,7 +9,16 @@ import {
 	tv,
 	user,
 } from "@still/db";
-import { and, desc, eq, gte, isNull, notInArray, or } from "drizzle-orm";
+import {
+	and,
+	desc,
+	eq,
+	gte,
+	isNotNull,
+	isNull,
+	notInArray,
+	or,
+} from "drizzle-orm";
 
 import { joinedTitleItemNotAdultSql } from "./adult-content-sql";
 import { getShowAdultContentForUser } from "./adult-content-user-pref";
@@ -48,6 +57,7 @@ async function blockedUserIdsForViewer(viewerId: string): Promise<string[]> {
 export async function fetchTodayCircleActivity(
 	viewerId: string,
 	now = new Date(),
+	media: "all" | "tv" = "all",
 ): Promise<TodayCirclePayload> {
 	const [showAdultContent, blockedIds] = await Promise.all([
 		getShowAdultContentForUser(viewerId),
@@ -99,6 +109,7 @@ export async function fetchTodayCircleActivity(
 					movieId: log.movieId,
 					tvId: log.tvId,
 				}),
+				media === "tv" ? isNotNull(log.tvId) : undefined,
 			),
 		)
 		.orderBy(desc(log.createdAt), desc(log.id))

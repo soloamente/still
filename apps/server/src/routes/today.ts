@@ -29,7 +29,13 @@ export const todayRoute = new Elysia({ prefix: "/api/today", tags: ["today"] })
 			}),
 		},
 	)
-	.get("/circle", async ({ user, status }) => {
-		if (!user) return status(401, "Unauthorized");
-		return fetchTodayCircleActivity(user.id);
-	});
+	.get(
+		"/circle",
+		async ({ query, user, status }) => {
+			if (!user) return status(401, "Unauthorized");
+			const media = parseTodayMediaParam(query.media);
+			if (media === "invalid") return status(400, "Invalid media");
+			return fetchTodayCircleActivity(user.id, new Date(), media);
+		},
+		{ query: t.Object({ media: t.Optional(t.String()) }) },
+	);

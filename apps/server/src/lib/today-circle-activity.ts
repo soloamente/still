@@ -81,6 +81,15 @@ export function reviewExcerptPlainText(
 	return `${head.replace(/[,.;:!?-]+$/, "")}…`;
 }
 
+/** Whether a circle query row counts for the requested Today media slice. */
+export function circleRowMatchesMedia(
+	row: { movieId: number | null; tvId: number | null },
+	media: "all" | "tv",
+): boolean {
+	if (media === "tv") return row.tvId != null;
+	return true;
+}
+
 export function buildTodayCirclePayload(
 	row: TodayCircleRow | null,
 	badge: TodayCircleActorBadge | null,

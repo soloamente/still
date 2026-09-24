@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	buildTodayCirclePayload,
+	circleRowMatchesMedia,
 	reviewExcerptPlainText,
 	type TodayCircleRow,
 } from "./today-circle-activity";
@@ -106,6 +107,23 @@ describe("buildTodayCirclePayload", () => {
 		expect(buildTodayCirclePayload(row({ movieTitle: null }), badge)).toEqual({
 			kind: "invite",
 		});
+	});
+});
+
+describe("circleRowMatchesMedia", () => {
+	test("tv circle ignores a film row", () => {
+		expect(circleRowMatchesMedia({ movieId: 438631, tvId: null }, "tv")).toBe(
+			false,
+		);
+		expect(circleRowMatchesMedia({ movieId: null, tvId: 1399 }, "tv")).toBe(
+			true,
+		);
+	});
+
+	test("omitted media still accepts a film row", () => {
+		expect(circleRowMatchesMedia({ movieId: 438631, tvId: null }, "all")).toBe(
+			true,
+		);
 	});
 });
 
