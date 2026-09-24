@@ -17,7 +17,9 @@ import {
 	computeTasteOverlap,
 } from "../lib/sense-taste-overlap";
 import { buildSuggestedPatrons } from "../lib/suggested-patron-discovery";
+import { parseTasteDismissBody } from "../lib/taste-dismiss-body";
 import { dismissTasteMovie } from "../lib/taste-dismissed-movie";
+import { dismissTasteTv } from "../lib/taste-dismissed-tv";
 import {
 	buildTasteMatchedDiscoveryWithMeta,
 	TASTE_MATCH_MIN_RESULTS,
@@ -115,18 +117,33 @@ export const tasteRoute = new Elysia({
 			) {
 				return status(429, "Slow down");
 			}
-			if (!Number.isInteger(body.movieTmdbId) || body.movieTmdbId <= 0) {
-				return status(400, "Invalid movie id");
+			const target = parseTasteDismissBody(body);
+			if (target == null) {
+				return status(400, "Invalid title id");
 			}
-			return dismissTasteMovie({
-				userId: user.id,
-				movieTmdbId: body.movieTmdbId,
-				excludeTmdbIds: body.excludeTmdbIds,
-			});
+			switch (target.media) {
+				case "movie":
+					return dismissTasteMovie({
+						userId: user.id,
+						movieTmdbId: target.tmdbId,
+						excludeTmdbIds: body.excludeTmdbIds,
+					});
+				case "tv":
+					return dismissTasteTv({
+						userId: user.id,
+						tvTmdbId: target.tmdbId,
+						excludeTmdbIds: body.excludeTmdbIds,
+					});
+				default: {
+					const _exhaustive: never = target;
+					return _exhaustive;
+				}
+			}
 		},
 		{
 			body: t.Object({
-				movieTmdbId: t.Number(),
+				movieTmdbId: t.Optional(t.Number()),
+				tvTmdbId: t.Optional(t.Number()),
 				excludeTmdbIds: t.Optional(t.Array(t.Number())),
 			}),
 		},

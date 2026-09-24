@@ -24,6 +24,22 @@ export async function fetchWatchlistMovieTmdbIds(
 		.filter((id): id is number => id != null);
 }
 
+/**
+ * TV TMDb ids on the patron's watchlist — excluded from TV taste scoring
+ * (same class as logged + dismissed titles). Same cap as movies.
+ */
+export async function fetchWatchlistTvTmdbIds(
+	userId: string,
+): Promise<number[]> {
+	const rows = await db
+		.select({ tvId: watchlistItem.tvId })
+		.from(watchlistItem)
+		.where(and(eq(watchlistItem.userId, userId), isNotNull(watchlistItem.tvId)))
+		.limit(WATCHLIST_EXCLUSION_CAP);
+
+	return rows.map((row) => row.tvId).filter((id): id is number => id != null);
+}
+
 /** Merge logged, dismissed, and watchlisted ids for taste candidate exclusion. */
 export function buildTasteMatchExcludeIds(input: {
 	loggedMovieIds: number[];

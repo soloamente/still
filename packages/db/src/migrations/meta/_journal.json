@@ -330,6 +330,13 @@
 			"when": 1779204200000,
 			"tag": "0046_watchlist_item_streaming_alert",
 			"breakpoints": true
+		},
+		{
+			"idx": 47,
+			"version": "7",
+			"when": 1779204300000,
+			"tag": "0047_taste_dismissed_tv",
+			"breakpoints": true
 		}
 	]
 }
