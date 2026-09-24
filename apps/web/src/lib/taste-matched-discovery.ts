@@ -18,6 +18,11 @@ export type TasteMatchMovie = {
 	trailerSite?: string | null;
 	festivalIcon?: string | null;
 	logoPath?: string | null;
+	/**
+	 * Movie payloads omit this. TV for-you stamps `"tv"` so clients can tell
+	 * a show id from a film id in the same `movies` array.
+	 */
+	mediaKind?: "movie" | "tv";
 };
 
 export type TasteMatchedDiscoveryPayload = {

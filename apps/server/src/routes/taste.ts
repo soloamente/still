@@ -24,6 +24,8 @@ import {
 	buildTasteMatchedDiscoveryWithMeta,
 	TASTE_MATCH_MIN_RESULTS,
 } from "../lib/taste-matched-discovery";
+import { buildTasteMatchedDiscoveryForTv } from "../lib/taste-matched-discovery-tv";
+import { parseTodayMediaParam } from "../lib/today-media";
 import { traceTiming } from "../lib/trace-timing";
 
 async function resolveProfileByHandle(handle: string) {
@@ -85,28 +87,53 @@ export const tasteRoute = new Elysia({
 	tags: ["taste"],
 })
 	.use(context)
-	/** Rule-based movie picks from diary taste (ST.4) — Movies lobby rail. */
-	.get("/for-you", async ({ user, status }) => {
-		if (!user) return status(401, "Sign in");
-		if (!hit(`taste:for-you:${user.id}`, { limit: 60, windowMs: 60_000 }).ok) {
-			return status(429, "Slow down");
-		}
-		const { payload, meta } = await traceTiming(
-			"taste",
-			"buildTasteMatchedDiscovery",
-			() => buildTasteMatchedDiscoveryWithMeta(user.id),
-		);
-		if (
-			!payload.coldStart &&
-			payload.movies.length >= TASTE_MATCH_MIN_RESULTS
-		) {
-			void recordProductEvent(user.id, "taste.for_you.served", {
-				movieCount: payload.movies.length,
-				...meta,
-			});
-		}
-		return payload;
-	})
+	/** Rule-based picks from diary taste. Omitted `media` stays movies; `tv` is shows. */
+	.get(
+		"/for-you",
+		async ({ user, query, status }) => {
+			if (!user) return status(401, "Sign in");
+			if (
+				!hit(`taste:for-you:${user.id}`, { limit: 60, windowMs: 60_000 }).ok
+			) {
+				return status(429, "Slow down");
+			}
+			const media = parseTodayMediaParam(query.media);
+			switch (media) {
+				case "invalid":
+					return status(400, "Invalid media");
+				case "tv":
+					return traceTiming("taste", "buildTasteMatchedDiscoveryForTv", () =>
+						buildTasteMatchedDiscoveryForTv(user.id),
+					);
+				case "all": {
+					const { payload, meta } = await traceTiming(
+						"taste",
+						"buildTasteMatchedDiscovery",
+						() => buildTasteMatchedDiscoveryWithMeta(user.id),
+					);
+					if (
+						!payload.coldStart &&
+						payload.movies.length >= TASTE_MATCH_MIN_RESULTS
+					) {
+						void recordProductEvent(user.id, "taste.for_you.served", {
+							movieCount: payload.movies.length,
+							...meta,
+						});
+					}
+					return payload;
+				}
+				default: {
+					const _exhaustive: never = media;
+					return _exhaustive;
+				}
+			}
+		},
+		{
+			query: t.Object({
+				media: t.Optional(t.String()),
+			}),
+		},
+	)
 	/** Forever-hide a taste-rail suggestion and return the next replacement pick. */
 	.post(
 		"/dismiss",

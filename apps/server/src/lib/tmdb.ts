@@ -452,6 +452,10 @@ export const tmdbApi = {
 	movieVideos(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<{ results: TmdbVideo[] }>(`/movie/${id}/videos`, {}, fetchOpts);
 	},
+	/** Series trailers — same payload shape as `movieVideos`, path `/tv/{id}/videos`. */
+	tvVideos(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ results: TmdbVideo[] }>(`/tv/${id}/videos`, {}, fetchOpts);
+	},
 	/** Full TMDb image bundle — used when cached detail lacks backdrops (legacy rows). */
 	movieImages(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		return tmdb<TmdbMovieDetail["images"]>(

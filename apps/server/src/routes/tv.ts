@@ -50,6 +50,8 @@ import {
 	getTvSeasonDetailCached,
 	getTvSeasonsCached,
 } from "../lib/tv-season-cache";
+import { resolveTvTitleLogoPath } from "../lib/tv-title-logo-resolve";
+import { resolveTvTrailer } from "../lib/tv-trailer-resolve";
 import { tvListingEngagementRoutes } from "./listing-engagement";
 
 /** Returned when `TMDB_API_KEY` is missing so the UI can explain empty rails. */
@@ -590,6 +592,23 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)
+	/** TMDb title wordmark path for lobby heroes — lightweight vs full TV detail. */
+	.get("/:id/title-logo", async ({ params, status }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+		const logoPath = await resolveTvTitleLogoPath(id);
+		return { logoPath };
+	})
+	/** TMDb trailer key for lobby heroes — lightweight vs full TV detail. */
+	.get("/:id/trailer", async ({ params, status }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+		const trailer = await resolveTvTrailer(id);
+		return {
+			trailerKey: trailer?.trailerKey ?? null,
+			trailerSite: trailer?.trailerSite ?? null,
+		};
+	})
 	// TV series detail — cache row first, then block adult titles when patron pref is off.
 	.get(
 		"/:id",

@@ -63,6 +63,11 @@ export type TasteMatchMovie = {
 	festivalIcon?: string | null;
 	/** TMDb `images.logos` title treatment for the home hero lockup. */
 	logoPath?: string | null;
+	/**
+	 * Movie payloads omit this. TV for-you stamps `"tv"` so clients can tell
+	 * a show id from a film id in the same `movies` array.
+	 */
+	mediaKind?: "movie" | "tv";
 };
 
 export type TasteMatchedDiscoveryPayload = {
@@ -117,7 +122,7 @@ function percentile75(values: number[]): number {
 	return sorted[Math.min(idx, sorted.length - 1)] ?? PLATFORM_MEDIAN_POPULARITY;
 }
 
-function topGenreIdsFromProfile(
+export function topGenreIdsFromProfile(
 	genreWeights: Map<number, number>,
 	limit: number,
 ): number[] {
@@ -409,6 +414,7 @@ export async function scoreTasteMatchCandidatesForUser(
 	};
 }
 
+/** Fewer than `TASTE_MATCH_MIN_RESULTS` MMR survivors is cold start. */
 function payloadFromScoredResult(
 	result: ScoreTasteMatchResult,
 ): TasteMatchedDiscoveryPayload {
@@ -445,6 +451,9 @@ function payloadFromScoredResult(
 		movies,
 	};
 }
+
+/** TV scorer name for this helper. Body stays the movie MMR payload path. */
+export { payloadFromScoredResult as toTasteMatchedDiscoveryPayload };
 
 /** Full discovery payload plus serve metadata for analytics. */
 export async function buildTasteMatchedDiscoveryWithMeta(
