@@ -31,3 +31,17 @@ export function newestTvLogPerShow<
 export function tvTasteIsColdStart(distinctShowCount: number): boolean {
 	return distinctShowCount < TV_TASTE_MIN_SHOWS;
 }
+
+/**
+ * Logged show ids for taste exclusion.
+ * `loggedShowIds` is every distinct diary show. `recentWindowShowIds` is only
+ * the latest profile window (the newest 400 TV logs). A show that is logged
+ * but absent from that window stays in the result — the window must not
+ * shrink the exclude set.
+ */
+export function loggedShowIdsForTasteExclude(input: {
+	loggedShowIds: readonly number[];
+	recentWindowShowIds: readonly number[];
+}): number[] {
+	return [...new Set([...input.loggedShowIds, ...input.recentWindowShowIds])];
+}

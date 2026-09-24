@@ -215,27 +215,28 @@ describe("summarizeTodayWeekPulse", () => {
 
 describe("filterTodayWeekRows", () => {
 	test("tv keeps show, season, and episode rows and drops films", () => {
-		const rows = [
-			{
-				watchedAt: "2026-09-23T12:00:00.000Z",
-				rating: 80,
-				movieId: 1,
-				tvId: null,
-			},
-			{
-				watchedAt: "2026-09-23T12:00:00.000Z",
-				rating: 70,
-				movieId: null,
-				tvId: 9,
-			},
-			{
-				watchedAt: "2026-09-23T12:00:00.000Z",
-				rating: null,
-				movieId: null,
-				tvId: 9,
-			},
-		];
-		expect(filterTodayWeekRows(rows, "tv")).toEqual([rows[1], rows[2]]);
+		const film = {
+			watchedAt: "2026-09-23T12:00:00.000Z",
+			rating: 80,
+			movieId: 1,
+			tvId: null,
+		};
+		const season = {
+			watchedAt: "2026-09-23T12:00:00.000Z",
+			rating: 70,
+			movieId: null,
+			tvId: 9,
+		};
+		const episode = {
+			watchedAt: "2026-09-23T12:00:00.000Z",
+			rating: null,
+			movieId: null,
+			tvId: 9,
+		};
+		expect(filterTodayWeekRows([film, season, episode], "tv")).toEqual([
+			season,
+			episode,
+		]);
 	});
 
 	test("all returns every row", () => {

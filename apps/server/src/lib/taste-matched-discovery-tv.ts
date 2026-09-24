@@ -11,10 +11,14 @@ import { fetchOverlapDiarySlices } from "./fetch-overlap-diary-slices";
 import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
 import { buildOverlapDiaryMap } from "./sense-taste-overlap";
 import { fetchDismissedTvTmdbIds } from "./taste-dismissed-tv";
+import { fetchLoggedTvShowIds } from "./taste-logged-tv-shows";
 import {
 	mergeBlendAndPenalizeCandidates,
+	type ScoredTasteMatchCandidate,
+	TASTE_MATCH_MIN_RESULTS,
 	type TasteMatchedDiscoveryPayload,
 	type TasteMatchMovie,
+	type TasteMatchServeMeta,
 	topGenreIdsFromProfile,
 	toTasteMatchedDiscoveryPayload,
 } from "./taste-matched-discovery";
@@ -32,6 +36,7 @@ import { fetchSocialTvCandidates } from "./taste-social-candidates-tv";
 import { fetchStratifiedTvCandidates } from "./taste-stratified-candidates-tv";
 import {
 	distinctTvShowIds,
+	loggedShowIdsForTasteExclude,
 	newestTvLogPerShow,
 	tvTasteIsColdStart,
 } from "./taste-tv-shows";
@@ -217,7 +222,7 @@ async function enrichTvTasteMatchRow(
 /**
  * Attach hero fields after MMR so only the chosen shows read `tmdb_json` paths.
  */
-async function enrichTvTasteMatchShows(
+export async function enrichTvTasteMatchShows(
 	movies: TasteMatchMovie[],
 ): Promise<TasteMatchMovie[]> {
 	if (movies.length === 0) return movies;
@@ -267,42 +272,93 @@ async function enrichTvTasteMatchShows(
 	);
 }
 
+const EMPTY_TV_TASTE_META: TasteMatchServeMeta = {
+	socialCount: 0,
+	soloCount: 0,
+	neighborCount: 0,
+	nicheBoostApplied: false,
+	dismissCount: 0,
+};
+
 /**
- * Score a TV For you payload from the viewer's distinct shows.
- * Omitted `media` on `/api/taste/for-you` stays on the movie scorer.
+ * Full ranked TV pool, before MMR caps the rail at 24.
+ * `scored` is exactly what `mergeBlendAndPenalizeCandidates` returns.
  */
-export async function buildTasteMatchedDiscoveryForTv(
+export type TvTasteScoredPool = {
+	coldStart: boolean;
+	genrePhrase: string | null;
+	scored: ScoredTasteMatchCandidate[];
+	/** Logged shows, watchlist shows, and TV dismissals. */
+	excludeIds: number[];
+	meta: TasteMatchServeMeta;
+};
+
+/**
+ * Score unseen shows for a patron. The taste profile still uses the latest
+ * 400 TV logs collapsed to one row per show. Cold start and hard-exclusion
+ * use every distinct logged show, not that window.
+ */
+export async function scoreTasteMatchedTvCandidates(
 	userId: string,
-): Promise<TasteMatchedDiscoveryPayload> {
+): Promise<TvTasteScoredPool> {
 	/**
-	 * Last 400 non-removed TV logs, scalars only. `newestTvLogPerShow` collapses
-	 * season and episode rows so cold start is 10 shows, not 10 log rows.
+	 * Profile window: last 400 non-removed TV logs, scalars only.
+	 * `newestTvLogPerShow` collapses season and episode rows so the profile
+	 * has one slice per show. Cold start does not use this window.
 	 */
-	const rows = await traceTiming("taste-tv", "viewerShowLogs", () =>
-		db
-			.select({
-				rating: log.rating,
-				tvId: log.tvId,
-				watchedAt: log.watchedAt,
-				genreIds: tv.genreIds,
-				year: tv.year,
-				originalLanguage: tv.originalLanguage,
-				popularity: tv.popularity,
-			})
-			.from(log)
-			.innerJoin(tv, eq(tv.tmdbId, log.tvId))
-			.where(
-				and(eq(log.userId, userId), isNull(log.removedAt), isNotNull(log.tvId)),
-			)
-			.orderBy(desc(log.watchedAt))
-			.limit(400),
+	const [rows, loggedShowIds, dismissedIds, watchlistTvIds] = await Promise.all(
+		[
+			traceTiming("taste-tv", "viewerShowLogs", () =>
+				db
+					.select({
+						rating: log.rating,
+						tvId: log.tvId,
+						watchedAt: log.watchedAt,
+						genreIds: tv.genreIds,
+						year: tv.year,
+						originalLanguage: tv.originalLanguage,
+						popularity: tv.popularity,
+					})
+					.from(log)
+					.innerJoin(tv, eq(tv.tmdbId, log.tvId))
+					.where(
+						and(
+							eq(log.userId, userId),
+							isNull(log.removedAt),
+							isNotNull(log.tvId),
+						),
+					)
+					.orderBy(desc(log.watchedAt))
+					.limit(400),
+			),
+			fetchLoggedTvShowIds(userId),
+			fetchDismissedTvTmdbIds(userId),
+			fetchWatchlistTvTmdbIds(userId),
+		],
 	);
 
 	const shows = newestTvLogPerShow(rows).sort(
 		(a, b) => new Date(b.watchedAt).getTime() - new Date(a.watchedAt).getTime(),
 	);
-	if (tvTasteIsColdStart(distinctTvShowIds(shows).length)) {
-		return { coldStart: true, genrePhrase: null, movies: [] };
+	const recentWindowShowIds = distinctTvShowIds(shows);
+	const excludeIds = buildTasteMatchExcludeIds({
+		loggedMovieIds: loggedShowIdsForTasteExclude({
+			loggedShowIds,
+			recentWindowShowIds,
+		}),
+		dismissedIds,
+		watchlistMovieIds: watchlistTvIds,
+	});
+	// Ten episodes of one show stay cold. Ten distinct shows anywhere in the
+	// diary are enough, even when the latest 400 rows are a single show.
+	if (tvTasteIsColdStart(loggedShowIds.length)) {
+		return {
+			coldStart: true,
+			genrePhrase: null,
+			scored: [],
+			excludeIds,
+			meta: EMPTY_TV_TASTE_META,
+		};
 	}
 
 	const total = shows.length;
@@ -320,15 +376,6 @@ export async function buildTasteMatchedDiscoveryForTv(
 
 	const profile = buildWeightedTasteProfile(slices);
 	const genrePhrase = genrePhraseFromWeights(profile);
-	const [dismissedIds, watchlistTvIds] = await Promise.all([
-		fetchDismissedTvTmdbIds(userId),
-		fetchWatchlistTvTmdbIds(userId),
-	]);
-	const excludeIds = buildTasteMatchExcludeIds({
-		loggedMovieIds: distinctTvShowIds(shows),
-		dismissedIds,
-		watchlistMovieIds: watchlistTvIds,
-	});
 	const topGenres = topGenreIdsFromProfile(profile.genreWeights, 3);
 
 	const nicheBoost = profile.medianPopularity < PLATFORM_MEDIAN_POPULARITY;
@@ -483,10 +530,11 @@ export async function buildTasteMatchedDiscoveryForTv(
 		dismissMetadata,
 	});
 
-	let payload = toTasteMatchedDiscoveryPayload({
+	return {
 		coldStart: false,
 		genrePhrase,
 		scored,
+		excludeIds,
 		meta: {
 			socialCount: [...socialScores.keys()].length,
 			soloCount: [...soloScores.keys()].length,
@@ -494,20 +542,56 @@ export async function buildTasteMatchedDiscoveryForTv(
 			nicheBoostApplied: nicheBoost,
 			dismissCount: dismissedMetadata.length,
 		},
-	});
+	};
+}
 
-	if (!payload.coldStart && payload.movies.length > 0) {
-		payload = {
-			...payload,
-			movies: await traceTiming("taste-tv", "enrichShows", () =>
-				enrichTvTasteMatchShows(payload.movies),
-			),
+/**
+ * TV For you payload. Omitted `media` on `/api/taste/for-you` stays on the
+ * movie scorer. Titles still in the exclude set are dropped after scoring.
+ */
+export async function buildTasteMatchedDiscoveryForTv(
+	userId: string,
+): Promise<TasteMatchedDiscoveryPayload> {
+	const pool = await scoreTasteMatchedTvCandidates(userId);
+	if (pool.coldStart) {
+		return {
+			coldStart: true,
+			genrePhrase: null,
+			movies: [],
+			consumedTmdbIds: pool.excludeIds,
 		};
 	}
+
+	const excludeSet = new Set(pool.excludeIds);
+	const scored = pool.scored.filter(
+		(entry) => !excludeSet.has(entry.row.tmdbId),
+	);
+	let payload = toTasteMatchedDiscoveryPayload({
+		coldStart: false,
+		genrePhrase: pool.genrePhrase,
+		scored,
+		meta: pool.meta,
+	});
+
+	if (payload.coldStart || payload.movies.length < TASTE_MATCH_MIN_RESULTS) {
+		return {
+			coldStart: true,
+			genrePhrase: null,
+			movies: [],
+			consumedTmdbIds: pool.excludeIds,
+		};
+	}
+
+	payload = {
+		...payload,
+		movies: await traceTiming("taste-tv", "enrichShows", () =>
+			enrichTvTasteMatchShows(payload.movies),
+		),
+	};
 
 	const stamped = stampTvTastePayload(payload);
 	return {
 		...stamped,
-		consumedTmdbIds: excludeIds,
+		consumedTmdbIds: pool.excludeIds,
 	};
 }
