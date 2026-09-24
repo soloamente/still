@@ -1,36 +1,48 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 import { useHomeBrowseSurface } from "@/components/home/home-browse-surface-context";
+import { todaySlideExitEnabled, todaySlidePage } from "@/lib/home-today-slide";
 
 /**
  * Today on Sense while the (optimistic) browse pill is Movies or TV Shows.
- * Community hides the block immediately. The inactive catalogue stays mounted
- * so its prefetch can finish; an optimistic pill swap shows that page before
- * the RSC payload lands.
+ * Community hides the block immediately. Both catalogues stay mounted so the
+ * inactive side can prefetch and Movies ↔ TV can slide without remounting.
  */
 export function HomeTodayBrowseGate({
-	children,
-	inactive = null,
+	movie,
+	tv,
 }: {
-	children: ReactNode;
-	/** The other catalogue's Today. Hidden until the pill moves off the URL browse. */
-	inactive?: ReactNode;
+	movie: ReactNode;
+	tv: ReactNode;
 }) {
-	const { activeBrowse, urlBrowse } = useHomeBrowseSurface();
+	const { activeBrowse } = useHomeBrowseSurface();
+	// First paint: disable exit motion so the active page does not fly in from off-screen.
+	const [hasShownOnce, setHasShownOnce] = useState(false);
+	useEffect(() => {
+		setHasShownOnce(true);
+	}, []);
+
 	if (activeBrowse !== "movies" && activeBrowse !== "tv") return null;
-	const showInactive =
-		inactive != null &&
-		activeBrowse !== urlBrowse &&
-		(urlBrowse === "movies" || urlBrowse === "tv");
+
+	const page = todaySlidePage(activeBrowse === "tv" ? "tv" : "movies");
+
 	return (
-		<>
-			{/* `contents` keeps the active page in the lobby flow; `hidden` parks the other. */}
-			<div className={showInactive ? "hidden" : "contents"}>{children}</div>
-			{inactive != null ? (
-				<div className={showInactive ? "contents" : "hidden"}>{inactive}</div>
-			) : null}
-		</>
+		<div
+			className="t-today-slide"
+			data-page={page}
+			style={{
+				["--page-exit-enabled" as string]: todaySlideExitEnabled(hasShownOnce),
+			}}
+		>
+			<section className="t-page" data-page-id="1">
+				{movie}
+			</section>
+			<section className="t-page" data-page-id="2">
+				{tv}
+			</section>
+		</div>
 	);
 }

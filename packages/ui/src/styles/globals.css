@@ -2676,6 +2676,44 @@ html.theme-lobby-light .cinema-vignette {
 	}
 }
 
+.t-today-slide {
+	position: relative;
+}
+.t-today-slide .t-page[data-page-id="1"] {
+	--t-page-from-x: calc(var(--page-slide-distance) * -1);
+}
+.t-today-slide .t-page[data-page-id="2"] {
+	--t-page-from-x: var(--page-slide-distance);
+}
+.t-today-slide .t-page {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+	transform: translateX(calc(var(--t-page-from-x, 0px) * var(--page-exit-enabled)));
+	filter: blur(calc(var(--page-blur) * var(--page-exit-enabled)));
+	transition:
+		opacity var(--page-fade-dur) var(--page-fade-ease),
+		transform var(--page-slide-dur) var(--page-slide-ease),
+		filter var(--page-slide-dur) var(--page-slide-ease);
+	will-change: opacity, transform, filter;
+}
+.t-today-slide[data-page="1"] .t-page[data-page-id="1"],
+.t-today-slide[data-page="2"] .t-page[data-page-id="2"] {
+	opacity: 1;
+	pointer-events: auto;
+	position: relative;
+	transform: translateX(0);
+	filter: blur(0);
+	transition-delay: var(--page-stagger);
+}
+@media (prefers-reduced-motion: reduce) {
+	.t-today-slide .t-page {
+		transition: none !important;
+	}
+}
+
 /* ---------------------------------------------------------------------------
  * transitions.dev — movie detail review carousel + hero synopsis preview.
  * Body hover blurs the full post; CTA cross-fades with page + icon-swap tokens.

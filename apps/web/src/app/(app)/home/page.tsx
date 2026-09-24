@@ -863,19 +863,21 @@ async function HomeLobbyBody({
 				*/}
 				{session && todayReads && todayMedia ? (
 					<HomeTodayBrowseGate
-						inactive={
-							<HomeTodayPrefetch
-								key={todayMedia === "tv" ? "movie" : "tv"}
-								media={todayMedia === "tv" ? "movie" : "tv"}
-							/>
+						movie={
+							todayMedia === "movie" ? (
+								<TodayOnSense key="movie" media="movie" reads={todayReads} />
+							) : (
+								<HomeTodayPrefetch key="movie" media="movie" />
+							)
 						}
-					>
-						<TodayOnSense
-							key={todayMedia}
-							media={todayMedia}
-							reads={todayReads}
-						/>
-					</HomeTodayBrowseGate>
+						tv={
+							todayMedia === "tv" ? (
+								<TodayOnSense key="tv" media="tv" reads={todayReads} />
+							) : (
+								<HomeTodayPrefetch key="tv" media="tv" />
+							)
+						}
+					/>
 				) : null}
 				{/*
 					`useSearchParams` — keep inside Suspense so the home RSC shell can still
