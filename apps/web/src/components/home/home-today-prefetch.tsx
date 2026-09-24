@@ -127,8 +127,10 @@ export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 
 	// After this subtree paints with the active Today — not on mount.
 	useEffect(() => {
-		requestInactive("painted");
-	}, [requestInactive, media]);
+		// Re-arm after a catalogue flip cleared `inactiveRequested`. `media` is a
+		// real dependency: the flip does not change `requestInactive`.
+		requestInactive(seenMedia === media ? "painted" : "mount");
+	}, [requestInactive, media, seenMedia]);
 
 	// The other Movies / TV Shows pill. Community hover does not start Today.
 	useEffect(() => {
