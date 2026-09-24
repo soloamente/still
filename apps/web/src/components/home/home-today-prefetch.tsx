@@ -190,6 +190,7 @@ export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 						<TodayWeekCard
 							initial={payload.week.pulse}
 							initialTimeZone={payload.week.timeZone}
+							media={media}
 						/>
 						<TodayCircleCard payload={payload.circle} />
 					</div>

@@ -44,7 +44,7 @@ export function TodayOnSense({
 			{/* `relative z-10` — the pick's media bleed extends under this row. */}
 			<div className="relative z-10 grid min-w-0 gap-3 sm:grid-cols-2">
 				<Suspense fallback={<TodayWeekCardSkeleton />}>
-					<TodayWeekCardRsc read={reads.week} />
+					<TodayWeekCardRsc media={media} read={reads.week} />
 				</Suspense>
 				<Suspense fallback={<TodayCircleCardSkeleton />}>
 					<TodayCircleCardRsc read={reads.circle} />

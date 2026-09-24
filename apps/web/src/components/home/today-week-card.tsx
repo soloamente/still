@@ -40,9 +40,12 @@ type WeekCardState = {
 export function TodayWeekCard({
 	initial,
 	initialTimeZone,
+	media = "movie",
 }: {
 	initial: TodayWeekPulse | null;
 	initialTimeZone: string;
+	/** `tv` keeps timezone and post-log refetches on show logs. */
+	media?: "movie" | "tv";
 }) {
 	const headingId = useId();
 	const requestSearch = useCatalogSearchDialog((s) => s.requestOpen);
@@ -59,6 +62,7 @@ export function TodayWeekCard({
 		const next = await fetchTodayWeekPulseClient(
 			readViewerTimeZone(),
 			controller.signal,
+			media,
 		);
 		if (controller.signal.aborted) return;
 		setState((prev) =>
@@ -66,7 +70,7 @@ export function TodayWeekCard({
 				? { pulse: next, failed: false }
 				: { pulse: prev.pulse, failed: prev.pulse == null },
 		);
-	}, []);
+	}, [media]);
 
 	useEffect(() => {
 		const deviceTimeZone = readViewerTimeZone();

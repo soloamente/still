@@ -11,9 +11,12 @@ export function writeTodayTimeZoneCookie(timeZone: string): void {
 export async function fetchTodayWeekPulseClient(
 	timeZone: string,
 	signal?: AbortSignal,
+	media: "movie" | "tv" = "movie",
 ): Promise<TodayWeekPulse | null> {
 	const url = new URL("/api/today/week", stillApiOrigin());
 	url.searchParams.set("tz", timeZone);
+	// Movie week stays the unfiltered call. TV must keep this on every refetch.
+	if (media === "tv") url.searchParams.set("media", "tv");
 	try {
 		const response = await fetch(url, {
 			credentials: "include",

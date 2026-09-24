@@ -8,9 +8,14 @@ import type { TodayWeekRead } from "@/lib/today-on-sense-reads";
  */
 export async function TodayWeekCardRsc({
 	read,
+	media = "movie",
 }: {
 	read: Promise<TodayWeekRead>;
+	/** Passed through so a device-zone or post-log refetch stays on shows. */
+	media?: "movie" | "tv";
 }) {
 	const { pulse, timeZone } = await read;
-	return <TodayWeekCard initial={pulse} initialTimeZone={timeZone} />;
+	return (
+		<TodayWeekCard initial={pulse} initialTimeZone={timeZone} media={media} />
+	);
 }
