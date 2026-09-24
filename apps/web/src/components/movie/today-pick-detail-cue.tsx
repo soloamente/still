@@ -22,8 +22,11 @@ export function TodayPickDetailCue({
 
 	useEffect(() => {
 		setReason(
-			todayPickDetailCue(readTodayPickContinuity(), mediaKind, tmdbId)
-				?.reason ?? null,
+			todayPickDetailCue(
+				readTodayPickContinuity({ media: mediaKind }),
+				mediaKind,
+				tmdbId,
+			)?.reason ?? null,
 		);
 	}, [mediaKind, tmdbId]);
 

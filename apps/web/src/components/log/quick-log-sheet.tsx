@@ -755,6 +755,9 @@ export function QuickLogRoot() {
 			if (movieId != null) {
 				dispatchTasteTitleConsumed({ tmdbId: movieId, via: "diary" });
 			}
+			if (tvId != null) {
+				dispatchTasteTitleConsumed({ tmdbId: tvId, via: "diary", media: "tv" });
+			}
 			dispatchTodayWeekRefresh();
 			const created = result.data as { id?: string };
 			args.onSuccess?.({

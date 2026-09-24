@@ -17,7 +17,7 @@ export type TodayPickCompletedVia = "diary" | "watchlist";
 
 export type TodayPickContinuity = {
 	tmdbId: number;
-	mediaKind: "movie";
+	mediaKind: "movie" | "tv";
 	/** Home's one-line reason (e.g. "Because you gravitate toward thrillers"). */
 	reason: string;
 	/** Snapshot so Home can re-show the finished pick after the server drops it. */
@@ -35,7 +35,16 @@ type StorageOpts = {
 	/** `null` = no storage (SSR, blocked); omitted = `window.sessionStorage`. */
 	storage?: TodayPickContinuityStorage | null;
 	now?: number;
+	/** Which Today tab's pick to read/write — movie uses legacy `still:today-pick:v1`. */
+	media?: "movie" | "tv";
 };
+
+/** Session storage key per catalogue (movies and TV do not share one slot). */
+export function todayPickContinuityKey(
+	media: "movie" | "tv" = "movie",
+): string {
+	return media === "tv" ? "still:today-pick:v1:tv" : TODAY_PICK_CONTINUITY_KEY;
+}
 
 function resolveStorage(opts?: StorageOpts): TodayPickContinuityStorage | null {
 	if (opts && "storage" in opts) return opts.storage ?? null;
@@ -48,9 +57,9 @@ function resolveStorage(opts?: StorageOpts): TodayPickContinuityStorage | null {
 	}
 }
 
-function safeRemove(storage: TodayPickContinuityStorage) {
+function safeRemove(storage: TodayPickContinuityStorage, key: string) {
 	try {
-		storage.removeItem(TODAY_PICK_CONTINUITY_KEY);
+		storage.removeItem(key);
 	} catch {
 		// Storage can throw when disabled — continuity is best-effort.
 	}
@@ -62,7 +71,10 @@ function isFilmSnapshot(value: unknown): value is TasteMatchMovie {
 	return typeof film.tmdbId === "number" && typeof film.title === "string";
 }
 
-function parseEntry(raw: string | null): TodayPickContinuity | null {
+function parseEntry(
+	raw: string | null,
+	expectedMediaKind: "movie" | "tv",
+): TodayPickContinuity | null {
 	if (!raw) return null;
 	let data: unknown;
 	try {
@@ -74,7 +86,7 @@ function parseEntry(raw: string | null): TodayPickContinuity | null {
 	const entry = data as Partial<TodayPickContinuity>;
 	if (
 		typeof entry.tmdbId !== "number" ||
-		entry.mediaKind !== "movie" ||
+		entry.mediaKind !== expectedMediaKind ||
 		typeof entry.reason !== "string" ||
 		typeof entry.setAt !== "number" ||
 		!isFilmSnapshot(entry.film) ||
@@ -88,7 +100,7 @@ function parseEntry(raw: string | null): TodayPickContinuity | null {
 			: null;
 	return {
 		tmdbId: entry.tmdbId,
-		mediaKind: "movie",
+		mediaKind: expectedMediaKind,
 		reason: entry.reason,
 		film: entry.film,
 		setAt: entry.setAt,
@@ -98,10 +110,11 @@ function parseEntry(raw: string | null): TodayPickContinuity | null {
 
 function writeEntry(
 	storage: TodayPickContinuityStorage,
+	key: string,
 	entry: TodayPickContinuity,
 ) {
 	try {
-		storage.setItem(TODAY_PICK_CONTINUITY_KEY, JSON.stringify(entry));
+		storage.setItem(key, JSON.stringify(entry));
 	} catch {
 		// Quota / disabled storage — the cue simply won't show.
 	}
@@ -109,15 +122,17 @@ function writeEntry(
 
 /** Called when the patron opens the Today pick's title page. */
 export function writeTodayPickContinuity(
-	input: { film: TasteMatchMovie; reason: string },
+	input: { film: TasteMatchMovie; reason: string; media?: "movie" | "tv" },
 	opts?: StorageOpts,
 ): void {
 	const storage = resolveStorage(opts);
 	if (!storage) return;
-	const previous = parseEntry(readRaw(storage));
-	writeEntry(storage, {
+	const media = input.media ?? "movie";
+	const key = todayPickContinuityKey(media);
+	const previous = parseEntry(readRaw(storage, key), media);
+	writeEntry(storage, key, {
 		tmdbId: input.film.tmdbId,
-		mediaKind: "movie",
+		mediaKind: media,
 		reason: input.reason,
 		film: input.film,
 		setAt: opts?.now ?? Date.now(),
@@ -127,9 +142,12 @@ export function writeTodayPickContinuity(
 	});
 }
 
-function readRaw(storage: TodayPickContinuityStorage): string | null {
+function readRaw(
+	storage: TodayPickContinuityStorage,
+	key: string,
+): string | null {
 	try {
-		return storage.getItem(TODAY_PICK_CONTINUITY_KEY);
+		return storage.getItem(key);
 	} catch {
 		return null;
 	}
@@ -141,11 +159,13 @@ export function readTodayPickContinuity(
 ): TodayPickContinuity | null {
 	const storage = resolveStorage(opts);
 	if (!storage) return null;
-	const raw = readRaw(storage);
-	const entry = parseEntry(raw);
+	const media = opts?.media ?? "movie";
+	const key = todayPickContinuityKey(media);
+	const raw = readRaw(storage, key);
+	const entry = parseEntry(raw, media);
 	const now = opts?.now ?? Date.now();
 	if (!entry || now - entry.setAt > TODAY_PICK_CONTINUITY_TTL_MS) {
-		if (raw != null) safeRemove(storage);
+		if (raw != null) safeRemove(storage, key);
 		return null;
 	}
 	return entry;
@@ -153,7 +173,9 @@ export function readTodayPickContinuity(
 
 export function clearTodayPickContinuity(opts?: StorageOpts): void {
 	const storage = resolveStorage(opts);
-	if (storage) safeRemove(storage);
+	if (!storage) return;
+	const key = todayPickContinuityKey(opts?.media ?? "movie");
+	safeRemove(storage, key);
 }
 
 /**
@@ -167,10 +189,12 @@ export function markTodayPickContinuityCompleted(
 ): void {
 	const storage = resolveStorage(opts);
 	if (!storage) return;
-	const entry = readTodayPickContinuity({ storage, now: opts?.now });
+	const media = opts?.media ?? "movie";
+	const key = todayPickContinuityKey(media);
+	const entry = readTodayPickContinuity({ storage, now: opts?.now, media });
 	if (!entry || entry.tmdbId !== tmdbId) return;
 	if (entry.completedVia === "diary") return;
-	writeEntry(storage, { ...entry, completedVia: via });
+	writeEntry(storage, key, { ...entry, completedVia: via });
 }
 
 /** Detail cue for this title, or `null` when it wasn't opened from the Today pick. */

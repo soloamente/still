@@ -10,13 +10,19 @@ export type TasteTitleConsumedDetail = {
 	tmdbId: number;
 	/** How it was consumed — lets a Today pick finished on detail restore as done. */
 	via?: TodayPickCompletedVia;
+	/** Movie vs TV Today pick — same numeric id must not cross-complete. */
+	media?: "movie" | "tv";
 };
 
 /** Notify the home taste hero that a film is no longer a valid suggestion. */
 export function dispatchTasteTitleConsumed(detail: TasteTitleConsumedDetail) {
 	if (typeof window === "undefined") return;
 	// Home may be unmounted (title page) — persist so it restores the pick as complete.
-	if (detail.via) markTodayPickContinuityCompleted(detail.tmdbId, detail.via);
+	if (detail.via) {
+		markTodayPickContinuityCompleted(detail.tmdbId, detail.via, {
+			media: detail.media ?? "movie",
+		});
+	}
 	window.dispatchEvent(
 		new CustomEvent<TasteTitleConsumedDetail>(TASTE_TITLE_CONSUMED_EVENT, {
 			detail,

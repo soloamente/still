@@ -107,6 +107,66 @@ describe("today pick continuity", () => {
 		).not.toThrow();
 		expect(readTodayPickContinuity({ storage: null })).toBeNull();
 	});
+
+	test("tv and movie picks do not overwrite each other", () => {
+		const storage = memoryStorage();
+		const film = {
+			tmdbId: 603,
+			title: "The Matrix",
+			posterPath: null,
+			year: 1999,
+		};
+		const show = {
+			tmdbId: 1399,
+			title: "Game of Thrones",
+			posterPath: null,
+			year: 2011,
+		};
+		writeTodayPickContinuity({ film, reason: "films" }, { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film: show, reason: "shows", media: "tv" },
+			{ storage, now: 0 },
+		);
+		expect(readTodayPickContinuity({ storage, now: 0 })?.tmdbId).toBe(603);
+		expect(
+			readTodayPickContinuity({ storage, now: 0, media: "tv" })?.tmdbId,
+		).toBe(1399);
+		expect(storage.map.has("still:today-pick:v1")).toBe(true);
+		expect(storage.map.has("still:today-pick:v1:tv")).toBe(true);
+		expect(storage.map.has("still:today-pick:v1:movie")).toBe(false);
+	});
+
+	test("completing a show does not complete the film pick", () => {
+		const storage = memoryStorage();
+		const film = {
+			tmdbId: 1399,
+			title: "A film",
+			posterPath: null,
+			year: 2011,
+		};
+		const show = {
+			tmdbId: 1399,
+			title: "A show",
+			posterPath: null,
+			year: 2011,
+		};
+		writeTodayPickContinuity({ film, reason: "films" }, { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film: show, reason: "shows", media: "tv" },
+			{ storage, now: 0 },
+		);
+		markTodayPickContinuityCompleted(1399, "diary", {
+			storage,
+			now: 0,
+			media: "tv",
+		});
+		expect(
+			readTodayPickContinuity({ storage, now: 0 })?.completedVia,
+		).toBeNull();
+		expect(
+			readTodayPickContinuity({ storage, now: 0, media: "tv" })?.completedVia,
+		).toBe("diary");
+	});
 });
 
 describe("todayPickDetailCue", () => {

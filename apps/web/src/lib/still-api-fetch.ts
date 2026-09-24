@@ -1334,6 +1334,13 @@ export async function postWatchlistAdd(
 	) {
 		dispatchTasteTitleConsumed({ tmdbId: payload.movieId, via: "watchlist" });
 	}
+	if (response.ok && "tvId" in payload && typeof payload.tvId === "number") {
+		dispatchTasteTitleConsumed({
+			tmdbId: payload.tvId,
+			via: "watchlist",
+			media: "tv",
+		});
+	}
 	return {
 		ok: response.ok,
 		status: response.status,
