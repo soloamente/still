@@ -209,6 +209,14 @@ export type TodayWeekLogRow = {
 	tvId: number | null;
 };
 
+export function filterTodayWeekRows(
+	rows: readonly TodayWeekLogRow[],
+	media: "all" | "tv",
+): TodayWeekLogRow[] {
+	if (media === "all") return [...rows];
+	return rows.filter((row) => row.tvId != null);
+}
+
 /** `GET /api/today/week` payload — viewer's own stats only. */
 export type TodayWeekPulse = {
 	/** Distinct titles (rewatches and TV episode logs of one show collapse). */

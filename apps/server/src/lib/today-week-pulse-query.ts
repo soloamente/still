@@ -2,6 +2,7 @@ import { db, log } from "@still/db";
 import { and, eq, gte, isNull, lt } from "drizzle-orm";
 
 import {
+	filterTodayWeekRows,
 	startOfPatronWeek,
 	summarizeTodayWeekPulse,
 	type TodayWeekPulse,
@@ -17,6 +18,7 @@ export async function fetchTodayWeekPulse(
 	userId: string,
 	timeZone: string,
 	now = new Date(),
+	media: "all" | "tv" = "all",
 ): Promise<TodayWeekPulse> {
 	const weekStart = startOfPatronWeek(now, timeZone);
 	const from = new Date(weekStart.getTime() - DAY_MS);
@@ -39,5 +41,9 @@ export async function fetchTodayWeekPulse(
 			),
 		);
 
-	return summarizeTodayWeekPulse(rows, timeZone, now);
+	return summarizeTodayWeekPulse(
+		filterTodayWeekRows(rows, media),
+		timeZone,
+		now,
+	);
 }

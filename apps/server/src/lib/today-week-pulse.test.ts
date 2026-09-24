@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	filterTodayWeekRows,
 	patronWeekDayMarks,
 	startOfPatronWeek,
 	summarizeTodayWeekPulse,
@@ -209,5 +210,49 @@ describe("summarizeTodayWeekPulse", () => {
 		expect(
 			summarizeTodayWeekPulse(rows, "America/New_York", now).titlesLogged,
 		).toBe(0);
+	});
+});
+
+describe("filterTodayWeekRows", () => {
+	test("tv keeps show, season, and episode rows and drops films", () => {
+		const rows = [
+			{
+				watchedAt: "2026-09-23T12:00:00.000Z",
+				rating: 80,
+				movieId: 1,
+				tvId: null,
+			},
+			{
+				watchedAt: "2026-09-23T12:00:00.000Z",
+				rating: 70,
+				movieId: null,
+				tvId: 9,
+			},
+			{
+				watchedAt: "2026-09-23T12:00:00.000Z",
+				rating: null,
+				movieId: null,
+				tvId: 9,
+			},
+		];
+		expect(filterTodayWeekRows(rows, "tv")).toEqual([rows[1], rows[2]]);
+	});
+
+	test("all returns every row", () => {
+		const rows = [
+			{
+				watchedAt: "2026-09-23T12:00:00.000Z",
+				rating: 80,
+				movieId: 1,
+				tvId: null,
+			},
+			{
+				watchedAt: "2026-09-23T12:00:00.000Z",
+				rating: 70,
+				movieId: null,
+				tvId: 9,
+			},
+		];
+		expect(filterTodayWeekRows(rows, "all")).toEqual(rows);
 	});
 });
