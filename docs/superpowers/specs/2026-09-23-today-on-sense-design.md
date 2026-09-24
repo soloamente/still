@@ -27,7 +27,7 @@ This is **slice 1** of a larger habit/social program. Watchlist decision engine,
 |-------|----------|
 | Program scope | Slice 1 only — Today + minimal recommend + category ratings in watch-log |
 | Architecture | **A + selective C** — `TodayOnSense` shell reuses taste-hero **presentation**; parallel Suspense streams; no blocking aggregate `GET /api/today` |
-| Placement | Top of `/home` main content, under sticky chrome, **before** browse/watchlist/activity — **Movies browse only** (hidden on TV Shows and Community; revised 2026-09-23 after QA) |
+| Placement | Top of `/home` main content, under sticky chrome, **before** browse/watchlist/activity — **Movies browse only** in this spec (hidden on TV Shows and Community; revised 2026-09-23 after QA). TV Shows is specified in [`2026-09-24-tv-today-on-sense-design.md`](./2026-09-24-tv-today-on-sense-design.md) |
 | Pick behavior | Shell owns **complete** / **Pick another**; no legacy auto-swap after watch |
 | Supporting row | Exactly two cards: **Your week** · **From your circle** |
 | Friend activity | One real event or honest invite empty — never fabricate |
@@ -254,4 +254,4 @@ Patrons experience: *Sense helps me decide what to watch, remember this week, an
 
 - Exact reason-code enum and suggestion ranking weights — plan-time details; UX above is locked.
 - Whether diary edit surfaces show category ratings in the same milestone or immediately after — prefer same shared component when cheap; not a ship blocker for Home + Quick Log.
-- TV as Today Pick — v1 may remain **movies-first** (matches current taste hero); TV continue-watching stays on `browse=tv` unless a follow-up extends for-you to TV.
+- TV as Today Pick — superseded by [`2026-09-24-tv-today-on-sense-design.md`](./2026-09-24-tv-today-on-sense-design.md). This spec’s Movies Today is unchanged. TV continue-watching stays under the TV Today block.
