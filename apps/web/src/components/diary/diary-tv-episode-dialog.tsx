@@ -26,7 +26,7 @@ import {
 	type DiaryTvPill,
 	initialSeasonNumber,
 	pillForEpisode,
-	seasonLogLabel,
+	seasonLogScoreLabel,
 	showLogLabel,
 } from "@/lib/diary-tv-episode-pills";
 import {
@@ -60,9 +60,19 @@ function ratedPillTextClass(averageDisplay: number): string {
 		: "text-foreground";
 }
 
+/** Cinema or at-home only. Any other venue stays unset. */
+function diaryWatchVenue(
+	raw: MyTvLog["watchVenue"],
+): DiaryLogRow["log"]["watchVenue"] {
+	if (raw === "theaters" || raw === "streaming") return raw;
+	return undefined;
+}
+
 /**
  * Same field names as the former `tvLogsToDiaryRows` mapper on `DiaryTvGroupCell`.
  * Keep this aligned so Quick Log still receives the diary row shape.
+ * A missing venue is treated as at-home on edit, so cinema logs must keep `watchVenue`.
+ * `containsSpoilers` is not copied: `DiaryLogRow` does not have that field.
  */
 function tvLogsToDiaryRows(
 	data: unknown,
@@ -81,9 +91,11 @@ function tvLogsToDiaryRows(
 			liked: l.liked,
 			rewatch: l.rewatch ?? false,
 			note: l.note ?? null,
+			watchVenue: diaryWatchVenue(l.watchVenue),
 			logScope: l.logScope ?? "show",
 			seasonNumber: l.seasonNumber ?? null,
 			episodeNumber: l.episodeNumber ?? null,
+			visibility: l.visibility,
 		},
 		movie: null,
 		tv: listing,
@@ -216,6 +228,7 @@ function PosterFlightFace({
 /**
  * Fixed clone of the tapped poster. The front face is the show poster.
  * The back face is pre-rotated so rotateY 180 shows the season art upright.
+ * `z-[252]` sits above the dialog host (`z-[250]`) and below Quick Log (`z-[255]`).
  */
 function PosterFlightClone({
 	pose,
@@ -236,7 +249,7 @@ function PosterFlightClone({
 	return (
 		<div
 			aria-hidden
-			className="pointer-events-none fixed inset-0 z-[260]"
+			className="pointer-events-none fixed inset-0 z-[252]"
 			style={{ perspective: "1200px" }}
 		>
 			<motion.div
@@ -353,6 +366,10 @@ function loadingPillKeys(seasonNumber: number, episodeCount: number): string[] {
 	);
 }
 
+/** Shared circle so legend swatches use the same shape as episode pills. */
+const EPISODE_PILL_SHAPE_CLASSNAME =
+	"inline-flex min-h-11 min-w-11 select-none items-center justify-center rounded-full px-3 text-sm tabular-nums";
+
 function EpisodePill({
 	pill,
 	episodeNumber,
@@ -365,7 +382,12 @@ function EpisodePill({
 	switch (pill.kind) {
 		case "empty":
 			return (
-				<span className="inline-flex min-h-11 min-w-11 select-none items-center justify-center rounded-full px-3 font-medium text-muted-foreground text-sm tabular-nums">
+				<span
+					className={cn(
+						EPISODE_PILL_SHAPE_CLASSNAME,
+						"font-medium text-muted-foreground",
+					)}
+				>
 					{episodeNumber}
 				</span>
 			);
@@ -373,26 +395,34 @@ function EpisodePill({
 			return (
 				<button
 					type="button"
-					className="inline-flex min-h-11 min-w-11 cursor-pointer select-none items-center justify-center rounded-full bg-background px-3 font-medium text-foreground text-sm tabular-nums"
+					aria-label={`Episode ${episodeNumber}`}
+					className={cn(
+						EPISODE_PILL_SHAPE_CLASSNAME,
+						"cursor-pointer bg-background font-medium text-foreground",
+					)}
 					onClick={() => onOpenLog(pill.latestLogId)}
 				>
 					{episodeNumber}
 				</button>
 			);
-		case "rated":
+		case "rated": {
+			const score = formatLogRatingDisplay(pill.averageDisplay);
 			return (
 				<button
 					type="button"
+					aria-label={`Episode ${episodeNumber}, ${score}`}
 					className={cn(
-						"inline-flex min-h-11 min-w-11 cursor-pointer select-none items-center justify-center rounded-full px-3 font-semibold text-sm tabular-nums",
+						EPISODE_PILL_SHAPE_CLASSNAME,
+						"cursor-pointer font-semibold",
 						ratedPillTextClass(pill.averageDisplay),
 					)}
 					style={{ background: ratedPillBackground(pill.averageDisplay) }}
 					onClick={() => onOpenLog(pill.latestLogId)}
 				>
-					{formatLogRatingDisplay(pill.averageDisplay)}
+					{score}
 				</button>
 			);
+		}
 		default: {
 			const _exhaustive: never = pill;
 			return _exhaustive;
@@ -443,23 +473,19 @@ function SeasonPosterThumb({
 function LegendSwatch({
 	label,
 	background,
-	textClass,
+	className,
 	children,
 }: {
 	label: string;
 	background?: string;
-	textClass?: string;
+	className?: string;
 	children: string;
 }) {
 	return (
 		<div className="flex items-center gap-2">
 			<span
 				aria-hidden
-				className={cn(
-					"inline-flex size-8 items-center justify-center rounded-full text-[11px] tabular-nums",
-					textClass,
-					!background && "bg-background",
-				)}
+				className={cn(EPISODE_PILL_SHAPE_CLASSNAME, className)}
 				style={background ? { background } : undefined}
 			>
 				{children}
@@ -1205,7 +1231,7 @@ export function DiaryTvEpisodeDialog({
 									const seasonNumber = season.season_number;
 									const episodes = episodesBySeason[seasonNumber];
 									const failed = seasonFailed[seasonNumber] === true;
-									const label = seasonLogLabel(seasonNumber, episodeLogs);
+									const score = seasonLogScoreLabel(seasonNumber, episodeLogs);
 									const name = season.name || `Season ${seasonNumber}`;
 									return (
 										<section
@@ -1219,10 +1245,10 @@ export function DiaryTvEpisodeDialog({
 										>
 											<header className="mb-3 text-pretty font-medium text-sm">
 												{name}
-												{label ? (
+												{score ? (
 													<span className="text-muted-foreground">
 														{" "}
-														· {label}
+														· {score}
 													</span>
 												) : null}
 											</header>
@@ -1272,28 +1298,38 @@ export function DiaryTvEpisodeDialog({
 
 								{!seasonsError && seasons.length > 0 ? (
 									<div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 pb-2">
-										<LegendSwatch label="Not logged">—</LegendSwatch>
-										<LegendSwatch label="Watched, no rating">·</LegendSwatch>
+										<LegendSwatch
+											label="Not logged"
+											className="font-medium text-muted-foreground"
+										>
+											1
+										</LegendSwatch>
+										<LegendSwatch
+											label="Watched, no rating"
+											className="bg-background font-medium text-foreground"
+										>
+											1
+										</LegendSwatch>
 										<LegendSwatch
 											label="0"
 											background={ratedPillBackground(0)}
-											textClass={ratedPillTextClass(0)}
+											className={cn("font-semibold", ratedPillTextClass(0))}
 										>
-											0
+											{formatLogRatingDisplay(0)}
 										</LegendSwatch>
 										<LegendSwatch
 											label="5"
 											background={ratedPillBackground(5)}
-											textClass={ratedPillTextClass(5)}
+											className={cn("font-semibold", ratedPillTextClass(5))}
 										>
-											5
+											{formatLogRatingDisplay(5)}
 										</LegendSwatch>
 										<LegendSwatch
 											label="10"
 											background={ratedPillBackground(10)}
-											textClass={ratedPillTextClass(10)}
+											className={cn("font-semibold", ratedPillTextClass(10))}
 										>
-											10
+											{formatLogRatingDisplay(10)}
 										</LegendSwatch>
 									</div>
 								) : null}

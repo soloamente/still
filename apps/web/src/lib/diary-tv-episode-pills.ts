@@ -56,17 +56,41 @@ export function initialSeasonNumber(
 	return catalogueSeasonNumbers[0] ?? null;
 }
 
+function latestScopeLog(
+	logs: readonly DiaryTvEpisodeLog[],
+): DiaryTvEpisodeLog | null {
+	if (logs.length === 0) return null;
+	return [...logs].sort((a, b) => (a.watchedAt < b.watchedAt ? 1 : -1))[0];
+}
+
 function scopeLabel(
 	prefix: string,
 	logs: readonly DiaryTvEpisodeLog[],
 ): string | null {
-	if (logs.length === 0) return null;
-	const latest = [...logs].sort((a, b) =>
-		a.watchedAt < b.watchedAt ? 1 : -1,
-	)[0];
+	const latest = latestScopeLog(logs);
+	if (latest == null) return null;
 	const display = logRatingToDisplay(latest.rating);
 	if (display == null) return prefix;
 	return `${prefix} · ${formatLogRatingDisplay(display)}`;
+}
+
+/**
+ * Score for a header that already prints the season name.
+ * Null when that season has no log, or the latest season log is unrated.
+ */
+export function seasonLogScoreLabel(
+	seasonNumber: number,
+	logs: readonly DiaryTvEpisodeLog[],
+): string | null {
+	const latest = latestScopeLog(
+		logs.filter(
+			(log) => log.logScope === "season" && log.seasonNumber === seasonNumber,
+		),
+	);
+	if (latest == null) return null;
+	const display = logRatingToDisplay(latest.rating);
+	if (display == null) return null;
+	return formatLogRatingDisplay(display);
 }
 
 export function showLogLabel(

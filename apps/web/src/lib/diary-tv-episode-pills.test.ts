@@ -5,6 +5,7 @@ import {
 	initialSeasonNumber,
 	pillForEpisode,
 	seasonLogLabel,
+	seasonLogScoreLabel,
 	showLogLabel,
 } from "./diary-tv-episode-pills";
 
@@ -130,4 +131,21 @@ test("season and show labels do not invent episode color", () => {
 	expect(showLogLabel(logs)).toBe("Whole series · 10");
 	expect(seasonLogLabel(1, logs)).toBe("Season 1 · 6.0");
 	expect(seasonLogLabel(2, logs)).toBeNull();
+	expect(seasonLogScoreLabel(1, logs)).toBe("6.0");
+	expect(seasonLogScoreLabel(2, logs)).toBeNull();
+});
+
+test("unrated season logs do not repeat the season name as a score", () => {
+	expect(
+		seasonLogScoreLabel(2, [
+			{
+				id: "season",
+				logScope: "season",
+				seasonNumber: 2,
+				episodeNumber: null,
+				rating: null,
+				watchedAt: "2026-02-01",
+			},
+		]),
+	).toBeNull();
 });
