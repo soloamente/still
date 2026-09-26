@@ -20,6 +20,7 @@ import { useQuickLog } from "@/components/log/quick-log-sheet";
 import { APP_MODAL_OVERLAY_CLASS } from "@/lib/app-modal-layer";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { diaryLogToQuickLogOpenPayload } from "@/lib/diary-open-log";
+import { diaryTvPosterCloseKind } from "@/lib/diary-tv-episode-dialog-session";
 import {
 	type DiaryTvEpisodeLog,
 	type DiaryTvPill,
@@ -144,6 +145,11 @@ interface PosterFlightPose {
 	opacity: number;
 	/** 0.45 for the trip. 0 when the open dialog recenters and the clone must stick to the slot. */
 	moveDuration: number;
+}
+
+/** A null, detached, or zero-size cell cannot take the flight home. */
+function cellCanReceivePoster(node: HTMLElement | null): boolean {
+	return Boolean(node?.isConnected && node.getBoundingClientRect().width > 0);
 }
 
 function readFlightRect(node: HTMLElement): FlightRect {
@@ -457,7 +463,9 @@ export function DiaryTvEpisodeDialog({
 	title,
 	posterPath,
 	cellRef,
+	cellInGrid,
 	onConcealPoster,
+	onExitComplete,
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
@@ -467,10 +475,17 @@ export function DiaryTvEpisodeDialog({
 	/** Grid cell root. Measured on open and again on close for the poster flight. */
 	cellRef: RefObject<HTMLElement | null>;
 	/**
+	 * False when this show left the grid. The dialog stays mounted and fades
+	 * instead of flying home.
+	 */
+	cellInGrid: boolean;
+	/**
 	 * Hides the grid poster while the clone is in flight or the dialog is open.
 	 * `false` only after the flight home finishes. Reduced motion stays `false`.
 	 */
 	onConcealPoster: (concealed: boolean) => void;
+	/** Flight home or missing-cell fade finished. The lobby may open the next show. */
+	onExitComplete: () => void;
 }) {
 	const titleId = useId();
 	const reduceMotion = useReducedMotion() === true;
@@ -511,8 +526,16 @@ export function DiaryTvEpisodeDialog({
 	const closeStartedAtRef = useRef(0);
 	const closeDurationMsRef = useRef(0);
 	const closeTimerRef = useRef<number | null>(null);
+	// True only after the open path runs. A dismiss before that still has to
+	// tell the lobby, or the session stays on "closing" with no dialog.
+	const openedRef = useRef(false);
+	const exitReportedRef = useRef(false);
 	const onConcealPosterRef = useRef(onConcealPoster);
 	onConcealPosterRef.current = onConcealPoster;
+	const onExitCompleteRef = useRef(onExitComplete);
+	onExitCompleteRef.current = onExitComplete;
+	const cellInGridRef = useRef(cellInGrid);
+	cellInGridRef.current = cellInGrid;
 
 	const episodeLogs = useMemo(
 		() => (diaryError ? [] : episodeLogsFromRows(logRows)),
@@ -548,6 +571,9 @@ export function DiaryTvEpisodeDialog({
 		setChromeOn(false);
 		setChromeDelay(0);
 		setAlive(false);
+		if (exitReportedRef.current) return;
+		exitReportedRef.current = true;
+		onExitCompleteRef.current();
 	}, [clearCloseTimer]);
 
 	const maybeFinishClose = useCallback(() => {
@@ -570,13 +596,41 @@ export function DiaryTvEpisodeDialog({
 		[clearCloseTimer, maybeFinishClose],
 	);
 
+	// Fade in place. Does not retarget the clone at a cell.
+	const beginFadeClose = useCallback(() => {
+		const current = poseRef.current;
+		const alreadyFading =
+			closingRef.current && (current == null || current.opacity === 0);
+		sessionRef.current = "idle";
+		closingRef.current = true;
+		setChromeDelay(0);
+		setChromeOn(false);
+		if (current && current.opacity !== 0) {
+			setPose({ ...current, opacity: 0 });
+		} else if (!current) {
+			setPose(null);
+		}
+		if (!alreadyFading) armCloseTimer(POSTER_CHROME_FADE_S);
+	}, [armCloseTimer]);
+
 	useEffect(() => clearCloseTimer, [clearCloseTimer]);
+
+	// The cell left after the flight home started. Fade the dialog that is
+	// already mounted — do not send the clone to a missing rect.
+	useLayoutEffect(() => {
+		if (!mounted || open || !closingRef.current) return;
+		const cellNode = cellRef.current;
+		if (cellInGrid && cellCanReceivePoster(cellNode)) return;
+		beginFadeClose();
+	}, [beginFadeClose, cellInGrid, cellRef, mounted, open]);
 
 	// Measure before paint so the clone is already on the cell when the first frame shows.
 	useLayoutEffect(() => {
 		if (!mounted) return;
 		if (open) {
 			if (sessionRef.current === "open") return;
+			openedRef.current = true;
+			exitReportedRef.current = false;
 			sessionRef.current = "open";
 			closingRef.current = false;
 			clearCloseTimer();
@@ -628,25 +682,35 @@ export function DiaryTvEpisodeDialog({
 			return;
 		}
 
-		if (sessionRef.current !== "open") return;
-		sessionRef.current = "idle";
-		closingRef.current = true;
-		setChromeDelay(0);
-		setChromeOn(false);
+		if (sessionRef.current !== "open") {
+			// Dismissed before the open session existed. Nothing is in flight.
+			if (!openedRef.current && !exitReportedRef.current) {
+				exitReportedRef.current = true;
+				onExitCompleteRef.current();
+			}
+			return;
+		}
 
 		const origin = originRef.current;
 		const cellNode = cellRef.current;
 		const current = poseRef.current;
-		if (reduceMotion || !origin || !cellNode || !current) {
-			// No cell, or reduced motion: fade the dialog. Do not fly.
-			if (current) {
-				setPose({ ...current, opacity: 0 });
-			} else {
-				setPose(null);
-			}
-			armCloseTimer(POSTER_CHROME_FADE_S);
+		const closeKind = diaryTvPosterCloseKind({
+			reduceMotion,
+			cellInGrid: cellInGridRef.current,
+			cellConnected: cellCanReceivePoster(cellNode),
+			hasOrigin: origin != null,
+			hasPose: current != null,
+		});
+		if (closeKind === "fade" || !origin || !cellNode || !current) {
+			// No cell, the show left the grid, or reduced motion: fade. Do not fly.
+			beginFadeClose();
 			return;
 		}
+
+		sessionRef.current = "idle";
+		closingRef.current = true;
+		setChromeDelay(0);
+		setChromeOn(false);
 
 		const cell = readFlightRect(cellNode);
 		const art = cellNode.querySelector(".poster-art");
@@ -666,7 +730,15 @@ export function DiaryTvEpisodeDialog({
 			moveDuration: POSTER_FLIGHT_S,
 		});
 		armCloseTimer(POSTER_FLIGHT_S);
-	}, [armCloseTimer, cellRef, clearCloseTimer, mounted, open, reduceMotion]);
+	}, [
+		armCloseTimer,
+		beginFadeClose,
+		cellRef,
+		clearCloseTimer,
+		mounted,
+		open,
+		reduceMotion,
+	]);
 
 	// The centered dialog grows when seasons arrive, so the slot moves after the
 	// opening measure. Stick the landed clone to the slot without starting another flip.
@@ -852,7 +924,9 @@ export function DiaryTvEpisodeDialog({
 	useEffect(() => {
 		// Quick Log has its own Escape. Listening here too would dismiss the dialog
 		// underneath the sheet.
-		if (!open || quickLogOpen) return;
+		// Also listen while the flight home is still mounted (`alive`), so Escape
+		// can drop a queued poster. It must not toggle the dialog open again.
+		if ((!open && !alive) || quickLogOpen) return;
 		const onKey = (event: KeyboardEvent) => {
 			if (event.key !== "Escape") return;
 			event.preventDefault();
@@ -860,7 +934,7 @@ export function DiaryTvEpisodeDialog({
 		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
-	}, [close, open, quickLogOpen]);
+	}, [alive, close, open, quickLogOpen]);
 
 	useEffect(() => {
 		// Keep the lobby still through the flight home, after `open` is already false.

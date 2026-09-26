@@ -6,7 +6,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
+import { DiaryTvEpisodeDialog } from "@/components/diary/diary-tv-episode-dialog";
 import { DiaryTvGroupCell } from "@/components/diary/diary-tv-group-cell";
+import {
+	chooseDiaryTvPoster,
+	completeDiaryTvDialogClose,
+	type DiaryTvDialogSession,
+	type DiaryTvDialogShow,
+	dismissDiaryTvDialog,
+	syncDiaryTvDialogToGrid,
+} from "@/lib/diary-tv-episode-dialog-session";
 import {
 	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
 	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
@@ -46,7 +55,26 @@ export function DiaryLobbyInfinite({
 }) {
 	const gridRef = useRef<HTMLDivElement>(null);
 	const [items, setItems] = useState<DiaryResultRow[]>(() => [...seeds]);
-	const [expandedKey, setExpandedKey] = useState<string | null>(null);
+	// One episode dialog for the whole lobby. A second poster waits until the
+	// current flight home finishes. Escape, scrim, and Close never toggle it open.
+	const [session, setSession] = useState<DiaryTvDialogSession>({
+		phase: "closed",
+	});
+	const [concealedKey, setConcealedKey] = useState<string | null>(null);
+	const itemsRef = useRef(items);
+	itemsRef.current = items;
+	const cellMapRef = useRef(new Map<string, HTMLElement>());
+	const flightCellRef = useRef<HTMLElement | null>(null);
+	const activeShow = session.phase === "closed" ? null : session.show;
+	const activeShowKeyRef = useRef<string | null>(null);
+	activeShowKeyRef.current = activeShow?.key ?? null;
+	// Sync before paint. The cell's unmount ref runs after this render and
+	// clears the node when that show leaves the grid.
+	if (activeShow) {
+		flightCellRef.current = cellMapRef.current.get(activeShow.key) ?? null;
+	} else {
+		flightCellRef.current = null;
+	}
 	const [footerState, setFooterState] = useState<
 		"idle" | "loading" | "exhausted" | "error"
 	>(() => (totalPages <= 1 ? "exhausted" : "idle"));
@@ -62,8 +90,8 @@ export function DiaryLobbyInfinite({
 
 	// Re-seed when the server sends a new first page (chip nav or a diary refresh).
 	// A Quick Log save refreshes `/diary` while the episode dialog is open — keep
-	// that show's key when it is still in the new seeds. Drop it only when the
-	// show left the page (a chip change that filters it out).
+	// that show when it is still in the new seeds. If it left, start a close so
+	// the dialog can fade instead of unmounting with the cell.
 	useEffect(() => {
 		seedGenRef.current += 1;
 		abortRef.current?.abort();
@@ -71,25 +99,52 @@ export function DiaryLobbyInfinite({
 		setItems([...seeds]);
 		nextPageRef.current = 2;
 		loadingRef.current = false;
-		setExpandedKey((current) => {
-			if (current == null) return null;
-			for (const row of seeds) {
-				if (rowKey(row) === current) return current;
-			}
-			return null;
-		});
+		const presentKeys = new Set(seeds.map((row) => rowKey(row)));
+		setSession((current) => syncDiaryTvDialogToGrid(current, presentKeys));
 		setFooterState(totalPages <= 1 ? "exhausted" : "idle");
 	}, [seeds, totalPages]);
 
-	const handleToggleExpand = useCallback((key: string) => {
-		setExpandedKey((prev) => (prev === key ? null : key));
+	const showFromKey = useCallback((key: string): DiaryTvDialogShow | null => {
+		for (const row of itemsRef.current) {
+			if (row.kind !== "tvGroup") continue;
+			if (rowKey(row) !== key) continue;
+			return {
+				key,
+				tmdbId: row.tv.tmdbId,
+				title: row.tv.title,
+				posterPath: row.tv.posterPath,
+			};
+		}
+		return null;
 	}, []);
 
-	// The episode dialog is portaled to `document.body`, so it owns scrim, Close,
-	// and Escape. A document listener would see those presses as "outside" the
-	// grid, clear the key, and the dialog's close would toggle it open again.
-	const dismissExpanded = useCallback(() => {
-		setExpandedKey(null);
+	const registerCell = useCallback((key: string, node: HTMLElement | null) => {
+		if (node) cellMapRef.current.set(key, node);
+		else cellMapRef.current.delete(key);
+		if (activeShowKeyRef.current === key) {
+			flightCellRef.current = node;
+		}
+	}, []);
+
+	const handlePosterClick = useCallback(
+		(key: string) => {
+			setSession((prev) => chooseDiaryTvPoster(prev, key, showFromKey));
+		},
+		[showFromKey],
+	);
+
+	// Scrim, Close, and Escape. Clears a queued poster so the dialog cannot reopen.
+	const handleDismiss = useCallback(() => {
+		setSession((prev) => dismissDiaryTvDialog(prev));
+	}, []);
+
+	const handleExitComplete = useCallback(() => {
+		setSession((prev) => completeDiaryTvDialogClose(prev, showFromKey));
+	}, [showFromKey]);
+
+	const handleConcealPoster = useCallback((concealed: boolean) => {
+		const key = activeShowKeyRef.current;
+		setConcealedKey(concealed && key ? key : null);
 	}, []);
 
 	const peekIfRoomForMore = useCallback(() => {
@@ -198,9 +253,12 @@ export function DiaryLobbyInfinite({
 								item.primaryScope.seasonNumber,
 								item.primaryScope.episodeNumber,
 							)}
-							expanded={expandedKey === key}
-							onToggleExpand={() => handleToggleExpand(key)}
-							onDismiss={dismissExpanded}
+							expanded={activeShow?.key === key}
+							concealPoster={concealedKey === key}
+							onPosterClick={() => handlePosterClick(key)}
+							onCellNode={(node) => {
+								registerCell(key, node);
+							}}
 							priority={index < 6}
 						/>
 					);
@@ -240,7 +298,7 @@ export function DiaryLobbyInfinite({
 					</div>
 				);
 			}),
-		[items, expandedKey, handleToggleExpand, dismissExpanded],
+		[items, activeShow?.key, concealedKey, handlePosterClick, registerCell],
 	);
 
 	return (
@@ -296,6 +354,23 @@ export function DiaryLobbyInfinite({
 					</p>
 				) : null}
 			</div>
+			{activeShow ? (
+				<DiaryTvEpisodeDialog
+					key={activeShow.key}
+					open={session.phase === "open"}
+					onOpenChange={(next) => {
+						if (next) return;
+						handleDismiss();
+					}}
+					tmdbId={activeShow.tmdbId}
+					title={activeShow.title}
+					posterPath={activeShow.posterPath}
+					cellRef={flightCellRef}
+					cellInGrid={items.some((row) => rowKey(row) === activeShow.key)}
+					onConcealPoster={handleConcealPoster}
+					onExitComplete={handleExitComplete}
+				/>
+			) : null}
 		</>
 	);
 }
