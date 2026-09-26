@@ -2,7 +2,10 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	type DiaryTvEpisodeLog,
+	initialSeasonNumber,
 	pillForEpisode,
+	seasonLogLabel,
+	showLogLabel,
 } from "./diary-tv-episode-pills";
 
 const episode = { seasonNumber: 1, episodeNumber: 2 };
@@ -73,4 +76,58 @@ describe("pillForEpisode", () => {
 			averageDisplay: 9,
 		});
 	});
+});
+
+test("opens on the season of the latest episode log", () => {
+	expect(
+		initialSeasonNumber(
+			[
+				{
+					id: "s",
+					logScope: "episode",
+					seasonNumber: 2,
+					episodeNumber: 1,
+					rating: 70,
+					watchedAt: "2026-01-01",
+				},
+				{
+					id: "t",
+					logScope: "episode",
+					seasonNumber: 3,
+					episodeNumber: 1,
+					rating: 90,
+					watchedAt: "2026-04-01",
+				},
+			],
+			[1, 2, 3],
+		),
+	).toBe(3);
+});
+
+test("falls back to the first catalogue season", () => {
+	expect(initialSeasonNumber([], [0, 1])).toBe(0);
+});
+
+test("season and show labels do not invent episode color", () => {
+	const logs: DiaryTvEpisodeLog[] = [
+		{
+			id: "show",
+			logScope: "show",
+			seasonNumber: null,
+			episodeNumber: null,
+			rating: 100,
+			watchedAt: "2026-01-01",
+		},
+		{
+			id: "season",
+			logScope: "season",
+			seasonNumber: 1,
+			episodeNumber: null,
+			rating: 60,
+			watchedAt: "2026-02-01",
+		},
+	];
+	expect(showLogLabel(logs)).toBe("Whole series · 10");
+	expect(seasonLogLabel(1, logs)).toBe("Season 1 · 6.0");
+	expect(seasonLogLabel(2, logs)).toBeNull();
 });

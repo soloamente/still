@@ -1,4 +1,4 @@
-import { logRatingToDisplay } from "@/lib/log-rating";
+import { formatLogRatingDisplay, logRatingToDisplay } from "@/lib/log-rating";
 
 export type DiaryTvEpisodeLog = {
 	id: string;
@@ -43,4 +43,49 @@ export function pillForEpisode(
 		latestLogId: latest.id,
 		averageDisplay: Math.round(average * 10) / 10,
 	};
+}
+
+export function initialSeasonNumber(
+	logs: readonly DiaryTvEpisodeLog[],
+	catalogueSeasonNumbers: readonly number[],
+): number | null {
+	const episodes = logs
+		.filter((log) => log.logScope === "episode" && log.seasonNumber != null)
+		.sort((a, b) => (a.watchedAt < b.watchedAt ? 1 : -1));
+	if (episodes[0]?.seasonNumber != null) return episodes[0].seasonNumber;
+	return catalogueSeasonNumbers[0] ?? null;
+}
+
+function scopeLabel(
+	prefix: string,
+	logs: readonly DiaryTvEpisodeLog[],
+): string | null {
+	if (logs.length === 0) return null;
+	const latest = [...logs].sort((a, b) =>
+		a.watchedAt < b.watchedAt ? 1 : -1,
+	)[0];
+	const display = logRatingToDisplay(latest.rating);
+	if (display == null) return prefix;
+	return `${prefix} · ${formatLogRatingDisplay(display)}`;
+}
+
+export function showLogLabel(
+	logs: readonly DiaryTvEpisodeLog[],
+): string | null {
+	return scopeLabel(
+		"Whole series",
+		logs.filter((log) => log.logScope === "show"),
+	);
+}
+
+export function seasonLogLabel(
+	seasonNumber: number,
+	logs: readonly DiaryTvEpisodeLog[],
+): string | null {
+	return scopeLabel(
+		`Season ${seasonNumber}`,
+		logs.filter(
+			(log) => log.logScope === "season" && log.seasonNumber === seasonNumber,
+		),
+	);
 }
