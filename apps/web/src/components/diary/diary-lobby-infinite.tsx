@@ -60,7 +60,10 @@ export function DiaryLobbyInfinite({
 	const seedGenRef = useRef(0);
 	const abortRef = useRef<AbortController | null>(null);
 
-	// Re-seed when the server sends a new first page (chip nav changes query).
+	// Re-seed when the server sends a new first page (chip nav or a diary refresh).
+	// A Quick Log save refreshes `/diary` while the episode dialog is open — keep
+	// that show's key when it is still in the new seeds. Drop it only when the
+	// show left the page (a chip change that filters it out).
 	useEffect(() => {
 		seedGenRef.current += 1;
 		abortRef.current?.abort();
@@ -68,7 +71,13 @@ export function DiaryLobbyInfinite({
 		setItems([...seeds]);
 		nextPageRef.current = 2;
 		loadingRef.current = false;
-		setExpandedKey(null);
+		setExpandedKey((current) => {
+			if (current == null) return null;
+			for (const row of seeds) {
+				if (rowKey(row) === current) return current;
+			}
+			return null;
+		});
 		setFooterState(totalPages <= 1 ? "exhausted" : "idle");
 	}, [seeds, totalPages]);
 
@@ -76,25 +85,12 @@ export function DiaryLobbyInfinite({
 		setExpandedKey((prev) => (prev === key ? null : key));
 	}, []);
 
-	// Collapse expanded TV card on outside click / Escape.
-	useEffect(() => {
-		if (!expandedKey) return;
-		const onPointerDown = (event: MouseEvent) => {
-			const target = event.target;
-			if (!(target instanceof Node)) return;
-			if (gridRef.current?.contains(target)) return;
-			setExpandedKey(null);
-		};
-		const onKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") setExpandedKey(null);
-		};
-		document.addEventListener("mousedown", onPointerDown);
-		document.addEventListener("keydown", onKeyDown);
-		return () => {
-			document.removeEventListener("mousedown", onPointerDown);
-			document.removeEventListener("keydown", onKeyDown);
-		};
-	}, [expandedKey]);
+	// The episode dialog is portaled to `document.body`, so it owns scrim, Close,
+	// and Escape. A document listener would see those presses as "outside" the
+	// grid, clear the key, and the dialog's close would toggle it open again.
+	const dismissExpanded = useCallback(() => {
+		setExpandedKey(null);
+	}, []);
 
 	const peekIfRoomForMore = useCallback(() => {
 		if (typeof window === "undefined") return;
@@ -204,6 +200,7 @@ export function DiaryLobbyInfinite({
 							)}
 							expanded={expandedKey === key}
 							onToggleExpand={() => handleToggleExpand(key)}
+							onDismiss={dismissExpanded}
 							priority={index < 6}
 						/>
 					);
@@ -243,7 +240,7 @@ export function DiaryLobbyInfinite({
 					</div>
 				);
 			}),
-		[items, expandedKey, handleToggleExpand],
+		[items, expandedKey, handleToggleExpand, dismissExpanded],
 	);
 
 	return (

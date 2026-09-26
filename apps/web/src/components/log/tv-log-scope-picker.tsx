@@ -26,6 +26,7 @@ export function TvLogScopePicker({
 	onScopeChange,
 	onSeasonChange,
 	onEpisodeChange,
+	popoverPositionerClassName,
 }: {
 	tvId: number;
 	logScope: TvLogScope;
@@ -34,6 +35,8 @@ export function TvLogScopePicker({
 	onScopeChange: (scope: TvLogScope) => void;
 	onSeasonChange: (season: number | null) => void;
 	onEpisodeChange: (episode: number | null) => void;
+	/** Raise season and episode menus above a sheet that sits over an app modal. */
+	popoverPositionerClassName?: string;
 }) {
 	const [seasonsLoading, setSeasonsLoading] = useState(true);
 	const [seasonOptions, setSeasonOptions] = useState<
@@ -128,6 +131,7 @@ export function TvLogScopePicker({
 								placeholder="Choose season"
 								listAriaLabel="Season"
 								options={seasonSelectOptions}
+								popoverPositionerClassName={popoverPositionerClassName}
 								onChange={(next) => {
 									const n = Number(next);
 									onSeasonChange(Number.isFinite(n) ? n : null);
@@ -157,6 +161,7 @@ export function TvLogScopePicker({
 									listAriaLabel="Episode"
 									disabled={seasonNumber == null}
 									options={episodeSelectOptions}
+									popoverPositionerClassName={popoverPositionerClassName}
 									onChange={(next) => {
 										const n = Number(next);
 										onEpisodeChange(Number.isFinite(n) ? n : null);

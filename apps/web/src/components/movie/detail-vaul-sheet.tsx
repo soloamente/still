@@ -88,6 +88,11 @@ export function DetailVaulSheet({
 	nested = false,
 	/** App routes with tab bar — overlay + sheet at `z-[60]`. */
 	appStack = false,
+	/**
+	 * Diary episode dialog is `z-[250]` on `document.body`. This open path paints
+	 * the Vaul overlay and sheet above that layer.
+	 */
+	aboveAppModal = false,
 	scrollLock = open,
 	trigger,
 	/** Left slot aligned with the drag handle row (e.g. patron avatar in review reader). */
@@ -102,6 +107,8 @@ export function DetailVaulSheet({
 	description?: string;
 	nested?: boolean;
 	appStack?: boolean;
+	/** Paint overlay and sheet above an app modal (`z-[250]`). */
+	aboveAppModal?: boolean;
 	/** When nested opens on top of a parent sheet, keep Lenis locked for either. */
 	scrollLock?: boolean;
 	trigger?: ReactNode;
@@ -115,21 +122,27 @@ export function DetailVaulSheet({
 	// Vaul scales `[data-vaul-drawer-wrapper]` (AppShell) for depth under the dimmed scrim.
 	const shouldScaleBackground = !reduceMotion;
 	useDrawerStackParentDepth(open && shouldScaleBackground);
-	const overlayClassName = nested
-		? NESTED_OVERLAY_CLASSNAME
-		: appStack
-			? softwareGpu
-				? APP_OVERLAY_CLASSNAME_SOFTWARE
-				: APP_OVERLAY_CLASSNAME_GPU
-			: softwareGpu
-				? OVERLAY_CLASSNAME_SOFTWARE
-				: OVERLAY_CLASSNAME_GPU;
+	const overlayClassName = cn(
+		nested
+			? NESTED_OVERLAY_CLASSNAME
+			: appStack
+				? softwareGpu
+					? APP_OVERLAY_CLASSNAME_SOFTWARE
+					: APP_OVERLAY_CLASSNAME_GPU
+				: softwareGpu
+					? OVERLAY_CLASSNAME_SOFTWARE
+					: OVERLAY_CLASSNAME_GPU,
+		aboveAppModal && "z-[255]",
+	);
 
-	const contentClassName = nested
-		? MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME
-		: appStack
-			? APP_DETAIL_DRAWER_CONTENT_CLASSNAME
-			: MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME;
+	const contentClassName = cn(
+		nested
+			? MOVIE_DETAIL_NESTED_DRAWER_CONTENT_CLASSNAME
+			: appStack
+				? APP_DETAIL_DRAWER_CONTENT_CLASSNAME
+				: MOVIE_DETAIL_DRAWER_CONTENT_CLASSNAME,
+		aboveAppModal && "z-[255]",
+	);
 
 	const dismissOnNavigate = useCallback(() => {
 		onOpenChange(false);

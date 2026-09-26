@@ -16,6 +16,9 @@ const PANEL_EASE = [0.165, 0.84, 0.44, 1] as const;
 const REMOVE_CONFIRM_OVERLAY_CLASS =
 	"fixed inset-0 z-[250] grid min-h-[100dvh] place-items-center overflow-y-auto overscroll-contain bg-absolute-black/78 px-4 py-8 backdrop-blur-sm";
 
+/** Above the episode-dialog Quick Log layer (`z-[255]`), still under date popovers (`z-[260]`). */
+const REMOVE_CONFIRM_ABOVE_MODAL_CLASS = "z-[258]";
+
 /**
  * Confirms deleting a diary log from the Quick Log edit sheet (brainstorm option B).
  */
@@ -23,6 +26,7 @@ export function QuickLogRemoveConfirmDialog({
 	open,
 	titleLabel,
 	removing = false,
+	aboveAppModal = false,
 	onCancel,
 	onConfirm,
 }: {
@@ -30,6 +34,8 @@ export function QuickLogRemoveConfirmDialog({
 	/** Film or series title for the description line. */
 	titleLabel: string;
 	removing?: boolean;
+	/** Sit above Quick Log when that sheet is raised over the episode dialog. */
+	aboveAppModal?: boolean;
 	onCancel: () => void;
 	onConfirm: () => void;
 }) {
@@ -83,7 +89,10 @@ export function QuickLogRemoveConfirmDialog({
 					exit={{ opacity: 0 }}
 					transition={backdropTransition}
 					aria-hidden
-					className={REMOVE_CONFIRM_OVERLAY_CLASS}
+					className={cn(
+						REMOVE_CONFIRM_OVERLAY_CLASS,
+						aboveAppModal && REMOVE_CONFIRM_ABOVE_MODAL_CLASS,
+					)}
 					onClick={removing ? undefined : onCancel}
 				>
 					<motion.div

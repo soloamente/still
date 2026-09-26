@@ -27,6 +27,7 @@ export function DiaryTvGroupCell({
 	primaryLabel,
 	expanded,
 	onToggleExpand,
+	onDismiss,
 	priority = false,
 }: {
 	tmdbId: number;
@@ -38,7 +39,10 @@ export function DiaryTvGroupCell({
 	primaryLabel: string;
 	/** Dialog open flag — the lobby keeps a single expanded key. */
 	expanded: boolean;
+	/** Poster click — opens this show, or closes it when it is already the key. */
 	onToggleExpand: () => void;
+	/** Dialog scrim, Close, and Escape — sets the lobby key to null. Never toggles. */
+	onDismiss: () => void;
 	priority?: boolean;
 }) {
 	const cellRef = useRef<HTMLElement | null>(null);
@@ -92,8 +96,8 @@ export function DiaryTvGroupCell({
 			<DiaryTvEpisodeDialog
 				open={expanded}
 				onOpenChange={(next) => {
-					if (next === expanded) return;
-					onToggleExpand();
+					if (next) return;
+					onDismiss();
 				}}
 				tmdbId={tmdbId}
 				title={title}

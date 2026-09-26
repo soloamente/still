@@ -8,6 +8,7 @@ import {
 	useCallback,
 	useEffect,
 	useId,
+	useLayoutEffect,
 	useMemo,
 	useRef,
 	useState,
@@ -104,6 +105,53 @@ function seasonPosterSrc(
 ): string | null {
 	// Season art first; fall back to the show poster when TMDb has none.
 	return tmdbPosterUrlFromPath(seasonPosterPath ?? showPosterPath, "w342");
+}
+
+/**
+ * Move a season group to the top of the episode list.
+ * `scrollIntoView` would also scroll the page and the dialog shell.
+ */
+function scrollListToGroup(
+	list: HTMLElement,
+	group: HTMLElement,
+	behavior: "auto" | "smooth",
+) {
+	const top =
+		list.scrollTop +
+		(group.getBoundingClientRect().top - list.getBoundingClientRect().top);
+	if (behavior === "smooth") {
+		list.scrollTo({ top, behavior: "smooth" });
+		return;
+	}
+	list.scrollTop = top;
+}
+
+/**
+ * Season whose group occupies the most of the list viewport.
+ * Overlap is capped by the scroller, so a group taller than the list can still
+ * be the primary visible season (a 0.45 ratio never reaches that).
+ */
+function primaryVisibleSeason(
+	list: HTMLElement,
+	groups: ReadonlyMap<number, HTMLElement>,
+): number | null {
+	const listRect = list.getBoundingClientRect();
+	let bestSeason: number | null = null;
+	let bestHeight = 0;
+	let bestTop = Number.POSITIVE_INFINITY;
+	for (const [season, node] of groups) {
+		const rect = node.getBoundingClientRect();
+		const top = Math.max(rect.top, listRect.top);
+		const bottom = Math.min(rect.bottom, listRect.bottom);
+		const height = Math.max(0, bottom - top);
+		if (height <= 0) continue;
+		if (height > bestHeight || (height === bestHeight && rect.top < bestTop)) {
+			bestHeight = height;
+			bestTop = rect.top;
+			bestSeason = season;
+		}
+	}
+	return bestSeason;
 }
 
 function loadingPillKeys(seasonNumber: number, episodeCount: number): string[] {
@@ -262,7 +310,13 @@ export function DiaryTvEpisodeDialog({
 	const [seasonsLoading, setSeasonsLoading] = useState(false);
 	const listRef = useRef<HTMLDivElement>(null);
 	const groupRefs = useRef(new Map<number, HTMLElement>());
+	// Poster taps scroll the list; ignore overlap sync until that scroll settles.
 	const skipScrollSyncRef = useRef(false);
+	// Opening season stays put until the patron scrolls the list themselves.
+	const seasonSyncLockedRef = useRef(true);
+	const didInitialSeasonScrollRef = useRef(false);
+	// False while a reopen still holds the previous season, until loadCatalogue picks one.
+	const openingSeasonAppliedRef = useRef(false);
 
 	const episodeLogs = useMemo(
 		() => (diaryError ? [] : episodeLogsFromRows(logRows)),
@@ -326,6 +380,7 @@ export function DiaryTvEpisodeDialog({
 			setSeasons([]);
 			setEpisodesBySeason({});
 			setSeasonFailed({});
+			openingSeasonAppliedRef.current = false;
 			setActiveSeason(null);
 
 			const [logsOutcome, seasonsOutcome] = await Promise.all([
@@ -373,6 +428,7 @@ export function DiaryTvEpisodeDialog({
 				episodeLogsFromRows(diaryRows),
 				usable.map((season) => season.season_number),
 			);
+			openingSeasonAppliedRef.current = true;
 			setActiveSeason(nextActive);
 
 			// Active season first so its pills paint before the rest of the catalogue.
@@ -423,7 +479,9 @@ export function DiaryTvEpisodeDialog({
 	}, [onOpenChange]);
 
 	useEffect(() => {
-		if (!open) return;
+		// Quick Log has its own Escape. Listening here too would dismiss the dialog
+		// underneath the sheet.
+		if (!open || quickLogOpen) return;
 		const onKey = (event: KeyboardEvent) => {
 			if (event.key !== "Escape") return;
 			event.preventDefault();
@@ -431,7 +489,7 @@ export function DiaryTvEpisodeDialog({
 		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
-	}, [close, open]);
+	}, [close, open, quickLogOpen]);
 
 	useEffect(() => {
 		if (!open) return;
@@ -445,38 +503,68 @@ export function DiaryTvEpisodeDialog({
 	const selectSeason = useCallback((seasonNumber: number) => {
 		setActiveSeason(seasonNumber);
 		skipScrollSyncRef.current = true;
-		groupRefs.current.get(seasonNumber)?.scrollIntoView({
-			block: "start",
-			behavior: "smooth",
-		});
+		const list = listRef.current;
+		const group = groupRefs.current.get(seasonNumber);
+		if (list && group) {
+			scrollListToGroup(list, group, "smooth");
+		}
 		window.setTimeout(() => {
 			skipScrollSyncRef.current = false;
 		}, 400);
 	}, []);
 
-	// Scrolling a season group into view updates the large poster.
+	// Open on `initialSeasonNumber` and scroll that group into view. Overlap sync
+	// stays locked so the first layout pass cannot replace the opening season.
+	useLayoutEffect(() => {
+		if (!open) {
+			didInitialSeasonScrollRef.current = false;
+			seasonSyncLockedRef.current = true;
+			openingSeasonAppliedRef.current = false;
+			return;
+		}
+		// Ignore a season left over from the previous open until loadCatalogue applies one.
+		if (
+			!openingSeasonAppliedRef.current ||
+			didInitialSeasonScrollRef.current ||
+			activeSeason == null ||
+			seasons.length === 0
+		) {
+			return;
+		}
+		const list = listRef.current;
+		const group = groupRefs.current.get(activeSeason);
+		if (!list || !group) return;
+		didInitialSeasonScrollRef.current = true;
+		seasonSyncLockedRef.current = true;
+		scrollListToGroup(list, group, "auto");
+	}, [open, activeSeason, seasons]);
+
+	// After the patron scrolls the list, the group with the most visible height
+	// becomes the active season. A wheel/touch/pointer gesture unlocks sync so the
+	// opening scroll itself does not count.
 	useEffect(() => {
 		if (!open || seasons.length === 0) return;
-		const root = listRef.current;
-		if (!root) return;
-		const observer = new IntersectionObserver(
-			(entries) => {
-				if (skipScrollSyncRef.current) return;
-				const visible = entries
-					.filter((entry) => entry.isIntersecting)
-					.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-				const raw = visible?.target.getAttribute("data-season-number");
-				if (raw == null) return;
-				const next = Number(raw);
-				if (!Number.isFinite(next)) return;
-				setActiveSeason(next);
-			},
-			{ root, threshold: 0.45 },
-		);
-		for (const node of groupRefs.current.values()) {
-			observer.observe(node);
-		}
-		return () => observer.disconnect();
+		const list = listRef.current;
+		if (!list) return;
+		const unlock = () => {
+			seasonSyncLockedRef.current = false;
+		};
+		const syncFromScroll = () => {
+			if (seasonSyncLockedRef.current || skipScrollSyncRef.current) return;
+			const next = primaryVisibleSeason(list, groupRefs.current);
+			if (next == null) return;
+			setActiveSeason((prev) => (prev === next ? prev : next));
+		};
+		list.addEventListener("wheel", unlock, { passive: true });
+		list.addEventListener("touchmove", unlock, { passive: true });
+		list.addEventListener("pointerdown", unlock);
+		list.addEventListener("scroll", syncFromScroll, { passive: true });
+		return () => {
+			list.removeEventListener("wheel", unlock);
+			list.removeEventListener("touchmove", unlock);
+			list.removeEventListener("pointerdown", unlock);
+			list.removeEventListener("scroll", syncFromScroll);
+		};
 	}, [open, seasons]);
 
 	const openLatestLog = useCallback(
@@ -486,7 +574,7 @@ export function DiaryTvEpisodeDialog({
 			const payload = diaryLogToQuickLogOpenPayload(row, () => {
 				void refetchDiary();
 			});
-			if (payload) openQuickLog(payload);
+			if (payload) openQuickLog({ ...payload, aboveAppModal: true });
 		},
 		[logRows, openQuickLog, refetchDiary],
 	);
@@ -494,7 +582,7 @@ export function DiaryTvEpisodeDialog({
 	if (!mounted || !open) return null;
 
 	const portal = (
-		<div className={cn("fixed inset-0 z-[250]", quickLogOpen && "z-[50]")}>
+		<div className="fixed inset-0 z-[250]">
 			{/* Scrim is a real button so Escape-or-click close stays keyboard-reachable. */}
 			<button
 				type="button"
@@ -611,7 +699,7 @@ export function DiaryTvEpisodeDialog({
 													(pillSlot) => (
 														<span
 															key={`bone-${slot}-${pillSlot}`}
-															className="h-11 w-11 animate-pulse rounded-full bg-background"
+															className="h-11 w-11 animate-pulse rounded-full bg-card"
 														/>
 													),
 												)}
@@ -663,7 +751,7 @@ export function DiaryTvEpisodeDialog({
 												).map((pillKey) => (
 													<span
 														key={pillKey}
-														className="h-11 w-11 animate-pulse rounded-full bg-background"
+														className="h-11 w-11 animate-pulse rounded-full bg-card"
 													/>
 												))}
 											</div>

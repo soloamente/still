@@ -20,6 +20,7 @@ import {
 	useState,
 	useSyncExternalStore,
 } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { LogRatingSlider } from "@/components/log/log-rating-slider";
@@ -47,7 +48,10 @@ import {
 	getAppMobileVaulSnapshot,
 	subscribeAppMobileVaul,
 } from "@/lib/app-mobile-vaul";
-import { MODAL_SHEET_SCROLL_CLASS } from "@/lib/app-modal-layer";
+import {
+	APP_MODAL_POPOVER_POSITIONER_CLASS,
+	MODAL_SHEET_SCROLL_CLASS,
+} from "@/lib/app-modal-layer";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	useDetailActionMotion,
@@ -154,6 +158,11 @@ export type QuickLogArgs = {
 	episodeNumber?: number;
 	/** Prefills the visibility picker when editing an existing log. */
 	visibility?: "public" | "followers" | "friends" | "private";
+	/**
+	 * Diary episode dialog sits at `z-[250]`. Raise this sheet above that layer
+	 * without lowering the dialog.
+	 */
+	aboveAppModal?: boolean;
 	/** `logId` is set only for a freshly created log (edits and removals omit it). */
 	onSuccess?: (result?: QuickLogSuccessResult) => void;
 };
@@ -265,6 +274,9 @@ export function QuickLogRoot() {
 	const isMobileVaul = useMobileQuickLogVaul();
 	const router = useRouter();
 	const pathname = usePathname();
+	// Stays true through the close animation so the sheet does not slip under the
+	// episode dialog (`z-[250]`) for one frame.
+	const [paintAboveModal, setPaintAboveModal] = useState(false);
 	const [movieId, setMovieId] = useState<number | null>(null);
 	const [tvId, setTvId] = useState<number | null>(null);
 	const [movieTitle, setMovieTitle] = useState("");
@@ -342,6 +354,18 @@ export function QuickLogRoot() {
 	);
 
 	const showSheet = Boolean(isOpen && args);
+	// Diary episode dialog asks for a higher layer. Latch it before paint, and
+	// keep it until the close animation finishes.
+	if (args?.aboveAppModal && !paintAboveModal) {
+		setPaintAboveModal(true);
+	}
+	if (isOpen && args && !args.aboveAppModal && paintAboveModal) {
+		setPaintAboveModal(false);
+	}
+	const raiseAboveModal = Boolean(args?.aboveAppModal) || paintAboveModal;
+	const modalPopoverPositioner = raiseAboveModal
+		? APP_MODAL_POPOVER_POSITIONER_CLASS
+		: undefined;
 	useLockDrawerScroll(isMobileVaul && showSheet);
 
 	/** transitions.dev avatar-group-hover — screening pills + favorite comb lift. */
@@ -674,6 +698,12 @@ export function QuickLogRoot() {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [isOpen, isMobileVaul, handleClose]);
 
+	useEffect(() => {
+		if (isOpen || args?.aboveAppModal) return;
+		const timeout = window.setTimeout(() => setPaintAboveModal(false), 240);
+		return () => window.clearTimeout(timeout);
+	}, [isOpen, args?.aboveAppModal]);
+
 	async function persist(options: { skipDetails: boolean }) {
 		if (!canSubmit || (movieId == null && tvId == null) || !args) return;
 		setSaving(true);
@@ -962,6 +992,7 @@ export function QuickLogRoot() {
 					onScopeChange={setLogScope}
 					onSeasonChange={setSeasonNumber}
 					onEpisodeChange={setEpisodeNumber}
+					popoverPositionerClassName={modalPopoverPositioner}
 				/>
 			) : null}
 
@@ -1054,6 +1085,7 @@ export function QuickLogRoot() {
 						id="quick-log-date"
 						value={watchedDate}
 						onChange={setWatchedDate}
+						popoverPositionerClassName={modalPopoverPositioner}
 					/>
 				</div>
 
@@ -1143,6 +1175,7 @@ export function QuickLogRoot() {
 			open
 			titleLabel={movieTitle.trim() || "this title"}
 			removing={removing}
+			aboveAppModal={raiseAboveModal}
 			onCancel={() => setRemoveConfirmOpen(false)}
 			onConfirm={() => void confirmRemoveFromWatched()}
 		/>
@@ -1173,6 +1206,7 @@ export function QuickLogRoot() {
 						if (!next) handleClose();
 					}}
 					appStack
+					aboveAppModal={raiseAboveModal}
 					title={heading}
 					description="Log a film or TV show to your diary"
 				>
@@ -1197,60 +1231,69 @@ export function QuickLogRoot() {
 		);
 	}
 
+	const desktopQuickLogSheet = (
+		<AnimatePresence mode="wait">
+			{showSheet && args ? (
+				<motion.div
+					key="quick-log-sheet"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.18 }}
+					className={cn(
+						"modal-overlay-scrim fixed inset-0 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center",
+						raiseAboveModal ? "z-[255]" : "z-50",
+					)}
+					onClick={handleClose}
+				>
+					<motion.div
+						key="quick-log-panel"
+						role="dialog"
+						aria-modal="true"
+						aria-labelledby="quick-log-title"
+						layout
+						layoutRoot
+						initial={{ y: 32, opacity: 0, scale: 0.98 }}
+						animate={{ y: 0, opacity: 1, scale: 1 }}
+						exit={{ y: 16, opacity: 0, scale: 0.98 }}
+						transition={{ duration: 0.18, ease: [0.165, 0.84, 0.44, 1] }}
+						onClick={(e) => e.stopPropagation()}
+						className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
+					>
+						<div className="mb-4 flex justify-end">
+							<Button
+								variant="ghost"
+								size="icon-pill"
+								onClick={handleClose}
+								aria-label="Close"
+								className="text-muted-foreground"
+							>
+								<X className="size-4" />
+							</Button>
+						</div>
+
+						<div className="relative">
+							<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
+								{quickLogPanelBody}
+							</div>
+							<ModalSheetScrollScrims
+								showHeaderFade={showHeaderFade}
+								showFooterFade={showFooterFade}
+							/>
+						</div>
+
+						{celebration ? null : quickLogFooter("modal")}
+					</motion.div>
+				</motion.div>
+			) : null}
+		</AnimatePresence>
+	);
+
 	return (
 		<>
-			<AnimatePresence mode="wait">
-				{showSheet && args ? (
-					<motion.div
-						key="quick-log-sheet"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.18 }}
-						className="modal-overlay-scrim fixed inset-0 z-50 grid place-items-end bg-absolute-black/82 backdrop-blur-sm md:place-items-center"
-						onClick={handleClose}
-					>
-						<motion.div
-							key="quick-log-panel"
-							role="dialog"
-							aria-modal="true"
-							aria-labelledby="quick-log-title"
-							layout
-							layoutRoot
-							initial={{ y: 32, opacity: 0, scale: 0.98 }}
-							animate={{ y: 0, opacity: 1, scale: 1 }}
-							exit={{ y: 16, opacity: 0, scale: 0.98 }}
-							transition={{ duration: 0.18, ease: [0.165, 0.84, 0.44, 1] }}
-							onClick={(e) => e.stopPropagation()}
-							className="relative flex max-h-[min(92svh,720px)] w-full max-w-xl flex-col overflow-hidden rounded-t-[2rem] bg-card px-6 pt-6 pb-0 shadow-2xl md:rounded-[2rem] md:px-8 md:pt-10"
-						>
-							<div className="mb-4 flex justify-end">
-								<Button
-									variant="ghost"
-									size="icon-pill"
-									onClick={handleClose}
-									aria-label="Close"
-									className="text-muted-foreground"
-								>
-									<X className="size-4" />
-								</Button>
-							</div>
-
-							<div className="relative">
-								<div ref={scrollRef} className={MODAL_SHEET_SCROLL_CLASS}>
-									{quickLogPanelBody}
-								</div>
-								<ModalSheetScrollScrims
-									showHeaderFade={showHeaderFade}
-									showFooterFade={showFooterFade}
-								/>
-							</div>
-
-							{celebration ? null : quickLogFooter("modal")}
-						</motion.div>
-					</motion.div>
-				) : null}
-			</AnimatePresence>
+			{raiseAboveModal && typeof document !== "undefined"
+				? createPortal(desktopQuickLogSheet, document.body)
+				: desktopQuickLogSheet}
 			{removeConfirmDialog}
 		</>
 	);
