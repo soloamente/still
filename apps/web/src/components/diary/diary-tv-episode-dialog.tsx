@@ -29,6 +29,12 @@ import {
 	seasonLogLabel,
 	showLogLabel,
 } from "@/lib/diary-tv-episode-pills";
+import {
+	cellCanReceivePoster,
+	type DiaryTvPosterFlightLive,
+	freezePosterFlightForFade,
+	readLiveFlightSample,
+} from "@/lib/diary-tv-poster-flight";
 import { formatLogRatingDisplay } from "@/lib/log-rating";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import {
@@ -116,11 +122,6 @@ const POSTER_CHROME_FADE_S = 0.2;
 /** Chrome fade starts late so it finishes with the flight. */
 const POSTER_CHROME_DELAY_S = POSTER_FLIGHT_S - POSTER_CHROME_FADE_S;
 
-const POSTER_FLIGHT_TRANSITION = {
-	duration: POSTER_FLIGHT_S,
-	ease: POSTER_FLIGHT_EASE,
-};
-
 const POSTER_FADE_TRANSITION = {
 	duration: POSTER_CHROME_FADE_S,
 	ease: POSTER_FLIGHT_EASE,
@@ -143,13 +144,8 @@ interface PosterFlightPose {
 	/** Local radius. CSS scale multiplies it, so the slot radius is divided by scale. */
 	borderRadius: number;
 	opacity: number;
-	/** 0.45 for the trip. 0 when the open dialog recenters and the clone must stick to the slot. */
+	/** 0.45 for the trip. 0 to stick to the slot or freeze in place when fading. */
 	moveDuration: number;
-}
-
-/** A null, detached, or zero-size cell cannot take the flight home. */
-function cellCanReceivePoster(node: HTMLElement | null): boolean {
-	return Boolean(node?.isConnected && node.getBoundingClientRect().width > 0);
 }
 
 function readFlightRect(node: HTMLElement): FlightRect {
@@ -227,12 +223,15 @@ function PosterFlightClone({
 	frontSrc,
 	backSrc,
 	onComplete,
+	onLiveUpdate,
 }: {
 	pose: PosterFlightPose;
 	homeRadius: number;
 	frontSrc: string | null;
 	backSrc: string | null;
 	onComplete: () => void;
+	/** Latest x/y/scale/rotateY/radius so a missing-cell fade can freeze, not fly. */
+	onLiveUpdate: (live: DiaryTvPosterFlightLive) => void;
 }) {
 	return (
 		<div
@@ -269,12 +268,26 @@ function PosterFlightClone({
 					x: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
 					y: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
 					scale: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
-					rotateY: POSTER_FLIGHT_TRANSITION,
+					rotateY: {
+						duration: pose.moveDuration,
+						ease: POSTER_FLIGHT_EASE,
+					},
 					borderRadius: {
 						duration: pose.moveDuration,
 						ease: POSTER_FLIGHT_EASE,
 					},
 					opacity: POSTER_FADE_TRANSITION,
+				}}
+				onUpdate={(latest) => {
+					onLiveUpdate(
+						readLiveFlightSample(latest, {
+							x: pose.x,
+							y: pose.y,
+							scale: pose.scale,
+							rotateY: pose.rotateY,
+							borderRadius: pose.borderRadius,
+						}),
+					);
 				}}
 				onAnimationComplete={onComplete}
 			>
@@ -519,6 +532,7 @@ export function DiaryTvEpisodeDialog({
 	const [pose, setPose] = useState<PosterFlightPose | null>(null);
 	const poseRef = useRef<PosterFlightPose | null>(null);
 	poseRef.current = pose;
+	const liveFlightRef = useRef<DiaryTvPosterFlightLive | null>(null);
 	const originRef = useRef<FlightRect | null>(null);
 	const homeRadiusRef = useRef(0);
 	const sessionRef = useRef<"idle" | "open">("idle");
@@ -566,6 +580,7 @@ export function DiaryTvEpisodeDialog({
 		clearCloseTimer();
 		originRef.current = null;
 		closeDurationMsRef.current = 0;
+		liveFlightRef.current = null;
 		onConcealPosterRef.current(false);
 		setPose(null);
 		setChromeOn(false);
@@ -606,7 +621,8 @@ export function DiaryTvEpisodeDialog({
 		setChromeDelay(0);
 		setChromeOn(false);
 		if (current && current.opacity !== 0) {
-			setPose({ ...current, opacity: 0 });
+			// Freeze at the live transform. Do not keep flying (or snap) to the cell.
+			setPose(freezePosterFlightForFade(current, liveFlightRef.current));
 		} else if (!current) {
 			setPose(null);
 		}
@@ -669,6 +685,7 @@ export function DiaryTvEpisodeDialog({
 			onConcealPosterRef.current(true);
 			setChromeDelay(POSTER_CHROME_DELAY_S);
 			setChromeOn(true);
+			if (!poseRef.current) liveFlightRef.current = null;
 			setPose({
 				origin,
 				x: delta.x,
@@ -1038,6 +1055,9 @@ export function DiaryTvEpisodeDialog({
 					frontSrc={showPosterSrc}
 					backSrc={largePosterSrc}
 					onComplete={maybeFinishClose}
+					onLiveUpdate={(live) => {
+						liveFlightRef.current = live;
+					}}
 				/>
 			) : null}
 			<motion.div
