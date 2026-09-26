@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { DiaryTvEpisodeDialog } from "@/components/diary/diary-tv-episode-dialog";
 import { MoviePoster } from "@/components/movie/movie-poster";
@@ -46,6 +46,10 @@ export function DiaryTvGroupCell({
 	priority?: boolean;
 }) {
 	const cellRef = useRef<HTMLElement | null>(null);
+	// True while the dialog clone is flying or the dialog is open.
+	// The cell poster returns only after the flight home finishes.
+	// Reduced motion never sets this — there is no clone.
+	const [concealPoster, setConcealPoster] = useState(false);
 	const entryCountLine = logCount > 1 ? `${logCount} diary entries` : null;
 
 	return (
@@ -73,7 +77,10 @@ export function DiaryTvGroupCell({
 						data-diary-poster-trigger
 						aria-expanded={expanded}
 						aria-label={`${title}, ${primaryLabel}${entryCountLine ? `, ${entryCountLine}` : ""}. Show diary entries.`}
-						className="size-full cursor-pointer select-none border-0 bg-transparent p-0 text-left"
+						className={cn(
+							"size-full cursor-pointer select-none border-0 bg-transparent p-0 text-left",
+							concealPoster && "invisible",
+						)}
 						onClick={onToggleExpand}
 					>
 						<MoviePoster
@@ -103,6 +110,7 @@ export function DiaryTvGroupCell({
 				title={title}
 				posterPath={posterPath}
 				cellRef={cellRef}
+				onConcealPoster={setConcealPoster}
 			/>
 		</div>
 	);

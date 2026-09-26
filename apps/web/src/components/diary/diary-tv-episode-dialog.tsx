@@ -2,6 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import { X } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import {
 	type RefObject,
@@ -105,6 +106,177 @@ function seasonPosterSrc(
 ): string | null {
 	// Season art first; fall back to the show poster when TMDb has none.
 	return tmdbPosterUrlFromPath(seasonPosterPath ?? showPosterPath, "w342");
+}
+
+/** One trip. Position, scale, and the Y flip share this ease — not two waits. */
+const POSTER_FLIGHT_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const POSTER_FLIGHT_S = 0.45;
+const POSTER_CHROME_FADE_S = 0.2;
+/** Chrome fade starts late so it finishes with the flight. */
+const POSTER_CHROME_DELAY_S = POSTER_FLIGHT_S - POSTER_CHROME_FADE_S;
+
+const POSTER_FLIGHT_TRANSITION = {
+	duration: POSTER_FLIGHT_S,
+	ease: POSTER_FLIGHT_EASE,
+};
+
+const POSTER_FADE_TRANSITION = {
+	duration: POSTER_CHROME_FADE_S,
+	ease: POSTER_FLIGHT_EASE,
+};
+
+interface FlightRect {
+	left: number;
+	top: number;
+	width: number;
+	height: number;
+}
+
+interface PosterFlightPose {
+	/** Cell rect captured when the flight started. Later poses keep this origin. */
+	origin: FlightRect;
+	x: number;
+	y: number;
+	scale: number;
+	rotateY: number;
+	/** Local radius. CSS scale multiplies it, so the slot radius is divided by scale. */
+	borderRadius: number;
+	opacity: number;
+	/** 0.45 for the trip. 0 when the open dialog recenters and the clone must stick to the slot. */
+	moveDuration: number;
+}
+
+function readFlightRect(node: HTMLElement): FlightRect {
+	const rect = node.getBoundingClientRect();
+	return {
+		left: rect.left,
+		top: rect.top,
+		width: rect.width,
+		height: rect.height,
+	};
+}
+
+function readCornerRadius(node: HTMLElement, fallback: number): number {
+	const radius = Number.parseFloat(getComputedStyle(node).borderTopLeftRadius);
+	return Number.isFinite(radius) ? radius : fallback;
+}
+
+/** Center delta from `origin` to `dest`, plus the scale that matches dest's width. */
+function flightDelta(origin: FlightRect, dest: FlightRect) {
+	const originCx = origin.left + origin.width / 2;
+	const originCy = origin.top + origin.height / 2;
+	const destCx = dest.left + dest.width / 2;
+	const destCy = dest.top + dest.height / 2;
+	const scale = origin.width > 0 ? dest.width / origin.width : 1;
+	return {
+		x: destCx - originCx,
+		y: destCy - originCy,
+		scale,
+	};
+}
+
+function localRadius(visualRadius: number, scale: number): number {
+	if (scale <= 0) return visualRadius;
+	return visualRadius / scale;
+}
+
+function PosterFlightFace({
+	src,
+	side,
+}: {
+	src: string | null;
+	side: "front" | "back";
+}) {
+	return (
+		<div
+			className="absolute inset-0 overflow-hidden bg-background"
+			style={{
+				backfaceVisibility: "hidden",
+				borderRadius: "inherit",
+				transform: side === "back" ? "rotateY(180deg)" : undefined,
+			}}
+		>
+			{src ? (
+				<Image
+					src={src}
+					alt=""
+					fill
+					sizes="(max-width: 640px) 40vw, 176px"
+					className="object-cover"
+					unoptimized={isTmdbCdnUrl(src)}
+					draggable={false}
+				/>
+			) : null}
+		</div>
+	);
+}
+
+/**
+ * Fixed clone of the tapped poster. The front face is the show poster.
+ * The back face is pre-rotated so rotateY 180 shows the season art upright.
+ */
+function PosterFlightClone({
+	pose,
+	homeRadius,
+	frontSrc,
+	backSrc,
+	onComplete,
+}: {
+	pose: PosterFlightPose;
+	homeRadius: number;
+	frontSrc: string | null;
+	backSrc: string | null;
+	onComplete: () => void;
+}) {
+	return (
+		<div
+			aria-hidden
+			className="pointer-events-none fixed inset-0 z-[260]"
+			style={{ perspective: "1200px" }}
+		>
+			<motion.div
+				className="absolute"
+				style={{
+					left: pose.origin.left,
+					top: pose.origin.top,
+					width: pose.origin.width,
+					height: pose.origin.height,
+					transformStyle: "preserve-3d",
+				}}
+				initial={{
+					x: 0,
+					y: 0,
+					scale: 1,
+					rotateY: 0,
+					opacity: 1,
+					borderRadius: homeRadius,
+				}}
+				animate={{
+					x: pose.x,
+					y: pose.y,
+					scale: pose.scale,
+					rotateY: pose.rotateY,
+					opacity: pose.opacity,
+					borderRadius: pose.borderRadius,
+				}}
+				transition={{
+					x: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
+					y: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
+					scale: { duration: pose.moveDuration, ease: POSTER_FLIGHT_EASE },
+					rotateY: POSTER_FLIGHT_TRANSITION,
+					borderRadius: {
+						duration: pose.moveDuration,
+						ease: POSTER_FLIGHT_EASE,
+					},
+					opacity: POSTER_FADE_TRANSITION,
+				}}
+				onAnimationComplete={onComplete}
+			>
+				<PosterFlightFace src={frontSrc} side="front" />
+				<PosterFlightFace src={backSrc} side="back" />
+			</motion.div>
+		</div>
+	);
 }
 
 /**
@@ -284,17 +456,24 @@ export function DiaryTvEpisodeDialog({
 	tmdbId,
 	title,
 	posterPath,
-	cellRef: _cellRef,
+	cellRef,
+	onConcealPoster,
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	tmdbId: number;
 	title: string;
 	posterPath: string | null;
-	/** Grid cell root — Task 4 measures this for the poster flight. */
+	/** Grid cell root. Measured on open and again on close for the poster flight. */
 	cellRef: RefObject<HTMLElement | null>;
+	/**
+	 * Hides the grid poster while the clone is in flight or the dialog is open.
+	 * `false` only after the flight home finishes. Reduced motion stays `false`.
+	 */
+	onConcealPoster: (concealed: boolean) => void;
 }) {
 	const titleId = useId();
+	const reduceMotion = useReducedMotion() === true;
 	const openQuickLog = useQuickLog((s) => s.open);
 	const quickLogOpen = useQuickLog((s) => s.isOpen);
 	const [mounted, setMounted] = useState(false);
@@ -317,6 +496,23 @@ export function DiaryTvEpisodeDialog({
 	const didInitialSeasonScrollRef = useRef(false);
 	// False while a reopen still holds the previous season, until loadCatalogue picks one.
 	const openingSeasonAppliedRef = useRef(false);
+	const slotRef = useRef<HTMLDivElement>(null);
+	// Stays mounted through the flight home after `open` flips false.
+	const [alive, setAlive] = useState(false);
+	const [chromeOn, setChromeOn] = useState(false);
+	const [chromeDelay, setChromeDelay] = useState(0);
+	const [pose, setPose] = useState<PosterFlightPose | null>(null);
+	const poseRef = useRef<PosterFlightPose | null>(null);
+	poseRef.current = pose;
+	const originRef = useRef<FlightRect | null>(null);
+	const homeRadiusRef = useRef(0);
+	const sessionRef = useRef<"idle" | "open">("idle");
+	const closingRef = useRef(false);
+	const closeStartedAtRef = useRef(0);
+	const closeDurationMsRef = useRef(0);
+	const closeTimerRef = useRef<number | null>(null);
+	const onConcealPosterRef = useRef(onConcealPoster);
+	onConcealPosterRef.current = onConcealPoster;
 
 	const episodeLogs = useMemo(
 		() => (diaryError ? [] : episodeLogsFromRows(logRows)),
@@ -334,6 +530,181 @@ export function DiaryTvEpisodeDialog({
 	useEffect(() => {
 		setMounted(true);
 	}, []);
+
+	const clearCloseTimer = useCallback(() => {
+		if (closeTimerRef.current == null) return;
+		window.clearTimeout(closeTimerRef.current);
+		closeTimerRef.current = null;
+	}, []);
+
+	const finishClose = useCallback(() => {
+		if (!closingRef.current) return;
+		closingRef.current = false;
+		clearCloseTimer();
+		originRef.current = null;
+		closeDurationMsRef.current = 0;
+		onConcealPosterRef.current(false);
+		setPose(null);
+		setChromeOn(false);
+		setChromeDelay(0);
+		setAlive(false);
+	}, [clearCloseTimer]);
+
+	const maybeFinishClose = useCallback(() => {
+		if (!closingRef.current) return;
+		const elapsed = performance.now() - closeStartedAtRef.current;
+		// Ignore a completion from the open trip if close started a newer animation.
+		if (elapsed + 32 < closeDurationMsRef.current) return;
+		finishClose();
+	}, [finishClose]);
+
+	const armCloseTimer = useCallback(
+		(durationS: number) => {
+			clearCloseTimer();
+			closeStartedAtRef.current = performance.now();
+			closeDurationMsRef.current = durationS * 1000;
+			closeTimerRef.current = window.setTimeout(() => {
+				maybeFinishClose();
+			}, closeDurationMsRef.current + 40);
+		},
+		[clearCloseTimer, maybeFinishClose],
+	);
+
+	useEffect(() => clearCloseTimer, [clearCloseTimer]);
+
+	// Measure before paint so the clone is already on the cell when the first frame shows.
+	useLayoutEffect(() => {
+		if (!mounted) return;
+		if (open) {
+			if (sessionRef.current === "open") return;
+			sessionRef.current = "open";
+			closingRef.current = false;
+			clearCloseTimer();
+			setAlive(true);
+
+			const cellNode = cellRef.current;
+			const slotNode = slotRef.current;
+			const canFly =
+				!reduceMotion &&
+				cellNode != null &&
+				slotNode != null &&
+				cellNode.getBoundingClientRect().width > 0 &&
+				slotNode.getBoundingClientRect().width > 0;
+
+			if (!canFly || !cellNode || !slotNode) {
+				originRef.current = null;
+				setPose(null);
+				setChromeDelay(0);
+				setChromeOn(true);
+				onConcealPosterRef.current(false);
+				return;
+			}
+
+			const cell = readFlightRect(cellNode);
+			// Keep the opening origin if a close was interrupted so the clone doesn't jump.
+			const origin = originRef.current ?? cell;
+			originRef.current = origin;
+			const slot = readFlightRect(slotNode);
+			const art = cellNode.querySelector(".poster-art");
+			const cellRadius =
+				art instanceof HTMLElement ? readCornerRadius(art, 48) : 48;
+			// A fresh clone mounts from this radius. An in-flight clone keeps its initial.
+			if (!poseRef.current) homeRadiusRef.current = cellRadius;
+			const slotRadius = readCornerRadius(slotNode, 20);
+			const delta = flightDelta(origin, slot);
+			onConcealPosterRef.current(true);
+			setChromeDelay(POSTER_CHROME_DELAY_S);
+			setChromeOn(true);
+			setPose({
+				origin,
+				x: delta.x,
+				y: delta.y,
+				scale: delta.scale,
+				rotateY: 180,
+				borderRadius: localRadius(slotRadius, delta.scale),
+				opacity: 1,
+				moveDuration: POSTER_FLIGHT_S,
+			});
+			return;
+		}
+
+		if (sessionRef.current !== "open") return;
+		sessionRef.current = "idle";
+		closingRef.current = true;
+		setChromeDelay(0);
+		setChromeOn(false);
+
+		const origin = originRef.current;
+		const cellNode = cellRef.current;
+		const current = poseRef.current;
+		if (reduceMotion || !origin || !cellNode || !current) {
+			// No cell, or reduced motion: fade the dialog. Do not fly.
+			if (current) {
+				setPose({ ...current, opacity: 0 });
+			} else {
+				setPose(null);
+			}
+			armCloseTimer(POSTER_CHROME_FADE_S);
+			return;
+		}
+
+		const cell = readFlightRect(cellNode);
+		const art = cellNode.querySelector(".poster-art");
+		const cellRadius =
+			art instanceof HTMLElement
+				? readCornerRadius(art, homeRadiusRef.current || 48)
+				: homeRadiusRef.current || 48;
+		const delta = flightDelta(origin, cell);
+		setPose({
+			origin,
+			x: delta.x,
+			y: delta.y,
+			scale: delta.scale,
+			rotateY: 0,
+			borderRadius: localRadius(cellRadius, delta.scale),
+			opacity: 1,
+			moveDuration: POSTER_FLIGHT_S,
+		});
+		armCloseTimer(POSTER_FLIGHT_S);
+	}, [armCloseTimer, cellRef, clearCloseTimer, mounted, open, reduceMotion]);
+
+	// The centered dialog grows when seasons arrive, so the slot moves after the
+	// opening measure. Stick the landed clone to the slot without starting another flip.
+	useEffect(() => {
+		if (!open) return;
+		const slotNode = slotRef.current;
+		if (!slotNode) return;
+		const syncToSlot = () => {
+			if (closingRef.current) return;
+			const origin = originRef.current;
+			const current = poseRef.current;
+			if (!origin || !current || current.rotateY !== 180) return;
+			const slot = readFlightRect(slotNode);
+			const delta = flightDelta(origin, slot);
+			if (
+				Math.abs(delta.x - current.x) < 0.5 &&
+				Math.abs(delta.y - current.y) < 0.5 &&
+				Math.abs(delta.scale - current.scale) < 0.002
+			) {
+				return;
+			}
+			setPose({
+				origin: current.origin,
+				x: delta.x,
+				y: delta.y,
+				scale: delta.scale,
+				rotateY: 180,
+				borderRadius: localRadius(readCornerRadius(slotNode, 20), delta.scale),
+				opacity: 1,
+				moveDuration: 0,
+			});
+		};
+		const observer = new ResizeObserver(syncToSlot);
+		observer.observe(slotNode);
+		const dialog = slotNode.closest("[role='dialog']");
+		if (dialog instanceof HTMLElement) observer.observe(dialog);
+		return () => observer.disconnect();
+	}, [open]);
 
 	const applyDiaryResult = useCallback(
 		(data: unknown, failed: boolean) => {
@@ -492,13 +863,14 @@ export function DiaryTvEpisodeDialog({
 	}, [close, open, quickLogOpen]);
 
 	useEffect(() => {
-		if (!open) return;
+		// Keep the lobby still through the flight home, after `open` is already false.
+		if (!open && !alive) return;
 		const previous = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
 		return () => {
 			document.body.style.overflow = previous;
 		};
-	}, [open]);
+	}, [alive, open]);
 
 	const selectSeason = useCallback((seasonNumber: number) => {
 		setActiveSeason(seasonNumber);
@@ -579,236 +951,264 @@ export function DiaryTvEpisodeDialog({
 		[logRows, openQuickLog, refetchDiary],
 	);
 
-	if (!mounted || !open) return null;
+	if (!mounted || (!open && !alive)) return null;
+
+	const showPosterSrc = tmdbPosterUrlFromPath(posterPath, "w342");
 
 	const portal = (
-		<div className="fixed inset-0 z-[250]">
-			{/* Scrim is a real button so Escape-or-click close stays keyboard-reachable. */}
-			<button
-				type="button"
-				aria-label="Close"
-				className={cn(APP_MODAL_OVERLAY_CLASS, "px-4 py-6")}
-				onClick={close}
-			/>
-			<div className="pointer-events-none fixed inset-0 z-[250] grid min-h-[100dvh] place-items-end overflow-y-auto px-4 py-6 md:place-items-center">
-				<div
-					role="dialog"
-					aria-modal="true"
-					aria-labelledby={titleId}
-					className="pointer-events-auto relative flex max-h-[min(88svh,52rem)] w-full max-w-5xl flex-col overflow-hidden rounded-[2rem] bg-card"
-				>
-					<button
-						type="button"
-						aria-label="Close"
-						className={cn(
-							"absolute top-3 right-3 z-10 inline-flex min-h-11 min-w-11 cursor-pointer select-none items-center justify-center rounded-full bg-background text-muted-foreground",
-							DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-						)}
-						onClick={close}
+		<>
+			{pose ? (
+				<PosterFlightClone
+					pose={pose}
+					homeRadius={homeRadiusRef.current || pose.borderRadius}
+					frontSrc={showPosterSrc}
+					backSrc={largePosterSrc}
+					onComplete={maybeFinishClose}
+				/>
+			) : null}
+			<motion.div
+				className="fixed inset-0 z-[250]"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: chromeOn ? 1 : 0 }}
+				transition={{
+					duration: POSTER_CHROME_FADE_S,
+					delay: chromeDelay,
+					ease: POSTER_FLIGHT_EASE,
+				}}
+				onAnimationComplete={maybeFinishClose}
+			>
+				{/* Scrim is a real button so Escape-or-click close stays keyboard-reachable. */}
+				<button
+					type="button"
+					aria-label="Close"
+					className={cn(APP_MODAL_OVERLAY_CLASS, "px-4 py-6")}
+					onClick={close}
+				/>
+				<div className="pointer-events-none fixed inset-0 z-[250] grid min-h-[100dvh] place-items-end overflow-y-auto px-4 py-6 md:place-items-center">
+					<div
+						role="dialog"
+						aria-modal="true"
+						aria-labelledby={titleId}
+						className="pointer-events-auto relative flex max-h-[min(88svh,52rem)] w-full max-w-5xl flex-col overflow-hidden rounded-[2rem] bg-card"
 					>
-						<X className="size-4" aria-hidden />
-					</button>
-
-					<div className="flex min-h-0 flex-1 flex-col gap-6 overflow-hidden p-6 pt-14 sm:flex-row">
-						<aside className="flex w-full shrink-0 flex-col gap-3 sm:w-44">
-							<div
-								data-diary-flight-slot
-								className="relative aspect-2/3 w-full overflow-hidden rounded-[1.25rem] bg-background"
-							>
-								{largePosterSrc ? (
-									<Image
-										src={largePosterSrc}
-										alt=""
-										fill
-										sizes="(max-width:640px) 80vw, 176px"
-										className="object-cover"
-										unoptimized={isTmdbCdnUrl(largePosterSrc)}
-										priority
-									/>
-								) : null}
-							</div>
-							{seriesLabel ? (
-								<p className="text-pretty font-medium text-foreground text-sm">
-									{seriesLabel}
-								</p>
-							) : null}
-							<div className="flex gap-2 overflow-x-auto sm:flex-col sm:overflow-y-auto sm:overflow-x-hidden">
-								{seasons.map((season) => (
-									<SeasonPosterThumb
-										key={season.id}
-										src={seasonPosterSrc(season.poster_path, posterPath)}
-										label={season.name || `Season ${season.season_number}`}
-										active={season.season_number === activeSeason}
-										onSelect={() => selectSeason(season.season_number)}
-									/>
-								))}
-							</div>
-						</aside>
-
-						<div
-							ref={listRef}
-							className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+						<button
+							type="button"
+							aria-label="Close"
+							className={cn(
+								"absolute top-3 right-3 z-10 inline-flex min-h-11 min-w-11 cursor-pointer select-none items-center justify-center rounded-full bg-background text-muted-foreground",
+								DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+							)}
+							onClick={close}
 						>
-							<h2
-								id={titleId}
-								className="text-balance font-semibold text-foreground text-lg tracking-tight"
+							<X className="size-4" aria-hidden />
+						</button>
+
+						<div className="flex min-h-0 flex-1 flex-col gap-6 overflow-hidden p-6 pt-14 sm:flex-row">
+							<aside className="flex w-full shrink-0 flex-col gap-3 sm:w-44">
+								<div
+									ref={slotRef}
+									data-diary-flight-slot
+									className="relative aspect-2/3 w-full overflow-hidden rounded-[1.25rem] bg-background"
+								>
+									{largePosterSrc ? (
+										<Image
+											src={largePosterSrc}
+											alt=""
+											fill
+											sizes="(max-width:640px) 80vw, 176px"
+											className={cn(
+												"object-cover",
+												// The clone is the poster until the flight home unmounts it.
+												pose ? "invisible" : undefined,
+											)}
+											unoptimized={isTmdbCdnUrl(largePosterSrc)}
+											priority
+										/>
+									) : null}
+								</div>
+								{seriesLabel ? (
+									<p className="text-pretty font-medium text-foreground text-sm">
+										{seriesLabel}
+									</p>
+								) : null}
+								<div className="flex gap-2 overflow-x-auto sm:flex-col sm:overflow-y-auto sm:overflow-x-hidden">
+									{seasons.map((season) => (
+										<SeasonPosterThumb
+											key={season.id}
+											src={seasonPosterSrc(season.poster_path, posterPath)}
+											label={season.name || `Season ${season.season_number}`}
+											active={season.season_number === activeSeason}
+											onSelect={() => selectSeason(season.season_number)}
+										/>
+									))}
+								</div>
+							</aside>
+
+							<div
+								ref={listRef}
+								className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 							>
-								{title}
-							</h2>
+								<h2
+									id={titleId}
+									className="text-balance font-semibold text-foreground text-lg tracking-tight"
+								>
+									{title}
+								</h2>
 
-							{seasonsError ? (
-								<div className="flex flex-col items-start gap-3">
-									<p className="text-muted-foreground text-sm">
-										Couldn’t load episodes
-									</p>
-									<button
-										type="button"
-										className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-background px-4 font-medium text-sm"
-										onClick={retrySeasons}
-									>
-										Try again
-									</button>
-								</div>
-							) : null}
+								{seasonsError ? (
+									<div className="flex flex-col items-start gap-3">
+										<p className="text-muted-foreground text-sm">
+											Couldn’t load episodes
+										</p>
+										<button
+											type="button"
+											className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-background px-4 font-medium text-sm"
+											onClick={retrySeasons}
+										>
+											Try again
+										</button>
+									</div>
+								) : null}
 
-							{diaryError ? (
-								<div className="flex flex-col items-start gap-3">
-									<p className="text-muted-foreground text-sm">
-										Couldn’t load diary entries
-									</p>
-									<button
-										type="button"
-										className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-background px-4 font-medium text-sm"
-										onClick={() => {
-											void refetchDiary();
-										}}
-									>
-										Try again
-									</button>
-								</div>
-							) : null}
+								{diaryError ? (
+									<div className="flex flex-col items-start gap-3">
+										<p className="text-muted-foreground text-sm">
+											Couldn’t load diary entries
+										</p>
+										<button
+											type="button"
+											className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-background px-4 font-medium text-sm"
+											onClick={() => {
+												void refetchDiary();
+											}}
+										>
+											Try again
+										</button>
+									</div>
+								) : null}
 
-							{seasonsLoading && !seasonsError
-								? (["left", "right"] as const).map((slot) => (
-										<div
-											key={`season-bone-${slot}`}
+								{seasonsLoading && !seasonsError
+									? (["left", "right"] as const).map((slot) => (
+											<div
+												key={`season-bone-${slot}`}
+												className="rounded-[1.25rem] bg-background p-4"
+											>
+												<div className="flex flex-wrap gap-2">
+													{(["a", "b", "c", "d", "e", "f"] as const).map(
+														(pillSlot) => (
+															<span
+																key={`bone-${slot}-${pillSlot}`}
+																className="h-11 w-11 animate-pulse rounded-full bg-card"
+															/>
+														),
+													)}
+												</div>
+											</div>
+										))
+									: null}
+
+								{seasons.map((season) => {
+									const seasonNumber = season.season_number;
+									const episodes = episodesBySeason[seasonNumber];
+									const failed = seasonFailed[seasonNumber] === true;
+									const label = seasonLogLabel(seasonNumber, episodeLogs);
+									const name = season.name || `Season ${seasonNumber}`;
+									return (
+										<section
+											key={season.id}
+											ref={(node) => {
+												if (node) groupRefs.current.set(seasonNumber, node);
+												else groupRefs.current.delete(seasonNumber);
+											}}
+											data-season-number={seasonNumber}
 											className="rounded-[1.25rem] bg-background p-4"
 										>
-											<div className="flex flex-wrap gap-2">
-												{(["a", "b", "c", "d", "e", "f"] as const).map(
-													(pillSlot) => (
+											<header className="mb-3 text-pretty font-medium text-sm">
+												{name}
+												{label ? (
+													<span className="text-muted-foreground">
+														{" "}
+														· {label}
+													</span>
+												) : null}
+											</header>
+											{failed ? (
+												<button
+													type="button"
+													className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-card px-4 font-medium text-sm"
+													onClick={() => {
+														void loadSeasonEpisodes(seasonNumber);
+													}}
+												>
+													Try again
+												</button>
+											) : episodes == null ? (
+												<div className="flex flex-wrap gap-2">
+													{loadingPillKeys(
+														seasonNumber,
+														season.episode_count,
+													).map((pillKey) => (
 														<span
-															key={`bone-${slot}-${pillSlot}`}
+															key={pillKey}
 															className="h-11 w-11 animate-pulse rounded-full bg-card"
 														/>
-													),
-												)}
-											</div>
-										</div>
-									))
-								: null}
+													))}
+												</div>
+											) : (
+												<div className="flex flex-wrap gap-2">
+													{episodes.map((episode) => (
+														<EpisodePill
+															key={episode.id}
+															episodeNumber={episode.episode_number}
+															pill={pillForEpisode(
+																{
+																	seasonNumber,
+																	episodeNumber: episode.episode_number,
+																},
+																episodeLogs,
+															)}
+															onOpenLog={openLatestLog}
+														/>
+													))}
+												</div>
+											)}
+										</section>
+									);
+								})}
 
-							{seasons.map((season) => {
-								const seasonNumber = season.season_number;
-								const episodes = episodesBySeason[seasonNumber];
-								const failed = seasonFailed[seasonNumber] === true;
-								const label = seasonLogLabel(seasonNumber, episodeLogs);
-								const name = season.name || `Season ${seasonNumber}`;
-								return (
-									<section
-										key={season.id}
-										ref={(node) => {
-											if (node) groupRefs.current.set(seasonNumber, node);
-											else groupRefs.current.delete(seasonNumber);
-										}}
-										data-season-number={seasonNumber}
-										className="rounded-[1.25rem] bg-background p-4"
-									>
-										<header className="mb-3 text-pretty font-medium text-sm">
-											{name}
-											{label ? (
-												<span className="text-muted-foreground">
-													{" "}
-													· {label}
-												</span>
-											) : null}
-										</header>
-										{failed ? (
-											<button
-												type="button"
-												className="inline-flex min-h-11 cursor-pointer select-none items-center rounded-full bg-card px-4 font-medium text-sm"
-												onClick={() => {
-													void loadSeasonEpisodes(seasonNumber);
-												}}
-											>
-												Try again
-											</button>
-										) : episodes == null ? (
-											<div className="flex flex-wrap gap-2">
-												{loadingPillKeys(
-													seasonNumber,
-													season.episode_count,
-												).map((pillKey) => (
-													<span
-														key={pillKey}
-														className="h-11 w-11 animate-pulse rounded-full bg-card"
-													/>
-												))}
-											</div>
-										) : (
-											<div className="flex flex-wrap gap-2">
-												{episodes.map((episode) => (
-													<EpisodePill
-														key={episode.id}
-														episodeNumber={episode.episode_number}
-														pill={pillForEpisode(
-															{
-																seasonNumber,
-																episodeNumber: episode.episode_number,
-															},
-															episodeLogs,
-														)}
-														onOpenLog={openLatestLog}
-													/>
-												))}
-											</div>
-										)}
-									</section>
-								);
-							})}
-
-							{!seasonsError && seasons.length > 0 ? (
-								<div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 pb-2">
-									<LegendSwatch label="Not logged">—</LegendSwatch>
-									<LegendSwatch label="Watched, no rating">·</LegendSwatch>
-									<LegendSwatch
-										label="0"
-										background={ratedPillBackground(0)}
-										textClass={ratedPillTextClass(0)}
-									>
-										0
-									</LegendSwatch>
-									<LegendSwatch
-										label="5"
-										background={ratedPillBackground(5)}
-										textClass={ratedPillTextClass(5)}
-									>
-										5
-									</LegendSwatch>
-									<LegendSwatch
-										label="10"
-										background={ratedPillBackground(10)}
-										textClass={ratedPillTextClass(10)}
-									>
-										10
-									</LegendSwatch>
-								</div>
-							) : null}
+								{!seasonsError && seasons.length > 0 ? (
+									<div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 pb-2">
+										<LegendSwatch label="Not logged">—</LegendSwatch>
+										<LegendSwatch label="Watched, no rating">·</LegendSwatch>
+										<LegendSwatch
+											label="0"
+											background={ratedPillBackground(0)}
+											textClass={ratedPillTextClass(0)}
+										>
+											0
+										</LegendSwatch>
+										<LegendSwatch
+											label="5"
+											background={ratedPillBackground(5)}
+											textClass={ratedPillTextClass(5)}
+										>
+											5
+										</LegendSwatch>
+										<LegendSwatch
+											label="10"
+											background={ratedPillBackground(10)}
+											textClass={ratedPillTextClass(10)}
+										>
+											10
+										</LegendSwatch>
+									</div>
+								) : null}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</motion.div>
+		</>
 	);
 
 	return createPortal(portal, document.body);
