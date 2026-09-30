@@ -18,6 +18,7 @@ import {
 } from "react";
 import { createPortal, flushSync } from "react-dom";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { SearchDialogCastCrewResults } from "@/components/home/search-dialog-cast-crew-results";
 import { SearchDialogFooter } from "@/components/home/search-dialog-footer";
 import { SearchDialogGenreRail } from "@/components/home/search-dialog-genre-rail";
@@ -1031,7 +1032,7 @@ export function CatalogSearchDialogRoot({
 						<div className="relative shrink-0 px-2.5 pt-2.5">
 							<form
 								onSubmit={handleFormSubmit}
-								className="catalog-search-query flex min-w-0 items-center gap-[15px] rounded-full pb-2 pr-10 pl-2.5"
+								className="catalog-search-query flex min-w-0 items-center gap-[15px] rounded-full pr-10 pb-2 pl-2.5"
 							>
 								<label
 									htmlFor="home-sticky-search-dialog-input"
@@ -1157,13 +1158,13 @@ export function CatalogSearchDialogRoot({
 											) : null}
 											{structuredSearch.needsSignIn ? (
 												<p className="text-muted-foreground text-xs leading-relaxed">
-													<Link
-														href="/sign-in"
+													<button
+														type="button"
 														className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
-														onClick={() => beginClose()}
+														onClick={() => openGuestAccountDialog()}
 													>
 														Sign in
-													</Link>{" "}
+													</button>{" "}
 													to search your lists.
 												</p>
 											) : searchLoading &&
@@ -1247,10 +1248,7 @@ export function CatalogSearchDialogRoot({
 													{setupHint ?? (
 														<>
 															No people found
-															{trimmedDraft
-																? ` for “${trimmedDraft}”`
-																: ""}
-															.
+															{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
 														</>
 													)}
 												</p>
