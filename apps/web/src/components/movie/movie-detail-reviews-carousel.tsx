@@ -11,6 +11,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { DetailEditorialRailFooterControls } from "@/components/movie/detail-editorial-rail-controls";
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import type { MoviePageReview } from "@/components/movie/movie-detail-explore-tabs";
@@ -59,6 +60,8 @@ function MovieDetailReviewsEmpty({
 	averageRating?: number | null;
 }) {
 	const openReviewComposer = useReviewComposer((s) => s.open);
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 	const canCompose = movieId != null && Boolean(movieTitle?.trim());
 
 	return (
@@ -80,13 +83,18 @@ function MovieDetailReviewsEmpty({
 						"mt-6 inline-flex items-center justify-center rounded-full bg-card px-5 py-2.5 font-medium text-foreground text-sm",
 						"[@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
 					)}
-					onClick={() =>
+					onClick={() => {
+						// Guests: account dialog — never open the composer or post.
+						if (!signedIn) {
+							openGuestAccountDialog();
+							return;
+						}
 						openReviewComposer({
 							movieId: movieId as number,
 							movieTitle: movieTitle as string,
 							averageRating: averageRating ?? null,
-						})
-					}
+						});
+					}}
 				>
 					Write a review
 				</DetailMotionButton>

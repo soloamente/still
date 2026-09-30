@@ -6,11 +6,13 @@ import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwi
 import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { AddToListControl } from "@/components/list/add-to-list-control";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
 import { useMovieDetailUserState } from "@/components/movie/use-movie-detail-user-state";
 import { useReviewComposer } from "@/components/review/review-composer";
+import { authClient } from "@/lib/auth-client";
 import {
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	DETAIL_MOTION_SWAP_CLASS,
@@ -35,6 +37,8 @@ export function MovieDetailPrimaryActions({
 	averageRating?: number | null;
 }) {
 	const openReviewComposer = useReviewComposer((s) => s.open);
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 	const {
 		hydrated,
 		myLogs,
@@ -73,6 +77,11 @@ export function MovieDetailPrimaryActions({
 			: "add-watched";
 
 	function handleOpenReview() {
+		// Hero Add review is logged-in only in the UI; gate anyway so guests never open composer.
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		openReviewComposer({
 			movieId,
 			movieTitle: title,
