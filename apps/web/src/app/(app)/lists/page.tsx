@@ -36,7 +36,57 @@ export default async function ListsPage({
 	const sp = await searchParams;
 	const lobbyOrder = parseListsLobbyOrder(sp.order);
 
-	const [session, api] = await Promise.all([authServer(), serverApi()]);
+	const session = await authServer();
+
+	// Guests browse an empty lobby — do not hit `/api/lists/me` or profile.
+	if (!session) {
+		return (
+			<div className="flex flex-1 flex-col overflow-visible bg-background">
+				<Suspense fallback={<LobbyStickyChromeFallback />}>
+					<HomeStickyChrome user={null} />
+				</Suspense>
+
+				<section
+					className={cn(
+						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
+						"overflow-visible",
+					)}
+				>
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-10 sm:px-4 sm:py-16">
+						<div
+							className="flex w-full max-w-md flex-col items-center gap-5 rounded-[2rem] bg-background px-6 py-12 text-center sm:px-10 sm:py-14"
+							role="status"
+						>
+							<div className="flex flex-col gap-2">
+								<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
+									No lists yet
+								</p>
+								<p className="text-pretty text-muted-foreground text-sm leading-relaxed">
+									Group titles into a list — a genre lane, a year, a shared
+									canon — then open it from here.
+								</p>
+							</div>
+							<ListsNewListButton label="Create your first list" />
+							<Link
+								href="/home"
+								className={cn(
+									buttonVariants({
+										variant: "ghost",
+										size: "pill",
+									}),
+									"min-h-11",
+								)}
+							>
+								Browse films and shows
+							</Link>
+						</div>
+					</div>
+				</section>
+			</div>
+		);
+	}
+
+	const api = await serverApi();
 	const [mineRes, profileRes] = await Promise.all([
 		api.api.lists.me.get().catch(() => ({ data: [] })),
 		api.api.profiles.me.get().catch(() => ({ data: null })),
@@ -52,7 +102,6 @@ export default async function ListsPage({
 	const raw = ((mineRes.data as unknown[]) ?? []).map(toListBoardRow);
 	const lobbyRows = sortListsLobbyRows(raw, lobbyOrder);
 	const seeds = lobbyRows.map(listBoardRowToLobbySeed);
-	const catalogueWaveKeyOverride = `${lobbyOrder}:${seeds.map((s) => s.id).join("|")}`;
 	const hasRows = seeds.length > 0;
 
 	return (
@@ -67,40 +116,42 @@ export default async function ListsPage({
 					"overflow-visible",
 				)}
 			>
-				<div className="flex shrink-0 items-center justify-between gap-3">
-					<Suspense fallback={<LobbyCatalogChipFallback />}>
-						<ListsCatalogOrderChips />
-					</Suspense>
-					<div className="flex shrink-0 items-center">
-						<ListsNewListButton />
+				{hasRows ? (
+					<div className="flex shrink-0 items-center justify-between gap-2">
+						<Suspense fallback={<LobbyCatalogChipFallback />}>
+							<ListsCatalogOrderChips />
+						</Suspense>
+						<div className="flex shrink-0 items-center">
+							<ListsNewListButton />
+						</div>
 					</div>
-				</div>
+				) : null}
 
 				{!hasRows ? (
-					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-6 sm:px-4 sm:py-10">
+					<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-1 py-10 sm:px-4 sm:py-16">
 						<div
-							className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl border border-border border-dashed bg-card/40 px-6 py-12 text-center sm:px-10 sm:py-14"
+							className="flex w-full max-w-md flex-col items-center gap-5 rounded-[2rem] bg-background px-6 py-12 text-center sm:px-10 sm:py-14"
 							role="status"
 						>
-							<div className="space-y-2">
+							<div className="flex flex-col gap-2">
 								<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
 									No lists yet
 								</p>
-								<p className="text-muted-foreground text-sm leading-relaxed">
-									When you want to group titles — a genre lane, an annual top
-									ten, a shared canon — tap{" "}
-									<strong className="text-foreground">New list</strong> or save
-									from any film page with{" "}
-									<strong className="text-foreground">Add to list</strong>.
+								<p className="text-pretty text-muted-foreground text-sm leading-relaxed">
+									Group titles into a list — a genre lane, a year, a shared
+									canon — then open it from here.
 								</p>
 							</div>
 							<ListsNewListButton label="Create your first list" />
 							<Link
 								href="/home"
-								className={buttonVariants({
-									variant: "ghost",
-									size: "pill",
-								})}
+								className={cn(
+									buttonVariants({
+										variant: "ghost",
+										size: "pill",
+									}),
+									"min-h-11",
+								)}
 							>
 								Browse films and shows
 							</Link>
@@ -108,7 +159,6 @@ export default async function ListsPage({
 					</div>
 				) : (
 					<ListsLobbyCatalogue
-						catalogueWaveKeyOverride={catalogueWaveKeyOverride}
 						monochromePeersOnHover={monochromePeersOnHover}
 						seeds={seeds}
 					/>

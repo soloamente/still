@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { SearchDialogCastCrewResults } from "@/components/home/search-dialog-cast-crew-results";
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
 import { SearchDialogPeopleResults } from "@/components/home/search-dialog-people-results";
@@ -130,7 +131,14 @@ export function SearchDialogCategoryBody({
 		if (search.lists.needsSignIn) {
 			return (
 				<p className="px-4 pb-4 text-muted-foreground text-xs leading-relaxed">
-					Sign in to search your lists.
+					<button
+						type="button"
+						className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
+						onClick={() => openGuestAccountDialog()}
+					>
+						Sign in
+					</button>{" "}
+					to search your lists.
 				</p>
 			);
 		}

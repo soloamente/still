@@ -4,7 +4,7 @@ import type { PlanTierId } from "@still/plans";
 import IconBell from "@still/ui/icons/bell";
 import IconHomeFilled from "@still/ui/icons/home-filled";
 import { cn } from "@still/ui/lib/utils";
-import { Plus, Search } from "lucide-react";
+import { Plus, Search, UserRound } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,8 +12,9 @@ import { type ReactNode, useCallback, useState } from "react";
 import { isActive, shouldHideMobileTabBar } from "@/components/app/mobile-nav";
 import { MobileYouSheet } from "@/components/app/mobile-you-sheet";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
-import { useNotificationsInbox } from "@/components/notifications/notifications-inbox-provider";
+import { useNotificationsInboxOptional } from "@/components/notifications/notifications-inbox-provider";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
 import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
 
@@ -81,11 +82,12 @@ function MobileTabSlot({
 	);
 }
 
-export function MobileTabBar({ user }: { user: TabUser }) {
+export function MobileTabBar({ user }: { user: TabUser | null }) {
 	const pathname = usePathname();
 	const reduceMotion = useReducedMotion();
-	const { unreadCount } = useNotificationsInbox();
-	const hasUnreadInbox = unreadCount > 0;
+	const inbox = useNotificationsInboxOptional();
+	const unreadCount = inbox?.unreadCount ?? 0;
+	const hasUnreadInbox = Boolean(user) && unreadCount > 0;
 	const requestCatalogSearch = useCatalogSearchDialog((s) => s.requestOpen);
 	const openQuickLog = useQuickLog((s) => s.open);
 	const [youOpen, setYouOpen] = useState(false);
@@ -95,6 +97,7 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 
 	const homeActive = isActive(pathname, "/home");
 	const inboxActive = isActive(pathname, "/notifications");
+	const isGuest = !user;
 
 	const pillTransition = reduceMotion
 		? { duration: 0 }
@@ -159,80 +162,120 @@ export function MobileTabBar({ user }: { user: TabUser }) {
 						</MobileTabSlot>
 					</button>
 
-					{/* Log — accent chip inline with the row (no floating lift). */}
+					{/* Log — guests open the account dialog; patrons open quick log. */}
 					<button
 						type="button"
 						className={cn(
 							"relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.96] motion-reduce:active:scale-100",
 							DETAIL_MOTION_PRESSABLE_CLASS,
 						)}
-						onClick={() => openQuickLog()}
+						onClick={() => {
+							if (isGuest) {
+								openGuestAccountDialog();
+								return;
+							}
+							openQuickLog();
+						}}
 						aria-label="Log a film"
 					>
 						<Plus className="size-5" aria-hidden />
 					</button>
 
-					{/* Inbox */}
-					<Link
-						href="/notifications"
-						aria-current={inboxActive ? "page" : undefined}
-						aria-label={
-							hasUnreadInbox ? "Inbox, unread notifications" : "Inbox"
-						}
-						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
-					>
-						<MobileTabSlot
-							active={inboxActive && !youOpen}
-							label="Inbox"
-							showPill={inboxActive && !youOpen}
-							pillTransition={pillTransition}
+					{/* Inbox — guests stay on the current route and open the account dialog. */}
+					{isGuest ? (
+						<button
+							type="button"
+							className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
+							onClick={() => openGuestAccountDialog()}
+							aria-label="Inbox"
 						>
-							<span className="relative">
+							<MobileTabSlot
+								active={false}
+								label="Inbox"
+								showPill={false}
+								pillTransition={pillTransition}
+							>
 								<IconBell size="20px" className="size-5 shrink-0" aria-hidden />
-								{hasUnreadInbox ? (
-									<span
-										className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
+							</MobileTabSlot>
+						</button>
+					) : (
+						<Link
+							href="/notifications"
+							aria-current={inboxActive ? "page" : undefined}
+							aria-label={
+								hasUnreadInbox ? "Inbox, unread notifications" : "Inbox"
+							}
+							className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
+						>
+							<MobileTabSlot
+								active={inboxActive && !youOpen}
+								label="Inbox"
+								showPill={inboxActive && !youOpen}
+								pillTransition={pillTransition}
+							>
+								<span className="relative">
+									<IconBell
+										size="20px"
+										className="size-5 shrink-0"
 										aria-hidden
 									/>
-								) : null}
-							</span>
-						</MobileTabSlot>
-					</Link>
+									{hasUnreadInbox ? (
+										<span
+											className="absolute top-0 right-0 size-2 rounded-full bg-desert-orange ring-2 ring-background"
+											aria-hidden
+										/>
+									) : null}
+								</span>
+							</MobileTabSlot>
+						</Link>
+					)}
 
-					{/* You */}
+					{/* You — guests open the account dialog; patrons open the hub sheet. */}
 					<button
 						type="button"
 						className={cn("relative z-10", DETAIL_MOTION_PRESSABLE_CLASS)}
-						onClick={() => setYouOpen(true)}
-						aria-haspopup="dialog"
-						aria-expanded={youOpen}
-						aria-label="Your account and destinations"
+						onClick={() => {
+							if (isGuest) {
+								openGuestAccountDialog();
+								return;
+							}
+							setYouOpen(true);
+						}}
+						aria-haspopup={isGuest ? undefined : "dialog"}
+						aria-expanded={isGuest ? undefined : youOpen}
+						aria-label={isGuest ? "Sign in" : "Your account and destinations"}
 					>
 						<MobileTabSlot
-							active={youOpen}
+							active={!isGuest && youOpen}
 							label="You"
-							showPill={youOpen}
+							showPill={!isGuest && youOpen}
 							pillTransition={pillTransition}
 						>
-							<NavUserAvatar
-								src={user.image}
-								name={user.name}
-								handle={user.handle}
-								size="compact"
-								isAnimated={user.avatarIsAnimated ?? false}
-								planTier={user.planTier ?? null}
-								staffRole={user.staffRole ?? null}
-							/>
+							{user ? (
+								<NavUserAvatar
+									src={user.image}
+									name={user.name}
+									handle={user.handle}
+									size="compact"
+									isAnimated={user.avatarIsAnimated ?? false}
+									planTier={user.planTier ?? null}
+									staffRole={user.staffRole ?? null}
+								/>
+							) : (
+								<UserRound className="size-5" aria-hidden />
+							)}
 						</MobileTabSlot>
 					</button>
 				</div>
 			</nav>
 
-			<MobileYouSheet
-				open={youOpen}
-				onClose={() => setYouOpen(false)}
-				user={user}
-			/>
+			{user ? (
+				<MobileYouSheet
+					open={youOpen}
+					onClose={() => setYouOpen(false)}
+					user={user}
+				/>
+			) : null}
 		</>
 	);
 }

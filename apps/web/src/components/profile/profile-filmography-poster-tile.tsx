@@ -24,6 +24,7 @@ import {
 	useState,
 } from "react";
 import { toast } from "sonner";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { useAddToListRadial } from "@/components/catalogue/use-add-to-list-radial";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
 import {
@@ -167,7 +168,7 @@ export function ProfileFilmographyPosterTile({
 	}, [open, signedIn, isMovie, tmdbId]);
 
 	const notifySignIn = useCallback(() => {
-		toast.error("Sign in to use this action");
+		openGuestAccountDialog();
 	}, []);
 
 	const handleCopyLink = useCallback(async () => {

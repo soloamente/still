@@ -30,6 +30,7 @@ import {
 	accountMenuContentClassName,
 } from "@/components/app/app-user-account-menu";
 import { NavUserAvatar } from "@/components/app/nav-user-avatar";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { useHomeBrowseSurfaceOptional } from "@/components/home/home-browse-surface-context";
 import { HomeNotificationsMenu } from "@/components/home/home-notifications-menu";
 import { HomeStickySearch } from "@/components/home/home-sticky-search";
@@ -409,7 +410,8 @@ export function HomeStickyChrome({
 							</Tooltip>
 						</div>
 						<div className="flex shrink-0 gap-1">
-							<HomeNotificationsMenu authenticated={Boolean(user)} />
+							{/* Guests hide notifications + invite — Sign in opens the account dialog. */}
+							{user ? <HomeNotificationsMenu authenticated /> : null}
 							{user ? <InviteEarnHeaderButton /> : null}
 							{user ? (
 								<DropdownMenu
@@ -462,10 +464,16 @@ export function HomeStickyChrome({
 									</DropdownMenuContent>
 								</DropdownMenu>
 							) : (
-								<div
-									className="size-11 shrink-0 rounded-full bg-muted/40"
-									aria-hidden
-								/>
+								<Button
+									type="button"
+									variant="ghost"
+									size="pill"
+									aria-label="Sign in"
+									className="h-11 shrink-0 rounded-full bg-card px-4 font-semibold text-foreground"
+									onClick={() => openGuestAccountDialog()}
+								>
+									Sign in
+								</Button>
 							)}
 						</div>
 					</div>

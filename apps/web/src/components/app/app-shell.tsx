@@ -69,10 +69,11 @@ export function AppShell({
 	user,
 	children,
 }: {
-	user: AppShellUser;
+	/** `null` = signed-out guest browse (no notifications, invite, or account menu). */
+	user: AppShellUser | null;
 	children: ReactNode;
 }) {
-	const supportCampaign = getActiveSenseSupportCampaign();
+	const supportCampaign = user ? getActiveSenseSupportCampaign() : null;
 
 	return (
 		<Suspense fallback={null}>
@@ -97,10 +98,12 @@ export function AppShell({
 						{children}
 					</main>
 					<AppScrollToTop />
+					{/* Guests may search films/TV/people — no viewer means lists stay gated. */}
 					<CatalogSearchDialogRoot
-						viewer={{ id: user.id, handle: user.handle }}
+						viewer={user ? { id: user.id, handle: user.handle } : null}
 					/>
 					<GoToDialogRoot />
+					{/* Quick log / review / list drawers stay mounted; gated actions open the account dialog. */}
 					<QuickLogRoot />
 					<ReviewComposerRoot />
 					<ReviewDetailRoot />
@@ -108,32 +111,39 @@ export function AppShell({
 					<CreateListDrawerRoot />
 					<PatronWatchLedgerDrawerRoot />
 					<PatronMembersLedgerDrawerRoot />
-					<WhatsNewDialogRoot userId={user.id} />
-					{supportCampaign ? (
+					{user ? <WhatsNewDialogRoot userId={user.id} /> : null}
+					{user && supportCampaign ? (
 						<SenseSupportCampaignDialogRoot
 							userId={user.id}
 							campaign={supportCampaign}
 						/>
 					) : null}
-					<MonthRecapDialogRoot userId={user.id} />
-					<Suspense fallback={null}>
-						<PlanPurchaseSuccessDialogRoot />
-					</Suspense>
-					<RoleChangeDialogRoot />
-					<InviteEarnDialogRoot />
+					{user ? <MonthRecapDialogRoot userId={user.id} /> : null}
+					{user ? (
+						<Suspense fallback={null}>
+							<PlanPurchaseSuccessDialogRoot />
+						</Suspense>
+					) : null}
+					{user ? <RoleChangeDialogRoot /> : null}
+					{/* Invite is signed-in only — guests see Sign in in sticky chrome instead. */}
+					{user ? <InviteEarnDialogRoot /> : null}
 					<RecommendBackSheetRoot />
 					<MobileTabBar
-						user={{
-							id: user.id,
-							name: user.name,
-							image: user.image,
-							handle: user.handle,
-							email: user.email,
-							isPro: user.isPro,
-							avatarIsAnimated: user.avatarIsAnimated,
-							planTier: user.planTier ?? null,
-							staffRole: user.staffRole ?? null,
-						}}
+						user={
+							user
+								? {
+										id: user.id,
+										name: user.name,
+										image: user.image,
+										handle: user.handle,
+										email: user.email,
+										isPro: user.isPro,
+										avatarIsAnimated: user.avatarIsAnimated,
+										planTier: user.planTier ?? null,
+										staffRole: user.staffRole ?? null,
+									}
+								: null
+						}
 					/>
 				</div>
 			</FeedbackDrawerProvider>

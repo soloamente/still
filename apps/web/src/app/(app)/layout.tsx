@@ -5,6 +5,7 @@ import { AppPatronAudioScope } from "@/components/app/app-patron-audio-scope";
 import { AppShell } from "@/components/app/app-shell";
 import { AppThemeShell } from "@/components/app/app-theme-shell";
 import { PublicShareShell } from "@/components/app/public-share-shell";
+import { GuestAccountProvider } from "@/components/auth/guest-account-dialog";
 import { VerifyEmailBanner } from "@/components/auth/verify-email-banner";
 import { InboxRealtimeSubscriber } from "@/components/notifications/inbox-realtime-subscriber";
 import { NotificationsInboxProvider } from "@/components/notifications/notifications-inbox-provider";
@@ -19,6 +20,7 @@ import {
 	type MeProfile,
 	PROFILE_FETCH_FAILED,
 } from "@/lib/fetch-me-profile";
+import { isAccountRequiredPath } from "@/lib/guest-browse-paths";
 import { patronNeedsOnboarding } from "@/lib/onboarding-gate";
 import { buildPatronNavUser } from "@/lib/patron-nav-user";
 import { isShareableAppPath } from "@/lib/shareable-app-paths";
@@ -31,23 +33,37 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		(await headers()).get("x-still-pathname")?.split("?")[0] ?? "";
 	const isPublicShareRoute = isShareableAppPath(pathname);
 
-	// Film/TV/profile pages must render for link-preview crawlers (no session cookie).
+	// Film/TV/profile/people/journal — crawler-safe share chrome (not the full guest shell).
 	if (!session && isPublicShareRoute) {
 		return (
 			<AppThemeShell initialAppearance={null} isPro={false}>
 				<AppPatronAudioScope>
-					<PublicShareShell>{children}</PublicShareShell>
+					<GuestAccountProvider>
+						<PublicShareShell>{children}</PublicShareShell>
+					</GuestAccountProvider>
 				</AppPatronAudioScope>
 			</AppThemeShell>
 		);
 	}
 
-	// Redirect through /signed-out (a Route Handler) rather than straight to
-	// /sign-in: a banned/revoked session leaves a stale cookie in the browser,
-	// and the proxy gates on cookie *presence*, so a direct /sign-in redirect
-	// bounces back to /home in an infinite loop. /signed-out clears the cookie
-	// first, breaking the loop.
-	if (!session) redirect("/signed-out");
+	// Personal routes never paint for guests — proxy usually redirects first;
+	// keep a layout safety net so diary/etc. never render unsigned.
+	if (!session && isAccountRequiredPath(pathname)) {
+		redirect("/home?account=1");
+	}
+
+	// Browse paths (`/home`, `/lists`, …) — full AppShell with no patron.
+	if (!session) {
+		return (
+			<AppThemeShell initialAppearance={null} isPro={false}>
+				<AppPatronAudioScope>
+					<GuestAccountProvider>
+						<AppShell user={null}>{children}</AppShell>
+					</GuestAccountProvider>
+				</AppPatronAudioScope>
+			</AppThemeShell>
+		);
+	}
 
 	const profileResult = await fetchMeProfile();
 	const profileFetchFailed = profileResult === PROFILE_FETCH_FAILED;
