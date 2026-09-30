@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
+import { authClient } from "@/lib/auth-client";
 import {
 	deleteTvWatchEpisode,
 	fetchTvWatchByTv,
@@ -23,6 +25,8 @@ import type {
  * so patrons can track episodes without writing a diary entry every time.
  */
 export function useTvWatch(tvId: number) {
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 	const [hydrated, setHydrated] = useState(false);
 	const [bundle, setBundle] = useState<TvWatchBundle | null>(null);
 	const [busy, setBusy] = useState<
@@ -58,19 +62,35 @@ export function useTvWatch(tvId: number) {
 	useEffect(() => {
 		let cancelled = false;
 		(async () => {
+			// Guests have no tv_watch row — hydrate empty without calling me endpoints.
+			if (!signedIn) {
+				setBundle({
+					watch: null,
+					show: null,
+					watchedEpisodes: [],
+					nextEpisode: null,
+				});
+				if (!cancelled) setHydrated(true);
+				return;
+			}
 			await refresh();
 			if (!cancelled) setHydrated(true);
 		})();
 		return () => {
 			cancelled = true;
 		};
-	}, [refresh]);
+	}, [refresh, signedIn]);
 
 	function applyBundle(next: TvWatchBundle | null) {
 		if (next) setBundle(next);
 	}
 
 	async function startWatching(progressMode?: TvProgressMode) {
+		// TV hero “Start watching” is the guest-visible watch entry — same dialog as Quick Log.
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy("start");
 		try {
 			const result = await postTvWatchStart({ tvId, progressMode });

@@ -8,6 +8,7 @@ import { Heart, ThumbsDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import {
 	DetailMotionButton,
@@ -143,7 +144,8 @@ export function ReactionsBar({
 
 	function requireSignedIn(): boolean {
 		if (session?.user) return true;
-		toast.error("Sign in to react to reviews");
+		// Guest review like/dislike — shared account dialog, no POST.
+		openGuestAccountDialog();
 		return false;
 	}
 

@@ -4,6 +4,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import {
 	DetailMotionButton,
 	DetailMotionLink,
@@ -13,6 +14,7 @@ import { usePatronEntitlementsOptional } from "@/components/plans/use-patron-ent
 import { PROFILE_HEADER_PILL_PRESS_CLASS } from "@/components/profile/profile-stat-cell";
 import { TasteOverlapDialog } from "@/components/profile/taste-overlap-dialog";
 import { api } from "@/lib/api";
+import { authClient } from "@/lib/auth-client";
 import { DETAIL_MOTION_PRESSABLE_CLASS } from "@/lib/detail-action-motion";
 import { profileTasteCompareFromSearch } from "@/lib/notification-href";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
@@ -160,10 +162,17 @@ function ProfileOtherPatronActions({
 
 function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
 	const router = useRouter();
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 	const [following, setFollowing] = useState<boolean | null>(null);
 	const [busy, setBusy] = useState(false);
 
 	useEffect(() => {
+		// Guests never follow — skip the check so we do not surface a failed GET as unfollowed.
+		if (!signedIn) {
+			setFollowing(false);
+			return;
+		}
 		let cancelled = false;
 		api.api.follows
 			.check({ userId: targetUserId })
@@ -179,9 +188,14 @@ function ProfileFollowAction({ targetUserId }: { targetUserId: string }) {
 		return () => {
 			cancelled = true;
 		};
-	}, [targetUserId]);
+	}, [signedIn, targetUserId]);
 
 	async function toggle() {
+		// Public profiles stay browseable; Follow opens the shared account dialog.
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy(true);
 		try {
 			if (following) {

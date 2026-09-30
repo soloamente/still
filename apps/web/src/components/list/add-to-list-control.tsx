@@ -18,6 +18,7 @@ import { Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { AddToListPicker } from "@/components/list/add-to-list-picker";
 import { CreateListDialog } from "@/components/list/create-list-dialog";
 import {
@@ -26,6 +27,7 @@ import {
 	addToListItemPostBody,
 } from "@/lib/add-to-list-media";
 import { api } from "@/lib/api";
+import { authClient } from "@/lib/auth-client";
 import {
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	useDetailActionMotion,
@@ -54,6 +56,8 @@ export function AddToListControl({
 	layout = true,
 }: AddToListControlProps) {
 	const motionProps = useDetailActionMotion();
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 	const [lists, setLists] = useState<ListBoardRow[] | null>(null);
 	const [listsLoading, setListsLoading] = useState(false);
 	const [pickerOpen, setPickerOpen] = useState(false);
@@ -92,11 +96,11 @@ export function AddToListControl({
 		}
 	}, [media.listingKind, media.tmdbId]);
 
-	// Warm patron lists once the hero row is interactive.
+	// Warm patron lists once the hero row is interactive (signed-in only).
 	useEffect(() => {
-		if (disabled || lists != null) return;
+		if (!signedIn || disabled || lists != null) return;
 		void loadLists();
-	}, [disabled, lists, loadLists]);
+	}, [signedIn, disabled, lists, loadLists]);
 
 	// Refresh rows when the picker opens so counts and covers stay current.
 	useEffect(() => {
@@ -111,6 +115,11 @@ export function AddToListControl({
 
 	async function handleTriggerActivate() {
 		if (disabled || listsLoading) return;
+		// Guests cannot save to a list — open the shared account dialog.
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		const rows = lists ?? (await loadLists());
 		if (!rows) return;
 		if (rows.length === 0) {

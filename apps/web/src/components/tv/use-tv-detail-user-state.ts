@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { authClient } from "@/lib/auth-client";
 import { dispatchListingEngagementInvalidate } from "@/lib/listing-engagement-invalidate";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import {
@@ -33,6 +35,8 @@ export function useTvDetailUserState(
 ) {
 	const { play } = useCinematicAudio();
 	const openQuickLog = useQuickLog((s) => s.open);
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 
 	const [hydrated, setHydrated] = useState(false);
 	const [myLogs, setMyLogs] = useState<MyTvLog[]>([]);
@@ -69,13 +73,20 @@ export function useTvDetailUserState(
 	useEffect(() => {
 		let cancelled = false;
 		(async () => {
+			// Guests have no diary/watchlist — mark hydrated without calling me endpoints.
+			if (!signedIn) {
+				setMyLogs([]);
+				setInWatchlist(false);
+				if (!cancelled) setHydrated(true);
+				return;
+			}
 			await refreshUserState();
 			if (!cancelled) setHydrated(true);
 		})();
 		return () => {
 			cancelled = true;
 		};
-	}, [refreshUserState]);
+	}, [refreshUserState, signedIn]);
 
 	function handleOpenQuickLog(
 		scope?: {
@@ -85,6 +96,10 @@ export function useTvDetailUserState(
 		},
 		openOpts?: { asRewatch?: boolean },
 	) {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		const logScope = scope?.logScope ?? "show";
 		const scopeTarget = {
 			logScope,
@@ -116,6 +131,10 @@ export function useTvDetailUserState(
 	}
 
 	function handleEditLog(log: MyTvLog) {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		if (!log) return;
 		const watchVenue =
 			log.watchVenue === "theaters" || log.watchVenue === "streaming"
@@ -153,6 +172,10 @@ export function useTvDetailUserState(
 	}
 
 	async function toggleWatchlist() {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy("watchlist");
 		try {
 			if (inWatchlist) {
@@ -187,6 +210,10 @@ export function useTvDetailUserState(
 	}
 
 	async function toggleHeart() {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy("like");
 		try {
 			if (!latestLog) {

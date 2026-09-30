@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
+import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
 import { useCinematicAudio } from "@/components/cinema/sound-provider";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { authClient } from "@/lib/auth-client";
 import { dispatchListingEngagementInvalidate } from "@/lib/listing-engagement-invalidate";
 import {
 	deleteWatchlistItem,
@@ -44,6 +46,8 @@ export function useMovieDetailUserState(
 ) {
 	const { play } = useCinematicAudio();
 	const openQuickLog = useQuickLog((s) => s.open);
+	const { data: session } = authClient.useSession();
+	const signedIn = Boolean(session?.user);
 
 	/** Until this flips false we avoid flashing misleading default labels before GETs land. */
 	const [hydrated, setHydrated] = useState(false);
@@ -83,15 +87,26 @@ export function useMovieDetailUserState(
 	useEffect(() => {
 		let cancelled = false;
 		(async () => {
+			// Guests have no diary/watchlist — mark hydrated without calling me endpoints.
+			if (!signedIn) {
+				setMyLogs([]);
+				setInWatchlist(false);
+				if (!cancelled) setHydrated(true);
+				return;
+			}
 			await refreshUserState();
 			if (!cancelled) setHydrated(true);
 		})();
 		return () => {
 			cancelled = true;
 		};
-	}, [refreshUserState]);
+	}, [refreshUserState, signedIn]);
 
 	function handleOpenQuickLog(openOpts?: { asRewatch?: boolean }) {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		const isRewatch = openOpts?.asRewatch ?? myLogs.length > 0;
 		openQuickLog({
 			movieId,
@@ -112,6 +127,10 @@ export function useMovieDetailUserState(
 	}
 
 	function handleEditLatestLog() {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		const log = latestLog;
 		if (!log) return;
 		const watchVenue =
@@ -142,6 +161,10 @@ export function useMovieDetailUserState(
 	}
 
 	async function toggleWatchlist() {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy("watchlist");
 		try {
 			if (inWatchlist) {
@@ -176,6 +199,10 @@ export function useMovieDetailUserState(
 	}
 
 	async function toggleHeart() {
+		if (!signedIn) {
+			openGuestAccountDialog();
+			return;
+		}
 		setBusy("like");
 		try {
 			if (!latestLog) {
