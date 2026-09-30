@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import { guestAccountRedirect } from "@/lib/guest-browse-paths";
 import {
 	isNextHandledApiPath,
 	resolveApiRewriteOrigin,
@@ -18,24 +19,19 @@ function withReferralCapture(
 }
 
 /**
- * Lightweight gate: redirects to /sign-in when accessing an authenticated
- * route without a Better Auth session cookie. We don't validate the cookie
- * here (would require an upstream call); the server still checks every
- * request server-side. This is purely the UX shortcut so the SSR shell
- * doesn't render placeholder data for signed-out visitors.
+ * Lightweight gate: signed-out personal URLs go to `/home?account=1` via
+ * `guestAccountRedirect` before any protected-prefix `/sign-in` bounce.
+ * Personal prefixes are handled by that helper — they must not hit `/sign-in`.
+ * `/home` is browseable unsigned, so it is intentionally omitted.
+ * We don't validate the cookie here (would require an upstream call); the
+ * server still checks every request server-side.
  *
  * Next.js 16+ uses the `proxy` file convention (formerly `middleware`).
  */
-const PROTECTED_PREFIXES = [
-	"/home",
-	"/diary",
-	"/watchlist",
-	"/quotes",
-	"/chat",
-	"/me",
-	"/achievements",
-	"/notifications",
-];
+// Empty: guestAccountRedirect owns diary/watchlist/quotes/me/achievements/
+// notifications/chat. Do not re-add those prefixes here or guests bounce to
+// `/sign-in` instead of `/home?account=1`.
+const PROTECTED_PREFIXES: readonly string[] = [];
 
 export function proxy(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -64,15 +60,25 @@ export function proxy(req: NextRequest) {
 		return withReferralCapture(req, NextResponse.redirect(url));
 	}
 
+	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
+
+	// Cold personal URLs → home with account dialog; signed-in requests pass through.
+	const accountRedirect = guestAccountRedirect(pathname, hasSession);
+	if (accountRedirect) {
+		const url = req.nextUrl.clone();
+		url.pathname = "/home";
+		url.search = "?account=1";
+		return withReferralCapture(req, NextResponse.redirect(url));
+	}
+
 	// Bare `/me/settings` has no content page — send patrons to Profile before the
 	// RSC tree runs (page-level `redirect()` was logging as 404 on soft navigations).
+	// Runs after the guest account gate so unsigned `/me/settings` opens the dialog.
 	if (pathname === "/me/settings" || pathname === "/me/settings/") {
 		const url = req.nextUrl.clone();
 		url.pathname = "/me/settings/profile";
 		return withReferralCapture(req, NextResponse.redirect(url));
 	}
-
-	const hasSession = SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
 
 	if (
 		PROTECTED_PREFIXES.some((p) => {
