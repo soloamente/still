@@ -45,7 +45,7 @@ const PILL_STYLE = `
 	font-variant-numeric: tabular-nums;
 	-webkit-font-smoothing: antialiased;
 }
-/* 2px ring. Empty at 0, full at 1, starting from -90deg. */
+/* 2px ring. Empty at 0, full at 1, starting from 0deg. */
 .shell::after {
 	content: "";
 	position: absolute;
@@ -53,7 +53,7 @@ const PILL_STYLE = `
 	border-radius: inherit;
 	padding: 2px;
 	background: conic-gradient(
-		from -90deg,
+		from 0deg,
 		#e8a854 calc(var(--progress) * 1turn),
 		transparent calc(var(--progress) * 1turn)
 	);
