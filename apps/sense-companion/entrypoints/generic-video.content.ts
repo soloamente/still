@@ -37,6 +37,12 @@ const AUTOLOG_PROBE_ATTEMPT_LIMIT = 2;
 /** A seek or ad break can hide the player for a moment. Don't clear on one miss. */
 const CLEAR_AFTER_MISSES = 4;
 
+/** Title, kind, and episode identity from a diary notice. */
+type PendingLoggedNotice = Pick<
+	CompanionLoggedNotice,
+	"title" | "kind" | "season" | "episode"
+>;
+
 let watchPort: Browser.runtime.Port | null = null;
 let lastLoggedToastId: string | null = null;
 /** Countdown for this page. The logged-notice listener and the playback tick share it. */
@@ -45,6 +51,11 @@ let autologPaired: boolean | null = null;
 let autologLogged = false;
 /** Title last seen, including before pairing has stored a countdown key. */
 let autologTitleKey: string | null = null;
+/**
+ * A log that arrived after the player cleared. Applied on the next tick that
+ * has media, and only when that media is the same film or episode.
+ */
+let pendingLoggedNotice: PendingLoggedNotice | null = null;
 /** In-flight pairing check. Cleared after a miss so one later tick can retry. */
 let autologProbe: Promise<void> | null = null;
 /** Silent checks on this page. After two misses, ticks stop probing. */
@@ -55,16 +66,32 @@ let autologView: {
 	paused: boolean;
 } | null = null;
 
-/**
- * A tv notice names an episode. A movie notice names a film.
- * Nothing on screen keeps the latch-and-hide behavior.
- */
-function loggedNoticeMatchesScreen(notice: CompanionLoggedNotice): boolean {
+/** Film or episode on this tick. Null when the player has cleared. */
+function screenMedia(): {
+	kind: string;
+	title: string;
+	season: number | null;
+	episode: number | null;
+} | null {
 	const message = autologView?.message;
 	if (message == null || message.type !== "sense-companion:activity")
-		return true;
-	const media = message.senseMedia;
-	if (media == null) return true;
+		return null;
+	return message.senseMedia;
+}
+
+/**
+ * A tv notice matches an episode with the same title, season, and episode.
+ * A movie notice matches a film with the same title. Nothing on screen does not match.
+ */
+function noticeMatchesMedia(
+	notice: PendingLoggedNotice,
+	media: {
+		kind: string;
+		title: string;
+		season: number | null;
+		episode: number | null;
+	},
+): boolean {
 	const sameTitle =
 		notice.title.trim().toLowerCase() === media.title.trim().toLowerCase();
 	if (!sameTitle) return false;
@@ -84,12 +111,29 @@ function loggedNoticeMatchesScreen(notice: CompanionLoggedNotice): boolean {
 	}
 }
 
+/** True only when this log is the film or episode currently on screen. */
+function loggedNoticeMatchesScreen(notice: CompanionLoggedNotice): boolean {
+	const media = screenMedia();
+	if (media == null) return false;
+	return noticeMatchesMedia(notice, media);
+}
+
 function handleLoggedNotice(notice: CompanionLoggedNotice): void {
 	if (notice.logId === lastLoggedToastId) return;
 	lastLoggedToastId = notice.logId;
-	// The rate toast takes the corner. The next title clears this flag.
-	// Hide the pill only when this row is the title on screen.
-	if (loggedNoticeMatchesScreen(notice)) {
+	const media = screenMedia();
+	if (media == null) {
+		// The player already cleared. Remember the row so the next title can
+		// claim it. Don't latch the flag — a later title would stay hidden.
+		pendingLoggedNotice = {
+			title: notice.title,
+			kind: notice.kind,
+			season: notice.season,
+			episode: notice.episode,
+		};
+		syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
+	} else if (loggedNoticeMatchesScreen(notice)) {
+		pendingLoggedNotice = null;
 		autologLogged = true;
 		syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
 	}
@@ -203,6 +247,15 @@ function paintAutolog(
 			autologLogged = false;
 		}
 		autologTitleKey = key;
+		// Apply a log that arrived on an empty screen before the countdown decision.
+		if (pendingLoggedNotice != null) {
+			if (noticeMatchesMedia(pendingLoggedNotice, media)) {
+				autologLogged = true;
+			} else {
+				pendingLoggedNotice = null;
+				autologLogged = false;
+			}
+		}
 	}
 	const decision = nextAutologCountdown({
 		state: autologState,
