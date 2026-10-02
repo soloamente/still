@@ -109,10 +109,15 @@ export function nextAutologCountdown(input: {
 		input.media.durationSec,
 	);
 	if (!inWindow(live)) {
+		// Leaving before the sentence finishes used to forget it had started.
+		// The same title comes back on the clock instead of repeating it.
+		const sentenceStarted =
+			sameKey &&
+			(input.state.sentenceShown || input.state.sentenceStartedAt != null);
 		return {
 			state: {
 				key,
-				sentenceShown: sameKey ? input.state.sentenceShown : false,
+				sentenceShown: sentenceStarted,
 				sentenceStartedAt: null,
 				frozenRemainingSec: null,
 			},

@@ -145,6 +145,36 @@ describe("autolog countdown", () => {
 		expect(back.phase).toBe("clock");
 	});
 
+	test("seeking out during the sentence and back shows the clock", () => {
+		const entered = nextAutologCountdown({
+			state: emptyAutologCountdownState(),
+			now: 1_000,
+			paired: true,
+			paused: false,
+			logged: false,
+			media: media(12 * 60),
+		});
+		expect(entered.phase).toBe("sentence");
+		const outside = nextAutologCountdown({
+			state: entered.state,
+			now: 1_000 + AUTOLOG_SENTENCE_MS - 1,
+			paired: true,
+			paused: false,
+			logged: false,
+			media: media(16 * 60),
+		});
+		expect(outside.phase).toBe("hidden");
+		const back = nextAutologCountdown({
+			state: outside.state,
+			now: 1_000 + AUTOLOG_SENTENCE_MS - 1,
+			paired: true,
+			paused: false,
+			logged: false,
+			media: media(12 * 60),
+		});
+		expect(back.phase).toBe("clock");
+	});
+
 	test("pause does not restart the sentence timer", () => {
 		const first = nextAutologCountdown({
 			state: emptyAutologCountdownState(),

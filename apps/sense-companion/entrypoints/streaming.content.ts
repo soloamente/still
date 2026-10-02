@@ -68,6 +68,8 @@ function siteCatalog(site: StreamingSite): {
 }
 
 const UPDATE_INTERVAL_MS = 1000;
+/** Silent pairing checks on this page. A third tick must not probe again. */
+const AUTOLOG_PROBE_ATTEMPT_LIMIT = 2;
 
 let watchPort: Browser.runtime.Port | null = null;
 /** Avoid double toasts when the API and the native host both report the same row. */
@@ -78,20 +80,54 @@ let autologPaired: boolean | null = null;
 let autologLogged = false;
 /** Title last seen, including before pairing has stored a countdown key. */
 let autologTitleKey: string | null = null;
-/** One pairing check. A later tick must not send another probe. */
+/** In-flight pairing check. Cleared after a miss so one later tick can retry. */
 let autologProbe: Promise<void> | null = null;
+/** Silent checks on this page. After two misses, ticks stop probing. */
+let autologProbeAttempts = 0;
 /** Latest tick, so a late pairing answer repaints the title playing now. */
 let autologView: {
 	message: CompanionActivityMessage;
 	paused: boolean;
 } | null = null;
 
+/**
+ * A tv notice names an episode. A movie notice names a film.
+ * Nothing on screen keeps the latch-and-hide behavior.
+ */
+function loggedNoticeMatchesScreen(notice: CompanionLoggedNotice): boolean {
+	const message = autologView?.message;
+	if (message == null || message.type !== "sense-companion:activity")
+		return true;
+	const media = message.senseMedia;
+	if (media == null) return true;
+	const sameTitle =
+		notice.title.trim().toLowerCase() === media.title.trim().toLowerCase();
+	if (!sameTitle) return false;
+	switch (notice.kind) {
+		case "movie":
+			return media.kind === "movie";
+		case "tv":
+			return (
+				media.kind === "episode" &&
+				media.season === notice.season &&
+				media.episode === notice.episode
+			);
+		default: {
+			const _exhaustive: never = notice.kind;
+			return _exhaustive;
+		}
+	}
+}
+
 function handleLoggedNotice(notice: CompanionLoggedNotice): void {
 	if (notice.logId === lastLoggedToastId) return;
 	lastLoggedToastId = notice.logId;
 	// The rate toast takes the corner. The next title clears this flag.
-	autologLogged = true;
-	syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
+	// Hide the pill only when this row is the title on screen.
+	if (loggedNoticeMatchesScreen(notice)) {
+		autologLogged = true;
+		syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
+	}
 	showLoggedToast(notice, (rating) => requestLogRating(notice.logId, rating));
 }
 
@@ -260,12 +296,18 @@ function paintAutolog(
 	syncAutologCountdownPill(decision);
 }
 
-/** Pairing is known. Repaint the current tick, not the one that asked. */
+/** A success reveals the pill. A timeout must not stick the page as unpaired. */
 function repaintAutolog(ok: boolean): void {
-	autologPaired = ok;
+	if (!ok) return;
+	autologPaired = true;
 	const latest = autologView;
 	if (latest == null) return;
 	paintAutolog(latest.message, latest.paused);
+}
+
+/** Drop a finished miss so one later tick can probe again. */
+function releaseAutologProbe(delivery: Promise<void>): void {
+	if (autologPaired !== true && autologProbe === delivery) autologProbe = null;
 }
 
 const pageFetch = globalThis.fetch.bind(globalThis);
@@ -343,27 +385,40 @@ export default defineContentScript({
 				paintAutolog(withPath, paused);
 				if (next.show && watch && message.type === "sense-companion:activity") {
 					const copy = watchToastCopy(watch);
-					// The first confirm on this page learns pairing. Later Watching
-					// toasts still show their own mark, but a timeout must not hide
-					// the countdown after pairing is already known.
-					const learnsPairing = autologPaired === null && autologProbe == null;
+					// Every Watching confirm paints its own mark. Only a success
+					// may reveal the countdown, including after a pairing timeout.
 					const delivery = confirmWatchDelivery(message).then((ok) => {
 						showWatchToast(copy, ok);
-						if (learnsPairing) repaintAutolog(ok);
+						if (ok) {
+							repaintAutolog(true);
+							return;
+						}
+						releaseAutologProbe(delivery);
 					});
-					if (learnsPairing) autologProbe = delivery;
+					if (autologPaired === null && autologProbe == null) {
+						autologProbe = delivery;
+					}
 					return;
 				}
 				// A paired save can reveal the pill before the next playback tick.
+				// Two misses stop the silent checks. A later Watching confirm can
+				// still learn pairing.
 				if (
 					autologPaired === null &&
 					autologProbe == null &&
+					autologProbeAttempts < AUTOLOG_PROBE_ATTEMPT_LIMIT &&
 					withPath.type === "sense-companion:activity" &&
 					withPath.senseMedia != null
 				) {
-					autologProbe = confirmWatchDelivery(withPath).then((ok) => {
-						repaintAutolog(ok);
+					autologProbeAttempts += 1;
+					const delivery = confirmWatchDelivery(withPath).then((ok) => {
+						if (ok) {
+							repaintAutolog(true);
+							return;
+						}
+						releaseAutologProbe(delivery);
 					});
+					autologProbe = delivery;
 					return;
 				}
 				postWatch(withPath);

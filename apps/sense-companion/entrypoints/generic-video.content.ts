@@ -32,6 +32,8 @@ import { showWatchToast } from "../src/presence/watch-toast-view";
 import { getTimestamps } from "../vendor/premid-activities/premid/src/functions/getTimestamps";
 
 const TICK_MS = 1000;
+/** Silent pairing checks on this page. A third tick must not probe again. */
+const AUTOLOG_PROBE_ATTEMPT_LIMIT = 2;
 /** A seek or ad break can hide the player for a moment. Don't clear on one miss. */
 const CLEAR_AFTER_MISSES = 4;
 
@@ -43,20 +45,54 @@ let autologPaired: boolean | null = null;
 let autologLogged = false;
 /** Title last seen, including before pairing has stored a countdown key. */
 let autologTitleKey: string | null = null;
-/** One pairing check. A later tick must not send another probe. */
+/** In-flight pairing check. Cleared after a miss so one later tick can retry. */
 let autologProbe: Promise<void> | null = null;
+/** Silent checks on this page. After two misses, ticks stop probing. */
+let autologProbeAttempts = 0;
 /** Latest tick, so a late pairing answer repaints the title playing now. */
 let autologView: {
 	message: CompanionActivityMessage;
 	paused: boolean;
 } | null = null;
 
+/**
+ * A tv notice names an episode. A movie notice names a film.
+ * Nothing on screen keeps the latch-and-hide behavior.
+ */
+function loggedNoticeMatchesScreen(notice: CompanionLoggedNotice): boolean {
+	const message = autologView?.message;
+	if (message == null || message.type !== "sense-companion:activity")
+		return true;
+	const media = message.senseMedia;
+	if (media == null) return true;
+	const sameTitle =
+		notice.title.trim().toLowerCase() === media.title.trim().toLowerCase();
+	if (!sameTitle) return false;
+	switch (notice.kind) {
+		case "movie":
+			return media.kind === "movie";
+		case "tv":
+			return (
+				media.kind === "episode" &&
+				media.season === notice.season &&
+				media.episode === notice.episode
+			);
+		default: {
+			const _exhaustive: never = notice.kind;
+			return _exhaustive;
+		}
+	}
+}
+
 function handleLoggedNotice(notice: CompanionLoggedNotice): void {
 	if (notice.logId === lastLoggedToastId) return;
 	lastLoggedToastId = notice.logId;
 	// The rate toast takes the corner. The next title clears this flag.
-	autologLogged = true;
-	syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
+	// Hide the pill only when this row is the title on screen.
+	if (loggedNoticeMatchesScreen(notice)) {
+		autologLogged = true;
+		syncAutologCountdownPill({ phase: "hidden", remainingSec: null });
+	}
 	// This player does not store a score. The toast still has to return a promise.
 	showLoggedToast(notice, () => Promise.resolve(false));
 }
@@ -181,12 +217,18 @@ function paintAutolog(
 	syncAutologCountdownPill(decision);
 }
 
-/** Pairing is known. Repaint the current tick, not the one that asked. */
+/** A success reveals the pill. A timeout must not stick the page as unpaired. */
 function repaintAutolog(ok: boolean): void {
-	autologPaired = ok;
+	if (!ok) return;
+	autologPaired = true;
 	const latest = autologView;
 	if (latest == null) return;
 	paintAutolog(latest.message, latest.paused);
+}
+
+/** Drop a finished miss so one later tick can probe again. */
+function releaseAutologProbe(delivery: Promise<void>): void {
+	if (autologPaired !== true && autologProbe === delivery) autologProbe = null;
 }
 
 function httpsArtwork(): string | null {
@@ -355,17 +397,39 @@ export default defineContentScript({
 				const watch = popupWatchFromMessage(message);
 				const next = nextWatchToast(toastState, watch);
 				toastState = next.state;
-				if (next.show && watch) {
-					showWatchToast(watchToastCopy(watch), true);
-				}
 				reporting = true;
 				activeService = label;
-				if (autologPaired === null && autologProbe == null) {
-					// First look at this page. The confirm posts the tick and
-					// tells us whether the browser is paired. No Watching toast.
-					autologProbe = confirmWatchDelivery(message).then((ok) => {
-						repaintAutolog(ok);
+				if (next.show && watch) {
+					const copy = watchToastCopy(watch);
+					// Every Watching confirm paints its own mark. Only a success
+					// may reveal the countdown, including after a pairing timeout.
+					const delivery = confirmWatchDelivery(message).then((ok) => {
+						showWatchToast(copy, ok);
+						if (ok) {
+							repaintAutolog(true);
+							return;
+						}
+						releaseAutologProbe(delivery);
 					});
+					if (autologPaired === null && autologProbe == null) {
+						autologProbe = delivery;
+					}
+				} else if (
+					autologPaired === null &&
+					autologProbe == null &&
+					autologProbeAttempts < AUTOLOG_PROBE_ATTEMPT_LIMIT
+				) {
+					// No Watching toast on this tick. Two misses stop the silent
+					// checks. A later Watching confirm can still learn pairing.
+					autologProbeAttempts += 1;
+					const delivery = confirmWatchDelivery(message).then((ok) => {
+						if (ok) {
+							repaintAutolog(true);
+							return;
+						}
+						releaseAutologProbe(delivery);
+					});
+					autologProbe = delivery;
 				} else {
 					postWatch(message);
 				}
