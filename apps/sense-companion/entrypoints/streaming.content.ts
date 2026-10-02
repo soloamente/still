@@ -343,12 +343,15 @@ export default defineContentScript({
 				paintAutolog(withPath, paused);
 				if (next.show && watch && message.type === "sense-companion:activity") {
 					const copy = watchToastCopy(watch);
+					// The first confirm on this page learns pairing. Later Watching
+					// toasts still show their own mark, but a timeout must not hide
+					// the countdown after pairing is already known.
+					const learnsPairing = autologPaired === null && autologProbe == null;
 					const delivery = confirmWatchDelivery(message).then((ok) => {
 						showWatchToast(copy, ok);
-						repaintAutolog(ok);
+						if (learnsPairing) repaintAutolog(ok);
 					});
-					// This confirm already learns pairing, so later ticks must not probe.
-					if (autologProbe == null) autologProbe = delivery;
+					if (learnsPairing) autologProbe = delivery;
 					return;
 				}
 				// A paired save can reveal the pill before the next playback tick.
