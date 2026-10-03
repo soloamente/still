@@ -439,26 +439,29 @@ export default defineContentScript({
 				paintAutolog(withPath, paused);
 				if (next.show && watch && message.type === "sense-companion:activity") {
 					const copy = watchToastCopy(watch, next.resume);
-					if (watch.mode === "playing") {
-						// Every Watching confirm paints its own mark. Only a success
-						// may reveal the countdown, including after a pairing timeout.
-						const playingKey = next.state.key;
-						const delivery = confirmWatchDelivery(message).then((ok) => {
-							if (playingNoticeStillCurrent(toastState.key, playingKey)) {
-								showWatchToast(copy, ok);
-							}
-							if (ok) {
-								repaintAutolog(true);
-								return;
-							}
-							releaseAutologProbe(delivery);
-						});
-						if (autologPaired === null && autologProbe == null) {
-							autologProbe = delivery;
+					const noticeKey = next.state.key;
+					const wasPlaying = watch.mode === "playing";
+					// Every confirm paints its own mark. Only a success
+					// may reveal the countdown, including after a pairing timeout.
+					// A later pause replaces the playing key, so this save must not
+					// paint Watching over that pause.
+					const delivery = confirmWatchDelivery(message).then((ok) => {
+						if (
+							!wasPlaying ||
+							playingNoticeStillCurrent(toastState.key, noticeKey)
+						) {
+							showWatchToast(copy, ok);
 						}
-						return;
+						if (ok) {
+							repaintAutolog(true);
+							return;
+						}
+						releaseAutologProbe(delivery);
+					});
+					if (autologPaired === null && autologProbe == null) {
+						autologProbe = delivery;
 					}
-					showWatchToast(copy, true);
+					return;
 				}
 				// A paired save can reveal the pill before the next playback tick.
 				// Two misses stop the silent checks. A later Watching confirm can
