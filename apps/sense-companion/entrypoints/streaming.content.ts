@@ -31,6 +31,7 @@ import { companionSite } from "../src/presence/sites";
 import {
 	emptyWatchToastState,
 	nextWatchToast,
+	playingNoticeStillCurrent,
 	type WatchToastState,
 	watchToastCopy,
 } from "../src/presence/watch-toast";
@@ -437,21 +438,27 @@ export default defineContentScript({
 					activityIsPaused(message.activity);
 				paintAutolog(withPath, paused);
 				if (next.show && watch && message.type === "sense-companion:activity") {
-					const copy = watchToastCopy(watch);
-					// Every Watching confirm paints its own mark. Only a success
-					// may reveal the countdown, including after a pairing timeout.
-					const delivery = confirmWatchDelivery(message).then((ok) => {
-						showWatchToast(copy, ok);
-						if (ok) {
-							repaintAutolog(true);
-							return;
+					const copy = watchToastCopy(watch, next.resume);
+					if (watch.mode === "playing") {
+						// Every Watching confirm paints its own mark. Only a success
+						// may reveal the countdown, including after a pairing timeout.
+						const playingKey = next.state.key;
+						const delivery = confirmWatchDelivery(message).then((ok) => {
+							if (playingNoticeStillCurrent(toastState.key, playingKey)) {
+								showWatchToast(copy, ok);
+							}
+							if (ok) {
+								repaintAutolog(true);
+								return;
+							}
+							releaseAutologProbe(delivery);
+						});
+						if (autologPaired === null && autologProbe == null) {
+							autologProbe = delivery;
 						}
-						releaseAutologProbe(delivery);
-					});
-					if (autologPaired === null && autologProbe == null) {
-						autologProbe = delivery;
+						return;
 					}
-					return;
+					showWatchToast(copy, true);
 				}
 				// A paired save can reveal the pill before the next playback tick.
 				// Two misses stop the silent checks. A later Watching confirm can

@@ -4,6 +4,7 @@ import type { PopupWatch } from "../popup/watch-state";
 import {
 	emptyWatchToastState,
 	nextWatchToast,
+	playingNoticeStillCurrent,
 	watchDeliveryOk,
 	watchToastCopy,
 } from "./watch-toast";
@@ -22,6 +23,16 @@ function watch(overrides: Partial<PopupWatch> = {}): PopupWatch {
 }
 
 describe("watch toast", () => {
+	test("playingNoticeStillCurrent when keys match, not when null or different", () => {
+		expect(playingNoticeStillCurrent("playing\0Title", "playing\0Title")).toBe(
+			true,
+		);
+		expect(playingNoticeStillCurrent(null, "playing\0Title")).toBe(false);
+		expect(playingNoticeStillCurrent("paused\0Title", "playing\0Title")).toBe(
+			false,
+		);
+	});
+
 	test("the check is only for a paired save the helper accepted", () => {
 		expect(watchDeliveryOk({ paired: true, posted: true })).toBe(true);
 		expect(watchDeliveryOk({ paired: false, posted: true })).toBe(false);

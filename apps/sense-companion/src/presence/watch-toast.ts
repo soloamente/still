@@ -13,6 +13,14 @@ export function emptyWatchToastState(): WatchToastState {
 	return { key: null, mode: null, title: null, season: null, episode: null };
 }
 
+/** A late save must not cover a notice that already replaced this play. */
+export function playingNoticeStillCurrent(
+	currentKey: string | null,
+	startedKey: string | null,
+): boolean {
+	return currentKey != null && currentKey === startedKey;
+}
+
 /** Green when the helper accepted a paired save. Red when it did not. */
 export function watchDeliveryOk(input: {
 	paired: boolean;
