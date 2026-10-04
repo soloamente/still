@@ -301,11 +301,7 @@ export type TvTasteScoredPool = {
 export async function scoreTasteMatchedTvCandidates(
 	userId: string,
 ): Promise<TvTasteScoredPool> {
-	/**
-	 * Profile window: last 400 non-removed TV logs, scalars only.
-	 * `newestTvLogPerShow` collapses season and episode rows so the profile
-	 * has one slice per show. Cold start does not use this window.
-	 */
+	/** Every non-removed TV log, scalars only. newestTvLogPerShow still collapses to one slice per show. */
 	const [rows, loggedShowIds, dismissedIds, watchlistTvIds] = await Promise.all(
 		[
 			traceTiming("taste-tv", "viewerShowLogs", () =>
@@ -328,8 +324,7 @@ export async function scoreTasteMatchedTvCandidates(
 							isNotNull(log.tvId),
 						),
 					)
-					.orderBy(desc(log.watchedAt))
-					.limit(400),
+					.orderBy(desc(log.watchedAt)),
 			),
 			fetchLoggedTvShowIds(userId),
 			fetchDismissedTvTmdbIds(userId),

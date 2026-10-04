@@ -92,8 +92,7 @@ export async function loadWatchlistTonightSocial(
 			.from(log)
 			.innerJoin(movie, eq(log.movieId, movie.tmdbId))
 			.where(and(eq(log.userId, userId), isNull(log.removedAt)))
-			.orderBy(desc(log.watchedAt))
-			.limit(400),
+			.orderBy(desc(log.watchedAt)),
 	]);
 
 	// Recommendation visibility — the sender must still pass the same gate as

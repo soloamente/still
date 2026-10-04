@@ -191,11 +191,7 @@ export function mergeBlendAndPenalizeCandidates(input: {
 export async function scoreTasteMatchCandidatesForUser(
 	userId: string,
 ): Promise<ScoreTasteMatchResult> {
-	/**
-	 * Column-scoped on purpose: selecting whole `movie` rows drags `tmdb_json`
-	 * (the verbatim TMDb payload) for up to 400 diary rows, which cost ~4.4s of
-	 * pure transfer per home load. Only these scalars feed the taste profile.
-	 */
+	/** Column-scoped on purpose: never select whole movie rows (tmdb_json). Every non-removed movie log feeds the profile. */
 	const rows = await traceTiming("taste", "viewerDiaryRows", () =>
 		db
 			.select({
@@ -209,8 +205,7 @@ export async function scoreTasteMatchCandidatesForUser(
 			.from(log)
 			.leftJoin(movie, eq(log.movieId, movie.tmdbId))
 			.where(and(eq(log.userId, userId), isNull(log.removedAt)))
-			.orderBy(desc(log.watchedAt))
-			.limit(400),
+			.orderBy(desc(log.watchedAt)),
 	);
 
 	const movieRows = rows.filter((row) => row.movieId != null);
