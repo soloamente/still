@@ -15,11 +15,14 @@ import {
 	watchlistRegionGuidanceCopy,
 	watchlistRegionNeedsGuidance,
 } from "@/components/watchlist/watchlist-region-action";
+import { authClient } from "@/lib/auth-client";
+import { formatDayKey, pickDailySpotlight } from "@/lib/daily-pick";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
+import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
@@ -38,6 +41,10 @@ import {
 } from "@/lib/still-api-fetch";
 import { tmdbLogoUrlFromPath } from "@/lib/tmdb-logo-url";
 import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
+import {
+	readWatchTonightDayPin,
+	writeWatchTonightDayPin,
+} from "@/lib/watch-tonight-day-pin";
 import {
 	listingDetailHref,
 	type WatchlistTonightHeroPayload,
@@ -129,8 +136,27 @@ export function WatchlistTonightHero({
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
+	const userId = authClient.useSession().data?.user.id ?? "";
 	const [pool] = useState(initial.pool);
-	const [activeIndex, setActiveIndex] = useState(0);
+	const [activeIndex, setActiveIndex] = useState(() => {
+		const dayKey = formatDayKey(readViewerTimeZone());
+		const pin =
+			typeof window === "undefined"
+				? null
+				: readWatchTonightDayPin(window.localStorage, dayKey);
+		const heroId = pickDailySpotlight({
+			rankedIds: initial.pool.map((row) => row.tmdbId),
+			dayKey,
+			userId,
+			surface: "watchlist",
+			skippedIds: pin?.skippedIds ?? [],
+			pinnedId: pin?.tmdbId ?? null,
+		});
+		return Math.max(
+			0,
+			initial.pool.findIndex((row) => row.tmdbId === heroId),
+		);
+	});
 	const [logoPath, setLogoPath] = useState<string | null>(null);
 	const [trailer, setTrailer] = useState<{
 		trailerKey: string;
@@ -139,6 +165,76 @@ export function WatchlistTonightHero({
 
 	const safeIndex = Math.min(activeIndex, Math.max(pool.length - 1, 0));
 	const spotlight = pool[safeIndex] ?? null;
+
+	/** Persist the day's pick once the session id is real — an empty-id pin would stick. */
+	useEffect(() => {
+		if (userId === "") return;
+		const dayKey = formatDayKey(readViewerTimeZone());
+		const pin = readWatchTonightDayPin(window.localStorage, dayKey);
+		const heroId = pickDailySpotlight({
+			rankedIds: pool.map((row) => row.tmdbId),
+			dayKey,
+			userId,
+			surface: "watchlist",
+			skippedIds: pin?.skippedIds ?? [],
+			pinnedId: pin?.tmdbId ?? null,
+		});
+		const nextIndex = Math.max(
+			0,
+			pool.findIndex((row) => row.tmdbId === heroId),
+		);
+		if (heroId != null && heroId !== pin?.tmdbId) {
+			try {
+				writeWatchTonightDayPin(window.localStorage, {
+					dayKey,
+					tmdbId: heroId,
+					skippedIds: pin?.skippedIds ?? [],
+				});
+			} catch {
+				// Quota / blocked storage — the day's pick still shows this session.
+			}
+		}
+		setActiveIndex(nextIndex);
+	}, [pool, userId]);
+
+	/** Skip the current title for the rest of the day without dropping prior skips. */
+	const advancePastSpotlight = useCallback(
+		(tmdbId: number) => {
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const pin =
+				typeof window === "undefined"
+					? null
+					: readWatchTonightDayPin(window.localStorage, dayKey);
+			const skippedIds = pin?.skippedIds.includes(tmdbId)
+				? pin.skippedIds
+				: [...(pin?.skippedIds ?? []), tmdbId];
+			const heroId = pickDailySpotlight({
+				rankedIds: pool.map((row) => row.tmdbId),
+				dayKey,
+				userId,
+				surface: "watchlist",
+				skippedIds,
+				pinnedId: null,
+			});
+			const nextIndex = Math.max(
+				0,
+				pool.findIndex((row) => row.tmdbId === heroId),
+			);
+			if (userId !== "") {
+				try {
+					writeWatchTonightDayPin(window.localStorage, {
+						dayKey,
+						tmdbId: heroId ?? tmdbId,
+						skippedIds,
+					});
+				} catch {
+					// Quota / blocked storage — the day's pick still shows this session.
+				}
+			}
+			setActiveIndex(nextIndex);
+		},
+		[pool, userId],
+	);
 
 	useEffect(() => {
 		setLogoPath(null);
@@ -171,20 +267,32 @@ export function WatchlistTonightHero({
 	);
 
 	const handlePickAnother = useCallback(() => {
-		if (pool.length <= 1) return;
-		setActiveIndex((index) => (index + 1) % pool.length);
+		if (pool.length <= 1 || !spotlight) return;
 		trackWatchlistHeroAction("pick_another", spotlight);
-	}, [pool.length, spotlight]);
+		advancePastSpotlight(spotlight.tmdbId);
+	}, [advancePastSpotlight, pool.length, spotlight]);
 
 	const handleQuickLog = useCallback(() => {
 		if (!spotlight) return;
 		trackWatchlistHeroAction("quick_log", spotlight);
+		const loggedTmdbId = spotlight.tmdbId;
 		if (spotlight.listingKind === "movie") {
-			openQuickLog({ movieId: spotlight.tmdbId });
+			openQuickLog({
+				movieId: spotlight.tmdbId,
+				onSuccess: () => {
+					advancePastSpotlight(loggedTmdbId);
+				},
+			});
 		} else {
-			openQuickLog({ tvId: spotlight.tmdbId, logScope: "show" });
+			openQuickLog({
+				tvId: spotlight.tmdbId,
+				logScope: "show",
+				onSuccess: () => {
+					advancePastSpotlight(loggedTmdbId);
+				},
+			});
 		}
-	}, [openQuickLog, spotlight]);
+	}, [advancePastSpotlight, openQuickLog, spotlight]);
 
 	if (initial.failed) {
 		return (
