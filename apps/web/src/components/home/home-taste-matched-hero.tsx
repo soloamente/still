@@ -411,7 +411,10 @@ export function HomeTasteMatchedHero({
 	/** skipTodayPickContinuity no-ops without a pin — hold that skip for the first write. */
 	function rememberTodayPickSkip(tmdbId: number, dayKey: string): void {
 		const pin = readTodayPickContinuity({ media, dayKey });
-		skipTodayPickContinuity(tmdbId, { media, dayKey });
+		// Empty session must not write a skip; the ref holds it until a real session pins.
+		if (sessionUserId !== "") {
+			skipTodayPickContinuity(tmdbId, { media, dayKey });
+		}
 		if (
 			(sessionUserId === "" || pin == null) &&
 			!pendingSkipsRef.current.includes(tmdbId)
@@ -884,6 +887,10 @@ export function HomeTasteMatchedHero({
 			} catch {
 				setMovies(snapshot);
 				setActiveIndex(activeSnapshot);
+				// Drop this tap before restore so persist cannot merge it back in.
+				pendingSkipsRef.current = pendingSkipsRef.current.filter(
+					(id) => id !== tmdbId,
+				);
 				if (previousPin) {
 					persistTodayPickContinuity({
 						film: previousPin.film,
