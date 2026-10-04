@@ -24,6 +24,10 @@ export type TodayPickContinuity = {
 	film: TasteMatchMovie;
 	setAt: number;
 	completedVia: TodayPickCompletedVia | null;
+	/** Calendar day (YYYY-MM-DD) this pin belongs to; empty for legacy TTL-only entries. */
+	dayKey: string;
+	/** Titles skipped via pick-another / not-interested for this day. */
+	skippedIds: number[];
 };
 
 export type TodayPickContinuityStorage = Pick<
@@ -37,6 +41,8 @@ type StorageOpts = {
 	now?: number;
 	/** Which Today tab's pick to read/write — movie uses legacy `still:today-pick:v1`. */
 	media?: "movie" | "tv";
+	/** When set, continuity is pinned to this calendar day instead of the two-hour TTL. */
+	dayKey?: string;
 };
 
 /** Session storage key per catalogue (movies and TV do not share one slot). */
@@ -98,6 +104,17 @@ function parseEntry(
 		entry.completedVia === "diary" || entry.completedVia === "watchlist"
 			? entry.completedVia
 			: null;
+	// Legacy JSON without dayKey still parses for the TTL-only read path.
+	const dayKey =
+		typeof entry.dayKey === "string" && entry.dayKey.length > 0
+			? entry.dayKey
+			: "";
+	const skippedIds = Array.isArray(entry.skippedIds)
+		? entry.skippedIds.filter(
+				(id): id is number =>
+					typeof id === "number" && Number.isFinite(id) && id > 0,
+			)
+		: [];
 	return {
 		tmdbId: entry.tmdbId,
 		mediaKind: expectedMediaKind,
@@ -105,6 +122,8 @@ function parseEntry(
 		film: entry.film,
 		setAt: entry.setAt,
 		completedVia,
+		dayKey,
+		skippedIds,
 	};
 }
 
@@ -122,7 +141,13 @@ function writeEntry(
 
 /** Called when the patron opens the Today pick's title page. */
 export function writeTodayPickContinuity(
-	input: { film: TasteMatchMovie; reason: string; media?: "movie" | "tv" },
+	input: {
+		film: TasteMatchMovie;
+		reason: string;
+		media?: "movie" | "tv";
+		dayKey?: string;
+		skippedIds?: number[];
+	},
 	opts?: StorageOpts,
 ): void {
 	const storage = resolveStorage(opts);
@@ -139,6 +164,8 @@ export function writeTodayPickContinuity(
 		// Re-opening the same finished pick keeps its completion.
 		completedVia:
 			previous?.tmdbId === input.film.tmdbId ? previous.completedVia : null,
+		dayKey: input.dayKey ?? "",
+		skippedIds: input.skippedIds ?? [],
 	});
 }
 
@@ -163,12 +190,40 @@ export function readTodayPickContinuity(
 	const key = todayPickContinuityKey(media);
 	const raw = readRaw(storage, key);
 	const entry = parseEntry(raw, media);
+	if (opts?.dayKey) {
+		if (!entry || entry.dayKey !== opts.dayKey) {
+			if (raw != null) safeRemove(storage, key);
+			return null;
+		}
+		return entry;
+	}
 	const now = opts?.now ?? Date.now();
 	if (!entry || now - entry.setAt > TODAY_PICK_CONTINUITY_TTL_MS) {
 		if (raw != null) safeRemove(storage, key);
 		return null;
 	}
 	return entry;
+}
+
+/** Record a skipped title for the current day's pin (pick-another / not-interested). */
+export function skipTodayPickContinuity(
+	tmdbId: number,
+	opts?: StorageOpts,
+): void {
+	const storage = resolveStorage(opts);
+	if (!storage) return;
+	const media = opts?.media ?? "movie";
+	const entry = readTodayPickContinuity({
+		storage,
+		now: opts?.now,
+		media,
+		dayKey: opts?.dayKey,
+	});
+	if (!entry || entry.skippedIds.includes(tmdbId)) return;
+	writeEntry(storage, todayPickContinuityKey(media), {
+		...entry,
+		skippedIds: [...entry.skippedIds, tmdbId],
+	});
 }
 
 export function clearTodayPickContinuity(opts?: StorageOpts): void {

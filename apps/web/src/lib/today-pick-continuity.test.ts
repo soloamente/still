@@ -40,14 +40,25 @@ const reason = "Because you gravitate toward sci-fi";
 describe("today pick continuity", () => {
 	test("write → read round-trips the pick and reason", () => {
 		const storage = memoryStorage();
-		writeTodayPickContinuity({ film, reason }, { storage, now: 1_000 });
-		expect(readTodayPickContinuity({ storage, now: 2_000 })).toEqual({
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 1_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 2_000,
+				dayKey: "2026-10-04",
+			}),
+		).toEqual({
 			tmdbId: 603,
 			mediaKind: "movie",
 			reason,
 			film,
 			setAt: 1_000,
 			completedVia: null,
+			dayKey: "2026-10-04",
+			skippedIds: [],
 		});
 	});
 
@@ -70,14 +81,22 @@ describe("today pick continuity", () => {
 
 	test("clear removes the entry", () => {
 		const storage = memoryStorage();
-		writeTodayPickContinuity({ film, reason }, { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 0 },
+		);
 		clearTodayPickContinuity({ storage, now: 0 });
-		expect(readTodayPickContinuity({ storage, now: 0 })).toBeNull();
+		expect(
+			readTodayPickContinuity({ storage, now: 0, dayKey: "2026-10-04" }),
+		).toBeNull();
 	});
 
 	test("completion marks only the matching title; diary outranks watchlist", () => {
 		const storage = memoryStorage();
-		writeTodayPickContinuity({ film, reason }, { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 0 },
+		);
 
 		markTodayPickContinuityCompleted(999, "diary", { storage, now: 0 });
 		expect(
@@ -93,7 +112,10 @@ describe("today pick continuity", () => {
 
 	test("watchlist completion upgrades to diary later", () => {
 		const storage = memoryStorage();
-		writeTodayPickContinuity({ film, reason }, { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 0 },
+		);
 		markTodayPickContinuityCompleted(603, "watchlist", { storage, now: 0 });
 		markTodayPickContinuityCompleted(603, "diary", { storage, now: 0 });
 		expect(readTodayPickContinuity({ storage, now: 0 })?.completedVia).toBe(
@@ -122,18 +144,65 @@ describe("today pick continuity", () => {
 			posterPath: null,
 			year: 2011,
 		};
-		writeTodayPickContinuity({ film, reason: "films" }, { storage, now: 0 });
 		writeTodayPickContinuity(
-			{ film: show, reason: "shows", media: "tv" },
+			{ film, reason: "films", dayKey: "2026-10-04" },
 			{ storage, now: 0 },
 		);
-		expect(readTodayPickContinuity({ storage, now: 0 })?.tmdbId).toBe(603);
+		writeTodayPickContinuity(
+			{
+				film: show,
+				reason: "shows",
+				media: "tv",
+				dayKey: "2026-10-04",
+			},
+			{ storage, now: 0 },
+		);
 		expect(
-			readTodayPickContinuity({ storage, now: 0, media: "tv" })?.tmdbId,
+			readTodayPickContinuity({ storage, now: 0, dayKey: "2026-10-04" })
+				?.tmdbId,
+		).toBe(603);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 0,
+				media: "tv",
+				dayKey: "2026-10-04",
+			})?.tmdbId,
 		).toBe(1399);
 		expect(storage.map.has("still:today-pick:v1")).toBe(true);
 		expect(storage.map.has("still:today-pick:v1:tv")).toBe(true);
 		expect(storage.map.has("still:today-pick:v1:movie")).toBe(false);
+	});
+
+	test("a stored dayKey from yesterday is dropped", () => {
+		const storage = memoryStorage();
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-03", skippedIds: [1] },
+			{ storage, now: 1_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 2_000,
+				dayKey: "2026-10-04",
+			}),
+		).toBeNull();
+		expect(storage.map.has(TODAY_PICK_CONTINUITY_KEY)).toBe(false);
+	});
+
+	test("today's pin survives well past the old two-hour TTL", () => {
+		const storage = memoryStorage();
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04", skippedIds: [] },
+			{ storage, now: 0 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: TODAY_PICK_CONTINUITY_TTL_MS + 1,
+				dayKey: "2026-10-04",
+			})?.tmdbId,
+		).toBe(603);
 	});
 
 	test("completing a show does not complete the film pick", () => {
@@ -150,9 +219,17 @@ describe("today pick continuity", () => {
 			posterPath: null,
 			year: 2011,
 		};
-		writeTodayPickContinuity({ film, reason: "films" }, { storage, now: 0 });
 		writeTodayPickContinuity(
-			{ film: show, reason: "shows", media: "tv" },
+			{ film, reason: "films", dayKey: "2026-10-04" },
+			{ storage, now: 0 },
+		);
+		writeTodayPickContinuity(
+			{
+				film: show,
+				reason: "shows",
+				media: "tv",
+				dayKey: "2026-10-04",
+			},
 			{ storage, now: 0 },
 		);
 		markTodayPickContinuityCompleted(1399, "diary", {
@@ -177,6 +254,8 @@ describe("todayPickDetailCue", () => {
 		film,
 		setAt: 0,
 		completedVia: null,
+		dayKey: "2026-10-04",
+		skippedIds: [] as number[],
 	};
 
 	test("cue only for the same film", () => {
