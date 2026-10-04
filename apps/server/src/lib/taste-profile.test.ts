@@ -61,6 +61,49 @@ describe("buildWeightedTasteProfile", () => {
 			profile.genreWeights.get(35) ?? 0,
 		);
 	});
+
+	test("same rating and genre weigh the same at both ends of the diary", () => {
+		const older = buildWeightedTasteProfile([
+			{
+				genreIds: [18],
+				rating: 80,
+				year: 1990,
+				originalLanguage: "en",
+				popularity: 10,
+				index: 400,
+				total: 401,
+			},
+		]);
+		const newer = buildWeightedTasteProfile([
+			{
+				genreIds: [18],
+				rating: 80,
+				year: 2024,
+				originalLanguage: "en",
+				popularity: 10,
+				index: 0,
+				total: 401,
+			},
+		]);
+		expect(older.genreWeights.get(18)).toBe(newer.genreWeights.get(18));
+	});
+
+	test("a diary longer than 400 still counts the oldest log", () => {
+		const slices = Array.from({ length: 401 }, (_, index) => ({
+			genreIds: index === 400 ? [27] : [35],
+			rating: 80,
+			year: 2000,
+			originalLanguage: "en",
+			popularity: 10,
+			index,
+			total: 401,
+		}));
+		const profile = buildWeightedTasteProfile(slices);
+		expect(profile.genreWeights.get(27) ?? 0).toBeGreaterThan(0);
+		expect(profile.genreWeights.get(35) ?? 0).toBeGreaterThan(
+			profile.genreWeights.get(27) ?? 0,
+		);
+	});
 });
 
 describe("buildDismissNegativeProfile", () => {

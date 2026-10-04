@@ -3,11 +3,7 @@
  * Pure functions — no I/O; orchestrator loads diary/dismiss rows then calls these.
  */
 
-import {
-	decadeFromYear,
-	ratingAffinityWeight,
-	recencyDecayByIndex,
-} from "./taste-scoring-math";
+import { decadeFromYear, ratingAffinityWeight } from "./taste-scoring-math";
 
 /** One diary row passed into profile build (index 0 = newest in batch). */
 export type TasteProfileSlice = {
@@ -90,8 +86,8 @@ function median(values: number[]): number {
 }
 
 /**
- * Build rating- and recency-weighted genre/decade/language affinities from diary slices.
- * High-rated recent logs steer the profile more than low-rated older ones.
+ * Build rating-weighted genre/decade/language affinities from the whole diary.
+ * Log order does not change the weight.
  */
 export function buildWeightedTasteProfile(
 	slices: TasteProfileSlice[],
@@ -103,9 +99,7 @@ export function buildWeightedTasteProfile(
 	const popularitySamples: number[] = [];
 
 	for (const slice of slices) {
-		const affinity =
-			ratingAffinityWeight(slice.rating) *
-			recencyDecayByIndex(slice.index, slice.total);
+		const affinity = ratingAffinityWeight(slice.rating);
 
 		for (const id of slice.genreIds) {
 			genreWeights.set(id, (genreWeights.get(id) ?? 0) + affinity);
