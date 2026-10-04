@@ -34,6 +34,7 @@ import {
 	HOME_TASTE_HERO_SECTION_2K_RESERVE_CLASSNAME,
 } from "@/lib/home-taste-hero-layout";
 import { buildTasteHeroTrailerBackgroundSrc } from "@/lib/home-taste-hero-trailer-src";
+import { runTextStateSwap } from "@/lib/run-text-state-swap";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
 	fetchMovieTitleLogoPath,
@@ -183,6 +184,29 @@ export function WatchlistTonightHero({
 
 	const safeIndex = Math.min(activeIndex, Math.max(pool.length - 1, 0));
 	const spotlight = pool[safeIndex] ?? null;
+	const titleSwapRef = useRef<HTMLSpanElement>(null);
+	const reasonSwapRef = useRef<HTMLSpanElement>(null);
+	/** First paint already has the right copy — do not swap on mount. */
+	const skipFirstTextSwapRef = useRef(true);
+
+	useEffect(() => {
+		if (skipFirstTextSwapRef.current) {
+			skipFirstTextSwapRef.current = false;
+			return;
+		}
+		const nextTitle = spotlight?.title ?? "";
+		const nextReason = spotlight?.tonightReason ?? "";
+		if (reduceMotion) {
+			if (titleSwapRef.current) titleSwapRef.current.textContent = nextTitle;
+			if (reasonSwapRef.current) reasonSwapRef.current.textContent = nextReason;
+			return;
+		}
+		if (titleSwapRef.current) runTextStateSwap(titleSwapRef.current, nextTitle);
+		if (reasonSwapRef.current) {
+			runTextStateSwap(reasonSwapRef.current, nextReason);
+		}
+		// Title/reason come from the current spotlight; only the id should trigger a swap.
+	}, [spotlight?.tmdbId, reduceMotion]);
 
 	/** Persist the day's pick once the session id is real — an empty-id pin would stick. */
 	useEffect(() => {
@@ -420,17 +444,23 @@ export function WatchlistTonightHero({
 											alt=""
 											className="mx-auto size-full max-h-full max-w-full object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mx-0 sm:object-left"
 										/>
-										<span className="sr-only">{spotlight.title}</span>
+										<span ref={titleSwapRef} className="t-text-swap sr-only">
+											{spotlight.title}
+										</span>
 									</div>
 								) : (
 									<h2 className="text-balance font-semibold text-2xl text-foreground tracking-tight sm:text-3xl">
-										{spotlight.title}
+										<span ref={titleSwapRef} className="t-text-swap">
+											{spotlight.title}
+										</span>
 									</h2>
 								)}
 							</Link>
 							{spotlight.tonightReason ? (
 								<p className="text-pretty text-foreground/85 text-sm sm:text-base">
-									{spotlight.tonightReason}
+									<span ref={reasonSwapRef} className="t-text-swap">
+										{spotlight.tonightReason}
+									</span>
 								</p>
 							) : null}
 							{showRegionNote ? (

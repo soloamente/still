@@ -58,6 +58,7 @@ import {
 } from "@/lib/log-rating";
 import { formatTodayYmd } from "@/lib/log-watched-date";
 import type { FestivalIconId } from "@/lib/movie-festival-recognition";
+import { runTextStateSwap } from "@/lib/run-text-state-swap";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import { isStillApiErrorPayload } from "@/lib/still-api-error-payload";
 import {
@@ -497,10 +498,33 @@ export function HomeTasteMatchedHero({
 	 */
 	const spotlightTmdbId = spotlight?.tmdbId ?? null;
 	const spotlightTmdbIdRef = useRef(spotlightTmdbId);
+	const titleSwapRef = useRef<HTMLSpanElement>(null);
+	const reasonSwapRef = useRef<HTMLSpanElement>(null);
+	/** First paint already has the right copy — do not swap on mount. */
+	const skipFirstTextSwapRef = useRef(true);
 
 	useEffect(() => {
 		spotlightTmdbIdRef.current = spotlightTmdbId;
 	}, [spotlightTmdbId]);
+
+	useEffect(() => {
+		if (skipFirstTextSwapRef.current) {
+			skipFirstTextSwapRef.current = false;
+			return;
+		}
+		const nextTitle = spotlight?.title ?? "";
+		const nextReason = tasteMatchedRailTitle(genrePhrase);
+		if (reduceMotion) {
+			if (titleSwapRef.current) titleSwapRef.current.textContent = nextTitle;
+			if (reasonSwapRef.current) reasonSwapRef.current.textContent = nextReason;
+			return;
+		}
+		if (titleSwapRef.current) runTextStateSwap(titleSwapRef.current, nextTitle);
+		if (reasonSwapRef.current) {
+			runTextStateSwap(reasonSwapRef.current, nextReason);
+		}
+		// Spotlight copy is read from the current pick; only the id should trigger a swap.
+	}, [spotlightTmdbId, reduceMotion]);
 
 	const mediaBoundRef = useRef(media);
 	useEffect(() => {
@@ -1272,7 +1296,9 @@ export function HomeTasteMatchedHero({
 											<span aria-hidden>·</span>
 										</>
 									) : null}
-									{tasteMatchedRailTitle(genrePhrase)}
+									<span ref={reasonSwapRef} className="t-text-swap">
+										{tasteMatchedRailTitle(genrePhrase)}
+									</span>
 								</p>
 								<Link
 									href={
@@ -1314,11 +1340,15 @@ export function HomeTasteMatchedHero({
 												alt=""
 												className="mx-auto size-full max-h-full max-w-full object-contain object-center drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mx-0 sm:object-left"
 											/>
-											<span className="sr-only">{spotlight.title}</span>
+											<span ref={titleSwapRef} className="t-text-swap sr-only">
+												{spotlight.title}
+											</span>
 										</div>
 									) : (
 										<h2 className="text-balance font-sans font-semibold text-[clamp(1.375rem,4.5vw,3.25rem)] text-foreground uppercase leading-[0.95] tracking-[-0.03em] [text-shadow:-1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#ff4d4d_28%),1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#4da3ff_28%)] sm:text-[clamp(1.75rem,5.5vw,3.25rem)]">
-											{spotlight.title}
+											<span ref={titleSwapRef} className="t-text-swap">
+												{spotlight.title}
+											</span>
 										</h2>
 									)}
 								</Link>
