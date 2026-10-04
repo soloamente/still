@@ -374,7 +374,8 @@ export function HomeTasteMatchedHero({
 		const pin = readTodayPickContinuity({ media, dayKey });
 		const index = resolveTodayHeroIndex(films);
 		const film = films[index];
-		if (film != null && film.tmdbId !== pin?.tmdbId) {
+		// An empty session id is pre-hydration — writing then would lock a guest pin.
+		if (sessionUserId !== "" && film != null && film.tmdbId !== pin?.tmdbId) {
 			writeTodayPickContinuity({
 				film,
 				reason,
@@ -530,13 +531,23 @@ export function HomeTasteMatchedHero({
 			isTodayShell && completedId == null
 				? readTodayPickContinuity({ media, dayKey })
 				: null;
-		const restoredVia = continuity?.completedVia ?? null;
-		const restoredFilm =
-			continuity && restoredVia
+		// A Watched pin waiting on How was it? is not complete — restore the rating step.
+		const pendingLogId =
+			continuity && continuity.completedVia == null && continuity.pendingLogId
+				? continuity.pendingLogId
+				: null;
+		const pendingFilm =
+			continuity && pendingLogId
 				? (fresh.find((film) => film.tmdbId === continuity.tmdbId) ??
 					continuity.film)
 				: undefined;
-		const pinnedFilm = completedFilm ?? restoredFilm;
+		const restoredVia = continuity?.completedVia ?? null;
+		const restoredFilm =
+			continuity && restoredVia && pendingLogId == null
+				? (fresh.find((film) => film.tmdbId === continuity.tmdbId) ??
+					continuity.film)
+				: undefined;
+		const pinnedFilm = completedFilm ?? pendingFilm ?? restoredFilm;
 		const nextFilms = pinnedFilm
 			? [
 					pinnedFilm,
@@ -547,7 +558,13 @@ export function HomeTasteMatchedHero({
 			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null;
 		setPayload(initial);
 		setMovies(nextFilms);
-		if (restoredFilm && restoredVia) {
+		if (pendingFilm && pendingLogId) {
+			dispatchPick({
+				type: "logged",
+				tmdbId: pendingFilm.tmdbId,
+				logId: pendingLogId,
+			});
+		} else if (restoredFilm && restoredVia) {
 			dispatchPick({
 				type: "restored_complete",
 				tmdbId: restoredFilm.tmdbId,
@@ -743,8 +760,12 @@ export function HomeTasteMatchedHero({
 
 			const remaining = snapshot.filter((film) => film.tmdbId !== tmdbId);
 			setMovies(remaining);
+			// Read first so a failed dismiss can put the day's pin back, skip included.
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const previousPin = isTodayShellRef.current
+				? readTodayPickContinuity({ media, dayKey })
+				: null;
 			if (isTodayShellRef.current) {
-				const dayKey = formatDayKey(readViewerTimeZone());
 				// Record the skip before choosing the next day-seeded hero.
 				skipTodayPickContinuity(tmdbId, { media, dayKey });
 				setActiveIndex(
@@ -770,6 +791,17 @@ export function HomeTasteMatchedHero({
 			} catch {
 				setMovies(snapshot);
 				setActiveIndex(activeSnapshot);
+				if (previousPin) {
+					writeTodayPickContinuity({
+						film: previousPin.film,
+						reason: previousPin.reason,
+						media,
+						dayKey: previousPin.dayKey || dayKey,
+						skippedIds: previousPin.skippedIds,
+						completedVia: previousPin.completedVia,
+						pendingLogId: previousPin.pendingLogId,
+					});
+				}
 				toast.error("Couldn't update suggestions");
 			}
 		},
@@ -879,12 +911,24 @@ export function HomeTasteMatchedHero({
 				if (isTodayShell) {
 					if (media === "tv") {
 						trackTodayPickAction("watched", spotlight.tmdbId, {}, media);
+						// TV Quick Log already collected the rating — settle in this handler.
+						dispatchPick({
+							type: "logged",
+							tmdbId: spotlight.tmdbId,
+							logId: null,
+						});
+						dispatchPick({ type: "rating_settled" });
+						dispatchTasteTitleConsumed({
+							tmdbId: spotlight.tmdbId,
+							via: "diary",
+							media: "tv",
+						});
+						return;
 					}
 					dispatchPick({
 						type: "logged",
 						tmdbId: spotlight.tmdbId,
-						// TV Quick Log already collected the rating — no Undo / how-was-it step.
-						logId: media === "tv" ? null : (result?.logId ?? null),
+						logId: result?.logId ?? null,
 					});
 					return;
 				}
@@ -926,21 +970,31 @@ export function HomeTasteMatchedHero({
 				},
 				media,
 			);
-			// Dispatch before the consumed echo so the shell records a local log (Undo).
+			const logId = typeof created?.id === "string" ? created.id : null;
+			// Stay on just_logged — do not mark consumed until the rating step settles.
 			dispatchPick({
 				type: "logged",
 				tmdbId,
-				logId: typeof created?.id === "string" ? created.id : null,
+				logId,
+			});
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const pin = readTodayPickContinuity({ media, dayKey });
+			writeTodayPickContinuity({
+				film: spotlight,
+				reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
+				media,
+				dayKey,
+				skippedIds: pin?.skippedIds ?? [],
+				pendingLogId: logId,
 			});
 			setPriorLogCount((count) => count + 1);
-			dispatchTasteTitleConsumed({ tmdbId, via: "diary" });
 			dispatchTodayWeekRefresh();
 		} catch {
 			toast.error("Couldn't save to your diary");
 		} finally {
 			setInstantLogBusy(false);
 		}
-	}, [instantLogBusy, media, priorLogCount, spotlight]);
+	}, [genrePhrase, instantLogBusy, media, priorLogCount, spotlight]);
 
 	/** Deletes the log Today just created and reopens the pick's actions. */
 	const handleUndoLog = useCallback(async () => {
@@ -969,6 +1023,8 @@ export function HomeTasteMatchedHero({
 					media,
 					dayKey,
 					skippedIds: (pin?.skippedIds ?? []).filter((id) => id !== undoneId),
+					pendingLogId: null,
+					completedVia: null,
 				});
 			}
 			const restoredIndex = moviesRef.current.findIndex(
@@ -986,6 +1042,34 @@ export function HomeTasteMatchedHero({
 			setUndoBusy(false);
 		}
 	}, [genrePhrase, media, undoBusy]);
+
+	/** Clear the pending rating pin, then settle so the complete effect can skip. */
+	const handleRatingSettled = useCallback(() => {
+		const state = pickStateRef.current;
+		const tmdbId =
+			state.phase === "just_logged" ? state.tmdbId : spotlightTmdbIdRef.current;
+		const dayKey = formatDayKey(readViewerTimeZone());
+		const pin = readTodayPickContinuity({ media, dayKey });
+		const film =
+			(tmdbId != null
+				? moviesRef.current.find((row) => row.tmdbId === tmdbId)
+				: undefined) ??
+			(pin && tmdbId != null && pin.tmdbId === tmdbId ? pin.film : undefined);
+		if (film) {
+			writeTodayPickContinuity({
+				film,
+				reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
+				media,
+				dayKey,
+				skippedIds: pin?.skippedIds ?? [],
+				pendingLogId: null,
+			});
+		}
+		dispatchPick({ type: "rating_settled" });
+		if (tmdbId != null) {
+			dispatchTasteTitleConsumed({ tmdbId, via: "diary", media });
+		}
+	}, [genrePhrase, media]);
 
 	const quickLogLabel = isTodayShell
 		? priorLogCount > 0
@@ -1329,7 +1413,7 @@ export function HomeTasteMatchedHero({
 											key={justLoggedId}
 											logId={justLoggedId}
 											averageRating={displayAverage}
-											onSettled={() => dispatchPick({ type: "rating_settled" })}
+											onSettled={handleRatingSettled}
 										/>
 									) : null}
 								</div>

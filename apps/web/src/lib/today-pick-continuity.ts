@@ -24,6 +24,8 @@ export type TodayPickContinuity = {
 	film: TasteMatchMovie;
 	setAt: number;
 	completedVia: TodayPickCompletedVia | null;
+	/** Diary log waiting on the in-place rating step; missing or non-string JSON is `null`. */
+	pendingLogId: string | null;
 	/** Calendar day (YYYY-MM-DD) this pin belongs to; empty for legacy TTL-only entries. */
 	dayKey: string;
 	/** Titles skipped via pick-another / not-interested for this day. */
@@ -104,6 +106,8 @@ function parseEntry(
 		entry.completedVia === "diary" || entry.completedVia === "watchlist"
 			? entry.completedVia
 			: null;
+	const pendingLogId =
+		typeof entry.pendingLogId === "string" ? entry.pendingLogId : null;
 	// Legacy JSON without dayKey still parses for the TTL-only read path.
 	const dayKey =
 		typeof entry.dayKey === "string" && entry.dayKey.length > 0
@@ -122,6 +126,7 @@ function parseEntry(
 		film: entry.film,
 		setAt: entry.setAt,
 		completedVia,
+		pendingLogId,
 		dayKey,
 		skippedIds,
 	};
@@ -147,6 +152,10 @@ export function writeTodayPickContinuity(
 		media?: "movie" | "tv";
 		dayKey?: string;
 		skippedIds?: number[];
+		/** Pass `null` to clear; omit to keep the previous value when the film matches. */
+		pendingLogId?: string | null;
+		/** Pass `null` to clear; omit to keep the previous value when the film matches. */
+		completedVia?: TodayPickCompletedVia | null;
 	},
 	opts?: StorageOpts,
 ): void {
@@ -155,15 +164,26 @@ export function writeTodayPickContinuity(
 	const media = input.media ?? "movie";
 	const key = todayPickContinuityKey(media);
 	const previous = parseEntry(readRaw(storage, key), media);
+	const sameFilm = previous?.tmdbId === input.film.tmdbId;
 	writeEntry(storage, key, {
 		tmdbId: input.film.tmdbId,
 		mediaKind: media,
 		reason: input.reason,
 		film: input.film,
 		setAt: opts?.now ?? Date.now(),
-		// Re-opening the same finished pick keeps its completion.
+		// Re-opening the same finished pick keeps its completion unless overridden.
 		completedVia:
-			previous?.tmdbId === input.film.tmdbId ? previous.completedVia : null,
+			"completedVia" in input
+				? (input.completedVia ?? null)
+				: sameFilm
+					? (previous?.completedVia ?? null)
+					: null,
+		pendingLogId:
+			"pendingLogId" in input
+				? (input.pendingLogId ?? null)
+				: sameFilm
+					? (previous?.pendingLogId ?? null)
+					: null,
 		dayKey: input.dayKey ?? "",
 		skippedIds: input.skippedIds ?? [],
 	});

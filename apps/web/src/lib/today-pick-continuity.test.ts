@@ -57,9 +57,141 @@ describe("today pick continuity", () => {
 			film,
 			setAt: 1_000,
 			completedVia: null,
+			pendingLogId: null,
 			dayKey: "2026-10-04",
 			skippedIds: [],
 		});
+	});
+
+	test("pendingLogId round-trips; explicit null clears it; a different film does not keep it", () => {
+		const storage = memoryStorage();
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04", pendingLogId: "log-1" },
+			{ storage, now: 1_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 2_000,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBe("log-1");
+
+		// Same film, omitted pendingLogId keeps the in-progress rating step.
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 3_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 3_000,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBe("log-1");
+
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04", pendingLogId: null },
+			{ storage, now: 4_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 4_000,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBeNull();
+
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04", pendingLogId: "log-2" },
+			{ storage, now: 5_000 },
+		);
+		const otherFilm: TasteMatchMovie = {
+			...film,
+			tmdbId: 604,
+			title: "Other",
+		};
+		writeTodayPickContinuity(
+			{ film: otherFilm, reason, dayKey: "2026-10-04" },
+			{ storage, now: 6_000 },
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 6_000,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBeNull();
+	});
+
+	test("missing or non-string pendingLogId parses as null", () => {
+		const storage = memoryStorage();
+		storage.setItem(
+			TODAY_PICK_CONTINUITY_KEY,
+			JSON.stringify({
+				tmdbId: 603,
+				mediaKind: "movie",
+				reason,
+				film,
+				setAt: 0,
+				completedVia: null,
+				dayKey: "2026-10-04",
+				skippedIds: [],
+			}),
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 0,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBeNull();
+
+		storage.setItem(
+			TODAY_PICK_CONTINUITY_KEY,
+			JSON.stringify({
+				tmdbId: 603,
+				mediaKind: "movie",
+				reason,
+				film,
+				setAt: 0,
+				completedVia: null,
+				pendingLogId: 12,
+				dayKey: "2026-10-04",
+				skippedIds: [],
+			}),
+		);
+		expect(
+			readTodayPickContinuity({
+				storage,
+				now: 0,
+				dayKey: "2026-10-04",
+			})?.pendingLogId,
+		).toBeNull();
+	});
+
+	test("explicit completedVia override including null replaces the preserved value", () => {
+		const storage = memoryStorage();
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 0 },
+		);
+		markTodayPickContinuityCompleted(603, "diary", { storage, now: 0 });
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04" },
+			{ storage, now: 1 },
+		);
+		expect(readTodayPickContinuity({ storage, now: 1 })?.completedVia).toBe(
+			"diary",
+		);
+
+		writeTodayPickContinuity(
+			{ film, reason, dayKey: "2026-10-04", completedVia: null },
+			{ storage, now: 2 },
+		);
+		expect(
+			readTodayPickContinuity({ storage, now: 2 })?.completedVia,
+		).toBeNull();
 	});
 
 	test("expired or malformed entries read as null and are removed", () => {
@@ -254,6 +386,7 @@ describe("todayPickDetailCue", () => {
 		film,
 		setAt: 0,
 		completedVia: null,
+		pendingLogId: null,
 		dayKey: "2026-10-04",
 		skippedIds: [] as number[],
 	};
