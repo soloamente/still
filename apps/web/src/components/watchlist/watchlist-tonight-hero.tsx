@@ -188,6 +188,9 @@ export function WatchlistTonightHero({
 	const reasonSwapRef = useRef<HTMLSpanElement>(null);
 	/** First paint already has the right copy — do not swap on mount. */
 	const skipFirstTextSwapRef = useRef(true);
+	/** useReducedMotion hydrates after mount; skip that rerun unless copy changed. */
+	const prevSwapTitleRef = useRef(spotlight?.title ?? "");
+	const prevSwapReasonRef = useRef(spotlight?.tonightReason ?? "");
 
 	useEffect(() => {
 		if (skipFirstTextSwapRef.current) {
@@ -196,6 +199,14 @@ export function WatchlistTonightHero({
 		}
 		const nextTitle = spotlight?.title ?? "";
 		const nextReason = spotlight?.tonightReason ?? "";
+		if (
+			prevSwapTitleRef.current === nextTitle &&
+			prevSwapReasonRef.current === nextReason
+		) {
+			return;
+		}
+		prevSwapTitleRef.current = nextTitle;
+		prevSwapReasonRef.current = nextReason;
 		if (reduceMotion) {
 			if (titleSwapRef.current) titleSwapRef.current.textContent = nextTitle;
 			if (reasonSwapRef.current) reasonSwapRef.current.textContent = nextReason;
