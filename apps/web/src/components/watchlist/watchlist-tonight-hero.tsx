@@ -6,7 +6,7 @@ import { cn } from "@still/ui/lib/utils";
 import { useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { HomeTasteHeroMediaLayer } from "@/components/home/home-taste-hero-media-layer";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
@@ -56,6 +56,22 @@ type WatchlistHeroAction =
 	| "open_detail"
 	| "quick_log"
 	| "retry";
+
+/** Stored skips plus taps that landed before `useSession` had a real user id. */
+function mergeWatchTonightSkippedIds(
+	stored: number[],
+	pending: number[],
+): number[] {
+	const seen = new Set(stored);
+	const merged = [...stored];
+	for (const id of pending) {
+		if (!seen.has(id)) {
+			seen.add(id);
+			merged.push(id);
+		}
+	}
+	return merged;
+}
 
 function trackWatchlistHeroAction(
 	action: WatchlistHeroAction,
@@ -137,6 +153,8 @@ export function WatchlistTonightHero({
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
 	const userId = authClient.useSession().data?.user.id ?? "";
+	/** Skips made before the session id hydrates — persist must merge these. */
+	const pendingSkipsRef = useRef<number[]>([]);
 	const [pool] = useState(initial.pool);
 	const [activeIndex, setActiveIndex] = useState(() => {
 		const dayKey = formatDayKey(readViewerTimeZone());
@@ -171,25 +189,38 @@ export function WatchlistTonightHero({
 		if (userId === "") return;
 		const dayKey = formatDayKey(readViewerTimeZone());
 		const pin = readWatchTonightDayPin(window.localStorage, dayKey);
+		const skippedIds = mergeWatchTonightSkippedIds(
+			pin?.skippedIds ?? [],
+			pendingSkipsRef.current,
+		);
 		const heroId = pickDailySpotlight({
 			rankedIds: pool.map((row) => row.tmdbId),
 			dayKey,
 			userId,
 			surface: "watchlist",
-			skippedIds: pin?.skippedIds ?? [],
+			skippedIds,
 			pinnedId: pin?.tmdbId ?? null,
 		});
 		const nextIndex = Math.max(
 			0,
 			pool.findIndex((row) => row.tmdbId === heroId),
 		);
-		if (heroId != null && heroId !== pin?.tmdbId) {
+		if (
+			heroId != null &&
+			(heroId !== pin?.tmdbId || pendingSkipsRef.current.length > 0)
+		) {
 			try {
 				writeWatchTonightDayPin(window.localStorage, {
 					dayKey,
 					tmdbId: heroId,
-					skippedIds: pin?.skippedIds ?? [],
+					skippedIds,
 				});
+				const written = readWatchTonightDayPin(window.localStorage, dayKey);
+				if (written) {
+					pendingSkipsRef.current = pendingSkipsRef.current.filter(
+						(id) => !written.skippedIds.includes(id),
+					);
+				}
 			} catch {
 				// Quota / blocked storage — the day's pick still shows this session.
 			}
@@ -205,9 +236,15 @@ export function WatchlistTonightHero({
 				typeof window === "undefined"
 					? null
 					: readWatchTonightDayPin(window.localStorage, dayKey);
-			const skippedIds = pin?.skippedIds.includes(tmdbId)
-				? pin.skippedIds
-				: [...(pin?.skippedIds ?? []), tmdbId];
+			if (userId === "" && !pendingSkipsRef.current.includes(tmdbId)) {
+				pendingSkipsRef.current = [...pendingSkipsRef.current, tmdbId];
+			}
+			const skippedIds = mergeWatchTonightSkippedIds(
+				pin?.skippedIds.includes(tmdbId)
+					? pin.skippedIds
+					: [...(pin?.skippedIds ?? []), tmdbId],
+				pendingSkipsRef.current,
+			);
 			const heroId = pickDailySpotlight({
 				rankedIds: pool.map((row) => row.tmdbId),
 				dayKey,
@@ -227,6 +264,12 @@ export function WatchlistTonightHero({
 						tmdbId: heroId ?? tmdbId,
 						skippedIds,
 					});
+					const written = readWatchTonightDayPin(window.localStorage, dayKey);
+					if (written) {
+						pendingSkipsRef.current = pendingSkipsRef.current.filter(
+							(id) => !written.skippedIds.includes(id),
+						);
+					}
 				} catch {
 					// Quota / blocked storage — the day's pick still shows this session.
 				}
