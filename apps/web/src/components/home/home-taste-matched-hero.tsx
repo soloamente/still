@@ -26,12 +26,15 @@ import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { FestivalRecognitionIcon } from "@/components/movie/festival-recognition-icon";
 import { MoviePoster } from "@/components/movie/movie-poster";
 import { api } from "@/lib/api";
+import { authClient } from "@/lib/auth-client";
 import { useCatalogSearchDialog } from "@/lib/catalog-search-dialog-store";
+import { formatDayKey, pickDailySpotlight } from "@/lib/daily-pick";
 import {
 	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
+import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
@@ -94,8 +97,8 @@ import {
 } from "@/lib/today-card-layout";
 import { buildTodayInstantLogPayload } from "@/lib/today-instant-log";
 import {
-	clearTodayPickContinuity,
 	readTodayPickContinuity,
+	skipTodayPickContinuity,
 	writeTodayPickContinuity,
 } from "@/lib/today-pick-continuity";
 import {
@@ -225,8 +228,9 @@ function formatHeroRatingsCountLabel(count: number): string {
 
 /**
  * `legacy-autoswap` — consumed titles leave the queue immediately (standalone hero).
- * `today-shell` — Today on Sense owns completion: watched / watchlist keep the
- * title in place until the patron taps **Pick another**.
+ * `today-shell` — Today's Pick stays on `just_logged` until the rating step
+ * settles; `complete` (rating settled, watchlisted, or consumed elsewhere)
+ * skips that title and advances the day-seeded hero once.
  */
 export type HomeTasteHeroCompletionMode = "legacy-autoswap" | "today-shell";
 
@@ -294,6 +298,7 @@ export function HomeTasteMatchedHero({
 	/** Stable read for callbacks shared with the standalone hero (no dep churn). */
 	const isTodayShellRef = useRef(isTodayShell);
 	isTodayShellRef.current = isTodayShell;
+	const sessionUserId = authClient.useSession().data?.user.id ?? "";
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
@@ -305,6 +310,8 @@ export function HomeTasteMatchedHero({
 	const pickAnotherButtonRef = useRef<HTMLButtonElement>(null);
 	/** Once the queue met the quality bar, a short backfill gap must not flash the empty tile. */
 	const queueQualifiedRef = useRef(false);
+	/** Auto-advance on `complete` once per title — the effect must not loop. */
+	const advancedCompleteTmdbIdRef = useRef<number | null>(null);
 	const [payload, setPayload] = useState<TasteMatchedDiscoveryPayload | null>(
 		initial ?? null,
 	);
@@ -341,6 +348,44 @@ export function HomeTasteMatchedHero({
 	> | null>(null);
 	const posterRailContentKey = movies.map((film) => film.tmdbId).join(",");
 
+	/** Day-seeded spotlight among the current for-you queue (Today shell only). */
+	function resolveTodayHeroIndex(films: { tmdbId: number }[]): number {
+		const dayKey = formatDayKey(readViewerTimeZone());
+		const pin = readTodayPickContinuity({ media, dayKey });
+		const heroId = pickDailySpotlight({
+			rankedIds: films.map((film) => film.tmdbId),
+			dayKey,
+			userId: sessionUserId,
+			surface: media,
+			skippedIds: pin?.skippedIds ?? [],
+			pinnedId: pin?.tmdbId ?? null,
+		});
+		if (heroId == null) return 0;
+		const index = films.findIndex((film) => film.tmdbId === heroId);
+		return index >= 0 ? index : 0;
+	}
+
+	/** Resolve the Today index and persist a new pin without dropping the day's skips. */
+	function commitTodayHeroIndex(
+		films: TasteMatchMovie[],
+		reason: string,
+	): number {
+		const dayKey = formatDayKey(readViewerTimeZone());
+		const pin = readTodayPickContinuity({ media, dayKey });
+		const index = resolveTodayHeroIndex(films);
+		const film = films[index];
+		if (film != null && film.tmdbId !== pin?.tmdbId) {
+			writeTodayPickContinuity({
+				film,
+				reason,
+				media,
+				dayKey,
+				skippedIds: pin?.skippedIds ?? [],
+			});
+		}
+		return index;
+	}
+
 	useEffect(() => {
 		moviesRef.current = movies;
 		if (movies.length >= TASTE_MATCH_MIN_RESULTS) {
@@ -374,12 +419,19 @@ export function HomeTasteMatchedHero({
 	const handleRetryPick = useCallback(async () => {
 		setLoading(true);
 		const data = await fetchTasteForYou();
+		const films = data ? moviesFromTastePayload(data) : [];
+		const nextGenrePhrase =
+			data && !data.coldStart ? (data.genrePhrase ?? null) : null;
 		setPayload(data);
-		setMovies(data ? moviesFromTastePayload(data) : []);
-		setGenrePhrase(data && !data.coldStart ? (data.genrePhrase ?? null) : null);
-		setActiveIndex(0);
+		setMovies(films);
+		setGenrePhrase(nextGenrePhrase);
+		setActiveIndex(
+			isTodayShell
+				? commitTodayHeroIndex(films, tasteMatchedRailTitle(nextGenrePhrase))
+				: 0,
+		);
 		setLoading(false);
-	}, [fetchTasteForYou]);
+	}, [fetchTasteForYou, isTodayShell, media, sessionUserId]);
 
 	const applyMoviesFromBackfill = useCallback((next: TasteMatchMovie[]) => {
 		const prev = moviesRef.current;
@@ -462,7 +514,7 @@ export function HomeTasteMatchedHero({
 			dispatchPick({ type: "pick_another" });
 		}
 		// A server refresh drops consumed titles — keep a completed Today pick
-		// pinned in front so it never silently rotates before **Pick another**.
+		// in the rail so the complete-phase advance can skip it once.
 		const completedId = mediaChanged
 			? null
 			: todayPickCompletedTmdbId(pickStateRef.current);
@@ -471,10 +523,12 @@ export function HomeTasteMatchedHero({
 				? undefined
 				: moviesRef.current.find((film) => film.tmdbId === completedId);
 		// Home remounts after a title-page visit: a pick finished there comes back
-		// as done (snapshot, since the server already dropped it) — never rotated away.
+		// as done (snapshot, since the server already dropped it) — then the
+		// complete-phase effect skips it and advances the day's next hero.
+		const dayKey = formatDayKey(readViewerTimeZone());
 		const continuity =
 			isTodayShell && completedId == null
-				? readTodayPickContinuity({ media })
+				? readTodayPickContinuity({ media, dayKey })
 				: null;
 		const restoredVia = continuity?.completedVia ?? null;
 		const restoredFilm =
@@ -483,15 +537,16 @@ export function HomeTasteMatchedHero({
 					continuity.film)
 				: undefined;
 		const pinnedFilm = completedFilm ?? restoredFilm;
+		const nextFilms = pinnedFilm
+			? [
+					pinnedFilm,
+					...fresh.filter((film) => film.tmdbId !== pinnedFilm.tmdbId),
+				]
+			: fresh;
+		const nextGenrePhrase =
+			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null;
 		setPayload(initial);
-		setMovies(
-			pinnedFilm
-				? [
-						pinnedFilm,
-						...fresh.filter((film) => film.tmdbId !== pinnedFilm.tmdbId),
-					]
-				: fresh,
-		);
+		setMovies(nextFilms);
 		if (restoredFilm && restoredVia) {
 			dispatchPick({
 				type: "restored_complete",
@@ -499,12 +554,17 @@ export function HomeTasteMatchedHero({
 				via: restoredVia,
 			});
 		}
-		setGenrePhrase(
-			initial && !initial.coldStart ? (initial.genrePhrase ?? null) : null,
-		);
+		setGenrePhrase(nextGenrePhrase);
 		setLoading(false);
-		setActiveIndex(0);
-	}, [initial, isTodayShell, media]);
+		setActiveIndex(
+			isTodayShell
+				? commitTodayHeroIndex(
+						nextFilms,
+						tasteMatchedRailTitle(nextGenrePhrase),
+					)
+				: 0,
+		);
+	}, [initial, isTodayShell, media, sessionUserId]);
 
 	useEffect(() => {
 		if (initial !== undefined) return;
@@ -522,9 +582,18 @@ export function HomeTasteMatchedHero({
 					return;
 				}
 				const data = res.data as TasteMatchedDiscoveryPayload;
+				const films = moviesFromTastePayload(data);
+				const nextGenrePhrase = data.coldStart
+					? null
+					: (data.genrePhrase ?? null);
 				setPayload(data);
-				setMovies(moviesFromTastePayload(data));
-				setGenrePhrase(data.coldStart ? null : (data.genrePhrase ?? null));
+				setMovies(films);
+				setGenrePhrase(nextGenrePhrase);
+				if (isTodayShell) {
+					setActiveIndex(
+						commitTodayHeroIndex(films, tasteMatchedRailTitle(nextGenrePhrase)),
+					);
+				}
 			} catch {
 				if (!cancelled) {
 					setPayload(null);
@@ -538,7 +607,7 @@ export function HomeTasteMatchedHero({
 		return () => {
 			cancelled = true;
 		};
-	}, [initial, media]);
+	}, [initial, isTodayShell, media, sessionUserId]);
 
 	useEffect(() => {
 		const rail = posterRailRef.current;
@@ -672,14 +741,22 @@ export function HomeTasteMatchedHero({
 				trackTodayPickAction("not_interested", tmdbId, {}, media);
 			}
 
-			setMovies((prev) => prev.filter((film) => film.tmdbId !== tmdbId));
-			setActiveIndex((prev) =>
-				activeIndexAfterRemoval(index, prev, snapshot.length - 1),
-			);
+			const remaining = snapshot.filter((film) => film.tmdbId !== tmdbId);
+			setMovies(remaining);
+			if (isTodayShellRef.current) {
+				const dayKey = formatDayKey(readViewerTimeZone());
+				// Record the skip before choosing the next day-seeded hero.
+				skipTodayPickContinuity(tmdbId, { media, dayKey });
+				setActiveIndex(
+					commitTodayHeroIndex(remaining, tasteMatchedRailTitle(genrePhrase)),
+				);
+			} else {
+				setActiveIndex((prev) =>
+					activeIndexAfterRemoval(index, prev, snapshot.length - 1),
+				);
+			}
 			// Not interested may advance immediately — unlike watched / watchlist.
 			dispatchPick({ type: "not_interested_advanced" });
-			// Only this catalogue's continuity key — a TV dismiss must not clear a film pick.
-			clearTodayPickContinuity({ media });
 
 			try {
 				const excludeTmdbIds = snapshot.map((film) => film.tmdbId);
@@ -696,12 +773,12 @@ export function HomeTasteMatchedHero({
 				toast.error("Couldn't update suggestions");
 			}
 		},
-		[media],
+		[genrePhrase, media, sessionUserId],
 	);
 
 	const handleTitleConsumed = useCallback(
 		(tmdbId: number) => {
-			// Today keeps the spotlight in place (complete) — only other queue titles leave.
+			// Today records complete in place — the complete-phase effect then advances.
 			if (isTodayShell && tmdbId === spotlightTmdbIdRef.current) {
 				dispatchPick({ type: "consumed_elsewhere", tmdbId });
 				return;
@@ -711,7 +788,7 @@ export function HomeTasteMatchedHero({
 		[isTodayShell, removeFromQueue],
 	);
 
-	/** Retire the finished title and show the next one (or `targetTmdbId` when chosen). */
+	/** Retire the finished title and show the next day-seeded hero (or `targetTmdbId` when chosen). */
 	const handlePickAnother = useCallback(
 		(targetTmdbId?: number) => {
 			const completedId = todayPickCompletedTmdbId(pickStateRef.current);
@@ -726,27 +803,37 @@ export function HomeTasteMatchedHero({
 					media,
 				);
 			}
-			dispatchPick({ type: "pick_another" });
-			// The detail cue belongs to the retired pick — the next one starts clean.
-			clearTodayPickContinuity({ media });
-			if (completedId == null) return;
-			if (targetTmdbId == null) {
-				removeFromQueue(completedId);
-				return;
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const reason = tasteMatchedRailTitle(genrePhrase);
+			const spotlightId = spotlightTmdbIdRef.current;
+			// Skip, do not clear — clearing deletes the day's skipped ids.
+			if (spotlightId != null) {
+				skipTodayPickContinuity(spotlightId, { media, dayKey });
 			}
+			dispatchPick({ type: "pick_another" });
+			if (completedId == null) return;
+			advancedCompleteTmdbIdRef.current = completedId;
 			const remaining = moviesRef.current.filter(
 				(film) => film.tmdbId !== completedId,
 			);
+			if (targetTmdbId != null) {
+				const pin = readTodayPickContinuity({ media, dayKey });
+				const target = remaining.find((film) => film.tmdbId === targetTmdbId);
+				if (target) {
+					writeTodayPickContinuity({
+						film: target,
+						reason,
+						media,
+						dayKey,
+						skippedIds: pin?.skippedIds ?? [],
+					});
+				}
+			}
 			setMovies(remaining);
-			setActiveIndex(
-				Math.max(
-					0,
-					remaining.findIndex((film) => film.tmdbId === targetTmdbId),
-				),
-			);
+			setActiveIndex(commitTodayHeroIndex(remaining, reason));
 			backfillSchedulerRef.current?.schedule();
 		},
-		[media, removeFromQueue],
+		[genrePhrase, media, sessionUserId],
 	);
 
 	const handleAddToWatchlist = useCallback(async () => {
@@ -868,8 +955,28 @@ export function HomeTasteMatchedHero({
 			}
 			trackTodayPickAction("undo", state.tmdbId, {}, media);
 			dispatchPick({ type: "undo" });
-			// Don't restore a deleted log as "done" if Home remounts later.
-			clearTodayPickContinuity({ media });
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const pin = readTodayPickContinuity({ media, dayKey });
+			const undoneId = state.tmdbId;
+			const film =
+				moviesRef.current.find((row) => row.tmdbId === undoneId) ??
+				(pin?.film.tmdbId === undoneId ? pin.film : undefined);
+			// Keep the day's pin; drop this id from skips and restore its index.
+			if (film) {
+				writeTodayPickContinuity({
+					film,
+					reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
+					media,
+					dayKey,
+					skippedIds: (pin?.skippedIds ?? []).filter((id) => id !== undoneId),
+				});
+			}
+			const restoredIndex = moviesRef.current.findIndex(
+				(row) => row.tmdbId === undoneId,
+			);
+			if (restoredIndex >= 0) {
+				setActiveIndex(restoredIndex);
+			}
 			setPriorLogCount((count) => Math.max(0, count - 1));
 			dispatchTodayWeekRefresh();
 			focusWatchedAfterUndoRef.current = true;
@@ -878,7 +985,7 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setUndoBusy(false);
 		}
-	}, [media, undoBusy]);
+	}, [genrePhrase, media, undoBusy]);
 
 	const quickLogLabel = isTodayShell
 		? priorLogCount > 0
@@ -911,6 +1018,25 @@ export function HomeTasteMatchedHero({
 	const pickPhase = pickState.phase;
 	const justLoggedId =
 		pickDone && pickState.phase === "just_logged" ? pickState.logId : null;
+
+	useEffect(() => {
+		if (!isTodayShell || pickState.phase !== "complete") return;
+		const completedId = pickState.tmdbId;
+		if (advancedCompleteTmdbIdRef.current === completedId) return;
+		advancedCompleteTmdbIdRef.current = completedId;
+		const dayKey = formatDayKey(readViewerTimeZone());
+		// just_logged stays put until rating settles — only complete advances.
+		skipTodayPickContinuity(completedId, { media, dayKey });
+		const remaining = moviesRef.current.filter(
+			(film) => film.tmdbId !== completedId,
+		);
+		setMovies(remaining);
+		setActiveIndex(
+			commitTodayHeroIndex(remaining, tasteMatchedRailTitle(genrePhrase)),
+		);
+		dispatchPick({ type: "pick_another" });
+		backfillSchedulerRef.current?.schedule();
+	}, [genrePhrase, isTodayShell, media, pickState, sessionUserId]);
 
 	useEffect(() => {
 		// Undo remounts the actions — return focus to Watched, where the patron started.
@@ -1080,10 +1206,17 @@ export function HomeTasteMatchedHero({
 														{},
 														media,
 													);
+													const dayKey = formatDayKey(readViewerTimeZone());
 													writeTodayPickContinuity({
 														film: spotlight,
 														reason: tasteMatchedRailTitle(genrePhrase),
 														media,
+														dayKey,
+														skippedIds:
+															readTodayPickContinuity({
+																media,
+																dayKey,
+															})?.skippedIds ?? [],
 													});
 												}
 											: undefined
