@@ -127,6 +127,22 @@ function tasteHeroIsEmpty(movies: TasteMatchMovie[]): boolean {
 	return movies.length < TASTE_MATCH_MIN_RESULTS;
 }
 
+/** Stored skips plus taps that landed before a pin or a real session id. */
+function mergeTodayPickSkippedIds(
+	stored: number[],
+	pending: number[],
+): number[] {
+	const seen = new Set(stored);
+	const merged = [...stored];
+	for (const id of pending) {
+		if (!seen.has(id)) {
+			seen.add(id);
+			merged.push(id);
+		}
+	}
+	return merged;
+}
+
 type TodayPickAction =
 	| "watched"
 	| "watchlist"
@@ -300,6 +316,8 @@ export function HomeTasteMatchedHero({
 	const isTodayShellRef = useRef(isTodayShell);
 	isTodayShellRef.current = isTodayShell;
 	const sessionUserId = authClient.useSession().data?.user.id ?? "";
+	/** Skips made before a pin exists or session hydrates — first persist must merge these. */
+	const pendingSkipsRef = useRef<number[]>([]);
 	const reduceMotion = useReducedMotion();
 	const motionProps = useDetailActionMotion();
 	const openQuickLog = useQuickLog((s) => s.open);
@@ -358,12 +376,48 @@ export function HomeTasteMatchedHero({
 			dayKey,
 			userId: sessionUserId,
 			surface: media,
-			skippedIds: pin?.skippedIds ?? [],
+			skippedIds: mergeTodayPickSkippedIds(
+				pin?.skippedIds ?? [],
+				pendingSkipsRef.current,
+			),
 			pinnedId: pin?.tmdbId ?? null,
 		});
 		if (heroId == null) return 0;
 		const index = films.findIndex((film) => film.tmdbId === heroId);
 		return index >= 0 ? index : 0;
+	}
+
+	/** Persist only with a real session so an empty id cannot lock today's pin. */
+	function persistTodayPickContinuity(
+		input: Parameters<typeof writeTodayPickContinuity>[0],
+	): void {
+		if (sessionUserId === "") return;
+		const skippedIds = mergeTodayPickSkippedIds(
+			input.skippedIds ?? [],
+			pendingSkipsRef.current,
+		);
+		writeTodayPickContinuity({ ...input, skippedIds });
+		const written = readTodayPickContinuity({
+			media: input.media ?? media,
+			dayKey: input.dayKey,
+		});
+		if (written) {
+			pendingSkipsRef.current = pendingSkipsRef.current.filter(
+				(id) => !written.skippedIds.includes(id),
+			);
+		}
+	}
+
+	/** skipTodayPickContinuity no-ops without a pin — hold that skip for the first write. */
+	function rememberTodayPickSkip(tmdbId: number, dayKey: string): void {
+		const pin = readTodayPickContinuity({ media, dayKey });
+		skipTodayPickContinuity(tmdbId, { media, dayKey });
+		if (
+			(sessionUserId === "" || pin == null) &&
+			!pendingSkipsRef.current.includes(tmdbId)
+		) {
+			pendingSkipsRef.current = [...pendingSkipsRef.current, tmdbId];
+		}
 	}
 
 	/** Resolve the Today index and persist a new pin without dropping the day's skips. */
@@ -376,8 +430,12 @@ export function HomeTasteMatchedHero({
 		const index = resolveTodayHeroIndex(films);
 		const film = films[index];
 		// An empty session id is pre-hydration — writing then would lock a guest pin.
-		if (sessionUserId !== "" && film != null && film.tmdbId !== pin?.tmdbId) {
-			writeTodayPickContinuity({
+		if (
+			sessionUserId !== "" &&
+			film != null &&
+			(film.tmdbId !== pin?.tmdbId || pendingSkipsRef.current.length > 0)
+		) {
+			persistTodayPickContinuity({
 				film,
 				reason,
 				media,
@@ -802,7 +860,7 @@ export function HomeTasteMatchedHero({
 				: null;
 			if (isTodayShellRef.current) {
 				// Record the skip before choosing the next day-seeded hero.
-				skipTodayPickContinuity(tmdbId, { media, dayKey });
+				rememberTodayPickSkip(tmdbId, dayKey);
 				setActiveIndex(
 					commitTodayHeroIndex(remaining, tasteMatchedRailTitle(genrePhrase)),
 				);
@@ -827,7 +885,7 @@ export function HomeTasteMatchedHero({
 				setMovies(snapshot);
 				setActiveIndex(activeSnapshot);
 				if (previousPin) {
-					writeTodayPickContinuity({
+					persistTodayPickContinuity({
 						film: previousPin.film,
 						reason: previousPin.reason,
 						media,
@@ -875,7 +933,7 @@ export function HomeTasteMatchedHero({
 			const spotlightId = spotlightTmdbIdRef.current;
 			// Skip, do not clear — clearing deletes the day's skipped ids.
 			if (spotlightId != null) {
-				skipTodayPickContinuity(spotlightId, { media, dayKey });
+				rememberTodayPickSkip(spotlightId, dayKey);
 			}
 			dispatchPick({ type: "pick_another" });
 			if (completedId == null) return;
@@ -887,7 +945,7 @@ export function HomeTasteMatchedHero({
 				const pin = readTodayPickContinuity({ media, dayKey });
 				const target = remaining.find((film) => film.tmdbId === targetTmdbId);
 				if (target) {
-					writeTodayPickContinuity({
+					persistTodayPickContinuity({
 						film: target,
 						reason,
 						media,
@@ -1014,7 +1072,7 @@ export function HomeTasteMatchedHero({
 			});
 			const dayKey = formatDayKey(readViewerTimeZone());
 			const pin = readTodayPickContinuity({ media, dayKey });
-			writeTodayPickContinuity({
+			persistTodayPickContinuity({
 				film: spotlight,
 				reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
 				media,
@@ -1029,7 +1087,14 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setInstantLogBusy(false);
 		}
-	}, [genrePhrase, instantLogBusy, media, priorLogCount, spotlight]);
+	}, [
+		genrePhrase,
+		instantLogBusy,
+		media,
+		priorLogCount,
+		sessionUserId,
+		spotlight,
+	]);
 
 	/** Deletes the log Today just created and reopens the pick's actions. */
 	const handleUndoLog = useCallback(async () => {
@@ -1050,9 +1115,12 @@ export function HomeTasteMatchedHero({
 			const film =
 				moviesRef.current.find((row) => row.tmdbId === undoneId) ??
 				(pin?.film.tmdbId === undoneId ? pin.film : undefined);
+			pendingSkipsRef.current = pendingSkipsRef.current.filter(
+				(id) => id !== undoneId,
+			);
 			// Keep the day's pin; drop this id from skips and restore its index.
 			if (film) {
-				writeTodayPickContinuity({
+				persistTodayPickContinuity({
 					film,
 					reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
 					media,
@@ -1076,7 +1144,7 @@ export function HomeTasteMatchedHero({
 		} finally {
 			setUndoBusy(false);
 		}
-	}, [genrePhrase, media, undoBusy]);
+	}, [genrePhrase, media, sessionUserId, undoBusy]);
 
 	/** Clear the pending rating pin, then settle so the complete effect can skip. */
 	const handleRatingSettled = useCallback(() => {
@@ -1091,7 +1159,7 @@ export function HomeTasteMatchedHero({
 				: undefined) ??
 			(pin && tmdbId != null && pin.tmdbId === tmdbId ? pin.film : undefined);
 		if (film) {
-			writeTodayPickContinuity({
+			persistTodayPickContinuity({
 				film,
 				reason: pin?.reason ?? tasteMatchedRailTitle(genrePhrase),
 				media,
@@ -1104,7 +1172,7 @@ export function HomeTasteMatchedHero({
 		if (tmdbId != null) {
 			dispatchTasteTitleConsumed({ tmdbId, via: "diary", media });
 		}
-	}, [genrePhrase, media]);
+	}, [genrePhrase, media, sessionUserId]);
 
 	const quickLogLabel = isTodayShell
 		? priorLogCount > 0
@@ -1145,7 +1213,7 @@ export function HomeTasteMatchedHero({
 		advancedCompleteTmdbIdRef.current = completedId;
 		const dayKey = formatDayKey(readViewerTimeZone());
 		// just_logged stays put until rating settles — only complete advances.
-		skipTodayPickContinuity(completedId, { media, dayKey });
+		rememberTodayPickSkip(completedId, dayKey);
 		const remaining = moviesRef.current.filter(
 			(film) => film.tmdbId !== completedId,
 		);
@@ -1328,7 +1396,7 @@ export function HomeTasteMatchedHero({
 														media,
 													);
 													const dayKey = formatDayKey(readViewerTimeZone());
-													writeTodayPickContinuity({
+													persistTodayPickContinuity({
 														film: spotlight,
 														reason: tasteMatchedRailTitle(genrePhrase),
 														media,

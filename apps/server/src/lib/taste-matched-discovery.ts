@@ -1,5 +1,5 @@
 import { db, log, movie } from "@still/db";
-import { and, desc, eq, isNull } from "drizzle-orm";
+import { and, desc, eq, isNotNull, isNull } from "drizzle-orm";
 
 import { fetchOverlapDiarySlices } from "./fetch-overlap-diary-slices";
 import { buildOverlapDiaryMap } from "./sense-taste-overlap";
@@ -191,7 +191,7 @@ export function mergeBlendAndPenalizeCandidates(input: {
 export async function scoreTasteMatchCandidatesForUser(
 	userId: string,
 ): Promise<ScoreTasteMatchResult> {
-	/** Column-scoped on purpose: never select whole movie rows (tmdb_json). Every non-removed movie log feeds the profile. */
+	/** Column-scoped on purpose: never select whole movie rows (tmdb_json). Movie logs only — TV rows share this table. */
 	const rows = await traceTiming("taste", "viewerDiaryRows", () =>
 		db
 			.select({
@@ -204,7 +204,13 @@ export async function scoreTasteMatchCandidatesForUser(
 			})
 			.from(log)
 			.leftJoin(movie, eq(log.movieId, movie.tmdbId))
-			.where(and(eq(log.userId, userId), isNull(log.removedAt)))
+			.where(
+				and(
+					eq(log.userId, userId),
+					isNull(log.removedAt),
+					isNotNull(log.movieId),
+				),
+			)
 			.orderBy(desc(log.watchedAt)),
 	);
 

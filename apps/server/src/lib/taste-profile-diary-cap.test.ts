@@ -14,4 +14,9 @@ describe("taste profile diary load", () => {
 			expect(source.includes(".limit(400)")).toBe(false);
 		}
 	});
+
+	test("movie taste profile query scopes to movie logs", () => {
+		const source = readFileSync(files[0], "utf8");
+		expect(source.includes("isNotNull(log.movieId)")).toBe(true);
+	});
 });
