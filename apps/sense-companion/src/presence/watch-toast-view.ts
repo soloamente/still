@@ -1,4 +1,8 @@
-import { mountToastHost } from "./toast-host";
+import {
+	dismissToastHostById,
+	mountToastHost,
+	releaseToastHost,
+} from "./toast-host";
 import type { WatchToastCopy, WatchToastIcon } from "./watch-toast";
 
 const TOAST_ID = "sense-companion-toast";
@@ -20,7 +24,6 @@ const TOAST_STYLE = `
 :host {
 	all: initial;
 	position: fixed;
-	top: 20px;
 	right: 16px;
 	z-index: 2147483646;
 }
@@ -208,7 +211,7 @@ const TOAST_AFTER_HOVER_MS = 1200;
 
 /** Playback-start notice. It stays on the right, then slides off that edge. */
 export function showWatchToast(copy: WatchToastCopy, ok: boolean): void {
-	document.getElementById(TOAST_ID)?.remove();
+	dismissToastHostById(TOAST_ID);
 	const host = document.createElement("div");
 	host.id = TOAST_ID;
 	const shadow = host.attachShadow({ mode: "open" });
@@ -275,7 +278,7 @@ export function showWatchToast(copy: WatchToastCopy, ok: boolean): void {
 		) {
 			return;
 		}
-		host.remove();
+		releaseToastHost(host);
 	});
 	mountToastHost(host);
 }

@@ -10,6 +10,7 @@ import {
 	type DiscordFieldSource,
 	readDiscordActivityLayout,
 	resolveDiscordActivityFields,
+	resolveDiscordActivityFromMessage,
 } from "../presence/discord-layout";
 
 const SAMPLE = {
@@ -19,21 +20,34 @@ const SAMPLE = {
 	service: "Netflix",
 };
 
-const LINE_LABELS = {
-	name: "Title line",
-	details: "Second line",
-	state: "Third line",
-	largeText: "Cover tooltip",
-} as const;
-
-type LineKey = keyof typeof LINE_LABELS;
+/** Same episode Discord receives, so the sample stays on the live card. */
+const SAMPLE_MESSAGE = {
+	service: SAMPLE.service,
+	presenceMode: "playing" as const,
+	senseMedia: {
+		kind: "episode" as const,
+		title: SAMPLE.title,
+		season: 4,
+		episode: 1,
+	},
+	activity: {
+		name: SAMPLE.title,
+		details: SAMPLE.episodeTitle,
+		state: null,
+		smallImageText: "Playing",
+		startTimestamp: 1,
+		endTimestamp: 2,
+	},
+};
 
 /** A Discord card you can retarget. Discord adds the Watching label itself. */
 export function DiscordActivityEditor() {
 	const [layout, setLayout] = useState<DiscordActivityLayout>(
 		DEFAULT_DISCORD_ACTIVITY_LAYOUT,
 	);
-	const preview = resolveDiscordActivityFields(layout, SAMPLE);
+	const tooltip = resolveDiscordActivityFields(layout, SAMPLE).largeText;
+	// Header is "Watching with Sense". The title and one second line are the only rows.
+	const card = resolveDiscordActivityFromMessage(SAMPLE_MESSAGE, layout);
 
 	useEffect(() => {
 		let cancelled = false;
@@ -56,15 +70,15 @@ export function DiscordActivityEditor() {
 		void browser.storage.local.set({ [DISCORD_LAYOUT_STORAGE_KEY]: next });
 	}
 
-	function setLine(key: LineKey, value: DiscordFieldSource) {
-		save({ ...layout, [key]: value });
+	function setCoverTooltip(value: DiscordFieldSource) {
+		save({ ...layout, largeText: value });
 	}
 
 	return (
 		<div className="activity-editor">
 			<div className="activity-card">
 				<label className="activity-cover">
-					<span>{layout.cover === "artwork" ? "Cover" : "No cover"}</span>
+					<span>{layout.cover === "artwork" ? "Poster" : "None"}</span>
 					<select
 						aria-label="Cover"
 						value={layout.cover}
@@ -79,12 +93,22 @@ export function DiscordActivityEditor() {
 						<option value="none">Hidden</option>
 					</select>
 				</label>
-				<label className="activity-cover">
-					<span>
-						{layout.profileButton === "show"
-							? "Profile button"
-							: "No profile button"}
-					</span>
+				<div className="activity-copy">
+					<p className="activity-type">Watching {card?.name ?? "with Sense"}</p>
+					<p className="activity-title">{card?.details ?? SAMPLE.title}</p>
+					{card?.state ? (
+						<p className="activity-subtitle">{card.state}</p>
+					) : null}
+					<div className="activity-bar" aria-hidden="true" />
+					{layout.profileButton === "show" ? (
+						<p className="activity-button">View profile</p>
+					) : null}
+				</div>
+			</div>
+			<div className="activity-fields">
+				<label className="activity-line activity-line-row">
+					<span className="activity-caption">Profile button</span>
+					<span>{layout.profileButton === "show" ? "Show" : "Hide"}</span>
 					<select
 						aria-label="Profile button"
 						value={layout.profileButton}
@@ -99,42 +123,17 @@ export function DiscordActivityEditor() {
 						<option value="hide">Hide</option>
 					</select>
 				</label>
-				<div className="activity-copy">
-					<p className="activity-type">Watching</p>
-					<ActivityLine
-						label={LINE_LABELS.name}
-						value={layout.name}
-						preview={preview.name}
-						onChange={(value) => setLine("name", value)}
-					/>
-					<ActivityLine
-						label={LINE_LABELS.details}
-						value={layout.details}
-						preview={preview.details}
-						onChange={(value) => setLine("details", value)}
-					/>
-					<ActivityLine
-						label={LINE_LABELS.state}
-						value={layout.state}
-						preview={preview.state}
-						onChange={(value) => setLine("state", value)}
-					/>
-					<div className="activity-bar" />
-				</div>
-				{layout.profileButton === "show" ? (
-					<p className="activity-type">View profile</p>
-				) : null}
+				<ActivityLine
+					row
+					caption="Cover tooltip"
+					label="Cover tooltip"
+					value={layout.largeText}
+					preview={tooltip}
+					onChange={setCoverTooltip}
+				/>
 			</div>
-			<ActivityLine
-				caption="Cover tooltip"
-				label={LINE_LABELS.largeText}
-				value={layout.largeText}
-				preview={preview.largeText}
-				onChange={(value) => setLine("largeText", value)}
-			/>
 			<p className="hint">
-				The corner mark stays play or pause. Discord writes Watching above the
-				title line.
+				Discord writes Watching with Sense. The corner mark stays play or pause.
 			</p>
 		</div>
 	);
@@ -143,12 +142,18 @@ export function DiscordActivityEditor() {
 function ActivityLine(props: {
 	label: string;
 	caption?: string;
+	/** Setting row under the card, not a line inside the Discord sample. */
+	row?: boolean;
 	value: DiscordFieldSource;
 	preview: string | null;
 	onChange: (value: DiscordFieldSource) => void;
 }) {
 	return (
-		<label className="activity-line">
+		<label
+			className={
+				props.row ? "activity-line activity-line-row" : "activity-line"
+			}
+		>
 			{props.caption ? (
 				<span className="activity-caption">{props.caption}</span>
 			) : null}

@@ -1,0 +1,28 @@
+{
+	"name": "@still/sense-companion",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Show what you are watching on Sense and Discord.",
+	"type": "module",
+	"scripts": {
+		"dev": "wxt --port 5555",
+		"build": "wxt build",
+		"zip": "wxt zip",
+		"compile": "tsc --noEmit && tsc -p tsconfig.activities.json --noEmit",
+		"test": "bun test src/presence src/pairing src/popup",
+		"postinstall": "wxt prepare"
+	},
+	"dependencies": {
+		"p-limit": "7.3.0",
+		"premid": "file:./vendor/premid-activities/premid",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4"
+	},
+	"devDependencies": {
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@wxt-dev/module-react": "^1.1.5",
+		"typescript": "^5.9.3",
+		"wxt": "^0.20.26"
+	}
+}

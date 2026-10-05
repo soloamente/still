@@ -139,6 +139,8 @@ export function useSearchDialogBrowsePreview(
 			setLoading(false);
 			return;
 		}
+		// Drop stale posters immediately so tab switches show skeletons, not the prior rail.
+		setItems([]);
 		setLoading(true);
 		const ctrl = new AbortController();
 		const companyId =

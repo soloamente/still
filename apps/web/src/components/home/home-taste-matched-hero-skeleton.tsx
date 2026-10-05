@@ -17,7 +17,12 @@ import {
 } from "@/lib/home-taste-hero-layout";
 
 /** Cinematic taste hero placeholder — reserves lobby height before for-you loads. */
-export function HomeTasteMatchedHeroSkeleton() {
+export function HomeTasteMatchedHeroSkeleton({
+	media = "movie",
+}: {
+	media?: "movie" | "tv";
+}) {
+	const noun = media === "tv" ? "shows" : "films";
 	return (
 		<div
 			className={cn(
@@ -30,7 +35,7 @@ export function HomeTasteMatchedHeroSkeleton() {
 			aria-live="polite"
 			aria-label="Loading taste-matched spotlight"
 		>
-			<p className="sr-only">Loading films matched to your taste…</p>
+			<p className="sr-only">Loading {noun} matched to your taste…</p>
 			<div className="relative overflow-hidden rounded-[2rem] bg-transparent">
 				<ShimmerBone className="absolute inset-0 rounded-none bg-card" />
 				<div
@@ -57,10 +62,10 @@ export function HomeTasteMatchedHeroSkeleton() {
 							<ShimmerBone className="mx-auto h-3.5 w-48 max-w-[70%] rounded-md bg-card sm:mx-0 sm:h-4 sm:w-56" />
 							<ShimmerBone className="mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-[min(100%,14rem)] rounded-lg bg-card sm:mx-0 sm:max-w-[min(100%,16rem)]" />
 						</div>
-						<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
-							<ShimmerBone className="size-10 shrink-0 rounded-full bg-card sm:size-11" />
-							<ShimmerBone className="h-10 w-32 rounded-full bg-card sm:h-11 sm:w-36" />
-							<ShimmerBone className="size-10 shrink-0 rounded-full bg-card sm:hidden" />
+						<div className="relative z-30 flex flex-wrap items-center justify-center gap-2 pt-1 sm:justify-start">
+							<ShimmerBone className="size-11 shrink-0 rounded-full bg-card sm:size-12" />
+							<ShimmerBone className="h-11 w-36 rounded-full bg-card" />
+							<ShimmerBone className="size-11 shrink-0 rounded-full bg-card sm:hidden" />
 							<ShimmerBone className="hidden h-11 w-32 rounded-full bg-card sm:block" />
 						</div>
 						<div

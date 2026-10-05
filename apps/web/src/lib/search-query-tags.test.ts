@@ -67,6 +67,23 @@ describe("rankTagSuggestions", () => {
 		expect(suggestions.some((s) => s.kind === "studio")).toBe(true);
 	});
 
+	test("returns many studio matches before hitting the total cap", () => {
+		const manyStudios = Array.from({ length: 30 }, (_, i) => ({
+			id: 10_000 + i,
+			name: `Studio ${i} Pictures`,
+			logoUrl: null,
+		}));
+		const suggestions = rankTagSuggestions(
+			"studio",
+			manyStudios,
+			movieGenres,
+			"movie",
+			[],
+		);
+		const studioCount = suggestions.filter((s) => s.kind === "studio").length;
+		expect(studioCount).toBeGreaterThanOrEqual(20);
+	});
+
 	test("lists tag blocks further suggestions", () => {
 		const suggestions = rankTagSuggestions(
 			"a24",
@@ -265,5 +282,21 @@ describe("structured recent queries", () => {
 			{ kind: "genre", id: 27, name: "Horror", listingKind: "movie" },
 		]);
 		expect(parsed.freeText).toBe("");
+	});
+
+	test("parse streaming id token before provider list hydrates", () => {
+		const parsed = parseRecentStructuredQuery("streaming:8", []);
+		expect(parsed.tags).toEqual([
+			{ kind: "streaming", id: 8, name: "Streaming", logoUrl: null },
+		]);
+	});
+
+	test("parse restores streaming platform by name", () => {
+		const parsed = parseRecentStructuredQuery("Netflix", [], {
+			streamingProviders: [{ id: 8, name: "Netflix", logoUrl: "/n.png" }],
+		});
+		expect(parsed.tags).toEqual([
+			{ kind: "streaming", id: 8, name: "Netflix", logoUrl: "/n.png" },
+		]);
 	});
 });

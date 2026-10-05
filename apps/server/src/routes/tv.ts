@@ -12,6 +12,7 @@ import {
 	shouldBlockAdultDetail,
 } from "../lib/adult-content-policy";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { resolveDiscoverStreamingProviderScope } from "../lib/discover-streaming-provider-scope";
 import {
 	buildHeroArtworkSlides,
 	buildScreenshotSlides,
@@ -325,12 +326,18 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			const firstAirDateGte = /^\d{4}-\d{2}-\d{2}$/.test(airGteRaw)
 				? airGteRaw
 				: undefined;
+			const streamingScope = await resolveDiscoverStreamingProviderScope({
+				providersRaw: query.providers,
+				queryWatchRegion: query.watch_region,
+				userId: user?.id,
+				envDefaultRegion: env.TMDB_WATCH_REGION ?? "US",
+			});
 			const monetizationRaw = (query.monetization ?? "").trim().toLowerCase();
 			const withWatchMonetizationTypes = DISCOVER_MONETIZATION_WHITELIST.has(
 				monetizationRaw,
 			)
 				? monetizationRaw
-				: undefined;
+				: streamingScope.withWatchMonetizationTypes;
 			if (
 				isPremiumStreamingMonetizationFilter(withWatchMonetizationTypes) &&
 				(!user ||
@@ -347,7 +354,10 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			}
 			const regionRaw = (query.watch_region ?? "").trim().toUpperCase();
 			const watchRegionAll =
-				regionRaw === "ALL" || regionRaw === "ANY" || regionRaw === "WORLD";
+				streamingScope.watchRegionAll ||
+				regionRaw === "ALL" ||
+				regionRaw === "ANY" ||
+				regionRaw === "WORLD";
 			const watchRegionFromQuery =
 				!watchRegionAll &&
 				regionRaw.length === 2 &&
@@ -362,6 +372,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 					? watchRegionAll
 						? undefined
 						: (watchRegionFromQuery ??
+							streamingScope.watchRegion ??
 							(watchRegionDefault.length === 2 &&
 							/^[A-Z]{2}$/.test(watchRegionDefault)
 								? watchRegionDefault
@@ -394,6 +405,10 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				firstAirDateLte,
 				watchRegion,
 				withWatchMonetizationTypes,
+				withWatchProviders:
+					streamingScope.providerIds.length > 0
+						? streamingScope.providerIds
+						: undefined,
 				withStatus,
 				language,
 				withTextQuery: textQuery,
@@ -450,6 +465,7 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 				watch_region: t.Optional(t.String()),
 				/** `ended` / `completed` → TMDb status 3; `returning` / `ongoing` → 0. */
 				status: t.Optional(t.String()),
+				providers: t.Optional(t.String()),
 			}),
 		},
 	)

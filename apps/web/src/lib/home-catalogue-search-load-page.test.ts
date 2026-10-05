@@ -15,6 +15,7 @@ describe("resolveCatalogueSearchFetchTarget", () => {
 			q: "neon",
 			listingKind: "movie",
 			studioId: 41077,
+			streamingProviderId: null,
 			genreIds: [],
 			keywordIds: [],
 		});
@@ -29,6 +30,7 @@ describe("resolveCatalogueSearchFetchTarget", () => {
 			q: "interstellar",
 			listingKind: "movie",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [],
 			keywordIds: [],
 		});
@@ -43,6 +45,7 @@ describe("resolveCatalogueSearchFetchTarget", () => {
 			q: "",
 			listingKind: "tv",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [],
 			keywordIds: [],
 		});
@@ -170,6 +173,18 @@ describe("buildCatalogueSearchPlanFromCommit", () => {
 		if (plan.mode === "discover") {
 			expect(plan.opts.companyId).toBe(41077);
 			expect(plan.opts.q).toBeUndefined();
+		}
+	});
+
+	test("streaming platform tag uses discover with providerIds", () => {
+		const plan = buildCatalogueSearchPlanFromCommit(
+			[{ kind: "streaming", id: 8, name: "Netflix", logoUrl: null }],
+			"",
+			"movies",
+		);
+		expect(plan.mode).toBe("discover");
+		if (plan.mode === "discover") {
+			expect(plan.opts.providerIds).toEqual([8]);
 		}
 	});
 });

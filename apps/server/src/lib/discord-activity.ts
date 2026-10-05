@@ -66,6 +66,22 @@ export type DiscordActivityDisplay = {
 	headline?: string;
 	/** App/platform chip — Spotify, Apple Music, game name, etc. */
 	source?: string;
+	/** Set when the row came from Sense Companion rather than Discord. */
+	activitySource?: "companion" | "discord";
+	/** Title page for a Companion match. */
+	href?: string | null;
+	/** Companion playback is paused. Discord rows leave this unset. */
+	paused?: boolean;
+	/**
+	 * Snapshot of where the title is, in seconds.
+	 * `sampledAt` is when that position was measured. The profile row keeps
+	 * counting from it while playback is running.
+	 */
+	playback?: {
+		positionSec: number;
+		durationSec: number;
+		sampledAt?: string;
+	};
 	progress?: DiscordActivityProgress;
 	/** Poster-derived accent for progress + ambient chrome (nullable when art missing). */
 	accentColor?: string | null;

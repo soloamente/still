@@ -1,14 +1,120 @@
-﻿\n==== caa836b1-f753-4c77-8b3b-4cd051e317ef (0 user msgs, 1321 lines) ====
-\n==== feb7e27d-8347-40a2-9543-e8c4e421d017 (0 user msgs, 5924 lines) ====
-\n==== 20730077-1ffd-404e-81e6-f4669efe5904 (0 user msgs, 1093 lines) ====
-\n==== 61425fe9-13de-42ae-b555-e2626e866422 (0 user msgs, 3767 lines) ====
-\n==== 390c2d99-9307-42cc-a615-6f13104487bd (0 user msgs, 19 lines) ====
-\n==== 01b70e76-8f4b-4c31-a4c5-3d64412916e9 (0 user msgs, 8622 lines) ====
-\n==== 514371d9-7dca-4768-95dc-844debb830c9 (0 user msgs, 5435 lines) ====
-\n==== b06f3640-2d4d-44ee-906d-855adf819c11 (0 user msgs, 3218 lines) ====
-\n==== 269e54b7-6f8d-4fc8-b318-741129b77b58 (0 user msgs, 4604 lines) ====
-\n==== b19ecbc7-8141-4a83-b8bd-309696d91d69 (0 user msgs, 917 lines) ====
-\n==== 0120dcb1-41eb-46ad-987c-5dbc76cc5955 (0 user msgs, 1562 lines) ====
-\n==== baed870e-a34b-45d2-89fe-9d5d94a31d77 (0 user msgs, 1074 lines) ====
-\n==== 66857fec-cc3f-4ce1-81c8-d8f1343892cf (0 user msgs, 109 lines) ====
-\n==== 9d732b07-1e8b-49d8-a5ca-710c95176e21 (0 user msgs, 21968 lines) ====
+
+##### 3533 assistant len 10 #####
+[REDACTED]
+
+##### 3534 assistant len 10 #####
+[REDACTED]
+
+##### 3535 assistant len 10 #####
+[REDACTED]
+
+##### 3536 assistant len 10 #####
+[REDACTED]
+
+##### 3537 assistant len 161 #####
+Updated the **Related** section subtitle to **“Recommendations and similar titles.”** — the TMDb prefix is removed (`movie-detail-explore-tabs.tsx`).
+
+[REDACTED]
+
+##### 3539 assistant len 204 #####
+Today's Pick staying fixed while new logs don't move recommendations is a product problem, not a one-off layout tweak. I'll look at how the pick and recommendation pool are chosen before we lock a design.
+
+##### 3542 assistant len 604 #####
+Today's Pick is chosen by a **fixed ranking**: the server sorts taste matches by score and always puts the same top title first. The browser also **keeps that title for two hours** (`still:today-pick:v1`, and a separate key for TV). New diary logs only move the list if they change that score enough to beat the current #1, and logged titles are meant to drop out — but nothing rotates the pick just because the day changed. Watchlist's **Watch tonight** hero uses the same idea: a stable first item in a ranked pool.
+
+So the name says "today," and the system behaves like "best match until you skip it."
+
+##### 3543 assistant len 627 #####
+How should a new pick show up?
+
+**A.** One pick per calendar day in your timezone. It stays put until tomorrow, **Pick another**, or **Not interested**. The poster rail behind it updates as soon as you log something.
+
+**B.** A new pick every time you open Home or Watchlist. The rail updates after each log.
+
+**C.** Keep today's title even across days until you skip it, but make sure new logs actually change the ranking and drop titles you've already watched.
+
+I'd lean toward **A**: the label is "Today," and swapping the hero on every visit makes the page feel random. The rail is where new logs should show up immediately.
+
+##### 3545 assistant len 171 #####
+One pick per day, rail updates with each log. I'll check how the current rank is cached and whether logged titles are already excluded, then lay out a few ways to do that.
+
+##### 3547 assistant len 1287 #####
+The server already drops titles you have logged. The hero stays put because the rank always starts with the same best match, and the page remembers that title for two hours. New logs only change the row behind it when they beat that score by enough to reorder it.
+
+Three ways to get one pick per day, with the rail updating as you log:
+
+**1. Day-seeded pick from the top matches (recommended).** Each calendar day in your timezone, the hero is one title chosen from the top matches (not always #1), and that choice stays until tomorrow, **Pick another**, or **Not interested**. The poster rail is the rest of the list, refetched after every log, with recent logs weighted more so the row actually shifts. Movies, TV, and Watch tonight each keep their own day. Same browser, no new database table.
+
+**2. Save the day's pick in the database.** Same rules as 1, stored on your account so phone and laptop share one hero. More moving parts for a pick that is already personal and local.
+
+**3. Reshuffle the whole rail every day.** Hero and posters all change at midnight. It looks fresher, but the "because you like…" reason gets weaker when the row is a new shuffle instead of a ranked list.
+
+I would do **1**. The hero is stable for the day. The rail is where new logs show up immediately.
+
+##### 3551 assistant len 1097 #####
+**Daily hero.** Movies, TV, and Watch tonight each keep their own pick for one calendar day. The day follows the timezone already used by **Your week** (the device timezone cookie, UTC until that cookie exists).
+
+The server still returns the ranked unseen list. The hero is not always #1. A stable mix of your account, the date, and the surface (movies, TV, or watchlist) picks one title from the **top 12**. That title is saved in the browser for that date, replacing the current two-hour pin.
+
+It stays until the date changes, you tap **Pick another**, or you tap **Not interested**. **Pick another** and **Not interested** skip that title for the rest of the day and walk to the next title in that same top 12. A title you log is dropped immediately, and the hero moves to the next remaining candidate for the rest of the day. Reloading the page does not change it. Tomorrow’s date picks a different one.
+
+The title and reason swap in place when the hero changes. Reduced motion swaps instantly.
+
+Does this hero rule look right before I cover the poster rail and how new logs shift the ranking?
+
+##### 3553 assistant len 973 #####
+The hero rule stays as we left it. Suggestions will follow the **whole diary**, so the ranking can see what you actually love, not just what you logged lately.
+
+**Poster rail and ranking.** Movies and TV each keep a ranked row behind the hero. The score is built from every diary log for that kind of title: genres, decades, and languages, with higher ratings counting more than a pass. A 9 pulls a category forward more than a 6. The row is everyone still unseen, in that order, minus today's hero.
+
+Each new log joins that lifetime picture and leaves the row. The page refetches the list right after you save, so the posters update on that visit. The hero does not swap just because the new #1 moved. One log on a long diary nudges the pattern. It does not reshuffle the whole row.
+
+**Watch tonight** is separate. Its hero is still one title for the day, chosen from what you saved and can watch. It does not use the diary taste score.
+
+Does this ranking rule look right?
+
+##### 3555 assistant len 130 #####
+The daily hero and whole-diary ranking are locked. I'll write that into a spec and check it against how taste scoring works today.
+
+##### 3560 assistant len 170 #####
+The current taste score still fades older logs and only reads the latest 400. The spec will lock the full diary, with ratings, and a hero that stays for the calendar day.
+
+##### 3564 assistant len 736 #####
+Spec written and committed to `docs/superpowers/specs/2026-10-04-today-pick-daily-diary-design.md`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan.
+
+It locks three things:
+
+- **One hero per calendar day** on Movies, TV, and Watch tonight, chosen from the top 12 and kept in the browser until tomorrow, **Pick another**, or **Not interested**. Logging that title advances to the next one for the rest of the day.
+- **The whole diary** ranks suggestions. Higher ratings count more. The fade that downranked older logs, and the cap at the latest 400, both go away.
+- **The poster rail** refetches after a log. The hero stays put unless that title is no longer eligible.
+
+##### 3566 assistant len 98 #####
+The spec is approved. I'll follow the writing-plans skill and turn it into an implementation plan.
+
+##### 3568 assistant len 151 #####
+I'm using the writing-plans skill to create the implementation plan. I'll map the taste profile and the hero pin so each task has real files and tests.
+
+##### 3577 assistant len 163 #####
+The rating step on a log stays until it finishes. After that, the hero moves on. The plan keeps that, and drops the recency fade so the full diary drives the rank.
+
+##### 3581 assistant len 357 #####
+Plan complete and saved to `docs/superpowers/plans/2026-10-04-today-pick-daily-diary.md`. Two execution options:
+
+**1. Subagent-Driven (recommended)** — I dispatch a fresh subagent per task, review between tasks, fast iteration
+
+**2. Inline Execution** — Execute tasks in this session using executing-plans, batch execution with checkpoints
+
+Which approach?
+
+##### 3583 assistant len 94 #####
+I'll use the subagent-driven development skill and start the first task with a fresh subagent.
+
+##### 3586 assistant len 496 #####
+This work is on `main`. Subagent-driven execution is not supposed to start there without an isolated branch.
+
+Would you like me to set up an isolated worktree? It protects your current branch from changes.
+
+The plan also tells Task 2 to assert that three source files no longer contain `.limit(400)`, and Tasks 5 and 7 to wire the hero without a component test. A reviewer may flag those as weak tests. If that comes up, I will follow the plan text unless you say to strengthen the tests instead.
+
+##### 3588 assistant len 91 #####
+You approved the worktree and the plan’s tests. I’ll isolate the branch, then start Task 1.

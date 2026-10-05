@@ -4,6 +4,17 @@ import {
 	formatAutologClock,
 	formatAutologMinutes,
 } from "./autolog-countdown";
+import {
+	dismissToastHostById,
+	mountToastHost,
+	releaseToastHost,
+	scheduleLayoutToastStack,
+} from "./toast-host";
+
+/** Visible lead on the sentence phase. */
+const AUTO_LOG_LEAD = "Auto Log in...";
+/** Spoken label without the decorative ellipsis. */
+const AUTO_LOG_SPOKEN = "Auto Log in";
 
 const HOST_ID = "sense-companion-autolog-toast";
 
@@ -12,24 +23,40 @@ const HOURGLASS_PATH =
 	"m4.502,3.0625l.1499,2.3984c.0811,1.291.6489,2.4849,1.5991,3.3623l1.2749,1.1768-1.2749,1.1768c-.9502.8774-1.5181,2.0713-1.5991,3.3623l-.1499,2.3984c-.0013.0214.0089.0411.0089.0625h10.9783c0-.0214.0103-.0411.0089-.0625l-.1499-2.3984c-.0811-1.291-.6489-2.4849-1.5991-3.3623l-1.2749-1.1768,1.2749-1.1768c.9502-.8774,1.5181-2.0713,1.5991-3.3623l.1499-2.3984c.0013-.0214-.0089-.0411-.0089-.0625H4.5109c0,.0214-.0103.0411-.0089.0625Zm5.2095,9.4951c.1846-.0771.3926-.0771.5771,0,1.1963.4985,2.0093,1.3179,2.416,2.436.084.23.0503.4863-.0903.6865-.1401.2007-.3696.3198-.6143.3198h-4c-.2446,0-.4741-.1191-.6143-.3198-.1406-.2002-.1743-.4565-.0903-.6865.4067-1.1182,1.2197-1.9375,2.416-2.436Z";
 
 /**
- * Sits under the Watching notice (that host is top: 20px).
- * Sentence parts collapse with max-width and opacity; margin and padding
- * travel with them so a closed item does not leave a gap.
+ * Top/right on the host are set by toast-host stacking. Width morph uses
+ * transitions.dev card resize. Targets are measured, so the open pill is
+ * never shorter than its text.
  */
 const PILL_STYLE = `
 :host {
 	all: initial;
+	display: block;
 	position: fixed;
-	top: 68px;
 	right: 16px;
 	z-index: 2147483646;
+	box-sizing: border-box;
+	width: max-content;
+	max-width: min(24rem, calc(100vw - 32px));
+	overflow: visible;
 	pointer-events: none;
+	/* Shadow tree: page :root tokens do not apply here. */
+	--resize-dur: 300ms;
+	--resize-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.t-resize {
+	transition:
+		width  var(--resize-dur) var(--resize-ease),
+		height var(--resize-dur) var(--resize-ease);
+	will-change: width, height;
 }
 .shell {
 	--progress: 0;
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
+	flex-wrap: nowrap;
 	position: relative;
+	width: max-content;
 	max-width: min(24rem, calc(100vw - 32px));
 	margin: 0;
 	padding: 10px 14px 10px 10px;
@@ -44,6 +71,12 @@ const PILL_STYLE = `
 	letter-spacing: -0.01em;
 	font-variant-numeric: tabular-nums;
 	-webkit-font-smoothing: antialiased;
+	overflow: hidden;
+	/* The host ignores hits so the page stays clickable. The pill itself can. */
+	pointer-events: auto;
+	cursor: default;
+	user-select: none;
+	outline: none;
 }
 /* 2px ring. Empty at 0, full at 1, starting from 0deg. */
 .shell::after {
@@ -72,22 +105,15 @@ const PILL_STYLE = `
 .badge,
 .clock {
 	flex: none;
-	min-width: 0;
-	overflow: hidden;
+	flex-shrink: 0;
 	white-space: nowrap;
-	opacity: 1;
-	transition:
-		max-width 220ms,
-		opacity 220ms,
-		margin-right 220ms,
-		padding 220ms;
 }
 .icon {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	width: 20px;
 	height: 20px;
-	max-width: 20px;
 	margin-right: 8px;
 	color: #e8a854;
 }
@@ -97,36 +123,35 @@ const PILL_STYLE = `
 	height: 20px;
 }
 .words {
-	max-width: 8rem;
 	margin-right: 8px;
 }
 .badge {
-	max-width: 8rem;
 	padding: 4px 8px;
 	border-radius: 999px;
 	background: #3a3a3c;
 	color: #fff;
 	font-size: 13px;
+	font-weight: 600;
 }
-.clock {
-	max-width: 8rem;
+/* Clock-only has no icon, so the left inset matches the right. */
+.shell.clock:not(.explain) {
+	padding-left: 14px;
 }
-.shell.clock .icon,
-.shell.clock .words,
-.shell.clock .badge,
-.shell.sentence .clock {
-	max-width: 0;
-	margin-right: 0;
-	padding: 0;
-	opacity: 0;
+/* Compact clock: timer only — no animated max-width (that clipped the lead on hover). */
+.shell.clock:not(.explain) .icon,
+.shell.clock:not(.explain) .words,
+.shell.clock:not(.explain) .badge {
+	display: none;
+}
+.shell.sentence .clock,
+.shell.clock.explain .clock {
+	display: none;
+}
+.shell.clock:not(.explain) .clock {
+	display: block;
 }
 @media (prefers-reduced-motion: reduce) {
-	.icon,
-	.words,
-	.badge,
-	.clock {
-		transition: none;
-	}
+	.t-resize { transition: none !important; }
 }
 `;
 
@@ -139,6 +164,9 @@ type CountdownPill = {
 
 /** Kept for the life of the content script so later syncs update this host. */
 let pill: CountdownPill | null = null;
+/** After the pointer leaves the clock, keep the full sentence this long. */
+const EXPLAIN_AFTER_LEAVE_MS = 1200;
+let explainTimer: number | null = null;
 
 function hourglassSvg(): SVGSVGElement {
 	const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -176,10 +204,12 @@ function hourglassSvg(): SVGSVGElement {
 function spokenLabel(
 	phase: Exclude<AutologCountdownPhase, "hidden">,
 	remainingSec: number,
+	explaining: boolean,
 ): string {
+	if (explaining || phase === "sentence") {
+		return `${AUTO_LOG_SPOKEN}. ${formatAutologMinutes(remainingSec)}.`;
+	}
 	switch (phase) {
-		case "sentence":
-			return `Log in. ${formatAutologMinutes(remainingSec)}.`;
 		case "clock":
 			return `${formatAutologClock(remainingSec)} left to log.`;
 		default: {
@@ -189,16 +219,121 @@ function spokenLabel(
 	}
 }
 
+function clearExplainTimer(): void {
+	if (explainTimer == null) return;
+	window.clearTimeout(explainTimer);
+	explainTimer = null;
+}
+
+/**
+ * Tween the pill width to the visible content.
+ * Padding snaps with the state change first, then `.t-resize` eases width
+ * so the inset does not trail the open or close.
+ */
+function tweenShellToContent(shell: HTMLElement): void {
+	const from = Math.ceil(shell.getBoundingClientRect().width);
+	shell.style.transition = "none";
+	shell.style.width = "max-content";
+	const to = Math.ceil(shell.getBoundingClientRect().width);
+	if (to <= 0) {
+		shell.style.removeProperty("width");
+		shell.style.removeProperty("transition");
+		scheduleLayoutToastStack();
+		return;
+	}
+	const reduce =
+		typeof window !== "undefined" &&
+		window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	if (reduce || from <= 0 || from === to) {
+		shell.style.width = `${to}px`;
+		shell.style.removeProperty("transition");
+		scheduleLayoutToastStack();
+		return;
+	}
+	shell.style.width = `${from}px`;
+	void shell.offsetWidth;
+	shell.style.removeProperty("transition");
+	void shell.offsetWidth;
+	shell.style.width = `${to}px`;
+	scheduleLayoutToastStack();
+}
+
+function labelFromShell(shell: HTMLElement): void {
+	const minutes = shell.querySelector(".badge")?.textContent ?? "";
+	const clock = shell.querySelector(".clock")?.textContent ?? "";
+	const explaining =
+		shell.classList.contains("explain") || shell.classList.contains("sentence");
+	shell.setAttribute(
+		"aria-label",
+		explaining ? `${AUTO_LOG_SPOKEN}. ${minutes}.` : `${clock} left to log.`,
+	);
+}
+
+/** Open the sentence on the clock so the hourglass and minutes are visible. */
+function showExplain(shell: HTMLElement): void {
+	if (!shell.classList.contains("clock")) return;
+	clearExplainTimer();
+	shell.classList.add("explain");
+	labelFromShell(shell);
+	tweenShellToContent(shell);
+}
+
+/** Fold back to the clock after the pointer has been gone a moment. */
+function scheduleHideExplain(shell: HTMLElement): void {
+	clearExplainTimer();
+	explainTimer = window.setTimeout(() => {
+		explainTimer = null;
+		shell.classList.remove("explain");
+		labelFromShell(shell);
+		tweenShellToContent(shell);
+	}, EXPLAIN_AFTER_LEAVE_MS);
+}
+
+function hideExplain(shell: HTMLElement): void {
+	clearExplainTimer();
+	shell.classList.remove("explain");
+	labelFromShell(shell);
+	tweenShellToContent(shell);
+}
+
 function mountPill(): CountdownPill {
-	document.getElementById(HOST_ID)?.remove();
+	dismissToastHostById(HOST_ID);
 	const host = document.createElement("div");
 	host.id = HOST_ID;
 	const shadow = host.attachShadow({ mode: "open" });
 	const style = document.createElement("style");
 	style.textContent = PILL_STYLE;
 	const shell = document.createElement("div");
-	shell.className = "shell sentence";
+	shell.className = "shell t-resize sentence";
 	shell.setAttribute("role", "status");
+	shell.tabIndex = 0;
+	let pointerKind = "mouse";
+	shell.addEventListener("pointerdown", (event) => {
+		pointerKind = event.pointerType;
+	});
+	shell.addEventListener("pointerenter", (event) => {
+		if (event.pointerType === "touch") return;
+		showExplain(shell);
+	});
+	shell.addEventListener("pointerleave", (event) => {
+		if (event.pointerType === "touch") return;
+		scheduleHideExplain(shell);
+	});
+	shell.addEventListener("focus", () => {
+		showExplain(shell);
+	});
+	shell.addEventListener("blur", () => {
+		scheduleHideExplain(shell);
+	});
+	shell.addEventListener("click", () => {
+		if (pointerKind !== "touch") return;
+		if (!shell.classList.contains("clock")) return;
+		if (shell.classList.contains("explain")) {
+			hideExplain(shell);
+			return;
+		}
+		showExplain(shell);
+	});
 	const icon = document.createElement("span");
 	icon.className = "icon";
 	icon.setAttribute("aria-hidden", "true");
@@ -206,7 +341,7 @@ function mountPill(): CountdownPill {
 	const words = document.createElement("span");
 	words.className = "words";
 	words.setAttribute("aria-hidden", "true");
-	words.textContent = "Log in";
+	words.textContent = AUTO_LOG_LEAD;
 	const badge = document.createElement("span");
 	badge.className = "badge";
 	badge.setAttribute("aria-hidden", "true");
@@ -215,7 +350,7 @@ function mountPill(): CountdownPill {
 	clock.setAttribute("aria-hidden", "true");
 	shell.append(icon, words, badge, clock);
 	shadow.append(style, shell);
-	(document.documentElement ?? document.body).append(host);
+	mountToastHost(host);
 	return { host, shell, badge, clock };
 }
 
@@ -227,9 +362,8 @@ function ensurePill(): CountdownPill {
 
 /** Phase hidden, or a caller with no remaining time, takes the host away. */
 function removePill(): void {
-	pill?.host.remove();
+	if (pill?.host.isConnected) releaseToastHost(pill.host);
 	pill = null;
-	document.getElementById(HOST_ID)?.remove();
 }
 
 function paintPill(
@@ -245,7 +379,15 @@ function paintPill(
 	);
 	nodes.shell.classList.toggle("sentence", phase === "sentence");
 	nodes.shell.classList.toggle("clock", phase === "clock");
-	nodes.shell.setAttribute("aria-label", spokenLabel(phase, remainingSec));
+	if (phase === "sentence") {
+		clearExplainTimer();
+		nodes.shell.classList.remove("explain");
+	}
+	nodes.shell.setAttribute(
+		"aria-label",
+		spokenLabel(phase, remainingSec, nodes.shell.classList.contains("explain")),
+	);
+	tweenShellToContent(nodes.shell);
 }
 
 /**

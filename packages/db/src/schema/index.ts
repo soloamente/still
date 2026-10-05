@@ -3,6 +3,7 @@
 export * from "./activity";
 export * from "./auth";
 export * from "./chat";
+export * from "./companion";
 export * from "./completionist";
 export * from "./feedback";
 export * from "./gamification";

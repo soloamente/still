@@ -35,6 +35,7 @@ import {
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
+import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
@@ -75,6 +76,8 @@ import {
 	activeIndexAfterRemoval,
 	buildTasteQueueBackfillRunner,
 	createTasteQueueBackfillScheduler,
+	railAfterTasteRefresh,
+	sameTasteRailIds,
 } from "@/lib/taste-match-queue";
 import {
 	reconcileTasteMatchMovies,
@@ -254,13 +257,16 @@ export type HomeTasteHeroCompletionMode = "legacy-autoswap" | "today-shell";
 /** Honest pick empty / error tile — Today keeps rendering week + circle beside it. */
 function TodayPickEmptyTile({
 	failed,
+	media,
 	onRetry,
 }: {
 	failed: boolean;
+	media: "movie" | "tv";
 	onRetry: () => void;
 }) {
 	const headingId = useId();
 	const requestSearch = useCatalogSearchDialog((s) => s.requestOpen);
+	const noun = media === "tv" ? "shows" : "films";
 	return (
 		<section
 			aria-labelledby={headingId}
@@ -285,7 +291,7 @@ function TodayPickEmptyTile({
 			) : (
 				<>
 					<p className="max-w-prose text-balance font-semibold text-foreground text-lg leading-snug tracking-tight">
-						Log a few more films and a pick matched to your taste will be
+						Log a few more {noun} and a pick matched to your taste will be
 						waiting here.
 					</p>
 					<button
@@ -293,7 +299,7 @@ function TodayPickEmptyTile({
 						className={TODAY_CARD_ACTION_CLASSNAME}
 						onClick={() => requestSearch()}
 					>
-						Log a film
+						Log a title
 					</button>
 				</>
 			)}
@@ -496,6 +502,65 @@ export function HomeTasteMatchedHero({
 		setLoading(false);
 	}, [fetchTasteForYou, isTodayShell, media, sessionUserId]);
 
+	/**
+	 * Replace the poster rail from a fresh for-you response. Today's pin stays
+	 * unless that title was the one just logged. A cached home payload otherwise
+	 * keeps yesterday's posters after a diary save.
+	 */
+	const refreshRailFromDiary = useCallback(
+		async (consumedTmdbId: number | null) => {
+			const heldId =
+				pickStateRef.current.phase === "just_logged"
+					? pickStateRef.current.tmdbId
+					: null;
+			if (heldId != null && heldId === consumedTmdbId) return;
+			const requestedMedia = media;
+			const data = await fetchTasteForYou();
+			if (!data || mediaLiveRef.current !== requestedMedia) return;
+			if (
+				pickStateRef.current.phase === "just_logged" &&
+				pickStateRef.current.tmdbId === consumedTmdbId
+			) {
+				return;
+			}
+			const fresh = data.coldStart ? [] : moviesFromTastePayload(data);
+			const dayKey = formatDayKey(readViewerTimeZone());
+			const pin = isTodayShell
+				? readTodayPickContinuity({ media, dayKey })
+				: null;
+			const pinnedId = pin?.tmdbId ?? heldId;
+			const pinned =
+				pinnedId != null && pinnedId !== consumedTmdbId
+					? (fresh.find((film) => film.tmdbId === pinnedId) ??
+						moviesRef.current.find((film) => film.tmdbId === pinnedId) ??
+						(pin?.tmdbId === pinnedId ? pin.film : null))
+					: null;
+			const next = railAfterTasteRefresh({
+				fresh,
+				pinned,
+				consumedTmdbId,
+			});
+			const nextGenrePhrase = data.coldStart
+				? null
+				: (data.genrePhrase ?? null);
+			if (consumedTmdbId == null && sameTasteRailIds(moviesRef.current, next)) {
+				return;
+			}
+			setPayload(data);
+			setGenrePhrase(nextGenrePhrase);
+			setMovies(next);
+			if (heldId != null) {
+				const heldIndex = next.findIndex((film) => film.tmdbId === heldId);
+				if (heldIndex >= 0) setActiveIndex(heldIndex);
+			} else if (isTodayShell) {
+				setActiveIndex(
+					commitTodayHeroIndex(next, tasteMatchedRailTitle(nextGenrePhrase)),
+				);
+			}
+		},
+		[fetchTasteForYou, isTodayShell, media, sessionUserId],
+	);
+
 	const applyMoviesFromBackfill = useCallback((next: TasteMatchMovie[]) => {
 		const prev = moviesRef.current;
 		const addedIds = next
@@ -599,6 +664,9 @@ export function HomeTasteMatchedHero({
 	}, [spotlightTmdbId, reduceMotion]);
 
 	const mediaBoundRef = useRef(media);
+	/** Latest catalogue — an in-flight for-you refresh must not land on the other tab. */
+	const mediaLiveRef = useRef(media);
+	mediaLiveRef.current = media;
 	useEffect(() => {
 		if (initial === undefined) return;
 		const fresh =
@@ -677,7 +745,13 @@ export function HomeTasteMatchedHero({
 					)
 				: 0,
 		);
-	}, [initial, isTodayShell, media, sessionUserId]);
+		// RSC can be the page from before this log. Pull a fresh rail once the
+		// session id is real; the day's pin is reapplied inside the refresh.
+		// A rating step or a finished pick restores itself — don't race that.
+		if (sessionUserId !== "" && pendingFilm == null && restoredFilm == null) {
+			void refreshRailFromDiary(null);
+		}
+	}, [initial, isTodayShell, media, refreshRailFromDiary, sessionUserId]);
 
 	useEffect(() => {
 		if (initial !== undefined) return;
@@ -916,8 +990,9 @@ export function HomeTasteMatchedHero({
 				return;
 			}
 			removeFromQueue(tmdbId);
+			void refreshRailFromDiary(tmdbId);
 		},
-		[isTodayShell, removeFromQueue],
+		[isTodayShell, refreshRailFromDiary, removeFromQueue],
 	);
 
 	/** Retire the finished title and show the next day-seeded hero (or `targetTmdbId` when chosen). */
@@ -1261,12 +1336,13 @@ export function HomeTasteMatchedHero({
 		isTodayShell && !loading,
 	);
 
-	if (loading) return <HomeTasteMatchedHeroSkeleton />;
+	if (loading) return <HomeTasteMatchedHeroSkeleton media={media} />;
 	if (isTodayShell) {
 		if (todayShowsEmptyTile) {
 			return (
 				<TodayPickEmptyTile
 					failed={payload == null}
+					media={media}
 					onRetry={() => void handleRetryPick()}
 				/>
 			);
@@ -1351,32 +1427,33 @@ export function HomeTasteMatchedHero({
 						>
 							<div
 								className={cn(
-									"space-y-2 sm:space-y-3",
+									"flex flex-col gap-2 sm:gap-3",
 									HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
 								)}
 							>
-								<p className="inline-flex items-center gap-1.5 text-balance text-[0.6875rem] text-foreground/75 tracking-wide sm:text-sm">
+								<p className="inline-flex items-center gap-2 text-balance text-pure-white/75 text-xs tracking-wide sm:text-sm">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 18 18"
 										width="18"
 										height="18"
-										className="size-4 shrink-0 sm:size-5"
+										className="size-4 shrink-0 text-pure-white sm:size-5"
 										aria-hidden
 									>
 										<title>Taste match</title>
 										<path
 											d="m16.6094,7.5176c-.001,0-.001-.0005-.001-.0005-.8115-1.4336-3.1787-4.7671-7.6084-4.7671S2.2031,6.0835,1.3906,7.5176c-.5244.9282-.5244,2.0366.001,2.9653.8125,1.4336,3.1797,4.7671,7.6084,4.7671s6.7959-3.3335,7.6094-4.7676c.5244-.9282.5244-2.0366,0-2.9648Z"
-											fill="rgba(255, 255, 255, 0.4)"
+											fill="currentColor"
+											opacity="0.4"
 										/>
 										<path
 											d="m11.9805,8.2861l-1.7139-.5527-.5527-1.7139c-.0996-.3096-.3887-.5195-.7139-.5195s-.6143.21-.7139.5195l-.5527,1.7139-1.7139.5527c-.3096.1001-.5195.3882-.5195.7139s.21.6138.5195.7139l1.7139.5527.5527,1.7139c.0996.3096.3887.5195.7139.5195s.6143-.21.7139-.5195l.5527-1.7139,1.7139-.5527c.3096-.1001.5195-.3882.5195-.7139s-.21-.6138-.5195-.7139Z"
-											fill="rgba(255, 255, 255, 1)"
+											fill="currentColor"
 										/>
 									</svg>
 									{isTodayShell ? (
 										<>
-											<span className="font-semibold text-foreground">
+											<span className="font-semibold text-pure-white">
 												Today’s pick
 											</span>
 											<span aria-hidden>·</span>
@@ -1431,7 +1508,7 @@ export function HomeTasteMatchedHero({
 											</span>
 										</div>
 									) : (
-										<h2 className="text-balance font-sans font-semibold text-[clamp(1.375rem,4.5vw,3.25rem)] text-foreground uppercase leading-[0.95] tracking-[-0.03em] [text-shadow:-1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#ff4d4d_28%),1px_0_0_color-mix(in_oklab,var(--foreground)_0%,#4da3ff_28%)] sm:text-[clamp(1.75rem,5.5vw,3.25rem)]">
+										<h2 className="text-balance font-sans font-semibold text-[clamp(1.75rem,5.5vw,3.25rem)] text-pure-white leading-[0.95] tracking-[-0.03em]">
 											<span ref={titleSwapRef} className="t-text-swap">
 												{spotlight.title}
 											</span>
@@ -1441,7 +1518,7 @@ export function HomeTasteMatchedHero({
 								<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:justify-start sm:gap-x-4 sm:gap-y-2">
 									{hasAverage && displayAverage != null ? (
 										<div className="flex items-center gap-0.5 sm:gap-1">
-											<IconPatronScoreLeafLeft className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
+											<IconPatronScoreLeafLeft className="h-10 w-auto shrink-0 text-pure-white/60 sm:h-11" />
 											<div className="flex min-w-10 flex-col items-center gap-px text-center leading-none sm:min-w-11">
 												<span className="sr-only">
 													Community score{" "}
@@ -1453,25 +1530,25 @@ export function HomeTasteMatchedHero({
 														spotlight.communityRatingsCount ?? 0,
 													).toLowerCase()}
 												</span>
-												<span className="font-sans font-semibold text-base text-foreground tabular-nums leading-none tracking-tight sm:text-lg">
+												<span className="font-sans font-semibold text-base text-pure-white tabular-nums leading-none tracking-tight sm:text-lg">
 													{formatLogRatingDisplay(displayAverage)}
 												</span>
-												<span className="font-sans text-[0.625rem] text-foreground/80 tabular-nums leading-none sm:text-xs">
+												<span className="font-sans text-pure-white/80 text-xs tabular-nums leading-none">
 													{formatHeroRatingsCountValue(
 														spotlight.communityRatingsCount ?? 0,
 													)}
 												</span>
-												<span className="font-sans text-[0.5625rem] text-foreground/55 leading-none sm:text-[0.625rem]">
+												<span className="font-sans text-pure-white/55 text-xs leading-none">
 													{formatHeroRatingsCountLabel(
 														spotlight.communityRatingsCount ?? 0,
 													)}
 												</span>
 											</div>
-											<IconPatronScoreLeafRight className="h-10 w-auto shrink-0 text-foreground/60 sm:h-11" />
+											<IconPatronScoreLeafRight className="h-10 w-auto shrink-0 text-pure-white/60 sm:h-11" />
 										</div>
 									) : null}
 									{festivalIcon ? (
-										<div className="flex items-center gap-1.5 text-foreground/80 sm:gap-2">
+										<div className="flex items-center gap-2 text-pure-white/80">
 											<FestivalRecognitionIcon
 												icon={festivalIcon}
 												className="h-7 w-16 sm:h-10 sm:w-24"
@@ -1491,7 +1568,7 @@ export function HomeTasteMatchedHero({
 							{pickDone ? (
 								<div className="relative z-30 flex flex-col items-center gap-3 pt-0.5 sm:items-start sm:pt-1">
 									<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-start">
-										<p className="inline-flex items-center gap-1.5 font-medium text-foreground text-sm">
+										<p className="inline-flex items-center gap-2 font-medium text-pure-white text-sm">
 											<Check
 												className="size-4 shrink-0 stroke-[2.5]"
 												aria-hidden
@@ -1502,7 +1579,7 @@ export function HomeTasteMatchedHero({
 											<button
 												type="button"
 												className={cn(
-													"inline-flex min-h-10 items-center rounded-full px-2 font-medium text-foreground/75 text-sm underline-offset-4 transition-colors duration-200 motion-reduce:transition-none [@media(hover:hover)]:hover:text-foreground [@media(hover:hover)]:hover:underline",
+													"inline-flex min-h-11 items-center rounded-full px-2 font-medium text-pure-white/75 text-sm underline-offset-4 transition-colors duration-150 motion-reduce:transition-none [@media(hover:hover)]:hover:text-pure-white [@media(hover:hover)]:hover:underline",
 													"disabled:pointer-events-none disabled:opacity-50",
 													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 												)}
@@ -1516,7 +1593,7 @@ export function HomeTasteMatchedHero({
 											ref={pickAnotherButtonRef}
 											type="button"
 											className={cn(
-												"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
+												"inline-flex min-h-11 items-center justify-center rounded-full bg-pure-white px-5 font-medium text-absolute-black text-sm transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none",
 												"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 											)}
 											onClick={() => handlePickAnother()}
@@ -1535,13 +1612,13 @@ export function HomeTasteMatchedHero({
 								</div>
 							) : (
 								<TooltipProvider delay={0} closeDelay={80}>
-									<div className="relative z-30 flex flex-wrap items-center justify-center gap-1.5 pt-0.5 sm:justify-start sm:gap-2 sm:pt-1">
+									<div className="relative z-30 flex flex-wrap items-center justify-center gap-2 pt-1 sm:justify-start">
 										<DetailIconTooltip label={quickLogLabel}>
 											<motion.button
 												ref={watchedButtonRef}
 												type="button"
 												className={cn(
-													"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground sm:size-12",
+													"inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-background text-foreground sm:size-12",
 													DETAIL_MOTION_PRESSABLE_CLASS,
 													"disabled:pointer-events-none disabled:opacity-50",
 													"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -1570,7 +1647,7 @@ export function HomeTasteMatchedHero({
 											<button
 												type="button"
 												className={cn(
-													"inline-flex min-h-10 items-center justify-center rounded-full bg-foreground px-4 font-medium text-background text-xs transition-[transform,background-color,color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:min-h-11 sm:px-5 sm:text-sm",
+													"inline-flex min-h-11 items-center justify-center rounded-full bg-pure-white px-5 font-medium text-absolute-black text-sm transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none",
 													"disabled:pointer-events-none disabled:opacity-50",
 												)}
 												disabled={watchlistBusy}
@@ -1582,7 +1659,7 @@ export function HomeTasteMatchedHero({
 												<button
 													type="button"
 													className={cn(
-														"inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-background/55 text-foreground backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:hidden",
+														"inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-background text-foreground transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none sm:hidden",
 														DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 														"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 													)}
@@ -1600,7 +1677,7 @@ export function HomeTasteMatchedHero({
 											<button
 												type="button"
 												className={cn(
-													"hidden min-h-11 items-center justify-center rounded-full bg-background/55 px-5 font-medium text-foreground text-sm backdrop-blur-sm transition-[transform,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:inline-flex",
+													"hidden min-h-11 items-center justify-center rounded-full bg-background px-5 font-medium text-foreground text-sm transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none sm:inline-flex",
 													DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 												)}
 												onClick={() =>
@@ -1633,7 +1710,11 @@ export function HomeTasteMatchedHero({
 										isPosterRailDragging && "cursor-grabbing",
 									)}
 									role="listbox"
-									aria-label="Browse taste-matched films"
+									aria-label={
+										media === "tv"
+											? "Browse taste-matched shows"
+											: "Browse taste-matched films"
+									}
 								>
 									<AnimatePresence initial={false} mode="sync">
 										{movies.map((film, index) => {
@@ -1676,7 +1757,7 @@ export function HomeTasteMatchedHero({
 														isActive
 															? cn(
 																	HOME_TASTE_HERO_POSTER_TILE_ACTIVE_CLASSNAME,
-																	"z-1 scale-[1.03] opacity-(--edge-opacity) ring-2 ring-foreground/85",
+																	"z-1 scale-[1.03] opacity-(--edge-opacity)",
 																)
 															: cn(
 																	HOME_TASTE_HERO_POSTER_TILE_IDLE_CLASSNAME,
@@ -1704,8 +1785,14 @@ export function HomeTasteMatchedHero({
 															film.posterPath,
 															"w342",
 														)}
-														className="aspect-2/3 w-full overflow-hidden rounded-xl sm:rounded-2xl"
-														frameClassName="w-full rounded-xl border-0 sm:rounded-2xl"
+														className={cn(
+															"aspect-2/3 w-full overflow-hidden",
+															CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME,
+														)}
+														frameClassName={cn(
+															"w-full border-0",
+															CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME,
+														)}
 														linkable={false}
 													/>
 												</motion.button>

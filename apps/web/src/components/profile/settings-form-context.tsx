@@ -43,6 +43,10 @@ import { api } from "@/lib/api";
 import { type AppThemeClass, resolveAppThemeForPatron } from "@/lib/app-themes";
 import { authClient } from "@/lib/auth-client";
 import {
+	mergeCompanionWatchingEnabledPref,
+	readCompanionWatchingEnabledPref,
+} from "@/lib/companion-watching-pref";
+import {
 	EMAIL_VERIFICATION_TOAST,
 	isEmailVerificationRequiredError,
 } from "@/lib/email-verification-error";
@@ -158,6 +162,10 @@ type SettingsFormContextValue = {
 	setPresenceVisibility: (value: ProfilePresenceVisibilityPref) => void;
 	discordActivityEnabled: boolean;
 	setDiscordActivityEnabled: (value: boolean) => void;
+	companionWatchingEnabled: boolean;
+	setCompanionWatchingEnabled: (value: boolean) => void;
+	/** Keeps the share toggle in the save baseline after an immediate PATCH. */
+	pinCompanionWatchingEnabled: (enabled: boolean) => void;
 	isPrivate: boolean;
 	setIsPrivate: (value: boolean) => void;
 	profileAudioEnabled: boolean;
@@ -251,6 +259,9 @@ export function SettingsFormProvider({
 		);
 	const [discordActivityEnabled, setDiscordActivityEnabled] = useState(() =>
 		readDiscordActivityEnabledPref(profile.preferences ?? null),
+	);
+	const [companionWatchingEnabled, setCompanionWatchingEnabled] = useState(() =>
+		readCompanionWatchingEnabledPref(profile.preferences ?? null),
 	);
 	const [isPrivate, setIsPrivate] = useState(Boolean(profile.isPrivate));
 	const [profileAudio, setProfileAudio] = useState(() =>
@@ -451,6 +462,7 @@ export function SettingsFormProvider({
 			showBirthDateOnProfile,
 			presenceVisibility,
 			discordActivityEnabled,
+			companionWatchingEnabled,
 			isPrivate,
 			audioEnabled: profileAudio.enabled,
 			audioAtmosphere: profileAudio.atmosphere,
@@ -480,6 +492,7 @@ export function SettingsFormProvider({
 		showBirthDateOnProfile,
 		presenceVisibility,
 		discordActivityEnabled,
+		companionWatchingEnabled,
 		isPrivate,
 		profileAudio,
 		smoothScroll,
@@ -496,6 +509,16 @@ export function SettingsFormProvider({
 		bannerFrame,
 	]);
 	const baseline = committed ?? fromProfile;
+	const pinCompanionWatchingEnabled = useCallback(
+		(enabled: boolean) => {
+			setCompanionWatchingEnabled(enabled);
+			setCommitted((prev) => ({
+				...(prev ?? fromProfile),
+				companionWatchingEnabled: enabled,
+			}));
+		},
+		[fromProfile],
+	);
 	const dirty = settingsFormIsDirty(
 		currentSnapshot,
 		baseline,
@@ -524,6 +547,7 @@ export function SettingsFormProvider({
 		setShowBirthDateOnProfile(next.showBirthDateOnProfile);
 		setPresenceVisibility(next.presenceVisibility);
 		setDiscordActivityEnabled(next.discordActivityEnabled);
+		setCompanionWatchingEnabled(next.companionWatchingEnabled);
 		setIsPrivate(next.isPrivate);
 		setProfileAudio((prev) => ({
 			...prev,
@@ -784,6 +808,10 @@ export function SettingsFormProvider({
 					).streakMilestonesCelebrated,
 				});
 				prefs = mergeDiscordActivityEnabledPref(prefs, discordActivityEnabled);
+				prefs = mergeCompanionWatchingEnabledPref(
+					prefs,
+					companionWatchingEnabled,
+				);
 
 				// Only send birthDate when the user actually changed it — otherwise an
 				// unrelated save (e.g. setting an avatar) would clear/re-send the DOB
@@ -870,6 +898,7 @@ export function SettingsFormProvider({
 			showBirthDateOnProfile,
 			presenceVisibility,
 			discordActivityEnabled,
+			companionWatchingEnabled,
 			catalogTmdbWatchRegion,
 			catalogTmdbLanguage,
 			reviewTranslationLanguage,
@@ -937,7 +966,10 @@ export function SettingsFormProvider({
 			presenceVisibility,
 			setPresenceVisibility,
 			discordActivityEnabled,
+			companionWatchingEnabled,
 			setDiscordActivityEnabled,
+			setCompanionWatchingEnabled,
+			pinCompanionWatchingEnabled,
 			isPrivate,
 			setIsPrivate,
 			profileAudioEnabled: profileAudio.enabled,
@@ -993,6 +1025,8 @@ export function SettingsFormProvider({
 			showBirthDateOnProfile,
 			presenceVisibility,
 			discordActivityEnabled,
+			companionWatchingEnabled,
+			pinCompanionWatchingEnabled,
 			isPrivate,
 			profileAudio,
 			smoothScroll,

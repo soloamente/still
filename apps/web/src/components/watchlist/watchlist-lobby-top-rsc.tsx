@@ -27,6 +27,8 @@ export async function WatchlistLobbyTopRsc() {
 					<HomeContinueWatchingRail
 						items={tvWatch.bundles}
 						heading="Or continue watching"
+						episodeCaption="code"
+						titleLines={1}
 					/>
 				</div>
 			) : null}

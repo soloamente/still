@@ -1,13 +1,24 @@
 "use client";
 
+import { Tooltip, TooltipTrigger } from "@still/ui/components/tooltip";
 import IconStarFilled from "@still/ui/icons/star-filled";
 import { cn } from "@still/ui/lib/utils";
 import { ArrowDown, ArrowUp } from "lucide-react";
-
+import { motion, useReducedMotion } from "motion/react";
 import { SearchDialogHorizontalRail } from "@/components/home/search-dialog-horizontal-rail";
+import { SearchDialogKeyboardFocusWrap } from "@/components/home/search-dialog-keyboard-focus-wrap";
 import { SearchDialogPeopleRailSkeleton } from "@/components/home/search-dialog-result-skeletons";
+import {
+	CatalogSearchTooltipContent,
+	SearchDialogRailTooltipProvider,
+} from "@/lib/catalog-search-tooltip-portal";
+import { posterSampledScrimStyle } from "@/lib/search-dialog-people-portrait-scrim";
 import type { SearchDialogPeopleRankMovement } from "@/lib/search-dialog-people-rank-delta";
-import { searchDialogPeoplePortraitScrimStyle } from "@/lib/search-dialog-people-portrait-scrim";
+import {
+	SEARCH_DIALOG_RAIL_ENTER_ANIMATE,
+	SEARCH_DIALOG_RAIL_ENTER_TRANSITION,
+	searchDialogRailEnterInitial,
+} from "@/lib/search-dialog-tab-pane-motion";
 import { useSearchDialogPeoplePortraitScrimColor } from "@/lib/use-search-dialog-people-portrait-scrim-color";
 
 export type SearchDialogPeopleRailItem = {
@@ -52,14 +63,14 @@ function SearchDialogPeopleRailTile({
 					{initial}
 				</span>
 			)}
-			{/* Modal dark portrait color → transparent — rank sits on the opaque base. */}
+			{/* Same bottom fade as poster captions — full tile, clear by the upper half. */}
 			<span
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%]"
-				style={searchDialogPeoplePortraitScrimStyle(scrimColor)}
+				className="pointer-events-none absolute inset-0 opacity-100 transition-opacity duration-200 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:opacity-0"
+				style={posterSampledScrimStyle(scrimColor)}
 			/>
 			{/* Rank + movement — centered along the bottom edge, not mid-portrait. */}
-			<span className="pointer-events-none absolute inset-x-0 bottom-1.5 flex items-center justify-center gap-0.5 px-1">
+			<span className="pointer-events-none absolute inset-x-0 bottom-1.5 flex items-center justify-center gap-0.5 px-1 opacity-100 transition-opacity duration-200 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:opacity-0">
 				{showUp ? (
 					<ArrowUp
 						className="size-3 shrink-0 text-emerald-400 drop-shadow-[0_1px_1px_rgb(0_0_0_/_0.65)]"
@@ -103,12 +114,17 @@ export function SearchDialogPeopleRail({
 	loading,
 	onPick,
 	label = "People",
+	keyboardFocusedIndex = null,
+	resultIndexBase = 0,
 }: {
 	items: SearchDialogPeopleRailItem[];
 	loading?: boolean;
 	onPick: (item: SearchDialogPeopleRailItem) => void;
 	label?: string;
+	keyboardFocusedIndex?: number | null;
+	resultIndexBase?: number;
 }) {
+	const reduceMotion = useReducedMotion();
 	if (!loading && items.length === 0) return null;
 
 	const contentKey = [
@@ -125,29 +141,55 @@ export function SearchDialogPeopleRail({
 		>
 			{loading && items.length === 0 ? (
 				<SearchDialogPeopleRailSkeleton />
-			) : null}
-			{items.map((item, index) => {
-				const rank = item.rankLabel ?? String(index + 1);
-				const movementLabel =
-					item.rankMovement === "up"
-						? ", up in rankings"
-						: item.rankMovement === "down"
-							? ", down in rankings"
-							: "";
-				const favoritedLabel = item.isFavorited ? ", favorited" : "";
-				return (
-					<button
-						key={item.id}
-						type="button"
-						title={item.name}
-						aria-label={`${item.name}, rank ${rank}${movementLabel}${favoritedLabel}`}
-						onClick={() => onPick(item)}
-						className="relative size-16 shrink-0 overflow-hidden rounded-2xl bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+			) : (
+				<SearchDialogRailTooltipProvider>
+					<motion.div
+						key={contentKey}
+						className="flex shrink-0 items-center gap-2.5"
+						initial={searchDialogRailEnterInitial(reduceMotion)}
+						animate={SEARCH_DIALOG_RAIL_ENTER_ANIMATE}
+						transition={SEARCH_DIALOG_RAIL_ENTER_TRANSITION}
 					>
-						<SearchDialogPeopleRailTile item={item} rank={rank} />
-					</button>
-				);
-			})}
+						{items.map((item, index) => {
+							const resultIndex = resultIndexBase + index;
+							const keyboardFocused = keyboardFocusedIndex === resultIndex;
+							const rank = item.rankLabel ?? String(index + 1);
+							const movementLabel =
+								item.rankMovement === "up"
+									? ", up in rankings"
+									: item.rankMovement === "down"
+										? ", down in rankings"
+										: "";
+							const favoritedLabel = item.isFavorited ? ", favorited" : "";
+							return (
+								<Tooltip key={item.id}>
+									<TooltipTrigger
+										render={
+											<SearchDialogKeyboardFocusWrap
+												focused={keyboardFocused}
+												className="rounded-2xl"
+											>
+												<button
+													type="button"
+													data-search-dialog-result-index={resultIndex}
+													aria-label={`${item.name}, rank ${rank}${movementLabel}${favoritedLabel}`}
+													onClick={() => onPick(item)}
+													className="group relative size-16 shrink-0 overflow-hidden rounded-2xl bg-card outline-none"
+												>
+													<SearchDialogPeopleRailTile item={item} rank={rank} />
+												</button>
+											</SearchDialogKeyboardFocusWrap>
+										}
+									/>
+									<CatalogSearchTooltipContent side="top">
+										{item.name}
+									</CatalogSearchTooltipContent>
+								</Tooltip>
+							);
+						})}
+					</motion.div>
+				</SearchDialogRailTooltipProvider>
+			)}
 		</SearchDialogHorizontalRail>
 	);
 }

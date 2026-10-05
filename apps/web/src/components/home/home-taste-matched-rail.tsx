@@ -8,6 +8,7 @@ import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-gr
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
 import { HomeTasteMatchedRailSkeleton } from "@/components/home/home-taste-matched-rail-skeleton";
 import { api } from "@/lib/api";
+import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	HOME_TASTE_MATCHED_RAIL_CELL_CLASSNAME,
 	HOME_TASTE_MATCHED_RAIL_TRACK_CLASSNAME,
@@ -29,7 +30,7 @@ import {
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useTasteRailVisibleCount } from "@/lib/use-taste-rail-visible-count";
 
-const RAIL_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0 bg-background";
+const RAIL_POSTER_FRAME_CLASSNAME = `${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME} border-0 bg-background`;
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
 	// Grid rail tiles — w342 is enough; avoid pulling w780 through Vercel Image Optimization.

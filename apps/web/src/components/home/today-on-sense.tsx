@@ -34,7 +34,7 @@ export function TodayOnSense({
 				Today on Sense
 			</h2>
 			<TodayImpressionTracker kind="today.viewed" />
-			<Suspense fallback={<HomeTasteMatchedHeroSkeleton />}>
+			<Suspense fallback={<HomeTasteMatchedHeroSkeleton media={media} />}>
 				<HomeTasteMatchedHeroRsc
 					completionMode="today-shell"
 					media={media}
@@ -47,7 +47,7 @@ export function TodayOnSense({
 					<TodayWeekCardRsc media={media} read={reads.week} />
 				</Suspense>
 				<Suspense fallback={<TodayCircleCardSkeleton />}>
-					<TodayCircleCardRsc read={reads.circle} />
+					<TodayCircleCardRsc media={media} read={reads.circle} />
 				</Suspense>
 			</div>
 		</section>

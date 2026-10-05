@@ -11,8 +11,8 @@ import {
 } from "@/lib/search-dialog-people-rank-delta";
 import {
 	pickSearchDialogPopularPeople,
-	searchDialogPopularPeopleToRailItems,
 	type SearchDialogPopularPeopleRailItem,
+	searchDialogPopularPeopleToRailItems,
 } from "@/lib/search-dialog-popular-people";
 import { fetchPeoplePopular } from "@/lib/still-api-fetch";
 
@@ -25,7 +25,10 @@ export type SearchDialogPopularPeopleRailItemWithMovement =
  * Empty catalog search people rail — TMDb popular people (not followed patrons),
  * with localStorage rank deltas for green↑ / red↓ overlays.
  */
-export function useSearchDialogPopularPeople(enabled: boolean) {
+export function useSearchDialogPopularPeople(
+	enabled: boolean,
+	media: "movie" | "tv" | "people" = "movie",
+) {
 	const [results, setResults] = useState<CastCrewSearchHit[]>([]);
 	const [railItems, setRailItems] = useState<
 		SearchDialogPopularPeopleRailItemWithMovement[]
@@ -39,11 +42,20 @@ export function useSearchDialogPopularPeople(enabled: boolean) {
 			setLoading(false);
 			return;
 		}
+		setResults([]);
+		setRailItems([]);
 		setLoading(true);
 		const ctrl = new AbortController();
 		void (async () => {
 			try {
-				const res = await fetchPeoplePopular({ signal: ctrl.signal });
+				let res = await fetchPeoplePopular({ signal: ctrl.signal, media });
+				if (ctrl.signal.aborted) return;
+				if (res.error && media !== "people") {
+					res = await fetchPeoplePopular({
+						signal: ctrl.signal,
+						media: "people",
+					});
+				}
 				if (ctrl.signal.aborted) return;
 				if (res.error) {
 					setResults([]);
@@ -72,7 +84,7 @@ export function useSearchDialogPopularPeople(enabled: boolean) {
 			}
 		})();
 		return () => ctrl.abort();
-	}, [enabled]);
+	}, [enabled, media]);
 
 	return { results, railItems, loading };
 }

@@ -1,6 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import {
 	ledgerDisplayRatingForTvLog,
+	presentTvSeasonScore,
+	presentTvTitleScore,
 	resolveTvSeasonScore,
 	resolveTvTitleScore,
 } from "./tv-title-score";
@@ -134,5 +136,94 @@ describe("ledgerDisplayRatingForTvLog", () => {
 				set,
 			),
 		).toBe(45);
+	});
+});
+
+describe("presentTvTitleScore", () => {
+	test("keeps a saved show score and reports a different season average", () => {
+		expect(
+			presentTvTitleScore([
+				{ logScope: "show", rating: 100 },
+				{ logScope: "episode", seasonNumber: 1, episodeNumber: 1, rating: 96 },
+				{ logScope: "episode", seasonNumber: 1, episodeNumber: 2, rating: 98 },
+			]),
+		).toEqual({
+			rating: 100,
+			source: "yours",
+			averageRating: 97,
+			averageCount: 1,
+		});
+	});
+
+	test("uses the season average when the show was never rated", () => {
+		expect(
+			presentTvTitleScore([
+				{ logScope: "episode", seasonNumber: 1, episodeNumber: 1, rating: 96 },
+				{ logScope: "episode", seasonNumber: 1, episodeNumber: 2, rating: 98 },
+				{ logScope: "episode", seasonNumber: 2, episodeNumber: 1, rating: 100 },
+			]),
+		).toEqual({
+			rating: 99,
+			source: "average",
+			averageRating: null,
+			averageCount: 2,
+		});
+	});
+});
+
+describe("presentTvSeasonScore", () => {
+	test("keeps a saved season score beside a different episode average", () => {
+		expect(
+			presentTvSeasonScore(
+				[
+					{ logScope: "season", seasonNumber: 1, rating: 100 },
+					{
+						logScope: "episode",
+						seasonNumber: 1,
+						episodeNumber: 1,
+						rating: 94,
+					},
+					{
+						logScope: "episode",
+						seasonNumber: 1,
+						episodeNumber: 2,
+						rating: 100,
+					},
+				],
+				1,
+			),
+		).toEqual({
+			rating: 100,
+			source: "yours",
+			averageRating: 97,
+			averageCount: 2,
+		});
+	});
+
+	test("averages rated episodes when the season was never rated", () => {
+		expect(
+			presentTvSeasonScore(
+				[
+					{
+						logScope: "episode",
+						seasonNumber: 1,
+						episodeNumber: 1,
+						rating: 96,
+					},
+					{
+						logScope: "episode",
+						seasonNumber: 1,
+						episodeNumber: 2,
+						rating: 98,
+					},
+				],
+				1,
+			),
+		).toEqual({
+			rating: 97,
+			source: "average",
+			averageRating: null,
+			averageCount: 2,
+		});
 	});
 });

@@ -36,13 +36,15 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 	// Film/TV/profile/people/journal — crawler-safe share chrome (not the full guest shell).
 	if (!session && isPublicShareRoute) {
 		return (
-			<AppThemeShell initialAppearance={null} isPro={false}>
-				<AppPatronAudioScope>
-					<GuestAccountProvider>
-						<PublicShareShell>{children}</PublicShareShell>
-					</GuestAccountProvider>
-				</AppPatronAudioScope>
-			</AppThemeShell>
+			<PatronEntitlementsProviderFromProfile profile={null}>
+				<AppThemeShell initialAppearance={null} isPro={false}>
+					<AppPatronAudioScope>
+						<GuestAccountProvider>
+							<PublicShareShell>{children}</PublicShareShell>
+						</GuestAccountProvider>
+					</AppPatronAudioScope>
+				</AppThemeShell>
+			</PatronEntitlementsProviderFromProfile>
 		);
 	}
 
@@ -52,16 +54,18 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 		redirect("/home?account=1");
 	}
 
-	// Browse paths (`/home`, `/lists`, …) — full AppShell with no patron.
+	// Browse paths (`/home`, …) — full AppShell with no patron; free-tier entitlements for shared UI (e.g. Community list tiles).
 	if (!session) {
 		return (
-			<AppThemeShell initialAppearance={null} isPro={false}>
-				<AppPatronAudioScope>
-					<GuestAccountProvider>
-						<AppShell user={null}>{children}</AppShell>
-					</GuestAccountProvider>
-				</AppPatronAudioScope>
-			</AppThemeShell>
+			<PatronEntitlementsProviderFromProfile profile={null}>
+				<AppThemeShell initialAppearance={null} isPro={false}>
+					<AppPatronAudioScope>
+						<GuestAccountProvider>
+							<AppShell user={null}>{children}</AppShell>
+						</GuestAccountProvider>
+					</AppPatronAudioScope>
+				</AppThemeShell>
+			</PatronEntitlementsProviderFromProfile>
 		);
 	}
 

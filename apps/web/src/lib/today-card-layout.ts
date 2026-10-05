@@ -12,5 +12,5 @@ export const TODAY_CARD_HEADING_CLASSNAME =
 /** Bottom-pinned card action pill. */
 export const TODAY_CARD_ACTION_CLASSNAME = cn(
 	buttonVariants({ variant: "secondary", size: "pill" }),
-	"mt-auto self-start",
+	"mt-auto min-h-11 self-start",
 );

@@ -337,6 +337,13 @@
 			"when": 1779204300000,
 			"tag": "0047_taste_dismissed_tv",
 			"breakpoints": true
+		},
+		{
+			"idx": 48,
+			"version": "7",
+			"when": 1779204400000,
+			"tag": "0048_companion_pairing",
+			"breakpoints": true
 		}
 	]
 }

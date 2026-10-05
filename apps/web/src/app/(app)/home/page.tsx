@@ -18,7 +18,6 @@ import { HomeCommunityPatronBody } from "@/components/home/home-community-patron
 import { HomeCommunityRankKindToolbar } from "@/components/home/home-community-rank-kind-toolbar";
 import { HomeCommunityRscPayload } from "@/components/home/home-community-rsc-payload";
 import { HomeCommunityTrailingToolbar } from "@/components/home/home-community-trailing-toolbar";
-import { HomeContinueWatchingRail } from "@/components/home/home-continue-watching-rail";
 import { HomeLobbyBodyGate } from "@/components/home/home-lobby-body-gate";
 import { HomeLobbyCatalogueSection } from "@/components/home/home-lobby-catalogue-section";
 import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
@@ -31,6 +30,7 @@ import {
 } from "@/components/home/home-tmdb-lobby-chrome";
 import { HomeTodayBrowseGate } from "@/components/home/home-today-browse-gate";
 import { HomeTodayPrefetch } from "@/components/home/home-today-prefetch";
+import { HomeTvContinueWatchingSlot } from "@/components/home/home-tv-continue-watching-slot";
 import { TmdbLobbySkeleton } from "@/components/home/tmdb-lobby-skeleton";
 import { TodayOnSense } from "@/components/home/today-on-sense";
 import { PopularMoviesInfinite } from "@/components/movie/popular-movies-infinite";
@@ -879,6 +879,12 @@ async function HomeLobbyBody({
 						}
 					/>
 				) : null}
+				{!catalogueSearchActive &&
+				session &&
+				browse === "tv" &&
+				continueWatching.length > 0 ? (
+					<HomeTvContinueWatchingSlot items={continueWatching} />
+				) : null}
 				{/*
 					`useSearchParams` — keep inside Suspense so the home RSC shell can still
 					stream; the bar is tiny so a short fallback is acceptable.
@@ -941,13 +947,6 @@ async function HomeLobbyBody({
 									}
 								/>
 							</div>
-
-							{!catalogueSearchActive &&
-							session &&
-							browse === "tv" &&
-							continueWatching.length > 0 ? (
-								<HomeContinueWatchingRail items={continueWatching} />
-							) : null}
 
 							{catalogueSearchActive && committedSearchRaw ? (
 								<HomeCatalogueSearchInfinite

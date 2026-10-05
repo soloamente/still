@@ -4,7 +4,7 @@ import IconPen2Fill from "@still/ui/icons/pen-2-fill";
 import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwise";
 import { cn } from "@still/ui/lib/utils";
 import { ChevronDown, Loader2 } from "lucide-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
@@ -13,6 +13,7 @@ import { useTvDetailWatchContext } from "@/components/tv/tv-detail-watch-context
 import { TvEpisodeWatchCheckRow } from "@/components/tv/tv-episode-watch-check";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import { formatTodayYmd, ymdToLocalDate } from "@/lib/log-watched-date";
 import {
 	fetchTvSeasonDetail,
@@ -23,7 +24,15 @@ import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 import {
 	countTvLogsInScope,
 	findLatestTvLogInScope,
+	seriesReadyForShowDiary,
 } from "@/lib/tv-log-scope-prior";
+import {
+	presentTvSeasonScore,
+	presentTvTitleScore,
+	type TvScorePresentation,
+	tvScoreAverageAside,
+	tvScoreSourceLabel,
+} from "@/lib/tv-score-presentation";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import {
 	TV_PROGRESS_MODE_LABELS,
@@ -36,6 +45,41 @@ import {
 
 /** Raised tiles on the detail card — no borders, rings, or decorative shadows. */
 const PROGRESS_TILE_CLASS = "rounded-2xl bg-background";
+
+/** Show or season score, with a line that says whether you set it or it is an average. */
+function TvScoreReadout({
+	kind,
+	presentation,
+	className,
+}: {
+	kind: "show" | "season";
+	presentation: TvScorePresentation;
+	className?: string;
+}) {
+	if (presentation.rating == null) return null;
+	const score = formatStoredLogRatingDisplay(presentation.rating);
+	if (score == null) return null;
+	const source = tvScoreSourceLabel(kind, presentation);
+	const aside = tvScoreAverageAside(kind, presentation);
+	return (
+		<p
+			className={cn(
+				"flex flex-wrap items-baseline gap-x-2 gap-y-0.5",
+				className,
+			)}
+		>
+			<span className="font-semibold text-xl tabular-nums leading-none">
+				{score}
+			</span>
+			{source ? (
+				<span className="text-muted-foreground text-sm">{source}</span>
+			) : null}
+			{aside ? (
+				<span className="text-muted-foreground text-sm">{aside}</span>
+			) : null}
+		</p>
+	);
+}
 
 /** Shared content width inside the About section column. */
 const PROGRESS_CONTENT_CLASS = "mx-auto flex w-full max-w-2xl flex-col gap-5";
@@ -114,8 +158,13 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		toggleEpisodeWatched,
 		markSeasonComplete,
 	} = tvWatch;
-	const { myLogs, handleOpenQuickLog, handleEditLog, refreshUserState } =
-		userState;
+	const {
+		hydrated: logsHydrated,
+		myLogs,
+		handleOpenQuickLog,
+		handleEditLog,
+		refreshUserState,
+	} = userState;
 
 	const [completingSeason, setCompletingSeason] = useState<number | null>(null);
 
@@ -126,6 +175,7 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		Record<number, TvEpisodeSummary[]>
 	>({});
 	const [episodesLoading, setEpisodesLoading] = useState<number | null>(null);
+	const showDiaryAttempt = useRef(false);
 
 	const loadSeasons = useCallback(async () => {
 		setSeasonsLoading(true);
@@ -141,6 +191,44 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		if (!watch) return;
 		void loadSeasons();
 	}, [watch, loadSeasons]);
+
+	// Once every season is in the diary and the series is finished, add one whole-show row.
+	useEffect(() => {
+		if (!logsHydrated || seasonsLoading || showDiaryAttempt.current) return;
+		if (
+			!seriesReadyForShowDiary({
+				status: watch?.status,
+				seasons,
+				logs: myLogs,
+			})
+		) {
+			return;
+		}
+		showDiaryAttempt.current = true;
+		void (async () => {
+			const diaryResult = await postLog({
+				tvId,
+				logScope: "show",
+				watchedAt: ymdToLocalDate(formatTodayYmd()).toISOString(),
+				watchVenue: "streaming",
+				rewatch: false,
+			});
+			if (!diaryResult.ok) {
+				showDiaryAttempt.current = false;
+				return;
+			}
+			await refreshUserState();
+			toast.success("Whole show added to your diary");
+		})();
+	}, [
+		logsHydrated,
+		myLogs,
+		refreshUserState,
+		seasons,
+		seasonsLoading,
+		tvId,
+		watch?.status,
+	]);
 
 	const totalEpisodes = useMemo(
 		() => seasons.reduce((sum, season) => sum + season.episode_count, 0),
@@ -304,6 +392,15 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 					seasonCount={seasons.length}
 				/>
 
+				{presentTvTitleScore(myLogs).rating != null ? (
+					<div className={cn(PROGRESS_TILE_CLASS, "px-4 py-4 sm:px-5")}>
+						<TvScoreReadout
+							kind="show"
+							presentation={presentTvTitleScore(myLogs)}
+						/>
+					</div>
+				) : null}
+
 				<div className="flex justify-center">
 					<SegmentedPillToolbar
 						layoutId="tv-detail-progress-mode-pill"
@@ -376,6 +473,7 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 												seasonNumber: sn,
 											})
 										}
+										seasonScore={presentTvSeasonScore(myLogs, sn)}
 									/>
 								</li>
 							);
@@ -411,6 +509,7 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 											checked,
 										);
 									}}
+									seasonScore={presentTvSeasonScore(myLogs, sn)}
 								/>
 							);
 						})}
@@ -536,6 +635,7 @@ function TvSeasonMilestoneRow({
 	onRewatch,
 	onEditLog,
 	onLogToDiary,
+	seasonScore,
 }: {
 	seasonName: string;
 	watchedInSeason: number;
@@ -549,6 +649,7 @@ function TvSeasonMilestoneRow({
 	onRewatch: () => void;
 	onEditLog: () => void;
 	onLogToDiary: () => void;
+	seasonScore: TvScorePresentation;
 }) {
 	return (
 		<div
@@ -569,6 +670,11 @@ function TvSeasonMilestoneRow({
 				<p className="mt-1 text-muted-foreground text-sm tabular-nums">
 					{watchedInSeason} / {totalEpisodes} episodes
 				</p>
+				<TvScoreReadout
+					kind="season"
+					presentation={seasonScore}
+					className="mt-2"
+				/>
 				{totalEpisodes > 0 ? (
 					<TvProgressMeter
 						className="mt-3 max-w-md"
@@ -664,6 +770,7 @@ function TvSeasonEpisodeAccordion({
 	toggleDisabled,
 	onToggle,
 	onToggleEpisode,
+	seasonScore,
 }: {
 	seasonName: string;
 	isOpen: boolean;
@@ -679,6 +786,7 @@ function TvSeasonEpisodeAccordion({
 		episodeNumber: number,
 		checked: boolean,
 	) => void;
+	seasonScore: TvScorePresentation;
 }) {
 	return (
 		<div className={cn(PROGRESS_TILE_CLASS, "overflow-hidden")}>
@@ -700,6 +808,11 @@ function TvSeasonEpisodeAccordion({
 							{watchedInSeason}/{totalEpisodes}
 						</span>
 					</div>
+					<TvScoreReadout
+						kind="season"
+						presentation={seasonScore}
+						className="mt-2"
+					/>
 					{totalEpisodes > 0 ? (
 						<TvProgressMeter
 							className="mt-3 max-w-md"

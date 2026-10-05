@@ -47,6 +47,21 @@ export function watchlistProvidersTmdbJsonForRegion(
 					${tv.tmdbJson} -> 'watch/providers' -> 'results' -> ${code}::text
 				)
 			)
+		),
+		'release_dates',
+		jsonb_build_object(
+			'results',
+			coalesce(
+				(
+					SELECT jsonb_build_array(elem)
+					FROM jsonb_array_elements(
+						coalesce(${movie.tmdbJson} -> 'release_dates' -> 'results', '[]'::jsonb)
+					) AS elem
+					WHERE elem ->> 'iso_3166_1' = ${code}
+					LIMIT 1
+				),
+				'[]'::jsonb
+			)
 		)
 	)
 `;

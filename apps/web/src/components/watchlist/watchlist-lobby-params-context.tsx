@@ -32,9 +32,14 @@ interface WatchlistLobbyParamsContextValue {
 	/** Total saves for the mounted grid — null until the catalogue reports page 1. */
 	gridTotalResults: number | null;
 	selectOrder: (order: WatchlistLobbyOrder) => void;
-	selectProvider: (providerId: number) => void;
+	selectProvider: (
+		providerId: number,
+		options?: { deferNavigate?: boolean },
+	) => void;
 	removeProvider: (providerId: number) => void;
 	clearProviders: () => void;
+	/** Push `?providers=` to the URL (after fly/resize — avoids jank mid-transition). */
+	commitProvidersNavigate: () => void;
 	reportSeedOrder: (order: WatchlistLobbyOrder) => void;
 	reportGridTotalResults: (
 		order: WatchlistLobbyOrder,
@@ -72,8 +77,9 @@ export function WatchlistLobbyParamsProvider({
 	}, [providerOverride, urlProviders]);
 
 	const pushProviders = useCallback(
-		(next: readonly number[]) => {
+		(next: readonly number[], options?: { deferNavigate?: boolean }) => {
 			setProviderOverride([...next]);
+			if (options?.deferNavigate) return;
 			setGridTotalResults(null);
 			navigate(
 				buildWatchlistLobbyHref({
@@ -84,6 +90,17 @@ export function WatchlistLobbyParamsProvider({
 		},
 		[navigate, orderState.value],
 	);
+
+	const commitProvidersNavigate = useCallback(() => {
+		const next = providerOverride ?? urlProviders;
+		setGridTotalResults(null);
+		navigate(
+			buildWatchlistLobbyHref({
+				order: orderState.value,
+				providers: next,
+			}),
+		);
+	}, [navigate, orderState.value, providerOverride, urlProviders]);
 
 	const selectOrder = useCallback(
 		(order: WatchlistLobbyOrder) => {
@@ -96,18 +113,17 @@ export function WatchlistLobbyParamsProvider({
 	);
 
 	const selectProvider = useCallback(
-		(providerId: number) => {
+		(providerId: number, options?: { deferNavigate?: boolean }) => {
 			if (providers.includes(providerId)) return;
 			const next = [...providers, providerId].sort((a, b) => a - b);
-			pushProviders(next);
+			pushProviders(next, options);
 		},
 		[providers, pushProviders],
 	);
 
 	const removeProvider = useCallback(
 		(providerId: number) => {
-			const next = providers.filter((id) => id !== providerId);
-			pushProviders(next);
+			pushProviders(providers.filter((id) => id !== providerId));
 		},
 		[providers, pushProviders],
 	);
@@ -139,6 +155,7 @@ export function WatchlistLobbyParamsProvider({
 			selectProvider,
 			removeProvider,
 			clearProviders,
+			commitProvidersNavigate,
 			reportSeedOrder,
 			reportGridTotalResults,
 		}),
@@ -153,6 +170,7 @@ export function WatchlistLobbyParamsProvider({
 			selectProvider,
 			removeProvider,
 			clearProviders,
+			commitProvidersNavigate,
 		],
 	);
 

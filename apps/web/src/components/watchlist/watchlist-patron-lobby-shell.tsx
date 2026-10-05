@@ -38,12 +38,15 @@ export function WatchlistPatronLobbyShell({
 				<section
 					className={cn(
 						HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-						// Match `/home` lobby card — clips taste-hero backdrop/trailer bleed.
+						// Clip the tonight backdrop to the rounded card, same as the Movies/TV lobby.
 						"relative overflow-hidden",
 					)}
 				>
 					{top ? (
-						<div className="relative z-0 min-w-0 shrink-0">{top}</div>
+						// Visible overflow so the hero media can bleed through `p-4` to the card edges.
+						<div className="relative z-0 min-w-0 shrink-0 overflow-visible">
+							{top}
+						</div>
 					) : null}
 					<div
 						className={cn(
@@ -65,6 +68,7 @@ export function WatchlistPatronLobbyShell({
  * Chip taps use `startTransition`, which can unhide the previous wall before
  * `PopularMoviesInfinite` applies the new seeds (that reset is an effect).
  * Keep the shimmer up until the mounted RSC sort matches the chip.
+ * `pt-4` leaves room for poster hover lift; the filter row is `z-10` and would crop the top.
  */
 function WatchlistLobbyGridSlot({ children }: { children: ReactNode }) {
 	const { isPending } = useLobbyNavigation();
@@ -73,7 +77,7 @@ function WatchlistLobbyGridSlot({ children }: { children: ReactNode }) {
 	return (
 		<div
 			aria-busy={showFallback}
-			className="flex min-h-0 min-w-0 flex-1 flex-col"
+			className="flex min-h-0 min-w-0 flex-1 flex-col pt-4"
 		>
 			{/* Keep the page Suspense mounted so `startTransition` can finish the RSC. */}
 			<div

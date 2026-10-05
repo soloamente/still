@@ -19,6 +19,7 @@ function snap(
 		showBirthDateOnProfile: false,
 		presenceVisibility: "friends",
 		discordActivityEnabled: false,
+		companionWatchingEnabled: true,
 		isPrivate: false,
 		audioEnabled: false,
 		audioAtmosphere: false,

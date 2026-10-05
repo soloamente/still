@@ -84,10 +84,10 @@ async function fetchInactiveToday(
 	};
 }
 
-function InactiveTodaySkeleton() {
+function InactiveTodaySkeleton({ media }: { media: TodayMedia }) {
 	return (
 		<>
-			<HomeTasteMatchedHeroSkeleton />
+			<HomeTasteMatchedHeroSkeleton media={media} />
 			<div className="relative z-10 grid min-w-0 gap-3 sm:grid-cols-2">
 				<TodayWeekCardSkeleton />
 				<TodayCircleCardSkeleton />
@@ -188,7 +188,7 @@ export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 				Today on Sense
 			</h2>
 			{payload == null ? (
-				<InactiveTodaySkeleton />
+				<InactiveTodaySkeleton media={media} />
 			) : (
 				<>
 					<HomeTasteMatchedHero
@@ -202,7 +202,7 @@ export function HomeTodayPrefetch({ media }: { media: TodayMedia }) {
 							initialTimeZone={payload.week.timeZone}
 							media={media}
 						/>
-						<TodayCircleCard payload={payload.circle} />
+						<TodayCircleCard media={media} payload={payload.circle} />
 					</div>
 				</>
 			)}

@@ -1,7 +1,7 @@
 "use client";
 
+import { IconSearchDialogLists } from "@still/ui/icons/search-dialog-glyphs";
 import { cn } from "@still/ui/lib/utils";
-import { LayoutGrid } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -45,8 +45,9 @@ export function SearchDialogListResults({
 										unoptimized
 									/>
 								) : (
-									<LayoutGrid
-										className="size-5 text-muted-foreground"
+									<IconSearchDialogLists
+										size={20}
+										className="text-muted-foreground"
 										aria-hidden
 									/>
 								)}

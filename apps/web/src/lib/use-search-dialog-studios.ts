@@ -1,9 +1,9 @@
 "use client";
 
-import { env } from "@still/env/web";
 import { useEffect, useState } from "react";
 
 import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /**
  * Loads curated studio logos for the empty search dialog (Movies browse column).
@@ -24,7 +24,8 @@ export function useSearchDialogStudios(enabled: boolean) {
 		setLoading(true);
 		setLoaded(false);
 		const ctrl = new AbortController();
-		const url = new URL("/api/movies/studios", env.NEXT_PUBLIC_SERVER_URL);
+		// Same origin as other browser `/api/*` calls so rewrites + session cookies apply.
+		const url = new URL("/api/movies/studios", stillApiOrigin());
 		void fetch(url, { credentials: "include", signal: ctrl.signal })
 			.then(async (res) => {
 				if (!res.ok) return [];

@@ -7,16 +7,21 @@ import {
 	CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME,
 	cataloguePosterHoverShellClassName,
 } from "@/lib/catalogue-poster-hover";
+import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
-import type { TvWatchBundle } from "@/lib/tv-watch-types";
+import type { TvWatchBundle, TvWatchNextEpisode } from "@/lib/tv-watch-types";
 
-/** Rail posters — softer than lobby `rounded-[3rem]` but still card-native. */
-const CONTINUE_RAIL_POSTER_FRAME_CLASSNAME =
-	"rounded-2xl border-0 bg-background";
+/** Rail posters — same iOS-smoothed corners as lobby catalogue tiles. */
+const CONTINUE_RAIL_POSTER_FRAME_CLASSNAME = `${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME} border-0 bg-background`;
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
 	return tmdbPosterUrlFromPath(posterPath, "w342");
+}
+
+function formatTvEpisodeCode(next: TvWatchNextEpisode | null): string | null {
+	if (!next) return null;
+	return `S${String(next.seasonNumber).padStart(2, "0")}E${String(next.episodeNumber).padStart(2, "0")}`;
 }
 
 /**
@@ -27,10 +32,15 @@ function tmdbPosterUrl(posterPath: string | null): string | null {
 export function HomeContinueWatchingRail({
 	items,
 	heading = "Continue watching",
+	episodeCaption = "full",
+	titleLines = 2,
 }: {
 	items: TvWatchBundle[];
 	/** Section label — watchlist uses “Or continue watching”. */
 	heading?: string;
+	/** `code` is season and episode only (`S01E01`). */
+	episodeCaption?: "full" | "code";
+	titleLines?: 1 | 2;
 }) {
 	if (items.length === 0) return null;
 
@@ -48,19 +58,23 @@ export function HomeContinueWatchingRail({
 					{items.map((bundle, index) => {
 						const show = bundle.show;
 						if (!show) return null;
-						const nextLine = formatTvNextEpisodeLabel(bundle.nextEpisode);
-						const episodeCaption = nextLine
-							? nextLine.replace(/^Next:\s*/, "")
-							: null;
+						const nextLine =
+							episodeCaption === "code"
+								? formatTvEpisodeCode(bundle.nextEpisode)
+								: formatTvNextEpisodeLabel(bundle.nextEpisode);
+						const episodeLine =
+							episodeCaption === "code"
+								? nextLine
+								: nextLine
+									? nextLine.replace(/^Next:\s*/, "")
+									: null;
 
 						return (
 							<Link
 								key={bundle.watch?.id ?? show.tmdbId}
 								href={`/tv/${show.tmdbId}`}
 								aria-label={
-									episodeCaption
-										? `${show.title}, ${episodeCaption}`
-										: show.title
+									episodeLine ? `${show.title}, ${episodeLine}` : show.title
 								}
 								className={cn(
 									cataloguePosterHoverShellClassName(),
@@ -78,12 +92,12 @@ export function HomeContinueWatchingRail({
 									posterUrl={tmdbPosterUrl(show.posterPath)}
 									priority={index < 4}
 									showTitle
-									titleLines={2}
+									titleLines={titleLines}
 									title={show.title}
 								/>
-								{episodeCaption ? (
-									<p className="mt-1.5 line-clamp-2 w-full text-[11px] text-muted-foreground leading-snug">
-										{episodeCaption}
+								{episodeLine ? (
+									<p className="mt-1.5 w-full truncate text-[11px] text-muted-foreground leading-snug">
+										{episodeLine}
 									</p>
 								) : null}
 							</Link>

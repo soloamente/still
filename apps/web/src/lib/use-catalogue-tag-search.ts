@@ -64,7 +64,14 @@ export function useCatalogueTagSearch(
 		() => deriveCatalogueFilterBundle(tags, listingKindOverride),
 		[tags, listingKindOverride],
 	);
-	const { studioId, listingKind, resultMode, genreIds, keywordIds } = bundle;
+	const {
+		studioId,
+		streamingProviderId,
+		listingKind,
+		resultMode,
+		genreIds,
+		keywordIds,
+	} = bundle;
 	const q = freeText.trim();
 	// Stable primitives for effect deps — bundle arrays are new references each render.
 	const genreIdsKey = genreIds.join(",");
@@ -119,6 +126,7 @@ export function useCatalogueTagSearch(
 					q,
 					listingKind,
 					studioId,
+					streamingProviderId,
 					genreIds,
 					keywordIds,
 				});
@@ -206,6 +214,7 @@ export function useCatalogueTagSearch(
 		active,
 		q,
 		studioId,
+		streamingProviderId,
 		listingKind,
 		listingKindOverride,
 		resultMode,

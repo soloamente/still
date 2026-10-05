@@ -129,9 +129,9 @@ export function TodayWeekCard({
 							<span
 								key={day.id}
 								aria-hidden
-								className="flex flex-col items-center gap-1.5"
+								className="flex flex-col items-center gap-2"
 							>
-								<span className="text-[11px] text-muted-foreground tabular-nums">
+								<span className="text-muted-foreground text-xs tabular-nums">
 									{day.short}
 								</span>
 								<span

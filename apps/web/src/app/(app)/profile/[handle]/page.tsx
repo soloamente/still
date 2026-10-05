@@ -6,6 +6,7 @@ import type {
 	ProfileUnlockedAchievement,
 } from "@/components/profile/profile-patron-milestones";
 import type { ProfileReviewRow } from "@/components/profile/profile-reviews-panel";
+import { ProfileTabIcon } from "@/components/profile/profile-tab-icon";
 import type { ProfileSocialTabId } from "@/components/profile/profile-tab-toolbar";
 import { authServer } from "@/lib/auth-server";
 import { pickProfileShowcaseBadges } from "@/lib/badge-prestige";
@@ -277,48 +278,51 @@ export default async function ProfilePage({
 	).items;
 
 	return (
-		<ProfilePatronLobbyShell
-			handle={profile.handle}
-			displayName={profile.displayName}
-			pronouns={profile.pronouns}
-			bio={profile.bio}
-			avatarUrl={avatarUrl}
-			stats={stats}
-			location={profile.location}
-			website={profile.website}
-			birthdayDisplay={profile.birthdayDisplay ?? null}
-			isMe={isMe}
-			targetUserId={user.id}
-			viewerId={session?.user.id ?? null}
-			bannerUrl={bannerUrl}
-			bannerFrame={bannerFrame}
-			accentColor={profile.accentColor}
-			seeds={filmographyPage1.seeds}
-			totalPages={filmographyPage1.totalPages}
-			totalResults={filmographyPage1.totalResults}
-			venueCounts={filmographyPage1.venueCounts}
-			filmographyCounts={counts}
-			personFavoritesCount={data.personFavoritesCount ?? 0}
-			pinnedReviews={data.pinnedReviews ?? []}
-			showcaseItems={showcaseItems}
-			savedQuotesPreview={savedQuotesPreview}
-			pinnedQuoteSaveIds={pinnedQuoteSaveIds}
-			lists={data.lists.map((l) => toListBoardRow(l))}
-			socialTabs={socialTabs}
-			earnedBadges={earnedBadges}
-			unlockedAchievements={unlockedAchievements}
-			monochromePeersOnHover={monochromePeersOnHover}
-			tasteSignature={tasteSignature}
-			canCompareTaste={canCompareTaste}
-			initialTasteCompareOpen={initialTasteCompareOpen}
-			curatorHeadline={data.creator?.headline ?? null}
-			avatarIsAnimated={avatarIsAnimated}
-			bannerIsAnimated={bannerIsAnimated}
-			profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
-			planTier={profile.planTier ?? null}
-			staffRole={profile.staffRole ?? null}
-			activitySignatureEnabled={data.capabilities?.activitySignature ?? false}
-			discordActivity={discordActivity}
-		/>
+		<>
+			<ProfileTabIcon handle={profile.handle} hasImage={Boolean(avatarUrl)} />
+			<ProfilePatronLobbyShell
+				handle={profile.handle}
+				displayName={profile.displayName}
+				pronouns={profile.pronouns}
+				bio={profile.bio}
+				avatarUrl={avatarUrl}
+				stats={stats}
+				location={profile.location}
+				website={profile.website}
+				birthdayDisplay={profile.birthdayDisplay ?? null}
+				isMe={isMe}
+				targetUserId={user.id}
+				viewerId={session?.user.id ?? null}
+				bannerUrl={bannerUrl}
+				bannerFrame={bannerFrame}
+				accentColor={profile.accentColor}
+				seeds={filmographyPage1.seeds}
+				totalPages={filmographyPage1.totalPages}
+				totalResults={filmographyPage1.totalResults}
+				venueCounts={filmographyPage1.venueCounts}
+				filmographyCounts={counts}
+				personFavoritesCount={data.personFavoritesCount ?? 0}
+				pinnedReviews={data.pinnedReviews ?? []}
+				showcaseItems={showcaseItems}
+				savedQuotesPreview={savedQuotesPreview}
+				pinnedQuoteSaveIds={pinnedQuoteSaveIds}
+				lists={data.lists.map((l) => toListBoardRow(l))}
+				socialTabs={socialTabs}
+				earnedBadges={earnedBadges}
+				unlockedAchievements={unlockedAchievements}
+				monochromePeersOnHover={monochromePeersOnHover}
+				tasteSignature={tasteSignature}
+				canCompareTaste={canCompareTaste}
+				initialTasteCompareOpen={initialTasteCompareOpen}
+				curatorHeadline={data.creator?.headline ?? null}
+				avatarIsAnimated={avatarIsAnimated}
+				bannerIsAnimated={bannerIsAnimated}
+				profilePortraitGrayscaleUntilHover={profilePortraitGrayscaleUntilHover}
+				planTier={profile.planTier ?? null}
+				staffRole={profile.staffRole ?? null}
+				activitySignatureEnabled={data.capabilities?.activitySignature ?? false}
+				discordActivity={discordActivity}
+			/>
+		</>
 	);
 }

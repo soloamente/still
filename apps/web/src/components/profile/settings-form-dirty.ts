@@ -1,5 +1,6 @@
 import type { AppThemeClass } from "@/lib/app-themes";
 import { resolveAppThemeForPatron } from "@/lib/app-themes";
+import { readCompanionWatchingEnabledPref } from "@/lib/companion-watching-pref";
 import { normalizeProfileBirthDateYmd } from "@/lib/normalize-profile-birth-date";
 import {
 	NOTIFICATION_KIND_SETTINGS,
@@ -42,6 +43,7 @@ export type SettingsFormDirtySnapshot = {
 	showBirthDateOnProfile: boolean;
 	presenceVisibility: ProfilePresenceVisibilityPref;
 	discordActivityEnabled: boolean;
+	companionWatchingEnabled: boolean;
 	isPrivate: boolean;
 	audioEnabled: boolean;
 	audioAtmosphere: boolean;
@@ -98,6 +100,7 @@ export function snapshotSettingsFormFromProfile(
 		showBirthDateOnProfile: readShowBirthDateOnProfilePref(preferences),
 		presenceVisibility: readProfilePresenceVisibilityPref(preferences),
 		discordActivityEnabled: readDiscordActivityEnabledPref(preferences),
+		companionWatchingEnabled: readCompanionWatchingEnabledPref(preferences),
 		isPrivate: Boolean(profile.isPrivate),
 		audioEnabled: audio.enabled,
 		audioAtmosphere: audio.atmosphere,
@@ -137,6 +140,7 @@ export function settingsFormSnapshotsEqual(
 		left.showBirthDateOnProfile !== right.showBirthDateOnProfile ||
 		left.presenceVisibility !== right.presenceVisibility ||
 		left.discordActivityEnabled !== right.discordActivityEnabled ||
+		left.companionWatchingEnabled !== right.companionWatchingEnabled ||
 		left.isPrivate !== right.isPrivate ||
 		left.audioEnabled !== right.audioEnabled ||
 		left.audioAtmosphere !== right.audioAtmosphere ||

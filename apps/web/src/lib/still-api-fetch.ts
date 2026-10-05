@@ -251,12 +251,20 @@ export async function fetchTvSearch(
 
 /** TMDb `/person/popular` proxy — same slim rows as `fetchPeopleSearch`. */
 export async function fetchPeoplePopular(
-	init?: Pick<RequestInit, "signal"> & { page?: number; cookieHeader?: string },
+	init?: Pick<RequestInit, "signal"> & {
+		page?: number;
+		cookieHeader?: string;
+		/** Cast board from popular movies/TV, or TMDb person popular for People tab. */
+		media?: "movie" | "tv" | "people";
+	},
 ) {
 	const url = new URL("/api/people/popular", stillApiOrigin());
 	const page = init?.page;
 	if (page !== undefined && Number.isFinite(page) && page >= 1) {
 		url.searchParams.set("page", String(Math.floor(page)));
+	}
+	if (init?.media) {
+		url.searchParams.set("media", init.media);
 	}
 	const { cookieHeader, signal } = init ?? {};
 	const response = await fetch(url, {
@@ -394,6 +402,8 @@ export async function fetchMoviesDiscover(
 		keywordIds?: number[];
 		/** TMDb production company id — server `?company=`. */
 		companyId?: number;
+		/** TMDb watch provider ids — server `?providers=` (flatrate in watch region). */
+		providerIds?: number[];
 		sortBy?: string;
 		/** Matches server `GET /api/movies/discover?venue=` — theatrical vs digital window. */
 		venue?: "theaters" | "streaming";
@@ -437,6 +447,15 @@ export async function fetchMoviesDiscover(
 	const cid = init?.companyId;
 	if (cid !== undefined && Number.isFinite(cid) && cid > 0) {
 		url.searchParams.set("company", String(Math.floor(cid)));
+	}
+	const providerIds = init?.providerIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (providerIds && providerIds.length > 0) {
+		url.searchParams.set(
+			"providers",
+			providerIds.map((id) => String(Math.floor(id))).join(","),
+		);
 	}
 	const sort = init?.sortBy?.trim();
 	if (sort) {
@@ -530,6 +549,7 @@ export async function fetchTvDiscover(
 		genreIds?: number[];
 		keywordIds?: number[];
 		companyId?: number;
+		providerIds?: number[];
 		sortBy?: string;
 		/** TMDb `first_air_date.gte` — forwarded as `air_date_gte` on the API. */
 		airDateGte?: string;
@@ -573,6 +593,15 @@ export async function fetchTvDiscover(
 		tvCompanyId > 0
 	) {
 		url.searchParams.set("company", String(Math.floor(tvCompanyId)));
+	}
+	const tvProviderIds = init?.providerIds?.filter(
+		(id) => Number.isFinite(id) && id > 0,
+	);
+	if (tvProviderIds && tvProviderIds.length > 0) {
+		url.searchParams.set(
+			"providers",
+			tvProviderIds.map((id) => String(Math.floor(id))).join(","),
+		);
 	}
 	const sort = init?.sortBy?.trim();
 	if (sort) {
@@ -666,6 +695,26 @@ export async function fetchMovieStudios(
 	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
 ) {
 	const url = new URL("/api/movies/studios", stillApiOrigin());
+	const { cookieHeader, signal, cache } = init ?? {};
+	const response = await fetch(url, {
+		credentials: "include",
+		signal,
+		cache: cache ?? "no-store",
+		headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
+	});
+	const data = (await response.json()) as unknown;
+	return {
+		data: response.ok ? data : null,
+		error: response.ok ? null : { status: response.status, raw: data },
+		response,
+	};
+}
+
+/** Flatrate platforms in the patron catalogue watch region (search + discover). */
+export async function fetchMovieStreamingProviders(
+	init?: Pick<RequestInit, "signal" | "cache"> & { cookieHeader?: string },
+) {
+	const url = new URL("/api/movies/streaming-providers", stillApiOrigin());
 	const { cookieHeader, signal, cache } = init ?? {};
 	const response = await fetch(url, {
 		credentials: "include",
@@ -854,31 +903,76 @@ export async function fetchMovieTrailer(
 	movieId: number,
 	init?: Pick<RequestInit, "signal">,
 ): Promise<{ trailerKey: string; trailerSite: string } | null> {
-	const url = new URL(`/api/movies/${movieId}/trailer`, stillApiOrigin());
-	const response = await fetch(url, {
-		credentials: "include",
-		signal: init?.signal,
-	});
-	if (!response.ok) return null;
-	const data = (await response.json()) as unknown;
-	if (isStillApiErrorPayload(data)) return null;
-	const payload = data as {
-		trailerKey?: string | null;
-		trailerSite?: string | null;
-	};
-	if (
-		typeof payload.trailerKey !== "string" ||
-		payload.trailerKey.length === 0
-	) {
+	try {
+		const url = new URL(`/api/movies/${movieId}/trailer`, stillApiOrigin());
+		const response = await fetch(url, {
+			credentials: "include",
+			signal: init?.signal,
+		});
+		if (!response.ok) return null;
+		const data = (await response.json()) as unknown;
+		if (isStillApiErrorPayload(data)) return null;
+		const payload = data as {
+			trailerKey?: string | null;
+			trailerSite?: string | null;
+		};
+		if (
+			typeof payload.trailerKey !== "string" ||
+			payload.trailerKey.length === 0
+		) {
+			return null;
+		}
+		return {
+			trailerKey: payload.trailerKey,
+			trailerSite:
+				typeof payload.trailerSite === "string" &&
+				payload.trailerSite.length > 0
+					? payload.trailerSite
+					: "YouTube",
+		};
+	} catch (error) {
+		// Detail hero aborts in-flight trailer loads when the patron navigates away.
+		if (isFetchAbortError(error, init?.signal)) return null;
 		return null;
 	}
-	return {
-		trailerKey: payload.trailerKey,
-		trailerSite:
-			typeof payload.trailerSite === "string" && payload.trailerSite.length > 0
-				? payload.trailerSite
-				: "YouTube",
-	};
+}
+
+/** TMDb trailer key for TV detail — same contract as {@link fetchMovieTrailer}. */
+export async function fetchTvTrailer(
+	tvId: number,
+	init?: Pick<RequestInit, "signal">,
+): Promise<{ trailerKey: string; trailerSite: string } | null> {
+	try {
+		const url = new URL(`/api/tv/${tvId}/trailer`, stillApiOrigin());
+		const response = await fetch(url, {
+			credentials: "include",
+			signal: init?.signal,
+		});
+		if (!response.ok) return null;
+		const data = (await response.json()) as unknown;
+		if (isStillApiErrorPayload(data)) return null;
+		const payload = data as {
+			trailerKey?: string | null;
+			trailerSite?: string | null;
+		};
+		if (
+			typeof payload.trailerKey !== "string" ||
+			payload.trailerKey.length === 0
+		) {
+			return null;
+		}
+		return {
+			trailerKey: payload.trailerKey,
+			trailerSite:
+				typeof payload.trailerSite === "string" &&
+				payload.trailerSite.length > 0
+					? payload.trailerSite
+					: "YouTube",
+		};
+	} catch (error) {
+		if (isFetchAbortError(error, init?.signal)) return null;
+		return null;
+	}
 }
 
 /** Current-user diary rows for one TMDb title — canonical for “already logged?” on movie pages. */

@@ -1,7 +1,19 @@
 export type TvTitleScoreLog = {
 	logScope?: string | null;
 	seasonNumber?: number | null;
+	episodeNumber?: number | null;
 	rating: number | null;
+};
+
+export type TvScoreSource = "yours" | "average";
+
+/** Official score for a show or season, plus the child average when you set your own. */
+export type TvScorePresentation = {
+	rating: number | null;
+	source: TvScoreSource | null;
+	/** Child rollup in stored tenths. Set only when your score exists and differs. */
+	averageRating: number | null;
+	averageCount: number;
 };
 
 function normalizeScope(
@@ -33,6 +45,123 @@ export function resolveTvSeasonScore(
 	}
 	if (seasonScoped.length > 0) return meanStoredTenths(seasonScoped);
 	return meanStoredTenths(episodeScoped);
+}
+
+const EMPTY_SCORE: TvScorePresentation = {
+	rating: null,
+	source: null,
+	averageRating: null,
+	averageCount: 0,
+};
+
+function ratedLogs(logs: readonly TvTitleScoreLog[]) {
+	return logs.filter(
+		(log): log is TvTitleScoreLog & { rating: number } => log.rating != null,
+	);
+}
+
+function seasonNumbersWithScores(logs: readonly TvTitleScoreLog[]): number[] {
+	const seasons = new Set<number>();
+	for (const log of ratedLogs(logs)) {
+		const scope = normalizeScope(log.logScope);
+		if (
+			(scope === "season" || scope === "episode") &&
+			log.seasonNumber != null
+		) {
+			seasons.add(log.seasonNumber);
+		}
+	}
+	return [...seasons].filter(
+		(seasonNumber) => resolveTvSeasonScore(logs, seasonNumber) != null,
+	);
+}
+
+function distinctRatedEpisodeCount(
+	logs: readonly TvTitleScoreLog[],
+	seasonNumber: number,
+): number {
+	const ids = new Set<string>();
+	for (const [index, log] of ratedLogs(logs).entries()) {
+		if (log.seasonNumber !== seasonNumber) continue;
+		if (normalizeScope(log.logScope) !== "episode") continue;
+		ids.add(
+			log.episodeNumber != null ? String(log.episodeNumber) : `log-${index}`,
+		);
+	}
+	return ids.size;
+}
+
+/**
+ * Show score the page, watched list, and editor share.
+ * A show log you rated wins. Otherwise the score is the average of the season scores.
+ */
+export function presentTvTitleScore(
+	logs: readonly TvTitleScoreLog[],
+): TvScorePresentation {
+	const rated = ratedLogs(logs);
+	const showRated = rated
+		.filter((log) => normalizeScope(log.logScope) === "show")
+		.map((log) => log.rating);
+	const childLogs = rated.filter((log) => {
+		const scope = normalizeScope(log.logScope);
+		return scope === "season" || scope === "episode";
+	});
+	const seasons = seasonNumbersWithScores(childLogs);
+	const average = resolveTvTitleScore(childLogs);
+	if (showRated.length > 0) {
+		const rating = meanStoredTenths(showRated);
+		return {
+			rating,
+			source: "yours",
+			averageRating: average != null && average !== rating ? average : null,
+			averageCount: seasons.length,
+		};
+	}
+	if (average == null) return EMPTY_SCORE;
+	return {
+		rating: average,
+		source: "average",
+		averageRating: null,
+		averageCount: seasons.length,
+	};
+}
+
+/**
+ * Season score. A season log you rated wins.
+ * Otherwise the score is the average of that season's rated episodes.
+ */
+export function presentTvSeasonScore(
+	logs: readonly TvTitleScoreLog[],
+	seasonNumber: number,
+): TvScorePresentation {
+	const inSeason = ratedLogs(logs).filter(
+		(log) => log.seasonNumber === seasonNumber,
+	);
+	const seasonRated = inSeason
+		.filter((log) => normalizeScope(log.logScope) === "season")
+		.map((log) => log.rating);
+	const episodeRated = inSeason
+		.filter((log) => normalizeScope(log.logScope) === "episode")
+		.map((log) => log.rating);
+	const episodeMean = meanStoredTenths(episodeRated);
+	const episodeCount = distinctRatedEpisodeCount(logs, seasonNumber);
+	if (seasonRated.length > 0) {
+		const rating = meanStoredTenths(seasonRated);
+		return {
+			rating,
+			source: "yours",
+			averageRating:
+				episodeMean != null && episodeMean !== rating ? episodeMean : null,
+			averageCount: episodeCount,
+		};
+	}
+	if (episodeMean == null) return EMPTY_SCORE;
+	return {
+		rating: episodeMean,
+		source: "average",
+		averageRating: null,
+		averageCount: episodeCount,
+	};
 }
 
 export function resolveTvTitleScore(logs: TvTitleScoreLog[]): number | null {

@@ -61,9 +61,23 @@ describe("watchlistRowToPopularSeed", () => {
 		);
 	});
 
-	test("Recently added shows the title on the scrim, not streaming noise", () => {
+	test("Recently added names the region service, not the title", () => {
 		const seed = watchlistRowToPopularSeed(fightClubRow, "latest_added");
-		expect(seed.watchlistStreamingLabel).toBe("Fight Club");
+		expect(seed.watchlistStreamingLabel).toBe(
+			formatWatchlistStreamingPill("Netflix"),
+		);
+	});
+
+	test("Recently added falls back to a known cinema or streaming date", () => {
+		const seed = watchlistRowToPopularSeed(
+			{
+				...fightClubRow,
+				streaming_provider_name: null,
+				upcoming_release_label: "In cinemas Oct 3",
+			},
+			"latest_added",
+		);
+		expect(seed.watchlistStreamingLabel).toBe("In cinemas Oct 3");
 	});
 
 	test("Tonight shows only the ranked reason, not a streaming fallback", () => {

@@ -43,6 +43,7 @@ import {
 	isCatalogueRadialGatedAction,
 } from "@/lib/catalogue-radial-items";
 import { diaryLogToQuickLogOpenPayload } from "@/lib/diary-open-log";
+import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
 import type { MyTvLog } from "@/lib/my-tv-log";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
@@ -79,6 +80,8 @@ export type CataloguePosterTileProps = {
 	hoverStacking?: "catalogue" | "sheet";
 	posterCaption?: string | null;
 	posterCaptionSubline?: string | null;
+	/** Watchlist — TMDb logo beside a “Now on …” scrim. */
+	watchlistStreamingLogoUrl?: string | null;
 	/** Under-frame title (search / filmography) — shown even when art is missing. */
 	showTitle?: boolean;
 	titleLines?: 1 | 2;
@@ -128,6 +131,7 @@ export function CataloguePosterTile({
 	hoverStacking = "catalogue",
 	posterCaption,
 	posterCaptionSubline,
+	watchlistStreamingLogoUrl,
 	showTitle = false,
 	titleLines = 2,
 	titleClassName,
@@ -573,6 +577,20 @@ export function CataloguePosterTile({
 		watchlistBusy,
 	]);
 
+	// Films keep the score on the poster. A favorite adds a heart, even with no score.
+	const diaryFilm = surface === "diary" && listingKind === "movie" && diaryRow;
+	const diaryRatingCaption = diaryFilm
+		? formatStoredLogRatingDisplay(diaryRow.log.rating)
+		: null;
+	const diaryFavorite = Boolean(diaryFilm && diaryRow.log.liked);
+	const resolvedPosterCaption = posterCaption ?? diaryRatingCaption;
+	const diaryCaptionSuffix = [
+		diaryRatingCaption ? `rated ${diaryRatingCaption}` : null,
+		diaryFavorite ? "favorite" : null,
+	]
+		.filter(Boolean)
+		.join(", ");
+
 	return (
 		<>
 			{/* Radial anchor shell — same RMB contract as `ListLobbyPoster` (pointer on wrapper, not inner Link). */}
@@ -600,8 +618,15 @@ export function CataloguePosterTile({
 						hoverStacking={hoverStacking}
 						listingKind={listingKind}
 						movieId={tmdbId}
-						posterCaption={posterCaption}
+						posterCaption={resolvedPosterCaption}
+						posterCaptionFavorite={diaryFavorite}
+						posterCaptionLogoUrl={watchlistStreamingLogoUrl}
 						posterCaptionSubline={posterCaptionSubline}
+						posterScrim={
+							surface === "watchlist" || diaryRatingCaption || diaryFavorite
+								? "sampled"
+								: "black"
+						}
 						posterBadge={
 							showAlertMark ? (
 								<span
@@ -613,7 +638,11 @@ export function CataloguePosterTile({
 							) : null
 						}
 						accessibleLabelSuffix={
-							showAlertMark ? ", streaming alert on" : undefined
+							showAlertMark
+								? ", streaming alert on"
+								: diaryCaptionSuffix
+									? `, ${diaryCaptionSuffix}`
+									: undefined
 						}
 						posterUrl={posterUrl}
 						priority={priority}

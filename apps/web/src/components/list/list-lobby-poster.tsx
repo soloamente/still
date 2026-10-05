@@ -29,6 +29,7 @@ import {
 import { toast } from "sonner";
 import { ListLobbyDeleteConfirmDialog } from "@/components/list/list-lobby-delete-confirm-dialog";
 import { ListLobbyEditDialog } from "@/components/list/list-lobby-edit-dialog";
+import { PosterSampledScrim } from "@/components/movie/poster-sampled-scrim";
 import { usePatronEntitlements } from "@/components/plans/use-patron-entitlements";
 import { SenseRadialToolkit } from "@/components/ui/sense-radial-toolkit";
 import { api } from "@/lib/api";
@@ -102,7 +103,8 @@ export function ListLobbyPoster({
 	);
 
 	const frameShellClassName = cn(
-		"poster-art relative aspect-[2/3] w-full overflow-hidden rounded-md border-0 bg-card transition-colors duration-200 ease-out",
+		"poster-art relative aspect-[2/3] w-full overflow-hidden border-0 bg-card transition-colors duration-200 ease-out",
+		frameClassName ? null : "rounded-md",
 		frameClassName,
 	);
 
@@ -341,14 +343,14 @@ export function ListLobbyPoster({
 						/>
 					) : (
 						<div className="grid size-full place-items-center p-3">
-							<span className="grid size-10 shrink-0 place-items-center rounded-full bg-background text-desert-orange shadow-sm">
+							<span className="grid size-11 shrink-0 place-items-center rounded-full bg-background text-desert-orange">
 								<IconListPlay className="block size-4 shrink-0" aria-hidden />
 							</span>
 						</div>
 					)}
 					{/* Likes pill — top-right only; bottom scrim is title + meta (no duplicate heart row). */}
 					{list.likesCount > 0 ? (
-						<span className="pointer-events-none absolute top-3 right-3 z-10 inline-flex min-h-6 items-center gap-1 rounded-full bg-card/90 px-2 py-1 font-medium text-[10px] text-foreground tabular-nums shadow-sm">
+						<span className="pointer-events-none absolute top-3 right-3 z-10 inline-flex min-h-6 items-center gap-1 rounded-full bg-card px-2 py-1 font-medium text-foreground text-xs tabular-nums">
 							<IconHeartFilled
 								className="size-2.5 shrink-0 text-desert-orange"
 								aria-hidden
@@ -356,33 +358,31 @@ export function ListLobbyPoster({
 							{list.likesCount}
 						</span>
 					) : null}
-					<div
-						className={cn(
-							"pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center bg-linear-to-t from-card/95 via-card/55 to-transparent px-3 pb-3.5 text-center sm:px-4 sm:pb-4",
-							displayPosterUrl ? "pt-12" : "pt-8",
-						)}
-					>
-						<p className="line-clamp-2 max-w-[92%] font-medium text-foreground text-xs leading-snug sm:text-sm">
-							{displayTitle}
-						</p>
-						<p className="mt-1 flex max-w-full flex-wrap items-center justify-center gap-1.5 text-[10px] text-muted-foreground tabular-nums">
-							<span>{metaLine}</span>
-							{isSharedList ? (
-								<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
-									Shared
-								</span>
-							) : null}
-							{!isPublic && !isSharedList ? (
-								<span className="inline-flex items-center gap-0.5 rounded-full bg-background/80 px-1.5 py-0.5 font-medium uppercase tracking-wide">
-									<IconLockFill className="size-2.5" aria-hidden />
-									Private
-								</span>
-							) : null}
-							{isSharedList && list.ownerHandle ? (
-								<span className="truncate">@{list.ownerHandle}</span>
-							) : null}
-						</p>
-					</div>
+					{displayPosterUrl ? (
+						<PosterSampledScrim
+							hideOnHover={false}
+							posterUrl={displayPosterUrl}
+						>
+							<ListLobbyPosterCaption
+								title={displayTitle}
+								metaLine={metaLine}
+								isSharedList={isSharedList}
+								isPublic={isPublic}
+								ownerHandle={list.ownerHandle}
+								onPhoto
+							/>
+						</PosterSampledScrim>
+					) : (
+						<div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 bg-linear-to-t from-card/95 via-card/55 to-transparent px-3 pt-8 pb-4 text-center sm:px-4">
+							<ListLobbyPosterCaption
+								title={displayTitle}
+								metaLine={metaLine}
+								isSharedList={isSharedList}
+								isPublic={isPublic}
+								ownerHandle={list.ownerHandle}
+							/>
+						</div>
+					)}
 				</div>
 			</Link>
 
@@ -432,5 +432,59 @@ export function ListLobbyPoster({
 				</>
 			) : null}
 		</>
+	);
+}
+
+/** Title and count on the cover. Photo covers use the white caption on the sampled fade. */
+function ListLobbyPosterCaption({
+	title,
+	metaLine,
+	isSharedList,
+	isPublic,
+	ownerHandle,
+	onPhoto = false,
+}: {
+	title: string;
+	metaLine: string;
+	isSharedList: boolean;
+	isPublic: boolean;
+	ownerHandle?: string | null;
+	onPhoto?: boolean;
+}) {
+	return (
+		<div className="flex w-full flex-col items-center gap-2">
+			<p
+				className={cn(
+					"line-clamp-2 max-w-[92%] text-xs leading-snug sm:text-sm",
+					onPhoto
+						? "font-semibold text-white drop-shadow-sm"
+						: "font-medium text-foreground",
+				)}
+			>
+				{title}
+			</p>
+			<p
+				className={cn(
+					"flex max-w-full flex-wrap items-center justify-center gap-2 text-xs tabular-nums",
+					onPhoto ? "text-white/75" : "text-muted-foreground",
+				)}
+			>
+				<span>{metaLine}</span>
+				{isSharedList ? (
+					<span className="inline-flex items-center gap-1 rounded-full bg-background px-2 py-0.5 font-medium text-foreground">
+						Shared
+					</span>
+				) : null}
+				{!isPublic && !isSharedList ? (
+					<span className="inline-flex items-center gap-1 rounded-full bg-background px-2 py-0.5 font-medium text-foreground">
+						<IconLockFill className="size-3" aria-hidden />
+						Private
+					</span>
+				) : null}
+				{isSharedList && ownerHandle ? (
+					<span className="truncate">@{ownerHandle}</span>
+				) : null}
+			</p>
+		</div>
 	);
 }

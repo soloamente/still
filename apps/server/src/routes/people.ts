@@ -26,8 +26,16 @@ import {
 	listTopPersonSearchTraffic,
 } from "../lib/person-search-traffic";
 import { recordProductEvent } from "../lib/record-product-event";
+import { loadSearchDialogTrendingCastPeople } from "../lib/search-dialog-trending-cast-people";
 import { tmdbApi, tmdbImg } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
+
+function parsePopularMediaQuery(
+	raw: string | undefined,
+): "movie" | "tv" | "people" | null {
+	if (raw === "movie" || raw === "tv" || raw === "people") return raw;
+	return null;
+}
 
 /** Same contract as movie search when `TMDB_API_KEY` is missing — the web UI can show setup hints. */
 const TMDB_UNCONFIGURED = {
@@ -104,8 +112,11 @@ export const peopleRoute = new Elysia({
 		"/popular",
 		async ({ query, user }) => {
 			const page = Number(query.page ?? 1) || 1;
+			const media = parsePopularMediaQuery(query.media);
+			const resultLimit =
+				media === "people" ? 24 : media === "movie" || media === "tv" ? 12 : 20;
 			if (!env.TMDB_API_KEY) {
-				const trafficLeaders = await listTopPersonSearchTraffic(12);
+				const trafficLeaders = await listTopPersonSearchTraffic(resultLimit);
 				const favoritedIds = user?.id
 					? await listFavoritedPersonIdsAmong(
 							user.id,
@@ -128,15 +139,43 @@ export const peopleRoute = new Elysia({
 			}
 			const language = await getTmdbLanguageForUser(user?.id);
 			const showAdultContent = await getShowAdultContentForUser(user?.id);
-			const [trafficLeaders, data] = await Promise.all([
-				listTopPersonSearchTraffic(12),
-				tmdbApi.personPopular(page, {
-					language,
-					showAdultContent,
-				}),
-			]);
-			const tmdbRows = data.results.map(mapTmdbPersonToSearchRow);
-			const merged = mergeTrafficLedPeople(trafficLeaders, tmdbRows, 20);
+			const fetchOpts = { language, showAdultContent };
+			const trafficLeaders = await listTopPersonSearchTraffic(resultLimit);
+			let tmdbRows: ReturnType<typeof mapTmdbPersonToSearchRow>[] = [];
+			let pageMeta = { page: 1, total_pages: 1, total_results: 0 };
+
+			if (media === "movie" || media === "tv") {
+				try {
+					tmdbRows = await loadSearchDialogTrendingCastPeople(media, fetchOpts);
+				} catch (err) {
+					console.error(
+						"[people/popular] trending cast failed; falling back to person/popular",
+						err,
+					);
+					tmdbRows = [];
+				}
+			}
+			if (tmdbRows.length === 0) {
+				const data = await tmdbApi.personPopular(page, fetchOpts);
+				tmdbRows = data.results.map(mapTmdbPersonToSearchRow);
+				pageMeta = {
+					page: data.page,
+					total_pages: data.total_pages,
+					total_results: data.total_results,
+				};
+			} else {
+				pageMeta = {
+					page: 1,
+					total_pages: 1,
+					total_results: tmdbRows.length,
+				};
+			}
+
+			const merged = mergeTrafficLedPeople(
+				trafficLeaders,
+				tmdbRows,
+				resultLimit,
+			);
 			const favoritedIds = user?.id
 				? await listFavoritedPersonIdsAmong(
 						user.id,
@@ -148,14 +187,17 @@ export const peopleRoute = new Elysia({
 			]);
 			return {
 				results: withPersonFavoriteFlags(ranked, favoritedIds),
-				page: data.page,
-				total_pages: data.total_pages,
-				total_results: data.total_results,
+				page: pageMeta.page,
+				total_pages: pageMeta.total_pages,
+				total_results: pageMeta.total_results,
 			};
 		},
 		{
 			query: t.Object({
 				page: t.Optional(t.String()),
+				media: t.Optional(
+					t.Union([t.Literal("movie"), t.Literal("tv"), t.Literal("people")]),
+				),
 			}),
 		},
 	)

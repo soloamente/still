@@ -3,6 +3,8 @@
 import { cn } from "@still/ui/lib/utils";
 import type { ReactNode, RefObject } from "react";
 import { useRef } from "react";
+
+import { SearchDialogHorizontalScrollEdges } from "@/components/home/search-dialog-horizontal-scroll-edges";
 import {
 	HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
 	useHorizontalScrollFades,
@@ -43,21 +45,6 @@ export function SearchDialogHorizontalRail({
 	return (
 		<div className={cn("relative min-w-0 overflow-hidden", className)}>
 			<div
-				aria-hidden
-				className={cn(
-					"pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-linear-to-r from-background via-background/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-					showStartFade ? "opacity-100" : "opacity-0",
-				)}
-			/>
-			<div
-				aria-hidden
-				className={cn(
-					// Figma fade is ~66px; keep it ending at color/0 so it does not darken the well.
-					"pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background via-background/80 to-transparent transition-opacity duration-200 motion-reduce:transition-none",
-					showEndFade ? "opacity-100" : "opacity-0",
-				)}
-			/>
-			<div
 				ref={scrollRef}
 				data-lenis-prevent-wheel
 				role="toolbar"
@@ -65,12 +52,18 @@ export function SearchDialogHorizontalRail({
 				className={cn(
 					HORIZONTAL_OVERFLOW_RAIL_CLASSNAME,
 					gapClassName,
-					"items-center pb-0",
+					"relative z-0 items-center pb-0",
 					scrollClassName,
 				)}
 			>
 				{children}
 			</div>
+			{/* After scrollport so backdrop-filter samples tiles below these overlays. */}
+			<SearchDialogHorizontalScrollEdges
+				showStartFade={showStartFade}
+				showEndFade={showEndFade}
+				tint="background"
+			/>
 		</div>
 	);
 }

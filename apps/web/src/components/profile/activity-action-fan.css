@@ -1,0 +1,66 @@
+/* Corner fan for the profile activity card. Geometry lives in the component. */
+
+@property --zoom {
+	syntax: "<number>";
+	inherits: false;
+	initial-value: 1;
+}
+
+.activity-fan {
+	position: relative;
+	width: 100%;
+}
+
+.activity-fan-card {
+	position: relative;
+	z-index: 1;
+	border-radius: var(--nod-r, 24px);
+	transition: translate 260ms cubic-bezier(0.3, 1.1, 0.4, 1);
+}
+
+.activity-fan-card[data-on] {
+	translate: 0 -1px;
+}
+
+.activity-fan-anchor {
+	position: absolute;
+	z-index: 0;
+	width: 0;
+	height: 0;
+}
+
+.activity-fan-reach {
+	position: absolute;
+	pointer-events: none;
+}
+
+.activity-fan-reach[data-on] {
+	pointer-events: auto;
+}
+
+.activity-fan-act {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: var(--card);
+	color: var(--foreground);
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	scale: calc(var(--pop, 1) * var(--zoom, 1));
+	transition: --zoom 180ms cubic-bezier(0.3, 1.1, 0.4, 1);
+}
+
+.activity-fan-act:hover {
+	--zoom: 1.12;
+}
+
+@media (hover: hover) {
+	.activity-fan-act:hover {
+		--zoom: 1.12;
+	}
+}

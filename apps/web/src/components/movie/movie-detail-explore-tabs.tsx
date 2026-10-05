@@ -161,7 +161,7 @@ export function MovieDetailRelatedCatalogue({
 		<MovieDetailBodySection
 			id={MOVIE_DETAIL_SECTION.related}
 			title="Related"
-			subtitle="TMDb recommendations and similar titles."
+			subtitle="Recommendations and similar titles."
 			className="pt-2 pb-2"
 		>
 			{hasRelatedBody ? (

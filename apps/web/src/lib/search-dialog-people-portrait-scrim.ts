@@ -98,10 +98,7 @@ export function pickMostUsedDarkRgbFromRgba(
 		if (luma >= lumaMin && luma <= lumaMax) {
 			midDarkCounts.set(key, (midDarkCounts.get(key) ?? 0) + 1);
 			if (chroma >= minChroma) {
-				chromaticDarkCounts.set(
-					key,
-					(chromaticDarkCounts.get(key) ?? 0) + 1,
-				);
+				chromaticDarkCounts.set(key, (chromaticDarkCounts.get(key) ?? 0) + 1);
 			}
 			if (chroma > bestChroma) {
 				bestChroma = chroma;
@@ -156,13 +153,27 @@ export function sampleMostUsedDarkRgb(
 }
 
 /**
- * Bottom→top fade: opaque portrait color at the base, clear toward the face.
+ * Bottom→top fade across the scrim layer — solid base for rank, smooth ramp, clear before mid-face.
  */
 export function searchDialogPeoplePortraitScrimStyle(
 	rgb: string | null | undefined,
 ): { backgroundImage: string } {
 	const color = rgb?.trim() || SEARCH_DIALOG_PEOPLE_SCRIM_FALLBACK_RGB;
+	// Ease from a short solid base into clear. A heavy mid stop reads as a hard edge.
 	return {
-		backgroundImage: `linear-gradient(to top, ${color} 0%, ${color} 12%, transparent 100%)`,
+		backgroundImage: `linear-gradient(to top, ${color} 0%, ${color} 8%, color-mix(in srgb, ${color} 62%, transparent) 30%, color-mix(in srgb, ${color} 28%, transparent) 56%, color-mix(in srgb, ${color} 8%, transparent) 80%, transparent 100%)`,
+	};
+}
+
+/**
+ * Poster caption fade across the whole tile.
+ * Full color is only the bottom edge. It clears low, so the art is not a solid band.
+ */
+export function posterSampledScrimStyle(rgb: string | null | undefined): {
+	backgroundImage: string;
+} {
+	const color = rgb?.trim() || SEARCH_DIALOG_PEOPLE_SCRIM_FALLBACK_RGB;
+	return {
+		backgroundImage: `linear-gradient(to top, ${color} 0%, color-mix(in srgb, ${color} 34%, transparent) 20%, color-mix(in srgb, ${color} 8%, transparent) 42%, transparent 62%)`,
 	};
 }

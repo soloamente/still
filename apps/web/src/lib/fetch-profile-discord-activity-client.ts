@@ -10,6 +10,22 @@ export type ProfileDiscordActivity = {
 	creatorImageUrl?: string | null;
 	headline?: string;
 	source?: string;
+	/** Set when the row came from Sense Companion rather than Discord. */
+	activitySource?: "companion" | "discord";
+	/** Title page for a Companion match. */
+	href?: string | null;
+	/** Companion playback is paused. Discord rows leave this unset. */
+	paused?: boolean;
+	/**
+	 * Snapshot of where the title is, in seconds.
+	 * `sampledAt` is when that position was measured. The row keeps counting
+	 * from it while playback is running.
+	 */
+	playback?: {
+		positionSec: number;
+		durationSec: number;
+		sampledAt?: string;
+	};
 	progress?: {
 		startedAtMs: number;
 		endsAtMs: number;

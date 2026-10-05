@@ -21,6 +21,8 @@ export type ListingEngagementWatchItem = {
 	planTier: import("@still/plans").PlanTierId;
 	staffRole: import("@/lib/staff-role-labels").StaffRole | null;
 	rating: number | null;
+	/** TV watches. `yours` is a show score you saved. `average` comes from the seasons. */
+	ratingSource?: "yours" | "average" | null;
 	liked: boolean;
 	watchedAt: string;
 	review: ListingEngagementWatchReview | null;

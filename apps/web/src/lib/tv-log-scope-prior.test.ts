@@ -5,6 +5,7 @@ import type { MyTvLog } from "@/lib/my-tv-log";
 import {
 	countTvLogsInScope,
 	findLatestTvLogInScope,
+	seriesReadyForShowDiary,
 	tvLogMatchesScope,
 } from "./tv-log-scope-prior";
 
@@ -59,6 +60,53 @@ describe("countTvLogsInScope", () => {
 		expect(
 			countTvLogsInScope(logs, { logScope: "season", seasonNumber: 2 }),
 		).toBe(1);
+	});
+});
+
+describe("seriesReadyForShowDiary", () => {
+	const seasons = [
+		{ season_number: 1, episode_count: 8 },
+		{ season_number: 2, episode_count: 10 },
+	];
+
+	test("ready when finished and every season is already in the diary", () => {
+		expect(
+			seriesReadyForShowDiary({
+				status: "finished",
+				seasons,
+				logs: [s1, s2],
+			}),
+		).toBe(true);
+	});
+
+	test("skips when a show log already exists", () => {
+		expect(
+			seriesReadyForShowDiary({
+				status: "finished",
+				seasons,
+				logs: [s1, s2, show],
+			}),
+		).toBe(false);
+	});
+
+	test("skips while a season diary row is still missing", () => {
+		expect(
+			seriesReadyForShowDiary({
+				status: "finished",
+				seasons,
+				logs: [s1],
+			}),
+		).toBe(false);
+	});
+
+	test("skips until the series is finished", () => {
+		expect(
+			seriesReadyForShowDiary({
+				status: "watching",
+				seasons,
+				logs: [s1, s2],
+			}),
+		).toBe(false);
 	});
 });
 

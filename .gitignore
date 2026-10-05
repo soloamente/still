@@ -46,6 +46,9 @@ coverage
 
 # Misc
 *.tgz
+*.bun-build
+slopo.db
+slopo.conf.yaml
 .cache
 tmp
 temp

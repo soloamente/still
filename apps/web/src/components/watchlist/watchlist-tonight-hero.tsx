@@ -10,6 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { HomeTasteHeroMediaLayer } from "@/components/home/home-taste-hero-media-layer";
 import { useQuickLog } from "@/components/log/quick-log-sheet";
+import { WatchlistNowOnLabel } from "@/components/watchlist/watchlist-now-on-label";
 import {
 	WatchlistRegionAction,
 	watchlistRegionGuidanceCopy,
@@ -96,22 +97,21 @@ function WatchlistTonightHeroEmpty({
 	return (
 		<section
 			aria-label="Watch tonight"
-			className="mb-2 w-full min-w-0 rounded-[2rem] bg-background px-6 py-10 text-center sm:px-10"
+			className="mb-2 flex w-full min-w-0 flex-col items-center gap-5 rounded-[2rem] bg-background px-6 py-10 text-center sm:px-10"
 		>
 			{failed ? (
 				<>
-					<p className="font-semibold text-foreground text-lg tracking-tight">
-						Couldn&apos;t load tonight&apos;s pick
-					</p>
-					<p className="mt-2 text-muted-foreground text-sm">
-						Something went wrong on our side.
-					</p>
+					<div className="flex flex-col gap-2">
+						<p className="font-semibold text-foreground text-lg tracking-tight">
+							Couldn&apos;t load tonight&apos;s pick
+						</p>
+						<p className="text-muted-foreground text-sm">
+							Something went wrong on our side.
+						</p>
+					</div>
 					<button
 						type="button"
-						className={cn(
-							buttonVariants({ variant: "secondary", size: "pill" }),
-							"mt-5",
-						)}
+						className={buttonVariants({ variant: "secondary", size: "pill" })}
 						onClick={onRetry}
 					>
 						Try again
@@ -119,20 +119,22 @@ function WatchlistTonightHeroEmpty({
 				</>
 			) : (
 				<>
-					<p className="font-semibold text-foreground text-lg tracking-tight">
-						Nothing lined up yet
-					</p>
-					<p className="mt-2 max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed">
-						Save a few titles and we&apos;ll line up tonight&apos;s pick here.
-					</p>
+					<div className="flex flex-col gap-2">
+						<p className="font-semibold text-foreground text-lg tracking-tight">
+							Nothing lined up yet
+						</p>
+						<p className="max-w-prose text-pretty text-muted-foreground text-sm leading-relaxed">
+							Save a few titles and we&apos;ll line up tonight&apos;s pick here.
+						</p>
+					</div>
 					<Link
 						href="/home"
 						className={cn(
 							buttonVariants({ variant: "secondary", size: "pill" }),
-							"mt-5 inline-flex",
+							"inline-flex",
 						)}
 					>
-						Browse films
+						Browse films and shows
 					</Link>
 				</>
 			)}
@@ -437,7 +439,7 @@ export function WatchlistTonightHero({
 								HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
 							)}
 						>
-							<p className="font-semibold text-foreground/90 text-sm tracking-wide">
+							<p className="font-semibold text-pure-white/90 text-sm tracking-wide">
 								Watch tonight
 							</p>
 							<Link
@@ -460,7 +462,7 @@ export function WatchlistTonightHero({
 										</span>
 									</div>
 								) : (
-									<h2 className="text-balance font-semibold text-2xl text-foreground tracking-tight sm:text-3xl">
+									<h2 className="text-balance font-sans font-semibold text-[clamp(1.75rem,5.5vw,3.25rem)] text-pure-white leading-[0.95] tracking-[-0.03em]">
 										<span ref={titleSwapRef} className="t-text-swap">
 											{spotlight.title}
 										</span>
@@ -468,25 +470,48 @@ export function WatchlistTonightHero({
 								)}
 							</Link>
 							{spotlight.tonightReason ? (
-								<p className="text-pretty text-foreground/85 text-sm sm:text-base">
-									<span ref={reasonSwapRef} className="t-text-swap">
+								<p className="text-pretty text-pure-white/85 text-sm sm:text-base">
+									<span ref={reasonSwapRef} className="t-text-swap sr-only">
 										{spotlight.tonightReason}
 									</span>
+									<WatchlistNowOnLabel
+										label={spotlight.tonightReason}
+										logoUrl={
+											spotlight.tonightReasonKind === "available"
+												? spotlight.tonightProviderLogoUrl
+												: null
+										}
+										className="justify-center sm:justify-start"
+										logoClassName="size-6"
+									/>
 								</p>
 							) : null}
 							{showRegionNote ? (
-								<p className="text-pretty text-foreground/70 text-xs sm:text-sm">
+								<p className="text-pretty text-pure-white/70 text-xs sm:text-sm">
 									{watchlistRegionGuidanceCopy(initial.region ?? null)}{" "}
-									<WatchlistRegionAction className="font-medium text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline">
+									<WatchlistRegionAction className="font-medium text-pure-white underline-offset-4 [@media(hover:hover)]:hover:underline">
 										Choose region
 									</WatchlistRegionAction>
 								</p>
 							) : null}
 							<div className="flex flex-wrap items-center justify-center gap-2 pt-1 sm:justify-start">
+								<button
+									type="button"
+									className={cn(
+										"inline-flex min-h-11 items-center justify-center rounded-full bg-pure-white px-5 font-medium text-absolute-black text-sm transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none",
+										DETAIL_MOTION_PRESSABLE_CLASS,
+										motionProps.className,
+									)}
+									style={motionProps.style}
+									onClick={handleQuickLog}
+								>
+									Quick log
+								</button>
 								<Link
 									href={listingDetailHref(spotlight)}
 									className={cn(
 										buttonVariants({ variant: "secondary", size: "pill" }),
+										"min-h-11",
 										DETAIL_MOTION_PRESSABLE_CLASS,
 										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 										motionProps.className,
@@ -498,25 +523,12 @@ export function WatchlistTonightHero({
 								>
 									Open
 								</Link>
-								<button
-									type="button"
-									className={cn(
-										buttonVariants({ variant: "secondary", size: "pill" }),
-										DETAIL_MOTION_PRESSABLE_CLASS,
-										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										motionProps.className,
-									)}
-									style={motionProps.style}
-									onClick={handleQuickLog}
-								>
-									Quick log
-								</button>
 								{pool.length > 1 ? (
 									<button
 										type="button"
 										className={cn(
 											buttonVariants({ variant: "ghost", size: "pill" }),
-											"border-transparent bg-background/80 text-foreground backdrop-blur-0",
+											"min-h-11 bg-background text-foreground",
 											DETAIL_MOTION_PRESSABLE_CLASS,
 											motionProps.className,
 										)}
@@ -526,9 +538,6 @@ export function WatchlistTonightHero({
 										Pick another
 									</button>
 								) : null}
-								<span className="rounded-full bg-background/80 px-3 py-2 font-medium text-foreground/80 text-xs">
-									Saved
-								</span>
 							</div>
 						</div>
 					</div>

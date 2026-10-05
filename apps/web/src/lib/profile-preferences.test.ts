@@ -1,6 +1,11 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	mergeCompanionWatchingEnabledPref,
+	PROFILE_PREF_COMPANION_WATCHING_ENABLED,
+	readCompanionWatchingEnabledPref,
+} from "./companion-watching-pref";
+import {
 	mergeDiscordActivityEnabledPref,
 	PROFILE_PREF_AVATAR_IS_ANIMATED,
 	PROFILE_PREF_CAST_CREW_MONOCHROME_ON_HOVER,
@@ -194,6 +199,43 @@ describe("readDiscordActivityEnabledPref", () => {
 				},
 			}),
 		).toBe(false);
+	});
+});
+
+describe("readCompanionWatchingEnabledPref", () => {
+	test("defaults to true when missing", () => {
+		expect(readCompanionWatchingEnabledPref(null)).toBe(true);
+		expect(readCompanionWatchingEnabledPref({})).toBe(true);
+	});
+
+	test("reads explicit false", () => {
+		expect(
+			readCompanionWatchingEnabledPref({
+				integrations: {
+					[PROFILE_PREF_COMPANION_WATCHING_ENABLED]: false,
+				},
+			}),
+		).toBe(false);
+	});
+});
+
+describe("mergeCompanionWatchingEnabledPref", () => {
+	test("preserves sibling integration keys", () => {
+		expect(
+			mergeCompanionWatchingEnabledPref(
+				{
+					integrations: {
+						discordActivityEnabled: true,
+					},
+				},
+				false,
+			),
+		).toEqual({
+			integrations: {
+				discordActivityEnabled: true,
+				[PROFILE_PREF_COMPANION_WATCHING_ENABLED]: false,
+			},
+		});
 	});
 });
 

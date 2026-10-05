@@ -11,9 +11,8 @@
  * CSS custom properties usable from any `@still/*` consumer.
  *
  * — Typography: `--font-fraunces-stack` / `.font-display` (Next Fraunces);
- *   `--font-proxima-nova` body UI sans = **SF Pro Rounded** (`--font-sf-pro-rounded`)
- *   with **Outfit** (`--font-inter`) as next/font fallback (legacy var name; also
- *   aliased as legacy `font-serif`).
+ *   `--font-proxima-nova` body UI sans = **Inter** (`--font-inter` from next/font;
+ *   legacy stack token name; also aliased as legacy `font-serif`).
  * — Atmosphere tokens: `--surface-theater`, `--cinema-grain-*`, `--cinema-vignette-*`,
  *   `.cinema-theater-floor`, `.cinema-marquee-track`, iris hero `.cinema-hero-iris`,
  *   projector boot `.cinema-projector-boot-overlay`, View Transitions `cinema-vt-*`.
@@ -80,11 +79,10 @@
 	);
 	--surface-studio-logo-foreground: var(--foreground);
 
-	/* UI sans: SF Pro Rounded (local next/font) → Outfit webfont → system stack. */
+	/* UI sans: Inter (next/font on web) → system stack. */
 	--font-proxima-nova:
-		var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		sans-serif;
+		var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", sans-serif;
 	/* Kept as an alias so existing `font-serif` utilities resolve to the same UI stack. */
 	--font-serif: var(--font-proxima-nova);
 	/* Display: Fraunces from next/font (`--font-fraunces`), cinematic editorial serif
@@ -213,11 +211,10 @@
 	--mobbin-mist: #f2f2f2;
 	--mobbin-silver: #c2c2c2;
 	--mobbin-slate-shadow: #e0e0e0;
-	/* Saans substitute: same UI stack as global (`--font-sf-pro-rounded` / `--font-inter`). */
+	/* Saans substitute: same UI stack as global (`--font-inter` / Inter). */
 	--mobbin-font-saans:
-		var(--font-sf-pro-rounded, "SF Pro Rounded"), var(--font-inter, "Outfit"),
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, sans-serif;
+		var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	--mobbin-text-caption: 12px;
 	--mobbin-text-body-sm: 14px;
 	--mobbin-text-body: 16px;
@@ -524,7 +521,7 @@ html.theme-midnight {
 	--color-surface-overlay: var(--surface-overlay);
 
 	/* Font utilities:
-	 *   `font-sans` / `font-serif`     → Outfit (legacy stack name; editorial body).
+	 *   `font-sans` / `font-serif`     → Inter (legacy stack token name).
    *   `font-display`                  → Fraunces (cinematic headlines).
    *   `font-mono`                     → Geist Mono.
    * The `--font-display` token below auto-generates the `font-display` Tailwind
@@ -1453,6 +1450,13 @@ html.theme-lobby-light .cinema-vignette {
 		outline: none;
 		box-shadow: none;
 	}
+	/* ⌘K Movies / Shows / People chip — faster label swap than default t-text-swap. */
+	.search-dialog-media-chip {
+		--text-swap-dur: 88ms;
+		--text-swap-translate-y: 2px;
+		--text-swap-blur: 1px;
+	}
+
 	.catalog-search-query ::selection {
 		background-color: color-mix(in oklab, var(--muted) 70%, transparent);
 		color: var(--foreground);
@@ -1513,10 +1517,6 @@ html.theme-lobby-light .cinema-vignette {
 	.studio-logo-chip {
 		background-color: var(--surface-studio-logo);
 		color: var(--surface-studio-logo-foreground);
-		transition:
-			background-color 200ms ease-out,
-			color 200ms ease-out,
-			opacity 200ms ease-out;
 	}
 	@media (hover: hover) {
 		.studio-logo-chip:hover {
@@ -1528,9 +1528,6 @@ html.theme-lobby-light .cinema-vignette {
 	.search-recent-chip {
 		background-color: var(--surface-studio-logo);
 		color: var(--muted-foreground);
-		transition:
-			background-color 200ms ease-out,
-			color 200ms ease-out;
 	}
 	@media (hover: hover) {
 		.search-recent-chip:hover {
@@ -1542,6 +1539,11 @@ html.theme-lobby-light .cinema-vignette {
 		outline-width: 1px;
 		outline-style: solid;
 		outline-color: color-mix(in oklab, var(--foreground) 12%, transparent);
+	}
+
+	/* ⌘K arrow-key focus — primary foreground (white on dark themes), not accent ring. */
+	.search-dialog-keyboard-focus-wrap {
+		box-shadow: 0 0 0 2px var(--primary-foreground);
 	}
 }
 
@@ -2691,7 +2693,9 @@ html.theme-lobby-light .cinema-vignette {
 	position: absolute;
 	inset-inline: 0;
 	top: 0;
-	transform: translateX(calc(var(--t-page-from-x, 0px) * var(--page-exit-enabled)));
+	transform: translateX(
+		calc(var(--t-page-from-x, 0px) * var(--page-exit-enabled))
+	);
 	filter: blur(calc(var(--page-blur) * var(--page-exit-enabled)));
 	transition:
 		opacity var(--page-fade-dur) var(--page-fade-ease),
@@ -2992,6 +2996,38 @@ html[data-software-gpu] .modal-overlay-scrim {
 	}
 }
 
+/* Search dialog recent pill — icon swap layout (state driven via data-state + JS hover). */
+.search-recent-chip-icon-swap.t-icon-swap {
+	display: grid;
+	place-items: center;
+}
+.search-recent-chip-icon-swap .t-icon {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+.search-recent-chip-icon-swap .t-icon svg {
+	display: block;
+}
+@media (hover: none) {
+	.search-recent-chip
+		.search-recent-chip-icon-swap.t-icon-swap[data-state="a"]
+		.t-icon[data-icon="a"] {
+		opacity: 0;
+		filter: blur(var(--icon-swap-blur));
+		transform: scale(var(--icon-swap-start-scale));
+	}
+	.search-recent-chip
+		.search-recent-chip-icon-swap.t-icon-swap[data-state="a"]
+		.t-icon[data-icon="b"] {
+		opacity: 1;
+		filter: blur(0);
+		transform: scale(1);
+	}
+}
+
 /* ---------------------------------------------------------------------------
  * transitions.dev — card resize (`LogRatingSlider` track fill layers).
  * --------------------------------------------------------------------------- */
@@ -3022,6 +3058,23 @@ html[data-software-gpu] .modal-overlay-scrim {
 	.t-resize {
 		transition: none !important;
 	}
+}
+
+/* Watchlist provider filter pill — layout only; motion values live in DialKit. */
+.t-watchlist-provider-pill-body.is-compact {
+	max-width: 0;
+	overflow: hidden;
+}
+
+.t-watchlist-provider-pill-body.is-expanded {
+	max-width: min(11rem, 36vw);
+	overflow: hidden;
+}
+
+.t-watchlist-provider-pill-label {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 /* ---------------------------------------------------------------------------
@@ -3328,6 +3381,11 @@ html[data-software-gpu] .modal-overlay-scrim {
 	--avatar-dur: 280ms;
 	--avatar-scale: 1.03;
 	--avatar-falloff: 0.5;
+}
+
+/* Lobby catalogue posters � large uniform corner radius. */
+.poster-ios-corners {
+	border-radius: 2rem;
 }
 
 /* Home taste hero — comb lift on the stacked poster picks. */

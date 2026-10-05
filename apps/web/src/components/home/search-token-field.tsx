@@ -1,9 +1,12 @@
 "use client";
 
-import IconCinema from "@still/ui/icons/cinema";
-import IconTvShows from "@still/ui/icons/tv-shows";
+import {
+	IconSearchDialogCinema,
+	IconSearchDialogCurated,
+	IconSearchDialogLists,
+	IconSearchDialogTv,
+} from "@still/ui/icons/search-dialog-glyphs";
 import { cn } from "@still/ui/lib/utils";
-import { List, Sparkles, Tag } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
 	type KeyboardEvent,
@@ -14,8 +17,19 @@ import {
 	useState,
 } from "react";
 
+import { SearchDialogGenreIcon } from "@/components/home/search-dialog-genre-icon";
 import { SearchDialogStudioLogo } from "@/components/home/search-dialog-studio-logo";
 import { SearchTagPill } from "@/components/home/search-tag-pill";
+import { WatchlistProviderCircleLogo } from "@/components/watchlist/watchlist-provider-circle-logo";
+import {
+	moveSearchDialogEmptyBrowseFocus,
+	type SearchDialogEmptyBrowseSection,
+} from "@/lib/search-dialog-empty-browse-keyboard";
+import {
+	moveSearchDialogResultFocus,
+	searchDialogResultArrowFromKey,
+} from "@/lib/search-dialog-result-keyboard";
+import type { SearchDialogStreamingProvider } from "@/lib/search-dialog-streaming-providers";
 import { searchDialogStudioHasLogo } from "@/lib/search-dialog-studio-logo";
 import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
@@ -34,6 +48,7 @@ export type SearchTokenFieldProps = {
 	inputValue: string;
 	onInputValueChange: (value: string) => void;
 	studios: SearchDialogStudio[];
+	streamingProviders?: SearchDialogStreamingProvider[];
 	genres: SearchDialogGenre[];
 	listingKind: "movie" | "tv";
 	onSubmit?: () => void;
@@ -44,6 +59,18 @@ export type SearchTokenFieldProps = {
 	inputId: string;
 	placeholder?: string;
 	inputClassName?: string;
+	/** When tag suggestions are closed — arrow keys move catalogue / people results. */
+	resultKeyboard?: {
+		enabled: boolean;
+		focusedIndex: number | null;
+		resultCount: number;
+		layout: "grid" | "list" | "rail";
+		gridColumns: number;
+		/** Stacked rails + lists when ⌘K browse is empty. */
+		emptyBrowseSections?: readonly SearchDialogEmptyBrowseSection[];
+		onFocusIndexChange: (index: number | null) => void;
+		onPickFocused: () => void;
+	};
 };
 
 /** Shared metrics so inline ghost completion lines up with the combobox input. */
@@ -64,6 +91,8 @@ function suggestionKindLabel(suggestion: TagSuggestion): string {
 	switch (suggestion.kind) {
 		case "studio":
 			return "Studio";
+		case "streaming":
+			return "Streaming";
 		case "media":
 			return "Show";
 		case "genre":
@@ -86,20 +115,29 @@ function SuggestionKindIcon({
 	suggestion: TagSuggestion;
 	className?: string;
 }) {
-	const iconClass = cn("size-4 shrink-0 opacity-80", className);
+	const iconClass = cn("shrink-0 opacity-80", className);
 	switch (suggestion.kind) {
 		case "media":
 			return suggestion.listingKind === "tv" ? (
-				<IconTvShows className={cn(iconClass, "size-5")} aria-hidden />
+				<IconSearchDialogTv size={20} className={iconClass} aria-hidden />
 			) : (
-				<IconCinema className={cn(iconClass, "size-5")} aria-hidden />
+				<IconSearchDialogCinema size={20} className={iconClass} aria-hidden />
 			);
 		case "genre":
-			return <Tag className={iconClass} aria-hidden />;
+			return (
+				<SearchDialogGenreIcon
+					name={suggestion.name}
+					className="size-5 opacity-80"
+				/>
+			);
 		case "curated":
-			return <Sparkles className={iconClass} aria-hidden />;
+			return (
+				<IconSearchDialogCurated size={18} className={iconClass} aria-hidden />
+			);
 		case "lists":
-			return <List className={iconClass} aria-hidden />;
+			return (
+				<IconSearchDialogLists size={18} className={iconClass} aria-hidden />
+			);
 		default:
 			return null;
 	}
@@ -114,6 +152,7 @@ export function SearchTokenField({
 	inputValue,
 	onInputValueChange,
 	studios,
+	streamingProviders = [],
 	genres,
 	listingKind,
 	onSubmit,
@@ -122,6 +161,7 @@ export function SearchTokenField({
 	inputId,
 	placeholder = "Search",
 	inputClassName,
+	resultKeyboard,
 }: SearchTokenFieldProps) {
 	const reduceMotion = useReducedMotion();
 	const listboxId = useId();
@@ -131,8 +171,16 @@ export function SearchTokenField({
 	const [panelOpen, setPanelOpen] = useState(false);
 
 	const suggestions = useMemo(
-		() => rankTagSuggestions(inputValue, studios, genres, listingKind, tags),
-		[inputValue, studios, genres, listingKind, tags],
+		() =>
+			rankTagSuggestions(
+				inputValue,
+				studios,
+				genres,
+				listingKind,
+				tags,
+				streamingProviders,
+			),
+		[inputValue, studios, genres, listingKind, tags, streamingProviders],
 	);
 
 	const showPanel = panelOpen && suggestions.length > 0;
@@ -189,7 +237,49 @@ export function SearchTokenField({
 			return;
 		}
 
+		const resultArrow = searchDialogResultArrowFromKey(event.key);
+		if (
+			resultArrow &&
+			resultKeyboard?.enabled &&
+			suggestions.length === 0 &&
+			resultKeyboard.resultCount > 0
+		) {
+			event.preventDefault();
+			setPanelOpen(false);
+			const emptySections = resultKeyboard.emptyBrowseSections;
+			const nextIndex =
+				emptySections && emptySections.length > 0
+					? moveSearchDialogEmptyBrowseFocus(
+							resultKeyboard.focusedIndex,
+							emptySections,
+							resultArrow,
+						)
+					: moveSearchDialogResultFocus(
+							resultKeyboard.focusedIndex,
+							resultKeyboard.resultCount,
+							resultArrow,
+							resultKeyboard.gridColumns,
+							resultKeyboard.layout,
+						);
+			resultKeyboard.onFocusIndexChange(nextIndex);
+			return;
+		}
+
 		if (event.key === "Enter") {
+			if (showPanel && topSuggestion) {
+				event.preventDefault();
+				commitSuggestion(topSuggestion);
+				return;
+			}
+			if (
+				resultKeyboard?.enabled &&
+				resultKeyboard.focusedIndex != null &&
+				suggestions.length === 0
+			) {
+				event.preventDefault();
+				resultKeyboard.onPickFocused();
+				return;
+			}
 			// Enter commits the catalogue query — Tab alone inserts suggestion pills.
 			event.preventDefault();
 			setPanelOpen(false);
@@ -367,7 +457,13 @@ export function SearchTokenField({
 								const active = index === highlightIndex;
 								return (
 									<motion.li
-										key={`${suggestion.kind}-${suggestion.label}`}
+										key={
+											suggestion.kind === "studio"
+												? `studio-${suggestion.id}`
+												: suggestion.kind === "streaming"
+													? `streaming-${suggestion.id}`
+													: `${suggestion.kind}-${suggestion.label}`
+										}
 										variants={
 											reduceMotion
 												? undefined
@@ -396,11 +492,21 @@ export function SearchTokenField({
 											searchDialogStudioHasLogo(
 												suggestion.id,
 												suggestion.logoUrl,
+												suggestion.name,
 											) ? (
 												<SearchDialogStudioLogo
 													studioId={suggestion.id}
+													studioName={suggestion.name}
 													fallbackLogoUrl={suggestion.logoUrl}
 													variant="suggestion"
+												/>
+											) : suggestion.kind === "streaming" &&
+												suggestion.logoUrl ? (
+												<WatchlistProviderCircleLogo
+													src={suggestion.logoUrl}
+													name={suggestion.name}
+													className="size-9 shrink-0 shadow-sm"
+													providerId={suggestion.id}
 												/>
 											) : (
 												<span
@@ -410,7 +516,8 @@ export function SearchTokenField({
 													)}
 													aria-hidden
 												>
-													{suggestion.kind === "studio" ? (
+													{suggestion.kind === "studio" ||
+													suggestion.kind === "streaming" ? (
 														<span className="font-semibold text-[10px] text-foreground uppercase tracking-wide">
 															{suggestion.name.slice(0, 2)}
 														</span>

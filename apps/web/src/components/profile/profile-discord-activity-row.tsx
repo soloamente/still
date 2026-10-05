@@ -10,13 +10,15 @@ import IconAppleMusic from "@still/ui/icons/apple-music";
 import IconSpotifyBrand from "@still/ui/icons/spotify-brand";
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
-import type { ReactNode } from "react";
-import { useState } from "react";
+import Link from "next/link";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import { DiscordActivityProgressBar } from "@/components/profile/discord-activity-progress-bar";
 import {
+	companionLivePositionSec,
 	DISCORD_ACTIVITY_ART_OUTLINE_CLASSNAME,
 	discordActivityHeadline,
+	formatCompanionClock,
 } from "@/lib/discord-activity-display";
 import {
 	type DiscordListeningBrand,
@@ -26,6 +28,7 @@ import {
 } from "@/lib/discord-activity-listening-brand";
 import type { ProfileDiscordActivity } from "@/lib/fetch-profile-discord-activity-client";
 import { hexWithAlpha } from "@/lib/hex-with-alpha";
+import { useTextStateSwap } from "@/lib/text-state-swap";
 import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
 
 type ProfileDiscordActivityRowProps = {
@@ -212,6 +215,240 @@ function DiscordListeningBrandIcon({
 	);
 }
 
+/** Header above the title. Discord writes "Watching with Sense" while it plays. */
+function companionStatusWord(
+	activity: ProfileDiscordActivity,
+): "Watching with Sense" | "Paused" | "Browsing" {
+	const detail = activity.detail?.trim() ?? "";
+	const label = activity.label.trim();
+	if (activity.paused === true || detail === "Paused") return "Paused";
+	if (/^browsing\b/i.test(detail) || /^browsing\b/i.test(label))
+		return "Browsing";
+	return "Watching with Sense";
+}
+
+/** Episode row under the title (S4 E1 - Chapter One). */
+function companionEpisodeLine(activity: ProfileDiscordActivity): string | null {
+	const detail = activity.detail?.trim() ?? "";
+	if (!detail || detail === "Paused" || /^browsing\b/i.test(detail)) {
+		return null;
+	}
+	return detail;
+}
+
+/** Third row: On Netflix, On HBO Max, etc. */
+function companionPlatformLine(
+	activity: ProfileDiscordActivity,
+): string | null {
+	const service = activity.source?.trim();
+	return service ? `On ${service}` : null;
+}
+
+/**
+ * Advance a playing snapshot once a second.
+ * The first paint stays on the raw sample so server and client markup match.
+ * After mount, elapsed time since `sampledAt` is added on every tick.
+ */
+function useCompanionPlayhead(
+	positionSec: number,
+	durationSec: number,
+	sampledAt: string | undefined,
+	playing: boolean,
+): number {
+	const [nowMs, setNowMs] = useState<number | null>(null);
+	// Used only when the payload has no sample time: start from this check.
+	const localSample = useRef({ positionSec, at: 0 });
+
+	useEffect(() => {
+		if (!playing) return;
+		const tick = () => {
+			const now = Date.now();
+			const sample = localSample.current;
+			if (sample.positionSec !== positionSec || sample.at === 0) {
+				localSample.current = { positionSec, at: now };
+			}
+			setNowMs(now);
+		};
+		tick();
+		const id = window.setInterval(tick, 1000);
+		function handleVisibilityChange() {
+			if (document.visibilityState === "visible") tick();
+		}
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		return () => {
+			window.clearInterval(id);
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+		};
+	}, [playing, positionSec]);
+
+	if (!playing || nowMs == null) {
+		return Math.min(durationSec, Math.max(0, positionSec));
+	}
+	const parsed = sampledAt ? Date.parse(sampledAt) : Number.NaN;
+	const sampledAtMs = Number.isFinite(parsed)
+		? parsed
+		: localSample.current.at || nowMs;
+	return companionLivePositionSec({
+		positionSec,
+		durationSec,
+		playing,
+		sampledAtMs,
+		nowMs,
+	});
+}
+
+function CompanionPlayback({
+	positionSec,
+	durationSec,
+	sampledAt,
+	playing,
+}: {
+	positionSec: number;
+	durationSec: number;
+	/** When the snapshot was measured. Playing keeps counting from here. */
+	sampledAt?: string;
+	/** Playing uses the bright filled-button color. Paused keeps the quiet fill. */
+	playing: boolean;
+}) {
+	const livePositionSec = useCompanionPlayhead(
+		positionSec,
+		durationSec,
+		sampledAt,
+		playing,
+	);
+	const ratio = Math.min(1, Math.max(0, livePositionSec / durationSec));
+	return (
+		<div className="mt-2 flex min-w-0 items-center gap-2.5">
+			<span
+				className={cn(
+					"shrink-0 text-xs tabular-nums",
+					playing ? "text-foreground" : "text-muted-foreground",
+				)}
+			>
+				{formatCompanionClock(livePositionSec)}
+			</span>
+			<div
+				className="relative h-1 min-w-0 flex-1 overflow-hidden rounded-full bg-foreground/10"
+				role="progressbar"
+				aria-valuemin={0}
+				aria-valuemax={100}
+				aria-valuenow={Math.round(ratio * 100)}
+				aria-label="Playback progress"
+			>
+				<div
+					className={cn(
+						"h-full rounded-full transition-[width] duration-200 ease-out motion-reduce:transition-none",
+						playing ? "bg-foreground" : "bg-foreground/55",
+					)}
+					style={{ width: `${ratio * 100}%` }}
+				/>
+			</div>
+			<span className="shrink-0 text-muted-foreground/70 text-xs tabular-nums">
+				{formatCompanionClock(durationSec)}
+			</span>
+		</div>
+	);
+}
+
+/**
+ * Companion row on the profile. Poster, Watching with Sense, the title,
+ * then one line: the episode, or On the service for a film.
+ */
+function CompanionWatchingRow({
+	activity,
+	className,
+}: ProfileDiscordActivityRowProps) {
+	const imageUrl = activity.imageUrl?.trim() || null;
+	const headline = discordActivityHeadline(activity);
+	const paused =
+		activity.paused === true || activity.detail?.trim() === "Paused";
+	const status = companionStatusWord(activity);
+	const statusRef = useTextStateSwap(status);
+	const episodeLine = companionEpisodeLine(activity);
+	const platformLine = companionPlatformLine(activity);
+	const playback = activity.playback;
+	const showPlayback =
+		playback != null && playback.durationSec > 0 && playback.positionSec >= 0;
+	const href = activity.href?.trim() || null;
+	const accessibleName = [
+		activity.label,
+		episodeLine,
+		platformLine,
+		paused ? "paused" : null,
+	]
+		.filter((part): part is string => Boolean(part))
+		.join(", ");
+	const shellClassName = cn(
+		"relative mx-auto mt-3 flex w-full max-w-md items-stretch gap-3 rounded-3xl bg-background p-3 text-left",
+		"outline-none transition-transform duration-150 ease-out",
+		"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+		"active:scale-[0.96]",
+		className,
+	);
+	const inner = (
+		<>
+			{imageUrl ? (
+				<span
+					className={cn(
+						"relative aspect-2/3 h-28 shrink-0 overflow-hidden rounded-xl",
+						DISCORD_ACTIVITY_ART_OUTLINE_CLASSNAME,
+					)}
+				>
+					<Image
+						src={imageUrl}
+						alt=""
+						fill
+						sizes="96px"
+						className="object-cover"
+						unoptimized
+					/>
+				</span>
+			) : null}
+			<span className="flex min-w-0 flex-1 flex-col justify-between self-stretch py-0.5">
+				<span className="min-w-0">
+					<span
+						ref={statusRef}
+						className="t-text-swap max-w-full truncate font-medium text-muted-foreground text-xs"
+					>
+						{status}
+					</span>
+					<span className="mt-0.5 block truncate font-semibold text-base text-foreground tracking-tight">
+						{headline}
+					</span>
+					{episodeLine ? (
+						<span className="mt-0.5 block truncate font-medium text-muted-foreground text-xs">
+							{episodeLine}
+						</span>
+					) : null}
+					{platformLine ? (
+						<span className="mt-0.5 block truncate font-medium text-muted-foreground text-xs">
+							{platformLine}
+						</span>
+					) : null}
+				</span>
+				{showPlayback && playback ? (
+					<CompanionPlayback
+						positionSec={playback.positionSec}
+						durationSec={playback.durationSec}
+						sampledAt={playback.sampledAt}
+						playing={status === "Watching with Sense"}
+					/>
+				) : null}
+			</span>
+		</>
+	);
+
+	if (!href) {
+		return <div className={shellClassName}>{inner}</div>;
+	}
+
+	return (
+		<Link href={href} aria-label={accessibleName} className={shellClassName}>
+			{inner}
+		</Link>
+	);
+}
+
 /**
  * Profile hero Discord activity — cover left, copy left, platform logo top-right when listening.
  */
@@ -220,6 +457,9 @@ export function ProfileDiscordActivityRow({
 	className,
 }: ProfileDiscordActivityRowProps) {
 	const softwareGpu = useSoftwareGpuRendering();
+	if (activity.activitySource === "companion") {
+		return <CompanionWatchingRow activity={activity} className={className} />;
+	}
 	const imageUrl = activity.imageUrl?.trim() || null;
 	const coverAccent = activity.accentColor?.trim() || null;
 	const headline = discordActivityHeadline(activity);
@@ -247,13 +487,13 @@ export function ProfileDiscordActivityRow({
 						? "Watching"
 						: "Activity";
 
-	return (
-		<div
-			className={cn(
-				"relative mx-auto mt-3 w-full max-w-md overflow-hidden rounded-2xl bg-background",
-				className,
-			)}
-		>
+	const shellClassName = cn(
+		"relative mx-auto mt-3 w-full max-w-md overflow-hidden rounded-2xl bg-background",
+		className,
+	);
+
+	const inner = (
+		<>
 			{imageUrl ? (
 				<div
 					aria-hidden
@@ -291,7 +531,6 @@ export function ProfileDiscordActivityRow({
 
 			<div className="relative z-10 grid min-h-25 grid-cols-[auto_minmax(0,1fr)] items-stretch gap-3 p-3 sm:gap-3.5 sm:p-3.5">
 				{imageUrl ? (
-					// Grid row height comes from the copy column; square width follows that height.
 					<DiscordActivityArtwork
 						imageUrl={imageUrl}
 						headline={headline}
@@ -335,6 +574,8 @@ export function ProfileDiscordActivityRow({
 					) : null}
 				</div>
 			</div>
-		</div>
+		</>
 	);
+
+	return <div className={shellClassName}>{inner}</div>;
 }

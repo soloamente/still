@@ -8,6 +8,7 @@ describe("planCatalogueTagSearch", () => {
 			q: "naruto",
 			listingKind: "tv",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [16],
 			keywordIds: [210024],
 		});
@@ -24,6 +25,7 @@ describe("planCatalogueTagSearch", () => {
 			q: "spirited",
 			listingKind: "movie",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [16],
 			keywordIds: [210024],
 		});
@@ -38,6 +40,7 @@ describe("planCatalogueTagSearch", () => {
 			q: "",
 			listingKind: "tv",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [16],
 			keywordIds: [210024],
 		});
@@ -51,6 +54,7 @@ describe("planCatalogueTagSearch", () => {
 			q: "marty",
 			listingKind: "movie",
 			studioId: 41077,
+			streamingProviderId: null,
 			genreIds: [],
 			keywordIds: [],
 		});
@@ -65,9 +69,25 @@ describe("planCatalogueTagSearch", () => {
 			q: "",
 			listingKind: "movie",
 			studioId: null,
+			streamingProviderId: null,
 			genreIds: [],
 			keywordIds: [],
 		});
 		expect(plan.mode).toBe("none");
+	});
+
+	test("streaming platform alone uses discover with providerIds", () => {
+		const plan = planCatalogueTagSearch({
+			q: "",
+			listingKind: "movie",
+			studioId: null,
+			streamingProviderId: 8,
+			genreIds: [],
+			keywordIds: [],
+		});
+		expect(plan.mode).toBe("discover");
+		if (plan.mode === "discover") {
+			expect(plan.opts.providerIds).toEqual([8]);
+		}
 	});
 });

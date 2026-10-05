@@ -77,6 +77,7 @@ export const PROFILE_PREF_PRIVACY_PRESENCE_VISIBILITY =
 export const PROFILE_PREF_INTEGRATIONS = "integrations" as const;
 export const PROFILE_PREF_DISCORD_ACTIVITY_ENABLED =
 	"discordActivityEnabled" as const;
+export { PROFILE_PREF_COMPANION_WATCHING_ENABLED } from "@/lib/companion-watching-pref";
 export const PROFILE_PRESENCE_VISIBILITY_FRIENDS = "friends" as const;
 export const PROFILE_PRESENCE_VISIBILITY_PUBLIC = "public" as const;
 export type ProfilePresenceVisibilityPref =
@@ -282,6 +283,11 @@ export function mergeDiscordActivityEnabledPref(
 		},
 	};
 }
+
+export {
+	mergeCompanionWatchingEnabledPref,
+	readCompanionWatchingEnabledPref,
+} from "@/lib/companion-watching-pref";
 
 /**
  * Presence identity visibility is nested under `preferences.privacy` and defaults

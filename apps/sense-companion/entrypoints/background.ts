@@ -1,45 +1,84 @@
 import { browser } from "wxt/browser";
 
-import {
-	onCompanionLogged,
-	postDiscordHostMessage,
-	postHostRelay,
-} from "../src/discord/native-host";
+import { postDiscordHostMessage } from "../src/discord/native-host";
 import { linkCompanion, readCompanionProfileUrl } from "../src/pairing/client";
-import { SENSE_COMPANION_ORIGIN } from "../src/pairing/origin";
+import {
+	COMPANION_HEARTBEAT_MIN_INTERVAL_MS,
+	companionMediaReadyToLog,
+	postCompanionNowWatching,
+	shouldSendCompanionHeartbeat,
+} from "../src/pairing/now-watching";
+import {
+	SENSE_COMPANION_API_ORIGIN,
+	SENSE_COMPANION_ORIGIN,
+} from "../src/pairing/origin";
 import {
 	isCompanionRateRequest,
 	postCompanionLogRating,
 } from "../src/pairing/rate-log";
-import { companionSourceId } from "../src/pairing/source-id";
-import {
-	chromeCompanionSourceIdStore,
-	chromeCompanionTokenStore,
-} from "../src/pairing/storage";
+import { chromeCompanionTokenStore } from "../src/pairing/storage";
 import {
 	POPUP_WATCH_STORAGE_KEY,
 	popupWatchFromMessage,
 } from "../src/popup/watch-state";
 import {
+	activityIsPaused,
+	type CompanionActivityMessage,
 	formatActivityLogLine,
 	formatSenseMediaLog,
 	isCompanionActivityMessage,
 	SENSE_COMPANION_WATCH_PORT,
+	type SenseMedia,
 } from "../src/presence/activity-log";
 import { upgradeArtworkUrl } from "../src/presence/artwork-url";
+import {
+	parseEpisodeTitleFromStateLine,
+	withCompanionEpisodeTitle,
+} from "../src/presence/companion-episode-title";
 import {
 	DEFAULT_DISCORD_ACTIVITY_LAYOUT,
 	DISCORD_LAYOUT_STORAGE_KEY,
 	type DiscordActivityLayout,
-	discordActivityParts,
+	inferCompanionPresenceMode,
 	readDiscordActivityLayout,
-	resolveDiscordActivityFields,
+	resolveDiscordActivityFromMessage,
 } from "../src/presence/discord-layout";
+import type { CompanionLoggedNotice } from "../src/presence/logged-notice";
+import { companionServiceLogoUrl } from "../src/presence/service-platform-brand";
 import { COMPANION_ONBOARDED_KEY } from "../src/presence/site-settings";
 import { readWatchToastId, watchDeliveryOk } from "../src/presence/watch-toast";
 
 /** Wake the paired browser often enough that a 90s profile heartbeat does not lapse. */
-const RELAY_ALARM = "sense-companion-relay";
+type GenericPageMeta = {
+	title: string;
+	service: string;
+	artwork: string | null;
+	path: string;
+};
+
+function isGenericPageMetaGet(
+	value: unknown,
+): value is { type: "sense-companion:page-meta-get" } {
+	return (
+		typeof value === "object" &&
+		value !== null &&
+		(value as { type?: unknown }).type === "sense-companion:page-meta-get"
+	);
+}
+
+function isGenericPageMetaSet(
+	value: unknown,
+): value is { type: "sense-companion:page-meta" } & GenericPageMeta {
+	if (typeof value !== "object" || value === null) return false;
+	const message = value as Partial<GenericPageMeta> & { type?: unknown };
+	return (
+		message.type === "sense-companion:page-meta" &&
+		typeof message.title === "string" &&
+		typeof message.service === "string" &&
+		typeof message.path === "string" &&
+		(message.artwork == null || typeof message.artwork === "string")
+	);
+}
 
 export default defineBackground(() => {
 	console.info("Sense Companion ready", { id: browser.runtime.id });
@@ -51,6 +90,10 @@ export default defineBackground(() => {
 	});
 	let lastPopupKey = "";
 	let lastLinkAttemptAt = 0;
+	let lastWatchAt: number | null = null;
+	let lastWatchKey: string | null = null;
+	/** Kept across throttled ticks so the Sense title button does not blink off. */
+	let cachedTitleUrl: string | null = null;
 	let discordLayout: DiscordActivityLayout = DEFAULT_DISCORD_ACTIVITY_LAYOUT;
 	/** Cached from GET /api/companion/session. Null when missing or fetch failed. */
 	let cachedProfileUrl: string | null = null;
@@ -74,14 +117,27 @@ export default defineBackground(() => {
 		void openOnboardingIfNeeded();
 	});
 
-	// This browser may be idle. The other browser can still be playing, and
-	// this one is the one that was paired with a code.
-	void browser.alarms.create(RELAY_ALARM, { periodInMinutes: 0.5 });
-	browser.alarms.onAlarm.addListener((alarm) => {
-		if (alarm.name !== RELAY_ALARM) return;
-		void sendPairingRelay();
-	});
-	void sendPairingRelay();
+	let watchPort: Browser.runtime.Port | null = null;
+
+	/** Forward auto-log to the streaming tab (port, tab message, or both). */
+	function forwardLoggedNotice(
+		notice: CompanionLoggedNotice,
+		replyPort?: Browser.runtime.Port,
+	): void {
+		const payload = { type: "sense-companion:logged" as const, ...notice };
+		const port = replyPort ?? watchPort;
+		try {
+			port?.postMessage(payload);
+		} catch {
+			if (!replyPort || watchPort === replyPort) watchPort = null;
+		}
+		const tabId = replyPort?.sender?.tab?.id;
+		if (tabId != null) {
+			void browser.tabs.sendMessage(tabId, payload).catch(() => {
+				// The streaming content script may only listen on the watch port.
+			});
+		}
+	}
 
 	async function tokenForProfile(): Promise<string | null> {
 		const existing = await chromeCompanionTokenStore.get();
@@ -110,24 +166,16 @@ export default defineBackground(() => {
 		}
 	}
 
-	let watchPort: Browser.runtime.Port | null = null;
-	onCompanionLogged((notice) => {
-		try {
-			watchPort?.postMessage({ type: "sense-companion:logged", ...notice });
-		} catch {
-			watchPort = null;
-		}
-	});
-
 	browser.runtime.onConnect.addListener((port) => {
 		if (port.name !== SENSE_COMPANION_WATCH_PORT) return;
 		watchPort = port;
 		port.onDisconnect.addListener(() => {
 			if (watchPort === port) watchPort = null;
 		});
-		// The streaming tab holds this port open while a title plays, so the
-		// helper still receives the title after this worker would otherwise stop.
+		// The streaming tab holds this port open while a title plays, so a
+		// playback tick can still reach Discord after this worker would stop.
 		port.onMessage.addListener((message: unknown) => {
+			const tabId = port.sender?.tab?.id;
 			if (isCompanionRateRequest(message)) {
 				const request = message;
 				void postCompanionLogRating({
@@ -148,7 +196,7 @@ export default defineBackground(() => {
 				return;
 			}
 			const toastId = readWatchToastId(message);
-			const pending = deliverCompanionMessage(message);
+			const pending = deliverCompanionMessage(message, port, tabId);
 			if (!toastId) {
 				if (pending) void pending;
 				return;
@@ -167,8 +215,107 @@ export default defineBackground(() => {
 		});
 	});
 
-	browser.runtime.onMessage.addListener((message: unknown) => {
-		const pending = deliverCompanionMessage(message);
+	/** Top frame title for a player that lives in a cross-origin iframe. */
+	const genericPageMeta = new Map<
+		number,
+		{ title: string; service: string; artwork: string | null; path: string }
+	>();
+	/** Last status from each tab. A hidden tab must not keep Discord on the old service. */
+	const tabPresence = new Map<number, CompanionActivityMessage>();
+	let activeTabId: number | null = null;
+	let discordTabId: number | null = null;
+
+	void browser.tabs
+		.query({ active: true, lastFocusedWindow: true })
+		.then((tabs) => {
+			const id = tabs[0]?.id;
+			if (typeof id === "number") activeTabId = id;
+		});
+
+	function rememberTabPresence(
+		tabId: number | undefined,
+		message: CompanionActivityMessage,
+	): void {
+		if (typeof tabId !== "number") return;
+		if (message.type === "sense-companion:clear") {
+			tabPresence.delete(tabId);
+			return;
+		}
+		tabPresence.set(tabId, message);
+	}
+
+	function tabOwnsDiscord(tabId: number | undefined): boolean {
+		if (typeof tabId !== "number") return true;
+		// The first report can arrive before the active-tab query finishes.
+		if (activeTabId == null) {
+			activeTabId = tabId;
+			return true;
+		}
+		return tabId === activeTabId;
+	}
+
+	/** Show the focused tab, or clear when that tab has nothing to report. */
+	function publishFocusedTab(): void {
+		const message =
+			typeof activeTabId === "number"
+				? tabPresence.get(activeTabId)
+				: undefined;
+		if (!message) {
+			discordTabId = null;
+			lastPopupKey = "";
+			postDiscordHostMessage({
+				type: "sense-companion:clear",
+				service: "Sense",
+			});
+			void browser.storage.session
+				.remove(POPUP_WATCH_STORAGE_KEY)
+				.catch((error: unknown) => {
+					console.error("Sense Companion popup watch failed", error);
+				});
+			return;
+		}
+		void deliverCompanionMessage(message, undefined, activeTabId ?? undefined);
+	}
+
+	browser.tabs.onActivated.addListener(({ tabId }) => {
+		activeTabId = tabId;
+		publishFocusedTab();
+	});
+
+	browser.windows.onFocusChanged.addListener((windowId) => {
+		if (windowId === browser.windows.WINDOW_ID_NONE) return;
+		void browser.tabs.query({ active: true, windowId }).then((tabs) => {
+			const id = tabs[0]?.id;
+			if (typeof id !== "number") return;
+			activeTabId = id;
+			publishFocusedTab();
+		});
+	});
+
+	browser.tabs.onRemoved.addListener((tabId) => {
+		genericPageMeta.delete(tabId);
+		tabPresence.delete(tabId);
+		if (tabId !== discordTabId && tabId !== activeTabId) return;
+		publishFocusedTab();
+	});
+
+	browser.runtime.onMessage.addListener((message: unknown, sender) => {
+		if (isGenericPageMetaGet(message)) {
+			const tabId = sender.tab?.id;
+			return Promise.resolve(
+				tabId == null ? null : (genericPageMeta.get(tabId) ?? null),
+			);
+		}
+		if (isGenericPageMetaSet(message) && sender.tab?.id != null) {
+			genericPageMeta.set(sender.tab.id, {
+				title: message.title,
+				service: message.service,
+				artwork: message.artwork,
+				path: message.path,
+			});
+			return;
+		}
+		const pending = deliverCompanionMessage(message, undefined, sender.tab?.id);
 		if (!pending) return;
 		void pending;
 		return true;
@@ -214,56 +361,26 @@ export default defineBackground(() => {
 		});
 	}
 
-	async function sendPairingRelay(): Promise<void> {
-		const token = await chromeCompanionTokenStore.get();
-		if (!token) return;
-		const sourceId = await companionSourceId(chromeCompanionSourceIdStore);
-		postHostRelay({
-			type: "sense-companion:relay",
-			profileToken: token,
-			sourceId,
-		});
-		// Keep the Discord profile button URL warm while this browser is paired.
-		void refreshCachedProfileUrl(true);
-	}
-
 	function prepareDiscordActivity(
 		message: Parameters<typeof popupWatchFromMessage>[0],
 		layout: DiscordActivityLayout,
 	) {
 		if (message.type !== "sense-companion:activity") return message;
-		const title =
-			message.senseMedia?.title ??
-			message.activity.name ??
-			message.activity.details;
-		const details = message.activity.details?.trim() ?? "";
-		const state = message.activity.state?.trim() ?? "";
-		const showTitle = title?.trim() ?? "";
-		const episodeTitle =
-			details.length > 0 && details !== showTitle
-				? details
-				: state.length > 0 && state !== showTitle
-					? state
-					: null;
-		const parts = discordActivityParts({
-			service: message.service,
-			title,
-			episodeTitle,
-			season: message.senseMedia?.season ?? null,
-			episode: message.senseMedia?.episode ?? null,
-		});
+		const mode = inferCompanionPresenceMode(message);
+		const poster =
+			layout.cover === "none"
+				? null
+				: upgradeArtworkUrl(message.activity.largeImageKey);
+		const brandLogo =
+			mode === "sense" ? null : companionServiceLogoUrl(message.service);
 		return {
 			...message,
 			activity: {
 				...message.activity,
-				largeImageKey:
-					layout.cover === "none"
-						? null
-						: upgradeArtworkUrl(message.activity.largeImageKey),
+				largeImageKey: poster ?? brandLogo,
 			},
-			discordFields: parts
-				? resolveDiscordActivityFields(layout, parts)
-				: undefined,
+			discordFields:
+				resolveDiscordActivityFromMessage(message, layout) ?? undefined,
 			// Attach only when Settings keeps the profile button visible.
 			...(layout.profileButton === "show"
 				? { profileButtonUrl: cachedProfileUrl }
@@ -273,18 +390,22 @@ export default defineBackground(() => {
 
 	function deliverCompanionMessage(
 		message: unknown,
+		replyPort?: Browser.runtime.Port,
+		tabId?: number,
 	): Promise<boolean> | undefined {
 		if (!isCompanionActivityMessage(message)) return;
+		rememberTabPresence(tabId, message);
 		console.info(formatActivityLogLine(message));
 		if (message.type === "sense-companion:activity" && message.senseMedia) {
 			console.info(formatSenseMediaLog(message.senseMedia));
 		}
-		// The popup reads this on open. Skip repeat writes while playback ticks.
-		const watch = popupWatchFromMessage(message);
+		// The popup reads this on open. A background tab must not replace it.
+		const focused = tabOwnsDiscord(tabId);
+		const watch = focused ? popupWatchFromMessage(message) : null;
 		const nextPopupKey = watch
-			? `${watch.service}\0${watch.title}\0${watch.season ?? ""}\0${watch.episode ?? ""}\0${watch.paused}\0${watch.coverUrl ?? ""}`
+			? `${watch.service}\0${watch.title}\0${watch.season ?? ""}\0${watch.episode ?? ""}\0${watch.mode}\0${watch.coverUrl ?? ""}`
 			: "";
-		if (nextPopupKey !== lastPopupKey) {
+		if (focused && nextPopupKey !== lastPopupKey) {
 			lastPopupKey = nextPopupKey;
 			const write = watch
 				? browser.storage.session.set({ [POPUP_WATCH_STORAGE_KEY]: watch })
@@ -293,24 +414,120 @@ export default defineBackground(() => {
 				console.error("Sense Companion popup watch failed", error);
 			});
 		}
-		// The helper writes this title where the paired browser can read it.
-		// Saving stays on the helper so an idle paired browser does not clear
-		// a title the other browser is still playing.
-		return Promise.all([
-			tokenForProfile(),
-			companionSourceId(chromeCompanionSourceIdStore),
-			refreshCachedProfileUrl(),
-		]).then(([token, sourceId]) => {
-			const prepared = prepareDiscordActivity(message, discordLayout);
-			const posted = postDiscordHostMessage(
-				token
-					? { ...prepared, profileToken: token, sourceId }
-					: { ...prepared, sourceId },
+		// This browser saves the title it is playing and updates Discord desktop
+		// over the local websocket IPC (no separate helper install).
+		return Promise.all([tokenForProfile(), refreshCachedProfileUrl()]).then(
+			async ([token]) => {
+				const prepared = prepareDiscordActivity(message, discordLayout);
+				const saved = await saveNowWatching(prepared, token);
+				const withTitle =
+					saved.titleUrl && prepared.type === "sense-companion:activity"
+						? { ...prepared, titleButtonUrl: saved.titleUrl }
+						: prepared;
+				if (saved.logged) forwardLoggedNotice(saved.logged, replyPort);
+				// A hidden tab can finish after the focused one. Ignore it.
+				if (!tabOwnsDiscord(tabId)) {
+					return (
+						message.type === "sense-companion:activity" &&
+						watchDeliveryOk({
+							paired: token != null,
+							posted: saved.status === "sent",
+						})
+					);
+				}
+				postDiscordHostMessage(withTitle);
+				discordTabId =
+					typeof tabId === "number" &&
+					message.type === "sense-companion:activity"
+						? tabId
+						: null;
+				return (
+					message.type === "sense-companion:activity" &&
+					watchDeliveryOk({
+						paired: token != null,
+						posted: saved.status === "sent",
+					})
+				);
+			},
+		);
+	}
+
+	/** Send episode names on the profile heartbeat when the page only set season/episode. */
+	function enrichSenseMediaForProfile(
+		media: SenseMedia,
+		message: CompanionActivityMessage & {
+			discordFields?: { state?: string | null };
+		},
+	): SenseMedia {
+		if (message.type !== "sense-companion:activity") return media;
+		let next: SenseMedia = {
+			...media,
+			...withCompanionEpisodeTitle(media, message.activity),
+		};
+		if (
+			next.kind === "episode" &&
+			!next.episodeTitle &&
+			message.discordFields?.state
+		) {
+			const parsed = parseEpisodeTitleFromStateLine(
+				message.discordFields.state,
+				next.title,
 			);
-			return (
-				message.type === "sense-companion:activity" &&
-				watchDeliveryOk({ paired: token != null, posted })
-			);
+			if (parsed) next = { ...next, episodeTitle: parsed };
+		}
+		return next;
+	}
+
+	async function saveNowWatching(
+		message: CompanionActivityMessage & {
+			profileButtonUrl?: string | null;
+			discordFields?: { state?: string | null };
+		},
+		token: string | null,
+	): Promise<Awaited<ReturnType<typeof postCompanionNowWatching>>> {
+		if (!token) return { status: "skipped", logged: null, titleUrl: null };
+		const clear =
+			message.type === "sense-companion:clear" || message.senseMedia == null;
+		const rawMedia =
+			message.type === "sense-companion:activity" ? message.senseMedia : null;
+		const media =
+			rawMedia != null && message.type === "sense-companion:activity"
+				? enrichSenseMediaForProfile(rawMedia, message)
+				: null;
+		const paused =
+			message.type === "sense-companion:activity" && media
+				? activityIsPaused(message.activity)
+				: false;
+		const nextKey = clear
+			? "clear"
+			: `${media?.provider}|${media?.kind}|${media?.title}|${media?.season}|${media?.episode}|${paused}`;
+		const now = Date.now();
+		const forceForAutoLog =
+			media != null && !clear && companionMediaReadyToLog(media);
+		if (
+			!forceForAutoLog &&
+			!shouldSendCompanionHeartbeat({
+				now,
+				lastSentAt: lastWatchAt,
+				lastKey: lastWatchKey,
+				nextKey,
+				minIntervalMs: COMPANION_HEARTBEAT_MIN_INTERVAL_MS,
+			})
+		) {
+			return { status: "sent", logged: null, titleUrl: cachedTitleUrl };
+		}
+		const saved = await postCompanionNowWatching({
+			origin: SENSE_COMPANION_API_ORIGIN,
+			store: chromeCompanionTokenStore,
+			media: clear ? null : media,
+			paused,
+			clear,
 		});
+		if (saved.status === "sent") {
+			lastWatchAt = now;
+			lastWatchKey = nextKey;
+			cachedTitleUrl = clear ? null : saved.titleUrl;
+		}
+		return saved;
 	}
 });

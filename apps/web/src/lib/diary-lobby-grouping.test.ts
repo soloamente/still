@@ -38,9 +38,17 @@ function tvRow(
 }
 
 describe("pickPrimaryTvScopeLabel", () => {
-	test("prefers episode over season and whole show", () => {
+	test("a whole-series log reads as Whole series", () => {
 		const logs = [
 			tvRow("1", 1396, "Breaking Bad", "2024-01-01", "show"),
+			tvRow("2", 1396, "Breaking Bad", "2024-06-01", "season", 1),
+			tvRow("3", 1396, "Breaking Bad", "2024-12-01", "episode", 1, 3),
+		];
+		expect(pickPrimaryTvScopeLabel(logs)).toBe("Whole series");
+	});
+
+	test("prefers the newest episode when the series is not logged as a whole", () => {
+		const logs = [
 			tvRow("2", 1396, "Breaking Bad", "2024-06-01", "season", 1),
 			tvRow("3", 1396, "Breaking Bad", "2024-12-01", "episode", 1, 3),
 		];

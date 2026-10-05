@@ -1,8 +1,11 @@
+import IconHeartFilled from "@still/ui/icons/heart-filled";
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
+import { PosterSampledScrim } from "@/components/movie/poster-sampled-scrim";
+import { WatchlistNowOnLabel } from "@/components/watchlist/watchlist-now-on-label";
 import { cataloguePosterHoverShellClassName } from "@/lib/catalogue-poster-hover";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
 
@@ -47,6 +50,12 @@ export function MoviePoster({
 	linkable = true,
 	/** Optional chip over the poster (e.g. TV diary scope on `/diary` grid). */
 	posterCaption,
+	/** Filled heart on the caption row when this log is a favorite. */
+	posterCaptionFavorite = false,
+	/** Provider mark beside a “Now on …” caption. */
+	posterCaptionLogoUrl,
+	/** Sample the poster for the bottom fade instead of a black gradient. */
+	posterScrim = "black",
 	/** Second line on the bottom scrim (e.g. diary entry count). */
 	posterCaptionSubline,
 	/** Decorative corner mark (top-right); convey its meaning via `accessibleLabelSuffix`. */
@@ -75,6 +84,9 @@ export function MoviePoster({
 	listingKind?: "movie" | "tv";
 	linkable?: boolean;
 	posterCaption?: string | null;
+	posterCaptionFavorite?: boolean;
+	posterCaptionLogoUrl?: string | null;
+	posterScrim?: "black" | "sampled";
 	posterCaptionSubline?: string | null;
 	posterBadge?: ReactNode;
 	accessibleLabelSuffix?: string;
@@ -120,7 +132,9 @@ export function MoviePoster({
 	);
 
 	const frameShellClassName = cn(
-		"poster-art relative aspect-[2/3] overflow-hidden rounded-md border border-border bg-card",
+		"poster-art relative aspect-[2/3] overflow-hidden border border-border bg-card",
+		// Lobby passes `poster-ios-corners` — do not fight it with default `rounded-md`.
+		frameClassName ? null : "rounded-md",
 		!isElevation &&
 			linkable &&
 			"transition-transform duration-[var(--aker-duration)] ease-[var(--aker-ease)] group-hover:-translate-y-1 group-hover:border-desert-orange/40",
@@ -165,24 +179,15 @@ export function MoviePoster({
 						{posterBadge}
 					</div>
 				) : null}
-				{posterCaption ? (
-					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3 text-center sm:pt-16 sm:pb-3.5">
-						{/* One line on every grid; `pointer-events-auto` so the `title` tooltip can surface the full text. */}
-						<p
-							className="pointer-events-auto w-full truncate font-semibold text-sm text-white leading-snug tracking-wide drop-shadow-sm"
-							title={posterCaption}
-						>
-							{posterCaption}
-						</p>
-						{posterCaptionSubline ? (
-							<p
-								className="pointer-events-auto mt-0.5 w-full truncate text-white/75 text-xs leading-snug"
-								title={posterCaptionSubline}
-							>
-								{posterCaptionSubline}
-							</p>
-						) : null}
-					</div>
+				{posterCaption || posterCaptionFavorite ? (
+					<PosterCaptionScrim
+						posterUrl={posterUrl}
+						scrim={posterScrim}
+						caption={posterCaption}
+						favorite={posterCaptionFavorite}
+						logoUrl={posterCaptionLogoUrl}
+						subline={posterCaptionSubline}
+					/>
 				) : null}
 			</div>
 			{/* Keep the under-frame title even when art is missing (search, dense grids). */}
@@ -220,4 +225,83 @@ export function MoviePoster({
 	}
 
 	return <div className={shellClassName}>{posterInner}</div>;
+}
+
+function PosterCaptionCopy({
+	caption,
+	favorite = false,
+	logoUrl,
+	subline,
+}: {
+	caption?: string | null;
+	favorite?: boolean;
+	logoUrl?: string | null;
+	subline?: string | null;
+}) {
+	return (
+		<>
+			<p
+				className="pointer-events-auto flex w-full min-w-0 items-center justify-center gap-1.5 font-semibold text-sm text-white leading-snug tracking-wide drop-shadow-sm"
+				title={caption ?? undefined}
+			>
+				{favorite ? (
+					<IconHeartFilled
+						aria-hidden
+						className="size-3.5 shrink-0 text-desert-orange"
+						size="14px"
+					/>
+				) : null}
+				{caption ? (
+					<WatchlistNowOnLabel label={caption} logoUrl={logoUrl} />
+				) : null}
+			</p>
+			{subline ? (
+				<p
+					className="pointer-events-auto mt-0.5 w-full truncate text-white/75 text-xs leading-snug"
+					title={subline}
+				>
+					{subline}
+				</p>
+			) : null}
+		</>
+	);
+}
+
+function PosterCaptionScrim({
+	posterUrl,
+	scrim,
+	caption,
+	favorite = false,
+	logoUrl,
+	subline,
+}: {
+	posterUrl: string | null;
+	scrim: "black" | "sampled";
+	caption?: string | null;
+	favorite?: boolean;
+	logoUrl?: string | null;
+	subline?: string | null;
+}) {
+	if (scrim === "sampled") {
+		return (
+			<PosterSampledScrim posterUrl={posterUrl}>
+				<PosterCaptionCopy
+					caption={caption}
+					favorite={favorite}
+					logoUrl={logoUrl}
+					subline={subline}
+				/>
+			</PosterSampledScrim>
+		);
+	}
+	return (
+		<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end bg-linear-to-t from-black/90 via-black/50 to-transparent px-3 pt-14 pb-3.5 text-center sm:pt-16 sm:pb-4">
+			<PosterCaptionCopy
+				caption={caption}
+				favorite={favorite}
+				logoUrl={logoUrl}
+				subline={subline}
+			/>
+		</div>
+	);
 }

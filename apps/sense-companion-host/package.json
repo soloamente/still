@@ -1,0 +1,10 @@
+{
+	"name": "@still/sense-companion-host",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Native host that sets Discord Watching status for Sense Companion.",
+	"type": "module",
+	"scripts": {
+		"test": "bun test src"
+	}
+}

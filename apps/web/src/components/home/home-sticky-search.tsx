@@ -1,8 +1,11 @@
 "use client";
 
+import {
+	IconSearchDialogMagnifier,
+	IconSearchDialogXmark,
+} from "@still/ui/icons/search-dialog-glyphs";
 import { cn } from "@still/ui/lib/utils";
 import { BorderBeam } from "border-beam";
-import { Search, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -24,12 +27,16 @@ import { SearchDialogFooter } from "@/components/home/search-dialog-footer";
 import { SearchDialogGenreRail } from "@/components/home/search-dialog-genre-rail";
 import { SearchDialogListResults } from "@/components/home/search-dialog-list-results";
 import { SearchDialogMediaChip } from "@/components/home/search-dialog-media-chip";
-import { SearchDialogPeopleRail } from "@/components/home/search-dialog-people-rail";
+import {
+	SearchDialogPeopleRail,
+	type SearchDialogPeopleRailItem,
+} from "@/components/home/search-dialog-people-rail";
 import { SearchDialogPosterGrid } from "@/components/home/search-dialog-poster-grid";
 import { SearchDialogPosterRail } from "@/components/home/search-dialog-poster-rail";
 import { SearchDialogRecentSearches } from "@/components/home/search-dialog-recent-searches";
 import { SearchDialogListSkeleton } from "@/components/home/search-dialog-result-skeletons";
 import { SearchDialogSelectedStudioTile } from "@/components/home/search-dialog-selected-studio";
+import { SearchDialogStreamingRail } from "@/components/home/search-dialog-streaming-rail";
 import { SearchDialogStudioRail } from "@/components/home/search-dialog-studio-rail";
 import { SearchTagPill } from "@/components/home/search-tag-pill";
 import { SearchTokenField } from "@/components/home/search-token-field";
@@ -45,8 +52,12 @@ import {
 	normalizeCatalogSearchAnchorRect,
 	useCatalogSearchDialog,
 } from "@/lib/catalog-search-dialog-store";
+import { CatalogSearchTooltipPortalProvider } from "@/lib/catalog-search-tooltip-portal";
 import { parseHomeBrowseSurface } from "@/lib/home-browse-surface";
-import { committedCatalogueSearchNeedsTagMetadata } from "@/lib/home-catalogue-search-load-page";
+import {
+	committedCatalogueSearchNeedsTagMetadata,
+	committedSearchHasStableStreamingIdToken,
+} from "@/lib/home-catalogue-search-load-page";
 import {
 	buildHomeCatalogueSearchClearHref,
 	buildHomeCatalogueSearchCommitHref,
@@ -66,15 +77,34 @@ import {
 } from "@/lib/home-search-recent-storage";
 import { runInputClearDissolve } from "@/lib/input-clear-dissolve";
 import { normalizeProfileSearchQuery } from "@/lib/profile-search-query";
-import type { SearchDialogGenreRailItem } from "@/lib/search-dialog-featured-genres";
+import {
+	moveSearchDialogEmptyBrowseFocus,
+	type SearchDialogEmptyBrowseSection,
+} from "@/lib/search-dialog-empty-browse-keyboard";
+import {
+	buildSearchDialogGenreRailItems,
+	type SearchDialogGenreRailItem,
+} from "@/lib/search-dialog-featured-genres";
 import {
 	cycleSearchListingKind,
 	type SearchDialogListingKind,
 	searchDialogCatalogueKind,
 } from "@/lib/search-dialog-listing-kind";
+import {
+	moveSearchDialogResultFocus,
+	searchDialogResultArrowFromKey,
+	useSearchDialogPosterGridColumnCount,
+} from "@/lib/search-dialog-result-keyboard";
+import { findSearchDialogStreamingProvider } from "@/lib/search-dialog-streaming-providers";
 import { findSearchDialogStudio } from "@/lib/search-dialog-studios";
 import {
+	SEARCH_DIALOG_TAB_PANE_ANIMATE,
+	SEARCH_DIALOG_TAB_PANE_TRANSITION,
+	searchDialogTabPaneInitial,
+} from "@/lib/search-dialog-tab-pane-motion";
+import {
 	deriveSearchState,
+	rankTagSuggestions,
 	type SearchTag,
 	searchTagKey,
 	upsertTag,
@@ -95,6 +125,7 @@ import {
 	useSearchDialogGenres,
 } from "@/lib/use-search-dialog-genres";
 import { useSearchDialogPopularPeople } from "@/lib/use-search-dialog-popular-people";
+import { useSearchDialogStreamingProviders } from "@/lib/use-search-dialog-streaming-providers";
 import { useSearchDialogStudios } from "@/lib/use-search-dialog-studios";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 import { useSoftwareGpuRendering } from "@/lib/use-software-gpu-rendering";
@@ -159,6 +190,9 @@ export function CatalogSearchDialogRoot({
 	const searchParams = useSearchParams();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const searchBodyScrollRef = useRef<HTMLDivElement>(null);
+	/** Tooltip portal mount — stays in the native dialog top layer above the sheet panel. */
+	const [catalogSearchTooltipPortal, setCatalogSearchTooltipPortal] =
+		useState<HTMLDivElement | null>(null);
 	const homeTriggerEl = useCatalogSearchDialog((s) => s.homeTriggerEl);
 	const navSearchTriggerEl = useCatalogSearchDialog(
 		(s) => s.navSearchTriggerEl,
@@ -202,6 +236,11 @@ export function CatalogSearchDialogRoot({
 		anchorHeight: number;
 	} | null>(null);
 	const [portalReady, setPortalReady] = useState(false);
+	/** Footer “arrow to select” — roving index on poster grid / people list. */
+	const [keyboardResultIndex, setKeyboardResultIndex] = useState<number | null>(
+		null,
+	);
+	const posterGridColumns = useSearchDialogPosterGridColumnCount();
 
 	const reduceMotion = useReducedMotion();
 	const softwareGpu = useSoftwareGpuRendering();
@@ -388,13 +427,44 @@ export function CatalogSearchDialogRoot({
 		isHomeCatalogueSearchActive(searchParams, committedLobbyBrowse);
 	const { items: browsePreviewItems, loading: browsePreviewLoading } =
 		useSearchDialogBrowsePreview(browseCategory, null, browsePreviewEnabled);
-	const { railItems: popularPeopleRailItems, loading: popularPeopleLoading } =
-		useSearchDialogPopularPeople(popularPeopleEnabled);
+	/** Tab chip (`effectiveListingKind`) drives people fetch — not `browseCategory` alone. */
+	const searchDialogPopularPeopleMedia =
+		effectiveListingKind === "tv"
+			? "tv"
+			: effectiveListingKind === "people"
+				? "people"
+				: "movie";
+	const {
+		results: popularPeopleResults,
+		railItems: popularPeopleRailItems,
+		loading: popularPeopleLoading,
+	} = useSearchDialogPopularPeople(
+		popularPeopleEnabled,
+		searchDialogPopularPeopleMedia,
+	);
+	const searchDialogPopularPeopleRailLabel =
+		effectiveListingKind === "tv"
+			? "Trending on TV"
+			: effectiveListingKind === "movie"
+				? "Trending in film"
+				: "People";
+	const emptyBrowseIsPeople = isEmptyDraft && effectiveListingKind === "people";
 	const {
 		studios: browseStudios,
 		loading: browseStudiosLoading,
 		loaded: browseStudiosLoaded,
 	} = useSearchDialogStudios(
+		dialogOpen &&
+			(committedLobbySearchActive ||
+				(sheetLayoutReady && (browsePreviewEnabled || !isEmptyDraft))),
+	);
+	const {
+		providers: browseStreamingProviders,
+		loading: browseStreamingLoading,
+		loaded: browseStreamingLoaded,
+		needsRegion: browseStreamingNeedsRegion,
+		region: browseStreamingRegion,
+	} = useSearchDialogStreamingProviders(
 		dialogOpen &&
 			(committedLobbySearchActive ||
 				(sheetLayoutReady && (browsePreviewEnabled || !isEmptyDraft))),
@@ -411,15 +481,17 @@ export function CatalogSearchDialogRoot({
 		catalogTmdbLanguage,
 	);
 
-	// Empty sheet: Movies / TV / People browse picks imply the same mode for the next typed query.
+	// Empty sheet: keep Tab chip (`searchListingKind`) and browse rails in sync.
 	useEffect(() => {
 		if (!isEmptyDraft) return;
-		if (browseCategory === "people") {
-			setSearchListingKind("people");
-			return;
-		}
-		setSearchListingKind(browseCategory === "tv" ? "tv" : "movie");
-	}, [browseCategory, isEmptyDraft]);
+		setBrowseCategory(
+			effectiveListingKind === "tv"
+				? "tv"
+				: effectiveListingKind === "people"
+					? "people"
+					: "movies",
+		);
+	}, [effectiveListingKind, isEmptyDraft]);
 
 	// Keep the anchored sheet aligned with the sticky pill (and clamped to the viewport) on resize / header reflow.
 	useEffect(() => {
@@ -470,6 +542,11 @@ export function CatalogSearchDialogRoot({
 		tvGenres,
 		catalogTmdbLanguage,
 	);
+	const genreRailItems = useMemo(
+		() =>
+			buildSearchDialogGenreRailItems(suggestionGenres, catalogueListingKind),
+		[suggestionGenres, catalogueListingKind],
+	);
 	const genreCuratedTagCount = searchTags.filter(
 		(t) => t.kind === "genre" || t.kind === "curated",
 	).length;
@@ -499,6 +576,29 @@ export function CatalogSearchDialogRoot({
 		[browseStudios, catalogueListingKind],
 	);
 
+	const handleStreamingRailSelect = useCallback(
+		(providerId: number | null) => {
+			if (providerId == null) {
+				setSearchTags((prev) => prev.filter((tag) => tag.kind !== "streaming"));
+				return;
+			}
+			const platform = findSearchDialogStreamingProvider(
+				browseStreamingProviders,
+				providerId,
+			);
+			if (!platform) return;
+			setSearchTags((prev) =>
+				upsertTag(prev, {
+					kind: "streaming",
+					id: platform.id,
+					name: platform.name,
+					logoUrl: platform.logoUrl,
+				}),
+			);
+		},
+		[browseStreamingProviders],
+	);
+
 	const handleListingKindCycle = useCallback(() => {
 		const next = cycleSearchListingKind(effectiveListingKind);
 		setSearchListingKind(next);
@@ -512,6 +612,7 @@ export function CatalogSearchDialogRoot({
 					(tag) =>
 						tag.kind !== "media" &&
 						tag.kind !== "studio" &&
+						tag.kind !== "streaming" &&
 						tag.kind !== "genre" &&
 						tag.kind !== "curated",
 				);
@@ -614,10 +715,202 @@ export function CatalogSearchDialogRoot({
 		SEARCH_DIALOG_MAX_RESULTS,
 	);
 
+	type EmptyBrowseKeyboardPick =
+		| { type: "recent"; entry: RecentSearchEntryV2 }
+		| { type: "studio"; id: number; selected: boolean }
+		| { type: "streaming"; id: number; selected: boolean }
+		| { type: "genre"; item: SearchDialogGenreRailItem }
+		| { type: "preview"; item: SearchDialogBrowsePreviewItem }
+		| { type: "personRail"; item: SearchDialogPeopleRailItem }
+		| {
+				type: "personList";
+				id: number;
+				name: string;
+				profileUrl: string | null;
+		  };
+
+	const emptyBrowseKeyboard = useMemo(() => {
+		const sections: SearchDialogEmptyBrowseSection[] = [];
+		const picks: EmptyBrowseKeyboardPick[] = [];
+		const indexBase = {
+			recent: null as number | null,
+			studios: null as number | null,
+			streaming: null as number | null,
+			genres: null as number | null,
+			preview: null as number | null,
+			peopleRail: null as number | null,
+			popularPeople: null as number | null,
+		};
+
+		if (!isEmptyDraft || tagState.resultMode === "lists") {
+			return { sections, picks, totalCount: 0, indexBase };
+		}
+
+		let offset = 0;
+		const pushRail = (
+			key: keyof typeof indexBase,
+			count: number,
+			fill: (local: number) => void,
+		) => {
+			if (count <= 0) return;
+			indexBase[key] = offset;
+			sections.push({ kind: "rail", count });
+			for (let local = 0; local < count; local++) fill(local);
+			offset += count;
+		};
+		const pushList = (
+			key: keyof typeof indexBase,
+			count: number,
+			fill: (local: number) => void,
+		) => {
+			if (count <= 0) return;
+			indexBase[key] = offset;
+			sections.push({ kind: "list", count });
+			for (let local = 0; local < count; local++) fill(local);
+			offset += count;
+		};
+
+		pushRail("recent", recentQueries.length, (local) => {
+			picks.push({ type: "recent", entry: recentQueries[local] });
+		});
+
+		if (emptyBrowseIsPeople) {
+			pushList("popularPeople", popularPeopleResults.length, (local) => {
+				const hit = popularPeopleResults[local];
+				if (!hit) return;
+				picks.push({
+					type: "personList",
+					id: hit.id,
+					name: hit.name,
+					profileUrl: hit.profileUrl ?? null,
+				});
+			});
+			return { sections, picks, totalCount: picks.length, indexBase };
+		}
+
+		if (effectiveListingKind !== "people") {
+			pushRail("studios", browseStudios.length, (local) => {
+				const studio = browseStudios[local];
+				if (!studio) return;
+				picks.push({
+					type: "studio",
+					id: studio.id,
+					selected: tagState.studioId === studio.id,
+				});
+			});
+			if (!browseStreamingNeedsRegion) {
+				pushRail("streaming", browseStreamingProviders.length, (local) => {
+					const provider = browseStreamingProviders[local];
+					if (!provider) return;
+					picks.push({
+						type: "streaming",
+						id: provider.id,
+						selected: tagState.streamingProviderId === provider.id,
+					});
+				});
+			}
+			pushRail("genres", genreRailItems.length, (local) => {
+				const item = genreRailItems[local];
+				if (!item) return;
+				picks.push({ type: "genre", item });
+			});
+			pushRail("preview", browsePreviewItems.length, (local) => {
+				const item = browsePreviewItems[local];
+				if (!item) return;
+				picks.push({ type: "preview", item });
+			});
+			pushRail("peopleRail", popularPeopleRailItems.length, (local) => {
+				const item = popularPeopleRailItems[local];
+				if (!item) return;
+				picks.push({ type: "personRail", item });
+			});
+		}
+
+		return { sections, picks, totalCount: picks.length, indexBase };
+	}, [
+		browsePreviewItems,
+		browseStreamingNeedsRegion,
+		browseStreamingProviders,
+		browseStudios,
+		effectiveListingKind,
+		emptyBrowseIsPeople,
+		genreRailItems,
+		isEmptyDraft,
+		popularPeopleRailItems,
+		popularPeopleResults,
+		recentQueries,
+		tagState.resultMode,
+		tagState.studioId,
+		tagState.streamingProviderId,
+	]);
+
+	const popularPeopleRail = emptyBrowseIsPeople ? null : (
+		<SearchDialogPeopleRail
+			items={popularPeopleRailItems}
+			loading={popularPeopleLoading}
+			label={searchDialogPopularPeopleRailLabel}
+			keyboardFocusedIndex={
+				emptyBrowseKeyboard.totalCount > 0 ? keyboardResultIndex : null
+			}
+			resultIndexBase={emptyBrowseKeyboard.indexBase.peopleRail ?? 0}
+			onPick={(item) =>
+				handlePersonSelect(Number(item.id), {
+					name: item.name,
+					imageUrl: item.imageUrl,
+				})
+			}
+		/>
+	);
+
+	const searchDialogKeyboardResultCount = useMemo(() => {
+		if (tagState.resultMode === "lists") return 0;
+		if (isEmptyDraft) return emptyBrowseKeyboard.totalCount;
+		if (isPeopleSearch) return dialogPeopleResults.length;
+		return dialogSearchResults.length;
+	}, [
+		dialogPeopleResults.length,
+		dialogSearchResults.length,
+		emptyBrowseKeyboard.totalCount,
+		isEmptyDraft,
+		isPeopleSearch,
+		tagState.resultMode,
+	]);
+
+	const searchDialogResultKeyboardLayout = useMemo(() => {
+		if (isEmptyDraft) return "rail" as const;
+		if (isPeopleSearch) return "list" as const;
+		return "grid" as const;
+	}, [isEmptyDraft, isPeopleSearch]);
+
+	const searchDialogResultKeyboardEnabled = searchDialogKeyboardResultCount > 0;
+
+	useEffect(() => {
+		setKeyboardResultIndex(null);
+	}, [
+		effectiveListingKind,
+		isPeopleSearch,
+		emptyBrowseKeyboard.totalCount,
+		searchDialogKeyboardResultCount,
+		searchTags,
+		trimmedDraft,
+	]);
+
+	useEffect(() => {
+		if (keyboardResultIndex == null || !showSheet) return;
+		const dialog = dialogRef.current;
+		if (!dialog?.open) return;
+		const target = dialog.querySelector<HTMLElement>(
+			`[data-search-dialog-result-index="${keyboardResultIndex}"]`,
+		);
+		target?.scrollIntoView({
+			block: "nearest",
+			inline: "nearest",
+			behavior: "smooth",
+		});
+	}, [keyboardResultIndex, showSheet]);
+
 	const footerResultCount = isEmptyDraft
-		? browseCategory === "people"
-			? popularPeopleRailItems.length
-			: browsePreviewItems.length
+		? emptyBrowseKeyboard.totalCount
 		: tagState.resultMode === "lists"
 			? structuredSearch.listResults.length
 			: isPeopleSearch
@@ -638,18 +931,6 @@ export function CatalogSearchDialogRoot({
 	const { hits: profileSearchHits } = useProfileSearch(
 		trimmedDraft,
 		peopleSearchEnabled,
-	);
-	const popularPeopleRail = (
-		<SearchDialogPeopleRail
-			items={popularPeopleRailItems}
-			loading={popularPeopleLoading}
-			onPick={(item) =>
-				handlePersonSelect(Number(item.id), {
-					name: item.name,
-					imageUrl: item.imageUrl,
-				})
-			}
-		/>
 	);
 	/** Screen reader status for active search (result count or empty state). */
 	const searchResultsStatusMessage = useMemo(() => {
@@ -701,8 +982,12 @@ export function CatalogSearchDialogRoot({
 	]);
 
 	const recentGenreOptions = useMemo(
-		() => ({ movieGenres, tvGenres }),
-		[movieGenres, tvGenres],
+		() => ({
+			movieGenres,
+			tvGenres,
+			streamingProviders: browseStreamingProviders,
+		}),
+		[movieGenres, tvGenres, browseStreamingProviders],
 	);
 
 	const searchBodyScrollContentKey = useMemo(
@@ -758,11 +1043,22 @@ export function CatalogSearchDialogRoot({
 			hydrateFromUrlOnOpenRef.current = false;
 			return;
 		}
-		if (browseStudiosLoading || genresLoading) return;
+		if (browseStudiosLoading || genresLoading || browseStreamingLoading) {
+			return;
+		}
 		if (
 			committedCatalogueSearchNeedsTagMetadata(raw) &&
 			committedLobbySearchActive &&
-			!browseStudiosLoaded
+			!browseStudiosLoaded &&
+			!/studio:\d+/i.test(raw)
+		) {
+			return;
+		}
+		if (
+			committedCatalogueSearchNeedsTagMetadata(raw) &&
+			committedLobbySearchActive &&
+			!browseStreamingLoaded &&
+			!committedSearchHasStableStreamingIdToken(raw)
 		) {
 			return;
 		}
@@ -770,7 +1066,7 @@ export function CatalogSearchDialogRoot({
 		const { tags, freeText: restoredText } = parseHomeCatalogueSearchParam(
 			raw,
 			browseStudios,
-			{ movieGenres, tvGenres },
+			{ movieGenres, tvGenres, streamingProviders: browseStreamingProviders },
 		);
 		setSearchTags(tags);
 		setFreeText(restoredText);
@@ -792,6 +1088,9 @@ export function CatalogSearchDialogRoot({
 		browseStudios,
 		browseStudiosLoaded,
 		browseStudiosLoading,
+		browseStreamingLoaded,
+		browseStreamingLoading,
+		browseStreamingProviders,
 		committedLobbySearchActive,
 		dialogOpen,
 		genresLoading,
@@ -918,6 +1217,171 @@ export function CatalogSearchDialogRoot({
 		beginClose();
 	};
 
+	const pickKeyboardFocusedResult = useCallback(() => {
+		if (keyboardResultIndex == null) return;
+		if (isEmptyDraft) {
+			const pick = emptyBrowseKeyboard.picks[keyboardResultIndex];
+			if (!pick) return;
+			switch (pick.type) {
+				case "recent":
+					handleRecentPick(pick.entry);
+					return;
+				case "studio":
+					handleStudioRailSelect(pick.selected ? null : pick.id);
+					return;
+				case "streaming":
+					handleStreamingRailSelect(pick.selected ? null : pick.id);
+					return;
+				case "genre":
+					handleGenreRailSelect(pick.item);
+					return;
+				case "preview":
+					handlePreviewPick(pick.item);
+					return;
+				case "personRail":
+					handlePersonSelect(Number(pick.item.id), {
+						name: pick.item.name,
+						imageUrl: pick.item.imageUrl,
+					});
+					return;
+				case "personList":
+					handlePersonSelect(pick.id, {
+						name: pick.name,
+						imageUrl: pick.profileUrl,
+					});
+					return;
+				default: {
+					const _exhaustive: never = pick;
+					return _exhaustive;
+				}
+			}
+		}
+		if (isPeopleSearch) {
+			const hit = dialogPeopleResults[keyboardResultIndex];
+			if (!hit) return;
+			handlePersonSelect(hit.id, {
+				name: hit.name,
+				imageUrl: hit.profileUrl ?? null,
+			});
+			return;
+		}
+		const hit = dialogSearchResults[keyboardResultIndex];
+		if (!hit) return;
+		handleCatalogSearchPick(hit.id);
+	}, [
+		dialogPeopleResults,
+		dialogSearchResults,
+		emptyBrowseKeyboard.picks,
+		handleCatalogSearchPick,
+		handleGenreRailSelect,
+		handlePersonSelect,
+		handlePreviewPick,
+		handleRecentPick,
+		handleStreamingRailSelect,
+		handleStudioRailSelect,
+		isEmptyDraft,
+		isPeopleSearch,
+		keyboardResultIndex,
+	]);
+
+	const searchDialogResultKeyboard = useMemo(
+		() => ({
+			enabled: searchDialogResultKeyboardEnabled,
+			focusedIndex: keyboardResultIndex,
+			resultCount: searchDialogKeyboardResultCount,
+			layout: searchDialogResultKeyboardLayout,
+			gridColumns: posterGridColumns,
+			emptyBrowseSections: isEmptyDraft
+				? emptyBrowseKeyboard.sections
+				: undefined,
+			onFocusIndexChange: setKeyboardResultIndex,
+			onPickFocused: pickKeyboardFocusedResult,
+		}),
+		[
+			emptyBrowseKeyboard.sections,
+			isEmptyDraft,
+			keyboardResultIndex,
+			pickKeyboardFocusedResult,
+			posterGridColumns,
+			searchDialogKeyboardResultCount,
+			searchDialogResultKeyboardEnabled,
+			searchDialogResultKeyboardLayout,
+		],
+	);
+
+	const tagSuggestionCount = useMemo(
+		() =>
+			rankTagSuggestions(
+				freeText,
+				browseStudios,
+				suggestionGenres,
+				catalogueListingKind,
+				searchTags,
+				browseStreamingProviders,
+			).length,
+		[
+			freeText,
+			browseStudios,
+			suggestionGenres,
+			catalogueListingKind,
+			searchTags,
+			browseStreamingProviders,
+		],
+	);
+
+	// Empty browse: patrons click the scroll body and the query input blurs — keep arrow/Enter working.
+	useEffect(() => {
+		if (!showSheet || !searchDialogResultKeyboardEnabled) return;
+
+		const onKeyDown = (event: KeyboardEvent) => {
+			const dialog = dialogRef.current;
+			if (!dialog?.open) return;
+
+			const queryInput =
+				dialog.querySelector<HTMLInputElement>('input[name="q"]');
+			if (event.target === queryInput) return;
+
+			if (tagSuggestionCount > 0) return;
+
+			const arrow = searchDialogResultArrowFromKey(event.key);
+			if (arrow) {
+				event.preventDefault();
+				const sections = emptyBrowseKeyboard.sections;
+				setKeyboardResultIndex((prev) =>
+					isEmptyDraft && sections.length > 0
+						? moveSearchDialogEmptyBrowseFocus(prev, sections, arrow)
+						: moveSearchDialogResultFocus(
+								prev,
+								searchDialogKeyboardResultCount,
+								arrow,
+								posterGridColumns,
+								searchDialogResultKeyboardLayout,
+							),
+				);
+				return;
+			}
+
+			if (event.key === "Enter" && keyboardResultIndex != null) {
+				event.preventDefault();
+				pickKeyboardFocusedResult();
+			}
+		};
+
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
+	}, [
+		showSheet,
+		searchDialogResultKeyboardEnabled,
+		tagSuggestionCount,
+		searchDialogKeyboardResultCount,
+		posterGridColumns,
+		searchDialogResultKeyboardLayout,
+		keyboardResultIndex,
+		pickKeyboardFocusedResult,
+		isEmptyDraft,
+		emptyBrowseKeyboard.sections,
+	]);
+
 	const catalogSearchDialog = (
 		<dialog
 			ref={dialogRef}
@@ -946,395 +1410,553 @@ export function CatalogSearchDialogRoot({
 				pendingNavigationRef.current = null;
 			}}
 		>
-			<AnimatePresence mode="sync" onExitComplete={finalizeDialogClose}>
-				{showSheet ? (
-					<motion.div
-						key="home-sticky-search-dim"
-						aria-hidden
-						className={cn(
-							"absolute inset-0 z-0",
-							softwareGpu ? "bg-black/70" : "bg-black/55 backdrop-blur-[2px]",
-						)}
-						initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={
-							reduceMotion
-								? { duration: 0 }
-								: {
-										duration: 0.26,
-										ease: [0.165, 0.84, 0.44, 1],
-									}
-						}
-						onMouseDown={(event) => {
-							if (event.target === event.currentTarget) {
-								beginClose();
+			<CatalogSearchTooltipPortalProvider
+				container={catalogSearchTooltipPortal}
+			>
+				<AnimatePresence mode="sync" onExitComplete={finalizeDialogClose}>
+					{showSheet ? (
+						<motion.div
+							key="home-sticky-search-dim"
+							aria-hidden
+							className={cn(
+								"absolute inset-0 z-0",
+								softwareGpu ? "bg-black/70" : "bg-black/55 backdrop-blur-[2px]",
+							)}
+							initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={
+								reduceMotion
+									? { duration: 0 }
+									: {
+											duration: 0.26,
+											ease: [0.165, 0.84, 0.44, 1],
+										}
 							}
-						}}
-					/>
-				) : null}
-				{showSheet && panelLayout ? (
-					<motion.div
-						key="home-sticky-search-panel"
-						className={cn(
-							// Clip horizontal overflow while width animates; body scrolls vertically inside.
-							// Panel is absolute inside a viewport-fixed dialog (portaled to body).
-							"absolute z-10 flex min-w-0 origin-top flex-col overflow-hidden rounded-4xl bg-card text-foreground",
-						)}
-						style={{ maxHeight: panelLayout.maxHeight }}
-						initial={
-							reduceMotion
-								? {
-										top: panelLayout.top,
-										left: panelLayout.left,
-										width: panelLayout.width,
-										scale: 1,
-										opacity: 1,
-									}
-								: {
-										top: panelLayout.anchorTop,
-										left: clampCatalogSearchPanelLeftFromCenter(
-											panelLayout.anchorCenterX,
-											panelLayout.anchorWidth,
-										),
-										width: panelLayout.anchorWidth,
-										scale: 0.94,
-										opacity: 0.88,
-									}
-						}
-						animate={{
-							top: panelLayout.top,
-							left: panelLayout.left,
-							width: panelLayout.width,
-							scale: 1,
-							opacity: 1,
-						}}
-						exit={
-							reduceMotion
-								? { opacity: 0 }
-								: {
-										scale: 0.94,
-										opacity: 0,
-									}
-						}
-						transition={
-							reduceMotion
-								? { duration: 0 }
-								: {
-										duration: 0.26,
-										ease: [0.165, 0.84, 0.44, 1],
-									}
-						}
-					>
-						<h2 id={titleId} className="sr-only">
-							Search films, TV, and people
-						</h2>
-						<div className="relative shrink-0 px-2.5 pt-2.5">
-							<form
-								onSubmit={handleFormSubmit}
-								className="catalog-search-query flex min-w-0 items-center gap-[15px] rounded-full pr-10 pb-2 pl-2.5"
-							>
-								<label
-									htmlFor="home-sticky-search-dialog-input"
-									className="sr-only"
+							onMouseDown={(event) => {
+								if (event.target === event.currentTarget) {
+									beginClose();
+								}
+							}}
+						/>
+					) : null}
+					{showSheet && panelLayout ? (
+						<motion.div
+							key="home-sticky-search-panel"
+							className={cn(
+								// Clip horizontal overflow while width animates; body scrolls vertically inside.
+								// Panel is absolute inside a viewport-fixed dialog (portaled to body).
+								"absolute z-10 flex min-w-0 origin-top flex-col gap-2.5 overflow-hidden rounded-4xl bg-card text-foreground",
+							)}
+							style={{ maxHeight: panelLayout.maxHeight }}
+							initial={
+								reduceMotion
+									? {
+											top: panelLayout.top,
+											left: panelLayout.left,
+											width: panelLayout.width,
+											scale: 1,
+											opacity: 1,
+										}
+									: {
+											top: panelLayout.anchorTop,
+											left: clampCatalogSearchPanelLeftFromCenter(
+												panelLayout.anchorCenterX,
+												panelLayout.anchorWidth,
+											),
+											width: panelLayout.anchorWidth,
+											scale: 0.94,
+											opacity: 0.88,
+										}
+							}
+							animate={{
+								top: panelLayout.top,
+								left: panelLayout.left,
+								width: panelLayout.width,
+								scale: 1,
+								opacity: 1,
+							}}
+							exit={
+								reduceMotion
+									? { opacity: 0 }
+									: {
+											scale: 0.94,
+											opacity: 0,
+										}
+							}
+							transition={
+								reduceMotion
+									? { duration: 0 }
+									: {
+											duration: 0.26,
+											ease: [0.165, 0.84, 0.44, 1],
+										}
+							}
+						>
+							<h2 id={titleId} className="sr-only">
+								Search films, TV, and people
+							</h2>
+							<div className="relative shrink-0 px-2.5 pt-2.5">
+								<form
+									onSubmit={handleFormSubmit}
+									className="catalog-search-query flex min-w-0 items-center gap-[15px] rounded-full pr-10 pl-2.5"
 								>
-									Query
-								</label>
-								<Search
-									className="size-[17px] shrink-0 text-muted-foreground"
-									aria-hidden
+									<label
+										htmlFor="home-sticky-search-dialog-input"
+										className="sr-only"
+									>
+										Query
+									</label>
+									<IconSearchDialogMagnifier
+										size={20}
+										className="shrink-0 text-muted-foreground"
+										aria-hidden
+									/>
+									<div className="scrollbar-none flex min-w-0 flex-1 flex-nowrap items-center gap-[5px] overflow-x-auto">
+										{dialogTagRow.map((tag) => (
+											<SearchTagPill
+												key={searchTagKey(tag)}
+												tag={tag}
+												density="dialog"
+												onRemove={() =>
+													setSearchTags((prev) =>
+														prev.filter(
+															(row) => searchTagKey(row) !== searchTagKey(tag),
+														),
+													)
+												}
+											/>
+										))}
+										{/* Query + “in Movies” chip read as one phrase (Figma search bar). */}
+										<div className="flex min-w-0 shrink-0 items-center gap-1.5">
+											<SearchTokenField
+												inputId="home-sticky-search-dialog-input"
+												tags={searchTags}
+												onTagsChange={setSearchTags}
+												inputValue={freeText}
+												onInputValueChange={setFreeText}
+												studios={browseStudios}
+												streamingProviders={browseStreamingProviders}
+												genres={suggestionGenres}
+												listingKind={catalogueListingKind}
+												onSubmit={commitOrSubmitDraft}
+												onTabCycleListingKind={handleListingKindCycle}
+												hideTags
+												placeholder="Search"
+												resultKeyboard={searchDialogResultKeyboard}
+											/>
+											{tagState.resultMode !== "lists" ? (
+												<>
+													{trimmedDraft.length > 0 ? (
+														<span
+															className="shrink-0 self-center font-normal text-[18px] text-muted-foreground leading-[21px] md:text-[18px]"
+															aria-hidden
+														>
+															in
+														</span>
+													) : null}
+													<SearchDialogMediaChip
+														listingKind={effectiveListingKind}
+														onToggle={handleListingKindCycle}
+													/>
+												</>
+											) : null}
+										</div>
+									</div>
+								</form>
+								<button
+									type="button"
+									aria-label="Close search"
+									onClick={() => beginClose()}
+									className={cn(
+										"absolute top-3.5 right-3.5 inline-flex size-8 items-center justify-center rounded-full bg-background text-muted-foreground",
+										"[@media(hover:hover)]:hover:text-foreground",
+									)}
+								>
+									<IconSearchDialogXmark size={16} aria-hidden />
+								</button>
+							</div>
+
+							{genreCuratedTagCount >= 3 ? (
+								<p className="px-2.5 pb-1 text-muted-foreground text-xs leading-relaxed">
+									All tags must match.
+								</p>
+							) : null}
+
+							{/* Recent searches sit on the card shell, not inside the scroll well. */}
+							{isEmptyDraft && recentQueries.length > 0 ? (
+								<SearchDialogRecentSearches
+									entries={recentQueries}
+									headingId={`${titleId}-recent-heading`}
+									keyboardFocusedIndex={
+										searchDialogResultKeyboardEnabled
+											? keyboardResultIndex
+											: null
+									}
+									resultIndexBase={emptyBrowseKeyboard.indexBase.recent ?? 0}
+									onPick={handleRecentPick}
+									onRemove={handleRecentRemove}
 								/>
-								<div className="scrollbar-none flex min-w-0 flex-1 flex-nowrap items-center gap-[5px] overflow-x-auto">
-									{dialogTagRow.map((tag) => (
-										<SearchTagPill
-											key={searchTagKey(tag)}
-											tag={tag}
-											density="dialog"
-											onRemove={() =>
-												setSearchTags((prev) =>
-													prev.filter(
-														(row) => searchTagKey(row) !== searchTagKey(tag),
-													),
-												)
-											}
-										/>
-									))}
-									<SearchTokenField
-										inputId="home-sticky-search-dialog-input"
-										tags={searchTags}
-										onTagsChange={setSearchTags}
-										inputValue={freeText}
-										onInputValueChange={setFreeText}
-										studios={browseStudios}
-										genres={suggestionGenres}
-										listingKind={catalogueListingKind}
-										onSubmit={commitOrSubmitDraft}
-										onTabCycleListingKind={handleListingKindCycle}
-										hideTags
-										placeholder="Search"
-									/>
-									{tagState.resultMode !== "lists" ? (
-										<SearchDialogMediaChip
-											listingKind={effectiveListingKind}
-											onToggle={handleListingKindCycle}
-										/>
-									) : null}
-								</div>
-							</form>
-							<button
-								type="button"
-								aria-label="Close search"
-								onClick={() => beginClose()}
-								className={cn(
-									"absolute top-3.5 right-3 inline-flex size-8 items-center justify-center rounded-full bg-background text-muted-foreground",
-									"[@media(hover:hover)]:hover:text-foreground",
-								)}
-							>
-								<X className="size-4" aria-hidden />
-							</button>
-						</div>
+							) : null}
 
-						{genreCuratedTagCount >= 3 ? (
-							<p className="px-2.5 pb-1 text-muted-foreground text-xs leading-relaxed">
-								All tags must match.
-							</p>
-						) : null}
-
-						{/* Nested canvas well under the search bar — on the raised `bg-card` shell. */}
-						<div className="relative mx-2.5 mb-2.5 flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[1.75rem] bg-background">
-							<SearchDialogBodyScrims
-								showHeaderFade={showHeaderFade}
-								showFooterFade={showFooterFade}
-							/>
-							<div
-								ref={searchBodyScrollRef}
-								data-lenis-prevent-wheel
-								className="scrollbar-none contain-[paint] min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
-							>
-								{isEmptyDraft && recentQueries.length > 0 ? (
-									<SearchDialogRecentSearches
-										entries={recentQueries}
-										headingId={`${titleId}-recent-heading`}
-										onPick={handleRecentPick}
-										onRemove={handleRecentRemove}
-									/>
-								) : null}
-
-								<div className="flex min-w-0 max-w-full flex-col gap-2.5 px-2.5 py-2.5">
-									{isEmptyDraft &&
-									tagState.resultMode !== "lists" &&
-									browseCategory !== "people" ? (
-										<SearchDialogStudioRail
-											studios={browseStudios}
-											selectedStudioId={tagState.studioId}
-											onSelectStudio={handleStudioRailSelect}
-											loading={browseStudiosLoading}
-											listingKind={catalogueListingKind}
-										/>
-									) : null}
-
-									{isEmptyDraft &&
-									tagState.resultMode !== "lists" &&
-									browseCategory !== "people" ? (
-										<SearchDialogGenreRail
-											genres={suggestionGenres}
-											listingKind={catalogueListingKind}
-											selectedTags={searchTags}
-											onSelect={handleGenreRailSelect}
-											loading={genresLoading}
-										/>
-									) : null}
-
-									{tagState.resultMode === "lists" ? (
-										<div
-											className="flex flex-col"
-											aria-live="polite"
-											aria-busy={searchLoading}
-										>
-											{searchResultsStatusMessage ? (
-												<span className="sr-only">
-													{searchResultsStatusMessage}
-												</span>
-											) : null}
-											{structuredSearch.needsSignIn ? (
-												<p className="text-muted-foreground text-xs leading-relaxed">
-													<button
-														type="button"
-														className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
-														onClick={() => openGuestAccountDialog()}
-													>
-														Sign in
-													</button>{" "}
-													to search your lists.
-												</p>
-											) : searchLoading &&
-												structuredSearch.listResults.length === 0 ? (
-												<SearchDialogListSkeleton />
-											) : structuredSearch.listResults.length > 0 ? (
-												<div className={cn(searchLoading && "opacity-55")}>
-													<SearchDialogListResults
-														lists={structuredSearch.listResults}
-														onPick={() => beginClose()}
-													/>
-												</div>
-											) : (
-												<p className="text-muted-foreground text-xs leading-relaxed">
-													{trimmedDraft
-														? `No lists match “${trimmedDraft}”.`
-														: "You have no lists yet."}
-												</p>
-											)}
-										</div>
-									) : isEmptyDraft ? (
-										<>
-											{browseCategory !== "people" ? (
-												browsePreviewLoading &&
-												browsePreviewItems.length === 0 ? (
-													<>
-														<span className="sr-only">Loading suggestions</span>
-														<SearchDialogPosterRail
-															items={[]}
-															loading
-															onPick={() => undefined}
+							{/* Nested canvas well under the search bar — on the raised `bg-card` shell. */}
+							<div className="relative mx-2.5 mb-0 flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[1.75rem] bg-background">
+								<SearchDialogBodyScrims
+									showHeaderFade={showHeaderFade}
+									showFooterFade={showFooterFade}
+								/>
+								<div
+									ref={searchBodyScrollRef}
+									data-lenis-prevent-wheel
+									className="scrollbar-none min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+								>
+									<div className="flex min-w-0 max-w-full flex-col gap-2.5 px-2.5 py-2.5">
+										{tagState.resultMode === "lists" ? (
+											<div
+												className="flex flex-col"
+												aria-live="polite"
+												aria-busy={searchLoading}
+											>
+												{searchResultsStatusMessage ? (
+													<span className="sr-only">
+														{searchResultsStatusMessage}
+													</span>
+												) : null}
+												{structuredSearch.needsSignIn ? (
+													<p className="text-muted-foreground text-xs leading-relaxed">
+														<button
+															type="button"
+															className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
+															onClick={() => openGuestAccountDialog()}
+														>
+															Sign in
+														</button>{" "}
+														to search your lists.
+													</p>
+												) : searchLoading &&
+													structuredSearch.listResults.length === 0 ? (
+													<SearchDialogListSkeleton />
+												) : structuredSearch.listResults.length > 0 ? (
+													<div className={cn(searchLoading && "opacity-55")}>
+														<SearchDialogListResults
+															lists={structuredSearch.listResults}
+															onPick={() => beginClose()}
 														/>
-													</>
+													</div>
 												) : (
-													<SearchDialogPosterRail
-														items={browsePreviewItems}
-														loading={browsePreviewLoading}
-														onPick={handlePreviewPick}
-														label="Popular titles"
+													<p className="text-muted-foreground text-xs leading-relaxed">
+														{trimmedDraft
+															? `No lists match “${trimmedDraft}”.`
+															: "You have no lists yet."}
+													</p>
+												)}
+											</div>
+										) : isEmptyDraft ? (
+											<motion.div
+												key={effectiveListingKind}
+												className="flex flex-col gap-2.5"
+												initial={searchDialogTabPaneInitial(reduceMotion)}
+												animate={SEARCH_DIALOG_TAB_PANE_ANIMATE}
+												transition={SEARCH_DIALOG_TAB_PANE_TRANSITION}
+											>
+												{tagState.resultMode !== "lists" &&
+												effectiveListingKind !== "people" ? (
+													<SearchDialogStudioRail
+														studios={browseStudios}
+														selectedStudioId={tagState.studioId}
+														onSelectStudio={handleStudioRailSelect}
+														loading={browseStudiosLoading}
+														listingKind={catalogueListingKind}
+														keyboardFocusedIndex={
+															searchDialogResultKeyboardEnabled
+																? keyboardResultIndex
+																: null
+														}
+														resultIndexBase={
+															emptyBrowseKeyboard.indexBase.studios ?? 0
+														}
 													/>
-												)
-											) : null}
-											{popularPeopleRail}
-										</>
-									) : isPeopleSearch ? (
-										<div
-											className="flex flex-col gap-2.5"
-											aria-live="polite"
-											aria-busy={searchLoading}
-										>
-											{searchResultsStatusMessage ? (
-												<span className="sr-only">
-													{searchResultsStatusMessage}
-												</span>
-											) : null}
-											{searchLoading && dialogPeopleResults.length === 0 ? (
-												<SearchDialogCastCrewResults
-													results={[]}
-													loading
-													onSelect={() => undefined}
-												/>
-											) : null}
-											{dialogPeopleResults.length > 0 ? (
-												<div className={cn(searchLoading && "opacity-55")}>
-													<SearchDialogCastCrewResults
-														results={dialogPeopleResults}
-														loading={false}
-														onSelect={(id) => {
-															const hit = dialogPeopleResults.find(
-																(row) => row.id === id,
-															);
-															handlePersonSelect(id, {
-																name: hit?.name,
-																imageUrl: hit?.profileUrl ?? null,
-															});
-														}}
+												) : null}
+
+												{tagState.resultMode !== "lists" &&
+												effectiveListingKind !== "people" ? (
+													browseStreamingNeedsRegion ? (
+														<p className="px-0.5 text-muted-foreground text-xs leading-relaxed">
+															Set your watch region in{" "}
+															<Link
+																href="/me/settings"
+																className="font-medium text-foreground underline-offset-2 [@media(hover:hover)]:hover:underline"
+																onClick={() => beginClose()}
+															>
+																Settings → Catalogue
+															</Link>{" "}
+															to browse streaming platforms.
+														</p>
+													) : (
+														<SearchDialogStreamingRail
+															providers={browseStreamingProviders}
+															selectedProviderId={tagState.streamingProviderId}
+															onSelectProvider={handleStreamingRailSelect}
+															loading={browseStreamingLoading}
+															regionIso={browseStreamingRegion}
+															keyboardFocusedIndex={
+																searchDialogResultKeyboardEnabled
+																	? keyboardResultIndex
+																	: null
+															}
+															resultIndexBase={
+																emptyBrowseKeyboard.indexBase.streaming ?? 0
+															}
+														/>
+													)
+												) : null}
+
+												{tagState.resultMode !== "lists" &&
+												effectiveListingKind !== "people" ? (
+													<SearchDialogGenreRail
+														genres={suggestionGenres}
+														listingKind={catalogueListingKind}
+														selectedTags={searchTags}
+														onSelect={handleGenreRailSelect}
+														loading={genresLoading}
+														keyboardFocusedIndex={
+															searchDialogResultKeyboardEnabled
+																? keyboardResultIndex
+																: null
+														}
+														resultIndexBase={
+															emptyBrowseKeyboard.indexBase.genres ?? 0
+														}
 													/>
-												</div>
-											) : !searchLoading ? (
-												<p className="text-muted-foreground text-xs leading-relaxed">
-													{setupHint ?? (
+												) : null}
+
+												{effectiveListingKind !== "people" ? (
+													browsePreviewLoading &&
+													browsePreviewItems.length === 0 ? (
 														<>
-															No people found
-															{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
+															<span className="sr-only">
+																Loading suggestions
+															</span>
+															<SearchDialogPosterRail
+																items={[]}
+																loading
+																onPick={() => undefined}
+															/>
 														</>
-													)}
-												</p>
-											) : null}
-										</div>
-									) : (
-										<div
-											className="flex flex-col gap-2.5"
-											aria-live="polite"
-											aria-busy={searchLoading}
-										>
-											{searchResultsStatusMessage ? (
-												<span className="sr-only">
-													{searchResultsStatusMessage}
-												</span>
-											) : null}
-											{selectedStudioTag ? (
-												<SearchDialogSelectedStudioTile
-													studioId={selectedStudioTag.id}
-													name={selectedStudioTag.name}
-													logoUrl={selectedStudioTag.logoUrl}
-												/>
-											) : null}
-											{searchLoading && dialogSearchResults.length === 0 ? (
-												<SearchDialogPosterGrid
-													items={[]}
-													loading
-													onPick={() => undefined}
-													label={
-														catalogueListingKind === "tv" ? "Shows" : "Movies"
-													}
-												/>
-											) : null}
-											{dialogSearchResults.length > 0 ? (
-												<div className={cn(searchLoading && "opacity-55")}>
+													) : (
+														<SearchDialogPosterRail
+															items={browsePreviewItems}
+															loading={browsePreviewLoading}
+															keyboardFocusedIndex={
+																searchDialogResultKeyboardEnabled
+																	? keyboardResultIndex
+																	: null
+															}
+															resultIndexBase={
+																emptyBrowseKeyboard.indexBase.preview ?? 0
+															}
+															onPick={handlePreviewPick}
+															label="Popular titles"
+														/>
+													)
+												) : null}
+												{emptyBrowseIsPeople ? (
+													popularPeopleLoading ? (
+														<SearchDialogCastCrewResults
+															results={[]}
+															loading
+															heading="Popular people"
+															onSelect={() => undefined}
+														/>
+													) : popularPeopleResults.length > 0 ? (
+														<SearchDialogCastCrewResults
+															results={popularPeopleResults}
+															loading={false}
+															heading="Popular people"
+															keyboardFocusedIndex={
+																searchDialogResultKeyboardEnabled
+																	? keyboardResultIndex
+																	: null
+															}
+															resultIndexBase={
+																emptyBrowseKeyboard.indexBase.popularPeople ?? 0
+															}
+															onSelect={(id) => {
+																const hit = popularPeopleResults.find(
+																	(row) => row.id === id,
+																);
+																handlePersonSelect(id, {
+																	name: hit?.name,
+																	imageUrl: hit?.profileUrl ?? null,
+																});
+															}}
+														/>
+													) : (
+														<p className="px-0.5 text-muted-foreground text-xs leading-relaxed">
+															Popular people could not load right now.
+														</p>
+													)
+												) : (
+													<>
+														{popularPeopleRail}
+														{!popularPeopleLoading &&
+														popularPeopleRailItems.length === 0 ? (
+															<p className="px-0.5 text-muted-foreground text-xs leading-relaxed">
+																Trending cast could not load right now.
+															</p>
+														) : null}
+													</>
+												)}
+											</motion.div>
+										) : isPeopleSearch ? (
+											<div
+												className="flex flex-col gap-2.5"
+												aria-live="polite"
+												aria-busy={searchLoading}
+											>
+												{searchResultsStatusMessage ? (
+													<span className="sr-only">
+														{searchResultsStatusMessage}
+													</span>
+												) : null}
+												{searchLoading && dialogPeopleResults.length === 0 ? (
+													<SearchDialogCastCrewResults
+														results={[]}
+														loading
+														onSelect={() => undefined}
+													/>
+												) : null}
+												{dialogPeopleResults.length > 0 ? (
+													<div className={cn(searchLoading && "opacity-55")}>
+														<SearchDialogCastCrewResults
+															results={dialogPeopleResults}
+															loading={false}
+															keyboardFocusedIndex={
+																searchDialogResultKeyboardEnabled
+																	? keyboardResultIndex
+																	: null
+															}
+															onSelect={(id) => {
+																const hit = dialogPeopleResults.find(
+																	(row) => row.id === id,
+																);
+																handlePersonSelect(id, {
+																	name: hit?.name,
+																	imageUrl: hit?.profileUrl ?? null,
+																});
+															}}
+														/>
+													</div>
+												) : !searchLoading ? (
+													<p className="text-muted-foreground text-xs leading-relaxed">
+														{setupHint ?? (
+															<>
+																No people found
+																{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
+															</>
+														)}
+													</p>
+												) : null}
+											</div>
+										) : (
+											<div
+												className="flex flex-col gap-2.5"
+												aria-live="polite"
+												aria-busy={searchLoading}
+											>
+												{searchResultsStatusMessage ? (
+													<span className="sr-only">
+														{searchResultsStatusMessage}
+													</span>
+												) : null}
+												{selectedStudioTag ? (
+													<SearchDialogSelectedStudioTile
+														studioId={selectedStudioTag.id}
+														name={selectedStudioTag.name}
+														logoUrl={selectedStudioTag.logoUrl}
+													/>
+												) : null}
+												{searchLoading && dialogSearchResults.length === 0 ? (
 													<SearchDialogPosterGrid
-														items={dialogSearchResults.map((hit) => ({
-															id: hit.id,
-															title: hit.title,
-															posterUrl: hit.poster_url,
-															listingKind: catalogueListingKind,
-														}))}
-														onPick={(item) => handleCatalogSearchPick(item.id)}
+														items={[]}
+														loading
+														onPick={() => undefined}
 														label={
 															catalogueListingKind === "tv" ? "Shows" : "Movies"
 														}
 													/>
-												</div>
-											) : !searchLoading ? (
-												<p className="text-muted-foreground text-xs leading-relaxed">
-													{setupHint ??
-														(catalogueTagsActive && !trimmedDraft ? (
-															"Nothing matched all filters — try removing a tag."
-														) : (
-															<>
-																No{" "}
-																{catalogueListingKind === "tv"
-																	? "TV shows"
-																	: "films"}{" "}
-																found
-																{trimmedDraft ? ` for “${trimmedDraft}”` : ""}.
-															</>
-														))}
-												</p>
-											) : null}
-										</div>
-									)}
+												) : null}
+												{dialogSearchResults.length > 0 ? (
+													<div className={cn(searchLoading && "opacity-55")}>
+														<SearchDialogPosterGrid
+															items={dialogSearchResults.map((hit) => ({
+																id: hit.id,
+																title: hit.title,
+																posterUrl: hit.poster_url,
+																listingKind: catalogueListingKind,
+															}))}
+															keyboardFocusedIndex={
+																searchDialogResultKeyboardEnabled
+																	? keyboardResultIndex
+																	: null
+															}
+															onPick={(item) =>
+																handleCatalogSearchPick(item.id)
+															}
+															label={
+																catalogueListingKind === "tv"
+																	? "Shows"
+																	: "Movies"
+															}
+														/>
+													</div>
+												) : !searchLoading ? (
+													<p className="text-muted-foreground text-xs leading-relaxed">
+														{setupHint ??
+															(catalogueTagsActive && !trimmedDraft ? (
+																"Nothing matched all filters — try removing a tag."
+															) : (
+																<>
+																	No{" "}
+																	{catalogueListingKind === "tv"
+																		? "TV shows"
+																		: "films"}{" "}
+																	found
+																	{trimmedDraft ? ` for “${trimmedDraft}”` : ""}
+																	.
+																</>
+															))}
+													</p>
+												) : null}
+											</div>
+										)}
+									</div>
 								</div>
 							</div>
-						</div>
-						<SearchDialogFooter
-							resultCount={footerResultCount}
-							listingKind={effectiveListingKind}
-							resultMode={
-								tagState.resultMode === "lists"
-									? "lists"
-									: isPeopleSearch
-										? "people"
-										: catalogueListingKind
-							}
-							isEmptyDraft={isEmptyDraft}
-							studioFound={Boolean(selectedStudioTag) && !isEmptyDraft}
+							<SearchDialogFooter
+								resultCount={footerResultCount}
+								listingKind={effectiveListingKind}
+								resultMode={
+									tagState.resultMode === "lists"
+										? "lists"
+										: isPeopleSearch
+											? "people"
+											: catalogueListingKind
+								}
+								isEmptyDraft={isEmptyDraft}
+								studioFound={Boolean(selectedStudioTag) && !isEmptyDraft}
+							/>
+						</motion.div>
+					) : null}
+					{showSheet ? (
+						<div
+							ref={setCatalogSearchTooltipPortal}
+							className="pointer-events-none fixed inset-0 z-20"
+							aria-hidden
 						/>
-					</motion.div>
-				) : null}
-			</AnimatePresence>
+					) : null}
+				</AnimatePresence>
+			</CatalogSearchTooltipPortalProvider>
 		</dialog>
 	);
 
@@ -1475,8 +2097,16 @@ export function HomeStickySearch() {
 
 	const needsSummaryMetadata = committedSearchActive || isClearing;
 
-	const { studios, loading: studiosLoading } =
-		useSearchDialogStudios(needsSummaryMetadata);
+	const {
+		studios,
+		loading: studiosLoading,
+		loaded: studiosLoaded,
+	} = useSearchDialogStudios(needsSummaryMetadata);
+	const {
+		providers: summaryStreamingProviders,
+		loading: summaryStreamingLoading,
+		loaded: summaryStreamingLoaded,
+	} = useSearchDialogStreamingProviders(needsSummaryMetadata);
 	const catalogTmdbLanguage = useCatalogTmdbLanguage(needsSummaryMetadata);
 	const {
 		movieGenres,
@@ -1486,7 +2116,15 @@ export function HomeStickySearch() {
 
 	const committedSearchDisplay = useMemo(() => {
 		if ((!committedSearchActive && !isClearing) || !searchRaw) return null;
-		if (studiosLoading || genresLoading) {
+		const hasStableStudioId = /studio:\d+/i.test(searchRaw);
+		const hasStableStreamingId =
+			committedSearchHasStableStreamingIdToken(searchRaw);
+		const metadataPending =
+			genresLoading ||
+			(!hasStableStudioId && (studiosLoading || !studiosLoaded)) ||
+			(!hasStableStreamingId &&
+				(summaryStreamingLoading || !summaryStreamingLoaded));
+		if (metadataPending) {
 			return {
 				tags: [] as SearchTag[],
 				freeText: formatCommittedSearchSummary([], searchRaw) || searchRaw,
@@ -1497,6 +2135,7 @@ export function HomeStickySearch() {
 			...parseHomeCatalogueSearchParam(searchRaw, studios, {
 				movieGenres,
 				tvGenres,
+				streamingProviders: summaryStreamingProviders,
 			}),
 			loading: false,
 		};
@@ -1507,7 +2146,11 @@ export function HomeStickySearch() {
 		movieGenres,
 		searchRaw,
 		studios,
+		studiosLoaded,
 		studiosLoading,
+		summaryStreamingLoaded,
+		summaryStreamingLoading,
+		summaryStreamingProviders,
 		tvGenres,
 	]);
 
@@ -1686,8 +2329,9 @@ export function HomeStickySearch() {
 							: "Search catalogue"
 					}
 				>
-					<Search
-						className="size-4 shrink-0 text-muted-foreground"
+					<IconSearchDialogMagnifier
+						size={18}
+						className="shrink-0 text-muted-foreground"
 						aria-hidden
 					/>
 					{/* transitions.dev clear dissolve slot — mirror/placeholder/glow over live pills. */}

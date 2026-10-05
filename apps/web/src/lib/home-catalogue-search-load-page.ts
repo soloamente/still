@@ -7,6 +7,7 @@ import {
 	parseHomeCatalogueSearchParam,
 	serializeHomeCatalogueSearchParam,
 } from "@/lib/home-catalogue-search-param";
+import type { SearchDialogStreamingProvider } from "@/lib/search-dialog-streaming-providers";
 import type { SearchDialogStudio } from "@/lib/search-dialog-studios";
 import type { SearchDialogGenre } from "@/lib/search-query-tags";
 import {
@@ -15,6 +16,7 @@ import {
 } from "@/lib/search-query-tags";
 import {
 	fetchMovieGenres,
+	fetchMovieStreamingProviders,
 	fetchMovieStudios,
 	fetchMoviesDiscover,
 	fetchMoviesSearch,
@@ -76,6 +78,7 @@ export function buildCatalogueSearchPlanFromCommit(
 		q: freeText.trim(),
 		listingKind: bundle.listingKind,
 		studioId: bundle.studioId,
+		streamingProviderId: bundle.streamingProviderId,
 		genreIds: bundle.genreIds,
 		keywordIds: bundle.keywordIds,
 	});
@@ -119,6 +122,13 @@ export function committedCatalogueSearchNeedsTagMetadata(
 	return Boolean(searchRaw.trim());
 }
 
+/** Stable `streaming:8` tokens parse before `/api/movies/streaming-providers` hydrates. */
+export function committedSearchHasStableStreamingIdToken(
+	searchRaw: string,
+): boolean {
+	return /streaming:\d+/i.test(searchRaw);
+}
+
 function normalizeGenresFromApi(payload: unknown): SearchDialogGenre[] {
 	if (!payload || typeof payload !== "object") return [];
 	const genres = (payload as { genres?: unknown }).genres;
@@ -156,6 +166,30 @@ function normalizeStudiosFromApi(payload: unknown): SearchDialogStudio[] {
 		.filter((row): row is SearchDialogStudio => row !== null);
 }
 
+function normalizeStreamingProvidersFromApi(
+	payload: unknown,
+): SearchDialogStreamingProvider[] {
+	if (!payload || typeof payload !== "object") return [];
+	const providers = (payload as { providers?: unknown }).providers;
+	if (!Array.isArray(providers)) return [];
+	return providers
+		.map((row) => {
+			if (!row || typeof row !== "object") return null;
+			const id = Number((row as { id?: unknown }).id);
+			const name = String((row as { name?: unknown }).name ?? "").trim();
+			if (!Number.isFinite(id) || id <= 0 || !name) return null;
+			return {
+				id: Math.floor(id),
+				name,
+				logoUrl:
+					typeof (row as { logo_url?: unknown }).logo_url === "string"
+						? (row as { logo_url: string }).logo_url
+						: null,
+			};
+		})
+		.filter((row): row is SearchDialogStreamingProvider => row !== null);
+}
+
 /**
  * Server path for committed search — page 1 only (scroll loads 2…N on the client).
  * Plain-text queries skip studio/genre metadata fetches.
@@ -176,21 +210,26 @@ export async function loadCommittedCatalogueSearchSeeds(input: {
 	let studios: SearchDialogStudio[] = [];
 	let movieGenres: SearchDialogGenre[] = [];
 	let tvGenres: SearchDialogGenre[] = [];
+	let streamingProviders: SearchDialogStreamingProvider[] = [];
 
 	if (committedCatalogueSearchNeedsTagMetadata(searchRaw)) {
-		const [studioRes, movieGenreRes, tvGenreRes] = await Promise.all([
-			fetchMovieStudios(fetchInit),
-			fetchMovieGenres({ ...fetchInit, language: lang }),
-			fetchTvGenres({ ...fetchInit, language: lang }),
-		]);
+		const [studioRes, movieGenreRes, tvGenreRes, streamingRes] =
+			await Promise.all([
+				fetchMovieStudios(fetchInit),
+				fetchMovieGenres({ ...fetchInit, language: lang }),
+				fetchTvGenres({ ...fetchInit, language: lang }),
+				fetchMovieStreamingProviders(fetchInit),
+			]);
 		studios = normalizeStudiosFromApi(studioRes.data);
 		movieGenres = normalizeGenresFromApi(movieGenreRes.data);
 		tvGenres = normalizeGenresFromApi(tvGenreRes.data);
+		streamingProviders = normalizeStreamingProvidersFromApi(streamingRes.data);
 	}
 
 	const parsed = parseHomeCatalogueSearchParam(searchRaw, studios, {
 		movieGenres,
 		tvGenres,
+		streamingProviders,
 	});
 	const plan = buildCatalogueSearchPlanFromCommit(
 		parsed.tags,

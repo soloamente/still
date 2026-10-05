@@ -55,6 +55,10 @@ export type WatchlistLobbyRow = {
 	tv: { tmdbId: number; title: string; posterPath: string | null } | null;
 	/** First flatrate provider in the patron's watch region, when cached on the listing. */
 	streaming_provider_name?: string | null;
+	/** TMDb `logo_path` for `streaming_provider_name` in the patron region. */
+	streaming_provider_logo_path?: string | null;
+	/** Future cinema or streaming date in the patron region, e.g. `In cinemas Oct 3`. */
+	upcoming_release_label?: string | null;
 	/** Watch tonight — strongest ranking signal as a short pill (e.g. `Maya recommended`). */
 	tonight_reason?: string | null;
 	/** Enum bucket behind `tonight_reason` — the only reason value analytics may send. */
@@ -188,14 +192,16 @@ function watchlistPosterCaptionForOrder(
 		case "available":
 			return row.streaming_provider_name
 				? formatWatchlistStreamingPill(row.streaming_provider_name)
-				: null;
+				: (row.upcoming_release_label ?? null);
 		case "continue":
 			return null;
 		case "latest_added":
 		case "earliest_added":
 		case "title_az":
-			// Library-style wall: title on the scrim, like `/lists`.
-			return listing.title;
+			// Already streaming, otherwise a known future cinema or streaming date.
+			return row.streaming_provider_name
+				? formatWatchlistStreamingPill(row.streaming_provider_name)
+				: (row.upcoming_release_label ?? null);
 		default: {
 			const unreachable: never = order;
 			return unreachable;
@@ -237,6 +243,10 @@ export function watchlistRowToPopularSeed(
 		poster_url,
 		listingKind: row.tv != null ? "tv" : "movie",
 		watchlistStreamingLabel: watchlistPosterCaptionForOrder(row, order),
+		watchlistStreamingLogoUrl: tmdbPosterUrlFromPath(
+			row.streaming_provider_logo_path ?? null,
+			"w92",
+		),
 		watchlistStreamingAlert: row.streaming_alert === true,
 		// Alerts only fire for the chosen region — without one the state is
 		// unknown (`undefined` hides the alert slot), never the US-fallback pill.

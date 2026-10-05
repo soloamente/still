@@ -44,8 +44,10 @@ import { patronMeetsAdultAgeGate } from "../lib/adult-content-age-gate";
 import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { r2ObjectKeyFilename } from "../lib/asset-object-key";
 import { getImageAsset, putImageAsset } from "../lib/asset-store";
 import { backfillMissingListingPosters } from "../lib/backfill-listing-posters";
+import { createCompanionNowWatching } from "../lib/companion-now-watching-redis";
 import {
 	contentVisibilityWhere,
 	visibilitySchema,
@@ -207,6 +209,9 @@ function profileMeResponse(
 		...extras,
 	};
 }
+
+/** One watcher for profile reads. Heartbeats stay out of Neon. */
+const companionNowWatching = createCompanionNowWatching();
 
 /**
  * Profile routes. **Order matters:** `/me` and `/check-handle/*` must be
@@ -800,7 +805,7 @@ export const profilesRoute = new Elysia({
 			.limit(1);
 		if (!profileRow) return status(400, "Profile not found");
 
-		const key = `banners/${user.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
+		const key = `banners/${user.id}/${Date.now()}-${r2ObjectKeyFilename(file.name)}`;
 		const upload = await putImageAsset(key, file);
 		if ("error" in upload) {
 			console.error("[profiles/me/banner] upload failed", upload);
@@ -875,7 +880,7 @@ export const profilesRoute = new Elysia({
 			.limit(1);
 		if (!profileRow) return status(400, "Profile not found");
 
-		const key = `avatars/${authUser.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
+		const key = `avatars/${authUser.id}/${Date.now()}-${r2ObjectKeyFilename(file.name)}`;
 		const upload = await putImageAsset(key, file);
 		if ("error" in upload) {
 			console.error("[profiles/me/avatar] upload failed", upload);
@@ -1497,6 +1502,7 @@ export const profilesRoute = new Elysia({
 			const result = await fetchProfileDiscordActivity({
 				handle: params.handle,
 				viewerId: viewer?.id ?? null,
+				readCompanionWatching: (userId) => companionNowWatching.read(userId),
 			});
 			if (!result.ok) return status(result.status, result.error);
 			return result.body;

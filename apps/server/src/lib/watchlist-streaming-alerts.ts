@@ -195,16 +195,35 @@ export function formatWatchlistStreamingPill(providerName: string): string {
 	return name ? `Now on ${name}` : "";
 }
 
+/** Primary subscription provider plus TMDb logo path for lobby marks. */
+export function primaryFlatrateProvider(
+	tmdbJson: unknown,
+	region: string,
+): { providerName: string; logoPath: string | null } | null {
+	const providers = flatrateProvidersForRegion(
+		watchProvidersFromTmdbJson(tmdbJson),
+		region,
+	);
+	const first = providers[0];
+	if (!first) return null;
+	const code = region.trim().toUpperCase();
+	const rows = watchProvidersFromTmdbJson(tmdbJson)?.[code]?.flatrate ?? [];
+	const row = rows.find(
+		(entry) => Math.trunc(entry.provider_id) === first.providerId,
+	);
+	const logoPath = row?.logo_path?.trim();
+	return {
+		providerName: first.providerName,
+		logoPath: logoPath ? logoPath : null,
+	};
+}
+
 /** Primary subscription provider for a cached listing in the patron's region. */
 export function primaryFlatrateProviderName(
 	tmdbJson: unknown,
 	region: string,
 ): string | null {
-	const providers = flatrateProvidersForRegion(
-		watchProvidersFromTmdbJson(tmdbJson),
-		region,
-	);
-	return providers[0]?.providerName ?? null;
+	return primaryFlatrateProvider(tmdbJson, region)?.providerName ?? null;
 }
 
 export function buildWatchlistStreamingAlertEmailContent(args: {

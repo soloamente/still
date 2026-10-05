@@ -407,6 +407,20 @@ export const tmdbApi = {
 			fetchOpts,
 		);
 	},
+	movieCredits(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ id: number; cast: TmdbCredit[]; crew: TmdbCredit[] }>(
+			`/movie/${id}/credits`,
+			{},
+			fetchOpts,
+		);
+	},
+	tvAggregateCredits(id: number, fetchOpts: TmdbFetchOptions = {}) {
+		return tmdb<{ cast: TmdbCredit[]; crew: TmdbCredit[] }>(
+			`/tv/${id}/aggregate_credits`,
+			{},
+			fetchOpts,
+		);
+	},
 	movieDetail(id: number, fetchOpts: TmdbFetchOptions = {}) {
 		// `keywords` surfaces user-facing tags (often festivals, movements); keep append list in sync with movie UI.
 		// `include_image_language` keeps language-less backdrops (most stills) when patron locale filters images.
@@ -547,6 +561,8 @@ export const tmdbApi = {
 			watchRegion?: string;
 			/** TMDb `with_watch_monetization_types` — e.g. `flatrate` for subscription streaming. */
 			withWatchMonetizationTypes?: string;
+			/** TMDb `with_watch_providers` — pipe-separated provider ids (OR). */
+			withWatchProviders?: number[];
 			/** TMDb `language` — regional poster/title for the patron’s catalogue locale. */
 			language?: string;
 			/** TMDb `with_text_query` — AND with other discover filters. */
@@ -607,6 +623,11 @@ export const tmdbApi = {
 		if (wm) {
 			params.with_watch_monetization_types = wm;
 		}
+		if (opts.withWatchProviders && opts.withWatchProviders.length > 0) {
+			params.with_watch_providers = opts.withWatchProviders
+				.map((id) => String(Math.floor(id)))
+				.join("|");
+		}
 		const rt = opts.withReleaseTypes?.trim();
 		if (rt) {
 			params.with_release_type = rt;
@@ -621,6 +642,21 @@ export const tmdbApi = {
 		return tmdb<TmdbPaged<TmdbMovieSummary>>("/discover/movie", params, {
 			language: opts.language,
 		});
+	},
+	/** Subscription platforms available for movie discover in a territory. */
+	watchProvidersMovieList(
+		watchRegion: string,
+		fetchOpts: TmdbFetchOptions = {},
+	) {
+		const wr = watchRegion.trim().toUpperCase();
+		return tmdb<{
+			results: {
+				provider_id: number;
+				provider_name: string;
+				logo_path: string | null;
+				display_priority?: number;
+			}[];
+		}>("/watch/providers/movie", { watch_region: wr }, fetchOpts);
 	},
 	/** Static-ish list of official TMDb movie genre ids — powers browse chips. */
 	genreMovieList(fetchOpts: TmdbFetchOptions = {}) {
@@ -670,6 +706,7 @@ export const tmdbApi = {
 			/** Pairs with `with_watch_monetization_types` on `/discover/tv`. */
 			watchRegion?: string;
 			withWatchMonetizationTypes?: string;
+			withWatchProviders?: number[];
 			/** TMDb `language` — regional show poster for the patron’s locale. */
 			language?: string;
 			/** TMDb `with_status` — e.g. `3` ended, `0` returning. */
@@ -726,6 +763,11 @@ export const tmdbApi = {
 		const wm = opts.withWatchMonetizationTypes?.trim();
 		if (wm) {
 			params.with_watch_monetization_types = wm;
+		}
+		if (opts.withWatchProviders && opts.withWatchProviders.length > 0) {
+			params.with_watch_providers = opts.withWatchProviders
+				.map((id) => String(Math.floor(id)))
+				.join("|");
 		}
 		if (Array.isArray(opts.withStatus) && opts.withStatus.length > 0) {
 			params.with_status = opts.withStatus

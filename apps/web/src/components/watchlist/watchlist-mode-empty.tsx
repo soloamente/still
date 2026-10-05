@@ -23,7 +23,7 @@ const EMPTY_WATCHLIST_COPY: WatchlistModeEmptyCopy = {
 	title: "Your watchlist is empty",
 	body: "When something catches your eye, tap Watchlist on its page.",
 	href: "/home",
-	cta: "Search films and shows",
+	cta: "Browse films and shows",
 };
 
 /** Exhaustive by type — a new sort fails to compile until it has copy. */
@@ -34,18 +34,18 @@ const COPY: Record<WatchlistLobbyOrder, WatchlistModeEmptyCopy> = {
 };
 
 /**
- * Borderless raised pill on the `bg-background` empty tile. `ghost` hover is
- * `bg-muted` (same ink as `card`), so the hover wash is foreground-tinted instead.
+ * Filled primary on the inset empty tile — same foreground pill as Lists.
+ * Ghost hover washes with `bg-muted`, which matches `card` and cannot carry the action.
  */
 const EMPTY_PRIMARY_PILL_CLASS = cn(
-	buttonVariants({ variant: "ghost", size: "pill" }),
-	"border-transparent bg-card text-foreground [@media(hover:hover)]:hover:bg-foreground/10",
+	buttonVariants({ variant: "default", size: "pill" }),
+	"h-auto min-h-11 border-transparent bg-foreground px-5 text-background [@media(hover:hover)]:hover:bg-foreground [@media(hover:hover)]:hover:text-background",
 );
 
 /** Quiet text-only secondary action — no fill, no border. */
 const EMPTY_SECONDARY_PILL_CLASS = cn(
 	buttonVariants({ variant: "ghost", size: "pill" }),
-	"border-transparent text-muted-foreground [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
+	"min-h-11 border-transparent text-muted-foreground [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
 );
 
 /** Per-mode empty, region-missing, and error states for `/watchlist`. */
@@ -81,9 +81,9 @@ export function WatchlistModeEmpty({
 			<div
 				// Errors announce assertively; empty/region states stay polite.
 				role={failed ? "alert" : "status"}
-				className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl bg-background px-6 py-12 text-center sm:px-10 sm:py-14"
+				className="flex w-full max-w-md flex-col items-center gap-5 rounded-[2rem] bg-background px-6 py-12 text-center sm:px-10 sm:py-14"
 			>
-				<div className="space-y-2">
+				<div className="flex flex-col gap-2">
 					<p className="font-sans font-semibold text-foreground text-lg tracking-tight">
 						{title}
 					</p>

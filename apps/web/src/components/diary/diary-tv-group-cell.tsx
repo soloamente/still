@@ -41,12 +41,12 @@ export function DiaryTvGroupCell({
 	/** True while this show's dialog is open or flying home. */
 	expanded: boolean;
 	/**
-	 * Hide the poster while the clone is in flight or the dialog is open.
-	 * The lobby clears this when the flight home finishes. Reduced motion
-	 * stays false — there is no clone, so the cell poster stays visible.
+	 * Hide the poster while the card is growing out of it or the dialog is open.
+	 * The lobby clears this when the card has shrunk home. Reduced motion
+	 * stays false — there is no morph, so the cell poster stays visible.
 	 */
 	concealPoster: boolean;
-	/** Poster click — the lobby opens this show, or queues it behind the current flight. */
+	/** Poster click — the lobby opens this show, or waits until the card has shrunk home. */
 	onPosterClick: () => void;
 	/** Cell root, so the lobby dialog can measure this poster. Null when the cell unmounts. */
 	onCellNode: (node: HTMLElement | null) => void;
@@ -100,6 +100,7 @@ export function DiaryTvGroupCell({
 							movieId={tmdbId}
 							posterCaption={primaryLabel}
 							posterCaptionSubline={entryCountLine}
+							posterScrim="sampled"
 							posterUrl={tmdbPosterUrl(posterPath)}
 							priority={priority}
 							showTitle={false}

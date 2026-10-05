@@ -85,7 +85,7 @@ export class DiscordPresenceSession {
 				return;
 			}
 			case "set": {
-				const key = `${decision.title}\0${decision.details ?? ""}\0${decision.state ?? ""}\0${decision.largeText ?? ""}\0${decision.largeImage ?? ""}\0${decision.smallImage ?? ""}\0${decision.smallText ?? ""}\0${decision.profileButtonUrl ?? ""}`;
+				const key = `${decision.activityType}\0${decision.title}\0${decision.details ?? ""}\0${decision.state ?? ""}\0${decision.largeText ?? ""}\0${decision.largeImage ?? ""}\0${decision.smallImage ?? ""}\0${decision.smallText ?? ""}\0${decision.profileButtonUrl ?? ""}\0${decision.titleButtonUrl ?? ""}`;
 				const drift =
 					decision.smallText === "Paused"
 						? DISCORD_PAUSE_TIMESTAMP_DRIFT_MS
@@ -108,6 +108,7 @@ export class DiscordPresenceSession {
 						buildSetWatchingActivity({
 							pid: this.pid,
 							nonce: this.nextNonce(),
+							activityType: decision.activityType,
 							title: decision.title,
 							details: decision.details,
 							largeImage: decision.largeImage,
@@ -117,6 +118,7 @@ export class DiscordPresenceSession {
 							state: decision.state,
 							timestamps: decision.timestamps,
 							profileButtonUrl: decision.profileButtonUrl,
+							titleButtonUrl: decision.titleButtonUrl,
 						}),
 					),
 				);

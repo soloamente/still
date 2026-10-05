@@ -9,8 +9,8 @@ describe("watchlistProvidersTmdbJsonForRegion", () => {
 		const query = new PgDialect().sqlToQuery(
 			watchlistProvidersTmdbJsonForRegion("gb"),
 		);
-		// Normalized once, bound for the key and both movie/tv lookups.
-		expect(query.params).toEqual(["GB", "GB", "GB"]);
+		// Region key, movie/tv provider lookups, and the release-date country filter.
+		expect(query.params).toEqual(["GB", "GB", "GB", "GB"]);
 		expect(query.sql).not.toContain("GB");
 		expect(query.sql).toContain("'watch/providers' -> 'results' ->");
 		expect(query.sql).toContain("coalesce(");

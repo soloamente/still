@@ -1,6 +1,6 @@
 # Sense Companion — toast icon colors and start labels
 
-**Status:** Approved in chat (2026-10-03) — pending spec review
+**Status:** Approved in chat (2026-10-03)
 **Date:** 2026-10-03
 **Topic:** Colored marks on the playback notice, and a first play that says Watching instead of opening as Paused
 

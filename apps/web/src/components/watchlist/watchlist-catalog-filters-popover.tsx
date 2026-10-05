@@ -30,8 +30,14 @@ import {
 	getAppMobileVaulSnapshot,
 	subscribeAppMobileVaul,
 } from "@/lib/app-mobile-vaul";
+import {
+	catalogFiltersBodyClassName,
+	catalogFiltersPopoverClassName,
+	catalogFiltersPrimaryClassName,
+	catalogFiltersSectionClassName,
+	catalogFiltersSectionLabelClassName,
+} from "@/lib/catalog-filters-popover-chrome";
 import { CATALOG_WATCH_REGION_OPTIONS } from "@/lib/catalog-watch-region-options";
-import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { HOME_LOBBY_FILTERS_TRIGGER_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	type CatalogTmdbWatchRegionPref,
@@ -43,18 +49,8 @@ type WatchlistFiltersTriggerElement = ReactElement<{
 	onClick?: (event: MouseEvent<HTMLElement>) => void;
 }>;
 
-/** Footer pill — matches home catalog filters popover rhythm. */
-const panelPillClassName = cn(
-	"inline-flex min-h-10 items-center justify-center rounded-full bg-card px-4 py-2 font-medium text-muted-foreground text-sm transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
-	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-);
-
 function sectionLabel(text: string) {
-	return (
-		<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
-			{text}
-		</p>
-	);
+	return <p className={catalogFiltersSectionLabelClassName}>{text}</p>;
 }
 
 function regionDisplayLabel(pref: CatalogTmdbWatchRegionPref): string {
@@ -140,9 +136,9 @@ export function WatchlistCatalogFiltersPopover({
 
 	const regionLabel = regionDisplayLabel(regionPref);
 	const guidance =
-		regionPref === null
-			? "Set your streaming region to rank what's on your services."
-			: watchlistRegionGuidanceCopy(regionPref);
+		regionPref === null || regionPref === "ALL"
+			? watchlistRegionGuidanceCopy(regionPref)
+			: "Availability and alerts use this region.";
 
 	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
 		scrollRef,
@@ -162,53 +158,59 @@ export function WatchlistCatalogFiltersPopover({
 	);
 
 	const panelContent = (
-		<div className="flex min-h-0 flex-col gap-2">
-			<div className="shrink-0 px-0.5">
+		<div className="flex min-h-0 flex-1 flex-col gap-3">
+			<div className="flex shrink-0 flex-col gap-1 px-2 pt-1.5">
 				<p className="text-balance font-semibold text-base text-foreground leading-snug">
 					Filters
 				</p>
-				<p className="mt-0.5 text-pretty text-muted-foreground text-sm leading-snug">
-					Streaming region and alerts for your saves.
+				<p className={catalogFiltersBodyClassName}>
+					Region and alerts for your saves.
 				</p>
 			</div>
 
-			<div className="relative min-h-0 overflow-hidden rounded-2xl">
+			<div className="relative flex min-h-0 flex-1 flex-col">
 				<WatchlistFiltersMenuScrims
 					showHeaderFade={showHeaderFade}
 					showFooterFade={showFooterFade}
 				/>
 				<div
 					ref={scrollRef}
-					className="scrollbar-none max-h-[min(56vh,26rem)] min-h-0 overflow-y-auto overscroll-y-contain px-0.5 py-0.5"
+					className="scrollbar-none flex max-h-[min(56vh,26rem)] min-h-0 flex-1 flex-col gap-2 overflow-y-auto overscroll-y-contain"
 				>
-					<div className="mb-4">
+					<section className={catalogFiltersSectionClassName}>
 						{sectionLabel("Streaming region")}
-						<p className="mb-3 text-pretty px-0.5 text-muted-foreground text-sm leading-relaxed">
-							{regionLoading ? "Loading…" : guidance}
+						{regionLoading ? (
+							<span
+								className="h-5 w-24 animate-pulse rounded-full bg-background"
+								aria-hidden
+							/>
+						) : (
+							<p className="font-medium text-foreground text-sm">
+								{regionLabel}
+							</p>
+						)}
+						<p className={catalogFiltersBodyClassName}>
+							{regionLoading ? "Checking your region." : guidance}
 						</p>
-						<p className="mb-3 px-0.5 font-medium text-foreground text-sm">
-							{regionLoading ? "…" : regionLabel}
-						</p>
-						<WatchlistRegionAction className={panelPillClassName}>
+						<WatchlistRegionAction className={catalogFiltersPrimaryClassName}>
 							{regionPref === null ? "Set watch region" : "Change region"}
 						</WatchlistRegionAction>
-					</div>
+					</section>
 
-					<div className="mb-4">
+					<section className={catalogFiltersSectionClassName}>
 						{sectionLabel("What counts as streaming")}
-						<p className="text-pretty px-0.5 text-muted-foreground text-sm leading-relaxed">
-							Subscription services in your chosen region. Pick platforms from
-							the row below to show saves that stream on{" "}
-							<span className="text-foreground">every</span> service you select.
+						<p className={catalogFiltersBodyClassName}>
+							Subscription services in your region. A title stays when it
+							streams on every service you pick.
 						</p>
-					</div>
+					</section>
 
-					<div className="mb-1">
+					<section className={catalogFiltersSectionClassName}>
 						{sectionLabel("Watchlist alerts")}
 						<PlanFeatureGate featureKey="watchlist_alerts">
-							<p className="text-pretty px-0.5 text-muted-foreground text-sm leading-relaxed">
-								Per-title alerts on posters notify you when a save starts
-								streaming in your region. Manage defaults in{" "}
+							<p className={catalogFiltersBodyClassName}>
+								Turn on an alert on a poster when you want to know that save has
+								started streaming. Defaults live in{" "}
 								<Link
 									href="/me/settings"
 									className="font-medium text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
@@ -218,7 +220,7 @@ export function WatchlistCatalogFiltersPopover({
 								.
 							</p>
 						</PlanFeatureGate>
-					</div>
+					</section>
 				</div>
 			</div>
 		</div>
@@ -241,7 +243,9 @@ export function WatchlistCatalogFiltersPopover({
 					description="Streaming region and alerts for your saves."
 					appStack
 				>
-					<div className="px-4 pb-6">{panelContent}</div>
+					<div className="rounded-[1.5rem] bg-background px-2 pt-2 pb-4">
+						{panelContent}
+					</div>
 				</DetailVaulSheet>
 			</>
 		);
@@ -255,7 +259,7 @@ export function WatchlistCatalogFiltersPopover({
 				align="end"
 				sideOffset={12}
 				initialFocus={false}
-				className="w-[min(100vw-1.5rem,22rem)] overflow-visible rounded-[1.75rem] p-3 shadow-mobbin-xl"
+				className={catalogFiltersPopoverClassName}
 			>
 				{panelContent}
 			</PopoverContent>

@@ -428,6 +428,7 @@ export function ProfileFilmographyPosterTile({
 					movieId={tmdbId}
 					posterCaption={posterCaption}
 					posterCaptionSubline={posterCaptionSubline}
+					posterScrim="sampled"
 					posterUrl={posterUrl}
 					priority={priority}
 					showTitle={false}

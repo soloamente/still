@@ -149,12 +149,20 @@ export function RecommendBackSheet({
 		setSuggestions({ status: "loading" });
 		void fetchRecommendSuggestions(target.recipientUserId, {
 			signal: ctrl.signal,
-		}).then((items) => {
-			if (ctrl.signal.aborted) return;
-			setSuggestions(
-				items == null ? { status: "error" } : { status: "ready", items },
-			);
-		});
+		})
+			.then((items) => {
+				if (ctrl.signal.aborted) return;
+				setSuggestions(
+					items == null ? { status: "error" } : { status: "ready", items },
+				);
+			})
+			.catch((error: unknown) => {
+				if (ctrl.signal.aborted) return;
+				if (error instanceof DOMException && error.name === "AbortError")
+					return;
+				if (error instanceof Error && error.name === "AbortError") return;
+				setSuggestions({ status: "error" });
+			});
 		return () => ctrl.abort();
 	}, [open, target.recipientUserId]);
 

@@ -7,6 +7,7 @@ import {
 	type AppThemeClass,
 	DEFAULT_APP_THEME_CLASS,
 } from "@/lib/app-themes";
+import { searchDialogStudioLogoDevAvailable } from "@/lib/search-dialog-studio-logo-dev";
 
 /**
  * TMDb company id → `public/studios/{slug}/` folder name.
@@ -55,10 +56,15 @@ export function resolveStudioThemedLogoUrl(
 	return studioThemedLogoPath(slug, appTheme);
 }
 
-/** True when the rail/pill can show a TMDb logo and/or a hosted theme tile. */
+/** True when the rail/pill can show Logo.dev, TMDb, and/or a hosted theme tile. */
 export function searchDialogStudioHasLogo(
 	studioId: number,
 	fallbackLogoUrl: string | null | undefined,
+	studioName?: string | null,
 ): boolean {
-	return Boolean(fallbackLogoUrl || SEARCH_DIALOG_STUDIO_ASSET_SLUGS[studioId]);
+	return Boolean(
+		searchDialogStudioLogoDevAvailable(studioName) ||
+			fallbackLogoUrl ||
+			SEARCH_DIALOG_STUDIO_ASSET_SLUGS[studioId],
+	);
 }

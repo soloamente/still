@@ -42,6 +42,8 @@ const nextConfig: NextConfig = {
 			listCoverAssetPattern,
 			// TMDb poster / backdrop / logo CDN (most call sites bypass optimizer via unoptimized)
 			{ protocol: "https", hostname: "image.tmdb.org" },
+			// Logo.dev streaming wordmarks on `/watchlist` platform row
+			{ protocol: "https", hostname: "img.logo.dev" },
 			// Vercel Blob (avatars / banners)
 			{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
 			// Discord CDN for activity album art / game icons when not marked unoptimized.

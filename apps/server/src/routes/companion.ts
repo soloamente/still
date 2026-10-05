@@ -24,7 +24,11 @@ import {
 	type CompanionPairingStore,
 } from "../lib/companion-pairing";
 import { drizzleCompanionPairingStore } from "../lib/companion-pairing-db";
-import { companionProfileButtonUrl } from "../lib/companion-profile-button";
+import {
+	companionButtonOrigin,
+	companionProfileButtonUrl,
+	companionTitleButtonUrl,
+} from "../lib/companion-profile-button";
 import { hit } from "../lib/rate-limit";
 
 type CompanionRequestUser = { id: string } | null;
@@ -221,7 +225,8 @@ export function buildCompanionRoute(options: CompanionRouteOptions): Elysia {
 				}
 			}
 			if (logged) console.info("[companion] logged", logged.title);
-			return { watching: view, logged };
+			const titleUrl = companionTitleButtonUrl(publicOrigin ?? "", view?.href);
+			return { watching: view, logged, titleUrl };
 		})
 		.post("/api/companion/log-rating", async (ctx) => {
 			const { request, status, body } = ctx;
@@ -256,6 +261,6 @@ export function buildCompanionRoute(options: CompanionRouteOptions): Elysia {
 export const companionRoute = buildCompanionRoute({
 	store: drizzleCompanionPairingStore,
 	watching: createCompanionNowWatching(),
-	publicOrigin: env.BETTER_AUTH_URL,
+	publicOrigin: companionButtonOrigin(env.BETTER_AUTH_URL),
 	profileForUser: loadCompanionProfileForUser,
 });

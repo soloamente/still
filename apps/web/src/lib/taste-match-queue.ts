@@ -57,6 +57,38 @@ export function mergeTailBackfill(
 	return next.length === current.length ? current : next;
 }
 
+/** Same titles in the same order — a refetch can skip a rail rewrite. */
+export function sameTasteRailIds(
+	current: readonly { tmdbId: number }[],
+	next: readonly { tmdbId: number }[],
+): boolean {
+	if (current.length !== next.length) return false;
+	return current.every((film, index) => film.tmdbId === next[index]?.tmdbId);
+}
+
+/**
+ * Poster rail after a diary log. Drop the logged title even if for-you is a
+ * moment stale, and keep today's pinned hero when the new ranking omits it.
+ */
+export function railAfterTasteRefresh<T extends { tmdbId: number }>(args: {
+	fresh: readonly T[];
+	pinned: T | null;
+	consumedTmdbId: number | null;
+}): T[] {
+	const withoutConsumed = args.fresh.filter(
+		(film) => film.tmdbId !== args.consumedTmdbId,
+	);
+	const pinned = args.pinned;
+	if (
+		pinned == null ||
+		pinned.tmdbId === args.consumedTmdbId ||
+		withoutConsumed.some((film) => film.tmdbId === pinned.tmdbId)
+	) {
+		return withoutConsumed;
+	}
+	return [pinned, ...withoutConsumed];
+}
+
 /** Debounced scheduler — coalesces rapid queue mutations into one backfill fetch. */
 export function createTasteQueueBackfillScheduler(options: {
 	debounceMs?: number;
@@ -91,10 +123,6 @@ export function buildTasteQueueBackfillRunner(args: {
 }): () => Promise<void> {
 	return async () => {
 		const current = args.getMovies();
-		if (current.length >= TASTE_MATCH_TARGET_RESULTS) {
-			return;
-		}
-
 		const data = await args.fetchForYou();
 		if (!data || data.coldStart) {
 			return;
@@ -104,8 +132,21 @@ export function buildTasteQueueBackfillRunner(args: {
 			data.movies,
 			data.consumedTmdbIds,
 		);
-		const merged = mergeTailBackfill(current, candidates);
-		if (merged !== current) {
+		const consumed = new Set(data.consumedTmdbIds ?? []);
+		// A full queue used to skip the fetch, so a log that was not already
+		// removed stayed on the rail.
+		const pruned =
+			consumed.size === 0
+				? current
+				: current.filter((movie) => !consumed.has(movie.tmdbId));
+		if (pruned.length >= TASTE_MATCH_TARGET_RESULTS) {
+			if (pruned.length !== current.length) {
+				args.setMovies(pruned);
+			}
+			return;
+		}
+		const merged = mergeTailBackfill(pruned, candidates);
+		if (merged !== pruned || pruned.length !== current.length) {
 			args.setMovies(merged);
 		}
 	};

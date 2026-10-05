@@ -1,4 +1,4 @@
-/** Icon key for a genre/curated chip — maps copy to a Lucide glyph in the rail. */
+/** Icon key for a genre/curated chip — maps copy to a Nucleo UI glyph in the rail. */
 export type SearchDialogGenreIconKey =
 	| "fantasy"
 	| "action"

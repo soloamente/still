@@ -10,6 +10,8 @@ export type WatchlistTonightHeroPick = {
 	posterUrl: string | null;
 	tonightReason: string | null;
 	tonightReasonKind: WatchlistReasonKind | null;
+	/** Absolute TMDb logo for the “Now on …” service, when the reason is availability. */
+	tonightProviderLogoUrl: string | null;
 };
 
 export type WatchlistTonightHeroPayload = {
@@ -39,6 +41,10 @@ export function watchlistRowToTonightHeroPick(
 		posterUrl,
 		tonightReason: row.tonight_reason ?? null,
 		tonightReasonKind: row.tonight_reason_kind ?? null,
+		tonightProviderLogoUrl: tmdbPosterUrlFromPath(
+			row.streaming_provider_logo_path ?? null,
+			"w92",
+		),
 	};
 }
 

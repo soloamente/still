@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 import { FeedPersonAvatar } from "@/components/feed/feed-person-avatar";
+import { TodayCircleCardSkeleton } from "@/components/home/today-circle-card-skeleton";
 import { openRecommendBackSheet } from "@/components/recommend/recommend-back-sheet-root";
 import { openInviteEarnDialog } from "@/components/referrals/invite-earn-dialog-root";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
@@ -21,6 +22,7 @@ import {
 	todayCircleActionLabel,
 	todayCircleTitleHref,
 } from "@/lib/today-circle";
+import { fetchTodayCircleClient } from "@/lib/today-circle-client";
 import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
 
 /**
@@ -28,15 +30,36 @@ import { useTrackImpressionOnce } from "@/lib/use-track-impression-once";
  * follows, or an invite when there is nothing honest to show.
  */
 export function TodayCircleCard({
-	payload,
+	payload: initial,
+	media,
 }: {
 	/** `null` = the read failed — quiet error, not a fake invite or activity. */
 	payload: TodayCirclePayload | null;
+	/** Movie calls stay parameter-free. TV retries with `media=tv`. */
+	media: "movie" | "tv";
 }) {
 	const headingId = useId();
+	const [payload, setPayload] = useState(initial);
+	const [pending, setPending] = useState(false);
+	// A Movies ↔ TV swap must not keep the other catalogue's circle row.
+	const [seenMedia, setSeenMedia] = useState(media);
+	if (seenMedia !== media) {
+		setSeenMedia(media);
+		setPayload(initial);
+		setPending(false);
+	}
 	useTrackImpressionOnce("today.circle.viewed", {
 		state: payload == null ? "error" : payload.kind,
 	});
+
+	async function handleRetry() {
+		setPending(true);
+		const next = await fetchTodayCircleClient(media);
+		setPayload(next);
+		setPending(false);
+	}
+
+	if (pending) return <TodayCircleCardSkeleton />;
 
 	return (
 		<section
@@ -47,9 +70,20 @@ export function TodayCircleCard({
 				From your circle
 			</h3>
 			{payload == null ? (
-				<p className="text-muted-foreground text-sm">
-					Couldn’t load activity from people you follow right now.
-				</p>
+				<>
+					<p className="text-muted-foreground text-sm">
+						Couldn’t load activity from people you follow right now.
+					</p>
+					<button
+						type="button"
+						className={TODAY_CARD_ACTION_CLASSNAME}
+						onClick={() => {
+							void handleRetry();
+						}}
+					>
+						Try again
+					</button>
+				</>
 			) : payload.kind === "activity" ? (
 				<TodayCircleActivityBody activity={payload} />
 			) : (

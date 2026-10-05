@@ -7,6 +7,11 @@ import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { openGuestAccountDialog } from "@/components/auth/guest-account-dialog";
+import {
+	ListingDetailTrailerCircleButton,
+	ListingDetailTrailerSheet,
+	useListingTrailer,
+} from "@/components/detail/listing-detail-trailer";
 import { AddToListControl } from "@/components/list/add-to-list-control";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
@@ -20,9 +25,9 @@ import {
 } from "@/lib/detail-action-motion";
 
 /**
- * Hero action row — watchlist (left), diary log (primary pill), add to list (right).
- * After the first log, watchlist exits, the primary pill morphs into a circle control,
- * and review + edit circles appear so we never need a separate “More actions” menu.
+ * Hero action row — trailer (left when unwatched), diary log (primary pill), trailing utility.
+ * Unwatched: watchlist on the right (not add to list). After logging: rewatch, trailer,
+ * Add review, edit, and add to list.
  */
 export function MovieDetailPrimaryActions({
 	movieId,
@@ -52,6 +57,15 @@ export function MovieDetailPrimaryActions({
 
 	const hasLogged = myLogs.length > 0;
 	const motionProps = useDetailActionMotion();
+	const {
+		trailer,
+		open: trailerOpen,
+		setOpen: setTrailerOpen,
+		embedSrc: trailerEmbedSrc,
+	} = useListingTrailer("movie", movieId);
+	const showTrailerButton = trailer != null;
+	/** Unwatched patrons save via watchlist on the trailing slot; trailer keeps the leading slot. */
+	const showTrailerInLeadingSlot = !hasLogged && showTrailerButton;
 
 	/**
 	 * `bg-background` (canvas) on `bg-card` (raised) — avoid `hover:bg-muted/*` because
@@ -100,20 +114,21 @@ export function MovieDetailPrimaryActions({
 					className="flex w-full max-w-md origin-center items-center justify-center gap-3"
 				>
 					<AnimatePresence mode="popLayout" initial={false}>
-						{!hasLogged ? (
+						{showTrailerInLeadingSlot ? (
 							<motion.div
-								key="watchlist-slot"
+								key="trailer-slot-unlogged"
 								layout
 								initial={motionProps.presenceInitial}
 								animate={motionProps.presenceAnimate}
 								exit={motionProps.presenceExit}
 								transition={motionProps.swapTransition}
 							>
-								<DetailWatchlistButton
-									inWatchlist={inWatchlist}
-									hydrated={hydrated}
-									busy={busy === "watchlist"}
-									onToggle={toggleWatchlist}
+								<ListingDetailTrailerCircleButton
+									title={title}
+									circleClassName={circle}
+									disabled={!hydrated}
+									onOpen={() => setTrailerOpen(true)}
+									layout
 								/>
 							</motion.div>
 						) : null}
@@ -186,73 +201,132 @@ export function MovieDetailPrimaryActions({
 					</DetailIconTooltip>
 
 					<AnimatePresence mode="popLayout" initial={false}>
-						{hasLogged ? (
-							<>
-								<motion.div
-									key="review-action"
+						{hasLogged && showTrailerButton ? (
+							<motion.div
+								key="trailer-slot-logged"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<ListingDetailTrailerCircleButton
+									title={title}
+									circleClassName={circle}
+									disabled={!hydrated}
+									onOpen={() => setTrailerOpen(true)}
 									layout
-									initial={motionProps.presenceInitial}
-									animate={motionProps.presenceAnimate}
-									exit={motionProps.presenceExit}
-									transition={motionProps.swapTransition}
+								/>
+							</motion.div>
+						) : null}
+					</AnimatePresence>
+
+					<AnimatePresence mode="popLayout" initial={false}>
+						{hasLogged ? (
+							<motion.div
+								key="review-action"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<motion.button
+									type="button"
+									className={cn(primaryPill, DETAIL_MOTION_PRESSABLE_CLASS)}
+									style={motionProps.style}
+									layout
+									data-primary-action
+									whileHover={motionProps.hover}
+									whileTap={motionProps.tap}
+									transition={motionProps.buttonTransition}
+									onClick={handleOpenReview}
+									disabled={!hydrated}
 								>
+									Add review
+								</motion.button>
+							</motion.div>
+						) : null}
+					</AnimatePresence>
+
+					<AnimatePresence mode="popLayout" initial={false}>
+						{hasLogged && latestLog ? (
+							<motion.div
+								key="edit-action"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<DetailIconTooltip label="Edit log">
 									<motion.button
 										type="button"
-										className={cn(primaryPill, DETAIL_MOTION_PRESSABLE_CLASS)}
+										className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
 										style={motionProps.style}
 										layout
 										data-primary-action
 										whileHover={motionProps.hover}
 										whileTap={motionProps.tap}
 										transition={motionProps.buttonTransition}
-										onClick={handleOpenReview}
+										onClick={handleEditLatestLog}
 										disabled={!hydrated}
+										aria-label="Edit your latest diary log"
 									>
-										Add review
+										<IconPen2Fill
+											size="22px"
+											className="shrink-0 opacity-90"
+											aria-hidden
+										/>
 									</motion.button>
-								</motion.div>
-								{latestLog ? (
-									<motion.div
-										key="edit-action"
-										layout
-										initial={motionProps.presenceInitial}
-										animate={motionProps.presenceAnimate}
-										exit={motionProps.presenceExit}
-										transition={motionProps.swapTransition}
-									>
-										<DetailIconTooltip label="Edit log">
-											<motion.button
-												type="button"
-												className={cn(circle, DETAIL_MOTION_PRESSABLE_CLASS)}
-												style={motionProps.style}
-												layout
-												data-primary-action
-												whileHover={motionProps.hover}
-												whileTap={motionProps.tap}
-												transition={motionProps.buttonTransition}
-												onClick={handleEditLatestLog}
-												disabled={!hydrated}
-												aria-label="Edit your latest diary log"
-											>
-												<IconPen2Fill
-													size="22px"
-													className="shrink-0 opacity-90"
-													aria-hidden
-												/>
-											</motion.button>
-										</DetailIconTooltip>
-									</motion.div>
-								) : null}
-							</>
+								</DetailIconTooltip>
+							</motion.div>
 						) : null}
 					</AnimatePresence>
 
-					<AddToListControl
-						media={{ listingKind: "movie", tmdbId: movieId, title }}
-						disabled={!hydrated}
-					/>
+					<AnimatePresence mode="popLayout" initial={false}>
+						{hasLogged ? (
+							<motion.div
+								key="add-to-list"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<AddToListControl
+									media={{ listingKind: "movie", tmdbId: movieId, title }}
+									disabled={!hydrated}
+								/>
+							</motion.div>
+						) : (
+							<motion.div
+								key="watchlist-trailing"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<DetailWatchlistButton
+									inWatchlist={inWatchlist}
+									hydrated={hydrated}
+									busy={busy === "watchlist"}
+									onToggle={toggleWatchlist}
+								/>
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</motion.div>
 			</LayoutGroup>
+			{showTrailerButton ? (
+				<ListingDetailTrailerSheet
+					title={title}
+					open={trailerOpen}
+					onOpenChange={setTrailerOpen}
+					embedSrc={trailerEmbedSrc}
+				/>
+			) : null}
 		</TooltipProvider>
 	);
 }

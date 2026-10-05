@@ -61,8 +61,15 @@ function listingTitle(row: DiaryLogRow): string {
 	return row.movie?.title ?? row.tv?.title ?? "";
 }
 
-/** Most specific scope among logs (episode → season → show), newest within tier. */
+/**
+ * Most specific scope among logs (episode → season → show), newest within tier.
+ * A whole-series log means the show is complete, so the tile says Whole series.
+ */
 export function pickPrimaryTvScopeLabel(logs: DiaryLogRow[]): string {
+	const hasShowLog = logs.some(
+		(row) => (row.log.logScope ?? "show") === "show",
+	);
+	if (hasShowLog) return "Whole series";
 	const ordered = sortLogsNewestFirst(logs);
 	const byScope = (scope: TvLogScope) =>
 		ordered.find((row) => (row.log.logScope ?? "show") === scope);

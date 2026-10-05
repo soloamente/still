@@ -6,6 +6,11 @@ import IconPlayRotateAnticlockwise from "@still/ui/icons/play-rotate-anticlockwi
 import { cn } from "@still/ui/lib/utils";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import {
+	ListingDetailTrailerCircleButton,
+	ListingDetailTrailerSheet,
+	useListingTrailer,
+} from "@/components/detail/listing-detail-trailer";
 import { AddToListControl } from "@/components/list/add-to-list-control";
 import { DetailIconTooltip } from "@/components/movie/detail-icon-tooltip";
 import { DetailWatchlistButton } from "@/components/movie/detail-watchlist-button";
@@ -53,7 +58,6 @@ export function TvDetailPrimaryActions() {
 		myLogs,
 		inWatchlist,
 		busy: logBusy,
-		latestLog,
 		handleOpenQuickLog,
 		handleEditLatestLog,
 		toggleWatchlist,
@@ -67,7 +71,18 @@ export function TvDetailPrimaryActions() {
 	const motionProps = useDetailActionMotion();
 	const continueLabel = formatTvNextEpisodeLabel(nextEpisode);
 
-	const showWatchlistSlot = !hasLogged && !hasWatch;
+	const {
+		trailer,
+		ready: trailerReady,
+		open: trailerOpen,
+		setOpen: setTrailerOpen,
+		embedSrc: trailerEmbedSrc,
+	} = useListingTrailer("tv", tvId);
+	const showTrailerButton = trailer != null;
+	const showWatchlistSlot =
+		!hasLogged && !hasWatch && (!trailerReady || !trailer);
+	const showTrailerInWatchlistSlot =
+		!hasLogged && !hasWatch && showTrailerButton;
 	const episodeModeActive = watch?.progressMode === "episode";
 	const showMarkNext =
 		hasWatch && isActivelyTracking && episodeModeActive && nextEpisode != null;
@@ -164,6 +179,24 @@ export function TvDetailPrimaryActions() {
 									/>
 								</motion.div>
 							) : null}
+							{showTrailerInWatchlistSlot ? (
+								<motion.div
+									key="trailer-slot-unlogged"
+									layout
+									initial={motionProps.presenceInitial}
+									animate={motionProps.presenceAnimate}
+									exit={motionProps.presenceExit}
+									transition={motionProps.swapTransition}
+								>
+									<ListingDetailTrailerCircleButton
+										title={title}
+										circleClassName={circle}
+										disabled={!hydrated}
+										onOpen={() => setTrailerOpen(true)}
+										layout
+									/>
+								</motion.div>
+							) : null}
 						</AnimatePresence>
 
 						<DetailIconTooltip
@@ -250,14 +283,12 @@ export function TvDetailPrimaryActions() {
 
 						{showDiarySecondary ? (
 							<DetailIconTooltip
-								label={
-									hasLogged && latestLog && !showMarkNext ? "Edit log" : null
-								}
+								label={showLogCount > 0 && !showMarkNext ? "Edit log" : null}
 							>
 								<motion.button
 									type="button"
 									className={cn(
-										hasLogged && !showMarkNext ? circle : primaryPill,
+										showLogCount > 0 && !showMarkNext ? circle : primaryPill,
 										DETAIL_MOTION_PRESSABLE_CLASS,
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 										"disabled:pointer-events-none disabled:opacity-45",
@@ -269,20 +300,20 @@ export function TvDetailPrimaryActions() {
 									whileTap={motionProps.tap}
 									transition={motionProps.buttonTransition}
 									onClick={() => {
-										if (hasLogged && latestLog && !showMarkNext) {
+										if (showLogCount > 0 && !showMarkNext) {
 											handleEditLatestLog();
 										} else {
-											handleOpenQuickLog();
+											handleOpenQuickLog({ logScope: "show" });
 										}
 									}}
 									disabled={!hydrated}
 									aria-label={
-										hasLogged && latestLog && !showMarkNext
-											? "Edit your latest diary log"
+										showLogCount > 0 && !showMarkNext
+											? "Edit your show rating"
 											: "Log to diary"
 									}
 								>
-									{hasLogged && latestLog && !showMarkNext ? (
+									{showLogCount > 0 && !showMarkNext ? (
 										<IconPen2Fill
 											size="22px"
 											className="shrink-0 opacity-90"
@@ -295,12 +326,39 @@ export function TvDetailPrimaryActions() {
 							</DetailIconTooltip>
 						) : null}
 
+						{showTrailerButton && (hasLogged || hasWatch) ? (
+							<motion.div
+								key="trailer-slot-active"
+								layout
+								initial={motionProps.presenceInitial}
+								animate={motionProps.presenceAnimate}
+								exit={motionProps.presenceExit}
+								transition={motionProps.swapTransition}
+							>
+								<ListingDetailTrailerCircleButton
+									title={title}
+									circleClassName={circle}
+									disabled={!hydrated}
+									onOpen={() => setTrailerOpen(true)}
+									layout
+								/>
+							</motion.div>
+						) : null}
+
 						<AddToListControl
 							media={{ listingKind: "tv", tmdbId: tvId, title }}
 							disabled={!hydrated}
 						/>
 					</motion.div>
 				</LayoutGroup>
+				{showTrailerButton ? (
+					<ListingDetailTrailerSheet
+						title={title}
+						open={trailerOpen}
+						onOpenChange={setTrailerOpen}
+						embedSrc={trailerEmbedSrc}
+					/>
+				) : null}
 			</TooltipProvider>
 		</div>
 	);

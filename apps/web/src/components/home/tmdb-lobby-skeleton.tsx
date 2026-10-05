@@ -7,7 +7,10 @@ import {
 	LobbyVenueChipFallback,
 } from "@/components/app/lobby-suspense-fallbacks";
 import { HomeLobbyFilterRow } from "@/components/home/home-lobby-filter-row";
-import { HOME_LOBBY_CATALOGUE_GRID_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
+import {
+	HOME_LOBBY_CATALOGUE_GRID_CLASSNAME,
+	HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME,
+} from "@/lib/home-lobby-catalogue-layout";
 
 const TMDB_LOBBY_POSTER_SKELETON_KEYS = [
 	"p01",
@@ -43,7 +46,7 @@ export function TmdbLobbySkeleton() {
 				{TMDB_LOBBY_POSTER_SKELETON_KEYS.map((posterKey) => (
 					<ShimmerBone
 						key={`tmdb-lobby-skel-poster-${posterKey}`}
-						className="aspect-2/3 w-full rounded-[3rem] bg-background"
+						className={`aspect-2/3 w-full ${HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}`}
 						aria-hidden
 					/>
 				))}

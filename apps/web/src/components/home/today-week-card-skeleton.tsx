@@ -13,10 +13,13 @@ export function TodayWeekCardSkeletonBody() {
 			<ShimmerBone className="h-6 w-48 max-w-full rounded-md bg-card" />
 			<div className="flex gap-3">
 				{TODAY_WEEK_DAYS.map((day) => (
-					<ShimmerBone key={day.id} className="size-2.5 rounded-full bg-card" />
+					<span key={day.id} className="flex flex-col items-center gap-2">
+						<ShimmerBone className="h-3 w-4 rounded-sm bg-card" />
+						<ShimmerBone className="size-2.5 rounded-full bg-card" />
+					</span>
 				))}
 			</div>
-			<ShimmerBone className="mt-auto h-10 w-32 rounded-full bg-card" />
+			<ShimmerBone className="mt-auto h-11 w-32 rounded-full bg-card" />
 		</>
 	);
 }

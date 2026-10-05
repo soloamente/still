@@ -8,6 +8,10 @@ export const PROFILE_PREF_INTEGRATIONS = "integrations" as const;
 export const PROFILE_PREF_DISCORD_ACTIVITY_ENABLED =
 	"discordActivityEnabled" as const;
 
+/** Profile row for Sense Companion playback. Defaults on. */
+export const PROFILE_PREF_COMPANION_WATCHING_ENABLED =
+	"companionWatchingEnabled" as const;
+
 function readIntegrationsObject(
 	preferences: Record<string, unknown> | null | undefined,
 ): Record<string, unknown> {
@@ -31,6 +35,18 @@ export function readDiscordActivityEnabledPref(
 	return true;
 }
 
+/** Whether the profile may show the title playing in Sense Companion. Defaults on. */
+export function readCompanionWatchingEnabledPref(
+	preferences: Record<string, unknown> | null | undefined,
+): boolean {
+	const raw =
+		readIntegrationsObject(preferences)[
+			PROFILE_PREF_COMPANION_WATCHING_ENABLED
+		];
+	if (typeof raw === "boolean") return raw;
+	return true;
+}
+
 /** Merge the Discord activity toggle without clobbering sibling integration keys. */
 export function mergeDiscordActivityEnabledPref(
 	existing: Record<string, unknown>,
@@ -42,6 +58,21 @@ export function mergeDiscordActivityEnabledPref(
 		[PROFILE_PREF_INTEGRATIONS]: {
 			...integrations,
 			[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED]: enabled,
+		},
+	};
+}
+
+/** Merge the Companion share toggle without clobbering sibling integration keys. */
+export function mergeCompanionWatchingEnabledPref(
+	existing: Record<string, unknown>,
+	enabled: boolean,
+): Record<string, unknown> {
+	const integrations = readIntegrationsObject(existing);
+	return {
+		...existing,
+		[PROFILE_PREF_INTEGRATIONS]: {
+			...integrations,
+			[PROFILE_PREF_COMPANION_WATCHING_ENABLED]: enabled,
 		},
 	};
 }
@@ -73,9 +104,14 @@ export function sanitizeDiscordActivityPreferences(
 			: {}),
 	};
 
-	const raw = nextIntegrations[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED];
-	if (raw !== undefined && typeof raw !== "boolean") {
+	const discordRaw = nextIntegrations[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED];
+	if (discordRaw !== undefined && typeof discordRaw !== "boolean") {
 		delete nextIntegrations[PROFILE_PREF_DISCORD_ACTIVITY_ENABLED];
+	}
+	const companionRaw =
+		nextIntegrations[PROFILE_PREF_COMPANION_WATCHING_ENABLED];
+	if (companionRaw !== undefined && typeof companionRaw !== "boolean") {
+		delete nextIntegrations[PROFILE_PREF_COMPANION_WATCHING_ENABLED];
 	}
 
 	return {

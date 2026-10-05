@@ -10,6 +10,8 @@ describe("guest account paths", () => {
 		for (const path of [
 			"/diary",
 			"/diary/1",
+			"/lists",
+			"/lists/abc",
 			"/watchlist",
 			"/quotes",
 			"/me",
@@ -23,13 +25,7 @@ describe("guest account paths", () => {
 	});
 
 	test("browse pages do not", () => {
-		for (const path of [
-			"/home",
-			"/lists",
-			"/lists/abc",
-			"/movies/550",
-			"/profile/ada",
-		]) {
+		for (const path of ["/home", "/movies/550", "/profile/ada", "/l/abc"]) {
 			expect(isAccountRequiredPath(path)).toBe(false);
 		}
 	});

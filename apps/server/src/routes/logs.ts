@@ -83,6 +83,11 @@ function inArrayTvIds(col: typeof log.tvId, ids: number[]) {
 	return ids.length ? inArray(col, ids) : sql`false`;
 }
 
+/** Postgres bool via Neon can arrive as a real boolean or `t`. */
+function sqlBool(value: unknown): boolean {
+	return value === true || value === "t" || value === "true";
+}
+
 const logCreateFields = {
 	/** Film path — mutually exclusive with `tvId`. */
 	movieId: t.Optional(t.Number()),
@@ -740,7 +745,13 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 			const [countsByShow, scopeByShow] = await Promise.all([
 				pageTvIds.length
 					? db
-							.select({ tvId: log.tvId, total: count() })
+							.select({
+								tvId: log.tvId,
+								total: count(),
+								// Whole-series row is the completion log, not another episode.
+								nonShowTotal: sql<number>`count(*) filter (where ${log.logScope} <> 'show')`,
+								hasShowLog: sql<boolean>`bool_or(${log.logScope} = 'show')`,
+							})
 							.from(log)
 							.where(
 								and(
@@ -751,7 +762,14 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 								),
 							)
 							.groupBy(log.tvId)
-					: Promise.resolve([] as { tvId: number | null; total: number }[]),
+					: Promise.resolve(
+							[] as {
+								tvId: number | null;
+								total: number;
+								nonShowTotal: number;
+								hasShowLog: boolean;
+							}[],
+						),
 				pageTvIds.length
 					? db
 							// Representative most-specific log per show: episode > season > show,
@@ -787,15 +805,18 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 						),
 			]);
 
-			const countMap = new Map(
-				countsByShow.map((r) => [r.tvId, Number(r.total)]),
-			);
+			const countMap = new Map(countsByShow.map((r) => [r.tvId, r]));
 			const scopeMap = new Map(scopeByShow.map((r) => [r.tvId, r]));
 
 			const total = Number(totalRow[0]?.total ?? 0);
 			return {
 				results: rows.map((r) => {
-					const scope = scopeMap.get(r.tmdbId);
+					const stats = countMap.get(r.tmdbId);
+					const hasShowLog = sqlBool(stats?.hasShowLog);
+					const scope = hasShowLog ? null : scopeMap.get(r.tmdbId);
+					const logCount = hasShowLog
+						? Number(stats?.nonShowTotal ?? 0)
+						: Number(stats?.total ?? 1);
 					return {
 						kind: "tvGroup" as const,
 						tv: {
@@ -803,14 +824,14 @@ export const logsRoute = new Elysia({ prefix: "/api/logs", tags: ["logs"] })
 							title: r.title,
 							posterPath: r.posterPath,
 						},
-						logCount: countMap.get(r.tmdbId) ?? 1,
+						logCount,
 						primaryScope: {
-							logScope: (scope?.logScope ?? "show") as
+							logScope: (hasShowLog ? "show" : (scope?.logScope ?? "show")) as
 								| "show"
 								| "season"
 								| "episode",
-							seasonNumber: scope?.seasonNumber ?? null,
-							episodeNumber: scope?.episodeNumber ?? null,
+							seasonNumber: hasShowLog ? null : (scope?.seasonNumber ?? null),
+							episodeNumber: hasShowLog ? null : (scope?.episodeNumber ?? null),
 						},
 						newestWatchedAt: r.watchedAt,
 					};

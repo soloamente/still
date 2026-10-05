@@ -17,7 +17,15 @@ import {
 	postLog,
 	postWatchlistAdd,
 } from "@/lib/still-api-fetch";
-import { countTvLogsInScope } from "@/lib/tv-log-scope-prior";
+import {
+	countTvLogsInScope,
+	findLatestTvLogInScope,
+} from "@/lib/tv-log-scope-prior";
+import {
+	presentTvSeasonScore,
+	presentTvTitleScore,
+	tvEditorAverageSeed,
+} from "@/lib/tv-score-presentation";
 
 export type { MyTvLog } from "@/lib/my-tv-log";
 
@@ -101,6 +109,7 @@ export function useTvDetailUserState(
 			return;
 		}
 		const logScope = scope?.logScope ?? "show";
+		const averageSeed = childAverageSeed(logScope, scope?.seasonNumber);
 		const scopeTarget = {
 			logScope,
 			seasonNumber: scope?.seasonNumber ?? null,
@@ -120,6 +129,8 @@ export function useTvDetailUserState(
 			logScope: scope?.logScope,
 			seasonNumber: scope?.seasonNumber,
 			episodeNumber: scope?.episodeNumber,
+			derivedScoreNote: averageSeed?.label,
+			derivedRating: averageSeed?.stored,
 			onSuccess: () => {
 				void play("reel-clack", { category: "feedback" }).catch(
 					() => undefined,
@@ -140,6 +151,11 @@ export function useTvDetailUserState(
 			log.watchVenue === "theaters" || log.watchVenue === "streaming"
 				? log.watchVenue
 				: "streaming";
+		const scope = log.logScope ?? "show";
+		const averageSeed =
+			scope === "episode"
+				? null
+				: childAverageSeed(scope, log.seasonNumber ?? undefined);
 		openQuickLog({
 			logId: log.id,
 			tvId,
@@ -152,9 +168,11 @@ export function useTvDetailUserState(
 			liked: log.liked,
 			rewatch: log.rewatch,
 			watchVenue,
-			logScope: log.logScope ?? "show",
+			logScope: scope,
 			seasonNumber: log.seasonNumber ?? undefined,
 			episodeNumber: log.episodeNumber ?? undefined,
+			derivedScoreNote: averageSeed?.label,
+			derivedRating: averageSeed?.stored,
 			...(log.visibility ? { visibility: log.visibility } : {}),
 			onSuccess: () => {
 				void play("reel-clack", { category: "feedback" }).catch(
@@ -167,8 +185,27 @@ export function useTvDetailUserState(
 	}
 
 	function handleEditLatestLog() {
-		if (!latestLog) return;
-		handleEditLog(latestLog);
+		const showLog = findLatestTvLogInScope(myLogs, { logScope: "show" });
+		if (showLog) {
+			handleEditLog(showLog);
+			return;
+		}
+		handleOpenQuickLog({ logScope: "show" });
+	}
+
+	function childAverageSeed(
+		scope: "show" | "season" | "episode",
+		seasonNumber?: number,
+	) {
+		if (scope === "episode") return null;
+		if (scope === "season") {
+			if (seasonNumber == null) return null;
+			return tvEditorAverageSeed(
+				"season",
+				presentTvSeasonScore(myLogs, seasonNumber),
+			);
+		}
+		return tvEditorAverageSeed("show", presentTvTitleScore(myLogs));
 	}
 
 	async function toggleWatchlist() {

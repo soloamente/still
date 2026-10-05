@@ -1,0 +1,6 @@
+===== LINE 1 =====
+\ni want the hero like we have for movies also for tv shows, with tv shows /transitions-dev /brainstorming\n
+
+===== LINE 8 =====
+\nRun the `continual-learning` skill now. Use the `agents-memory-updater` subagent for the full memory update flow. Use incremental transcript processing with index file `C:\\Users\\adgv\\Documents\\Projects\\still\\.cursor\\hooks\\state\\continual-learning-index.json`: only consider transcripts not in the index or transcripts whose mtime is newer than indexed mtime. Have the subagent refresh index mtimes, remove entries for deleted transcripts, and update `AGENTS.md` only for high-signal recurring user corrections and durable workspace facts. Exclude one-off/transient details and secrets. If no meaningful updates exist, respond exactly: No high-signal memory updates.\n
+

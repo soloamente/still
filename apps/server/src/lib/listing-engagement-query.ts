@@ -19,6 +19,7 @@ import {
 	desc,
 	eq,
 	exists,
+	inArray,
 	isNull,
 	notInArray,
 	or,
@@ -40,6 +41,7 @@ import {
 	patronAvatarBadgeFields,
 } from "./patron-avatar-badge";
 import { readAvatarIsAnimatedPref } from "./profile-media";
+import { presentTvTitleScore } from "./tv-title-score";
 
 export type ListingEngagementKind =
 	| "watches"
@@ -74,6 +76,8 @@ export type ListingEngagementWatchItem = {
 	planTier: PlanTierId;
 	staffRole: StaffRole | null;
 	rating: number | null;
+	/** TV watches: `yours` when a show log is rated, `average` when seasons supply the score. */
+	ratingSource?: "yours" | "average" | null;
 	liked: boolean;
 	watchedAt: string;
 	review: ListingEngagementWatchReview | null;
@@ -333,6 +337,50 @@ async function fetchVisibleWatchCount(
 	return Number(row?.total ?? 0);
 }
 
+/**
+ * TV watched rows use the show score, not the latest episode log.
+ * A saved show rating stays. Otherwise the row shows the season average.
+ */
+async function applyTvWatchTitleScores(
+	listing: ListingEngagementListingRef,
+	viewerId: string,
+	items: ListingEngagementWatchItem[],
+): Promise<ListingEngagementWatchItem[]> {
+	if (!("tvId" in listing) || items.length === 0) return items;
+	const userIds = items.map((item) => item.userId);
+	const rows = await db
+		.select({
+			userId: log.userId,
+			logScope: log.logScope,
+			seasonNumber: log.seasonNumber,
+			episodeNumber: log.episodeNumber,
+			rating: log.rating,
+		})
+		.from(log)
+		.where(
+			and(
+				eq(log.tvId, listing.tvId),
+				inArray(log.userId, userIds),
+				isNull(log.removedAt),
+				contentVisibilityWhere(viewerId, log.userId, log.visibility),
+			),
+		);
+	const logsByUser = new Map<string, typeof rows>();
+	for (const row of rows) {
+		const bucket = logsByUser.get(row.userId);
+		if (bucket) bucket.push(row);
+		else logsByUser.set(row.userId, [row]);
+	}
+	return items.map((item) => {
+		const presentation = presentTvTitleScore(logsByUser.get(item.userId) ?? []);
+		return {
+			...item,
+			rating: presentation.rating,
+			ratingSource: presentation.source,
+		};
+	});
+}
+
 async function fetchEngagementWatchesPage(args: {
 	listing: ListingEngagementListingRef;
 	viewerId: string;
@@ -409,7 +457,11 @@ async function fetchEngagementWatchesPage(args: {
 
 	const hasMore = listingEngagementHasMore(rawRows.length, args.limit);
 	const pageRows = rawRows.slice(0, args.limit);
-	const items = await mapWatchRows(pageRows);
+	const items = await applyTvWatchTitleScores(
+		args.listing,
+		args.viewerId,
+		await mapWatchRows(pageRows),
+	);
 
 	const [totalVisible, globalStats] = await Promise.all([
 		fetchVisibleWatchCount(

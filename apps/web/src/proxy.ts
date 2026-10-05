@@ -28,7 +28,7 @@ function withReferralCapture(
  *
  * Next.js 16+ uses the `proxy` file convention (formerly `middleware`).
  */
-// Empty: guestAccountRedirect owns diary/watchlist/quotes/me/achievements/
+// Empty: guestAccountRedirect owns diary/lists/watchlist/quotes/me/achievements/
 // notifications/chat. Do not re-add those prefixes here or guests bounce to
 // `/sign-in` instead of `/home?account=1`.
 const PROTECTED_PREFIXES: readonly string[] = [];

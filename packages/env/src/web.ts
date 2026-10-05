@@ -29,6 +29,8 @@ export const env = createEnv({
 		NEXT_PUBLIC_SERVER_URL: z.url(),
 		NEXT_PUBLIC_REALTIME_WS_URL: optionalUrl(),
 		NEXT_PUBLIC_REALTIME_TRANSPORT: z.enum(["sse", "ws"]).optional(),
+		/** Logo.dev publishable key — client-safe; powers watchlist platform wordmarks. */
+		NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY: optionalNonEmptyString(),
 	},
 	runtimeEnv: {
 		UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
@@ -36,6 +38,8 @@ export const env = createEnv({
 		NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
 		NEXT_PUBLIC_REALTIME_WS_URL: process.env.NEXT_PUBLIC_REALTIME_WS_URL,
 		NEXT_PUBLIC_REALTIME_TRANSPORT: process.env.NEXT_PUBLIC_REALTIME_TRANSPORT,
+		NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY:
+			process.env.NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY,
 	},
 	emptyStringAsUndefined: true,
 });

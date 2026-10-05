@@ -27,7 +27,13 @@ import {
 	getAppMobileVaulSnapshot,
 	subscribeAppMobileVaul,
 } from "@/lib/app-mobile-vaul";
-import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
+import {
+	catalogFiltersBodyClassName,
+	catalogFiltersPopoverClassName,
+	catalogFiltersQuietClassName,
+	catalogFiltersSectionClassName,
+	catalogFiltersSectionLabelClassName,
+} from "@/lib/catalog-filters-popover-chrome";
 import {
 	type HomeCatalogFilters,
 	hasActiveHomeCatalogFilters,
@@ -58,31 +64,21 @@ const TV_RUN_PICKER_OPTIONS = [
 	{ id: "upcoming" as const, label: "Upcoming" },
 ] as const;
 
-/** Footer / utility pill — same rhythm as notifications dropdown actions. */
-const panelPillClassName = cn(
-	"inline-flex min-h-10 items-center justify-center rounded-full bg-card px-4 py-2 font-medium text-muted-foreground text-sm transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
-	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-);
-
 type HomeCatalogFiltersTriggerElement = ReactElement<{
 	onClick?: (event: MouseEvent<HTMLElement>) => void;
 }>;
 
 function sectionLabel(text: string) {
-	return (
-		<p className="mb-2 px-0.5 font-medium text-muted-foreground text-xs tracking-wide">
-			{text}
-		</p>
-	);
+	return <p className={catalogFiltersSectionLabelClassName}>{text}</p>;
 }
 
 function genreChipClass(active: boolean) {
 	return cn(
 		filterChipBaseClass,
-		"min-h-10 transition-[transform,color] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none",
+		"min-h-11 transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.96] motion-reduce:transition-none",
 		active
-			? "bg-foreground/10 text-foreground"
-			: cn("bg-card text-muted-foreground", DETAIL_CANVAS_ON_CARD_HOVER_CLASS),
+			? "bg-foreground text-background"
+			: "bg-background text-muted-foreground [@media(hover:hover)]:hover:bg-foreground/10 [@media(hover:hover)]:hover:text-foreground",
 	);
 }
 
@@ -191,27 +187,25 @@ export function HomeCatalogFiltersPopover({
 	);
 
 	const panelContent = (
-		<div className="flex min-h-0 flex-col gap-2">
-			<div className="shrink-0 px-0.5">
+		<div className="flex min-h-0 flex-col gap-3">
+			<div className="flex shrink-0 flex-col gap-1 px-2 pt-1.5">
 				<p className="text-balance font-semibold text-base text-foreground leading-snug">
 					Filters
 				</p>
-				<p className="mt-0.5 text-pretty text-muted-foreground text-sm leading-snug">
-					{summaryLabel}
-				</p>
+				<p className={catalogFiltersBodyClassName}>{summaryLabel}</p>
 			</div>
 
-			<div className="relative min-h-0 overflow-hidden rounded-2xl">
+			<div className="relative min-h-0">
 				<CatalogFiltersMenuScrims
 					showHeaderFade={showHeaderFade}
 					showFooterFade={showFooterFade}
 				/>
 				<div
 					ref={scrollRef}
-					className="scrollbar-none max-h-[min(56vh,26rem)] min-h-0 overflow-y-auto overscroll-y-contain px-0.5 py-0.5"
+					className="scrollbar-none flex max-h-[min(56vh,26rem)] min-h-0 flex-col gap-2 overflow-y-auto overscroll-y-contain"
 				>
 					{showRunPicker && onRunChange ? (
-						<div className="mb-4">
+						<div className={catalogFiltersSectionClassName}>
 							{sectionLabel("Catalogue slice")}
 							<SegmentedPillToolbar
 								layoutId="home-catalog-filter-tv-run"
@@ -229,7 +223,7 @@ export function HomeCatalogFiltersPopover({
 					) : null}
 
 					{showVenuePicker && onVenueChange ? (
-						<div className="mb-4">
+						<div className={catalogFiltersSectionClassName}>
 							{sectionLabel("Release window")}
 							<SegmentedPillToolbar
 								layoutId={`home-catalog-filter-venue-${browse}`}
@@ -243,9 +237,9 @@ export function HomeCatalogFiltersPopover({
 					) : null}
 
 					{hideGenreFilter ? null : (
-						<>
+						<div className={catalogFiltersSectionClassName}>
 							{sectionLabel("Genre")}
-							<FilterChipRow aria-label="Genre" className="mb-4 gap-1.5">
+							<FilterChipRow aria-label="Genre" className="gap-1.5">
 								<button
 									type="button"
 									className={genreChipClass(filters.genreId == null)}
@@ -255,9 +249,13 @@ export function HomeCatalogFiltersPopover({
 									All genres
 								</button>
 								{genresLoading ? (
-									<span className="px-2 py-1.5 text-muted-foreground text-xs">
-										Loading genres…
-									</span>
+									<>
+										<span className="sr-only">Loading genres</span>
+										<span className="inline-flex gap-1.5" aria-hidden>
+											<span className="h-11 w-16 animate-pulse rounded-full bg-background" />
+											<span className="h-11 w-20 animate-pulse rounded-full bg-background" />
+										</span>
+									</>
 								) : null}
 								{sortedGenres.map((genre) => {
 									const active = filters.genreId === genre.id;
@@ -279,11 +277,11 @@ export function HomeCatalogFiltersPopover({
 									);
 								})}
 							</FilterChipRow>
-						</>
+						</div>
 					)}
 
 					{showWatchType ? (
-						<div className="mb-1">
+						<div className={catalogFiltersSectionClassName}>
 							{sectionLabel("Watch type")}
 							<PlanFeatureGate featureKey="streaming_filters">
 								<SegmentedPillToolbar
@@ -309,10 +307,10 @@ export function HomeCatalogFiltersPopover({
 			</div>
 
 			{hasActiveHomeCatalogFilters(filters) ? (
-				<div className="flex shrink-0 justify-end px-0.5 pt-0.5">
+				<div className="flex shrink-0 justify-end px-1">
 					<button
 						type="button"
-						className={panelPillClassName}
+						className={catalogFiltersQuietClassName}
 						onClick={() =>
 							navigateFilters({
 								genreId: null,
@@ -344,7 +342,9 @@ export function HomeCatalogFiltersPopover({
 					description={summaryLabel}
 					appStack
 				>
-					<div className="px-4 pb-6">{panelContent}</div>
+					<div className="rounded-[1.5rem] bg-background px-2 pt-2 pb-4">
+						{panelContent}
+					</div>
 				</DetailVaulSheet>
 			</>
 		);
@@ -358,7 +358,7 @@ export function HomeCatalogFiltersPopover({
 				align="end"
 				sideOffset={12}
 				initialFocus={false}
-				className="w-[min(100vw-1.5rem,22rem)] overflow-visible rounded-[1.75rem] p-3 shadow-mobbin-xl"
+				className={catalogFiltersPopoverClassName}
 			>
 				{panelContent}
 			</PopoverContent>

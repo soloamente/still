@@ -13,7 +13,15 @@ export type CompanionActivityPayload = {
 };
 
 export type SenseMedia = {
-	provider: "netflix" | "disney" | "hotstar" | "prime" | "apple" | "max";
+	provider:
+		| "netflix"
+		| "disney"
+		| "hotstar"
+		| "prime"
+		| "apple"
+		| "max"
+		| "web";
+	serviceLabel?: string;
 	kind: "movie" | "episode";
 	title: string;
 	season: number | null;
@@ -21,6 +29,8 @@ export type SenseMedia = {
 	positionSec: number | null;
 	durationSec: number | null;
 };
+
+export type CompanionPresenceMode = "playing" | "browsing" | "sense";
 
 /** Lines chosen in Settings. Absent means the built-in card. */
 export type DiscordActivityFields = {
@@ -36,9 +46,13 @@ export type CompanionActivityMessage =
 			service: string;
 			activity: CompanionActivityPayload;
 			senseMedia: SenseMedia | null;
+			presenceMode?: CompanionPresenceMode;
+			pagePath?: string | null;
 			discordFields?: DiscordActivityFields;
 			/** Public Sense profile link for Discord's View profile button. */
 			profileButtonUrl?: string | null;
+			/** Public Sense page for the film or show that is playing. */
+			titleButtonUrl?: string | null;
 	  }
 	| {
 			type: "sense-companion:clear";

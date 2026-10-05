@@ -1,5 +1,6 @@
 const ACCOUNT_PREFIXES = [
 	"/diary",
+	"/lists",
 	"/watchlist",
 	"/quotes",
 	"/me",

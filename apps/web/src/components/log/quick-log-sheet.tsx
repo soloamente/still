@@ -89,6 +89,7 @@ import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 const NOTE_MAX = 500;
 
 const DEFAULT_RATING = 7;
+const MANUAL_RATING_LABEL = "Editing the rating manually";
 
 type MovieHit = {
 	id: number;
@@ -133,6 +134,16 @@ export type QuickLogArgs = {
 	posterUrl?: string | null;
 	/** TMDb or Sense community average on 0–10 for the ghost bar under the slider. */
 	averageRating?: number | null;
+	/**
+	 * TV show or season log. Stored tenths of the child average.
+	 * The slider opens here until the patron moves it.
+	 */
+	derivedRating?: number | null;
+	/**
+	 * Label under the slider while it still sits on `derivedRating`.
+	 * Example: "Average of 2 seasons".
+	 */
+	derivedScoreNote?: string | null;
 	/**
 	 * When set, the sheet PATCHes this row instead of POSTing a new log (same form as create).
 	 */
@@ -282,6 +293,9 @@ export function QuickLogRoot() {
 	const [movieTitle, setMovieTitle] = useState("");
 	const [posterUrl, setPosterUrl] = useState<string | null>(null);
 	const [averageRating, setAverageRating] = useState<number | null>(null);
+	const [derivedScoreNote, setDerivedScoreNote] = useState<string | null>(null);
+	const [derivedRating, setDerivedRating] = useState<number | null>(null);
+	const [ratingManuallyEdited, setRatingManuallyEdited] = useState(false);
 	const [watchedDate, setWatchedDate] = useState(formatTodayYmd());
 	const [ratingDisplay, setRatingDisplay] = useState(DEFAULT_RATING);
 	const [includeRating, setIncludeRating] = useState(true);
@@ -450,6 +464,9 @@ export function QuickLogRoot() {
 			setMovieTitle("");
 			setPosterUrl(null);
 			setAverageRating(null);
+			setDerivedScoreNote(null);
+			setDerivedRating(null);
+			setRatingManuallyEdited(false);
 			setWatchedDate(formatTodayYmd());
 			setRatingDisplay(DEFAULT_RATING);
 			setIncludeRating(true);
@@ -485,9 +502,16 @@ export function QuickLogRoot() {
 			if (args.movieTitle) setMovieTitle(args.movieTitle);
 			setPosterUrl(posterSrcFromPath(args.posterUrl) ?? null);
 			setAverageRating(args.averageRating ?? null);
+			setDerivedScoreNote(args.derivedScoreNote ?? null);
+			setDerivedRating(args.derivedRating ?? null);
+			setRatingManuallyEdited(false);
 			if (args.watchedAt) setWatchedDate(isoToLocalYmd(args.watchedAt));
+			const seeded = logRatingToDisplay(args.derivedRating);
 			const display = logRatingToDisplay(args.rating);
-			if (display != null) {
+			if (seeded != null) {
+				setRatingDisplay(seeded);
+				setIncludeRating(true);
+			} else if (display != null) {
 				setRatingDisplay(display);
 				setIncludeRating(true);
 			} else {
@@ -524,8 +548,17 @@ export function QuickLogRoot() {
 		}
 		setPosterUrl(posterSrcFromPath(args.posterUrl) ?? null);
 		setAverageRating(args.averageRating ?? null);
-		setRatingDisplay(DEFAULT_RATING);
-		setIncludeRating(true);
+		setDerivedScoreNote(args.derivedScoreNote ?? null);
+		setDerivedRating(args.derivedRating ?? null);
+		setRatingManuallyEdited(false);
+		const seeded = logRatingToDisplay(args.derivedRating);
+		if (seeded != null) {
+			setRatingDisplay(seeded);
+			setIncludeRating(true);
+		} else {
+			setRatingDisplay(DEFAULT_RATING);
+			setIncludeRating(true);
+		}
 		setNote("");
 		const scope = args.logScope ?? "show";
 		const scopedPrior =
@@ -707,11 +740,16 @@ export function QuickLogRoot() {
 	async function persist(options: { skipDetails: boolean }) {
 		if (!canSubmit || (movieId == null && tvId == null) || !args) return;
 		setSaving(true);
+		// Until the slider moves, the number is the live average — don't store it as their score.
+		const followingAverage =
+			args.derivedRating != null && !ratingManuallyEdited;
 		const storedRating = options.skipDetails
 			? null
-			: includeRating
-				? logRatingToStored(ratingDisplay)
-				: null;
+			: followingAverage
+				? null
+				: includeRating
+					? logRatingToStored(ratingDisplay)
+					: null;
 
 		try {
 			if (args.logId) {
@@ -858,6 +896,10 @@ export function QuickLogRoot() {
 				rewatch,
 				logScope,
 			});
+	const scoreCaption =
+		derivedRating != null && ratingManuallyEdited
+			? MANUAL_RATING_LABEL
+			: derivedScoreNote;
 
 	const primaryLabel = isEditMode
 		? "Save"
@@ -1017,10 +1059,16 @@ export function QuickLogRoot() {
 				onChange={(next) => {
 					setRatingDisplay(next);
 					setIncludeRating(true);
+					if (derivedRating != null) setRatingManuallyEdited(true);
 				}}
 				averageRating={averageRating}
-				className="mb-5"
+				className={scoreCaption ? "mb-2" : "mb-5"}
 			/>
+			{scoreCaption ? (
+				<p className="mb-5 text-center text-muted-foreground text-sm">
+					{scoreCaption}
+				</p>
+			) : null}
 
 			<div className="mb-6 space-y-5">
 				<div

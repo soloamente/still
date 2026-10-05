@@ -30,6 +30,11 @@ function inferImageContentType(key: string): string {
 	return "image/jpeg";
 }
 
+/** Wrangler CLI splits `{bucket}/{key}` on whitespace — skip decoded keys with spaces. */
+export function isWranglerR2KeyCandidateSafe(key: string): boolean {
+	return !/\s/.test(key);
+}
+
 /** DB keys may be partially URL-encoded (`giphy%20(2).gif`). */
 export function r2KeyCandidates(key: string): string[] {
 	const out: string[] = [];
@@ -50,6 +55,13 @@ export function r2KeyCandidates(key: string): string[] {
 	}
 	if (key.includes(" ")) {
 		add(key.replaceAll(" ", "%2520"));
+	}
+	// Legacy avatar keys: literal parens in the object name vs encoded.
+	if (key.includes("(") || key.includes(")")) {
+		add(key.replace(/\(/g, "%28").replace(/\)/g, "%29"));
+	}
+	if (key.includes("%28") || key.includes("%29")) {
+		add(key.replace(/%28/g, "(").replace(/%29/g, ")"));
 	}
 
 	return out;
@@ -141,6 +153,9 @@ async function fetchR2AssetViaWranglerCli(
 	const bucket = env.R2_ASSETS_BUCKET?.trim() || DEFAULT_ASSETS_BUCKET;
 
 	for (const candidate of r2KeyCandidates(key)) {
+		// Decoded keys with spaces break wrangler's positional parser on Windows.
+		if (!isWranglerR2KeyCandidateSafe(candidate)) continue;
+
 		const cacheKey = `${bucket}/${candidate}`;
 		const cached = devCliCache.get(cacheKey);
 		if (cached && Date.now() - cached.cachedAt < DEV_CLI_CACHE_TTL_MS) {
@@ -172,11 +187,11 @@ async function fetchR2AssetViaWranglerCli(
 		]);
 
 		if (exitCode !== 0) {
-			console.warn(
-				"[asset-store] wrangler r2 get failed",
-				cacheKey,
-				stderr.trim() || `exit ${exitCode}`,
-			);
+			const errText = stderr.trim() || `exit ${exitCode}`;
+			// Missing objects are expected while iterating key variants — log once at the end.
+			if (!/does not exist/i.test(errText)) {
+				console.warn("[asset-store] wrangler r2 get failed", cacheKey, errText);
+			}
 			continue;
 		}
 

@@ -1,3 +1,16 @@
+import {
+	DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+	DISCORD_WATCHING_WITH_SENSE,
+	inferCompanionPresenceMode,
+	resolveDiscordActivityFromMessage,
+} from "../../sense-companion/src/presence/discord-layout.ts";
+import {
+	companionServiceDisplayName,
+	companionServiceLogoUrl,
+	isCompanionServiceLogoUrl,
+	isGenericBrowseTitle,
+	isStreamingTitlePage,
+} from "../../sense-companion/src/presence/service-platform-brand.ts";
 import type { CompanionActivityMessage } from "./companion-message";
 import { isCompanionActivityMessage } from "./companion-message";
 
@@ -7,8 +20,15 @@ export const DISCORD_IPC_FRAME = 1;
 export const DISCORD_IPC_PING = 3;
 export const DISCORD_IPC_PONG = 4;
 
-/** Watching. Discord shows this as "Watching {name}". */
+/** Listening. Discord shows this as "Listening to {name}" and prints the cover text as its own row. */
+export const DISCORD_ACTIVITY_LISTENING = 2;
+
+/** Watching. Discord shows this as "Watching {name}". The cover text stays a tooltip. */
 export const DISCORD_ACTIVITY_WATCHING = 3;
+
+export type DiscordActivityType =
+	| typeof DISCORD_ACTIVITY_LISTENING
+	| typeof DISCORD_ACTIVITY_WATCHING;
 
 /** Keep a paused title briefly, then drop it so a paused tab does not sit on the profile. */
 export const DISCORD_PAUSE_CLEAR_MS = 30_000;
@@ -23,6 +43,10 @@ export const DISCORD_PRESENCE_BRAND = "Sense";
  */
 export const DISCORD_PLAY_IMAGE = "https://files.catbox.moe/yjkwtv.png";
 export const DISCORD_PAUSE_IMAGE = "https://files.catbox.moe/bwuol4.png";
+/** Same compass as the Exploring toast. Public copy of assets/discord-explore.png. */
+export const DISCORD_EXPLORE_IMAGE = "https://files.catbox.moe/e28hpt.png";
+/** Same info mark as the Viewing toast. Public copy of assets/discord-info.png. */
+export const DISCORD_INFO_IMAGE = "https://files.catbox.moe/mo87jp.png";
 
 /** While paused, rewrite the bar about once a second so it stays on the pause point. */
 export const DISCORD_PAUSE_TIMESTAMP_DRIFT_MS = 800;
@@ -43,6 +67,7 @@ export type DiscordPresenceDecision =
 			action: "set";
 			title: string;
 			details: string | null;
+			activityType: DiscordActivityType;
 			largeImage: string | null;
 			largeText: string | null;
 			smallImage: string | null;
@@ -50,6 +75,7 @@ export type DiscordPresenceDecision =
 			state: string | null;
 			timestamps: DiscordPlaybackTimestamps | null;
 			profileButtonUrl?: string | null;
+			titleButtonUrl?: string | null;
 	  }
 	| { action: "hold" }
 	| { action: "clear" };
@@ -155,11 +181,31 @@ export function buildHandshake(clientId: string): {
 	return { v: 1, client_id: clientId };
 }
 
+function httpsButtonUrl(value: string | null | undefined): string | null {
+	const url = value?.trim() ?? "";
+	return url.startsWith("https://") ? url : null;
+}
+
+/** At most two buttons. The title link comes first, then the profile. */
+export function discordActivityButtons(input: {
+	titleButtonUrl?: string | null;
+	profileButtonUrl?: string | null;
+}): Array<{ label: string; url: string }> | undefined {
+	const buttons: Array<{ label: string; url: string }> = [];
+	const title = httpsButtonUrl(input.titleButtonUrl);
+	if (title) buttons.push({ label: "View title on Sense", url: title });
+	const profile = httpsButtonUrl(input.profileButtonUrl);
+	if (profile) buttons.push({ label: "View profile", url: profile });
+	if (buttons.length === 0) return undefined;
+	return buttons.slice(0, 2);
+}
+
 export function buildSetWatchingActivity(input: {
 	pid: number;
 	nonce: string;
 	title: string;
 	details: string | null;
+	activityType?: DiscordActivityType;
 	largeImage: string | null;
 	largeText: string | null;
 	smallImage: string | null;
@@ -167,14 +213,16 @@ export function buildSetWatchingActivity(input: {
 	state: string | null;
 	timestamps: DiscordPlaybackTimestamps | null;
 	profileButtonUrl?: string | null;
+	titleButtonUrl?: string | null;
 }): {
 	cmd: "SET_ACTIVITY";
 	nonce: string;
 	args: {
 		pid: number;
 		activity: {
-			type: typeof DISCORD_ACTIVITY_WATCHING;
+			type: DiscordActivityType;
 			name: string;
+			status_display_type: 0;
 			state?: string;
 			details?: string;
 			assets?: {
@@ -189,8 +237,9 @@ export function buildSetWatchingActivity(input: {
 	};
 } {
 	const activity: {
-		type: typeof DISCORD_ACTIVITY_WATCHING;
+		type: DiscordActivityType;
 		name: string;
+		status_display_type: 0;
 		state?: string;
 		details?: string;
 		assets?: {
@@ -202,8 +251,11 @@ export function buildSetWatchingActivity(input: {
 		timestamps?: DiscordPlaybackTimestamps;
 		buttons?: Array<{ label: string; url: string }>;
 	} = {
-		type: DISCORD_ACTIVITY_WATCHING,
+		type: input.activityType ?? DISCORD_ACTIVITY_WATCHING,
 		name: input.title,
+		// 0 = show the name field. Without it Discord falls back to the
+		// application name, which is just "Sense".
+		status_display_type: 0,
 	};
 	if (input.state) activity.state = input.state;
 	if (input.details) activity.details = input.details;
@@ -223,11 +275,13 @@ export function buildSetWatchingActivity(input: {
 		if (input.smallText) assets.small_text = input.smallText;
 	}
 	if (input.largeImage || input.smallImage) activity.assets = assets;
-	// Discord only accepts https button URLs. Local http profile links stay off.
-	const buttonUrl = input.profileButtonUrl?.trim() ?? "";
-	if (buttonUrl.startsWith("https://")) {
-		activity.buttons = [{ label: "View profile", url: buttonUrl }];
-	}
+	// Discord only accepts https button URLs. Local http links stay off.
+	// Buttons are visible to other people, not on the account that set them.
+	const buttons = discordActivityButtons({
+		titleButtonUrl: input.titleButtonUrl,
+		profileButtonUrl: input.profileButtonUrl,
+	});
+	if (buttons) activity.buttons = buttons;
 	return {
 		cmd: "SET_ACTIVITY",
 		nonce: input.nonce,
@@ -258,16 +312,6 @@ function activityIsPaused(
 	return image.endsWith("/pause.png") || label === "Paused";
 }
 
-function episodeMark(
-	season: number | null,
-	episode: number | null,
-): string | null {
-	if (season == null || episode == null) return null;
-	if (!Number.isInteger(season) || !Number.isInteger(episode)) return null;
-	if (season < 1 || episode < 1) return null;
-	return `S${season} E${episode}`;
-}
-
 function filled(value: string | null | undefined): string | null {
 	const trimmed = value?.trim() ?? "";
 	return trimmed.length > 0 ? trimmed : null;
@@ -285,43 +329,125 @@ function watchingCopy(
 	largeText: string | null;
 	largeImage: string | null;
 } | null {
+	const mode = inferCompanionPresenceMode(message);
+	// A stale extension still sends "Tracking with Sense" on a title page.
+	// Rebuild the browse card so that line is "On {platform}".
+	const chosen =
+		mode === "browsing"
+			? (resolveDiscordActivityFromMessage(
+					message,
+					DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+				) ?? message.discordFields)
+			: (message.discordFields ??
+				resolveDiscordActivityFromMessage(
+					message,
+					DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+				));
+	if (!chosen) return null;
+	const chosenName = filled(chosen.name);
+	if (!chosenName) return null;
+	// Status is "Watching with Sense" for playback and for browsing. A stale
+	// extension can still send the service name, which Discord prints as
+	// "Watching Netflix".
 	const title =
-		message.senseMedia?.title.trim() ||
-		message.activity.name?.trim() ||
-		message.activity.details?.trim() ||
-		"";
-	if (!title) return null;
-	const chosen = message.discordFields;
-	const details = chosen
-		? filled(chosen.details)
-		: (episodeMark(
-				message.senseMedia?.season ?? null,
-				message.senseMedia?.episode ?? null,
-			) ??
-			(message.activity.largeImageText?.trim() &&
-			message.activity.largeImageText.trim() !== title
-				? message.activity.largeImageText.trim()
-				: null));
+		mode === "playing" || mode === "browsing"
+			? DISCORD_WATCHING_WITH_SENSE
+			: chosenName;
+	const state =
+		message.discordFields != null
+			? filled(chosen.state)
+			: (filled(chosen.state) ?? DISCORD_PRESENCE_BRAND);
 	return {
-		title: filled(chosen?.name) ?? title,
-		details,
-		state: chosen ? filled(chosen.state) : DISCORD_PRESENCE_BRAND,
-		largeText: chosen ? filled(chosen.largeText) : title,
-		largeImage: discordArtworkUrl(message.activity.largeImageKey),
+		title,
+		details: filled(chosen.details),
+		state,
+		// Hover on the poster is the film or show name. "On {platform}" stays
+		// on the card body, not on this tooltip.
+		largeText: coverTooltip(message, filled(chosen.largeText)),
+		largeImage: browseLargeImage(message, mode),
 	};
 }
 
-/** A title with a playback window, not a catalogue browse. */
-function isPlayback(
+/** Poster hover while watching: the title, never the "On {platform}" line. */
+function coverTooltip(
 	message: Extract<
 		CompanionActivityMessage,
 		{ type: "sense-companion:activity" }
 	>,
-): boolean {
-	if (message.senseMedia) return true;
-	const start = message.activity.startTimestamp;
-	const end = message.activity.endTimestamp;
-	return start != null && end != null && end > start;
+	chosen: string | null,
+): string | null {
+	const mode = inferCompanionPresenceMode(message);
+	if (mode === "browsing") {
+		const activityTitle =
+			message.activity.details?.trim() || message.activity.name?.trim() || "";
+		if (
+			activityTitle.length > 0 &&
+			!isGenericBrowseTitle(activityTitle) &&
+			!activityTitle.toLowerCase().startsWith("on ")
+		) {
+			return activityTitle;
+		}
+		if (chosen && !chosen.toLowerCase().startsWith("on ")) return chosen;
+		return chosen;
+	}
+	if (mode !== "playing") return chosen;
+	const mediaTitle = message.senseMedia?.title.trim() ?? "";
+	if (mediaTitle.length > 0) return mediaTitle;
+	const activityTitle = message.activity.name?.trim() ?? "";
+	if (
+		activityTitle.length > 0 &&
+		!activityTitle.toLowerCase().startsWith("on ")
+	) {
+		return activityTitle;
+	}
+	if (chosen && !chosen.toLowerCase().startsWith("on ")) return chosen;
+	return activityTitle.length > 0 ? activityTitle : chosen;
+}
+
+/**
+ * Browsing keeps the inset service logo on every page of that platform.
+ * A title poster still replaces it. An older full-bleed mark does not.
+ */
+function browseLargeImage(
+	message: Extract<
+		CompanionActivityMessage,
+		{ type: "sense-companion:activity" }
+	>,
+	mode: ReturnType<typeof inferCompanionPresenceMode>,
+): string | null {
+	const logo = companionServiceLogoUrl(message.service);
+	if (mode === "sense") return null;
+	const artwork = discordArtworkUrl(message.activity.largeImageKey);
+	if (mode === "browsing") {
+		if (artwork && !isCompanionServiceLogoUrl(artwork)) return artwork;
+		return logo;
+	}
+	return artwork ?? logo;
+}
+
+/** The compass stays on the catalogue and home. The info mark is a title page. */
+function browseStatusMark(
+	message: Extract<
+		CompanionActivityMessage,
+		{ type: "sense-companion:activity" }
+	>,
+): { image: string; text: string } {
+	if (isStreamingTitlePage(message.pagePath)) {
+		return { image: DISCORD_INFO_IMAGE, text: "Viewing" };
+	}
+	return { image: DISCORD_EXPLORE_IMAGE, text: "Exploring" };
+}
+
+function presenceSmallText(
+	message: Extract<
+		CompanionActivityMessage,
+		{ type: "sense-companion:activity" }
+	>,
+): string | null {
+	const mode = inferCompanionPresenceMode(message);
+	if (mode === "playing") return "Playing";
+	if (mode === "browsing") return "Browsing";
+	return "On Sense";
 }
 
 /**
@@ -354,6 +480,7 @@ export function decideDiscordPresence(input: {
 			decision: {
 				action: "set",
 				...copy,
+				activityType: DISCORD_ACTIVITY_WATCHING,
 				smallImage: DISCORD_PAUSE_IMAGE,
 				smallText: "Paused",
 				timestamps: discordPlaybackTimestamps({
@@ -364,26 +491,46 @@ export function decideDiscordPresence(input: {
 					nowMs: input.now,
 				}),
 				profileButtonUrl: input.message.profileButtonUrl,
+				titleButtonUrl: input.message.titleButtonUrl,
 			},
 			pausedSince,
 		};
 	}
 
-	const playing = isPlayback(input.message);
+	const mode = inferCompanionPresenceMode(input.message);
+	const playing = mode === "playing";
+	const browsing = mode === "browsing";
+	const serviceLogo = companionServiceLogoUrl(input.message.service);
+	const serviceName = companionServiceDisplayName(input.message.service);
+	const browseMark = browsing ? browseStatusMark(input.message) : null;
 	return {
 		decision: {
 			action: "set",
 			...copy,
-			smallImage: playing ? DISCORD_PLAY_IMAGE : null,
-			smallText: playing ? "Playing" : null,
-			timestamps: discordPlaybackTimestamps({
-				startTimestamp: input.message.activity.startTimestamp,
-				endTimestamp: input.message.activity.endTimestamp,
-				positionSec: input.message.senseMedia?.positionSec ?? null,
-				durationSec: input.message.senseMedia?.durationSec ?? null,
-				nowMs: input.now,
-			}),
+			activityType: DISCORD_ACTIVITY_WATCHING,
+			smallImage: playing
+				? (serviceLogo ?? DISCORD_PLAY_IMAGE)
+				: browsing
+					? (browseMark?.image ?? DISCORD_EXPLORE_IMAGE)
+					: serviceLogo,
+			smallText: playing
+				? serviceLogo
+					? serviceName
+					: "Playing"
+				: browsing
+					? (browseMark?.text ?? "Exploring")
+					: presenceSmallText(input.message),
+			timestamps: playing
+				? discordPlaybackTimestamps({
+						startTimestamp: input.message.activity.startTimestamp,
+						endTimestamp: input.message.activity.endTimestamp,
+						positionSec: input.message.senseMedia?.positionSec ?? null,
+						durationSec: input.message.senseMedia?.durationSec ?? null,
+						nowMs: input.now,
+					})
+				: null,
 			profileButtonUrl: input.message.profileButtonUrl,
+			titleButtonUrl: input.message.titleButtonUrl,
 		},
 		pausedSince: null,
 	};

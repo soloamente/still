@@ -3,17 +3,30 @@ import {
 	findCuratedSuggestions,
 	SEARCH_CURATED_TAGS,
 } from "@/lib/search-curated-tags";
+import type { SearchDialogStreamingProvider } from "@/lib/search-dialog-streaming-providers";
+import {
+	streamingProviderNameMatchesToken,
+	streamingProviderSearchTokens,
+	streamingProviderSuggestionMatchScore,
+} from "@/lib/search-dialog-streaming-providers";
 import {
 	type SearchDialogStudio,
 	studioNameMatchesToken,
 	studioSearchTokens,
+	studioSuggestionMatchScore,
 } from "@/lib/search-dialog-studios";
+
+/** Cap autocomplete length while leaving room for the full curated studio rail. */
+const TAG_SUGGESTION_STUDIO_LIMIT = 22;
+const TAG_SUGGESTION_STREAMING_LIMIT = 14;
+const TAG_SUGGESTION_TOTAL_LIMIT = 28;
 
 export type SearchDialogGenre = { id: number; name: string };
 
 /** Committed filter chip in the home search token field. */
 export type SearchTag =
 	| { kind: "studio"; id: number; name: string; logoUrl: string | null }
+	| { kind: "streaming"; id: number; name: string; logoUrl: string | null }
 	| { kind: "media"; listingKind: "movie" | "tv" }
 	| { kind: "genre"; id: number; name: string; listingKind: "movie" | "tv" }
 	| { kind: "curated"; slug: string; label: string }
@@ -23,6 +36,13 @@ export type SearchTag =
 export type TagSuggestion =
 	| {
 			kind: "studio";
+			id: number;
+			name: string;
+			logoUrl: string | null;
+			label: string;
+	  }
+	| {
+			kind: "streaming";
 			id: number;
 			name: string;
 			logoUrl: string | null;
@@ -58,6 +78,7 @@ export function genreNameMatchesToken(name: string, token: string): boolean {
 /** Stable React key for a committed tag pill. */
 export function searchTagKey(tag: SearchTag): string {
 	if (tag.kind === "studio") return `studio-${tag.id}`;
+	if (tag.kind === "streaming") return `streaming-${tag.id}`;
 	if (tag.kind === "media") return `media-${tag.listingKind}`;
 	if (tag.kind === "genre") return `genre-${tag.listingKind}-${tag.id}`;
 	if (tag.kind === "curated") return `curated-${tag.slug}`;
@@ -69,12 +90,17 @@ export function deriveSearchState(tags: SearchTag[]) {
 	const studio = tags.find(
 		(t): t is Extract<SearchTag, { kind: "studio" }> => t.kind === "studio",
 	);
+	const streaming = tags.find(
+		(t): t is Extract<SearchTag, { kind: "streaming" }> =>
+			t.kind === "streaming",
+	);
 	const media = tags.find(
 		(t): t is Extract<SearchTag, { kind: "media" }> => t.kind === "media",
 	);
 	const lists = tags.some((t) => t.kind === "lists");
 	return {
 		studioId: studio?.id ?? null,
+		streamingProviderId: streaming?.id ?? null,
 		listingKind: (media?.listingKind ?? "movie") as "movie" | "tv",
 		resultMode: lists ? ("lists" as const) : ("catalogue" as const),
 	};
@@ -125,21 +151,24 @@ export function rankTagSuggestions(
 	genres: SearchDialogGenre[],
 	listingKind: "movie" | "tv",
 	existingTags: SearchTag[],
+	streamingProviders: SearchDialogStreamingProvider[] = [],
 ): TagSuggestion[] {
 	const q = token.trim().toLowerCase();
 	if (!q) return [];
 
 	const hasStudio = existingTags.some((t) => t.kind === "studio");
+	const hasStreaming = existingTags.some((t) => t.kind === "streaming");
 	const hasMedia = existingTags.some((t) => t.kind === "media");
 	const hasLists = existingTags.some((t) => t.kind === "lists");
 	const out: TagSuggestion[] = [];
 
 	if (hasLists) return out;
 
-	for (const s of studios) {
-		if (hasStudio) continue;
-		if (studioNameMatchesToken(s, token)) {
-			out.push({
+	const studioRows: TagSuggestion[] = [];
+	if (!hasStudio) {
+		for (const s of studios) {
+			if (!studioNameMatchesToken(s, token)) continue;
+			studioRows.push({
 				kind: "studio",
 				id: s.id,
 				name: s.name,
@@ -147,6 +176,50 @@ export function rankTagSuggestions(
 				label: s.name,
 			});
 		}
+		studioRows.sort((a, b) => {
+			if (a.kind !== "studio" || b.kind !== "studio") return 0;
+			const scoreDelta =
+				studioSuggestionMatchScore(
+					{ id: b.id, name: b.name, logoUrl: b.logoUrl },
+					token,
+				) -
+				studioSuggestionMatchScore(
+					{ id: a.id, name: a.name, logoUrl: a.logoUrl },
+					token,
+				);
+			if (scoreDelta !== 0) return scoreDelta;
+			return a.name.localeCompare(b.name);
+		});
+		out.push(...studioRows.slice(0, TAG_SUGGESTION_STUDIO_LIMIT));
+	}
+
+	const streamingRows: TagSuggestion[] = [];
+	if (!hasStreaming) {
+		for (const p of streamingProviders) {
+			if (!streamingProviderNameMatchesToken(p, token)) continue;
+			streamingRows.push({
+				kind: "streaming",
+				id: p.id,
+				name: p.name,
+				logoUrl: p.logoUrl,
+				label: p.name,
+			});
+		}
+		streamingRows.sort((a, b) => {
+			if (a.kind !== "streaming" || b.kind !== "streaming") return 0;
+			const scoreDelta =
+				streamingProviderSuggestionMatchScore(
+					{ id: b.id, name: b.name, logoUrl: b.logoUrl },
+					token,
+				) -
+				streamingProviderSuggestionMatchScore(
+					{ id: a.id, name: a.name, logoUrl: a.logoUrl },
+					token,
+				);
+			if (scoreDelta !== 0) return scoreDelta;
+			return a.name.localeCompare(b.name);
+		});
+		out.push(...streamingRows.slice(0, TAG_SUGGESTION_STREAMING_LIMIT));
 	}
 
 	for (const g of genres) {
@@ -186,13 +259,21 @@ export function rankTagSuggestions(
 		out.push({ kind: "lists", label: "Lists" });
 	}
 
-	return out.slice(0, 12);
+	return out.slice(0, TAG_SUGGESTION_TOTAL_LIMIT);
 }
 
 export function suggestionToTag(suggestion: TagSuggestion): SearchTag {
 	if (suggestion.kind === "studio") {
 		return {
 			kind: "studio",
+			id: suggestion.id,
+			name: suggestion.name,
+			logoUrl: suggestion.logoUrl,
+		};
+	}
+	if (suggestion.kind === "streaming") {
+		return {
+			kind: "streaming",
 			id: suggestion.id,
 			name: suggestion.name,
 			logoUrl: suggestion.logoUrl,
@@ -223,6 +304,9 @@ export function upsertTag(tags: SearchTag[], next: SearchTag): SearchTag[] {
 
 	if (next.kind === "studio") {
 		return [...withoutLists.filter((t) => t.kind !== "studio"), next];
+	}
+	if (next.kind === "streaming") {
+		return [...withoutLists.filter((t) => t.kind !== "streaming"), next];
 	}
 	if (next.kind === "media") {
 		return [...withoutLists.filter((t) => t.kind !== "media"), next];
@@ -258,6 +342,7 @@ export const STRUCTURED_QUERY_SEP = " · ";
 /** Stable `?search=` token — studio id survives without the curated studio list. */
 function tagSegmentLabel(tag: SearchTag): string {
 	if (tag.kind === "studio") return `studio:${tag.id}`;
+	if (tag.kind === "streaming") return `streaming:${tag.id}`;
 	if (tag.kind === "media") {
 		return tag.listingKind === "movie" ? "Films" : "TV shows";
 	}
@@ -269,6 +354,7 @@ function tagSegmentLabel(tag: SearchTag): string {
 /** Patron-facing chip copy — names, not `studio:41077` tokens. */
 export function displayTagSegmentLabel(tag: SearchTag): string {
 	if (tag.kind === "studio") return tag.name;
+	if (tag.kind === "streaming") return tag.name;
 	if (tag.kind === "media") {
 		return tag.listingKind === "movie" ? "Films" : "TV shows";
 	}
@@ -299,6 +385,7 @@ export type ParsedRecentStructuredQuery = {
 export type ParseRecentOptions = {
 	movieGenres?: SearchDialogGenre[];
 	tvGenres?: SearchDialogGenre[];
+	streamingProviders?: SearchDialogStreamingProvider[];
 };
 
 function findGenreByName(
@@ -328,6 +415,7 @@ function parseStructuredQuerySegments(
 ): ParsedRecentStructuredQuery {
 	const movieGenres = options.movieGenres ?? [];
 	const tvGenres = options.tvGenres ?? [];
+	const streamingProviders = options.streamingProviders ?? [];
 	const tags: SearchTag[] = [];
 	let freeText = "";
 
@@ -363,6 +451,37 @@ function parseStructuredQuerySegments(
 					id: studio.id,
 					name: studio.name,
 					logoUrl: studio.logoUrl,
+				});
+				continue;
+			}
+		}
+
+		if (!tags.some((t) => t.kind === "streaming")) {
+			const streamingIdMatch = /^streaming:(\d+)$/i.exec(seg);
+			if (streamingIdMatch) {
+				const id = Number(streamingIdMatch[1]);
+				if (Number.isFinite(id) && id > 0) {
+					const known = streamingProviders.find((p) => p.id === id);
+					tags.push({
+						kind: "streaming",
+						id,
+						name: known?.name ?? "Streaming",
+						logoUrl: known?.logoUrl ?? null,
+					});
+					continue;
+				}
+			}
+			const platform = streamingProviders.find(
+				(p) =>
+					p.name.toLowerCase() === lower ||
+					streamingProviderSearchTokens(p).some((t) => t === lower),
+			);
+			if (platform) {
+				tags.push({
+					kind: "streaming",
+					id: platform.id,
+					name: platform.name,
+					logoUrl: platform.logoUrl,
 				});
 				continue;
 			}

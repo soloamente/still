@@ -1,33 +1,47 @@
-import fs from "fs";
+import fs from "node:fs";
+import readline from "node:readline";
 
-const data = JSON.parse(
-	fs.readFileSync(
-		"C:/Users/adgv/Documents/Projects/still/.cursor/hooks/state/_mine-out.json",
-		"utf8",
-	),
-);
+const parent =
+	"C:/Users/adgv/.cursor/projects/c-Users-adgv-Documents-Projects-still/agent-transcripts/26023be4-2ab1-497f-9360-1ca609776d2a/26023be4-2ab1-497f-9360-1ca609776d2a.jsonl";
+const start = 3533;
+const end = 3596;
+const rl = readline.createInterface({
+	input: fs.createReadStream(parent),
+	crlfDelay: Number.POSITIVE_INFINITY,
+});
 
-const keywords =
-	/\b(always|never|don't|do not|prefer|must|should|instead|not |use |avoid|keep|stop|fix|wrong|correct|planner|executor|go\b|ok\b|scratchpad|AGENTS|design|onboarding|hero|home|profile|community|metal-fx|originkit|spiral|polar|subscription|theme|motion|animation)\b/i;
-
-for (const t of data) {
-	console.log(`\n######## ${t.id} (${t.count}) ########`);
-	for (let i = 0; i < t.users.length; i++) {
-		const u = t.users[i];
-		// skip huge skill dumps
-		if (u.includes("manually_attached_skills") && u.length > 1500) {
-			console.log(`--- ${i + 1} [skill attach, truncated] ---`);
-			const q = u.match(/<user_query>[\s\S]*$/);
-			console.log((q ? q[0] : u).slice(0, 600));
-			continue;
-		}
-		if (u.length > 400 && !keywords.test(u.slice(0, 800))) {
-			// still show short head
-			console.log(`--- ${i + 1} ---`);
-			console.log(u.slice(0, 500));
-			continue;
-		}
-		console.log(`--- ${i + 1} ---`);
-		console.log(u.slice(0, 1400));
+function textOf(message) {
+	const parts = message?.content ?? [];
+	let text = "";
+	for (const c of parts) {
+		if (typeof c === "string") text += c;
+		else if (c?.type === "text" && typeof c.text === "string") text += c.text;
 	}
+	return text;
 }
+
+let n = 0;
+const chunks = [];
+for await (const line of rl) {
+	n += 1;
+	if (n < start || n > end) continue;
+	if (!line.startsWith("{")) continue;
+	let o;
+	try {
+		o = JSON.parse(line);
+	} catch {
+		continue;
+	}
+	const role = o.role || "?";
+	if (role !== "assistant") continue;
+	const text = textOf(o.message || o);
+	if (!text.trim()) continue;
+	chunks.push(
+		`\n##### ${n} assistant len ${text.length} #####\n${text.slice(0, 3500)}`,
+	);
+}
+
+const dest =
+	"C:/Users/adgv/Documents/Projects/still/.cursor/hooks/state/_mine-summary.txt";
+fs.writeFileSync(dest, chunks.join("\n"));
+console.log("chunks", chunks.length, "bytes", chunks.join("\n").length);

@@ -2,7 +2,7 @@
 
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 
 import { MissingArtworkPlaceholder } from "@/components/media/missing-artwork-placeholder";
 import { DetailArtworkPasitoStepper } from "@/components/movie/detail-artwork-pasito-stepper";
@@ -30,12 +30,15 @@ export function MovieDetailHeroMedia({
 	backdropUrl: _backdropUrl,
 	/** When set (film/TV detail API), extra TMDb posters from `hero_artwork` (posters only). */
 	artworkSlides,
+	/** Optional control layered on the poster frame (e.g. trailer play). */
+	posterOverlay,
 	className,
 }: {
 	title: string;
 	posterUrl: string | null;
 	backdropUrl: string | null;
 	artworkSlides?: MovieDetailHeroSlide[];
+	posterOverlay?: ReactNode;
 	className?: string;
 }) {
 	const slides = useMemo(() => {
@@ -96,6 +99,7 @@ export function MovieDetailHeroMedia({
 						}
 					/>
 				</div>
+				{posterOverlay}
 			</div>
 			{showDots ? (
 				<div

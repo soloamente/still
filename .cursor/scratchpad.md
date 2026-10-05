@@ -1,12 +1,171 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Sense Companion — "Now watching" extension, PreMiD-based (2026-09-29) — PLANNER
+
+**Background and motivation:** Human wants a browser extension that detects what they're watching on Netflix, Disney+, Prime Video, etc., and shows it on **both** their **Discord profile** and their **Sense profile**. Direction from human: "copy the whole PreMiD repo and add the Sense connection."
+
+**Research findings (PreMiD, cloned 2026-09-29):**
+- `github.com/PreMiD/PreMiD` = only two backend services (`apps/pd` link shortener, `apps/schema-server`). **The PreMiD browser extension is closed source** ("not currently open source" per their README) → it **cannot be copied**. The old Electron app (socket.io on `:3020` + `discord-rpc` IPC) is legacy.
+- **Open part:** `github.com/PreMiD/Activities` (**MPL-2.0**), ~28 site scripts incl. Netflix, Disney+, Prime Video, Apple TV+, Hulu, Paramount+, Crunchyroll. Each is `presence.ts` + `metadata.json`, using a global `Presence` class (`on('UpdateData')`, `setActivity`, `clearActivity`, `getSetting`, `getStrings`, `getPageVariable`, `execInPage`, `onRequest`) plus the small `premid` helper package (`getTimestamps`, `getTimestampsFromMedia`, `ActivityType`, `Assets`, `supports`). Type surface: `@types/premid/index.d.ts`.
+  - Netflix reads Netflix's own `/nq/website/memberapi/release/metadata?movieid=` (structured: show/movie, season/episode seq, title, year, boxart).
+  - Disney+ injects a page script that polls `disney-web-player.mediaPlayer` (title, `S1:E3` subtitle, playhead, duration).
+- PreMiD also has **Activity Forwarding** (POSTs activity JSON to a URL; no clear on browser close → 20 min timeout).
+- **Discord constraint:** rich presence for a normal user can only be set through the **local Discord desktop client over RPC/IPC** (Discord Social SDK docs: web clients unsupported). A browser extension can't open that pipe by itself → needs a **native messaging host** (small installed helper).
+- **Sense already has:** Discord gateway reader (`apps/discord-presence` Worker) → `discord-presence-client.ts` → `formatDiscordActivity` (`apps/server/src/lib/discord-activity.ts`) with a **Watching** (type 3) branch → profile hero row (`profile-discord-activity-row.tsx`) + account menu. Privacy: `presenceVisibility` + `discordActivityEnabled` (`discord-activity-visibility.ts`, `discord-activity-preferences.ts`).
+
+**Key challenges and analysis:**
+1. **"Copy PreMiD" = copy Activities + rebuild the runtime.** We write our own MV3 extension that provides a compatible `Presence` shim so vendored Activity files run with minimal edits. Scope v1 to streaming sites only (Netflix, Disney+, Prime Video, Apple TV+, Max/HBO, Crunchyroll), not all ~28.
+2. **Licence:** MPL-2.0 is file-level copyleft — vendored/modified Activity files keep their licence header, ship `LICENSE` + `NOTICE`, and their source must stay public. Our own runtime/Sense code can stay under our licence. **Do not** use the PreMiD name, logos, their Discord client IDs, or `cdn.rcd.gg` assets — replace with a **Sense** Discord application + our own assets.
+3. **Discord path:** native messaging host `apps/sense-companion-host` (Bun-compiled exe, `discord-rpc`-style IPC to `\\.\pipe\discord-ipc-0` / unix socket), registered with a host manifest per browser. Extension → `chrome.runtime.connectNative` → host → Discord. Needs an installer step (Windows registry key / macOS+Linux JSON path).
+4. **Sense path:** extension → Sense API with a **paired device token** (Settings → Connections → "Connect browser extension" shows a code; extension exchanges it) — avoids relying on third-party cookies from the extension. Server keeps "now watching" in **Redis** (heartbeat TTL ~90s, hard stop 20 min) — **no Neon writes per tick**.
+5. **Structured > strings:** our shim receives the Activity payload **plus** a small structured side-channel we add in our copies (`kind: movie|episode`, `title`, `season`, `episode`, `year`, `positionSec`, `durationSec`, `provider`). Server matches to TMDb (`movie`/`tv` search, cached) → profile row links `/movies/[id]` / `/tv/[id]` with Sense poster.
+6. **Precedence on profile:** Sense Companion (structured) wins over Discord-gateway Watching string; Watching should not be hidden by Listening/Playing when it came from the Companion.
+7. **Risk:** site DOM/API changes break scrapers (PreMiD ships frequent fixes — we must re-sync from upstream); streaming ToS gray area (same as PreMiD, which is on the Chrome Web Store); store review for `nativeMessaging` + broad host permissions.
+
+**High-level task breakdown (Executor: one task at a time, human verifies each):**
+- [ ] **SC.1 Scaffold** `apps/sense-companion` (MV3, WXT or Vite + `@crxjs`, TypeScript, Bun workspace). *Success:* loads unpacked in Chrome, popup shows "Sense Companion", `bun run build` green. **Executor 2026-09-29:** build green. Waiting on human load-unpacked check.
+- [ ] **SC.2 Vendor Activities** — copy Netflix + Disney+ (only) with MPL headers, `LICENSE`, `NOTICE`, and a `sync-upstream.md` noting the upstream commit. Copy `premid` helper package. *Success:* files compile against our types; licence files present. **Executor 2026-09-29:** vendored at `e4c0de9`; `compile` green. Waiting on human check.
+- [ ] **SC.3 `Presence` shim + injection** — content script per `metadata.regExp`, `UpdateData` tick (~1s), `setActivity`/`clearActivity` → service worker; `getSetting` from `metadata.settings` defaults; `getStrings` minimal English map. *Unit tests* for shim + timestamp helpers. *Success:* on Netflix playback the service worker logs a correct activity payload (title, S/E, paused, timestamps). **Executor 2026-09-29:** tests green. Waiting on a real Netflix tab check.
+- [ ] **SC.4 Structured side-channel** — add `senseMedia` to our Netflix/Disney+ copies. *Success:* worker log shows `{ provider, kind, title, season, episode, positionSec, durationSec }`. **Executor 2026-09-30:** Netflix playback test logs that object. Waiting on a real Netflix tab check.
+- [ ] **SC.5 Server: pairing** — `POST /api/me/companion/pair` (code, 10 min) + `POST /api/companion/token` (exchange → hashed device token) + revoke; Settings UI row. *Tests:* route tests. *Success:* extension stores a token; revoking kills it. **Executor 2026-09-30:** routes, Settings row, and popup pair form are in. Migration `0048` applied. Waiting on a signed-in pair + disconnect check.
+- [ ] **SC.6 Server: now-watching ingest** — `POST /api/companion/now-watching` (heartbeat / clear), Zod-validated, rate-limited, Redis TTL; TMDb match with cache. *Tests:* matching + TTL. *Success:* `GET` for own profile returns matched title within 2s of playback. **Executor 2026-09-30:** heartbeat, match, 90s TTL, and 20-minute hard stop are tested. Waiting on a paired Netflix check of `GET /api/me/companion/now-watching`.
+- [ ] **SC.7 Profile surface** — merge Companion activity into `fetch-profile-discord-activity` path (`activitySource: "companion"`), link + poster, obey `presenceVisibility`; new Settings toggle "Share what I'm watching". *Success:* profile hero shows "Watching Stranger Things · S4 E1" linking to `/tv/66732`; hidden for non-allowed viewers. **Executor 2026-09-30:** row, link, and share toggle are in. Waiting on a signed-in profile check.
+- [ ] **SC.8 Discord native host** — `apps/sense-companion-host` + Sense Discord application (human creates in Developer Portal) + Windows install script. *Success:* with Discord desktop open, status shows "Watching Stranger Things" with Sense branding; clears on pause-timeout/tab close. **Executor 2026-09-30:** host is registered for Chrome and Edge. Waiting on a Discord Application ID and a playback check.
+- [ ] **SC.9 More sites** — Prime Video, Apple TV+, Max, Crunchyroll (one per sub-task). *Success:* each shows on Sense + Discord. **Executor 2026-09-30:** Prime Video, Apple TV+, and Max are in the extension. Crunchyroll waits. Waiting on a Max playback check.
+- [ ] **SC.10 (later, optional)** "Finished S2E3 — mark watched?" prompt feeding `tv_watch` / Quick Log.
+
+**Locked (human 2026-09-29):**
+1. **Chrome + Edge first** (Chromium MV3). Firefox later.
+2. **Sense Discord application** — yes; human creates it in the Discord Developer Portal when SC.8 starts (Application ID + Rich Presence assets). Not needed for SC.1–SC.7.
+3. **Discord helper** — yes, same job as PreMiD's tray process (see below). **Deferred to SC.8.** Sense profile works from the extension alone (SC.5–SC.7). Discord status still needs Discord **desktop** running on this PC.
+4. **Personal use first** — unpacked load in `chrome://extensions` (Developer mode). No Chrome Web Store until we choose to publish.
+
+**What PreMiD does for Discord (answer to Q3):**
+- **Today (v2):** you only install the **browser extension**. Onboarding is “connect Discord” inside the popup. Their site says it “runs entirely in your browser.” There is **no** separate Electron download anymore.
+- **Still required:** Discord **desktop** must be running. Their own testing docs still list that. Discord does not let a webpage or extension set Rich Presence by itself; it only accepts it over a **local pipe** (`discord-ipc`) from a process on the machine.
+- **Hidden piece:** community (e.g. the Vencord `vc-premid` plugin) still talks about PreMiD’s **tray process** — a small background helper the extension talks to, which then talks to Discord desktop. Vencord is an alternative that skips that helper by patching Discord. We will **not** require Vencord.
+- **Old PreMiD:** full Electron app + WebSocket on port 3020 + `discord-rpc`. That’s the architecture in the archived `discordManager.ts`. Same idea, bigger app.
+- **Our SC.8 helper** is that tray process: one small native host, registered once for Chrome/Edge, Discord desktop open. Not a second full app.
+
+**Project status board:** The popup shows the playing title once paired. Discord Watching works from the playing browser. The Sense profile row still needs a human check after the cross-browser relay. Crunchyroll is still out. SC.1–SC.10 stay open. Auto logging is implemented and waiting on a human watch-through.
+
+**Executor's Feedback (auto log toast, 2026-09-30):**
+- An episode toast says **Logged S4 E1**. The last episode of the show says **Logged whole show, {title}**. Films still say **Logged {title}**.
+- The notice stays up with **How was it?**, a 0–10 slider, **Save**, and **Not now**. Save writes the score onto that diary row. An episode rewatch updates the existing episode score.
+- **Please verify:** reload the unpacked extension, refresh the player, and finish (or seek near the end of) an episode that is not the finale, then a finale. The rating should show on the diary row.
+
+**Executor's Feedback (auto logging, 2026-09-30):**
+- When a matched film or episode passes about 90% of a runtime of at least 10 minutes, the heartbeat writes one at-home diary row. No rating. A repeat of the same film or episode inside 12 hours is skipped. TV also checks off that episode and advances continue watching. A failure to log does not drop the profile heartbeat.
+- The watching browser shows a “Logged {title}” toast when the helper hears that the row was written.
+- **Please verify:** reload the unpacked extension, refresh the streaming tab, and watch a title through the credits (or seek near the end). It should show up in the diary as at home, and a show should check off that episode. SC.10 stays open.
+
+**Executor's Feedback (extension settings, 2026-09-30):**
+- After Done, the wizard does not open again. The popup says Settings and opens Discord, Sense pairing, and playback options with a sentence under each one.
+- **Please verify:** reload the extension, then open Settings from the popup. The setup steps should not come back.
+
+**Executor's Feedback (extension setup, 2026-09-30):**
+- First reload opens a setup tab: Welcome, Discord (desktop connected or not), per-service toggles, then Sense pairing. Done stores a flag so later reloads stay quiet. The popup has Set up / Customize.
+- Saved toggles apply on the next player tick. The helper answers a Discord status ping; that needs the rebuilt host.
+- **Please verify:** reload the unpacked extension. The setup tab should open. With Discord desktop open, Discord should say connected. Change a toggle, then play a title.
+
+**Executor's Feedback (companion watching row, 2026-09-30):**
+- The profile Watching row was the Discord album card (square crop, blurred poster). Companion titles now use a 2:3 poster, “Watching · Max”, a paused eyebrow swap, and a playhead. Account menu uses the same poster shape and “Paused · Max”.
+- **Please verify:** refresh `/profile/adgv` while a title is playing.
+
+**Executor's Feedback (profile heartbeat 400, 2026-09-30):**
+- Discord was updating because the helper had the title. Sense returned 400 on every heartbeat: with `aot: false`, Elysia already parsed the JSON, and `request.json()` threw. The route now uses that parsed body. A Max movie heartbeat then returned 200 with a TMDb match.
+- The shared watch file must store the title only. The pairing token is not written there.
+- **Please verify:** refresh `/profile/adgv` while the title is still playing. The Watching row should be there. Reload the extension only if Discord dropped after the helper restart.
+
+**Executor's Feedback (profile from the other browser, 2026-09-30):**
+- A browser that is not signed in to Sense can still be the one playing. The browser that was paired with a code does not have to be that same window.
+- Each browser starts its own helper, so they do not share memory. The playing browser writes the title to `%LOCALAPPDATA%\Sense\companion-watch`. The paired browser sends its pairing token on a timer, and that helper saves the other browser's title to Sense. A clear from the idle browser does not replace a title that is still playing.
+- Host tests 18 pass. Extension tests 33 pass. Host reinstalled as `dist/sense-companion-host.exe`. Extension rebuilt at `.output/chrome-mv3`.
+- **Please verify:** reload the unpacked extension in both browsers. Leave the paired browser idle. Keep the title playing in the other one. Refresh `/profile/adgv`. The Watching row should show within about half a minute. You do not need to be signed in to Sense in the browser that is playing.
+
+**Executor's Feedback (profile heartbeat):**
+- Redis had no watch for the paired account while the popup showed a title. The background listener did not return the `POST /api/companion/now-watching` promise, so Chrome could end the worker before the save finished.
+- The listener now returns that promise, and a failed save logs the status in the service worker. Rebuild is green (`background.js` 6.24 kB). Reload unpacked `apps/sense-companion/.output/chrome-mv3`, keep a title playing, then refresh `/profile/adgv`.
+- Discord is separate: `apps/sense-companion-host/discord-application.json` has an Application ID now. The first install failed with EPERM because Chrome still had `sense-companion-host.exe` open. The script builds a side copy when that file is locked. Registered host is `dist/sense-companion-host-next.exe`. Reload the extension with Discord desktop open.
+
+**Executor's Feedback (popup now watching):**
+- After pairing, the popup hides the code form and shows the current title (`Watching · S4 E1 · Netflix`, or **Nothing playing**).
+- Reload unpacked `apps/sense-companion/.output/chrome-mv3`. Pair, then play a title and reopen the popup.
+
+**Executor's Feedback (SC.9 Max):**
+- Vendored HBO Max from PreMiD Activities `e4c0de9`. Playback reports `provider: "max"` with the show title. An episode includes season and episode numbers from Max's catalog. A movie stays a movie.
+- The script runs on `play.hbomax.com` and `play.max.com`. The title comes from Max's catalog response, so a page that never returns that catalog will not log a title.
+- Helper tests: 3 pass. Extension compile and build are green. Reload unpacked `apps/sense-companion/.output/chrome-mv3`.
+- **Please verify:** play a Max title. The service worker should log `Sense Companion HBO Max:` with the show name. Say go for Crunchyroll after that.
+
+**Executor's Feedback (SC.9 Apple TV+):**
+- Vendored Apple TV+ from PreMiD Activities `e4c0de9`. Playback reports `provider: "apple"`, the show title from `.video-metadata .title`, and season/episode from the subtitle (`S1, E2` or `Season 4, Episode 1`). No subtitle means a movie.
+- A missing poster no longer drops the update. The script runs on `tv.apple.com`.
+- Parser tests: 3 pass. Extension compile and build are green. Reload unpacked `apps/sense-companion/.output/chrome-mv3`.
+- **Please verify:** play an Apple TV+ title. The service worker should log `Sense Companion Apple TV+:` with the title. Say go for Max after that.
+
+**Executor's Feedback (SC.9 Prime Video):**
+- Vendored Prime Video from PreMiD Activities `e4c0de9`. Playback reports `provider: "prime"`, the title, and `S4 E1` when the player subtitle has a season and episode. A movie stays a movie.
+- The content script runs on primevideo.com and the common Amazon storefronts. Other pages on those hosts do nothing.
+- Parser tests: 3 pass. Extension compile and build are green. Reload unpacked `apps/sense-companion/.output/chrome-mv3`.
+- **Please verify:** play a Prime Video title. The service worker should log `Sense Companion Prime Video:` with the title. Sense and Discord use the same title. Say go for Apple TV+ after that.
+
+**Executor's Feedback (SC.8):**
+- Local host `com.sense.companion` is registered for Chrome and Edge. The extension forwards each watch update to it. The host sets Discord activity type Watching, name = the show, details = `S4 E1`, state = `Sense`.
+- A pause keeps the status for 30 seconds, then clears. Closing the Netflix/Disney tab sends clear immediately. Closing the host pipe also drops the status.
+- The unpacked extension id is now pinned (`lgpholiafjmbbnpnfcopdkiocaeicmcp`). Remove the old Sense Companion in `chrome://extensions` and load `apps/sense-companion/.output/chrome-mv3` again, or the host will refuse the connection.
+- Host tests: 10 pass. The installed exe starts and waits for an Application ID. There isn't one in the repo yet.
+- **Please verify:** In the Discord Developer Portal, create an application named **Sense**. Copy the Application ID into `apps/sense-companion-host/discord-application.json` as `clientId`, then run `powershell -ExecutionPolicy Bypass -File apps/sense-companion-host/install-windows.ps1` again. Discord desktop must be open. Play Netflix. Your Discord profile should say **Watching Stranger Things** with **Sense** on the status. Pause 30 seconds, or close the tab, and it should clear. Say go for SC.9 after that.
+
+**Executor's Feedback (SC.7):**
+- A live Companion title wins over Discord Listening/Playing/Watching. The hero eyebrow stays **Watching**. The headline is `Stranger Things · S4 E1` and the row links to `/tv/66732`. The poster is the TMDb image when the match has one.
+- Friends-only presence hides it from non-mutual and unsigned viewers. The owner sees it. **Share what I'm watching** (Settings → Profile → Browser extension) hides it for everyone, including the owner. The toggle saves immediately.
+- Poll is 30 seconds if the profile was already open. A fresh load uses the server fetch.
+- Tests: formatter + visibility 6 pass; profile fetch 12 pass (Companion wins, non-mutual hidden). Needs `bun test --env-file=apps/server/.env` for those files.
+- **Please verify:** paired, playing Netflix, open your own profile. Expect **Watching** and **Stranger Things · S4 E1** linking to the show. A non-friend should not see it while presence is friends-only. Turn the toggle off and the row should disappear, including for you. Say go for SC.8 after that.
+
+**Executor's Feedback (SC.6):**
+- Paired extension posts `POST /api/companion/now-watching` on the first tick, then at most every 5 seconds unless the title, pause, or clear changes.
+- Server matches the title on TMDb (exact title wins), caches that match, and keeps the row in Redis with a 90-second heartbeat TTL. No Neon write per tick. The same title hard-stops after 20 minutes of continuous heartbeats.
+- `GET /api/me/companion/now-watching` returns `{ watching: { title, href, season, episode, ... } }` for the signed-in patron. A Stranger Things episode becomes `href: "/tv/66732"`.
+- **Please verify:** reload unpacked `apps/sense-companion/.output/chrome-mv3`, stay paired, play Netflix, then open `http://127.0.0.1:3001/api/me/companion/now-watching` while signed in. Expect a `watching` object with the show link within a couple of seconds. Pause the tab for 90 seconds and the next GET should be `{ "watching": null }`. The profile page itself does not show this yet (SC.7).
+
+**Executor's Feedback (SC.5):**
+- `POST /api/me/companion/pair` returns a 10-minute code (`AB12-CD34`). Only the hash is stored. A newer code replaces an unused one.
+- The popup exchanges it at `POST /api/companion/token` and stores the device token in extension storage. `GET /api/companion/session` returns 401 after **Disconnect** in Settings → Profile → Browser extension.
+- Migration `0048_companion_pairing` applied.
+- Pairing tests: 5 unit + 4 route + 4 extension client, all pass. Live API: signed-out pair is 401; unknown code is `{"error":"invalid_code"}`.
+- **Please verify:** reload unpacked `apps/sense-companion/.output/chrome-mv3`. On `/me/settings/profile`, **Show pairing code**, type it in the popup, expect **Paired**. Then **Disconnect** and reopen the popup — **Not paired**.
+
+**Executor's Feedback (SC.2):**
+- Copied Netflix, Disney+, the `premid` helper, and `@types/premid` into `apps/sense-companion/vendor/premid-activities/` from PreMiD/Activities `e4c0de9c04a3d310877343bdc05b04bdd7b42603`.
+- MPL header on each `.ts` file. `LICENSE`, `NOTICE`, and `sync-upstream.md` are in that folder. Biome ignores the vendor tree so a format pass does not rewrite upstream.
+- `p-limit@7.3.0` is a dependency because the Netflix metadata fetch uses it.
+- `bun run --filter @still/sense-companion compile` passes (extension plus the vendored scripts).
+- These scripts are not injected into Netflix or Disney+ yet. That is SC.3.
+
+**Executor's Feedback (SC.3):**
+- Presence shim in `apps/sense-companion/src/presence/`. Settings from each `metadata.json`. English strings from `general.json` and `Netflix.json`. UpdateData every 1s.
+- Content script matches Netflix, Disney+, and Hotstar. The service worker logs title, season/episode, `paused=`, and start/end.
+- Netflix's default puts the show in `name` and the episode title in `details`. The log line uses the show name plus `Season N, Episode N`.
+- `bun test apps/sense-companion/src/presence` — 8 pass, including a fake Netflix watch page (playing, then paused).
+- **Please verify:** reload unpacked `apps/sense-companion/.output/chrome-mv3`, play a Netflix title, open the extension's service worker console. Expect `Sense Companion Netflix: "Show name" | Season 1, Episode 2 | … | paused=false | start=… end=…`. Pause and the next line should say `paused=true`.
+- Disney+ reads the player from an inline page script. A strict content policy on that site can block it. Netflix does not use that path.
+
+**Executor's Feedback (SC.1):**
+- Reused the blank WXT starter and renamed it to **`apps/sense-companion`** (`@still/sense-companion`). Turbo already caches `.output/**`.
+- `bun run --filter @still/sense-companion build` succeeded. Manifest name **Sense Companion**, no host permissions, popup says **Not paired**.
+- Load unpacked from `apps/sense-companion/.output/chrome-mv3` in Chrome or Edge.
+- **Please verify:** toolbar popup reads **Sense Companion** / **Not paired**.
+
 ## Watchlist hero + platform morph (2026-09-23) — PLANNER (brainstorm)
 
 **Background:** Human rejected six-chip IA; wants Netflix-style **Tonight hero** (Pick another), **Continue** rail, sort chips + **filters popover**, **platform logo row** with morph-to-**composite pill** (stacked logos/names) beside filter button, grid filtered **AND** by selected services in region.
-**Status:** Spec **`docs/superpowers/specs/2026-09-23-watchlist-hero-platforms-design.md`** approved. Plan **`docs/superpowers/plans/2026-09-23-watchlist-hero-platforms.md`** (9 tasks). Tasks 1–7 ✅ (platform row + static composite pill; uncommitted). Waiting on **go** for Task 8 (morph motion). Supersedes decision-engine **UI** only; scorer + alerts stay.
+**Status:** Spec **`docs/superpowers/specs/2026-09-23-watchlist-hero-platforms-design.md`** approved. Plan **`docs/superpowers/plans/2026-09-23-watchlist-hero-platforms.md`** (9 tasks). Tasks 1–8 implemented on branch (Task 8 uncommitted). Waiting on human QA + **go** for Task 9 (grid integration + cleanup). Supersedes decision-engine **UI** only; scorer + alerts stay.
 **Locked:** hero C · continue hidden if empty · sorts Recent/Oldest/A–Z · Now available in popover · multi-provider AND · remove via pill popover.
 **Executor Task 6 (2026-09-24):** `WatchlistLobbyFilterRow` (`HomeLobbyFilterRow` parity) — sort scroll rail + `#watchlist-provider-pill-slot` + filters in chip track; `WatchlistCatalogFiltersPopover` (region via `WatchlistRegionAction`, streaming AND copy, alerts hint); `?filters=1` one-shot from legacy `available` redirect; removed `WatchlistModeIntroLine` + `watchlist-mode-intro*`. Tests: `watchlist-lobby-order.test.ts` 27 pass. **Please verify:** `/watchlist` filter icon opens popover; `/watchlist?filters=1` opens once then URL strips `filters`; legacy `/watchlist?order=available` → filters open; mobile one-line filter row.
 **Executor Task 7 (2026-09-24):** `fetchWatchlistProvidersServer` + layout `WatchlistProvidersCatalogRsc`; `WatchlistPlatformRow` (cap 12, hides selected); `WatchlistProviderFilterPill` (stacked logos + manage popover, portals to filter slot); `?providers=` via `selectProvider` / `removeProvider` / `clearProviders` on lobby params. Row hidden when `needs_region` or empty catalogue. **Please verify:** with watch region set, logo row appears; tap Netflix → pill beside filters + grid AND-filters; tap pill → Remove/Clear all; card leaves row while selected; deep link `?providers=8,350`.
+**Executor Task 8 (2026-09-24):** Replaced `layoutId` morph with **arc path flight** — `WatchlistProviderFlyLayer` (body portal, badge-style ease `cubic-bezier(0.22, 1, 0.36, 1)`, 2px→0 blur); pill circle hidden until land; `useLayoutEffect` snaps target to measured stack slot; `useReducedMotion()` → instant select; hero-only `overflow-hidden`. **Please verify:** tap platform row → logo arcs up into filter pill and lands on stack; second provider lands offset; reduce motion = no ghost.
 
 ## Watchlist decision engine (2026-09-23) — PLANNER (brainstorm approved `b`)
 

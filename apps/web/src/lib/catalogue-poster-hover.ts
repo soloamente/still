@@ -10,6 +10,10 @@ export type CataloguePosterHoverStacking = "catalogue" | "sheet";
 export const CATALOGUE_POSTER_HOVER_LIFT_GUTTER_CLASSNAME =
 	"mt-[-0.75rem] pt-3";
 
+/** Extra vertical room for ⌘K chip rails — pairs with `overflow-y-visible` on the scroller. */
+export const SEARCH_DIALOG_RAIL_COMB_HOVER_GUTTER_CLASSNAME =
+	"mt-[-0.5rem] pt-2.5 pb-1.5";
+
 /** Horizontal poster rail scroller — sibling of `CataloguePosterGroup`, not the same node. */
 export const CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME = cn(
 	"scrollbar-none overflow-x-auto overscroll-x-contain pb-1",

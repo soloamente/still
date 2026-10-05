@@ -22,6 +22,10 @@ import {
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { contentVisibilityWhere } from "../lib/content-visibility";
 import {
+	resolveDiscoverStreamingProviderScope,
+	searchDialogStreamingProvidersListingRegion,
+} from "../lib/discover-streaming-provider-scope";
+import {
 	buildHeroArtworkSlides,
 	buildScreenshotSlides,
 	normalizeTmdbImagesBundle,
@@ -42,6 +46,7 @@ import {
 	patronAvatarBadgeFields,
 } from "../lib/patron-avatar-badge";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import { loadPatronPreferences } from "../lib/patron-preferences";
 import {
 	isPremiumStreamingMonetizationFilter,
 	patronHasPlanFeature,
@@ -50,7 +55,9 @@ import { readAvatarIsAnimatedPref } from "../lib/profile-media";
 import { hit } from "../lib/rate-limit";
 import { fetchReviewMovieScreenshots } from "../lib/review-movie-screenshots";
 import { routeBody } from "../lib/route-body";
+import { fetchSearchDialogStreamingProvidersCached } from "../lib/search-dialog-streaming-providers-cache";
 import { SEARCH_DIALOG_STUDIO_IDS } from "../lib/search-dialog-studio-ids";
+import { fetchSearchDialogStudiosCached } from "../lib/search-dialog-studios-cache";
 import {
 	isStreamingAvailabilityConfigured,
 	resolveStreamingPrices,
@@ -558,21 +565,47 @@ export const moviesRoute = new Elysia({
 				...TMDB_UNCONFIGURED,
 			};
 		}
-		const studios = await Promise.all(
-			SEARCH_DIALOG_STUDIO_IDS.map(async (id) => {
-				try {
-					const row = await tmdbApi.company(id);
-					return {
-						id,
-						name: row.name,
-						logo_url: tmdbImg.logo(row.logo_path, "w92"),
-					};
-				} catch {
-					return { id, name: String(id), logo_url: null as string | null };
-				}
-			}),
-		);
+		const studios = await fetchSearchDialogStudiosCached();
 		return { studios };
+	})
+	/** Flatrate platforms for the search dialog — scoped to Settings watch region. */
+	.get("/streaming-providers", async ({ user }) => {
+		if (!env.TMDB_API_KEY) {
+			return {
+				providers: [] as {
+					id: number;
+					name: string;
+					logo_url: string | null;
+				}[],
+				region: null as string | null,
+				needs_region: false as const,
+				...TMDB_UNCONFIGURED,
+			};
+		}
+		const language = await getTmdbLanguageForUser(user?.id);
+		const prefs = user != null ? await loadPatronPreferences(user.id) : null;
+		const { region, needsRegion, listingRegion } =
+			searchDialogStreamingProvidersListingRegion(
+				user?.id,
+				prefs,
+				env.TMDB_WATCH_REGION ?? "US",
+			);
+		if (needsRegion) {
+			return {
+				providers: [],
+				region: null,
+				needs_region: true as const,
+			};
+		}
+		const providers = await fetchSearchDialogStreamingProvidersCached(
+			listingRegion,
+			language,
+		);
+		return {
+			providers,
+			region,
+			needs_region: false as const,
+		};
 	})
 	.get(
 		"/discover",
@@ -602,12 +635,18 @@ export const moviesRoute = new Elysia({
 					: venueRaw === "streaming"
 						? "4"
 						: undefined;
+			const streamingScope = await resolveDiscoverStreamingProviderScope({
+				providersRaw: query.providers,
+				queryWatchRegion: query.watch_region,
+				userId: user?.id,
+				envDefaultRegion: env.TMDB_WATCH_REGION ?? "US",
+			});
 			const monetizationRaw = (query.monetization ?? "").trim().toLowerCase();
 			const withWatchMonetizationTypes = DISCOVER_MONETIZATION_WHITELIST.has(
 				monetizationRaw,
 			)
 				? monetizationRaw
-				: undefined;
+				: streamingScope.withWatchMonetizationTypes;
 			if (
 				isPremiumStreamingMonetizationFilter(withWatchMonetizationTypes) &&
 				(!user ||
@@ -624,10 +663,14 @@ export const moviesRoute = new Elysia({
 			}
 			const withReleaseTypesResolved =
 				withReleaseTypes ??
+				streamingScope.withReleaseTypes ??
 				(withWatchMonetizationTypes !== undefined ? "4" : undefined);
 			const regionRaw = (query.watch_region ?? "").trim().toUpperCase();
 			const watchRegionAll =
-				regionRaw === "ALL" || regionRaw === "ANY" || regionRaw === "WORLD";
+				streamingScope.watchRegionAll ||
+				regionRaw === "ALL" ||
+				regionRaw === "ANY" ||
+				regionRaw === "WORLD";
 			const watchRegionFromQuery =
 				!watchRegionAll &&
 				regionRaw.length === 2 &&
@@ -642,6 +685,7 @@ export const moviesRoute = new Elysia({
 					? watchRegionAll
 						? undefined
 						: (watchRegionFromQuery ??
+							streamingScope.watchRegion ??
 							(watchRegionDefault.length === 2 &&
 							/^[A-Z]{2}$/.test(watchRegionDefault)
 								? watchRegionDefault
@@ -698,6 +742,10 @@ export const moviesRoute = new Elysia({
 				primaryReleaseDateGte: primaryReleaseDateGteFromQuery,
 				watchRegion,
 				withWatchMonetizationTypes,
+				withWatchProviders:
+					streamingScope.providerIds.length > 0
+						? streamingScope.providerIds
+						: undefined,
 				language,
 				withTextQuery: textQuery,
 				showAdultContent,
@@ -769,6 +817,8 @@ export const moviesRoute = new Elysia({
 				watch_region: t.Optional(t.String()),
 				region: t.Optional(t.String()),
 				release_gte: t.Optional(t.String()),
+				/** Comma-separated TMDb watch provider ids — flatrate in patron watch region. */
+				providers: t.Optional(t.String()),
 			}),
 		},
 	)

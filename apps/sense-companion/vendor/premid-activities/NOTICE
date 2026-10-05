@@ -1,0 +1,9 @@
+Sense Companion vendors site scripts from the PreMiD Activities repository.
+
+Source: https://github.com/PreMiD/Activities
+Commit: e4c0de9c04a3d310877343bdc05b04bdd7b42603
+License: Mozilla Public License 2.0 (see LICENSE in this directory)
+
+Covered files are the `premid/` helper, `types/premid/`, and the Netflix and Disney+ scripts under `websites/`. Those files stay under MPL-2.0. The rest of Sense Companion is not part of that covered code.
+
+The PreMiD browser extension itself is not included. It is not open source.

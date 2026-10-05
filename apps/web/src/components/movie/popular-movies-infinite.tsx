@@ -47,6 +47,8 @@ export type PopularMovieSeed = {
 	scopeLabel?: string | null;
 	/** Watchlist lobby — `Now on Netflix` when flatrate providers exist in patron region. */
 	watchlistStreamingLabel?: string | null;
+	/** TMDb provider mark for `watchlistStreamingLabel`. */
+	watchlistStreamingLogoUrl?: string | null;
 	/** Watchlist lobby — patron has a streaming alert set on this title (Task 6 toolkit). */
 	watchlistStreamingAlert?: boolean;
 	/** Watchlist lobby — title already streams in the patron region (hides "Alert me"). */
@@ -553,6 +555,7 @@ export function PopularMoviesInfinite({
 						listingKind={listingKind}
 						posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
 						posterCaptionSubline={m.watchlistCaptionSubline}
+						watchlistStreamingLogoUrl={m.watchlistStreamingLogoUrl}
 						posterUrl={m.poster_url}
 						priority={index < 6}
 						surface={catalogueRadialSurface}
@@ -576,7 +579,9 @@ export function PopularMoviesInfinite({
 					posterUrl={m.poster_url}
 					priority={index < 6}
 					posterCaption={m.scopeLabel ?? m.watchlistStreamingLabel}
+					posterCaptionLogoUrl={m.watchlistStreamingLogoUrl}
 					posterCaptionSubline={m.watchlistCaptionSubline}
+					posterScrim={m.watchlistStreamingLabel ? "sampled" : "black"}
 					showTitle={showTitle}
 					title={m.title}
 				/>

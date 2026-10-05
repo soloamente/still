@@ -2,13 +2,14 @@
 
 import { CataloguePosterGroup } from "@/components/catalogue/catalogue-poster-group";
 import { CataloguePosterTile } from "@/components/catalogue/catalogue-poster-tile";
+import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	filmographyReleaseYear,
 	type PersonFilmographyRow,
 } from "@/lib/person-filmography";
 
-/** Filmography tiles — rounder than default `rounded-md` lobby posters. */
-const FILMOGRAPHY_POSTER_FRAME_CLASSNAME = "rounded-2xl border-0";
+/** Filmography tiles — match lobby catalogue poster corners. */
+const FILMOGRAPHY_POSTER_FRAME_CLASSNAME = `${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME} border-0`;
 
 /** Poster grid of a person’s TMDb film + TV credits (drawer or route). */
 export function PersonFilmographyGrid({

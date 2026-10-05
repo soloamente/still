@@ -79,7 +79,6 @@ export function ProfileTabPanels({
 		return (
 			<ProfileListsPanel
 				lists={lists}
-				catalogueWaveKey={catalogueWaveKey}
 				monochromePeersOnHover={monochromePeersOnHover}
 			/>
 		);

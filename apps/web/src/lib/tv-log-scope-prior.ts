@@ -46,6 +46,30 @@ export function findLatestTvLogInScope(
 	return logs.find((log) => tvLogMatchesScope(log, target)) ?? null;
 }
 
+/**
+ * Whole-show diary row is due when the series is finished, every season that
+ * has episodes already has a season log, and no show log exists yet.
+ */
+export function seriesReadyForShowDiary(input: {
+	status: string | null | undefined;
+	seasons: ReadonlyArray<{ season_number: number; episode_count: number }>;
+	logs: MyTvLog[];
+}): boolean {
+	if (input.status !== "finished") return false;
+	if (countTvLogsInScope(input.logs, { logScope: "show" }) > 0) return false;
+	const seasonsWithEpisodes = input.seasons.filter(
+		(season) => season.episode_count > 0,
+	);
+	if (seasonsWithEpisodes.length === 0) return false;
+	return seasonsWithEpisodes.every(
+		(season) =>
+			countTvLogsInScope(input.logs, {
+				logScope: "season",
+				seasonNumber: season.season_number,
+			}) > 0,
+	);
+}
+
 export function formatTvSeasonDiaryCount(count: number): string | null {
 	if (count <= 0) return null;
 	return count === 1 ? "1 log" : `${count} logs`;

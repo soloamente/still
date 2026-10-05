@@ -2,8 +2,10 @@
 
 import { cn } from "@still/ui/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { DISCORD_ACTIVITY_ART_OUTLINE_CLASSNAME } from "@/lib/discord-activity-display";
 import { DISCORD_ACTIVITY_POLL_MS } from "@/lib/discord-activity-poll";
 import { discordActivitySelfScreenReaderLabel } from "@/lib/discord-activity-self-copy";
 import {
@@ -68,6 +70,22 @@ export function AccountMenuDiscordActivity({
 
 	const imageUrl = activity.imageUrl?.trim() || null;
 	const screenReaderLabel = discordActivitySelfScreenReaderLabel(activity);
+	const companion = activity.activitySource === "companion";
+	const companionDetail = activity.detail?.trim() ?? "";
+	const title = companion
+		? activity.headline?.trim() || activity.label
+		: activity.label;
+	const episodeMeta =
+		companion && companionDetail && companionDetail !== "Paused"
+			? companionDetail
+			: "";
+	const platformMeta =
+		companion && activity.source?.trim() ? `On ${activity.source.trim()}` : "";
+	const meta = companion
+		? ""
+		: [activity.detail?.trim(), activity.source?.trim()]
+				.filter((part): part is string => Boolean(part))
+				.join(" · ");
 
 	return (
 		<div
@@ -81,25 +99,48 @@ export function AccountMenuDiscordActivity({
 			{/* Second-person copy for screen readers only — visual line stays third person. */}
 			<p className="sr-only">{screenReaderLabel}</p>
 			{imageUrl ? (
-				<div className="relative size-8 shrink-0 overflow-hidden rounded-md">
+				<div
+					className={cn(
+						"relative shrink-0 overflow-hidden",
+						DISCORD_ACTIVITY_ART_OUTLINE_CLASSNAME,
+						companion ? "aspect-2/3 h-12 rounded-md" : "size-8 rounded-md",
+					)}
+				>
 					<Image
 						src={imageUrl}
 						alt=""
-						width={32}
-						height={32}
-						className="size-full object-cover"
+						fill
+						sizes="48px"
+						className="object-cover"
 						unoptimized
 					/>
 				</div>
 			) : null}
 			<div className="min-w-0 flex-1 text-left">
-				<p className="truncate font-medium text-foreground text-sm">
-					{activity.label}
-				</p>
-				{activity.detail?.trim() ? (
-					<p className="truncate text-muted-foreground text-xs">
-						{activity.detail}
+				{activity.href ? (
+					<Link
+						href={activity.href}
+						className="block truncate font-medium text-foreground text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					>
+						{title}
+					</Link>
+				) : (
+					<p className="truncate font-medium text-foreground text-sm">
+						{title}
 					</p>
+				)}
+				{episodeMeta ? (
+					<p className="truncate text-muted-foreground text-xs">
+						{episodeMeta}
+					</p>
+				) : null}
+				{platformMeta ? (
+					<p className="truncate text-muted-foreground text-xs">
+						{platformMeta}
+					</p>
+				) : null}
+				{meta ? (
+					<p className="truncate text-muted-foreground text-xs">{meta}</p>
 				) : null}
 			</div>
 		</div>

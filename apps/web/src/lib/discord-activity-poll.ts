@@ -13,5 +13,6 @@ export function discordActivityTransitionKey(
 		activity.detail ?? "",
 		activity.imageUrl ?? "",
 		activity.source ?? "",
+		activity.href ?? "",
 	].join("\0");
 }

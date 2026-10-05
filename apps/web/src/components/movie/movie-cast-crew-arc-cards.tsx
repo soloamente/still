@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
 import { openPersonFilmography } from "@/components/movie/person-filmography-drawer";
 import {
@@ -12,7 +12,10 @@ import {
 	CAST_CREW_ARC_SLOT_COUNT,
 	sliceArcCenterCards,
 } from "@/lib/movie-cast-crew-arc";
+import { posterSampledScrimStyle } from "@/lib/search-dialog-people-portrait-scrim";
+import { useAvatarGroupHover } from "@/lib/use-avatar-group-hover";
 import { useCastCrewMonochromeOnHover } from "@/lib/use-cast-crew-monochrome-pref";
+import { useSearchDialogPeoplePortraitScrimColor } from "@/lib/use-search-dialog-people-portrait-scrim-color";
 
 function resolveArcSlotLimit(matchesSm: boolean): number {
 	return matchesSm ? CAST_CREW_ARC_SLOT_COUNT : CAST_CREW_ARC_MOBILE_SLOT_COUNT;
@@ -49,11 +52,14 @@ export function MovieCastCrewArcRow({
 	);
 	const arcCurveScale =
 		slotLimit < CAST_CREW_ARC_SLOT_COUNT ? CAST_CREW_ARC_MOBILE_CURVE_SCALE : 1;
+	const rowRef = useRef<HTMLUListElement>(null);
+	useAvatarGroupHover(rowRef);
 
 	return (
 		<ul
+			ref={rowRef}
 			className={cn(
-				"flex w-full justify-center gap-1 px-0 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
+				"t-avatar-group flex w-full justify-center gap-1 px-0 sm:gap-1 sm:px-3 lg:gap-1.5 lg:px-4",
 				row === "cast"
 					? "items-start pb-[var(--cast-crew-arc-edge)]"
 					: "items-end pt-[var(--cast-crew-arc-edge)]",
@@ -92,6 +98,11 @@ function MovieCastCrewArcCard({
 }) {
 	const { translateY } = arcRowVisualForSlot(slotIndex, slotCount, row);
 	const scaledTranslateY = translateY * arcCurveScale;
+	// Same chromatic fade as search people and diary posters — not a black plate.
+	const portraitUrl = person.profilePath
+		? `https://image.tmdb.org/t/p/w342${person.profilePath}`
+		: null;
+	const scrimColor = useSearchDialogPeoplePortraitScrimColor(portraitUrl);
 
 	return (
 		<li
@@ -105,7 +116,7 @@ function MovieCastCrewArcCard({
 		>
 			<button
 				type="button"
-				className="group block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+				className="t-avatar group block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 				aria-label={`${person.name}${person.subtitle ? `, ${person.subtitle}` : ""}`}
 				onClick={() =>
 					openPersonFilmography({
@@ -125,20 +136,25 @@ function MovieCastCrewArcCard({
 						imageClassName="transition-[filter] duration-200 ease-out"
 					/>
 					{/* Empty headshots sit on `bg-background` — fade from canvas, not black ink. */}
-					<div
-						className={cn(
-							"pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t to-transparent px-2 pt-8 pb-2",
-							person.profilePath
-								? "from-black/85 via-black/45"
-								: "from-background via-background/70",
-						)}
-						aria-hidden
-					/>
+					{portraitUrl ? (
+						<div
+							aria-hidden
+							className="pointer-events-none absolute inset-0"
+							style={posterSampledScrimStyle(scrimColor)}
+						/>
+					) : (
+						<div
+							aria-hidden
+							className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-background via-background/70 to-transparent px-2 pt-8 pb-2"
+						/>
+					)}
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 px-2 pb-2 text-center">
 						<p
 							className={cn(
 								"line-clamp-1 font-semibold text-[11px] leading-tight sm:text-xs",
-								person.profilePath ? "text-white" : "text-foreground",
+								person.profilePath
+									? "text-white drop-shadow-sm"
+									: "text-foreground",
 							)}
 						>
 							{person.name}

@@ -237,7 +237,7 @@ export function TicketStub({
 
 			<div
 				className={cn(
-					// Outfit for rail metadata (explicit `font-sans`; body token maps to `--font-inter` in globals).
+					// Inter for rail metadata (explicit `font-sans`; body token maps to `--font-inter` in globals).
 					// Grid stubs (`posterFillFlexible`) scale headline + kicker with breakpoints — tall posters were illegible at rail-sized 0.7rem copy.
 					"pointer-events-none absolute z-[14] text-center font-medium font-sans text-white antialiased transition-opacity duration-200 ease-out will-change-auto",
 					compactPosterFillFlexible

@@ -57,6 +57,38 @@ export function computeDiscordActivityProgress(
 	return { ratio, elapsedMs, durationMs };
 }
 
+/**
+ * Playhead to show right now.
+ * The API sends a snapshot (`positionSec` at `sampledAtMs`). While the title
+ * is playing, keep counting from that sample so the clock does not sit still
+ * until the next poll. Paused stays on the snapshot.
+ */
+export function companionLivePositionSec(input: {
+	positionSec: number;
+	durationSec: number;
+	playing: boolean;
+	sampledAtMs: number;
+	nowMs: number;
+}): number {
+	const duration = input.durationSec;
+	const base = Math.min(duration, Math.max(0, input.positionSec));
+	if (!input.playing || !Number.isFinite(input.sampledAtMs)) return base;
+	const elapsedSec = Math.max(0, (input.nowMs - input.sampledAtMs) / 1000);
+	return Math.min(duration, base + elapsedSec);
+}
+
+/** Clock label for a Companion playhead. Hours show only past 60 minutes. */
+export function formatCompanionClock(totalSeconds: number): string {
+	const seconds = Math.max(0, Math.floor(totalSeconds));
+	const hours = Math.floor(seconds / 3600);
+	const minutes = Math.floor((seconds % 3600) / 60);
+	const remain = seconds % 60;
+	const mm = minutes.toString().padStart(2, "0");
+	const ss = remain.toString().padStart(2, "0");
+	if (hours > 0) return `${hours}:${mm}:${ss}`;
+	return `${minutes}:${ss}`;
+}
+
 /** mm:ss elapsed label for the progress row. */
 export function formatDiscordActivityElapsedLabel(elapsedMs: number): string {
 	const totalSeconds = Math.max(0, Math.floor(elapsedMs / 1000));

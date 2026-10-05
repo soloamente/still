@@ -4,6 +4,11 @@
  * route handler.
  */
 
+import type { CompanionNowWatchingView } from "./companion-now-watching";
+import {
+	canViewerSeeCompanionWatching,
+	formatCompanionProfileActivity,
+} from "./companion-profile-activity";
 import {
 	type DiscordActivityDisplay,
 	formatDiscordActivity,
@@ -35,8 +40,13 @@ export type FetchProfileDiscordActivityResult =
 export async function fetchProfileDiscordActivity(input: {
 	handle: string;
 	viewerId: string | null;
+	/** When set, a live Companion title wins over Discord Listening/Playing/Watching. */
+	readCompanionWatching?: (
+		userId: string,
+	) => Promise<CompanionNowWatchingView | null>;
 }): Promise<FetchProfileDiscordActivityResult> {
-	if (!isDiscordActivityEnabled()) {
+	const reader = input.readCompanionWatching;
+	if (!isDiscordActivityEnabled() && !reader) {
 		return { ok: true, body: { visible: false } };
 	}
 
@@ -53,6 +63,38 @@ export async function fetchProfileDiscordActivity(input: {
 
 	const metadata = await fetchDiscordActivityProfileMetadata(ownerUserId);
 
+	let isMutualWithViewer = false;
+	if (input.viewerId && input.viewerId !== ownerUserId) {
+		const mutualIds = await fetchMutualFollowingIds(input.viewerId);
+		isMutualWithViewer = mutualIds.includes(ownerUserId);
+	}
+
+	if (reader) {
+		const maySeeCompanion = canViewerSeeCompanionWatching({
+			viewerId: input.viewerId,
+			ownerUserId,
+			ownerPreferences: metadata.preferences,
+			canViewProfile: true,
+			isMutualWithViewer,
+		});
+		if (maySeeCompanion) {
+			const watching = await reader(ownerUserId);
+			if (watching) {
+				return {
+					ok: true,
+					body: {
+						visible: true,
+						activity: formatCompanionProfileActivity(watching),
+					},
+				};
+			}
+		}
+	}
+
+	if (!isDiscordActivityEnabled()) {
+		return { ok: true, body: { visible: false } };
+	}
+
 	// Hide activity when the profile owner lacks Attuned+ discord_activity entitlement.
 	const ownerEntitlements = await loadPatronEntitlements(ownerUserId);
 	if (!patronHasPlanFeature(ownerEntitlements, "discord_activity")) {
@@ -61,12 +103,6 @@ export async function fetchProfileDiscordActivity(input: {
 
 	const discordAccountId = metadata.discordAccountId;
 	const isDiscordConnected = discordAccountId != null;
-
-	let isMutualWithViewer = false;
-	if (input.viewerId && input.viewerId !== ownerUserId) {
-		const mutualIds = await fetchMutualFollowingIds(input.viewerId);
-		isMutualWithViewer = mutualIds.includes(ownerUserId);
-	}
 
 	const maySeeActivity = canViewerSeeDiscordActivity({
 		viewerId: input.viewerId,

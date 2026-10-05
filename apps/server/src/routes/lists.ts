@@ -25,6 +25,7 @@ import { Elysia, t } from "elysia";
 import { context } from "../context";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
+import { r2ObjectKeyFilename } from "../lib/asset-object-key";
 import { getImageAsset, putImageAsset } from "../lib/asset-store";
 import {
 	communityOffset,
@@ -702,7 +703,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 			if (!file.type.startsWith("image/")) return status(400, "Image only");
 			if (file.size > 5_000_000) return status(413, "File too large (max 5MB)");
 
-			const key = `list-covers/${existing.id}/${Date.now()}-${encodeURIComponent(file.name)}`;
+			const key = `list-covers/${existing.id}/${Date.now()}-${r2ObjectKeyFilename(file.name)}`;
 			const uploaded = await putImageAsset(key, file);
 			if ("error" in uploaded) {
 				return status(502, {

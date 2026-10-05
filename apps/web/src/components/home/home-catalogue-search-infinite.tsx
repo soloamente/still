@@ -10,6 +10,7 @@ import {
 import {
 	buildCatalogueSearchPlanFromCommit,
 	committedCatalogueSearchNeedsTagMetadata,
+	committedSearchHasStableStreamingIdToken,
 	loadCatalogueSearchPage,
 } from "@/lib/home-catalogue-search-load-page";
 import type { HomeCatalogueSearchLobbySort } from "@/lib/home-catalogue-search-param";
@@ -24,6 +25,7 @@ import {
 } from "@/lib/home-lobby-catalogue-layout";
 import { useCatalogTmdbLanguage } from "@/lib/use-catalog-tmdb-language";
 import { useSearchDialogGenres } from "@/lib/use-search-dialog-genres";
+import { useSearchDialogStreamingProviders } from "@/lib/use-search-dialog-streaming-providers";
 import { useSearchDialogStudios } from "@/lib/use-search-dialog-studios";
 
 const SEARCH_GRID_POSTER_SKELETON_KEYS = [
@@ -50,7 +52,7 @@ export function HomeCatalogueSearchGridSkeleton() {
 				{SEARCH_GRID_POSTER_SKELETON_KEYS.map((posterKey) => (
 					<ShimmerBone
 						key={`home-search-skel-poster-${posterKey}`}
-						className="aspect-2/3 w-full rounded-[3rem] bg-background"
+						className={`aspect-2/3 w-full ${HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME}`}
 						aria-hidden
 					/>
 				))}
@@ -92,6 +94,8 @@ export function HomeCatalogueSearchInfinite({
 	const catalogTmdbLanguage = useCatalogTmdbLanguage(needsTagMetadata);
 	const { studios, loaded: studiosLoaded } =
 		useSearchDialogStudios(needsTagMetadata);
+	const { providers: streamingProviders, loaded: streamingProvidersLoaded } =
+		useSearchDialogStreamingProviders(needsTagMetadata);
 	const {
 		movieGenres,
 		tvGenres,
@@ -99,17 +103,22 @@ export function HomeCatalogueSearchInfinite({
 	} = useSearchDialogGenres(needsTagMetadata, catalogTmdbLanguage);
 	/** `studio:41077` parses without the studio list; legacy name chips wait for `/api/movies/studios`. */
 	const hasStableStudioIdToken = /studio:\d+/i.test(searchRaw);
+	const hasStableStreamingIdToken =
+		committedSearchHasStableStreamingIdToken(searchRaw);
 	const tagMetadataReady =
 		!needsTagMetadata ||
-		((hasStableStudioIdToken || studiosLoaded) && !genresLoading);
+		((hasStableStudioIdToken || studiosLoaded) &&
+			(hasStableStreamingIdToken || streamingProvidersLoaded) &&
+			!genresLoading);
 
 	const parsed = useMemo(
 		() =>
 			parseHomeCatalogueSearchParam(searchRaw, studios, {
 				movieGenres,
 				tvGenres,
+				streamingProviders,
 			}),
-		[searchRaw, studios, movieGenres, tvGenres],
+		[searchRaw, studios, movieGenres, tvGenres, streamingProviders],
 	);
 
 	const plan = useMemo(

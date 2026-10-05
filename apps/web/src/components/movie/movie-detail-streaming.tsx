@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import {
@@ -15,7 +15,10 @@ import {
 } from "react";
 
 import { MovieDetailBodySection } from "@/components/movie/movie-detail-body-section";
-import { CountryFlagIcon } from "@/components/ui/country-flag-icon";
+import {
+	COUNTRY_FLAG_RIM_SHADOW,
+	CountryFlagIcon,
+} from "@/components/ui/country-flag-icon";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { fetchStreamingPricesClient } from "@/lib/fetch-streaming-prices-client";
 import { MOVIE_DETAIL_SECTION } from "@/lib/movie-detail-sections";
@@ -33,6 +36,7 @@ import {
 	useHorizontalRailPosterEdgeOpacity,
 	useHorizontalScrollFades,
 } from "@/lib/use-horizontal-scroll-fades";
+import { watchlistRegionLabel } from "@/lib/watchlist-streaming-display";
 
 const TMDB_LOGO = (path: string) => `https://image.tmdb.org/t/p/w92${path}`;
 
@@ -325,14 +329,11 @@ export function MovieDetailStreaming({
 				}
 				className="min-w-0"
 			>
-				{preferredMissing ? (
-					<p
-						className="mb-3 text-balance text-center font-editorial text-muted-foreground text-sm leading-relaxed"
-						role="status"
-					>
-						Not listed in your watch region for this service — showing other
-						countries below.
-					</p>
+				{preferredMissing && selectedProvider && preferredRegion ? (
+					<StreamingRegionGapCallout
+						preferredRegion={preferredRegion}
+						providerName={selectedProvider.name}
+					/>
 				) : null}
 				{/* Column labels — spacing groups rows; no hairline borders on detail card. */}
 				<div className="mb-2 grid grid-cols-[1fr_auto_auto] items-center gap-x-2 gap-y-1 px-2 font-medium text-muted-foreground text-xs sm:gap-x-3">
@@ -398,6 +399,52 @@ export function MovieDetailStreaming({
 
 const COUNTRY_ROW_GRID_CLASS =
 	"grid grid-cols-[1fr_auto_auto] items-center gap-x-2 gap-y-2 py-3 sm:gap-x-3";
+
+/** Patron watch region is missing for the selected service — flag + unavailable mark. */
+function StreamingRegionGapCallout({
+	providerName,
+	preferredRegion,
+}: {
+	providerName: string;
+	preferredRegion: string;
+}) {
+	const regionName = watchlistRegionLabel(preferredRegion);
+
+	return (
+		<div
+			role="status"
+			className="mb-4 rounded-2xl bg-background px-4 py-4 sm:px-5 sm:py-5"
+		>
+			<div className="flex items-center gap-4 sm:gap-5">
+				<div className="relative shrink-0" aria-hidden>
+					<CountryFlagIcon
+						countryCode={preferredRegion}
+						size={40}
+						shape="rect"
+						className={cn("h-10 w-auto sm:h-11", COUNTRY_FLAG_RIM_SHADOW)}
+					/>
+					<span
+						className={cn(
+							"pointer-events-none absolute right-0 bottom-[12%] z-10 translate-x-[10%]",
+							"grid size-5 place-items-center rounded-full bg-red-500 text-white",
+						)}
+					>
+						<X className="size-3" strokeWidth={2.5} aria-hidden />
+					</span>
+				</div>
+				<div className="min-w-0 flex-1">
+					<p className="text-balance font-semibold text-foreground text-sm leading-snug sm:text-base">
+						Not available in {regionName}
+					</p>
+					<p className="mt-1.5 text-pretty text-muted-foreground text-sm leading-relaxed">
+						{providerName} is not available in your watch region. See where it
+						is available below.
+					</p>
+				</div>
+			</div>
+		</div>
+	);
+}
 
 /** One country — full-row JustWatch link when TMDb supplies `link`; status checks stay visual. */
 function CountryAvailabilityRow({

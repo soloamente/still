@@ -10,6 +10,7 @@ import { achievementsRoute, badgesRoute } from "../routes/badges";
 import { challengesRoute } from "../routes/challenges";
 import { chatRoute } from "../routes/chat";
 import { commentsRoute } from "../routes/comments";
+import { companionRoute } from "../routes/companion";
 import { devotedRequestRoute } from "../routes/devoted-request";
 import { feedRoute } from "../routes/feed";
 import { feedbackRoute } from "../routes/feedback";
@@ -145,6 +146,7 @@ export const app = new Elysia({ aot: false })
 	.use(importRoute)
 	.use(meDataRoute)
 	.use(meDiscordRoute)
+	.use(companionRoute)
 	.use(followsRoute)
 	.use(feedRoute)
 	.use(feedbackRoute)

@@ -1,6 +1,8 @@
 /** Discover fetch options shared by movie and TV catalogue tag search. */
 export type CatalogueTagDiscoverOpts = {
 	companyId?: number;
+	/** TMDb watch provider ids — server applies flatrate + Settings watch region. */
+	providerIds?: number[];
 	genreIds?: number[];
 	keywordIds?: number[];
 	sortBy: string;
@@ -29,12 +31,14 @@ export function planCatalogueTagSearch(input: {
 	q: string;
 	listingKind: "movie" | "tv";
 	studioId: number | null;
+	streamingProviderId: number | null;
 	genreIds: number[];
 	keywordIds: number[];
 }): CatalogueTagSearchPlan {
 	const q = input.q.trim();
 	const hasDiscoverFilters =
 		input.studioId != null ||
+		input.streamingProviderId != null ||
 		input.genreIds.length > 0 ||
 		input.keywordIds.length > 0;
 
@@ -44,6 +48,10 @@ export function planCatalogueTagSearch(input: {
 			listingKind: input.listingKind,
 			opts: {
 				companyId: input.studioId ?? undefined,
+				providerIds:
+					input.streamingProviderId != null
+						? [input.streamingProviderId]
+						: undefined,
 				genreIds: input.genreIds.length > 0 ? input.genreIds : undefined,
 				keywordIds: input.keywordIds.length > 0 ? input.keywordIds : undefined,
 				sortBy: "popularity.desc",

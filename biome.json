@@ -11,6 +11,12 @@
 			"**",
 			"!**/.next",
 			"!**/dist",
+			"!**/.output",
+			"!**/.wxt",
+			"!**/vendor/premid-activities",
+			"!apps/sense-companion/vendor",
+			"!**/.claude",
+			"!**/.agents",
 			"!**/.turbo",
 			"!**/.nx",
 			"!**/dev-dist",
@@ -74,5 +80,17 @@
 		"parser": {
 			"tailwindDirectives": true
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["**/packages/ui/src/icons/nucleo-ui/**"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noSvgWithoutTitle": "off"
+					}
+				}
+			}
+		}
+	]
 }

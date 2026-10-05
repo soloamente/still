@@ -58,7 +58,7 @@ export default function ProfileLoading() {
 							"sk-l",
 						] as const
 					).map((id) => (
-						<Skeleton key={id} className="aspect-[2/3] w-full rounded-[3rem]" />
+						<Skeleton key={id} className="aspect-[2/3] w-full rounded-[2rem]" />
 					))}
 				</div>
 			</section>

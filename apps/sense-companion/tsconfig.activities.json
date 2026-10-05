@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"lib": ["ES2022", "DOM"],
+		"strict": true,
+		"noEmit": true,
+		"skipLibCheck": false,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowImportingTsExtensions": true,
+		"types": ["premid"],
+		"typeRoots": ["./vendor/premid-activities/types"],
+		"paths": {
+			"premid": ["./vendor/premid-activities/premid/src/index.ts"]
+		}
+	},
+	"include": [
+		"vendor/premid-activities/premid/src/**/*.ts",
+		"vendor/premid-activities/websites/N/Netflix/**/*.ts",
+		"vendor/premid-activities/websites/D/Disney+/**/*.ts",
+		"vendor/premid-activities/websites/P/Prime Video/**/*.ts",
+		"vendor/premid-activities/websites/A/Apple TV+/**/*.ts",
+		"vendor/premid-activities/websites/H/HBO Max/**/*.ts"
+	]
+}

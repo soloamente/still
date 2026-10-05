@@ -2,8 +2,10 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+	finalizeDiscordActivityFields,
 	readDiscordActivityLayout,
 	resolveDiscordActivityFields,
+	resolveDiscordActivityFromMessage,
 } from "./discord-layout";
 
 const PARTS = {
@@ -65,6 +67,154 @@ describe("discord activity layout", () => {
 			...DEFAULT_DISCORD_ACTIVITY_LAYOUT,
 			name: "service",
 			cover: "none",
+		});
+	});
+
+	test("a film with no extra meta names the platform", () => {
+		expect(
+			resolveDiscordActivityFromMessage(
+				{
+					service: "Movy",
+					presenceMode: "playing",
+					senseMedia: {
+						kind: "movie",
+						title: "Runner",
+						season: null,
+						episode: null,
+					},
+					activity: {
+						name: "Runner",
+						details: "Movy",
+						state: null,
+						smallImageText: "Playing",
+						startTimestamp: 1,
+						endTimestamp: 2,
+					},
+				},
+				DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+			),
+		).toEqual({
+			name: "with Sense",
+			details: "Runner",
+			state: "On Movy",
+			largeText: "Runner",
+		});
+	});
+
+	test("an episode fills the title, the episode, and Sense", () => {
+		expect(
+			resolveDiscordActivityFromMessage(
+				{
+					service: "Netflix",
+					presenceMode: "playing",
+					senseMedia: {
+						kind: "episode",
+						title: "Stranger Things",
+						season: 4,
+						episode: 1,
+					},
+					activity: {
+						name: "Stranger Things",
+						details: "Chapter One",
+						state: null,
+						smallImageText: "Playing",
+						startTimestamp: 1,
+						endTimestamp: 2,
+					},
+				},
+				DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+			),
+		).toEqual({
+			name: "with Sense",
+			details: "Stranger Things",
+			state: "S4 E1 - Chapter One",
+			largeText: "Stranger Things",
+		});
+	});
+
+	test("films put the title on the Watching line and the year under it", () => {
+		expect(
+			resolveDiscordActivityFromMessage(
+				{
+					service: "Netflix",
+					presenceMode: "playing",
+					senseMedia: {
+						provider: "netflix",
+						kind: "movie",
+						title: "Dune",
+						season: null,
+						episode: null,
+						positionSec: 100,
+						durationSec: 9000,
+					},
+					activity: {
+						name: null,
+						details: "Dune",
+						state: "2021 · 155m",
+						smallImageText: "Playing",
+						startTimestamp: 1,
+						endTimestamp: 2,
+					},
+				},
+				DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+			),
+		).toEqual({
+			name: "with Sense",
+			details: "Dune",
+			state: "On Netflix",
+			largeText: "Dune",
+		});
+	});
+
+	test("exploring uses Watching with Sense and On the platform", () => {
+		expect(
+			resolveDiscordActivityFromMessage(
+				{
+					service: "Max",
+					pagePath: "/browse",
+					senseMedia: null,
+					activity: {
+						name: null,
+						details: "Browsing Max...",
+						state: null,
+						smallImageText: "Browsing",
+						startTimestamp: 1,
+						endTimestamp: null,
+					},
+				},
+				DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+			),
+		).toEqual({
+			name: "with Sense",
+			details: "Browsing the home page",
+			state: "On HBO Max",
+			largeText: "Browsing the home page",
+		});
+	});
+
+	test("a movie page names the title under Watching with Sense", () => {
+		expect(
+			resolveDiscordActivityFromMessage(
+				{
+					service: "HBO Max",
+					pagePath: "/movie/dune",
+					senseMedia: null,
+					activity: {
+						name: null,
+						details: "Dune",
+						state: "Epic sci-fi",
+						smallImageText: "Browsing",
+						startTimestamp: 1,
+						endTimestamp: null,
+					},
+				},
+				DEFAULT_DISCORD_ACTIVITY_LAYOUT,
+			),
+		).toEqual({
+			name: "with Sense",
+			details: "Browsing Dune page",
+			state: "On HBO Max",
+			largeText: "Dune",
 		});
 	});
 

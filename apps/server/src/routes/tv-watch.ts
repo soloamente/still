@@ -34,6 +34,10 @@ import {
 	getTvSeasonDetailCached,
 	getTvSeasonsCached,
 } from "../lib/tv-season-cache";
+import {
+	markAllCatalogEpisodesWatched,
+	reconcileTvWatchProgress,
+} from "../lib/tv-watch-progress-sync";
 
 const TV_WATCH_STATUSES = [
 	"watching",
@@ -292,6 +296,34 @@ export const tvWatchRoute = new Elysia({
 					? body.progressMode
 					: existing.progressMode;
 
+			const language = await getTmdbLanguageForUser(user.id);
+
+			// Finished ⇒ every catalogue episode is checked off (also backfills new eps).
+			if (nextStatus === "finished") {
+				await ensureTvCached(existing.tvId);
+				const last = await markAllCatalogEpisodesWatched(
+					existing.id,
+					existing.tvId,
+					language,
+				);
+				const [updated] = await db
+					.update(tvWatch)
+					.set({
+						status: nextStatus,
+						progressMode: nextMode,
+						notifyNewEpisodes:
+							body.notifyNewEpisodes === undefined
+								? existing.notifyNewEpisodes
+								: body.notifyNewEpisodes,
+						statusChangedAt: new Date(),
+						lastSeason: last?.seasonNumber ?? existing.lastSeason,
+						lastEpisode: last?.episodeNumber ?? existing.lastEpisode,
+					})
+					.where(eq(tvWatch.id, params.id))
+					.returning();
+				return buildWatchDto(updated, language);
+			}
+
 			const [updated] = await db
 				.update(tvWatch)
 				.set({
@@ -317,7 +349,6 @@ export const tvWatchRoute = new Elysia({
 				.where(eq(tvWatch.id, params.id))
 				.returning();
 
-			const language = await getTmdbLanguageForUser(user.id);
 			return buildWatchDto(updated, language);
 		},
 		{
@@ -380,7 +411,8 @@ export const tvWatchRoute = new Elysia({
 				.returning();
 
 			const language = await getTmdbLanguageForUser(user.id);
-			return buildWatchDto(updated, language);
+			const reconciled = await reconcileTvWatchProgress(updated, language);
+			return buildWatchDto(reconciled, language);
 		},
 		{
 			params: t.Object({ id: t.String() }),
@@ -415,7 +447,8 @@ export const tvWatchRoute = new Elysia({
 				);
 
 			const language = await getTmdbLanguageForUser(user.id);
-			return buildWatchDto(existing, language);
+			const reconciled = await reconcileTvWatchProgress(existing, language);
+			return buildWatchDto(reconciled, language);
 		},
 		{
 			params: t.Object({ id: t.String() }),
@@ -476,7 +509,8 @@ export const tvWatchRoute = new Elysia({
 				.where(eq(tvWatch.id, existing.id))
 				.returning();
 
-			return buildWatchDto(updated, language);
+			const reconciled = await reconcileTvWatchProgress(updated, language);
+			return buildWatchDto(reconciled, language);
 		},
 		{
 			params: t.Object({
@@ -528,7 +562,8 @@ export const tvWatchRoute = new Elysia({
 				.where(eq(tvWatch.id, existing.id))
 				.returning();
 
-			return buildWatchDto(updated, language);
+			const reconciled = await reconcileTvWatchProgress(updated, language);
+			return buildWatchDto(reconciled, language);
 		},
 		{ params: t.Object({ id: t.String() }) },
 	)

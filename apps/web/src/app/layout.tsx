@@ -1,12 +1,9 @@
 import { Agentation } from "agentation";
-import { DialRoot } from "dialkit";
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
-import "dialkit/styles.css";
 import "pasito/styles.css";
-import { Fraunces, Geist_Mono, Outfit } from "next/font/google";
-import localFont from "next/font/local";
+import { Fraunces, Geist_Mono, Inter } from "next/font/google";
 
 import "../index.css";
 import { ThemeFlashGuardScript } from "@/components/app/theme-flash-guard-script";
@@ -24,64 +21,10 @@ import {
 import { getSiteOrigin } from "@/lib/site-origin";
 
 /**
- * UI sans: **SF Pro Rounded** from `public/fonts/SF_Pro_Rounded` (next/font `localFont`),
- * exposed as `--font-sf-pro-rounded`. **Outfit** stays on `--font-inter` as a webfont
- * fallback in `globals.css` (`--font-proxima-nova`).
+ * UI sans: **Inter** via next/font → `--font-inter` → `font-sans` in `globals.css`.
  * Display headlines stay on **Fraunces** via `font-display`.
  */
-const sfProRounded = localFont({
-	src: [
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Ultralight.otf",
-			weight: "100",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Thin.otf",
-			weight: "200",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Light.otf",
-			weight: "300",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Regular.otf",
-			weight: "400",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Medium.otf",
-			weight: "500",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Semibold.otf",
-			weight: "600",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Bold.otf",
-			weight: "700",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Heavy.otf",
-			weight: "800",
-			style: "normal",
-		},
-		{
-			path: "../../public/fonts/SF_Pro_Rounded/SF-Pro-Rounded-Black.otf",
-			weight: "900",
-			style: "normal",
-		},
-	],
-	variable: "--font-sf-pro-rounded",
-	display: "swap",
-});
-
-const outfit = Outfit({
+const inter = Inter({
 	variable: "--font-inter",
 	subsets: ["latin"],
 	display: "swap",
@@ -152,16 +95,14 @@ export default function RootLayout({
 	/* next/font puts `--font-inter` on whichever node gets `variable`; it must live on
 	 * `<html>` so :root rules like `font-family: var(--font-sans)` resolve it (body-only
 	 * vars are invisible to `html`, which broke the stack → Times New Roman fallbacks). */
-	const htmlFontClass = `${sfProRounded.variable} ${outfit.variable} ${outfit.className} ${geistMono.variable} ${fraunces.variable}`;
+	const htmlFontClass = `${inter.variable} ${inter.className} ${geistMono.variable} ${fraunces.variable}`;
 
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className="bg-background text-foreground antialiased">
 				<ThemeFlashGuardScript />
-				{/* DialKit dev panel: sibling of app tree (does not wrap {children}). */}
 				<Providers htmlFontClass={htmlFontClass}>{children}</Providers>
 				{process.env.NODE_ENV === "development" ? <Agentation /> : null}
-				<DialRoot />
 			</body>
 		</html>
 	);

@@ -263,4 +263,57 @@ describe("fetchProfileDiscordActivity", () => {
 
 		expect(JSON.stringify(result)).not.toContain(DISCORD_ID);
 	});
+
+	test("Companion watching wins over Discord listening", async () => {
+		const result = await fetchProfileDiscordActivity({
+			handle: "owner",
+			viewerId: OWNER_ID,
+			readCompanionWatching: async () => ({
+				title: "Stranger Things",
+				provider: "netflix",
+				kind: "tv",
+				tmdbId: 66732,
+				href: "/tv/66732",
+				season: 4,
+				episode: 1,
+				episodeTitle: "Chapter One",
+				positionSec: 30,
+				durationSec: 3600,
+				paused: false,
+				updatedAt: "2026-09-30T00:00:00.000Z",
+			}),
+		});
+
+		expect(result.ok).toBe(true);
+		if (!result.ok || !result.body.visible) {
+			throw new Error("expected a visible companion row");
+		}
+		expect(result.body.activity.label).toBe("Watching Stranger Things");
+		expect(result.body.activity.detail).toBe("S4 E1 - Chapter One");
+		expect(result.body.activity.href).toBe("/tv/66732");
+		expect(result.body.activity.activitySource).toBe("companion");
+		expect(getCachedDiscordPresenceMock).not.toHaveBeenCalled();
+	});
+
+	test("hides Companion watching from a non-mutual viewer", async () => {
+		const result = await fetchProfileDiscordActivity({
+			handle: "owner",
+			viewerId: VIEWER_ID,
+			readCompanionWatching: async () => ({
+				title: "Stranger Things",
+				provider: "netflix",
+				kind: "tv",
+				tmdbId: 66732,
+				href: "/tv/66732",
+				season: 4,
+				episode: 1,
+				positionSec: 30,
+				durationSec: 3600,
+				paused: false,
+				updatedAt: "2026-09-30T00:00:00.000Z",
+			}),
+		});
+
+		expect(result).toEqual({ ok: true, body: { visible: false } });
+	});
 });

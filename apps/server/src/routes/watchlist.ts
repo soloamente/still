@@ -18,6 +18,7 @@ import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
 import { invalidateListingCommunityStatsCache } from "../lib/listing-community-stats-cache";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
+import { loadPatronPreferences } from "../lib/patron-preferences";
 import { patronHasPlanFeature } from "../lib/plan-feature-access";
 import { hit } from "../lib/rate-limit";
 import { recordProductEvent } from "../lib/record-product-event";
@@ -47,6 +48,7 @@ import {
 	writeWatchlistRanked,
 } from "../lib/watchlist-ranked-cache";
 import {
+	primaryFlatrateProvider,
 	primaryFlatrateProviderName,
 	readCatalogWatchRegionPref,
 	readCatalogWatchRegionPrefOrNull,
@@ -62,6 +64,7 @@ import {
 	loadWatchlistTonightSocial,
 	normalizedGenreAffinity,
 } from "../lib/watchlist-tonight-signals";
+import { upcomingWatchlistReleaseLabel } from "../lib/watchlist-upcoming-release";
 import {
 	upsertMovieWatchlistItem,
 	upsertTvWatchlistItem,
@@ -102,6 +105,8 @@ function watchlistSelectShape(tmdbJson: SQL<Record<string, unknown> | null>) {
 type WatchlistRankedEntry = {
 	row: WatchlistSelectRow;
 	providerName: string | null;
+	providerLogoPath: string | null;
+	upcomingReleaseLabel: string | null;
 	reason: string | null;
 	/** Analytics-safe reason bucket — never the label (it carries names/list titles). */
 	reasonKind: WatchlistTonightReasonKind | null;
@@ -128,6 +133,8 @@ function toWatchlistRow(
 	row: WatchlistSelectRow,
 	opts: {
 		providerName: string | null;
+		providerLogoPath: string | null;
+		upcomingReleaseLabel: string | null;
 		reason: string | null;
 		reasonKind: WatchlistTonightReasonKind | null;
 		chosenRegion: string | null;
@@ -155,24 +162,14 @@ function toWatchlistRow(
 					}
 				: null,
 		streaming_provider_name: providerName,
+		streaming_provider_logo_path: opts.providerLogoPath,
+		upcoming_release_label: opts.upcomingReleaseLabel,
 		tonight_reason: reason,
 		tonight_reason_kind: opts.reasonKind,
 		streaming_alert: row.streamingAlert,
 		streaming_region: opts.chosenRegion,
 		streaming_in_region: opts.chosenRegion ? opts.streamingInRegion : null,
 	};
-}
-
-/** Patron `profile.preferences` blob (null when the profile row is missing). */
-async function loadPatronPreferences(
-	userId: string,
-): Promise<Record<string, unknown> | null> {
-	const [prefRow] = await db
-		.select({ preferences: profile.preferences })
-		.from(profile)
-		.where(eq(profile.userId, userId))
-		.limit(1);
-	return (prefRow?.preferences as Record<string, unknown> | null) ?? null;
 }
 
 /**
@@ -314,12 +311,21 @@ async function rankWatchlistDecisionPool(args: {
 			.limit(WATCHLIST_DECISION_POOL_LIMIT),
 	);
 	// Drop `tmdbJson` once the provider is read — ranked entries are cached.
-	const withProvider = pool.map(({ tmdbJson, ...row }) => ({
-		row,
-		providerName: chosenRegion
-			? primaryFlatrateProviderName(tmdbJson, chosenRegion)
-			: null,
-	}));
+	const todayYmd = new Date().toISOString().slice(0, 10);
+	const withProvider = pool.map(({ tmdbJson, ...row }) => {
+		const primary = chosenRegion
+			? primaryFlatrateProvider(tmdbJson, chosenRegion)
+			: null;
+		return {
+			row,
+			providerName: primary?.providerName ?? null,
+			providerLogoPath: primary?.logoPath ?? null,
+			upcomingReleaseLabel:
+				chosenRegion && row.movieTmdbId != null
+					? upcomingWatchlistReleaseLabel(tmdbJson, chosenRegion, todayYmd)
+					: null,
+		};
+	});
 
 	if (order === "available") {
 		return withProvider
@@ -428,6 +434,8 @@ export const watchlistRoute = new Elysia({
 					results: slice.rows.map((r) =>
 						toWatchlistRow(r.row, {
 							providerName: r.providerName,
+							providerLogoPath: r.providerLogoPath,
+							upcomingReleaseLabel: r.upcomingReleaseLabel,
 							reason: r.reason,
 							reasonKind: r.reasonKind,
 							chosenRegion,
@@ -494,16 +502,23 @@ export const watchlistRoute = new Elysia({
 				const slice = sliceWatchlistRankedPage(filtered, page, limit);
 				return {
 					results: slice.rows.map((row) => {
-						const providerName = primaryFlatrateProviderName(
-							row.tmdbJson,
-							chosenRegion,
-						);
+						const primary = primaryFlatrateProvider(row.tmdbJson, chosenRegion);
+						const todayYmd = new Date().toISOString().slice(0, 10);
 						return toWatchlistRow(row, {
-							providerName,
+							providerName: primary?.providerName ?? null,
+							providerLogoPath: primary?.logoPath ?? null,
+							upcomingReleaseLabel:
+								row.movieTmdbId != null
+									? upcomingWatchlistReleaseLabel(
+											row.tmdbJson,
+											chosenRegion,
+											todayYmd,
+										)
+									: null,
 							reason: null,
 							reasonKind: null,
 							chosenRegion,
-							streamingInRegion: providerName != null,
+							streamingInRegion: primary != null,
 						});
 					}),
 					total_pages: slice.totalPages,
@@ -538,16 +553,23 @@ export const watchlistRoute = new Elysia({
 				results: rows.map((row) => {
 					// `watchRegion` === `chosenRegion` whenever one is chosen, so the
 					// same projection answers both the pill and "streams in region".
-					const providerName = primaryFlatrateProviderName(
-						row.tmdbJson,
-						watchRegion,
-					);
+					const primary = primaryFlatrateProvider(row.tmdbJson, watchRegion);
+					const todayYmd = new Date().toISOString().slice(0, 10);
 					return toWatchlistRow(row, {
-						providerName,
+						providerName: primary?.providerName ?? null,
+						providerLogoPath: primary?.logoPath ?? null,
+						upcomingReleaseLabel:
+							row.movieTmdbId != null
+								? upcomingWatchlistReleaseLabel(
+										row.tmdbJson,
+										watchRegion,
+										todayYmd,
+									)
+								: null,
 						reason: null,
 						reasonKind: null,
 						chosenRegion,
-						streamingInRegion: providerName != null,
+						streamingInRegion: primary != null,
 					});
 				}),
 				total_pages: totalPages,

@@ -12,9 +12,9 @@ import type { ReactNode } from "react";
 
 import type { SearchDialogListingKind } from "@/lib/search-dialog-listing-kind";
 import {
+	type SearchDialogResultMode,
 	searchDialogEmptyFoundCopy,
 	searchDialogFoundCopy,
-	type SearchDialogResultMode,
 	searchDialogTabHint,
 } from "@/lib/search-dialog-results-copy";
 
@@ -60,7 +60,7 @@ export function SearchDialogFooter({
 	const tabHint = searchDialogTabHint(listingKind, { empty: isEmptyDraft });
 
 	return (
-		<div className="flex min-w-0 shrink-0 items-center gap-2.5 px-5 pt-1 pb-2.5">
+		<div className="-mt-1 flex min-w-0 shrink-0 items-center gap-2.5 px-5 pt-0 pb-2">
 			<div className="flex min-w-0 items-center gap-[5px]">
 				<FooterKey className="tabular-nums">{copy.countLabel}</FooterKey>
 				<p className="truncate font-medium text-[12px] text-muted-foreground">

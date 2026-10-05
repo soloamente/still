@@ -188,6 +188,11 @@ export function ListingEngagementWatchRow({
 
 				<EngagementMetaRow>
 					<DiaryLogRatingLabel stored={item.rating} />
+					{item.ratingSource === "yours" ? (
+						<span className="text-muted-foreground text-xs">Your rating</span>
+					) : item.ratingSource === "average" ? (
+						<span className="text-muted-foreground text-xs">Average</span>
+					) : null}
 					{item.liked ? <FeedActivityFavoriteChip /> : null}
 					{!item.rating && !item.liked ? (
 						<span className="text-muted-foreground">Logged</span>

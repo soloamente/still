@@ -17,20 +17,26 @@ function TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {
 
 function TooltipContent({
 	className,
+	positionerClassName,
+	portalContainer,
 	side = "top",
 	sideOffset = 8,
 	align = "center",
 	children,
 	...props
 }: TooltipPrimitive.Popup.Props &
-	Pick<TooltipPrimitive.Positioner.Props, "side" | "sideOffset" | "align">) {
+	Pick<TooltipPrimitive.Positioner.Props, "side" | "sideOffset" | "align"> & {
+		/** Override portal target (e.g. native `<dialog>` top layer). */
+		portalContainer?: HTMLElement | null;
+		positionerClassName?: string;
+	}) {
 	return (
-		<TooltipPrimitive.Portal>
+		<TooltipPrimitive.Portal container={portalContainer ?? undefined}>
 			<TooltipPrimitive.Positioner
 				side={side}
 				sideOffset={sideOffset}
 				align={align}
-				className="z-[60] outline-none"
+				className={cn("z-[60] outline-none", positionerClassName)}
 			>
 				<TooltipPrimitive.Popup
 					data-slot="tooltip-content"

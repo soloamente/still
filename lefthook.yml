@@ -6,5 +6,6 @@ pre-commit:
   jobs:
     - name: biome
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: bun biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      # Paths come from git inside the script — avoids Windows splitting on spaces.
+      run: bun scripts/biome-staged.mjs
       stage_fixed: true

@@ -454,7 +454,7 @@ export default defineContentScript({
 				activeService = label;
 				if (next.show && watch) {
 					// Watching copy is immediate. Delivery confirm is for pairing only.
-					showWatchToast(watchToastCopy(watch), true);
+					showWatchToast(watchToastCopy(watch, next.resume), true);
 					// Every Watching confirm paints its own mark. Only a success
 					// may reveal the countdown, including after a pairing timeout.
 					const delivery = confirmWatchDelivery(message).then((ok) => {

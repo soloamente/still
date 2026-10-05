@@ -1,8 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import {
 	activeIndexAfterRemoval,
+	buildTasteQueueBackfillRunner,
 	createTasteQueueBackfillScheduler,
 	mergeTailBackfill,
+	railAfterTasteRefresh,
+	sameTasteRailIds,
 	TASTE_MATCH_TARGET_RESULTS,
 } from "./taste-match-queue";
 import type { TasteMatchMovie } from "./taste-matched-discovery";
@@ -93,5 +96,67 @@ describe("createTasteQueueBackfillScheduler", () => {
 		await new Promise((resolve) => setTimeout(resolve, 120));
 
 		expect(runs).toBe(0);
+	});
+});
+
+describe("sameTasteRailIds", () => {
+	test("matches the same order only", () => {
+		expect(sameTasteRailIds([row(1), row(2)], [row(1), row(2)])).toBe(true);
+		expect(sameTasteRailIds([row(1), row(2)], [row(2), row(1)])).toBe(false);
+	});
+});
+
+describe("railAfterTasteRefresh", () => {
+	test("drops the logged title when for-you still returns it", () => {
+		const out = railAfterTasteRefresh({
+			fresh: [row(1), row(2), row(3)],
+			pinned: row(1),
+			consumedTmdbId: 2,
+		});
+		expect(out.map((film) => film.tmdbId)).toEqual([1, 3]);
+	});
+
+	test("keeps today's pin when the new ranking omits it", () => {
+		const pinned = row(9);
+		const out = railAfterTasteRefresh({
+			fresh: [row(1), row(2)],
+			pinned,
+			consumedTmdbId: 4,
+		});
+		expect(out.map((film) => film.tmdbId)).toEqual([9, 1, 2]);
+	});
+
+	test("does not put back the title that was just logged", () => {
+		const out = railAfterTasteRefresh({
+			fresh: [row(1), row(2)],
+			pinned: row(9),
+			consumedTmdbId: 9,
+		});
+		expect(out.map((film) => film.tmdbId)).toEqual([1, 2]);
+	});
+});
+
+describe("buildTasteQueueBackfillRunner", () => {
+	test("removes a logged title from a full rail", async () => {
+		const current = Array.from({ length: 24 }, (_, index) => row(index + 1));
+		let next: TasteMatchMovie[] | null = null;
+		const run = buildTasteQueueBackfillRunner({
+			getMovies: () => current,
+			setMovies: (movies) => {
+				next = movies;
+			},
+			fetchForYou: async () => ({
+				coldStart: false,
+				genrePhrase: null,
+				movies: [row(2), row(25)],
+				consumedTmdbIds: [1],
+			}),
+		});
+
+		await run();
+
+		expect(next).not.toBeNull();
+		expect(next?.some((film) => film.tmdbId === 1)).toBe(false);
+		expect(next?.[0]?.tmdbId).toBe(2);
 	});
 });

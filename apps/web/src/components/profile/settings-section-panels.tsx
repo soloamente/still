@@ -15,6 +15,7 @@ import { MeAnilistImport } from "@/components/profile/me-anilist-import";
 import { MeAppearanceSettings } from "@/components/profile/me-appearance-settings";
 import { MeCatalogLanguageSelect } from "@/components/profile/me-catalog-language-select";
 import { MeCatalogWatchRegionSelect } from "@/components/profile/me-catalog-watch-region-select";
+import { MeCompanionPair } from "@/components/profile/me-companion-pair";
 import { MeDangerZone } from "@/components/profile/me-danger-zone";
 import { MeDataExportPanel } from "@/components/profile/me-data-export-panel";
 import { MeDiscordConnect } from "@/components/profile/me-discord-connect";
@@ -267,6 +268,16 @@ export function SettingsProfileSection() {
 			>
 				<MeSettingsPanel className="flex-none">
 					<MeDiscordConnect surface="plain" />
+				</MeSettingsPanel>
+			</MeSettingsSection>
+
+			<MeSettingsSection
+				className="flex-none"
+				title="Browser extension"
+				description="Pair Sense Companion so what you watch can show on your profile."
+			>
+				<MeSettingsPanel className="flex-none">
+					<MeCompanionPair />
 				</MeSettingsPanel>
 			</MeSettingsSection>
 		</SettingsSectionPage>

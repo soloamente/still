@@ -1,9 +1,12 @@
 import { describe, expect, test } from "bun:test";
+import { companionServiceLogoUrl } from "../../sense-companion/src/presence/service-platform-brand.ts";
 import type { CompanionActivityMessage } from "./companion-message";
 import {
 	buildClearActivity,
 	buildHandshake,
 	buildSetWatchingActivity,
+	DISCORD_EXPLORE_IMAGE,
+	DISCORD_INFO_IMAGE,
 	DISCORD_IPC_FRAME,
 	DISCORD_IPC_HANDSHAKE,
 	DISCORD_IPC_PONG,
@@ -88,6 +91,7 @@ describe("Discord IPC frames", () => {
 					activity: {
 						type: 3,
 						name: "Stranger Things",
+						status_display_type: 0,
 						details: "S4 E1",
 						state: "Sense",
 						timestamps: { start: 1_700_000_000_000, end: 1_700_003_600_000 },
@@ -113,6 +117,28 @@ describe("Discord IPC frames", () => {
 		});
 		expect(withHttps.args.activity.buttons).toEqual([
 			{ label: "View profile", url: "https://sense.example/profile/ada" },
+		]);
+
+		const withTitle = buildSetWatchingActivity({
+			pid: 42,
+			nonce: "n1",
+			title: "Runner",
+			details: "On Movy",
+			largeImage: null,
+			largeText: null,
+			smallImage: null,
+			smallText: null,
+			state: "Tracking with Sense",
+			timestamps: { start: 1_700_000_000_000, end: 1_700_003_600_000 },
+			profileButtonUrl: "https://cinema.sense.fans/profile/ada",
+			titleButtonUrl: "https://cinema.sense.fans/movies/550",
+		});
+		expect(withTitle.args.activity.buttons).toEqual([
+			{
+				label: "View title on Sense",
+				url: "https://cinema.sense.fans/movies/550",
+			},
+			{ label: "View profile", url: "https://cinema.sense.fans/profile/ada" },
 		]);
 
 		const withHttp = buildSetWatchingActivity({
@@ -208,13 +234,14 @@ describe("decideDiscordPresence", () => {
 		});
 		expect(result.decision).toEqual({
 			action: "set",
-			title: "Stranger Things",
-			details: "S4 E1",
+			title: "with Sense",
+			details: "Stranger Things",
+			activityType: 3,
 			largeImage: "https://occ.nflxso.net/boxart.jpg",
 			largeText: "Stranger Things",
-			smallImage: DISCORD_PLAY_IMAGE,
-			smallText: "Playing",
-			state: "Sense",
+			smallImage: companionServiceLogoUrl("Netflix"),
+			smallText: "Netflix",
+			state: "S4 E1 - Chapter One",
 			timestamps: { start: 1_700_000_000_000, end: 1_700_003_600_000 },
 		});
 	});
@@ -226,17 +253,20 @@ describe("decideDiscordPresence", () => {
 			pausedSince: null,
 		});
 		expect(result.pausedSince).toBeNull();
-		expect(result.decision).toEqual({
+		expect(result.decision).toMatchObject({
 			action: "set",
-			title: "Stranger Things",
-			details: "S4 E1",
-			largeImage: null,
+			title: "with Sense",
+			details: "Stranger Things",
+			activityType: 3,
 			largeText: "Stranger Things",
-			smallImage: DISCORD_PLAY_IMAGE,
-			smallText: "Playing",
-			state: "Sense",
+			smallImage: companionServiceLogoUrl("Netflix"),
+			smallText: "Netflix",
+			state: "S4 E1 - Chapter One",
 			timestamps: { start: 1_700_000_000_000, end: 1_700_003_600_000 },
 		});
+		expect(result.decision.action === "set" && result.decision.largeImage).toBe(
+			companionServiceLogoUrl("Netflix"),
+		);
 	});
 
 	test("the bar is the movie, from where you are to the end", () => {
@@ -288,15 +318,15 @@ describe("decideDiscordPresence", () => {
 			now: 1_700_000_030_000,
 			pausedSince: 1_700_000_020_000,
 		});
-		expect(result.decision).toEqual({
+		expect(result.decision).toMatchObject({
 			action: "set",
-			title: "Stranger Things",
-			details: "S4 E1",
-			largeImage: null,
+			title: "with Sense",
+			details: "Stranger Things",
+			activityType: 3,
 			largeText: "Stranger Things",
 			smallImage: DISCORD_PAUSE_IMAGE,
 			smallText: "Paused",
-			state: "Sense",
+			state: "S4 E1 - Chapter One",
 			timestamps: { start: 1_700_000_000_000, end: 1_700_003_600_000 },
 		});
 		expect(result.pausedSince).toBe(1_700_000_020_000);
@@ -334,7 +364,138 @@ describe("decideDiscordPresence", () => {
 		expect(result.pausedSince).toBeNull();
 	});
 
-	test("a saved layout replaces the title, the lines, and the cover tooltip", () => {
+	test("a platform cover tooltip is replaced by the show name", () => {
+		const result = decideDiscordPresence({
+			message: {
+				...STRANGER,
+				discordFields: {
+					name: "with Sense",
+					details: "Stranger Things",
+					state: "On Netflix",
+					largeText: "On Netflix",
+				},
+			},
+			now: 1_000,
+			pausedSince: null,
+		});
+		expect(result.decision).toMatchObject({
+			action: "set",
+			largeText: "Stranger Things",
+			state: "On Netflix",
+		});
+	});
+
+	test("catalogue explore shows the HBO Max logo instead of Max", () => {
+		const result = decideDiscordPresence({
+			message: {
+				type: "sense-companion:activity",
+				service: "Max",
+				pagePath: "/browse",
+				senseMedia: null,
+				presenceMode: "browsing",
+				activity: {
+					details: "Browsing Max...",
+					state: null,
+					largeImageText: null,
+					smallImageKey: null,
+					smallImageText: "Browsing",
+					startTimestamp: 1_700_000_000,
+					endTimestamp: null,
+					name: null,
+					type: 3,
+				},
+			},
+			now: 1_000,
+			pausedSince: null,
+		});
+		expect(result.decision).toMatchObject({
+			action: "set",
+			details: "Browsing the home page",
+			state: "On HBO Max",
+			largeText: "Browsing the home page",
+			largeImage: companionServiceLogoUrl("Max"),
+			smallImage: DISCORD_EXPLORE_IMAGE,
+			smallText: "Exploring",
+		});
+	});
+
+	test("another page of the same platform keeps the inset logo", () => {
+		const result = decideDiscordPresence({
+			message: {
+				type: "sense-companion:activity",
+				service: "Max",
+				pagePath: "/movies",
+				senseMedia: null,
+				presenceMode: "browsing",
+				activity: {
+					details: "Browsing movies",
+					state: null,
+					largeImageKey: "https://files.catbox.moe/jgcoos.png",
+					largeImageText: null,
+					smallImageKey: null,
+					smallImageText: "Browsing",
+					startTimestamp: 1_700_000_000,
+					endTimestamp: null,
+					name: null,
+					type: 3,
+				},
+			},
+			now: 1_000,
+			pausedSince: null,
+		});
+		expect(result.decision).toMatchObject({
+			action: "set",
+			largeImage: companionServiceLogoUrl("Max"),
+			smallImage: DISCORD_EXPLORE_IMAGE,
+			smallText: "Exploring",
+		});
+		expect(companionServiceLogoUrl("Max")).not.toBe(
+			"https://files.catbox.moe/jgcoos.png",
+		);
+	});
+
+	test("a movie page replaces Tracking with Sense with the platform", () => {
+		const result = decideDiscordPresence({
+			message: {
+				type: "sense-companion:activity",
+				service: "Netflix",
+				pagePath: "/title/123",
+				senseMedia: null,
+				presenceMode: "browsing",
+				discordFields: {
+					name: "Netflix",
+					details: "Browsing Dune page",
+					state: "Tracking with Sense",
+					largeText: "Netflix",
+				},
+				activity: {
+					details: "Dune",
+					state: "Tracking with Sense",
+					largeImageText: "Dune",
+					smallImageKey: null,
+					smallImageText: "Browsing",
+					startTimestamp: 1_700_000_000,
+					endTimestamp: null,
+					name: null,
+					type: 3,
+				},
+			},
+			now: 1_000,
+			pausedSince: null,
+		});
+		expect(result.decision).toMatchObject({
+			action: "set",
+			title: "with Sense",
+			details: "Browsing Dune page",
+			state: "On Netflix",
+			largeText: "Dune",
+			smallImage: DISCORD_INFO_IMAGE,
+			smallText: "Viewing",
+			timestamps: null,
+		});
+	});
+
+	test("a saved layout replaces the lines under the status", () => {
 		const result = decideDiscordPresence({
 			message: {
 				...STRANGER,
@@ -350,10 +511,10 @@ describe("decideDiscordPresence", () => {
 		});
 		expect(result.decision).toMatchObject({
 			action: "set",
-			title: "Netflix",
+			title: "with Sense",
 			details: "Chapter One",
 			state: null,
-			largeText: "S4 E1",
+			largeText: "Stranger Things",
 		});
 	});
 

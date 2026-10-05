@@ -6,7 +6,7 @@ import { APP_NAME, APP_TAGLINE } from "@/lib/app-brand";
 /**
  * Sense wordmark with a thin dot standing in for the lens accent.
  * Default `display` applies Fraunces for cinematic headings; auth chrome passes `sans`
- * so SF Pro Rounded (`font-sans` / `--font-proxima-nova`) can carry UI while Fraunces
+ * so Inter (`font-sans` / `--font-proxima-nova`) can carry UI while Fraunces
  * stays reserved for editorial pull quotes beside the split layout.
  *
  * Visible aria-label keeps screen readers happy without relying on the SVG mark alone.
@@ -23,7 +23,7 @@ export function BrandMark({
 	"aria-label": ariaLabel = `${APP_NAME} — go to home`,
 }: {
 	size?: "sm" | "md" | "lg";
-	/** `display`: Fraunces. `sans`: SF Pro Rounded stack — use beside quote-only Fraunces. */
+	/** `display`: Fraunces. `sans`: Inter — use beside quote-only Fraunces. */
 	wordmarkFont?: "display" | "sans";
 	tone?: "surface" | "inverse";
 	withTagline?: boolean;

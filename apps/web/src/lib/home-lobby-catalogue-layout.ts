@@ -12,11 +12,12 @@ export const HOME_LOBBY_CATALOGUE_GRID_CLASSNAME =
 export const LIST_DETAIL_FILMS_GRID_CLASSNAME =
 	"isolate grid w-full max-w-7xl gap-4 sm:gap-5 [grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr))] md:[grid-template-columns:repeat(auto-fill,minmax(12.5rem,1fr))] lg:[grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))] xl:[grid-template-columns:repeat(auto-fill,minmax(16rem,1fr))] 2xl:[grid-template-columns:repeat(auto-fill,minmax(17.5rem,1fr))]";
 
-export const HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME =
-	"min-w-0 rounded-[3rem]";
+/** Shared with `.poster-ios-corners` in `packages/ui` globals — lobby catalogue grids. */
+export const CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME = "poster-ios-corners";
 
-export const HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME =
-	"rounded-[3rem] border-0 bg-background";
+export const HOME_LOBBY_CATALOGUE_POSTER_LINK_CLASSNAME = `min-w-0 ${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME}`;
+
+export const HOME_LOBBY_CATALOGUE_POSTER_FRAME_CLASSNAME = `${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME} border-0 bg-background`;
 
 /** Centered auto-fill poster wall — onboarding taste + favorites (matches `/home` lobby tracks). */
 export const ONBOARDING_CATALOGUE_GRID_CLASSNAME =
@@ -45,7 +46,15 @@ export const HOME_LOBBY_FILTER_ROW_CLASSNAME =
 	"flex items-center gap-2 sm:gap-x-3";
 
 /** Leading sort/feed rail — grows and scrolls; never squeezes chip labels onto a second line. */
-export const HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME = "min-w-0 flex-1";
+export const HOME_LOBBY_FILTER_ROW_LEADING_CLASSNAME =
+	"relative z-0 min-w-0 flex-1";
+
+/**
+ * Venue / filters rail — pinned above the leading scroller so chips never paint
+ * under the filters icon or release-window pills.
+ */
+export const HOME_LOBBY_FILTER_ROW_TRAILING_CLASSNAME =
+	"relative z-20 flex shrink-0 items-center gap-1 bg-card pl-2 sm:pl-3";
 
 /** Shared pill track for lobby chip toolbars (sort, venue, period). */
 export const HOME_LOBBY_CHIP_TRACK_CLASSNAME =

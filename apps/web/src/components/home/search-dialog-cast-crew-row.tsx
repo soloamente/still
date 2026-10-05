@@ -1,65 +1,95 @@
 "use client";
 
+import { Tooltip, TooltipTrigger } from "@still/ui/components/tooltip";
 import IconStarFilled from "@still/ui/icons/star-filled";
 import { cn } from "@still/ui/lib/utils";
 import type { CastCrewSearchHit } from "@/lib/cast-crew-search-query";
 import { castCrewMetaLine } from "@/lib/cast-crew-search-query";
+import { CatalogSearchTooltipContent } from "@/lib/catalog-search-tooltip-portal";
+import { searchDialogKeyboardFocusActive } from "@/lib/search-dialog-keyboard-focus";
 
 /** One TMDb person row in the unified search dialog "Cast & Crew" section. */
 export function SearchDialogCastCrewRow({
 	hit,
 	onSelect,
+	resultIndex,
+	keyboardFocused = false,
 }: {
 	hit: CastCrewSearchHit;
 	onSelect: () => void;
+	resultIndex?: number;
+	keyboardFocused?: boolean;
 }) {
 	const meta = castCrewMetaLine(hit);
 	const initial = hit.name.trim().charAt(0).toUpperCase() || "?";
 	const favorited = Boolean(hit.isFavorited);
 	return (
-		<li>
-			<button
-				type="button"
-				onClick={onSelect}
-				className={cn(
-					"flex min-h-11 w-full items-center gap-3 rounded-2xl px-2 py-2 text-left transition-colors duration-200 ease-out motion-reduce:transition-none",
-					"[@media(hover:hover)]:hover:bg-background",
-					"focus-visible:bg-background focus-visible:outline-none",
-				)}
-			>
-				{hit.profileUrl ? (
-					// biome-ignore lint/performance/noImgElement: remote TMDb host, small avatar
-					<img
-						src={hit.profileUrl}
-						alt=""
-						width={44}
-						height={44}
-						className="size-11 shrink-0 rounded-full object-cover"
-						loading="lazy"
-					/>
-				) : (
-					<span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-muted-foreground text-sm">
-						{initial}
-					</span>
-				)}
-				<div className="min-w-0 flex-1">
-					<p className="flex min-w-0 items-center gap-1.5 font-semibold text-foreground text-sm leading-snug">
-						<span className="truncate">{hit.name}</span>
-						{favorited ? (
-							<IconStarFilled
-								size="14px"
-								className="shrink-0 text-foreground"
-								aria-label="Favorited"
-							/>
-						) : null}
-					</p>
+		<li
+			className={cn(
+				"block w-full rounded-2xl",
+				searchDialogKeyboardFocusActive(keyboardFocused),
+			)}
+		>
+			<Tooltip>
+				<TooltipTrigger
+					render={
+						<button
+							type="button"
+							data-search-dialog-result-index={resultIndex}
+							onClick={onSelect}
+							className={cn(
+								"flex min-h-11 w-full items-center gap-3 rounded-2xl px-2 py-2 text-left transition-colors duration-200 ease-out motion-reduce:transition-none",
+								"[@media(hover:hover)]:hover:bg-background",
+								"focus-visible:bg-background focus-visible:outline-none",
+								keyboardFocused && "bg-background",
+							)}
+						>
+							{hit.profileUrl ? (
+								// biome-ignore lint/performance/noImgElement: remote TMDb host, small avatar
+								<img
+									src={hit.profileUrl}
+									alt=""
+									width={44}
+									height={44}
+									className="size-11 shrink-0 rounded-full object-cover"
+									loading="lazy"
+								/>
+							) : (
+								<span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-muted-foreground text-sm">
+									{initial}
+								</span>
+							)}
+							<div className="min-w-0 flex-1">
+								<p className="flex min-w-0 items-center gap-1.5 font-semibold text-foreground text-sm leading-snug">
+									<span className="truncate">{hit.name}</span>
+									{favorited ? (
+										<IconStarFilled
+											size="14px"
+											className="shrink-0 text-foreground"
+											aria-label="Favorited"
+										/>
+									) : null}
+								</p>
+								{meta ? (
+									<p className="truncate text-muted-foreground text-xs leading-snug">
+										{meta}
+									</p>
+								) : null}
+							</div>
+						</button>
+					}
+				/>
+				<CatalogSearchTooltipContent side="top">
 					{meta ? (
-						<p className="truncate text-muted-foreground text-xs leading-snug">
-							{meta}
-						</p>
-					) : null}
-				</div>
-			</button>
+						<span className="block">
+							<span className="block font-medium">{hit.name}</span>
+							<span className="mt-0.5 block text-background/80">{meta}</span>
+						</span>
+					) : (
+						hit.name
+					)}
+				</CatalogSearchTooltipContent>
+			</Tooltip>
 		</li>
 	);
 }
