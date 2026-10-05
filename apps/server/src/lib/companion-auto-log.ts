@@ -202,7 +202,8 @@ async function writeCompanionAutoLog(
 		.from(log)
 		.where(and(eq(log.userId, userId), isNull(log.removedAt), titleWhere))
 		.limit(1);
-	let anyPrior = older ?? null;
+	// First diary row ever (any title) — for product analytics only; rating lives on `older`.
+	let anyPrior: { id: string } | null = older ? { id: older.id } : null;
 	if (!anyPrior) {
 		const [row] = await db
 			.select({ id: log.id })
