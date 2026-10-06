@@ -543,9 +543,13 @@ async function fetchViewerRank(opts: {
 	);
 	if (tiedHandle) aheadConditions.push(tiedHandle);
 
+	// Eligibility filters reference `user.banned`. Join `user` or Postgres
+	// errors with a missing FROM-clause (signed-in month recap always lands here
+	// because the top-3 page does not include the viewer).
 	const [aheadRow] = await db
 		.select({ ahead: sql<number>`count(*)::int`.as("ahead") })
 		.from(profile)
+		.innerJoin(user, eq(profile.userId, user.id))
 		.leftJoin(activity, eq(profile.userId, activity.userId))
 		.where(
 			and(

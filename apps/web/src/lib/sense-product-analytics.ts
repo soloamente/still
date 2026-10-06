@@ -1,6 +1,5 @@
-import { env } from "@still/env/web";
-
 import type { ClientProductEventKind } from "@/lib/product-event-kinds";
+import { stillApiOrigin } from "@/lib/still-api-origin";
 
 /** Client-allowed kinds — must match `CLIENT_PRODUCT_EVENT_KINDS` on the server. */
 export type SenseClientProductEventKind = ClientProductEventKind;
@@ -12,7 +11,9 @@ export function trackSenseProductEvent(
 	kind: SenseClientProductEventKind,
 	properties: Record<string, unknown> = {},
 ): void {
-	const base = env.NEXT_PUBLIC_SERVER_URL?.replace(/\/$/, "");
+	// Same origin as the page so the session cookie is sent. Posting straight at
+	// the API host (NEXT_PUBLIC_SERVER_URL) is cross-site and comes back 401.
+	const base = stillApiOrigin().replace(/\/$/, "");
 	if (!base) return;
 
 	void fetch(`${base}/api/product-events`, {
