@@ -1751,7 +1751,8 @@ export function HomeTasteMatchedHero({
 														}
 													}}
 													className={cn(
-														"relative shrink-0 rounded-xl bg-background transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none sm:rounded-2xl",
+														// No fill or radius here — a second plate behind the poster reads as a different corner.
+														"relative shrink-0 bg-transparent p-0 transition-[transform,opacity] duration-200 ease-out [--edge-opacity:1] motion-reduce:transition-none",
 														// Keep pointer gestures on the button — not a floating browser image drag.
 														"[&_img]:pointer-events-none [&_img]:[-webkit-user-drag:none]",
 														isActive
@@ -1785,13 +1786,12 @@ export function HomeTasteMatchedHero({
 															film.posterPath,
 															"w342",
 														)}
-														className={cn(
-															"aspect-2/3 w-full overflow-hidden",
-															CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME,
-														)}
+														className="aspect-2/3 w-full"
 														frameClassName={cn(
-															"w-full border-0",
+															"w-full border-0 bg-transparent",
 															CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME,
+															// Image must not keep its own radius inside the frame.
+															"[&_img]:rounded-none!",
 														)}
 														linkable={false}
 													/>

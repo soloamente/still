@@ -76,9 +76,9 @@ export function HomeTasteMatchedHeroSkeleton({
 								"flex justify-end gap-1.5 py-1 max-sm:pl-3 sm:gap-2.5 sm:py-2 sm:pl-3",
 							)}
 						>
-							<ShimmerBone className="h-[4.5rem] w-12 rounded-xl bg-card sm:h-48 sm:w-32 sm:rounded-2xl" />
-							<ShimmerBone className="h-16 w-11 rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
-							<ShimmerBone className="h-16 w-11 rounded-xl bg-card sm:h-[10.5rem] sm:w-28 sm:rounded-2xl" />
+							<ShimmerBone className="poster-ios-corners h-[4.5rem] w-12 bg-card sm:h-48 sm:w-32" />
+							<ShimmerBone className="poster-ios-corners h-16 w-11 bg-card sm:h-[10.5rem] sm:w-28" />
+							<ShimmerBone className="poster-ios-corners h-16 w-11 bg-card sm:h-[10.5rem] sm:w-28" />
 						</div>
 					</div>
 				</div>
