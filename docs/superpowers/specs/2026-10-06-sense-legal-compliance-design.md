@@ -1,7 +1,7 @@
 # Sense Legal & Compliance Pack — Design
 
 **Date:** 2026-10-06  
-**Status:** Draft (awaiting user review of this file)  
+**Status:** Approved  
 **Apps:** `apps/web` (primary); `apps/server` only if consent/version persistence needs API storage  
 **Disclaimer:** This document is a **product and engineering design**, not legal advice. Policy wording should be reviewed by a qualified lawyer before you rely on it in production.
 
