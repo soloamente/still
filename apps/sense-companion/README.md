@@ -15,6 +15,16 @@ bun run --filter @still/sense-companion build
 
 Output: `apps/sense-companion/.output/chrome-mv3`
 
+## Chrome Web Store zip
+
+The store rejects `manifest.key`. Use the **`zip`** script (not a hand-zipped folder from `build`):
+
+```bash
+bun run --filter @still/sense-companion zip
+```
+
+Upload the `.zip` from `apps/sense-companion/.output/`.
+
 ## Load unpacked (development)
 
 1. Open `chrome://extensions` or `edge://extensions`.

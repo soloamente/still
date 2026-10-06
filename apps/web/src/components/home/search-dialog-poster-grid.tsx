@@ -33,7 +33,7 @@ export function SearchDialogPosterGrid({
 	label?: string;
 	keyboardFocusedIndex?: number | null;
 }) {
-	const gridRef = useRef<HTMLDivElement>(null);
+	const gridRef = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
 		if (keyboardFocusedIndex == null || !gridRef.current) return;

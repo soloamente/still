@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "wxt --port 5555",
 		"build": "wxt build",
-		"zip": "wxt zip",
+		"zip": "bun scripts/zip-store.mjs",
 		"compile": "tsc --noEmit && tsc -p tsconfig.activities.json --noEmit",
 		"test": "bun test src/presence src/pairing src/popup",
 		"postinstall": "wxt prepare"

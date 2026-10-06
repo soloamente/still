@@ -500,7 +500,6 @@ export function WatchlistTonightHero({
 									className={cn(
 										"inline-flex min-h-11 items-center justify-center rounded-full bg-pure-white px-5 font-medium text-absolute-black text-sm transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none",
 										DETAIL_MOTION_PRESSABLE_CLASS,
-										motionProps.className,
 									)}
 									style={motionProps.style}
 									onClick={handleQuickLog}
@@ -514,7 +513,6 @@ export function WatchlistTonightHero({
 										"min-h-11",
 										DETAIL_MOTION_PRESSABLE_CLASS,
 										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-										motionProps.className,
 									)}
 									style={motionProps.style}
 									onClick={() =>
@@ -530,7 +528,6 @@ export function WatchlistTonightHero({
 											buttonVariants({ variant: "ghost", size: "pill" }),
 											"min-h-11 bg-background text-foreground",
 											DETAIL_MOTION_PRESSABLE_CLASS,
-											motionProps.className,
 										)}
 										style={motionProps.style}
 										onClick={handlePickAnother}

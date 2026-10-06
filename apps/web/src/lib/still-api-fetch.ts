@@ -54,7 +54,7 @@ export type StillApiPagedGetResult = {
 /** True when `fetch` rejected because the caller aborted the in-flight request. */
 export function isFetchAbortError(
 	error: unknown,
-	signal?: AbortSignal,
+	signal?: AbortSignal | null,
 ): boolean {
 	if (signal?.aborted) return true;
 	return (

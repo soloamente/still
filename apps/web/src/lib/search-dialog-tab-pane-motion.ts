@@ -1,4 +1,4 @@
-import type { Transition, Variant } from "motion/react";
+import type { Transition } from "motion/react";
 
 /** Snappy enter when Movies / Shows / People tab changes in ⌘K. */
 export const SEARCH_DIALOG_TAB_PANE_TRANSITION = {
@@ -6,17 +6,18 @@ export const SEARCH_DIALOG_TAB_PANE_TRANSITION = {
 	ease: [0.25, 0.1, 0.25, 1],
 } as const satisfies Transition;
 
+/** Plain target only — `Variant` includes resolvers `initial` does not accept. */
 export function searchDialogTabPaneInitial(
 	reduceMotion: boolean | null,
-): Variant | false {
+): { opacity: number; y: number } | false {
 	if (reduceMotion) return false;
 	return { opacity: 0, y: 3 };
 }
 
-export const SEARCH_DIALOG_TAB_PANE_ANIMATE: Variant = {
+export const SEARCH_DIALOG_TAB_PANE_ANIMATE = {
 	opacity: 1,
 	y: 0,
-};
+} as const;
 
 export const SEARCH_DIALOG_RAIL_ENTER_TRANSITION = {
 	duration: 0.12,
@@ -25,12 +26,12 @@ export const SEARCH_DIALOG_RAIL_ENTER_TRANSITION = {
 
 export function searchDialogRailEnterInitial(
 	reduceMotion: boolean | null,
-): Variant | false {
+): { opacity: number } | false {
 	if (reduceMotion) return false;
 	return { opacity: 0 };
 }
 
-export const SEARCH_DIALOG_RAIL_ENTER_ANIMATE: Variant = { opacity: 1 };
+export const SEARCH_DIALOG_RAIL_ENTER_ANIMATE = { opacity: 1 } as const;
 
 /** Recent-search pill dismiss — quick scale fade so the rail reflows smoothly. */
 export const SEARCH_DIALOG_RECENT_CHIP_EXIT_TRANSITION = {
@@ -38,9 +39,10 @@ export const SEARCH_DIALOG_RECENT_CHIP_EXIT_TRANSITION = {
 	ease: [0.25, 0.1, 0.25, 1],
 } as const satisfies Transition;
 
-export function searchDialogRecentChipExit(
-	reduceMotion: boolean | null,
-): Variant {
+export function searchDialogRecentChipExit(reduceMotion: boolean | null): {
+	opacity: number;
+	scale?: number;
+} {
 	if (reduceMotion) return { opacity: 0 };
 	return { opacity: 0, scale: 0.94 };
 }

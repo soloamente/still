@@ -9,7 +9,8 @@ export type TvScoreLog = {
 	logScope?: string | null;
 	seasonNumber?: number | null;
 	episodeNumber?: number | null;
-	rating: number | null;
+	/** Diary rows may omit `rating` when unset. */
+	rating?: number | null;
 };
 
 export type TvScoreSource = "yours" | "average";

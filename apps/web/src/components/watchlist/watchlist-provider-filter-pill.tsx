@@ -54,7 +54,7 @@ export function WatchlistProviderFilterPill() {
 	const [open, setOpen] = useState(false);
 	const reduceMotion = useReducedMotion();
 
-	const motion = WATCHLIST_PROVIDER_PILL_MOTION;
+	const pillMotion = WATCHLIST_PROVIDER_PILL_MOTION;
 
 	useLayoutEffect(() => {
 		setSlot(resolvePillSlot());
@@ -95,13 +95,13 @@ export function WatchlistProviderFilterPill() {
 	};
 
 	const shellFirstLandInitial = {
-		scale: motion.shell.closedScale,
-		opacity: motion.shell.closedOpacity,
-		filter: `blur(${motion.shell.closedBlur}px)`,
+		scale: pillMotion.shell.closedScale,
+		opacity: pillMotion.shell.closedOpacity,
+		filter: `blur(${pillMotion.shell.closedBlur}px)`,
 	};
 
 	const shellLandBounceInitial = {
-		scale: motion.landBounceScale,
+		scale: pillMotion.landBounceScale,
 		opacity: 1,
 		filter: "blur(0px)",
 	};
@@ -122,7 +122,7 @@ export function WatchlistProviderFilterPill() {
 						!isFlyDock && pillLandBounceKey > 0 ? shellLandInitial : false
 					}
 					animate={shellOpen}
-					transition={reduceMotion ? { duration: 0 } : motion.spring}
+					transition={reduceMotion ? { duration: 0 } : pillMotion.spring}
 				>
 					<PopoverTrigger
 						type="button"
@@ -134,7 +134,7 @@ export function WatchlistProviderFilterPill() {
 							className="t-watchlist-provider-pill-logos flex shrink-0 items-center pl-0.5"
 							animate={{
 								filter: logosSettling
-									? `blur(${motion.stackBlurPx}px)`
+									? `blur(${pillMotion.stackBlurPx}px)`
 									: "blur(0px)",
 							}}
 							transition={

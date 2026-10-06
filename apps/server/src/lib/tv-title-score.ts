@@ -32,7 +32,7 @@ export function meanStoredTenths(values: number[]): number | null {
 }
 
 export function resolveTvSeasonScore(
-	logs: TvTitleScoreLog[],
+	logs: readonly TvTitleScoreLog[],
 	seasonNumber: number,
 ): number | null {
 	const seasonScoped: number[] = [];
@@ -164,7 +164,9 @@ export function presentTvSeasonScore(
 	};
 }
 
-export function resolveTvTitleScore(logs: TvTitleScoreLog[]): number | null {
+export function resolveTvTitleScore(
+	logs: readonly TvTitleScoreLog[],
+): number | null {
 	const rated = logs.filter((l) => l.rating != null) as Array<
 		TvTitleScoreLog & { rating: number }
 	>;

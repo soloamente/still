@@ -1659,8 +1659,7 @@ export function CatalogSearchDialogRoot({
 												animate={SEARCH_DIALOG_TAB_PANE_ANIMATE}
 												transition={SEARCH_DIALOG_TAB_PANE_TRANSITION}
 											>
-												{tagState.resultMode !== "lists" &&
-												effectiveListingKind !== "people" ? (
+												{effectiveListingKind !== "people" ? (
 													<SearchDialogStudioRail
 														studios={browseStudios}
 														selectedStudioId={tagState.studioId}
@@ -1678,8 +1677,7 @@ export function CatalogSearchDialogRoot({
 													/>
 												) : null}
 
-												{tagState.resultMode !== "lists" &&
-												effectiveListingKind !== "people" ? (
+												{effectiveListingKind !== "people" ? (
 													browseStreamingNeedsRegion ? (
 														<p className="px-0.5 text-muted-foreground text-xs leading-relaxed">
 															Set your watch region in{" "}
@@ -1711,8 +1709,7 @@ export function CatalogSearchDialogRoot({
 													)
 												) : null}
 
-												{tagState.resultMode !== "lists" &&
-												effectiveListingKind !== "people" ? (
+												{effectiveListingKind !== "people" ? (
 													<SearchDialogGenreRail
 														genres={suggestionGenres}
 														listingKind={catalogueListingKind}
@@ -2440,7 +2437,7 @@ export function HomeStickySearch() {
 						onMouseDown={(event) => event.stopPropagation()}
 						onClick={handleClearSearch}
 					>
-						<X className="size-4" aria-hidden />
+						<IconSearchDialogXmark size={16} aria-hidden />
 					</button>
 				) : null}
 			</motion.div>

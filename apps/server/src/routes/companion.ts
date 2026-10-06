@@ -254,7 +254,7 @@ export function buildCompanionRoute(options: CompanionRouteOptions): Elysia {
 			const saved = await rateLog(session.userId, parsed.data.logId, stored);
 			if (!saved) return status(404, "Log not found");
 			return { ok: true as const };
-		});
+		}) as unknown as Elysia;
 }
 
 /** Production route — hashed codes and device tokens in Postgres. */

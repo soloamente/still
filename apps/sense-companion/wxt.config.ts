@@ -2,6 +2,7 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "wxt";
 
+// Chrome Web Store rejects manifest `key`. Unpacked dev gets a generated id from Chrome.
 // Chrome + Edge first. Firefox build stays off until we add it later.
 // `webExt.disabled` keeps WXT from launching Chrome over CDP; load the
 // unpacked build from chrome://extensions or edge://extensions.
@@ -10,8 +11,6 @@ export default defineConfig({
 	manifest: {
 		name: "Sense Companion",
 		description: "Show what you are watching on Sense and Discord.",
-		// Public key only. Pins the unpacked extension id. Do not rotate it.
-		key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzNAG9jbJ+NxpMulg8rM6tHbufSm1T4STBf+3PZ0b2sXUluEspKNtADSxQLZL/p1m9tqcUlKi+WY8iWM4rCQTJMD9/Jfj+kvxDFiRcsBjz+rgyahHN+47DXDyo+vRRW288fu9UZQK70/ZlAJMGN3170unO5Ha6HAtb4LQKdg6FKCcIyiYG/d9sea+tZ37QkHUqh92Fe1y0hWOJStwKYAV38wmsuorFPPUNPug44uZgySqPQrqZhNu3GojiZmVo7vuBv1VGfq40bGHLxIeJzf1v9DUICywZwADIsZU0d9XV0PtGk1iyvZvPr12hT8tmoAyfhKyzY/CzvrWUDtMI7IW4wIDAQAB",
 		permissions: ["storage", "scripting", "activeTab"],
 		action: {
 			default_title: "Sense Companion",
