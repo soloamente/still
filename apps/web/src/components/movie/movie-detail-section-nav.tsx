@@ -5,8 +5,13 @@ import { motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
-
 import type { MovieDetailSectionNavItem } from "@/lib/movie-detail-sections";
+import {
+	resolveSectionNavActiveId,
+	type SectionNavActivation,
+	type SectionNavBounds,
+	sectionIntersectsActivationBand,
+} from "@/lib/resolve-section-nav-active";
 
 /** Fixed inner pill height — avoids height spring fighting position during section changes. */
 const THUMB_HEIGHT_PX = 24;
@@ -14,14 +19,42 @@ const THUMB_HEIGHT_PX = 24;
 /** Inset inside the outer `bg-background` track pill (`p-1`). */
 const TRACK_INSET_PX = 4;
 
+function readSectionBounds(
+	sections: MovieDetailSectionNavItem[],
+): SectionNavBounds[] {
+	const scrollY = window.scrollY;
+	const bounds: SectionNavBounds[] = [];
+	for (const section of sections) {
+		const el = document.getElementById(section.id);
+		if (!el) continue;
+		const rect = el.getBoundingClientRect();
+		const top = rect.top + scrollY;
+		bounds.push({
+			id: section.id,
+			top,
+			bottom: top + rect.height,
+		});
+	}
+	return bounds;
+}
+
 /**
  * Fixed right-rail scroll legend for the film **About** view — mirrors Mobbin comp:
  * muted labels, active label in foreground, vertical track + sliding thumb.
+ *
+ * `activation="center"` is for short stacked sections (legal pages): probe near
+ * viewport center, scroll targets into the middle, and pin the last section at
+ * the document end.
  */
 export function MovieDetailSectionNav({
 	sections,
+	activation = "header",
+	/** Fired when the patron jumps via a rail label (not on scroll-spy alone). */
+	onNavigateToSection,
 }: {
 	sections: MovieDetailSectionNavItem[];
+	activation?: SectionNavActivation;
+	onNavigateToSection?: (id: string) => void;
 }) {
 	const reduceMotion = useReducedMotion();
 	const [activeId, setActiveId] = useState(
@@ -57,29 +90,46 @@ export function MovieDetailSectionNav({
 	const resolveActiveFromScroll = useCallback(() => {
 		if (!sections.length || scrollLockTargetRef.current) return;
 
-		// Bias below the sticky header so the last section whose top crossed the line wins.
-		const probeY = window.scrollY + 120;
-
-		let nextActive = sections[0]?.id ?? "movie-section-about";
-		for (const section of sections) {
-			const el = document.getElementById(section.id);
-			if (!el) continue;
-			if (el.offsetTop <= probeY) {
-				nextActive = section.id;
-			}
-		}
+		const bounds = readSectionBounds(sections);
+		const nextActive = resolveSectionNavActiveId(bounds, {
+			scrollY: window.scrollY,
+			viewportHeight: window.innerHeight,
+			documentHeight: document.documentElement.scrollHeight,
+			activation,
+		});
+		if (!nextActive) return;
 
 		setActiveId((prev) => (prev === nextActive ? prev : nextActive));
-	}, [sections]);
+	}, [activation, sections]);
 
 	const releaseScrollLock = useCallback(() => {
+		const lockedId = scrollLockTargetRef.current;
 		scrollLockTargetRef.current = null;
 		if (scrollLockReleaseTimerRef.current) {
 			clearTimeout(scrollLockReleaseTimerRef.current);
 			scrollLockReleaseTimerRef.current = null;
 		}
+
+		// After a click-scroll, keep the target if it still sits in the activation band
+		// so a tight neighbor does not steal the highlight immediately.
+		if (lockedId) {
+			const bounds = readSectionBounds(sections);
+			const locked = bounds.find((row) => row.id === lockedId);
+			if (
+				locked &&
+				sectionIntersectsActivationBand(locked, {
+					scrollY: window.scrollY,
+					viewportHeight: window.innerHeight,
+					activation,
+				})
+			) {
+				setActiveId(lockedId);
+				return;
+			}
+		}
+
 		resolveActiveFromScroll();
-	}, [resolveActiveFromScroll]);
+	}, [activation, resolveActiveFromScroll, sections]);
 
 	useEffect(() => {
 		resolveActiveFromScroll();
@@ -117,6 +167,7 @@ export function MovieDetailSectionNav({
 
 			scrollLockTargetRef.current = id;
 			setActiveId(id);
+			onNavigateToSection?.(id);
 
 			if (scrollLockReleaseTimerRef.current) {
 				clearTimeout(scrollLockReleaseTimerRef.current);
@@ -124,7 +175,8 @@ export function MovieDetailSectionNav({
 
 			el.scrollIntoView({
 				behavior: reduceMotion ? "auto" : "smooth",
-				block: "start",
+				// Legal pages use center so the spy and the click land on the same band.
+				block: activation === "center" ? "center" : "start",
 			});
 
 			if (reduceMotion) {
@@ -150,7 +202,7 @@ export function MovieDetailSectionNav({
 				scrollLockReleaseTimerRef.current = setTimeout(releaseScrollLock, 700);
 			}
 		},
-		[reduceMotion, releaseScrollLock],
+		[activation, onNavigateToSection, reduceMotion, releaseScrollLock],
 	);
 
 	if (sections.length < 2) return null;

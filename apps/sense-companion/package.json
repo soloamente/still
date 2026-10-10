@@ -13,6 +13,7 @@
 		"postinstall": "wxt prepare"
 	},
 	"dependencies": {
+		"motion": "^12.38.0",
 		"p-limit": "7.3.0",
 		"premid": "file:./vendor/premid-activities/premid",
 		"react": "^19.2.4",

@@ -57,7 +57,11 @@ export const LANDING_TASTE_SPECIMEN = {
 } as const;
 
 export const LANDING_FOOTER_LINKS = [
-	{ href: "/pricing", label: "Pricing" },
+	{ href: "/companion", label: "Companion" },
 	{ href: "/changelog", label: "Changelog" },
+	{ href: "/privacy", label: "Privacy" },
+	{ href: "/terms", label: "Terms" },
+	{ href: "/cookies", label: "Cookies" },
+	{ href: "/trust", label: "Trust" },
 	{ href: "/sign-in", label: "Sign in" },
 ] as const;

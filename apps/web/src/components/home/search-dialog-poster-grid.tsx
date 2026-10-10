@@ -1,7 +1,6 @@
 "use client";
 
 import { Tooltip, TooltipTrigger } from "@still/ui/components/tooltip";
-import { cn } from "@still/ui/lib/utils";
 import { useEffect, useRef } from "react";
 import { SearchDialogKeyboardFocusWrap } from "@/components/home/search-dialog-keyboard-focus-wrap";
 import type { SearchDialogPosterRailItem } from "@/components/home/search-dialog-poster-rail";
@@ -63,9 +62,12 @@ export function SearchDialogPosterGrid({
 						<Tooltip>
 							<TooltipTrigger
 								render={
+									// flex w-full overrides the wrap's default inline-flex so grid
+									// tracks give the tile a real width (Image fill + 2:3 aspect
+									// otherwise collapses to ~0; only null-poster placeholders show).
 									<SearchDialogKeyboardFocusWrap
 										focused={keyboardFocusedIndex === index}
-										className="min-w-0 rounded-[10px]"
+										className="flex w-full min-w-0 rounded-[10px]"
 									>
 										<button
 											type="button"

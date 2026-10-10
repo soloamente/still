@@ -54,7 +54,7 @@ const MONETIZATION_OPTIONS = [
 ] as const;
 
 const VENUE_PICKER_OPTIONS = [
-	{ id: "theaters" as const, label: "In cinemas" },
+	{ id: "theaters" as const, label: "In theaters" },
 	{ id: "streaming" as const, label: "At home" },
 ] as const;
 
@@ -121,7 +121,7 @@ export type HomeCatalogFiltersPopoverProps = {
 	trigger: HomeCatalogFiltersTriggerElement;
 	/** TV **This season** already pins Animation — hide genre picks. */
 	hideGenreFilter?: boolean;
-	/** Mobile — In cinemas / At home lives in this panel instead of a separate popover. */
+	/** Mobile — In theaters / At home lives in this panel instead of a separate popover. */
 	showVenuePicker?: boolean;
 	onVenueChange?: (venue: HomeVenue) => void;
 	/** Mobile TV — Ongoing / Completed / Upcoming in this panel instead of a separate popover. */

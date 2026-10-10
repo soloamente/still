@@ -31,6 +31,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "weekly",
 			priority: 0.8,
 		},
+		{
+			url: `${origin}/companion`,
+			changeFrequency: "monthly",
+			priority: 0.7,
+		},
 	];
 
 	const listRoutes: MetadataRoute.Sitemap = lists.map((row) => ({

@@ -1017,8 +1017,8 @@ async function HomeLobbyBody({
 										movieLobbyTheatersLatestDiscover ||
 										movieLobbyTheatersUpcoming) ? (
 										<p className="mt-2 px-1 text-center text-muted-foreground text-xs leading-relaxed">
-											In cinemas — from TMDb’s theatrical lists. Many titles
-											also stream at home the same week; use Streaming for
+											In theaters — from TMDb’s theatrical lists. Many titles
+											also stream at home the same week; use At home for
 											subscription availability in your region.
 										</p>
 									) : null}

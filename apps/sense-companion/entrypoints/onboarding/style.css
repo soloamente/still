@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
+/* transitions-dev — shared tokens (page slide, card resize, success check). */
 :root {
 	color-scheme: dark;
 	font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -11,6 +12,22 @@
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 	-webkit-text-size-adjust: 100%;
+
+	/* Success check */
+	--check-opacity-dur: 550ms;
+	--check-rotate-dur: 550ms;
+	--check-rotate-from: 80deg;
+	--check-bob-dur: 450ms;
+	--check-y-amount: 28px;
+	--check-blur-dur: 500ms;
+	--check-blur-from: 10px;
+	--check-path-dur: 550ms;
+	--check-path-delay: 80ms;
+	--check-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--check-ease-opacity: cubic-bezier(0.22, 1, 0.36, 1);
+	--check-ease-rotate: cubic-bezier(0.22, 1, 0.36, 1);
+	--check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
+	--check-ease-path: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html,
@@ -20,6 +37,7 @@ body {
 
 body {
 	margin: 0;
+	background: #141414;
 }
 
 /* The page root is what fills the window. Centering on body left the card at the left edge. */
@@ -30,7 +48,8 @@ body {
 	min-height: 100vh;
 }
 
-main {
+/* Flat floor — same canvas as before; motion only on step content. */
+main.onboarding {
 	box-sizing: border-box;
 	width: min(28rem, calc(100% - 32px));
 	padding: 28px 24px 24px;
@@ -84,6 +103,130 @@ main {
 	background: #f4f1ea;
 }
 
+.onboarding-step-body {
+	position: relative;
+	overflow: hidden;
+}
+
+.onboarding-done {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.onboarding-done .t-success-check {
+	margin-bottom: 8px;
+	color: #3dcc7a;
+}
+
+.onboarding-done h1 {
+	margin: 8px 0 6px;
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — page slide shell (motion/react drives the tween, same as
+ * web auth convert-card — CSS is-animating choreography was flaky here).
+ * --------------------------------------------------------------------------- */
+
+.t-page-slide {
+	position: relative;
+	overflow: hidden;
+}
+
+.t-page-slide .t-page {
+	width: 100%;
+	min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+ * transitions.dev — success check
+ * --------------------------------------------------------------------------- */
+
+.t-success-check {
+	display: inline-block;
+	transform-origin: center;
+	opacity: 0;
+	will-change: transform, opacity, filter;
+}
+
+.t-success-check svg {
+	display: block;
+	overflow: visible;
+}
+
+.t-success-check svg path {
+	stroke-dasharray: 40;
+	stroke-dashoffset: 40;
+}
+
+.t-success-check[data-state="in"] {
+	animation:
+		t-check-fade var(--check-opacity-dur) var(--check-ease-opacity) forwards,
+		t-check-rotate var(--check-rotate-dur) var(--check-ease-rotate) forwards,
+		t-check-blur var(--check-blur-dur) var(--check-ease-out) forwards,
+		t-check-bob var(--check-bob-dur) var(--check-ease-bob) forwards;
+}
+
+.t-success-check[data-state="in"] svg path {
+	animation: t-check-draw var(--check-path-dur) var(--check-ease-path)
+		var(--check-path-delay, 0ms) forwards;
+}
+
+@keyframes t-check-fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes t-check-rotate {
+	from {
+		transform: rotate(var(--check-rotate-from));
+	}
+	to {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes t-check-blur {
+	from {
+		filter: blur(var(--check-blur-from));
+	}
+	to {
+		filter: blur(0);
+	}
+}
+
+@keyframes t-check-bob {
+	from {
+		translate: 0 var(--check-y-amount);
+	}
+	to {
+		translate: 0 0;
+	}
+}
+
+@keyframes t-check-draw {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Shared controls (onboarding + settings)
+ * --------------------------------------------------------------------------- */
+
+/* Legacy bare <main> (settings before .settings-page override) */
+main:not(.onboarding):not(.settings-page) {
+	box-sizing: border-box;
+	width: min(28rem, calc(100% - 32px));
+	padding: 28px 24px 24px;
+	text-align: center;
+}
+
 h1 {
 	margin: 20px 0 8px;
 	font-size: 28px;
@@ -95,6 +238,12 @@ h1 {
 	margin: 16px 0 0;
 	font-size: 14px;
 	font-weight: 500;
+}
+
+/* Discord “Check again” sits under the status line inside a step, not under main. */
+.t-page > button.secondary,
+.onboarding-step-body button.secondary {
+	margin-top: 12px;
 }
 
 .status.connected {
@@ -330,5 +479,15 @@ main > button.secondary {
 
 	button:active:not(:disabled) {
 		transform: none;
+	}
+
+	.t-success-check {
+		animation: none !important;
+		opacity: 1;
+	}
+
+	.t-success-check svg path {
+		animation: none !important;
+		stroke-dashoffset: 0 !important;
 	}
 }

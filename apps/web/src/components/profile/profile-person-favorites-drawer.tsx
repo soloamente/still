@@ -1,19 +1,29 @@
 "use client";
 
 import { cn } from "@still/ui/lib/utils";
+import { Bell } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
 
+import { DetailDrawerScrollBody } from "@/components/movie/detail-drawer-scroll-body";
 import { DetailVaulSheet } from "@/components/movie/detail-vaul-sheet";
 import { PersonCreditPortrait } from "@/components/movie/person-credit-portrait";
+import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import {
 	fetchProfilePersonFavorites,
 	setPersonFavorite,
 } from "@/lib/still-api-fetch";
 import { isTmdbCdnUrl } from "@/lib/tmdb-poster-url";
+import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
 type PersonFavoriteRow = {
 	tmdbPersonId: number;
@@ -67,6 +77,7 @@ export function ProfilePersonFavoritesDrawerRoot() {
 				if (!next) close();
 			}}
 			title="Favorites"
+			description="Favorite cast and crew"
 		>
 			{handle ? (
 				<ProfilePersonFavoritesPanel
@@ -91,6 +102,12 @@ function ProfilePersonFavoritesPanel({
 	const [rows, setRows] = useState<PersonFavoriteRow[] | null>(null);
 	const [nextBefore, setNextBefore] = useState<string | null>(null);
 	const [loadingMore, setLoadingMore] = useState(false);
+	const [panelOpen, setPanelOpen] = useState(false);
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const { showHeaderFade, showFooterFade } = useSheetScrollFades(
+		scrollRef,
+		active,
+	);
 
 	const loadFirst = useCallback(async () => {
 		const result = await fetchProfilePersonFavorites(handle);
@@ -106,10 +123,14 @@ function ProfilePersonFavoritesPanel({
 	useEffect(() => {
 		setRows(null);
 		setNextBefore(null);
+		setPanelOpen(false);
 	}, [handle]);
 
 	useEffect(() => {
-		if (!active) return;
+		if (!active) {
+			setPanelOpen(false);
+			return;
+		}
 		let cancelled = false;
 		void (async () => {
 			await loadFirst();
@@ -119,6 +140,19 @@ function ProfilePersonFavoritesPanel({
 			cancelled = true;
 		};
 	}, [active, loadFirst]);
+
+	// transitions.dev panel reveal — open only after the first page is ready.
+	useLayoutEffect(() => {
+		if (rows == null) {
+			setPanelOpen(false);
+			return;
+		}
+		setPanelOpen(false);
+		const frame = window.requestAnimationFrame(() => {
+			setPanelOpen(true);
+		});
+		return () => window.cancelAnimationFrame(frame);
+	}, [rows]);
 
 	async function loadMore() {
 		if (!nextBefore || loadingMore) return;
@@ -144,99 +178,184 @@ function ProfilePersonFavoritesPanel({
 		}
 	}
 
+	const count = rows?.length ?? null;
+
 	return (
-		<div className="flex h-full flex-col">
-			<div className="min-h-0 flex-1 overflow-y-auto px-2 py-1">
-				{rows == null ? (
-					<ul aria-busy="true" aria-label="Loading favorites">
-						{SKELETON_IDS.map((id) => (
-							<li key={id} className="flex items-center gap-3 px-2 py-2.5">
-								<span className="size-12 shrink-0 animate-pulse rounded-full bg-muted/40" />
-								<div className="min-w-0 flex-1 space-y-1.5">
-									<span className="block h-3.5 w-32 animate-pulse rounded bg-muted/40" />
-									<span className="block h-3 w-20 animate-pulse rounded bg-muted/30" />
-								</div>
-							</li>
-						))}
-					</ul>
-				) : rows.length === 0 ? (
-					<p className="px-3 py-8 text-center text-muted-foreground text-sm">
-						{isOwner
-							? "Favorite cast and crew from their pages."
-							: "No favorites yet."}
-					</p>
-				) : (
-					<ul>
-						{rows.map((row) => (
-							<li key={row.tmdbPersonId}>
-								<div className="flex items-center gap-3 px-2 py-2.5">
-									<Link
-										href={`/people/${row.tmdbPersonId}`}
-										className="flex min-w-0 flex-1 items-center gap-3 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring"
-										onClick={() =>
-											useProfilePersonFavorites.getState().close()
-										}
-									>
-										<span className="relative size-12 shrink-0 overflow-hidden rounded-full bg-muted/30">
-											{row.profileUrl ? (
-												<Image
-													src={row.profileUrl}
-													alt=""
-													fill
-													className="object-cover"
-													sizes="48px"
-													unoptimized={isTmdbCdnUrl(row.profileUrl)}
-												/>
-											) : (
-												<PersonCreditPortrait
-													name={row.name}
-													profilePath={null}
-													sizes="48px"
-													imageClassName="size-full object-cover"
-												/>
-											)}
-										</span>
-										<span className="min-w-0 flex-1 text-left">
-											<span className="block truncate font-medium text-foreground text-sm">
-												{row.name}
-											</span>
-											{row.knownForDepartment ? (
-												<span className="block truncate text-muted-foreground text-xs">
-													{row.knownForDepartment}
-												</span>
-											) : null}
-										</span>
-									</Link>
-									{isOwner ? (
-										<button
-											type="button"
-											className={cn(
-												"shrink-0 rounded-full bg-background px-3 py-1.5 text-muted-foreground text-xs",
-												"select-none [@media(hover:hover)]:hover:text-foreground",
-											)}
-											onClick={() => void handleUnfavorite(row.tmdbPersonId)}
-										>
-											Remove
-										</button>
-									) : null}
-								</div>
-							</li>
-						))}
-					</ul>
-				)}
-				{nextBefore ? (
-					<div className="flex justify-center py-3">
-						<button
-							type="button"
-							className="rounded-full bg-background px-4 py-2 text-sm disabled:opacity-45"
-							disabled={loadingMore}
-							onClick={() => void loadMore()}
+		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">
+			<header className="shrink-0 px-4 pt-1 pb-3 text-center">
+				<p className="font-semibold text-foreground text-lg tracking-tight">
+					Favorites
+				</p>
+				<p className="mt-0.5 text-muted-foreground text-sm">
+					{count == null
+						? "Cast and crew"
+						: count === 0
+							? "No one yet"
+							: count === 1
+								? "1 person"
+								: `${count} people`}
+				</p>
+			</header>
+
+			<DetailDrawerScrollBody scrollRef={scrollRef}>
+				<div className="px-3 pb-8 sm:px-4">
+					{rows == null ? (
+						<ul
+							aria-busy="true"
+							aria-label="Loading favorites"
+							className="flex flex-wrap justify-center gap-x-5 gap-y-7 sm:gap-x-6 sm:gap-y-8"
 						>
-							{loadingMore ? "Loading…" : "Load more"}
-						</button>
-					</div>
-				) : null}
-			</div>
+							{SKELETON_IDS.map((id) => (
+								<li
+									key={id}
+									className="flex w-22 flex-col items-center gap-2 sm:w-24"
+								>
+									<span className="size-18 shrink-0 animate-pulse rounded-full bg-muted/40 sm:size-20" />
+									<span className="h-3 w-16 animate-pulse rounded bg-muted/40" />
+									<span className="h-2.5 w-12 animate-pulse rounded bg-muted/30" />
+								</li>
+							))}
+						</ul>
+					) : (
+						<div
+							className="t-panel-slide"
+							data-open={panelOpen ? "true" : "false"}
+						>
+							{rows.length === 0 ? (
+								<div className="flex min-h-48 flex-col items-center justify-center px-4 text-center">
+									<p className="font-medium text-foreground text-sm">
+										No favorites yet
+									</p>
+									<p className="mt-1 max-w-xs text-pretty text-muted-foreground text-sm">
+										{isOwner
+											? "Favorite cast and crew from their pages to pin them here."
+											: "This patron has not favorited anyone yet."}
+									</p>
+								</div>
+							) : (
+								<ul
+									className={cn(
+										// Flex wrap centers 1–3 (and short last rows) instead of left-packing a grid.
+										"flex flex-wrap justify-center gap-x-6 gap-y-8 sm:gap-x-8 sm:gap-y-10",
+										rows.length <= 3 && "gap-x-8 gap-y-10 sm:gap-x-10",
+									)}
+								>
+									{rows.map((row) => (
+										<li
+											key={row.tmdbPersonId}
+											className={cn(
+												"min-w-0",
+												// Wider tiles when few; denser when the shelf fills.
+												rows.length <= 3 ? "w-26 sm:w-28" : "w-22 sm:w-24",
+											)}
+										>
+											<div className="flex flex-col items-center gap-2 text-center">
+												<div className="relative">
+													<Link
+														href={`/people/${row.tmdbPersonId}`}
+														className={cn(
+															"group relative block overflow-hidden rounded-full bg-muted/30 outline-none",
+															rows.length <= 3
+																? "size-20 sm:size-24"
+																: "size-18 sm:size-20",
+															"ring-offset-2 ring-offset-card transition-transform duration-200 ease-out",
+															"focus-visible:ring-2 focus-visible:ring-ring",
+															"[@media(hover:hover)]:hover:scale-[1.04]",
+														)}
+														onClick={() =>
+															useProfilePersonFavorites.getState().close()
+														}
+													>
+														{row.profileUrl ? (
+															<Image
+																src={row.profileUrl}
+																alt=""
+																fill
+																className="object-cover"
+																sizes="96px"
+																unoptimized={isTmdbCdnUrl(row.profileUrl)}
+															/>
+														) : (
+															<PersonCreditPortrait
+																name={row.name}
+																profilePath={null}
+																sizes="96px"
+																imageClassName="size-full object-cover"
+															/>
+														)}
+													</Link>
+													{row.alertsEnabled ? (
+														<span
+															className="absolute right-0 bottom-0 flex size-6 items-center justify-center rounded-full bg-card text-foreground"
+															title="Release alerts on"
+														>
+															<Bell className="size-3" aria-hidden />
+															<span className="sr-only">Release alerts on</span>
+														</span>
+													) : null}
+												</div>
+												<div className="w-full min-w-0 px-0.5">
+													<Link
+														href={`/people/${row.tmdbPersonId}`}
+														className="block outline-none focus-visible:underline"
+														onClick={() =>
+															useProfilePersonFavorites.getState().close()
+														}
+													>
+														<span className="block truncate font-medium text-foreground text-sm leading-tight">
+															{row.name}
+														</span>
+														{row.knownForDepartment ? (
+															<span className="mt-0.5 block truncate text-muted-foreground text-xs">
+																{row.knownForDepartment}
+															</span>
+														) : null}
+													</Link>
+													{isOwner ? (
+														<button
+															type="button"
+															aria-label={`Remove ${row.name} from favorites`}
+															className={cn(
+																"mt-2 w-full rounded-full bg-background px-2.5 py-1.5",
+																"font-medium text-foreground text-xs",
+																"select-none transition-opacity",
+																"[@media(hover:hover)]:hover:opacity-80",
+															)}
+															onClick={() =>
+																void handleUnfavorite(row.tmdbPersonId)
+															}
+														>
+															Remove
+														</button>
+													) : null}
+												</div>
+											</div>
+										</li>
+									))}
+								</ul>
+							)}
+
+							{nextBefore ? (
+								<div className="flex justify-center pt-6">
+									<button
+										type="button"
+										className="rounded-full bg-background px-4 py-2 text-sm disabled:opacity-45"
+										disabled={loadingMore}
+										onClick={() => void loadMore()}
+									>
+										{loadingMore ? "Loading…" : "Load more"}
+									</button>
+								</div>
+							) : null}
+						</div>
+					)}
+				</div>
+			</DetailDrawerScrollBody>
+			<SheetScrollScrims
+				showHeaderFade={showHeaderFade}
+				showFooterFade={showFooterFade}
+				footerTone="filmography"
+			/>
 		</div>
 	);
 }

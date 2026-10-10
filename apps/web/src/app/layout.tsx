@@ -1,4 +1,5 @@
 import { Agentation } from "agentation";
+import { InspectKit } from "inspectkit";
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
@@ -102,7 +103,19 @@ export default function RootLayout({
 			<body className="bg-background text-foreground antialiased">
 				<ThemeFlashGuardScript />
 				<Providers htmlFontClass={htmlFontClass}>{children}</Providers>
-				{process.env.NODE_ENV === "development" ? <Agentation /> : null}
+				{process.env.NODE_ENV === "development" ? (
+					<>
+						<Agentation />
+						{/* Figma-style measure / rulers / grids. Bottom-left FAB; Alt to measure. */}
+						<InspectKit
+							grids={[
+								{ type: "columns", count: 12, gutter: 24, margin: 64 },
+								{ type: "baseline", size: 8 },
+							]}
+							lint={{ base: 8, allow: [4] }}
+						/>
+					</>
+				) : null}
 			</body>
 		</html>
 	);

@@ -293,7 +293,7 @@ function PricingTierCard({
 						"text-[13px] text-muted-foreground leading-[18px]",
 					)}
 				>
-					Supporter tier — some Devoted perks are still in development.
+					Supporter tier. Some Devoted perks are still in development.
 				</p>
 			) : null}
 		</article>
@@ -470,6 +470,17 @@ export function PricingPageClient({
 					/>
 				))}
 			</div>
+
+			<p className="mx-auto mt-6 max-w-xl text-center text-muted-foreground text-xs leading-relaxed">
+				Subscriptions are billed through Polar. See{" "}
+				<Link
+					href="/terms#plans-payments-and-refunds"
+					className="text-foreground underline-offset-4 [@media(hover:hover)]:hover:underline"
+				>
+					Terms
+				</Link>{" "}
+				(including refunds) before you subscribe.
+			</p>
 
 			<PricingOtherPlansSection isSignedIn={isSignedIn} />
 

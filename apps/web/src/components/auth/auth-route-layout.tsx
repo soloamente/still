@@ -37,15 +37,17 @@ const AUTH_ROUTES = {
 		description:
 			"Log every film. Build lists. Find people whose taste sharpens yours.",
 		footer: (
-			<>
-				Already have an account?{" "}
-				<Link
-					className="font-medium text-foreground underline-offset-4 hover:underline"
-					href="/sign-in"
-				>
-					Sign in
-				</Link>
-			</>
+			<div className="flex flex-col gap-2">
+				<p>
+					Already have an account?{" "}
+					<Link
+						className="font-medium text-foreground underline-offset-4 hover:underline"
+						href="/sign-in"
+					>
+						Sign in
+					</Link>
+				</p>
+			</div>
 		),
 	},
 	"/forgot-password": {

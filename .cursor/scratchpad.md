@@ -1,5 +1,108 @@
 # Still — 70mm Cinematic Direction Plan
 
+## Sense Companion intro page (2026-10-08) — PLANNER
+
+**Intent (oil-ui-pro):** 加新功能 — dedicated page that introduces the browser extension. Visual language stays Sense (Inter, surface tokens, marketing chrome like pricing/legal). Approach cards differ by **做法** (where it lives / steps), not by restyle.
+
+**三问:**
+1. **品类** — Product intro / install persuasion for a Chrome·Edge extension that bridges streaming → Sense diary + Discord Watching.
+2. **首屏** — Understand what Companion does in one beat; primary action = get / open the extension (then pair).
+3. **标杆** — Extension product pages that lead with the live presence moment (PreMiD / Discord activity marketing; Notion/Linear “install the desktop app” calm install stories) — not a feature-grid SaaS template.
+
+**User task (their words):** “I watch on Netflix (etc.). I want that to show on Sense and Discord, and maybe log when I finish — without typing it by hand.”
+
+**产出物 (same in every approach):** Patron has Companion installed, Discord desktop open when they care about Rich Presence, Sense paired (optional but recommended), and they know auto-log + profile row exist. Sample end state: profile shows “Watching …” from Companion; diary can get an at-home log near the end of a title.
+
+**现状 (no intro page):** Discovery only via Settings → Profile → Browser extension, changelog blurb, or word of mouth. Unsigned visitors have nowhere to land. Install story is split across README + extension onboarding.
+
+| | 点击 | 页面切换 | 决定 | 记忆负担 | 回头路 |
+| --- | --- | --- | --- | --- | --- |
+| 现状 (signed-in) | ~6+ | Settings → Profile → generate code → chrome://extensions → popup | Install source unclear; Discord must be open | Code expires in 10 min; remember to open Discord | Miss Discord → presence silent |
+| Ideal | ≤3 to install CTA; ≤2 after install to pair | One Sense URL owns the story | Store vs Edge vs wait; pair yes/no | Checklist on one page | Stay on `/companion` |
+
+**Product habits to keep:** Sense mark + Sign in marketing chrome (legal/pricing family); Nucleo icons; no PreMiD branding; Discord desktop required for Rich Presence; pairing via Settings code or deep-link into Settings; guest-readable like `/pricing`.
+
+**transitions.dev (locked into chosen approach):** page side-by-side for install steps or “what it does” beats; success check on “You’re set”; prefer-reduced-motion guards. **better-interface:** review after implementation (quick mode), not before approach pick.
+
+### Approach cards (pick one)
+
+| | A · 顺手 | B · 专用 brochure (**recommend**) | C · 专用 guided install |
+| --- | --- | --- | --- |
+| 立场 | Expand Settings row + footer/changelog links | New public `/companion` story page | Same URL, signed-in checklist + live pair |
+| 入口 | Already in Settings; add landing footer “Companion” | `/companion` + footer + Settings “Learn more” | `/companion`; unsigned = B, signed-in = checklist |
+| 步骤 | Read Settings → install elsewhere → pair | Read story → Install → open Discord → Pair (links) | Install → page shows pair code + Discord/Sense status |
+| 修了什么 | Still hard for guests to discover | Function had no home | State invisible after install |
+| 拿到什么 | Same 产出物 | Same | Same + in-page confirmation |
+| 值得 | “I found the pair code faster” | “I finally understand why to install” | “I don’t leave Sense to finish setup” |
+| 出错时 | Same as today | Store link missing → “Coming soon” + Settings | Pair fail stays on page with retry |
+| 赌注 | Insiders already in Settings | Shareable URL drives installs | Conversion after signup |
+| 放弃什么 | Guest discovery | Live status on the page | Simpler static marketing |
+
+**Hero skeleton preference for B/C (说服型, pick with approach):** **画面即界面** — large Companion popup / Discord Watching mock as the first-viewport object (not left-copy / right-card). Fallback if assets thin: **通栏上下堆叠** with one hard claim.
+
+**Out of scope until chosen:** Chrome Web Store zip publishing; native-host revival; rewriting extension onboarding UI.
+
+**Locked (human 2026-10-08):** Approach **B**. Structure/reference: [mobbin.com/mcp](https://mobbin.com/mcp) — product intro brochure, not Settings-only and not live guided install (C later). Route **`/companion`**. Store CTA: optional `NEXT_PUBLIC_COMPANION_CHROME_STORE_URL` / `…_EDGE_…`; until set, Install section shows **Coming soon** + pair instructions for after install.
+
+**Mobbin MCP → Sense map (visual = Sense tokens, not Mobbin white):**
+1. Quiet marketing nav + primary Get Companion
+2. Hero: product H1 + dual CTA + hero object (Companion / Watching mock) + floating service marks
+3. Punch problem block ending in “Sense Companion fixes that.”
+4. Three “when to use” beats (Discord · Sense profile · Auto-log)
+5. Supported services strip
+6. Setup in under a minute (`#install`)
+7. FAQ + closing CTA
+8. Footer link from landing
+
+**Executor:** `/companion` shipped (Mobbin MCP rhythm). Critique pass applied 2026-10-08: cut duplicate mid sections → one page-slide beat sequence; honest “See setup” CTA until store URLs; one services row; no orbit chips; install shell unique; fake Rate de-buttoned. Store URLs via `NEXT_PUBLIC_COMPANION_CHROME_STORE_URL` / `NEXT_PUBLIC_COMPANION_EDGE_STORE_URL`.
+
+### Project Status Board — Companion intro
+- [x] SC-intro copy + route + landing footer link
+- [x] Critique rewrite (oil-ui-pro + transitions-dev page-slide / avatar-group / t-resize FAQ)
+- [x] `companion-page-copy.test.ts` green (5/5 ×2)
+- [ ] Human verify `/companion` at localhost:3001
+
+### Executor's Feedback or Assistance Requests
+Please spot-check **http://localhost:3001/companion**: hero stage (no fake Rate button), equal Discord/Sense squircles, **See setup** (not Get Companion until store env), **PNG logo marquee** (Netflix…Max under hero; pause on hover), Discord↔Sense↔Diary page-slide, install shell + FAQ height tween. Reply **ok** / **go** when it matches.
+
+**Motion (3):** (1) beat **page-slide** (2) services **avatar-group** hover (3) FAQ **t-resize**. Independent visual review not dispatched (Executor self-check + browser screenshots). Oil-ui version check: Python ran; no update prompt captured.
+
+---
+
+## Sense legal pages — ign.bio voice + Mobbin layout (2026-10-08) — PLANNER
+
+**Intent (oil-ui-pro):** 改流程 (standalone legal = full document page) + 优化 UI 升级档 on those pages only. Auth signup keeps Vaul drawer so stills don’t wipe.
+
+**三问:**
+1. **品类** — Trust / legal document for a taste social product (Sense).
+2. **首屏** — Policy title as hero; start reading; peer switch (Privacy · Terms · Cookies · Refunds).
+3. **标杆** — Voice/substance: [ign.bio/terms](https://ign.bio/terms). Layout/type: [mobbin.com/privacy](https://mobbin.com/privacy).
+
+**Locked (human 2026-10-08):** Approach **C** (full page) with **Mobbin design**, not ign.bio sticky-TOC chrome. Copy still ign.bio-plainspoken, rewritten for Sense — never paste.
+
+**Mobbin layout tokens to map onto Sense (dark themes / Inter / surface tokens — not Mobbin’s white Saans):**
+- Hero: centered H1 ~`clamp(2.75rem, 6vw, 5rem)` semibold tracking-tight; “Last updated …” centered muted under it.
+- Column: content ~**834px** (`max-w-3xl` / ~52rem); section H2 ~**32px** semibold, **~80px** top gap; body ~**18px** / leading-6, near-foreground.
+- Page pad: generous top (~`pt-32`–`pt-48` desktop), calm marketing nav (`LandingNav`) + footer peer legal links.
+- No sidebar TOC (Mobbin has none). No cards/borders on body — typography + space only.
+- Numbered section titles optional (Mobbin `1. …`); prefer ign-style human titles without mandatory numbers unless it helps scan.
+
+**Shell change:**
+- `/privacy|terms|cookies|refunds` → full-page `LegalDocumentPage` (replace Vaul `LegalPageShell` on those routes).
+- Keep `LegalPolicyDrawer` / `AuthLegalDrawer` for auth + in-app overlays.
+- Shared body renderer: same sections + signature; page vs drawer = chrome only.
+- Policy switch: peer pill/link row under hero (or footer); **transitions-dev** `t-page-slide` or text-states-swap when swapping policy on the document page; auth drawer keep existing Vaul motion.
+
+**Copy rewrite (`legal-policy-bodies.ts`):** ign.bio voice; Sense facts (diary, TMDb, Polar MoR, cookie categories, Companion, Discord); drop “not a certification” hedges; keep trader block quieter (footer or slim operator line, not a raised card competing with the hero).
+
+**Out of scope:** Cookie consent banner redesign (already bottom-end Sense card); landing marketing restyle; counsel sign-off.
+
+**Status:** Implemented 2026-10-08 (Executor). Full-page Mobbin layout + ign.bio voice; auth Vaul drawer kept. Refunds in Terms. Hero peer “Legal pages” nav removed; `MovieDetailSectionNav` right-rail jump per section (xl+). **Task 10:** `LEGAL_TRADER` filled. Copy rewrite + Mobbin third-party pattern: Privacy disclosure categories + `/trust` Trust Center (live subprocessors). Counsel review still separate.
+
+**Follow-up 2026-10-08:** `/trust` joined the shared `LegalDocumentLayout` shell. Footer peer nav is always **Privacy · Terms · Cookies · Trust** (Trust last). Peer switches use `LegalRouteSlide` (transitions.dev page-slide via motion/react; title + body slide together).
+
+---
+
 ## Sense Companion — "Now watching" extension, PreMiD-based (2026-09-29) — PLANNER
 
 **Background and motivation:** Human wants a browser extension that detects what they're watching on Netflix, Disney+, Prime Video, etc., and shows it on **both** their **Discord profile** and their **Sense profile**. Direction from human: "copy the whole PreMiD repo and add the Sense connection."
@@ -67,6 +170,17 @@
 - First reload opens a setup tab: Welcome, Discord (desktop connected or not), per-service toggles, then Sense pairing. Done stores a flag so later reloads stay quiet. The popup has Set up / Customize.
 - Saved toggles apply on the next player tick. The helper answers a Discord status ping; that needs the rebuilt host.
 - **Please verify:** reload the unpacked extension. The setup tab should open. With Discord desktop open, Discord should say connected. Change a toggle, then play a title.
+
+**Executor's Feedback (companion onboarding UI, 2026-10-06):**
+- Intent: **optimize UI** (upgrade) on the isolated first-run wizard — flow unchanged (welcome → discord → customize → sense → done).
+- Raised card + soft canvas glow; step rail is pill dots; brand “Sense” hero on welcome; shorter copy.
+- Motion: **t-page-slide** (forward/back) between steps, **t-resize** height tween, **t-success-check** on Done before the tab closes. Settings still imports shared tokens/controls; page chrome stays settings-only.
+- **Please verify:** clear onboarded / reinstall unpacked, walk Next/Back through all four steps (slide + height), hit Done (check + You're set), confirm Settings still looks normal.
+
+**Executor's Feedback (search dialog posters, 2026-10-08):**
+- ⌘K typed search showed titles but not posters: `SearchDialogKeyboardFocusWrap` defaults to `inline-flex`, so grid tiles with `w-full` + `Image fill` collapsed to ~0px. Only null-poster placeholders stayed visible.
+- Fix: pass `flex w-full min-w-0` on the grid wrap (overrides `inline-flex`). API `poster_url` was fine.
+- **Please verify:** ⌘K → type a title (e.g. Interstellar) → poster grid shows artwork; empty “No poster available” only for titles that truly lack art.
 
 **Executor's Feedback (companion watching row, 2026-09-30):**
 - The profile Watching row was the Discord album card (square crop, blurred poster). Companion titles now use a 2:3 poster, “Watching · Max”, a paused eyebrow swap, and a playhead. Account menu uses the same poster shape and “Paused · Max”.
@@ -5412,3 +5526,26 @@ Reply **`ok 9`**, **`ok 4`**, etc. as you complete each.
 - [ ] Reduced motion — rim only, no motion
 - [ ] Touch — rim only, no hover effects
 - [ ] Presence dot on rim edge at all tiers
+
+## Sense legal compliance (2026-10-06) — Executor
+
+Branch: `feat/sense-legal-compliance` (Tasks 1–9 implemented in-session; subagent dispatch hit usage limit).
+- Public `/privacy` `/terms` `/cookies` `/refunds` + trader placeholders
+- Cookie banner (Necessary only / Accept all) site-wide
+- YouTube + product analytics gated on consent
+- Sign-up Terms/Privacy checkbox; discovery links; a11y on banner/Load trailer
+- **Human Task 10:** fill `apps/web/src/lib/legal-trader.ts` REPLACE_ME_* before paid launch; counsel review
+
+### Sign-in legal + backdrop (2026-10-06)
+
+- Privacy / Terms are **centered on the convert card** (not on the still). Film title stays on the backdrop.
+- Sign-up: **Create account** morphs into SignaturePad → fold → same control offers **Create account** (submit) or **Sign again**.
+- Backdrop stills now credit the title; pool expanded to 80+ named TMDB stills; hold 16s; skip last-seen on refresh.
+- **Please verify:** `/sign-in` on a wide viewport — legal at the bottom-left of the image, film name visible, stills rotate. Reply **ok** when good.
+
+### Legal card drawer + signature (2026-10-06)
+
+- **Revised:** `/privacy` `/terms` `/cookies` `/refunds` open as **Vaul bottom drawer** (`DetailVaulSheet` + scrim), not an in-page card. Close / swipe dismiss → `router.back()` (or `/`). Peer legal links keep the sheet open (`dismissOnRouteChange={false}`).
+- Signature at end of sheet body: `.t-success-check` stroke-draw + operator name.
+- **Please verify:** click Privacy from footer/signup — sheet slides up over a dimmed underlay; drag/X closes. Reply **ok** when good.
+

@@ -94,6 +94,11 @@ export function DetailVaulSheet({
 	 */
 	aboveAppModal = false,
 	scrollLock = open,
+	/**
+	 * When false, keep the sheet open across Next pathname changes (legal policy
+	 * swaps that remount a peer route). Default true for filmography-style sheets.
+	 */
+	dismissOnRouteChange = true,
 	trigger,
 	/** Left slot aligned with the drag handle row (e.g. patron avatar in review reader). */
 	handleLeading,
@@ -111,6 +116,7 @@ export function DetailVaulSheet({
 	aboveAppModal?: boolean;
 	/** When nested opens on top of a parent sheet, keep Lenis locked for either. */
 	scrollLock?: boolean;
+	dismissOnRouteChange?: boolean;
 	trigger?: ReactNode;
 	handleLeading?: ReactNode;
 	handleTrailing?: ReactNode;
@@ -148,7 +154,7 @@ export function DetailVaulSheet({
 		onOpenChange(false);
 	}, [onOpenChange]);
 	// Poster / profile taps inside the sheet navigate via Next `<Link>` — close on route change.
-	useDismissSheetOnRouteChange(open, dismissOnNavigate);
+	useDismissSheetOnRouteChange(dismissOnRouteChange && open, dismissOnNavigate);
 
 	return (
 		<Drawer.Root

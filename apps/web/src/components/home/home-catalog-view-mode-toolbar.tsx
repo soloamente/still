@@ -186,7 +186,7 @@ function HomeCatalogueSearchClearChipToolbar({
 }
 
 /**
- * `/home` **right** toolbar: **In cinemas** vs **At home** when the active sort needs a
+ * `/home` **right** toolbar: **In theaters** vs **At home** when the active sort needs a
  * release window (Movies always; **TV** only on **Upcoming**). **Filters** opens the full
  * scrolling catalogue that matches the current lobby slice.
  */
@@ -459,7 +459,7 @@ export function HomeCatalogViewModeToolbar() {
 			if (activeRun === "ongoing") return `${sortLabel} · Ongoing`;
 			if (activeRun === "completed") return `${sortLabel} · Completed`;
 			if (activeRun === "upcoming") {
-				return `Upcoming · ${effectiveVenue === "theaters" ? "In cinemas" : "At home"}`;
+				return `Upcoming · ${effectiveVenue === "theaters" ? "In theaters" : "At home"}`;
 			}
 			return sortLabel;
 		})();
@@ -544,7 +544,7 @@ export function HomeCatalogViewModeToolbar() {
 							options={[
 								{
 									id: "theaters",
-									label: "In cinemas",
+									label: "In theaters",
 									title:
 										"First air dates from today — all networks (TMDb discover)",
 								},
@@ -675,8 +675,8 @@ export function HomeCatalogViewModeToolbar() {
 		: "movies";
 
 	const srToolbarCopy = isDiaryLobby
-		? "On your diary, In cinemas vs At home sets which catalogue slice the filters button opens; your logged films list is ordered by the left chips."
-		: "In cinemas uses TMDb’s theatrical lists: now playing for Popular, newest already released in cinemas for Latest, and opening dates strictly after today for Upcoming so it does not repeat Latest’s same-day openings. At home uses subscription streaming availability in the catalogue region; Upcoming there shows primary releases from today onward, soonest first.";
+		? "On your diary, In theaters vs At home sets which catalogue slice the filters button opens; your logged films list is ordered by the left chips."
+		: "In theaters uses TMDb’s theatrical lists: now playing for Popular, newest already released in cinemas for Latest, and opening dates strictly after today for Upcoming so it does not repeat Latest’s same-day openings. At home uses subscription streaming availability in the catalogue region; Upcoming there shows primary releases from today onward, soonest first.";
 
 	const moviesCatalogFilters = parseHomeCatalogFilters(searchParams, {
 		venue: effectiveVenue,
@@ -688,7 +688,7 @@ export function HomeCatalogViewModeToolbar() {
 			: activeCatalogSort === "latest"
 				? "Latest"
 				: "Upcoming"
-	} · ${effectiveVenue === "theaters" ? "In cinemas" : "At home"}`;
+	} · ${effectiveVenue === "theaters" ? "In theaters" : "At home"}`;
 
 	const selectLobbyVenue = (venue: HomeVenue) => {
 		if (tmdbLobby && !isDiaryLobby) {
@@ -763,7 +763,7 @@ export function HomeCatalogViewModeToolbar() {
 					options={[
 						{
 							id: "theaters",
-							label: "In cinemas",
+							label: "In theaters",
 							title: isDiaryLobby
 								? "Emphasise in-cinema context for filters and browse"
 								: "Now playing (Popular), newest already in cinemas (Latest), or opening soon (Upcoming)",

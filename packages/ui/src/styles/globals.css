@@ -772,6 +772,202 @@ html.theme-midnight {
 		--aker-duration: 0.2s;
 		--aker-duration-slow: 0.2s;
 	}
+	@keyframes h1-animation {
+		0% {
+			opacity: 0;
+			filter: blur(8px);
+			transform: translateY(0.25em);
+		}
+	}
+
+	.h1 {
+		margin: -24px;
+		padding: 24px;
+		animation: 0.8s 0.4s backwards h1-animation;
+		display: block;
+	}
+
+	.h1-second-line {
+		animation-delay: 0.5s;
+	}
+
+	.h1-third-line {
+		animation-delay: 0.6s;
+	}
+}
+
+@media (min-width: 1200px) {
+	.min-1200\:text-showcase {
+		letter-spacing: -0.6px;
+		font-size: 80px;
+		font-weight: 652;
+		line-height: 80px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.min-1200\:pb-80 {
+		padding-bottom: 80px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.min-1200\:pt-\[200px\] {
+		padding-top: 200px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.min-1200\:min-h-\[min\(960px\,calc\(100svh-124px\)\)\] {
+		min-height: min(960px, 100svh - 124px);
+	}
+}
+
+@media (min-width: 769px) {
+	.min-\[769px\]\:\[--grid-row-gap\:64px\] {
+		--grid-row-gap: 64px;
+	}
+}
+
+@media (min-width: 768px) {
+	.min-768\:min-h-\[min\(820px\,calc\(100svh-124px\)\)\] {
+		min-height: min(820px, 100svh - 124px);
+	}
+}
+
+@media (min-width: 768px) {
+	.min-768\:pb-64 {
+		padding-bottom: 64px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.min-1200\:min-h-\[min\(960px\,calc\(100svh-124px\)\)\] {
+		min-height: min(960px, 100svh - 124px);
+	}
+}
+
+@keyframes hero-slot-open {
+	from {
+		width: var(--slot-closed);
+	}
+	to {
+		width: var(--slot-open);
+	}
+}
+/* Pulls a slot up against the one before it — see `.hero-slot + .hero-slot` below. */
+@keyframes hero-slot-cluster {
+	from {
+		margin-left: 0;
+	}
+	to {
+		margin-left: calc(var(--icon-cluster-gap) - 2 * var(--icon-gap));
+	}
+}
+@keyframes hero-slot-in {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(0.72);
+		filter: blur(7px);
+	}
+	45% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1.02);
+		filter: blur(0);
+	}
+	68% {
+		transform: translateX(-50%) scale(0.995);
+	}
+	85% {
+		transform: translateX(-50%) scale(1.001);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
+		filter: blur(0);
+	}
+}
+.hero-line {
+	display: block;
+}
+.hero-slot {
+	position: relative;
+	display: inline-block;
+	height: 0;
+	width: var(--slot-closed);
+	animation: hero-slot-open 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+/*
+   * Each slot carries a gap on *both* sides, so two adjacent slots put two of them between
+   * their icons. That reads fine when slots are separated by words, but the moment they sit
+   * next to each other the pair looks twice as far apart as it should.
+   *
+   * This closes that back up to a single `--icon-cluster-gap`: the negative margin cancels
+   * both facing gaps and re-adds one. It runs as a second animation on the same timing as
+   * the slot's own opening (a single inline `animation-delay` applies to both), so it eases
+   * in alongside the width rather than being a constant offset — the resting, pre-icon line
+   * stays spaced exactly as its copy would be.
+   */
+.hero-slot + .hero-slot {
+	animation:
+		hero-slot-open 260ms cubic-bezier(0.16, 1, 0.3, 1) both,
+		hero-slot-cluster 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-slot-inner {
+	position: absolute;
+	left: 50%;
+	bottom: calc(-1 * var(--icon-drop));
+	width: var(--icon-size);
+	height: var(--icon-size);
+	transform: translateX(-50%);
+	animation: hero-slot-in 440ms ease-out both;
+}
+.hero-icon-button {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 20%;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+.hero-icon-button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 4px;
+}
+/* Motion owns both swap directions now (see `ICON_VARIANTS`); this only stacks the icon
+	 layers on top of each other so they can cross past each other in place. */
+.hero-icon-layer {
+	position: absolute;
+	inset: 0;
+	display: block;
+	border-radius: 30%;
+}
+/* The same inset border every app icon gets on mobbin.com
+	 (lib/apps/app-logo/AppLogo.tsx's `after:shadow-logo-inset`, applied unconditionally —
+	 its own `border` prop defaults to `true`), reproduced verbatim rather than only on
+	 icons whose source art needs it — via `var(--shadow-logo-inset)` (app/globals.css's own
+	 token for this exact value) rather than the literal, so it stays in sync with the token
+	 and resolves correctly if dark mode is ever wired up. */
+.hero-icon-layer::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 30%;
+	box-shadow: var(--shadow-logo-inset);
+	pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.hero-slot,
+	.hero-slot-inner {
+		animation: none;
+	}
+	.hero-slot {
+		width: var(--slot-open);
+	}
 }
 
 /*
@@ -814,6 +1010,13 @@ html.theme-midnight {
 	--cinema-vignette-spread: 180px;
 	--cinema-vignette-alpha: 0.55;
 	--cinema-hero-accent-mix: 22%;
+	--icon-size: 0.85em;
+	--icon-drop: 0.065em;
+	--icon-gap: 0.2em;
+	--icon-cluster-gap: 0.12em;
+	--slot-closed: 0.194em;
+	--slot-open: calc(var(--icon-size) + 2 * var(--icon-gap));
+	--shadow-logo-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 html.theme-lobby-light .cinema-theater-floor {
@@ -869,6 +1072,47 @@ html.theme-lobby-light .cinema-vignette {
 
 @media (prefers-reduced-motion: reduce) {
 	.cinema-marquee-track {
+		animation: none;
+		transform: none;
+	}
+}
+
+/*
+ * Companion intro — seamless logo loop.
+ * Two identical halves, track gap 0; each half’s trailing pad equals the logo gap
+ * so translateX(-50%) lands on the next copy without a hitch.
+ */
+.companion-services-marquee-track {
+	display: flex;
+	width: max-content;
+	gap: 0;
+	animation: cinema-marquee-scroll 32s linear infinite;
+}
+
+.companion-services-marquee-track > ul {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: 0.75rem;
+	margin: 0;
+	/* Trailing gap so half1|half2 seam matches logo-to-logo spacing. */
+	padding: 0.25rem 0.75rem 0.25rem 0;
+	list-style: none;
+}
+
+@media (min-width: 640px) {
+	.companion-services-marquee-track > ul {
+		gap: 1rem;
+		padding-inline-end: 1rem;
+	}
+}
+
+.companion-services-marquee:hover .companion-services-marquee-track {
+	animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.companion-services-marquee-track {
 		animation: none;
 		transform: none;
 	}
@@ -2658,6 +2902,18 @@ html.theme-lobby-light .cinema-vignette {
 	--page-stagger: 100ms;
 }
 
+/*
+ * Legal document peer switch — motion/react drives the tween (`LegalRouteSlide`).
+ * Tokens match transitions.dev page side-by-side defaults for any CSS readers.
+ */
+.t-page-slide[data-legal-slide] {
+	--page-slide-dur: 200ms;
+	--page-fade-dur: 200ms;
+	--page-slide-distance: 8px;
+	--page-blur: 3px;
+	--page-stagger: 0ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.t-page-slide.is-animating .t-page {
 		transition: none !important;
@@ -3741,4 +3997,340 @@ html[data-software-gpu] .modal-overlay-scrim {
 	--avatar-dur: 280ms;
 	--avatar-scale: 1.04;
 	--avatar-falloff: 0.5;
+}
+
+/* ══ Signature pad ════════════════════════════════════════
+   Bencho tokens mapped on the frame only (Sense already owns
+   these jobs: card, foreground, sans, ring). Nothing leaks to :root. */
+.sig-frame {
+	display: grid;
+	place-items: center;
+	/* Inset well on the convert card (already --card). */
+	--fill-slab: var(--background);
+	--fill-on: var(--foreground);
+	--ink: var(--foreground);
+	--font-ui: var(--font-sans);
+	--pane-edge: var(--border);
+	--signal: var(--ring);
+	transition:
+		width 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		height 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		max-width 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sig {
+	position: relative;
+	flex: none;
+	/* folding into the pill, and opening back out: one long
+     quint-out glide, no overshoot — a card this size bouncing
+     read as a jolt, not a landing */
+	transition:
+		width 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		height 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		border-radius 720ms cubic-bezier(0.22, 1, 0.36, 1);
+	border-radius: var(--r);
+	overflow: hidden;
+	background: var(--fill-slab, var(--card));
+	color: var(--fill-on, var(--ink));
+	font-family: var(--font-ui);
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: crosshair;
+}
+
+[data-stroke="on"] .sig {
+	box-shadow: inset 0 0 0 1px var(--pane-edge);
+}
+
+.sig-ink {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	overflow: visible;
+}
+
+.sig[data-ink="Blue"] .sig-ink {
+	color: #2446d8;
+}
+
+[data-fill="dark"] .sig[data-ink="Blue"] .sig-ink {
+	color: #7d95ff;
+}
+
+.sig-line {
+	position: absolute;
+	height: 1px;
+	background: currentColor;
+	opacity: 0.16;
+	pointer-events: none;
+}
+
+.sig-hint {
+	position: absolute;
+	top: 140px;
+	font-size: 12px;
+	font-weight: 500;
+	pointer-events: none;
+}
+
+.sig-hint {
+	left: 0;
+	right: 0;
+	text-align: center;
+	opacity: 0.38;
+	transition: opacity 200ms ease;
+}
+
+.sig[data-inked] .sig-hint {
+	opacity: 0;
+}
+
+/* signed: the signature shrinks WITH the card, on the same
+   curve, into the middle of the pill — and fades as it goes, so
+   by the time it would be too small to read it is gone */
+.sig[data-signed] {
+	cursor: default;
+}
+
+.sig-face {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 320px;
+	height: 180px;
+	translate: -50% -50%;
+	transition:
+		scale 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 320ms ease 200ms;
+}
+
+.sig[data-signed] .sig-face {
+	scale: 0.35;
+	opacity: 0;
+	transition:
+		scale 720ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 420ms ease 120ms;
+}
+
+.sig[data-signed] :is(.sig-clear, .sig-hint) {
+	opacity: 0;
+	transition: opacity 140ms ease;
+}
+
+.sig-said {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+}
+
+.sig-pill {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	white-space: nowrap;
+	cursor: pointer;
+	pointer-events: auto;
+	-webkit-tap-highlight-color: transparent;
+	/* in once the pill has nearly arrived */
+	animation: sig-said 320ms ease 420ms both;
+}
+
+.sig-pill:focus-visible {
+	outline: 2px solid var(--signal, #2231dd);
+	outline-offset: 2px;
+	border-radius: 999px;
+}
+
+.sig-check {
+	color: #30a46c;
+	animation: sig-check 420ms cubic-bezier(0.3, 1.6, 0.4, 1) 460ms both;
+}
+
+.sig-clear {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 28px;
+	padding: 0 11px;
+	border: 0;
+	border-radius: var(--inner);
+	background: color-mix(in srgb, currentColor 7%, transparent);
+	color: inherit;
+	font: inherit;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
+	opacity: 0;
+	scale: 0.9;
+	pointer-events: none;
+	-webkit-tap-highlight-color: transparent;
+	transition:
+		opacity 180ms ease,
+		scale 220ms cubic-bezier(0.3, 1.4, 0.4, 1),
+		background 160ms ease;
+}
+
+.sig[data-inked] .sig-clear {
+	opacity: 1;
+	scale: 1;
+	pointer-events: auto;
+}
+
+.sig-clear:hover {
+	background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.sig-clear:active {
+	scale: 0.94;
+}
+
+.sig-clear:focus-visible {
+	outline: 2px solid var(--signal, #2231dd);
+	outline-offset: 2px;
+}
+
+/* Create-account morph: idle CTA matches AuthSubmitButton chrome. */
+button.sig {
+	appearance: none;
+	border: 0;
+	padding: 0;
+	text-align: inherit;
+}
+
+.sig--idle-cta {
+	background: var(--foreground);
+	color: var(--background);
+	cursor: pointer;
+	touch-action: manipulation;
+}
+
+.sig--idle-cta:focus-visible {
+	outline: 2px solid var(--signal, #2231dd);
+	outline-offset: 2px;
+}
+
+.sig-idle-label {
+	display: grid;
+	place-items: center;
+	height: 100%;
+	width: 100%;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1;
+	pointer-events: none;
+}
+
+/* After sign: pad well stays quiet; continue is the same CTA face. */
+.sig--continue-cta {
+	background: transparent;
+	color: var(--foreground);
+	cursor: default;
+	overflow: visible;
+}
+
+.sig-continue-stack {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.375rem;
+	pointer-events: auto;
+}
+
+.sig-pill--continue {
+	height: 2.75rem;
+	width: 100%;
+	border-radius: 1rem;
+	background: var(--foreground);
+	color: var(--background);
+	font-size: 0.9375rem;
+	animation: sig-said 320ms ease 420ms both;
+}
+
+.sig-pill--continue:focus-visible {
+	border-radius: 1rem;
+}
+
+.sig-pill--continue .sig-check {
+	color: #30a46c;
+}
+
+.sig-pill--continue:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.sig-again {
+	border: 0;
+	background: none;
+	padding: 0.125rem 0.5rem;
+	color: var(--muted-foreground);
+	font: inherit;
+	font-size: 0.75rem;
+	font-weight: 500;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	animation: sig-said 280ms ease 520ms both;
+}
+
+.sig-again:hover {
+	color: var(--foreground);
+}
+
+.sig-again:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.sig-again:focus-visible {
+	outline: 2px solid var(--signal, #2231dd);
+	outline-offset: 2px;
+	border-radius: 999px;
+}
+
+@keyframes sig-said {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes sig-check {
+	from {
+		opacity: 0;
+		scale: 0.3;
+		rotate: -20deg;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sig-frame,
+	.sig,
+	.sig-face,
+	.sig[data-signed] .sig-face,
+	.sig[data-signed] :is(.sig-clear, .sig-hint),
+	.sig-clear {
+		transition: none !important;
+	}
+
+	.sig-pill,
+	.sig-pill--continue,
+	.sig-again,
+	.sig-check {
+		animation: none !important;
+	}
 }

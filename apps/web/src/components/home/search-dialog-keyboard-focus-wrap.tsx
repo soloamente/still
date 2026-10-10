@@ -8,6 +8,10 @@ import { searchDialogKeyboardFocusActive } from "@/lib/search-dialog-keyboard-fo
 /**
  * Keyboard focus halo for ⌘K tiles — box-shadow on this shell is not clipped by
  * `overflow-hidden` on inner logos/posters (Tailwind rings on those buttons are).
+ *
+ * Default `inline-flex` suits fixed-size rail chips. Wrapping grids that rely on
+ * `w-full` + aspect frames must pass `flex w-full` (or `block w-full`) so
+ * `inline-flex` does not shrink-wrap absolute `Image fill` children to ~0.
  */
 export function SearchDialogKeyboardFocusWrap({
 	focused,

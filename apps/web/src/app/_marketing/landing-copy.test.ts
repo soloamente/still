@@ -46,8 +46,13 @@ describe("landing copy contract", () => {
 		expect(LANDING_METADATA_DESCRIPTION).toContain("social identity");
 		expect(LANDING_FOOTER_LINKS.map((link) => link.href)).toEqual([
 			"/pricing",
+			"/companion",
 			"/changelog",
 			"/sign-in",
+			"/privacy",
+			"/terms",
+			"/cookies",
+			"/trust",
 		]);
 	});
 
