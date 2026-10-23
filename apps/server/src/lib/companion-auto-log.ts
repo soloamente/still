@@ -1,14 +1,7 @@
-import {
-	db,
-	eventLog,
-	log,
-	profile,
-	tvWatch,
-	tvWatchEpisode,
-	user,
-} from "@still/db";
+import { db, eventLog, log, tvWatch, tvWatchEpisode } from "@still/db";
 import { and, asc, eq, gte, isNull, ne, sql } from "drizzle-orm";
 import { z } from "zod";
+import { visibilityForAutoLog } from "./auto-log-visibility";
 import type { CompanionNowWatchingView } from "./companion-now-watching";
 import { syncCompletionistChallengesForUser } from "./completionist-challenge-sync";
 import { makeId } from "./cuid";
@@ -385,30 +378,6 @@ export async function rateCompanionAutoLog(
 		tvId: row.tvId,
 	});
 	return true;
-}
-
-/**
- * Public logs require a verified email. An unverified account still gets the
- * diary row, saved as private, so the heartbeat is never rejected.
- */
-async function visibilityForAutoLog(
-	userId: string,
-): Promise<"public" | "followers" | "friends" | "private"> {
-	const [own] = await db
-		.select({ visibility: profile.defaultVisibility })
-		.from(profile)
-		.where(eq(profile.userId, userId))
-		.limit(1);
-	const visibility = own?.visibility ?? "public";
-	if (visibility !== "public") return visibility;
-	if (process.env.NODE_ENV === "development") return visibility;
-	const [account] = await db
-		.select({ emailVerified: user.emailVerified })
-		.from(user)
-		.where(eq(user.id, userId))
-		.limit(1);
-	if (account?.emailVerified === true) return visibility;
-	return "private";
 }
 
 /** Check off the episode and let continue-watching move to the next one. */
