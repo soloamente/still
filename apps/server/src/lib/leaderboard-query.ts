@@ -328,12 +328,35 @@ function mediaFilter(kind: LeaderboardKind) {
 	return isNotNull(log.tvId);
 }
 
+/** TV diary scopes that count toward the Shows board — never `episode`. */
+export const SHOWS_RANK_LOG_SCOPES = ["season", "show"] as const;
+
 /**
- * Episodes ranks: weighted episode + season + show diary scopes (with dedupe).
- * Shows ranks stay unfiltered by scope (every TV diary row counts as 1).
+ * Header count for the Shows drawer: distinct shows. Rows visible only to this
+ * viewer (e.g. followers-only) can exceed the public count, so take the max.
+ */
+export function resolveShowsLedgerShowCount(
+	publicDistinctShows: number,
+	visibleTvIds: ReadonlyArray<number | null>,
+): number {
+	const visible = new Set<number>();
+	for (const id of visibleTvIds) {
+		if (id != null) visible.add(id);
+	}
+	return Math.max(publicDistinctShows, visible.size);
+}
+
+/**
+ * Scope predicate per board.
+ * - Episodes: weighted episode + season + show diary scopes (with dedupe).
+ * - Shows: only finished seasons (`season`) and complete series (`show`); the
+ *   count is DISTINCT shows (see `leaderboardActivitySubquery`). Episode logs
+ *   are ranked on Episodes, so they never count here.
+ * - Films: no scope filter.
  */
 function logScopeFilter(kind: LeaderboardKind, start: Date, end: Date) {
 	if (kind === "episodes") return sqlEpisodesRankScopePredicate(start, end);
+	if (kind === "tv") return inArray(log.logScope, [...SHOWS_RANK_LOG_SCOPES]);
 	return undefined;
 }
 
@@ -371,6 +394,21 @@ function leaderboardActivitySubquery(
 			})
 			.from(log)
 			.leftJoin(tv, eq(log.tvId, tv.tmdbId))
+			.where(publicLogWindowConditions(kind, start, end))
+			.groupBy(log.userId)
+			.as("activity");
+	}
+
+	// Shows board: one point per distinct show, regardless of how many
+	// episode / season / series diary rows the patron filed for it.
+	if (kind === "tv") {
+		return db
+			.select({
+				userId: log.userId,
+				count: sql<number>`count(distinct ${log.tvId})::int`.as("count"),
+				lastWatch: sql<Date>`max(${log.watchedAt})`.as("last_watch"),
+			})
+			.from(log)
 			.where(publicLogWindowConditions(kind, start, end))
 			.groupBy(log.userId)
 			.as("activity");
@@ -563,6 +601,36 @@ async function fetchViewerRank(opts: {
 }
 
 /**
+ * Rated TV logs (any scope) for the given shows, visible to the viewer. Season
+ * tiles on the Shows drawer show the season score, which may come from rated
+ * episode logs that the Shows window query deliberately excludes.
+ */
+async function fetchTvScoreInputs(
+	userId: string,
+	tvIds: number[],
+	viewerId: string | null,
+) {
+	if (tvIds.length === 0) return [];
+	return db
+		.select({
+			tvId: log.tvId,
+			logScope: log.logScope,
+			seasonNumber: log.seasonNumber,
+			rating: log.rating,
+		})
+		.from(log)
+		.where(
+			and(
+				eq(log.userId, userId),
+				isNull(log.removedAt),
+				inArray(log.tvId, tvIds),
+				isNotNull(log.rating),
+				contentVisibilityWhere(viewerId, log.userId, log.visibility),
+			),
+		);
+}
+
+/**
  * Drawer payload — all qualifying logs for one patron in the window.
  */
 export async function fetchLeaderboardLogs(opts: {
@@ -586,6 +654,8 @@ export async function fetchLeaderboardLogs(opts: {
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];
 	hiddenCount: number;
+	/** Distinct shows on the Shows board (`kind: "tv"` only). */
+	showCount?: number;
 } | null> {
 	const [row] = await db
 		.select({
@@ -694,6 +764,8 @@ export async function fetchLeaderboardLogs(opts: {
 	const tvKind = opts.kind;
 	const scopeFilter = logScopeFilter(tvKind, start, end);
 	const isEpisodesBoard = tvKind === "episodes";
+	// Shows lists finished seasons + complete series only (never episode rows).
+	const isShowsBoard = tvKind === "tv";
 
 	const logs = await db
 		.select({
@@ -733,6 +805,8 @@ export async function fetchLeaderboardLogs(opts: {
 			total: isEpisodesBoard
 				? sql<number>`coalesce(sum(${sqlEpisodeRankWeight()}), 0)::int`
 				: count(),
+			// Distinct shows among public rows — the Shows header counts shows, not tiles.
+			shows: sql<number>`count(distinct ${log.tvId})::int`,
 		})
 		.from(log)
 		.leftJoin(tv, eq(log.tvId, tv.tmdbId))
@@ -761,6 +835,24 @@ export async function fetchLeaderboardLogs(opts: {
 		visibleWeight,
 	);
 
+	// Shows season tiles need episode ratings the window query excludes.
+	const scoreInputs = isShowsBoard
+		? await fetchTvScoreInputs(
+				opts.userId,
+				[
+					...new Set(
+						logs.map((l) => l.tvId).filter((id): id is number => id != null),
+					),
+				],
+				opts.viewerId ?? null,
+			)
+		: logs.map((l) => ({
+				tvId: l.tvId,
+				logScope: l.logScope,
+				seasonNumber: l.seasonNumber,
+				rating: l.rating,
+			}));
+
 	return {
 		user: {
 			handle: row.handle,
@@ -776,51 +868,51 @@ export async function fetchLeaderboardLogs(opts: {
 		period: opts.period,
 		window: { start: start.toISOString(), end: end.toISOString() },
 		hiddenCount: tvHiddenCount,
+		...(isShowsBoard
+			? {
+					showCount: resolveShowsLedgerShowCount(
+						Number(tvTotalRow?.shows ?? 0),
+						logs.map((l) => l.tvId),
+					),
+				}
+			: {}),
 		items: await annotateLeaderboardLogsWithLifetimeCounts(
 			opts.userId,
 			annotateLeaderboardLogItems(
-				(() => {
-					const scoreInputs = logs.map((l) => ({
+				logs.map((l) => {
+					const tmdbJson =
+						(l.tmdbJson as Record<string, unknown> | null) ?? null;
+					return {
+						logId: l.logId,
+						watchedAt: l.watchedAt.toISOString(),
+						movieId: null,
 						tvId: l.tvId,
+						title: l.title,
+						posterPath: l.posterPath,
+						rating: ledgerDisplayRatingForTvLog(
+							{
+								tvId: l.tvId,
+								logScope: l.logScope,
+								seasonNumber: l.seasonNumber,
+								rating: l.rating,
+							},
+							scoreInputs,
+						),
+						rewatch: l.rewatch,
 						logScope: l.logScope,
 						seasonNumber: l.seasonNumber,
-						rating: l.rating,
-					}));
-					return logs.map((l) => {
-						const tmdbJson =
-							(l.tmdbJson as Record<string, unknown> | null) ?? null;
-						return {
-							logId: l.logId,
-							watchedAt: l.watchedAt.toISOString(),
-							movieId: null,
-							tvId: l.tvId,
-							title: l.title,
-							posterPath: l.posterPath,
-							rating: ledgerDisplayRatingForTvLog(
-								{
-									tvId: l.tvId,
-									logScope: l.logScope,
-									seasonNumber: l.seasonNumber,
-									rating: l.rating,
-								},
-								scoreInputs,
-							),
-							rewatch: l.rewatch,
-							logScope: l.logScope,
-							seasonNumber: l.seasonNumber,
-							episodeNumber: l.episodeNumber,
-							...(isEpisodesBoard
-								? {
-										episodeWeight: weightForEpisodeRankLog(
-											l.logScope,
-											l.seasonNumber,
-											tmdbJson,
-										),
-									}
-								: {}),
-						};
-					});
-				})(),
+						episodeNumber: l.episodeNumber,
+						...(isEpisodesBoard
+							? {
+									episodeWeight: weightForEpisodeRankLog(
+										l.logScope,
+										l.seasonNumber,
+										tmdbJson,
+									),
+								}
+							: {}),
+					};
+				}),
 			),
 		),
 	};
