@@ -101,6 +101,27 @@ Not run as part of the code change; confirm with the owner before executing.
   predicate already lets episode logs win over a season log, and a season log
   win over a show log).
 
+## Plan-time refinements (2026-10-23)
+
+Settled while reading the code for the implementation plan
+(`docs/superpowers/plans/2026-10-23-shows-rank-finished-seasons.md`):
+
+- Auto-created logs use `visibilityForAutoLog` (profile default visibility; an
+  unverified email falls back to `private`), extracted from `companion-auto-log.ts`.
+- A season that already has a season log counts as finished for the whole-series
+  check even without check-marks (a hand-logged season is still a seen season).
+- The sync hooks into `reconcileTvWatchProgress` (already called by every
+  check-mark route and the Companion) plus an explicit call after
+  `PATCH /api/tv-watch/:id` sets `finished`.
+- Season tiles on the Shows drawer take their score from the patron's rated
+  logs for that show (any scope visible to the viewer), because episode logs are
+  excluded from the Shows window query.
+- `showCount` = max(public distinct shows, distinct shows visible to the viewer).
+- The backfill script lives in `apps/server/scripts/` (repo convention), not `src/scripts/`.
+- Tests: pure core rules and Shows board helpers are unit tested; the DB
+  orchestration is idempotent by its existence checks and is verified manually
+  (no DB mocking harness exists for these libs).
+
 ## Out of scope
 
 Deleting auto-created logs on un-check, rating inheritance onto auto logs,
