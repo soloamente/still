@@ -19,6 +19,7 @@
 		"onboarding:backfill-diary": "bun run ./scripts/backfill-onboarding-favorite-diary.ts",
 		"onboarding:backfill-visibility": "bun run ./scripts/backfill-onboarding-visibility.ts",
 		"reviews:backfill-language": "bun run ./scripts/backfill-review-source-language.ts",
+		"tv:backfill-completion-logs": "bun run ./scripts/backfill-tv-completion-logs.ts",
 		"start": "bun run dist/local.mjs"
 	},
 	"dependencies": {
