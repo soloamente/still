@@ -1,6 +1,6 @@
 import { db, tvWatch, tvWatchEpisode } from "@still/db";
 import { eq } from "drizzle-orm";
-
+import { syncTvCompletionLogs } from "./tv-completion-logs";
 import {
 	computeNextEpisode,
 	getTvSeasonDetailCached,
@@ -69,7 +69,7 @@ export async function markAllCatalogEpisodesWatched(
 	return episodes[episodes.length - 1] ?? null;
 }
 
-async function loadWatchedEpisodeKeys(
+export async function loadWatchedEpisodeKeys(
 	tvWatchId: string,
 ): Promise<TvEpisodeKey[]> {
 	const rows = await db
@@ -94,6 +94,14 @@ export async function reconcileTvWatchProgress(
 	language: string,
 ): Promise<typeof tvWatch.$inferSelect> {
 	const watched = await loadWatchedEpisodeKeys(watchRow.id);
+	// Check-marks may have just finished a season or the whole series — the
+	// server (not the browser) adds the season / whole-show diary rows.
+	await syncTvCompletionLogs({
+		userId: watchRow.userId,
+		tvId: watchRow.tvId,
+		language,
+		watched,
+	});
 	const next = await computeNextEpisode(watchRow.tvId, watched, language);
 
 	let nextStatus = watchRow.status;

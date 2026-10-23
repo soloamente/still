@@ -28,6 +28,7 @@ import { routeBody } from "../lib/route-body";
 import { tmdbApi } from "../lib/tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
+import { syncTvCompletionLogs } from "../lib/tv-completion-logs";
 import { defaultProgressModeForTv } from "../lib/tv-progress-defaults";
 import {
 	computeNextEpisode,
@@ -35,6 +36,7 @@ import {
 	getTvSeasonsCached,
 } from "../lib/tv-season-cache";
 import {
+	loadWatchedEpisodeKeys,
 	markAllCatalogEpisodesWatched,
 	reconcileTvWatchProgress,
 } from "../lib/tv-watch-progress-sync";
@@ -321,6 +323,13 @@ export const tvWatchRoute = new Elysia({
 					})
 					.where(eq(tvWatch.id, params.id))
 					.returning();
+				// Every episode is now checked: add the season rows and the whole-show row.
+				await syncTvCompletionLogs({
+					userId: user.id,
+					tvId: existing.tvId,
+					language,
+					watched: await loadWatchedEpisodeKeys(existing.id),
+				});
 				return buildWatchDto(updated, language);
 			}
 
