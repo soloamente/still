@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
 	DEFAULT_HOME_LEADERBOARD_PERIOD,
+	leaderboardLedgerTitleCount,
 	leaderboardWatchLedgerSummaryLabel,
 	parseHomeCommunityPeriod,
 } from "./home-leaderboard-period";
@@ -39,5 +40,39 @@ describe("leaderboardWatchLedgerSummaryLabel", () => {
 		expect(leaderboardWatchLedgerSummaryLabel(2, "tv", "all")).toBe(
 			"2 shows watched all time",
 		);
+	});
+});
+
+describe("leaderboardLedgerTitleCount", () => {
+	test("Shows uses the distinct show count, not the tile count", () => {
+		expect(
+			leaderboardLedgerTitleCount({
+				kind: "tv",
+				itemCount: 5,
+				hiddenCount: 1,
+				showCount: 2,
+			}),
+		).toBe(2);
+	});
+
+	test("falls back to tiles + hidden when no show count is sent", () => {
+		expect(
+			leaderboardLedgerTitleCount({
+				kind: "tv",
+				itemCount: 3,
+				hiddenCount: 1,
+			}),
+		).toBe(4);
+	});
+
+	test("Films and Episodes ignore showCount", () => {
+		expect(
+			leaderboardLedgerTitleCount({
+				kind: "films",
+				itemCount: 3,
+				hiddenCount: 2,
+				showCount: 99,
+			}),
+		).toBe(5);
 	});
 });

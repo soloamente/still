@@ -14,17 +14,11 @@ import { TvEpisodeWatchCheckRow } from "@/components/tv/tv-episode-watch-check";
 import { SegmentedPillToolbar } from "@/components/ui/segmented-pill-toolbar";
 import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import { formatStoredLogRatingDisplay } from "@/lib/log-rating";
-import { formatTodayYmd, ymdToLocalDate } from "@/lib/log-watched-date";
-import {
-	fetchTvSeasonDetail,
-	fetchTvSeasons,
-	postLog,
-} from "@/lib/still-api-fetch";
+import { fetchTvSeasonDetail, fetchTvSeasons } from "@/lib/still-api-fetch";
 import { TV_DETAIL_SECTION } from "@/lib/tv-detail-sections";
 import {
 	countTvLogsInScope,
 	findLatestTvLogInScope,
-	seriesReadyForShowDiary,
 } from "@/lib/tv-log-scope-prior";
 import {
 	presentTvSeasonScore,
@@ -175,7 +169,6 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		Record<number, TvEpisodeSummary[]>
 	>({});
 	const [episodesLoading, setEpisodesLoading] = useState<number | null>(null);
-	const showDiaryAttempt = useRef(false);
 
 	const loadSeasons = useCallback(async () => {
 		setSeasonsLoading(true);
@@ -192,43 +185,23 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		void loadSeasons();
 	}, [watch, loadSeasons]);
 
-	// Once every season is in the diary and the series is finished, add one whole-show row.
+	// The server now creates season / whole-show diary rows when check-marks
+	// finish a season or the series — pull fresh rows after progress changes.
+	const refreshUserStateRef = useRef(refreshUserState);
+	refreshUserStateRef.current = refreshUserState;
+	const progressSignature = `${watchedKeySet.size}:${watch?.status ?? ""}`;
+	const lastProgressSignature = useRef<string | null>(null);
 	useEffect(() => {
-		if (!logsHydrated || seasonsLoading || showDiaryAttempt.current) return;
-		if (
-			!seriesReadyForShowDiary({
-				status: watch?.status,
-				seasons,
-				logs: myLogs,
-			})
-		) {
+		if (!logsHydrated) return;
+		if (lastProgressSignature.current === null) {
+			// First hydrated render: just remember the baseline, nothing changed yet.
+			lastProgressSignature.current = progressSignature;
 			return;
 		}
-		showDiaryAttempt.current = true;
-		void (async () => {
-			const diaryResult = await postLog({
-				tvId,
-				logScope: "show",
-				watchedAt: ymdToLocalDate(formatTodayYmd()).toISOString(),
-				watchVenue: "streaming",
-				rewatch: false,
-			});
-			if (!diaryResult.ok) {
-				showDiaryAttempt.current = false;
-				return;
-			}
-			await refreshUserState();
-			toast.success("Whole show added to your diary");
-		})();
-	}, [
-		logsHydrated,
-		myLogs,
-		refreshUserState,
-		seasons,
-		seasonsLoading,
-		tvId,
-		watch?.status,
-	]);
+		if (lastProgressSignature.current === progressSignature) return;
+		lastProgressSignature.current = progressSignature;
+		void refreshUserStateRef.current();
+	}, [logsHydrated, progressSignature]);
 
 	const totalEpisodes = useMemo(
 		() => seasons.reduce((sum, season) => sum + season.episode_count, 0),
@@ -265,46 +238,16 @@ export function TvDetailProgressPanel({ tvId }: { tvId: number }) {
 		const seasonLabel =
 			seasons.find((s) => s.season_number === seasonNumber)?.name ??
 			`Season ${seasonNumber}`;
-		const seasonScope = {
-			logScope: "season" as const,
-			seasonNumber,
-		};
 		try {
 			const updated = await markSeasonComplete(seasonNumber);
 			if (!updated) return;
 
-			const hadSeasonLog = countTvLogsInScope(myLogs, seasonScope) > 0;
-			if (!hadSeasonLog) {
-				const diaryResult = await postLog({
-					tvId,
-					logScope: "season",
-					seasonNumber,
-					watchedAt: ymdToLocalDate(formatTodayYmd()).toISOString(),
-					watchVenue: "streaming",
-					rewatch: false,
-				});
-				if (!diaryResult.ok) {
-					toast.success(`${seasonLabel} marked complete`, {
-						description: "Couldn't add a diary entry.",
-						action: {
-							label: "Try again",
-							onClick: () =>
-								handleOpenQuickLog({
-									logScope: "season",
-									seasonNumber,
-								}),
-						},
-					});
-					return;
-				}
-				await refreshUserState();
-				toast.success(`${seasonLabel} marked complete`, {
-					description: "Added to your diary.",
-				});
-				return;
-			}
-
-			toast.success(`${seasonLabel} marked complete`);
+			// The server already added the season (and, when this was the last
+			// one, whole-show) diary row — just reload the diary state.
+			await refreshUserState();
+			toast.success(`${seasonLabel} marked complete`, {
+				description: "Added to your diary.",
+			});
 		} finally {
 			setCompletingSeason(null);
 		}

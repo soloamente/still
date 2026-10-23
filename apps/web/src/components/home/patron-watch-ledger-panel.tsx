@@ -12,6 +12,7 @@ import { SheetScrollScrims } from "@/components/movie/sheet-scroll-scrims";
 import { PatronPortraitWithAura } from "@/components/profile/patron-portrait-with-aura";
 import { leaderboardDrawerHandleLinkClassName } from "@/lib/home-leaderboard-interactive";
 import {
+	leaderboardLedgerTitleCount,
 	leaderboardWatchLedgerSummaryLabel,
 	readViewerTimeZone,
 } from "@/lib/home-leaderboard-period";
@@ -102,7 +103,13 @@ export function PatronWatchLedgerPanel({
 		[items, order],
 	);
 	const hiddenCount = payload?.hiddenCount ?? 0;
-	const titleCount = items.length + hiddenCount;
+	// Shows tiles are per season / series; the header still counts distinct shows.
+	const titleCount = leaderboardLedgerTitleCount({
+		kind: seed.kind,
+		itemCount: items.length,
+		hiddenCount,
+		showCount: payload?.showCount,
+	});
 
 	return (
 		<div className="relative isolate flex min-h-0 w-full flex-1 flex-col">

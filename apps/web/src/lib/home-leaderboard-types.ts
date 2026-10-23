@@ -67,4 +67,6 @@ export type LeaderboardLogsPayload = {
 	window: { start: string; end: string };
 	items: LeaderboardLogItem[];
 	hiddenCount: number;
+	/** Shows ranks only — distinct shows across the tiles (seasons + series). */
+	showCount?: number;
 };

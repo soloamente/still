@@ -92,6 +92,20 @@ export function leaderboardWatchLedgerSummaryLabel(
 	return `${count} ${media} watched ${leaderboardWatchedPeriodPhrase(period)}`;
 }
 
+/**
+ * Number shown in the ledger drawer header. Shows lists several tiles per show
+ * (one per finished season + the whole series), so it reports distinct shows.
+ */
+export function leaderboardLedgerTitleCount(input: {
+	kind: LeaderboardKind;
+	itemCount: number;
+	hiddenCount: number;
+	showCount?: number | null;
+}): number {
+	if (input.kind === "tv" && input.showCount != null) return input.showCount;
+	return input.itemCount + input.hiddenCount;
+}
+
 /** Browser IANA zone for API `tz` query — safe on server (returns UTC). */
 export function readViewerTimeZone(): string {
 	if (typeof Intl === "undefined") return "UTC";
