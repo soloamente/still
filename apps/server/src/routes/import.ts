@@ -13,11 +13,40 @@ import { hit } from "../lib/rate-limit";
 import { recomputeUserTasteSignature } from "../lib/recompute-user-taste-signature";
 import { recordProductEvent } from "../lib/record-product-event";
 import { formField } from "../lib/request-form";
+import {
+	assertEmailVerified,
+	EmailVerificationRequiredError,
+	emailVerificationRequiredBody,
+	isPublicContentVisibility,
+} from "../lib/require-verified-email";
 import { resolveAnilistMediaToTmdbTvId } from "../lib/resolve-anilist-tv-tmdb";
 import { getTmdbLanguageForUser } from "../lib/tmdb-poster-language";
 import { ensureTvCached } from "../lib/tv-cache";
 import { backfillWatchStreakFromLogs } from "../lib/watch-streak-sync";
 import { invalidateWatchlistTonightSocial } from "../lib/watchlist-tonight-signals";
+
+/** Public diary/reviews from import require verified email (parity with POST /logs). */
+async function assertImportEmailIfPublicDefault(
+	user: { id: string; emailVerified?: boolean | null },
+	status: (code: number, body: unknown) => unknown,
+): Promise<unknown | null> {
+	const [prof] = await db
+		.select({ visibility: profile.defaultVisibility })
+		.from(profile)
+		.where(eq(profile.userId, user.id))
+		.limit(1);
+	const visibility = prof?.visibility ?? "public";
+	if (!isPublicContentVisibility(visibility)) return null;
+	try {
+		assertEmailVerified(user);
+		return null;
+	} catch (e) {
+		if (e instanceof EmailVerificationRequiredError) {
+			return status(403, emailVerificationRequiredBody());
+		}
+		throw e;
+	}
+}
 
 /**
  * Sense Tier 0 — Letterboxd CSV import (diary export).
@@ -37,6 +66,8 @@ export const importRoute = new Elysia({
 		) {
 			return status(429, "Import limit reached — try again later");
 		}
+		const emailBlock = await assertImportEmailIfPublicDefault(user, status);
+		if (emailBlock) return emailBlock;
 
 		const csvFiles: File[] = [];
 		const multi = formField(body, "files");
@@ -206,6 +237,8 @@ export const importRoute = new Elysia({
 			) {
 				return status(429, "Import limit reached — try again later");
 			}
+			const emailBlock = await assertImportEmailIfPublicDefault(user, status);
+			if (emailBlock) return emailBlock;
 
 			const file = formField(body, "file");
 			if (!(file instanceof File)) {

@@ -12,6 +12,7 @@ import {
 	rateCompanionAutoLog,
 	recordCompanionAutoLog,
 } from "../lib/companion-auto-log";
+import { resolveCompanionAutoLogReport } from "../lib/companion-autolog-status";
 import {
 	type CompanionNowWatching,
 	type CompanionNowWatchingView,
@@ -217,7 +218,9 @@ export function buildCompanionRoute(options: CompanionRouteOptions): Elysia {
 			console.info("[companion] now-watching", label);
 			// Logging is a one-shot. A failure here must not drop the profile row.
 			let logged: CompanionAutoLogResult | null = null;
+			let recordAttempted = false;
 			if (view && companionPlaybackReadyToLog(view)) {
+				recordAttempted = true;
 				try {
 					logged = await recordAutoLog(session.userId, view);
 				} catch (error) {
@@ -226,7 +229,15 @@ export function buildCompanionRoute(options: CompanionRouteOptions): Elysia {
 			}
 			if (logged) console.info("[companion] logged", logged.title);
 			const titleUrl = companionTitleButtonUrl(publicOrigin ?? "", view?.href);
-			return { watching: view, logged, titleUrl };
+			const autoLog = resolveCompanionAutoLogReport({
+				body: parsed.data,
+				view,
+				logged,
+				recordAttempted,
+				userId: session.userId,
+				now: Date.now(),
+			});
+			return { watching: view, logged, titleUrl, autoLog };
 		})
 		.post("/api/companion/log-rating", async (ctx) => {
 			const { request, status, body } = ctx;

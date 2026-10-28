@@ -17,3 +17,15 @@
 .detail-artwork-pasito-hero .pasito-step:focus-visible {
 	outline-color: color-mix(in oklab, var(--foreground) 35%, transparent);
 }
+
+/* Studio wordmark under the film title. TMDb ink is dark; dark palettes flip it white. */
+.movie-studio-mark {
+	height: 2.25rem;
+	width: auto;
+	max-width: 9rem;
+	object-fit: contain;
+}
+
+html.dark .movie-studio-mark {
+	filter: brightness(0) invert(1);
+}

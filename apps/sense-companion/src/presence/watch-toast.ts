@@ -1,4 +1,4 @@
-import type { PopupWatch } from "../popup/watch-state";
+import { type PopupWatch, playbackTitleIsSiteName } from "../popup/watch-state";
 
 /** Last notice already shown. A new mode or title shows again. */
 export type WatchToastState = {
@@ -57,6 +57,14 @@ export function watchToastCopy(
 	resume: boolean,
 ): WatchToastCopy {
 	const mark = episodeMark(watch);
+	if (playbackTitleIsSiteName(watch)) {
+		return {
+			lead: watch.mode === "paused" ? "Paused" : "Playing",
+			title: watch.service,
+			detail: "Won't auto-log",
+			icon: watch.mode === "paused" ? "pause" : "eye",
+		};
+	}
 	switch (watch.mode) {
 		case "playing":
 			return {

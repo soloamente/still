@@ -199,7 +199,7 @@ export function createAuth() {
 			sendVerificationEmail: async ({ user, url }) => {
 				await sendAuthEmail(
 					user.email,
-					VerifyEmail({ url }),
+					VerifyEmail({ url, email: user.email }),
 					"Confirm your email for Sense",
 				);
 			},
@@ -280,3 +280,10 @@ export function createAuth() {
 }
 
 export const auth = createAuth();
+
+// HTTP guard for BA admin mutations that skip Sense `outranks` (staff routes only).
+export {
+	BLOCKED_AUTH_ADMIN_HTTP_PATHS,
+	matchBlockedAuthAdminHttpPath,
+	maybeBlockAuthAdminHttp,
+} from "./auth-admin-http-guard";

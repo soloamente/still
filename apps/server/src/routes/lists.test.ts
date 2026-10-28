@@ -359,16 +359,20 @@ describe("GET /api/lists/:id", () => {
 		expect(payload.id).toBe("lst-1");
 	});
 
-	test("returns 404 for private list when anonymous", async () => {
+	test("returns 403 CONTENT_PRIVATE for private list when anonymous", async () => {
 		state.list = { ...testListFixture(), isPublic: false };
 		const response = await getList({});
-		expect(response.status).toBe(404);
+		expect(response.status).toBe(403);
+		const payload = (await response.json()) as { code?: string };
+		expect(payload.code).toBe("CONTENT_PRIVATE");
 	});
 
-	test("returns 404 for private list when viewer is not owner", async () => {
+	test("returns 403 CONTENT_PRIVATE for private list when viewer is not owner", async () => {
 		state.list = { ...testListFixture(), isPublic: false };
 		const response = await getList({ userId: "stranger-1" });
-		expect(response.status).toBe(404);
+		expect(response.status).toBe(403);
+		const payload = (await response.json()) as { code?: string };
+		expect(payload.code).toBe("CONTENT_PRIVATE");
 	});
 
 	test("returns private list to owner", async () => {

@@ -63,6 +63,12 @@ export type TasteMatchMovie = {
 	festivalIcon?: string | null;
 	/** TMDb `images.logos` title treatment for the home hero lockup. */
 	logoPath?: string | null;
+	/** First two TMDb genre names for the hero meta line. */
+	genres?: string[];
+	/** Catalogue overview shown under the hero meta line. */
+	overview?: string | null;
+	/** Short release date, e.g. "Mar 7, 2014". Falls back to the year in the UI. */
+	releaseLabel?: string | null;
 	/**
 	 * Movie payloads omit this. TV for-you stamps `"tv"` so clients can tell
 	 * a show id from a film id in the same `movies` array.
@@ -494,4 +500,77 @@ export async function buildTasteMatchedDiscovery(
 ): Promise<TasteMatchedDiscoveryPayload> {
 	const { payload } = await buildTasteMatchedDiscoveryWithMeta(userId);
 	return payload;
+}
+
+/** How many genre names fit on the home hero meta line. */
+const TASTE_HERO_GENRE_LIMIT = 2;
+
+/**
+ * Genre names for the taste-hero lockup. Reads the small `genres` array only —
+ * callers project that path instead of the whole `tmdb_json` document.
+ */
+export function pickTasteHeroGenreNames(
+	tmdbJson: Record<string, unknown> | null | undefined,
+): string[] {
+	const genres = tmdbJson?.genres;
+	if (!Array.isArray(genres)) return [];
+	const names: string[] = [];
+	for (const row of genres) {
+		if (names.length >= TASTE_HERO_GENRE_LIMIT) break;
+		if (typeof row !== "object" || row === null) continue;
+		const name = (row as { name?: unknown }).name;
+		if (typeof name !== "string") continue;
+		const trimmed = name.trim();
+		if (trimmed.length === 0) continue;
+		names.push(trimmed);
+	}
+	return names;
+}
+
+/** Trimmed TMDb overview for the hero blurb. Empty copy stays hidden. */
+export function pickTasteHeroOverview(
+	overview: string | null | undefined,
+): string | null {
+	const text = overview?.trim();
+	if (!text) return null;
+	return text;
+}
+
+const TASTE_HERO_RELEASE_MONTHS = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec",
+] as const;
+
+/**
+ * Short release date for the hero meta line. Calendar dates are read from the
+ * `YYYY-MM-DD` prefix so a midnight timestamp does not shift a day.
+ */
+export function formatTasteHeroReleaseDate(
+	value: Date | string | null | undefined,
+): string | null {
+	if (typeof value === "string") {
+		const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+		if (match) {
+			const year = Number(match[1]);
+			const month = TASTE_HERO_RELEASE_MONTHS[Number(match[2]) - 1];
+			const day = Number(match[3]);
+			if (month && day >= 1 && day <= 31) return `${month} ${day}, ${year}`;
+		}
+	}
+	if (value instanceof Date && !Number.isNaN(value.getTime())) {
+		const month = TASTE_HERO_RELEASE_MONTHS[value.getUTCMonth()];
+		if (!month) return null;
+		return `${month} ${value.getUTCDate()}, ${value.getUTCFullYear()}`;
+	}
+	return null;
 }

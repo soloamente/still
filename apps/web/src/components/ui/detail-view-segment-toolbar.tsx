@@ -16,21 +16,26 @@ type SegmentIndicator = {
 };
 
 /**
- * Film/person detail view tabs — `bg-card` track with a measured `bg-background`
- * sliding pill. Avoids shared `layoutId` (glitches when tab widths differ or the
- * rail scrolls); same approach as {@link SegmentedPillToolbar}.
+ * Film/person detail view tabs. `canvas` (person header on `bg-background`) uses
+ * a `bg-card` track and a `bg-background` pill. `card` (film/TV header inside the
+ * raised lobby card) flips that so the track matches home chips. Avoids shared
+ * `layoutId` (glitches when tab widths differ or the rail scrolls); same approach
+ * as {@link SegmentedPillToolbar}.
  */
 export function DetailViewSegmentToolbar<T extends string>({
 	"aria-label": ariaLabel,
 	value,
 	tabs,
 	className,
+	surface = "canvas",
 	renderTab,
 }: {
 	"aria-label": string;
 	value: T;
 	tabs: readonly { id: T; label: string }[];
 	className?: string;
+	/** `canvas` sits on `bg-background`. `card` sits on the raised detail card. */
+	surface?: "canvas" | "card";
 	renderTab: (props: {
 		id: T;
 		label: string;
@@ -95,14 +100,18 @@ export function DetailViewSegmentToolbar<T extends string>({
 			ref={trackRef}
 			aria-label={ariaLabel}
 			className={cn(
-				"scrollbar-none relative flex max-w-[min(100vw-7.5rem,22rem)] shrink-0 gap-1 overflow-x-auto rounded-full bg-card p-1 [-ms-overflow-style:none] sm:max-w-none [&::-webkit-scrollbar]:hidden",
+				"scrollbar-none relative flex max-w-[min(100vw-7.5rem,22rem)] shrink-0 gap-1 overflow-x-auto rounded-full p-1 [-ms-overflow-style:none] sm:max-w-none [&::-webkit-scrollbar]:hidden",
+				surface === "card" ? "bg-background" : "bg-card",
 				className,
 			)}
 		>
 			{indicator ? (
 				<motion.span
 					aria-hidden
-					className="pointer-events-none absolute top-1 bottom-1 left-0 rounded-full bg-background"
+					className={cn(
+						"pointer-events-none absolute top-1 bottom-1 left-0 rounded-full",
+						surface === "card" ? "bg-card" : "bg-background",
+					)}
 					initial={false}
 					animate={{
 						x: indicator.left,

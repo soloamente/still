@@ -5,7 +5,10 @@
 
 import {
 	computeToastStackTops,
+	TOAST_EDGE_TOP_PX,
 	TOAST_SLOT_HOST_ID,
+	TOAST_SLOT_ORDER,
+	TOAST_STACK_GAP_PX,
 	type ToastStackSlot,
 } from "./toast-stack";
 
@@ -23,13 +26,27 @@ export function toastMountParent(
 	return fullscreen ?? pageRoot;
 }
 
+/** Same-origin embeds mount notices on the top page, not a tiny iframe. */
+export function companionToastDocument(): Document {
+	try {
+		const top = window.top;
+		if (top != null && top.location.origin === window.location.origin) {
+			return top.document;
+		}
+	} catch {
+		// Cross-origin parent — this frame only.
+	}
+	return document;
+}
+
 function pageRoot(): Element {
-	return document.documentElement ?? document.body;
+	const doc = companionToastDocument();
+	return doc.documentElement ?? doc.body;
 }
 
 function activeFullscreenElement(): Element | null {
-	const doc = document as FullscreenDocument;
-	return document.fullscreenElement ?? doc.webkitFullscreenElement ?? null;
+	const doc = companionToastDocument() as FullscreenDocument;
+	return doc.fullscreenElement ?? doc.webkitFullscreenElement ?? null;
 }
 
 const hosts = new Set<HTMLElement>();
@@ -100,6 +117,24 @@ export function layoutToastStack(): void {
 		host.style.transition = transition;
 		host.style.top = `${top}px`;
 	}
+	let yAfterStack = TOAST_EDGE_TOP_PX;
+	for (const slot of TOAST_SLOT_ORDER) {
+		if (!visible[slot]) continue;
+		const top = tops[slot];
+		const height = heights[slot];
+		if (top == null || height <= 0) continue;
+		yAfterStack = top + height + TOAST_STACK_GAP_PX;
+	}
+	for (const host of hosts) {
+		if (!host.isConnected || slotForHost(host)) continue;
+		host.style.position = "fixed";
+		host.style.right = "16px";
+		host.style.zIndex = "2147483646";
+		host.style.transition = transition;
+		host.style.top = `${yAfterStack}px`;
+		const height = host.getBoundingClientRect().height;
+		if (height > 0) yAfterStack += height + TOAST_STACK_GAP_PX;
+	}
 }
 
 /** Relayout when a toast changes height or width (e.g. countdown hover expand). */
@@ -134,8 +169,9 @@ function parkToastHosts(): void {
 function watchFullscreen(): void {
 	if (watching) return;
 	watching = true;
-	document.addEventListener("fullscreenchange", parkToastHosts, true);
-	document.addEventListener("webkitfullscreenchange", parkToastHosts, true);
+	const doc = companionToastDocument();
+	doc.addEventListener("fullscreenchange", parkToastHosts, true);
+	doc.addEventListener("webkitfullscreenchange", parkToastHosts, true);
 }
 
 /** Drop a notice and relayout so rows below slide back up. */
@@ -148,7 +184,7 @@ export function releaseToastHost(host: HTMLElement): void {
 
 /** Remove a notice by id when swapping in a new one with the same slot. */
 export function dismissToastHostById(id: string): void {
-	const el = document.getElementById(id);
+	const el = companionToastDocument().getElementById(id);
 	if (!(el instanceof HTMLElement)) return;
 	if (hosts.has(el)) {
 		releaseToastHost(el);

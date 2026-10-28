@@ -91,10 +91,12 @@ function watchlistSelectShape(tmdbJson: SQL<Record<string, unknown> | null>) {
 		movieTmdbId: movie.tmdbId,
 		movieTitle: movie.title,
 		moviePosterPath: movie.posterPath,
+		movieOverview: movie.overview,
 		movieGenreIds: movie.genreIds,
 		tvTmdbId: tv.tmdbId,
 		tvTitle: tv.title,
 		tvPosterPath: tv.posterPath,
+		tvOverview: tv.overview,
 		tvGenreIds: tv.genreIds,
 		tmdbJson,
 		streamingAlert: watchlistItem.streamingAlert,
@@ -117,9 +119,11 @@ type WatchlistSelectRow = {
 	movieTmdbId: number | null;
 	movieTitle: string | null;
 	moviePosterPath: string | null;
+	movieOverview: string | null;
 	tvTmdbId: number | null;
 	tvTitle: string | null;
 	tvPosterPath: string | null;
+	tvOverview: string | null;
 	streamingAlert: boolean;
 };
 
@@ -151,6 +155,7 @@ function toWatchlistRow(
 						tmdbId: row.movieTmdbId,
 						title: row.movieTitle ?? "",
 						posterPath: row.moviePosterPath,
+						overview: row.movieOverview,
 					}
 				: null,
 		tv:
@@ -159,6 +164,7 @@ function toWatchlistRow(
 						tmdbId: row.tvTmdbId,
 						title: row.tvTitle ?? "",
 						posterPath: row.tvPosterPath,
+						overview: row.tvOverview,
 					}
 				: null,
 		streaming_provider_name: providerName,

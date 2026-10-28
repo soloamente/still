@@ -1,5 +1,12 @@
-import type { ContentVisibility } from "@still/db";
-import { db, listingQuote, listingQuoteSave, movie, tv } from "@still/db";
+import type { ContentVisibility, QuoteSubmissionStatus } from "@still/db";
+import {
+	db,
+	listingQuote,
+	listingQuoteSave,
+	movie,
+	quoteSubmission,
+	tv,
+} from "@still/db";
 import type { SQL } from "drizzle-orm";
 import { and, desc, eq, inArray, isNotNull } from "drizzle-orm";
 
@@ -25,12 +32,20 @@ export type SavedQuoteListingThumb = {
 	episodeNumber: number | null;
 };
 
+export type SavedQuoteSubmissionMeta = {
+	status: QuoteSubmissionStatus;
+	createdAt: Date;
+	reviewedAt: Date | null;
+};
+
 export type SavedQuoteLobbyItem = {
 	saveId: string;
 	savedAt: Date;
 	visibility: ContentVisibility;
 	quote: ListingQuoteItem;
 	listing: SavedQuoteListingThumb;
+	/** Patron moderation outcome when this save is their approved/declined submission. */
+	submission: SavedQuoteSubmissionMeta | null;
 };
 
 export type SavedQuotesPage = {
@@ -102,9 +117,21 @@ function buildListingThumb(args: {
 	return null;
 }
 
+function mapSavedQuoteSubmission(
+	row: typeof quoteSubmission.$inferSelect | null,
+): SavedQuoteSubmissionMeta | null {
+	if (!row?.id) return null;
+	return {
+		status: row.status,
+		createdAt: row.createdAt,
+		reviewedAt: row.reviewedAt,
+	};
+}
+
 function mapSavedQuoteRow(row: {
 	save: typeof listingQuoteSave.$inferSelect;
 	quote: typeof listingQuote.$inferSelect;
+	submission: typeof quoteSubmission.$inferSelect | null;
 	movieTitle: string | null;
 	tvTitle: string | null;
 	moviePosterPath: string | null;
@@ -132,8 +159,14 @@ function mapSavedQuoteRow(row: {
 		visibility: row.save.visibility,
 		quote: toListingQuoteItem(row.quote),
 		listing,
+		submission: mapSavedQuoteSubmission(row.submission),
 	};
 }
+
+const savedQuoteSubmissionJoin = and(
+	eq(quoteSubmission.resolvedQuoteId, listingQuote.id),
+	eq(quoteSubmission.userId, listingQuoteSave.userId),
+);
 
 async function fetchSavedQuotesPage(args: {
 	userId: string;
@@ -165,6 +198,7 @@ async function fetchSavedQuotesPage(args: {
 		.select({
 			save: listingQuoteSave,
 			quote: listingQuote,
+			submission: quoteSubmission,
 			movieTitle: movie.title,
 			tvTitle: tv.title,
 			moviePosterPath: movie.posterPath,
@@ -174,6 +208,7 @@ async function fetchSavedQuotesPage(args: {
 		})
 		.from(listingQuoteSave)
 		.innerJoin(listingQuote, eq(listingQuoteSave.quoteId, listingQuote.id))
+		.leftJoin(quoteSubmission, savedQuoteSubmissionJoin)
 		.leftJoin(movie, eq(listingQuote.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(listingQuote.tvId, tv.tmdbId))
 		.where(and(...filters))
@@ -242,6 +277,7 @@ export async function fetchProfilePinnedQuotes(args: {
 		.select({
 			save: listingQuoteSave,
 			quote: listingQuote,
+			submission: quoteSubmission,
 			movieTitle: movie.title,
 			tvTitle: tv.title,
 			moviePosterPath: movie.posterPath,
@@ -251,6 +287,7 @@ export async function fetchProfilePinnedQuotes(args: {
 		})
 		.from(listingQuoteSave)
 		.innerJoin(listingQuote, eq(listingQuoteSave.quoteId, listingQuote.id))
+		.leftJoin(quoteSubmission, savedQuoteSubmissionJoin)
 		.leftJoin(movie, eq(listingQuote.movieId, movie.tmdbId))
 		.leftJoin(tv, eq(listingQuote.tvId, tv.tmdbId))
 		.where(and(...filters));

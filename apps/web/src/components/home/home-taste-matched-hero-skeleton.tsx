@@ -61,6 +61,8 @@ export function HomeTasteMatchedHeroSkeleton({
 						>
 							<ShimmerBone className="mx-auto h-3.5 w-48 max-w-[70%] rounded-md bg-card sm:mx-0 sm:h-4 sm:w-56" />
 							<ShimmerBone className="mx-auto h-[clamp(2.25rem,5.5vw,5.75rem)] w-[min(100%,14rem)] rounded-lg bg-card sm:mx-0 sm:max-w-[min(100%,16rem)]" />
+							<ShimmerBone className="mx-auto h-3.5 w-40 max-w-[60%] rounded-md bg-card sm:mx-0" />
+							<ShimmerBone className="mx-auto h-8 w-full max-w-md rounded-md bg-card sm:mx-0" />
 						</div>
 						<div className="relative z-30 flex flex-wrap items-center justify-center gap-2 pt-1 sm:justify-start">
 							<ShimmerBone className="size-11 shrink-0 rounded-full bg-card sm:size-12" />

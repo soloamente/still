@@ -3,7 +3,12 @@ import { env } from "@still/env/server";
 import { inArray, sql } from "drizzle-orm";
 
 import { fetchCachedListingCommunityStats } from "./listing-community-stats-cache";
-import type { TasteMatchMovie } from "./taste-matched-discovery";
+import {
+	formatTasteHeroReleaseDate,
+	pickTasteHeroGenreNames,
+	pickTasteHeroOverview,
+	type TasteMatchMovie,
+} from "./taste-matched-discovery";
 import { tmdbApi } from "./tmdb";
 import {
 	pickTitleLogoFromTmdbJson,
@@ -20,19 +25,21 @@ import { traceTiming } from "./trace-timing";
 const TASTE_HERO_ENRICH_LIMIT = 12;
 
 /**
- * Server-side projection of the only three paths this module reads out of the
+ * Server-side projection of the only paths this module reads out of the
  * verbatim `tmdb_json` payload. Selecting the whole column cost ~300ms for 12
  * rows (vs 31ms for 24 rows without it) because it also carries credits,
  * recommendations, release dates, and every poster/backdrop variant.
  *
  * Shape is preserved so `pickTrailerFromTmdbJson` / `pickTitleLogoFromTmdbJson` /
- * `pickFestivalIconFromTmdbJson` keep working unchanged.
+ * `pickFestivalIconFromTmdbJson` / `pickTasteHeroGenreNames` keep working.
+ * Overview stays on the `overview` column — it is not pulled from the document.
  */
 const HERO_TMDB_JSON_PROJECTION = sql<Record<string, unknown> | null>`
 	jsonb_build_object(
 		'videos', ${movie.tmdbJson} -> 'videos',
 		'images', jsonb_build_object('logos', ${movie.tmdbJson} -> 'images' -> 'logos'),
-		'keywords', ${movie.tmdbJson} -> 'keywords'
+		'keywords', ${movie.tmdbJson} -> 'keywords',
+		'genres', ${movie.tmdbJson} -> 'genres'
 	)
 `;
 
@@ -60,6 +67,8 @@ async function enrichTasteMatchMovieRow(
 		| {
 				backdropPath: string | null;
 				tmdbJson: unknown;
+				overview: string | null;
+				releaseDate: Date | string | null;
 		  }
 		| undefined,
 	options: { includeCommunity: boolean },
@@ -109,6 +118,9 @@ async function enrichTasteMatchMovieRow(
 		festivalIcon: options.includeCommunity
 			? pickFestivalIconFromTmdbJson(tmdbJson)
 			: (entry.festivalIcon ?? null),
+		genres: pickTasteHeroGenreNames(tmdbJson),
+		overview: pickTasteHeroOverview(cached?.overview),
+		releaseLabel: formatTasteHeroReleaseDate(cached?.releaseDate),
 	};
 }
 
@@ -145,6 +157,8 @@ export async function enrichTasteMatchMovies(
 						.select({
 							tmdbId: movie.tmdbId,
 							tmdbJson: HERO_TMDB_JSON_PROJECTION,
+							overview: movie.overview,
+							releaseDate: movie.releaseDate,
 						})
 						.from(movie)
 						.where(inArray(movie.tmdbId, heroIds)),
@@ -154,9 +168,7 @@ export async function enrichTasteMatchMovies(
 	const backdropById = new Map(
 		backdropRows.map((row) => [row.tmdbId, row.backdropPath]),
 	);
-	const heroJsonById = new Map(
-		heroRows.map((row) => [row.tmdbId, row.tmdbJson]),
-	);
+	const heroById = new Map(heroRows.map((row) => [row.tmdbId, row]));
 
 	return traceTiming("taste", "enrich rows", () =>
 		Promise.all(
@@ -168,9 +180,15 @@ export async function enrichTasteMatchMovies(
 					return { ...entry, backdropPath };
 				}
 
+				const hero = heroById.get(entry.tmdbId);
 				return enrichTasteMatchMovieRow(
 					entry,
-					{ backdropPath, tmdbJson: heroJsonById.get(entry.tmdbId) ?? null },
+					{
+						backdropPath,
+						tmdbJson: hero?.tmdbJson ?? null,
+						overview: hero?.overview ?? null,
+						releaseDate: hero?.releaseDate ?? null,
+					},
 					{ includeCommunity: index === 0 },
 				);
 			}),

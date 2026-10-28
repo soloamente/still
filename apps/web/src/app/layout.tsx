@@ -2,6 +2,7 @@ import { Agentation } from "agentation";
 import { InspectKit } from "inspectkit";
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import "pasito/styles.css";
 import { Fraunces, Geist_Mono, Inter } from "next/font/google";
@@ -15,6 +16,7 @@ import {
 	APP_METADATA_TITLE_TEMPLATE,
 	APP_NAME,
 } from "@/lib/app-brand";
+import { HOISTABLE_REMOVE_GUARD_SOURCE } from "@/lib/hoistable-remove-guard";
 import {
 	OG_DEFAULT_PATH,
 	ogImageMetadataFields,
@@ -101,6 +103,13 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className="bg-background text-foreground antialiased">
+				{/* Before hydration: React 19 throws if a hoisted head tag was already detached. */}
+				<Script
+					id="sense-hoistable-remove-guard"
+					strategy="beforeInteractive"
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: fixed guard, no user input
+					dangerouslySetInnerHTML={{ __html: HOISTABLE_REMOVE_GUARD_SOURCE }}
+				/>
 				<ThemeFlashGuardScript />
 				<Providers htmlFontClass={htmlFontClass}>{children}</Providers>
 				{process.env.NODE_ENV === "development" ? (

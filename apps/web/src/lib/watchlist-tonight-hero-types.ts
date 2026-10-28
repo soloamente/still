@@ -8,6 +8,7 @@ export type WatchlistTonightHeroPick = {
 	tmdbId: number;
 	title: string;
 	posterUrl: string | null;
+	overview: string | null;
 	tonightReason: string | null;
 	tonightReasonKind: WatchlistReasonKind | null;
 	/** Absolute TMDb logo for the “Now on …” service, when the reason is availability. */
@@ -39,6 +40,7 @@ export function watchlistRowToTonightHeroPick(
 		tmdbId: listing.tmdbId,
 		title: listing.title,
 		posterUrl,
+		overview: listing.overview?.trim() || null,
 		tonightReason: row.tonight_reason ?? null,
 		tonightReasonKind: row.tonight_reason_kind ?? null,
 		tonightProviderLogoUrl: tmdbPosterUrlFromPath(

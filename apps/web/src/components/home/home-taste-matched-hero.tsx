@@ -2,8 +2,6 @@
 
 import { env } from "@still/env/web";
 import { TooltipProvider } from "@still/ui/components/tooltip";
-import IconPatronScoreLeafLeft from "@still/ui/icons/patron-score-leaf-left";
-import IconPatronScoreLeafRight from "@still/ui/icons/patron-score-leaf-right";
 import IconTrashXmarkFill from "@still/ui/icons/trash-xmark-fill";
 import { cn } from "@still/ui/lib/utils";
 import { Check, Plus } from "lucide-react";
@@ -35,7 +33,6 @@ import {
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
 import { readViewerTimeZone } from "@/lib/home-leaderboard-period";
-import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	HOME_TASTE_HERO_BAND_CLASSNAME,
 	HOME_TASTE_HERO_BAND_CONTENT_2K_NUDGE_CLASSNAME,
@@ -238,12 +235,103 @@ async function fetchSpotlightTrailer(
 	}
 }
 
-function formatHeroRatingsCountValue(count: number): string {
-	return count.toLocaleString();
-}
+/** Score, release date, and genres on one line, with a short overview under the title. */
+function TasteHeroLockupMeta({
+	displayAverage,
+	year,
+	releaseLabel,
+	genres,
+	overview,
+	festivalIcon,
+}: {
+	displayAverage: number | null;
+	year: number | null;
+	releaseLabel: string | null;
+	genres: string[];
+	overview: string | null;
+	festivalIcon: FestivalIconId | null;
+}) {
+	const facts: Array<{
+		key: string;
+		spoken: string;
+		value: string;
+		emphasize: boolean;
+	}> = [];
+	if (displayAverage != null) {
+		facts.push({
+			key: "rate",
+			spoken: `Community score ${formatLogRatingDisplay(displayAverage)} out of 10`,
+			value: formatLogRatingDisplay(displayAverage),
+			emphasize: true,
+		});
+	}
+	const release = releaseLabel?.trim() || (year != null ? String(year) : "");
+	if (release.length > 0) {
+		facts.push({
+			key: "release",
+			spoken: `Released ${release}`,
+			value: release,
+			emphasize: false,
+		});
+	}
+	for (const [index, genre] of genres.entries()) {
+		facts.push({
+			key: `genre-${index}`,
+			spoken: index === 0 ? `Genre ${genre}` : genre,
+			value: genre,
+			emphasize: false,
+		});
+	}
+	const blurb = overview?.trim() ?? "";
+	if (facts.length === 0 && festivalIcon == null && blurb.length === 0) {
+		return null;
+	}
 
-function formatHeroRatingsCountLabel(count: number): string {
-	return count === 1 ? "Rating" : "Ratings";
+	return (
+		<div className="flex min-w-0 flex-col gap-1.5">
+			{facts.length > 0 || festivalIcon != null ? (
+				<div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm sm:justify-start">
+					{facts.map((fact, index) => (
+						<span key={fact.key} className="inline-flex items-center gap-2">
+							{index > 0 ? (
+								<span aria-hidden className="text-pure-white/40">
+									·
+								</span>
+							) : null}
+							<span
+								className={cn(
+									"font-medium text-pure-white/80 tabular-nums",
+									fact.emphasize && "font-semibold text-pure-white",
+								)}
+							>
+								<span className="sr-only">{fact.spoken}</span>
+								<span aria-hidden>{fact.value}</span>
+							</span>
+						</span>
+					))}
+					{festivalIcon != null ? (
+						<span className="inline-flex items-center gap-2 text-pure-white/80">
+							{facts.length > 0 ? (
+								<span aria-hidden className="text-pure-white/40">
+									·
+								</span>
+							) : null}
+							<FestivalRecognitionIcon
+								icon={festivalIcon}
+								className="h-5 w-12 sm:h-6 sm:w-14"
+							/>
+							<span className="text-xs sm:text-sm">Official selection</span>
+						</span>
+					) : null}
+				</div>
+			) : null}
+			{blurb.length > 0 ? (
+				<p className="line-clamp-2 text-pretty font-medium text-pure-white/75 text-sm leading-snug">
+					{blurb}
+				</p>
+			) : null}
+		</div>
+	);
 }
 
 /**
@@ -1431,33 +1519,37 @@ export function HomeTasteMatchedHero({
 									HOME_TASTE_HERO_BAND_CONTENT_MOBILE_NUDGE_CLASSNAME,
 								)}
 							>
-								<p className="inline-flex items-center gap-2 text-balance text-pure-white/75 text-xs tracking-wide sm:text-sm">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 18 18"
-										width="18"
-										height="18"
-										className="size-4 shrink-0 text-pure-white sm:size-5"
-										aria-hidden
-									>
-										<title>Taste match</title>
-										<path
-											d="m16.6094,7.5176c-.001,0-.001-.0005-.001-.0005-.8115-1.4336-3.1787-4.7671-7.6084-4.7671S2.2031,6.0835,1.3906,7.5176c-.5244.9282-.5244,2.0366.001,2.9653.8125,1.4336,3.1797,4.7671,7.6084,4.7671s6.7959-3.3335,7.6094-4.7676c.5244-.9282.5244-2.0366,0-2.9648Z"
-											fill="currentColor"
-											opacity="0.4"
-										/>
-										<path
-											d="m11.9805,8.2861l-1.7139-.5527-.5527-1.7139c-.0996-.3096-.3887-.5195-.7139-.5195s-.6143.21-.7139.5195l-.5527,1.7139-1.7139.5527c-.3096.1001-.5195.3882-.5195.7139s.21.6138.5195.7139l1.7139.5527.5527,1.7139c.0996.3096.3887.5195.7139.5195s.6143-.21.7139-.5195l.5527-1.7139,1.7139-.5527c.3096-.1001.5195-.3882.5195-.7139s-.21-.6138-.5195-.7139Z"
-											fill="currentColor"
-										/>
-									</svg>
-									{isTodayShell ? (
-										<>
+								<p className="flex text-balance text-pure-white/75 text-xs tracking-wide max-sm:flex-col max-sm:items-center max-sm:gap-1 sm:inline-flex sm:items-center sm:gap-2 sm:text-sm">
+									<span className="inline-flex items-center gap-2">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 18 18"
+											width="18"
+											height="18"
+											className="size-4 shrink-0 text-pure-white sm:size-5"
+											aria-hidden
+										>
+											<title>Taste match</title>
+											<path
+												d="m16.6094,7.5176c-.001,0-.001-.0005-.001-.0005-.8115-1.4336-3.1787-4.7671-7.6084-4.7671S2.2031,6.0835,1.3906,7.5176c-.5244.9282-.5244,2.0366.001,2.9653.8125,1.4336,3.1797,4.7671,7.6084,4.7671s6.7959-3.3335,7.6094-4.7676c.5244-.9282.5244-2.0366,0-2.9648Z"
+												fill="currentColor"
+												opacity="0.4"
+											/>
+											<path
+												d="m11.9805,8.2861l-1.7139-.5527-.5527-1.7139c-.0996-.3096-.3887-.5195-.7139-.5195s-.6143.21-.7139.5195l-.5527,1.7139-1.7139.5527c-.3096.1001-.5195.3882-.5195.7139s.21.6138.5195.7139l1.7139.5527.5527,1.7139c.0996.3096.3887.5195.7139.5195s.6143-.21.7139-.5195l.5527-1.7139,1.7139-.5527c.3096-.1001.5195-.3882.5195-.7139s-.21-.6138-.5195-.7139Z"
+												fill="currentColor"
+											/>
+										</svg>
+										{isTodayShell ? (
 											<span className="font-semibold text-pure-white">
 												Today’s pick
 											</span>
-											<span aria-hidden>·</span>
-										</>
+										) : null}
+									</span>
+									{isTodayShell ? (
+										<span aria-hidden className="hidden sm:inline">
+											·
+										</span>
 									) : null}
 									<span ref={reasonSwapRef} className="t-text-swap">
 										{tasteMatchedRailTitle(genrePhrase)}
@@ -1515,50 +1607,14 @@ export function HomeTasteMatchedHero({
 										</h2>
 									)}
 								</Link>
-								<div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:justify-start sm:gap-x-4 sm:gap-y-2">
-									{hasAverage && displayAverage != null ? (
-										<div className="flex items-center gap-0.5 sm:gap-1">
-											<IconPatronScoreLeafLeft className="h-10 w-auto shrink-0 text-pure-white/60 sm:h-11" />
-											<div className="flex min-w-10 flex-col items-center gap-px text-center leading-none sm:min-w-11">
-												<span className="sr-only">
-													Community score{" "}
-													{formatLogRatingDisplay(displayAverage)} out of 10,{" "}
-													{formatHeroRatingsCountValue(
-														spotlight.communityRatingsCount ?? 0,
-													)}{" "}
-													{formatHeroRatingsCountLabel(
-														spotlight.communityRatingsCount ?? 0,
-													).toLowerCase()}
-												</span>
-												<span className="font-sans font-semibold text-base text-pure-white tabular-nums leading-none tracking-tight sm:text-lg">
-													{formatLogRatingDisplay(displayAverage)}
-												</span>
-												<span className="font-sans text-pure-white/80 text-xs tabular-nums leading-none">
-													{formatHeroRatingsCountValue(
-														spotlight.communityRatingsCount ?? 0,
-													)}
-												</span>
-												<span className="font-sans text-pure-white/55 text-xs leading-none">
-													{formatHeroRatingsCountLabel(
-														spotlight.communityRatingsCount ?? 0,
-													)}
-												</span>
-											</div>
-											<IconPatronScoreLeafRight className="h-10 w-auto shrink-0 text-pure-white/60 sm:h-11" />
-										</div>
-									) : null}
-									{festivalIcon ? (
-										<div className="flex items-center gap-2 text-pure-white/80">
-											<FestivalRecognitionIcon
-												icon={festivalIcon}
-												className="h-7 w-16 sm:h-10 sm:w-24"
-											/>
-											<span className="text-xs sm:text-sm">
-												Official selection
-											</span>
-										</div>
-									) : null}
-								</div>
+								<TasteHeroLockupMeta
+									displayAverage={displayAverage}
+									year={spotlight.year}
+									releaseLabel={spotlight.releaseLabel ?? null}
+									genres={spotlight.genres ?? []}
+									overview={spotlight.overview ?? null}
+									festivalIcon={festivalIcon ?? null}
+								/>
 							</div>
 							{isTodayShell ? (
 								<p className="sr-only" aria-live="polite">
@@ -1788,8 +1844,7 @@ export function HomeTasteMatchedHero({
 														)}
 														className="aspect-2/3 w-full"
 														frameClassName={cn(
-															"w-full border-0 bg-transparent",
-															CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME,
+															"w-full rounded-[1.5rem] border-0 bg-transparent",
 															// Image must not keep its own radius inside the frame.
 															"[&_img]:rounded-none!",
 														)}

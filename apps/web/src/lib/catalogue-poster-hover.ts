@@ -3,12 +3,12 @@ import { cn } from "@still/ui/lib/utils";
 export type CataloguePosterHoverStacking = "catalogue" | "sheet";
 
 /**
- * Vertical room for avatar-group lift (~4px) + 1.05 scale.
- * Put this on the overflow-x scroller, never on `.t-avatar-group` —
- * `overflow-x: auto` computes `overflow-y` to `auto` and shears the hover.
+ * Room for avatar-group lift (~4px) + 1.05 scale on every side.
+ * Put this on the overflow-x scroller or lobby grid — never combine
+ * `overflow-x: auto` onto `.t-avatar-group` itself (computes overflow-y and shears).
  */
 export const CATALOGUE_POSTER_HOVER_LIFT_GUTTER_CLASSNAME =
-	"mt-[-0.75rem] pt-3";
+	"mt-[-0.75rem] -mx-1.5 px-1.5 pt-3 pb-2";
 
 /** Extra vertical room for ⌘K chip rails — pairs with `overflow-y-visible` on the scroller. */
 export const SEARCH_DIALOG_RAIL_COMB_HOVER_GUTTER_CLASSNAME =

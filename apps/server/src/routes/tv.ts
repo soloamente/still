@@ -24,6 +24,7 @@ import {
 	getCachedTvDetail,
 	setCachedTvDetail,
 } from "../lib/listing-detail-cache";
+import { resolveTvHeroOverview } from "../lib/listing-hero-overview";
 import {
 	fetchListingQuotesForTv,
 	parseTvQuoteEpisodeParams,
@@ -624,6 +625,12 @@ export const tvRoute = new Elysia({ prefix: "/api/tv", tags: ["tv"] })
 			trailerKey: trailer?.trailerKey ?? null,
 			trailerSite: trailer?.trailerSite ?? null,
 		};
+	})
+	.get("/:id/hero-overview", async ({ params, status }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+		const overview = await resolveTvHeroOverview(id);
+		return { overview };
 	})
 	// TV series detail — cache row first, then block adult titles when patron pref is off.
 	.get(

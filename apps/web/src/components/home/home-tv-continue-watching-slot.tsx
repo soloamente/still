@@ -18,7 +18,7 @@ export function HomeTvContinueWatchingSlot({
 
 	return (
 		<div className="relative z-10 shrink-0">
-			<HomeContinueWatchingRail items={items} />
+			<HomeContinueWatchingRail items={items} titleLines={1} />
 		</div>
 	);
 }

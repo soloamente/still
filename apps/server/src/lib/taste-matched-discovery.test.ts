@@ -1,7 +1,10 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+	formatTasteHeroReleaseDate,
 	mergeBlendAndPenalizeCandidates,
+	pickTasteHeroGenreNames,
+	pickTasteHeroOverview,
 	TASTE_MATCH_MIN_LOGS,
 	TASTE_MATCH_MIN_RESULTS,
 } from "./taste-matched-discovery";
@@ -91,5 +94,65 @@ describe("mergeBlendAndPenalizeCandidates", () => {
 
 		expect(similarPenalized).toBeLessThan(similarControl);
 		expect(similarPenalized).toBeLessThan(unrelatedPenalized);
+	});
+});
+
+describe("pickTasteHeroGenreNames", () => {
+	test("returns the first two genre names", () => {
+		expect(
+			pickTasteHeroGenreNames({
+				genres: [
+					{ id: 18, name: "Drama" },
+					{ id: 53, name: "Thriller" },
+					{ id: 80, name: "Crime" },
+				],
+			}),
+		).toEqual(["Drama", "Thriller"]);
+	});
+
+	test("skips blank names and non-objects", () => {
+		expect(
+			pickTasteHeroGenreNames({
+				genres: [null, { name: "  " }, { name: "Comedy" }],
+			}),
+		).toEqual(["Comedy"]);
+	});
+
+	test("returns nothing when genres are missing", () => {
+		expect(pickTasteHeroGenreNames(null)).toEqual([]);
+		expect(pickTasteHeroGenreNames({ genres: "Drama" })).toEqual([]);
+	});
+});
+
+describe("pickTasteHeroOverview", () => {
+	test("trims a synopsis", () => {
+		expect(pickTasteHeroOverview("  A hotel concierge.  ")).toBe(
+			"A hotel concierge.",
+		);
+	});
+
+	test("hides empty copy", () => {
+		expect(pickTasteHeroOverview("   ")).toBeNull();
+		expect(pickTasteHeroOverview(null)).toBeNull();
+	});
+});
+
+describe("formatTasteHeroReleaseDate", () => {
+	test("formats a calendar date without shifting the day", () => {
+		expect(formatTasteHeroReleaseDate("2014-03-07")).toBe("Mar 7, 2014");
+		expect(formatTasteHeroReleaseDate("2014-03-07T00:00:00.000Z")).toBe(
+			"Mar 7, 2014",
+		);
+	});
+
+	test("formats a Date in UTC", () => {
+		expect(
+			formatTasteHeroReleaseDate(new Date("2014-03-07T00:00:00.000Z")),
+		).toBe("Mar 7, 2014");
+	});
+
+	test("hides missing dates", () => {
+		expect(formatTasteHeroReleaseDate(null)).toBeNull();
+		expect(formatTasteHeroReleaseDate("not-a-date")).toBeNull();
 	});
 });

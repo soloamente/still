@@ -3,6 +3,7 @@ import { and, desc, eq, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { contentPrivatePayload } from "../lib/content-private";
 import { makeId } from "../lib/cuid";
 import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import {
@@ -163,7 +164,18 @@ export const followsRoute = new Elysia({
 	)
 	.get(
 		"/of/:userId/followers",
-		async ({ params, user: viewer }) => {
+		async ({ params, user: viewer, status }) => {
+			// Private profiles must not expose social graph to non-owners.
+			const [targetProfile] = await db
+				.select({ isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.userId, params.userId))
+				.limit(1);
+			if (!targetProfile) return status(404, "Not found");
+			if (targetProfile.isPrivate && viewer?.id !== params.userId) {
+				return status(403, contentPrivatePayload("profile"));
+			}
+
 			const rows = await db
 				.select({
 					userId: follow.followerId,
@@ -198,7 +210,17 @@ export const followsRoute = new Elysia({
 	)
 	.get(
 		"/of/:userId/following",
-		async ({ params, user: viewer }) => {
+		async ({ params, user: viewer, status }) => {
+			const [targetProfile] = await db
+				.select({ isPrivate: profile.isPrivate })
+				.from(profile)
+				.where(eq(profile.userId, params.userId))
+				.limit(1);
+			if (!targetProfile) return status(404, "Not found");
+			if (targetProfile.isPrivate && viewer?.id !== params.userId) {
+				return status(403, contentPrivatePayload("profile"));
+			}
+
 			const rows = await db
 				.select({
 					userId: follow.followingId,

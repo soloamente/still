@@ -18,6 +18,12 @@ export type TasteMatchMovie = {
 	trailerSite?: string | null;
 	festivalIcon?: string | null;
 	logoPath?: string | null;
+	/** First two TMDb genre names for the hero meta line. */
+	genres?: string[];
+	/** Catalogue overview shown under the hero meta line. */
+	overview?: string | null;
+	/** Short release date, e.g. "Mar 7, 2014". */
+	releaseLabel?: string | null;
 	/**
 	 * Movie payloads omit this. TV for-you stamps `"tv"` so clients can tell
 	 * a show id from a film id in the same `movies` array.

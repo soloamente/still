@@ -93,7 +93,7 @@ export function AppShell({
 			*/}
 					<main
 						id="main-content"
-						className="relative z-[36] flex min-h-svh flex-1 flex-col px-2.5 pt-0"
+						className="relative z-[36] flex min-h-svh flex-1 flex-col px-[15px] pt-0"
 					>
 						{children}
 					</main>

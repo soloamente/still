@@ -30,6 +30,21 @@ export function formatTimeAgoLabel(value: Date | string): string {
 	return `${formatDistanceToNowStrict(date)} ago`;
 }
 
+/** Splits `formatTimeAgoLabel` into a leading count pill + trailing unit copy (Figma saved-quote footer). */
+export function splitRelativeAgoLabel(label: string): {
+	count: string | null;
+	rest: string;
+} {
+	const trimmed = label.trim();
+	if (trimmed === "Recently" || trimmed === "Just now") {
+		return { count: null, rest: trimmed };
+	}
+	const match = /^(\d+)(.*)\sago$/i.exec(trimmed);
+	if (!match) return { count: null, rest: trimmed };
+	const rest = `${match[2].trim()} ago`.replace(/^\s+/, "");
+	return { count: match[1] ?? null, rest: rest.length > 0 ? rest : "ago" };
+}
+
 /**
  * Community activity watch rows — diary dates store local noon, so relative
  * “ago” from watchedAt misreads (e.g. “1h ago” for a 2am watch logged at 1pm).

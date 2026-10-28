@@ -17,6 +17,8 @@ import {
 	removeViewerCommentReaction,
 } from "../lib/comment-reactions";
 import { notifyPatronMentionsInContent } from "../lib/content-mention-notify";
+import { contentPrivatePayload } from "../lib/content-private";
+import { canViewContent, resolveViewerFollow } from "../lib/content-visibility";
 import { makeId } from "../lib/cuid";
 import { fetchDiaryLogCountsForUserIds } from "../lib/diary-metal-tier";
 import { notifyOnReviewComment } from "../lib/notification-delivery";
@@ -35,6 +37,30 @@ type CreateCommentBody = {
 const parentTypes = ["review", "post", "list", "comment", "log"] as const;
 type ParentType = (typeof parentTypes)[number];
 
+/** Same visibility gate as GET /api/reviews/:id — comments must not bypass it. */
+async function assertCanViewReviewParent(
+	reviewId: string,
+	viewerId: string | null,
+): Promise<"ok" | "missing" | "private"> {
+	const [parent] = await db
+		.select({
+			userId: review.userId,
+			visibility: review.visibility,
+		})
+		.from(review)
+		.where(and(eq(review.id, reviewId), isNull(review.removedAt)))
+		.limit(1);
+	if (!parent) return "missing";
+	const follows = await resolveViewerFollow(viewerId, parent.userId);
+	const allowed = canViewContent({
+		viewerId,
+		authorId: parent.userId,
+		visibility: parent.visibility,
+		...follows,
+	});
+	return allowed ? "ok" : "private";
+}
+
 export const commentsRoute = new Elysia({
 	prefix: "/api/comments",
 	tags: ["comments"],
@@ -49,6 +75,16 @@ export const commentsRoute = new Elysia({
 			const body = routeBody<CreateCommentBody>(rawBody);
 			if (!parentTypes.includes(body.parentType as ParentType))
 				return status(400, "Bad parentType");
+
+			if (body.parentType === "review") {
+				const access = await assertCanViewReviewParent(
+					body.parentId,
+					viewer.id,
+				);
+				if (access === "missing") return status(404, "Not found");
+				if (access === "private")
+					return status(403, contentPrivatePayload("content"));
+			}
 
 			const id = makeId("cmt");
 			const [row] = await db
@@ -234,7 +270,17 @@ export const commentsRoute = new Elysia({
 	)
 	.get(
 		"/of/:parentType/:parentId",
-		async ({ params, user: viewer }) => {
+		async ({ params, user: viewer, status }) => {
+			if (params.parentType === "review") {
+				const access = await assertCanViewReviewParent(
+					params.parentId,
+					viewer?.id ?? null,
+				);
+				if (access === "missing") return status(404, "Not found");
+				if (access === "private")
+					return status(403, contentPrivatePayload("content"));
+			}
+
 			const rows = await db
 				.select({ comment, user, profile })
 				.from(comment)

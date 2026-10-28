@@ -5549,3 +5549,27 @@ Branch: `feat/sense-legal-compliance` (Tasks 1–9 implemented in-session; subag
 - Signature at end of sheet body: `.t-success-check` stroke-draw + operator name.
 - **Please verify:** click Privacy from footer/signup — sheet slides up over a dimmed underlay; drag/X closes. Reply **ok** when good.
 
+---
+
+## Security audit remediation (2026-10-27) — from still/run-1
+
+**Source:** `~/security-audit-skill/still/run-1` (9 confirmed / 12 NV). Scratchpad is human+agent planning only (no app importers).
+
+### Project Status Board
+- [x] **SEC.1** Block Better Auth admin HTTP ban/unban/set-role (outranks bypass) — `packages/auth/src/auth-admin-http-guard.ts`; wired in `app.ts` + `worker.ts`. Tests 6/6.
+- [x] **SEC.2** `getImageAsset` allowlist / persist-only upload keys (high SSRF) — asset-store guards + PATCH reject; tests 9/9.
+- [x] **SEC.3** Private profile / visibility ACL suite (lists by-user, ownerLog, handle GET, comments, reactions, follows, import)
+- [x] **Private UX (oil-ui-pro 改流程)** — 403 `PROFILE_PRIVATE` / `CONTENT_PRIVATE` + `ContentPrivatePageShell` on profile + list (was silent 404)
+
+### Executor's Feedback (SEC.1)
+Done: POST `/api/auth/admin/{ban-user,unban-user,set-role}` → **403**; staff still uses `auth.api.*` via `/api/staff` (outranks intact). **Please verify:** as Admin session, curl ban-user against Owner id → 403; staff ban of a regular user still works. Reply **ok** / **go** for SEC.2.
+
+### Executor's Feedback (SEC.2)
+Done: `getImageAsset` only reads Sense R2 prefixes / Vercel Blob / allowlisted OAuth avatar https hosts (no arbitrary fetch). PATCH `coverImageUrl` / `bannerUrl` (profiles + staff) reject non-persisted refs. **Please verify:** upload list cover / banner still works; `PATCH` with `http://169.254.169.254/` → 400. Reply **ok** / **go** for SEC.3.
+
+### Executor's Feedback (Private UX / oil-ui-pro)
+**Intent:** 改流程 — honest private state instead of 404. Approach locked: **顺手**.
+**API:** `contentPrivatePayload` → 403 on private profiles, lists, reviews, comments, follows graph, taste overlap.
+**Web:** `ContentPrivatePageShell` on `/profile/[handle]` + `/lists/[id]`. Brief: `.cursor/tasks/private-content-state/design-brief.md`.
+**Please verify:** open a private profile URL while signed in as someone else → lock tray (“This profile is private”) + Back to Home (not Next not-found). Same for a private list. Reply **ok**.
+

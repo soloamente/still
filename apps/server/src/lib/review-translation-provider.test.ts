@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
+import { TranslationOutputError } from "./review-translation-output";
 import {
 	buildTranslationSystemPrompt,
 	buildTranslationUserPrompt,
@@ -172,5 +173,37 @@ describe("createReviewTranslationProvider", () => {
 		});
 
 		expect(result.title).toBeNull();
+	});
+
+	test("rejects an empty model reply instead of storing a blank translation", async () => {
+		const generate: TranslationGenerate = async () => ({
+			title: "",
+			body: "   ",
+		});
+
+		await expect(
+			createReviewTranslationProvider(generate).translate({
+				body: "Corpo semplice.",
+				title: null,
+				sourceLanguage: "it",
+				targetLanguage: "en",
+			}),
+		).rejects.toThrow(TranslationOutputError);
+	});
+
+	test("rejects a runaway refusal that is nothing like a translation", async () => {
+		const generate: TranslationGenerate = async () => ({
+			title: "",
+			body: "I'm sorry, I cannot help with that request. ".repeat(60),
+		});
+
+		await expect(
+			createReviewTranslationProvider(generate).translate({
+				body: "Un film davvero bellissimo, da vedere assolutamente al cinema.",
+				title: null,
+				sourceLanguage: "it",
+				targetLanguage: "en",
+			}),
+		).rejects.toThrow(TranslationOutputError);
 	});
 });

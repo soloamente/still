@@ -13,7 +13,10 @@ import { buildOverlapDiaryMap } from "./sense-taste-overlap";
 import { fetchDismissedTvTmdbIds } from "./taste-dismissed-tv";
 import { fetchLoggedTvShowIds } from "./taste-logged-tv-shows";
 import {
+	formatTasteHeroReleaseDate,
 	mergeBlendAndPenalizeCandidates,
+	pickTasteHeroGenreNames,
+	pickTasteHeroOverview,
 	type ScoredTasteMatchCandidate,
 	TASTE_MATCH_MIN_RESULTS,
 	type TasteMatchedDiscoveryPayload,
@@ -63,14 +66,16 @@ const PLATFORM_MEDIAN_POPULARITY = 30;
 const TV_TASTE_HERO_ENRICH_LIMIT = 12;
 
 /**
- * Server-side projection of the only three paths this module reads out of
- * `tv.tmdb_json`. Selecting the whole column drags credits and seasons.
+ * Server-side projection of the paths this module reads out of `tv.tmdb_json`.
+ * Selecting the whole column drags credits and seasons. Overview stays on the
+ * `overview` column.
  */
 const TV_HERO_TMDB_JSON_PROJECTION = sql<Record<string, unknown> | null>`
 	jsonb_build_object(
 		'videos', ${tv.tmdbJson} -> 'videos',
 		'images', jsonb_build_object('logos', ${tv.tmdbJson} -> 'images' -> 'logos'),
-		'keywords', ${tv.tmdbJson} -> 'keywords'
+		'keywords', ${tv.tmdbJson} -> 'keywords',
+		'genres', ${tv.tmdbJson} -> 'genres'
 	)
 `;
 
@@ -167,6 +172,8 @@ async function enrichTvTasteMatchRow(
 		| {
 				backdropPath: string | null;
 				tmdbJson: unknown;
+				overview: string | null;
+				firstAirDate: Date | string | null;
 		  }
 		| undefined,
 	options: { includeCommunity: boolean },
@@ -216,6 +223,9 @@ async function enrichTvTasteMatchRow(
 		festivalIcon: options.includeCommunity
 			? pickFestivalIconFromTvJson(tmdbJson)
 			: (entry.festivalIcon ?? null),
+		genres: pickTasteHeroGenreNames(tmdbJson),
+		overview: pickTasteHeroOverview(cached?.overview),
+		releaseLabel: formatTasteHeroReleaseDate(cached?.firstAirDate),
 	};
 }
 
@@ -242,6 +252,8 @@ export async function enrichTvTasteMatchShows(
 					.select({
 						tmdbId: tv.tmdbId,
 						tmdbJson: TV_HERO_TMDB_JSON_PROJECTION,
+						overview: tv.overview,
+						firstAirDate: tv.firstAirDate,
 					})
 					.from(tv)
 					.where(inArray(tv.tmdbId, heroIds))
@@ -250,9 +262,7 @@ export async function enrichTvTasteMatchShows(
 	const backdropById = new Map(
 		backdropRows.map((row) => [row.tmdbId, row.backdropPath]),
 	);
-	const heroJsonById = new Map(
-		heroRows.map((row) => [row.tmdbId, row.tmdbJson]),
-	);
+	const heroById = new Map(heroRows.map((row) => [row.tmdbId, row]));
 
 	return Promise.all(
 		movies.map(async (entry, index) => {
@@ -263,9 +273,15 @@ export async function enrichTvTasteMatchShows(
 				return { ...entry, backdropPath };
 			}
 
+			const hero = heroById.get(entry.tmdbId);
 			return enrichTvTasteMatchRow(
 				entry,
-				{ backdropPath, tmdbJson: heroJsonById.get(entry.tmdbId) ?? null },
+				{
+					backdropPath,
+					tmdbJson: hero?.tmdbJson ?? null,
+					overview: hero?.overview ?? null,
+					firstAirDate: hero?.firstAirDate ?? null,
+				},
 				{ includeCommunity: index === 0 },
 			);
 		}),

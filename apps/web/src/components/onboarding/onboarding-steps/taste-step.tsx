@@ -29,7 +29,7 @@ import {
 	logRatingToDisplay,
 	logRatingToStored,
 } from "@/lib/log-rating";
-import { ONBOARDING_QUICK_RATE_TMDB_IDS } from "@/lib/onboarding-quick-rate-pool";
+import { pickOnboardingQuickRateIds } from "@/lib/onboarding-quick-rate-pool";
 import {
 	canAdvanceOnboardingTaste,
 	countOnboardingTasteRated,
@@ -42,7 +42,8 @@ import { tmdbSetupHint } from "@/lib/tmdb-config";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { useSheetScrollFades } from "@/lib/use-sheet-scroll-fades";
 
-const TASTE_POOL_IDS = ONBOARDING_QUICK_RATE_TMDB_IDS.slice(0, 12);
+/** How many random quick-rate films one patron sees by default. */
+const TASTE_POOL_SIZE = 12;
 
 const TASTE_POOL_SKELETON_KEYS = [
 	"p01",
@@ -168,14 +169,22 @@ export function useTasteStepData({
 	const [lastAddedMovieId, setLastAddedMovieId] = useState<number | null>(null);
 	const [lastAddedMovieTick, setLastAddedMovieTick] = useState(0);
 
+	// Random sample picked once per wizard session (ref) so StrictMode replays and
+	// step revisits keep the same posters — but each new session sees different films.
+	const poolIdsRef = useRef<number[] | null>(null);
+
 	useEffect(() => {
 		if (!enabled) return;
 		let cancelled = false;
 		setPoolLoading(true);
+		if (poolIdsRef.current === null) {
+			poolIdsRef.current = pickOnboardingQuickRateIds(TASTE_POOL_SIZE);
+		}
+		const poolIds = poolIdsRef.current;
 		(async () => {
 			// Parallel fetch — sequential 12× GET was leaving the grid empty for seconds.
 			const rows = await Promise.all(
-				TASTE_POOL_IDS.map((id) => fetchTastePoolMovie(id)),
+				poolIds.map((id) => fetchTastePoolMovie(id)),
 			);
 			if (cancelled) return;
 			const nextPool = rows.filter(

@@ -3,6 +3,7 @@ import {
 	type CompanionActivityMessage,
 } from "../presence/activity-log";
 import { upgradeArtworkUrl } from "../presence/artwork-url";
+import type { PopupAutologHint } from "../presence/autolog-error-notice";
 import {
 	companionServiceDisplayName,
 	inferBrowsePageKind,
@@ -23,6 +24,8 @@ export type PopupWatch = {
 	paused: boolean;
 	mode: PopupWatchMode;
 	coverUrl: string | null;
+	/** Set by the background worker from the last heartbeat `autoLog`. */
+	autologHint?: PopupAutologHint;
 };
 
 function readPopupWatchMode(value: unknown, paused: boolean): PopupWatchMode {
@@ -109,7 +112,25 @@ export function popupWatchFromMessage(
 	};
 }
 
+/** Page title is only the site (Cinejoy → “Cinejoy”), so it is not a Sense title. */
+export function playbackTitleIsSiteName(watch: PopupWatch): boolean {
+	const title = watch.title.trim().toLowerCase();
+	const service = watch.service.trim().toLowerCase();
+	return title.length > 0 && title === service;
+}
+
+/** Unmatched from Sense, or a site-name title we never treat as a catalogue match. */
+export function playbackWillNotAutolog(watch: PopupWatch): boolean {
+	if (watch.autologHint === "eligible") return false;
+	if (watch.autologHint === "recent") return false;
+	if (watch.autologHint === "unmatched") return true;
+	return playbackTitleIsSiteName(watch);
+}
+
 export function formatPopupWatchState(watch: PopupWatch): string {
+	if (playbackTitleIsSiteName(watch) && watch.mode === "playing") {
+		return "Playing";
+	}
 	switch (watch.mode) {
 		case "playing":
 			return "Watching";
@@ -128,6 +149,12 @@ export function formatPopupWatchState(watch: PopupWatch): string {
 
 export function formatPopupWatchDetail(watch: PopupWatch): string {
 	if (watch.mode === "exploring") return "";
+	if (playbackWillNotAutolog(watch) && watch.autologHint !== "recent") {
+		return "Not in Sense · won't auto-log";
+	}
+	if (watch.autologHint === "recent") {
+		return "Already in your diary";
+	}
 	if (watch.mode === "viewing") return watch.service;
 	const mark =
 		watch.season != null && watch.episode != null
@@ -151,6 +178,13 @@ export function readPopupWatch(value: unknown): PopupWatch | null {
 		typeof watch.episode === "number" ? watch.episode : null,
 	);
 	const mode = readPopupWatchMode(watch.mode, watch.paused);
+	const autologHint =
+		watch.autologHint === "eligible" ||
+		watch.autologHint === "unmatched" ||
+		watch.autologHint === "recent" ||
+		watch.autologHint === "unknown"
+			? watch.autologHint
+			: undefined;
 	return {
 		service: watch.service,
 		title: watch.title,
@@ -163,5 +197,6 @@ export function readPopupWatch(value: unknown): PopupWatch | null {
 			watch.coverUrl.startsWith("https://")
 				? watch.coverUrl
 				: null,
+		...(autologHint != null ? { autologHint } : {}),
 	};
 }

@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AdultContentBlockedState } from "@/components/detail/adult-content-blocked-state";
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
+import { DetailHomeStickyChromeSlot } from "@/components/movie/detail-home-sticky-chrome";
 import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-community-rating-hero";
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailQuotesPanel } from "@/components/movie/movie-detail-quotes-panel";
+import { MovieDetailStudioMarks } from "@/components/movie/movie-detail-studio-marks";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { TodayPickDetailCue } from "@/components/movie/today-pick-detail-cue";
@@ -40,6 +42,10 @@ import {
 } from "@/lib/movie-detail-tmdb";
 import { parseMovieDetailViewFromSearchParams } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
+import {
+	movieStudioMarks,
+	movieStudioNameFallback,
+} from "@/lib/movie-studio-credit";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import {
 	ogImageMetadataFields,
@@ -92,6 +98,11 @@ type TmdbJsonShape = {
 		results?: { id: number; name: string }[];
 		keywords?: { id: number; name: string }[];
 	};
+	production_companies?: {
+		id: number;
+		name: string;
+		logo_path: string | null;
+	}[];
 	"watch/providers"?: {
 		results?: Record<
 			string,
@@ -296,6 +307,8 @@ export default async function TvShowPage({
 	if (runtimeLabel) heroMetaBits.push(`${runtimeLabel} / ep`);
 	const heroMetaLine =
 		heroMetaBits.length > 0 ? heroMetaBits.join("\u00a0\u00a0") : null;
+	const studioMarks = movieStudioMarks(j?.production_companies);
+	const studioName = movieStudioNameFallback(j?.production_companies);
 
 	const hasCast = arcCast.length > 0 || arcCrew.length > 0;
 	const sectionNavItems = [
@@ -356,6 +369,11 @@ export default async function TvShowPage({
 			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.12] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
+			<MovieDetailStudioMarks
+				marks={studioMarks}
+				nameFallback={studioName}
+				listingKind="tv"
+			/>
 			<TodayPickDetailCue mediaKind="tv" tmdbId={data.tmdbId} />
 			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />
 			<MovieDetailCommunityRatingHero
@@ -391,6 +409,7 @@ export default async function TvShowPage({
 					movieId={data.tmdbId}
 					title={data.title}
 					listingKind="tv"
+					stickyChrome={<DetailHomeStickyChromeSlot />}
 					sectionNavItems={sectionNavItems}
 					hero={hero}
 					watchProviders={watchProviders}

@@ -864,12 +864,11 @@ export function OnboardingWizard({
 					step={step}
 				/>
 			}
+			// Back / Continue live in the layout so they stay pinned while long
+			// catalogue steps scroll (inside the shell they scrolled away).
+			footer={navFooter}
 			wizard={
-				<OnboardingStepShell
-					direction={direction}
-					footer={navFooter}
-					stepKey={step}
-				>
+				<OnboardingStepShell direction={direction} stepKey={step}>
 					{stepContent}
 				</OnboardingStepShell>
 			}

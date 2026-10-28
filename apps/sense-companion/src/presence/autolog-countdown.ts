@@ -87,6 +87,8 @@ export function nextAutologCountdown(input: {
 	state: AutologCountdownState;
 	now: number;
 	paired: boolean;
+	/** False until Sense confirms this title can auto-log. */
+	catalogueEligible: boolean;
 	paused: boolean;
 	logged: boolean;
 	media: AutologMediaClock | null;
@@ -95,7 +97,12 @@ export function nextAutologCountdown(input: {
 	phase: AutologCountdownPhase;
 	remainingSec: number | null;
 } {
-	if (!input.paired || input.logged || input.media == null) {
+	if (
+		!input.paired ||
+		!input.catalogueEligible ||
+		input.logged ||
+		input.media == null
+	) {
 		return {
 			state: input.media == null ? emptyAutologCountdownState() : input.state,
 			phase: "hidden",

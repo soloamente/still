@@ -13,26 +13,13 @@ import { authClient } from "@/lib/auth-client";
 import { VAUL_DRAWER_WRAPPER_ATTR } from "@/lib/detail-vaul-drawer";
 import { useTextStateSwap } from "@/lib/text-state-swap";
 
-function AuthBackdropTitle({
-	title,
-	tone,
-}: {
-	title: string;
-	tone: "on-still" | "on-card";
-}) {
+function AuthBackdropTitle({ title }: { title: string }) {
 	const titleRef = useTextStateSwap(title);
 
 	if (!title) return null;
 
 	return (
-		<p
-			className={cn(
-				"font-medium text-sm tracking-tight",
-				tone === "on-still"
-					? "text-white [text-shadow:0_1px_10px_rgb(0_0_0/0.55)]"
-					: "text-muted-foreground",
-			)}
-		>
+		<p className="font-medium text-sm text-white tracking-tight [text-shadow:0_1px_10px_rgb(0_0_0/0.55)]">
 			<span ref={titleRef} className="t-text-swap">
 				{title}
 			</span>
@@ -142,7 +129,7 @@ export function AuthPageShell({
 
 					{/* Film title on the still; Privacy / Terms live on the convert card. */}
 					<div className="pointer-events-none absolute bottom-6 left-6 z-10 hidden max-w-[min(28rem,calc(50%-3rem))] md:block">
-						<AuthBackdropTitle title={backdropTitle} tone="on-still" />
+						<AuthBackdropTitle title={backdropTitle} />
 					</div>
 
 					<div className="relative isolate z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col items-center overflow-hidden rounded-[2rem] bg-card font-medium shadow-lg md:h-[calc(100dvh-1.25rem)] md:w-1/2 md:max-w-[50%] md:flex-none">
@@ -163,9 +150,6 @@ export function AuthPageShell({
 							</div>
 						</div>
 						<div className="flex shrink-0 flex-col items-center gap-2 px-8 pt-2 pb-[max(1.25rem,env(safe-area-inset-bottom))] text-center">
-							<div className="md:hidden">
-								<AuthBackdropTitle title={backdropTitle} tone="on-card" />
-							</div>
 							<AuthLegalNav className="justify-center text-muted-foreground" />
 						</div>
 					</div>

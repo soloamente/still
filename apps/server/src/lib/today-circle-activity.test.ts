@@ -120,9 +120,12 @@ describe("circleRowMatchesMedia", () => {
 		);
 	});
 
-	test("omitted media still accepts a film row", () => {
+	test("omitted media is films only", () => {
 		expect(circleRowMatchesMedia({ movieId: 438631, tvId: null }, "all")).toBe(
 			true,
+		);
+		expect(circleRowMatchesMedia({ movieId: null, tvId: 1399 }, "all")).toBe(
+			false,
 		);
 	});
 });

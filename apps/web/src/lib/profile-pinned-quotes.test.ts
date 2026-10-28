@@ -32,6 +32,7 @@ function quoteItem(saveId: string): SavedQuoteLobbyItem {
 			seasonNumber: null,
 			episodeNumber: null,
 		},
+		submission: null,
 	};
 }
 

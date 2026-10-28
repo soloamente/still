@@ -17,7 +17,9 @@ export function HomeLobbyCatalogueSection({
 		<section
 			className={cn(
 				HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-				"relative overflow-hidden",
+				// Visible so catalogue poster lift/scale is not clipped; hero media
+				// self-rounds via `HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME`.
+				"relative overflow-visible",
 			)}
 		>
 			<div className="relative z-10 flex min-h-0 flex-1 flex-col gap-2.5">

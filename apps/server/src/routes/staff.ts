@@ -21,6 +21,7 @@ import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { freshContext, requirePermission } from "../context";
+import { isSensePersistedImageRef } from "../lib/asset-store";
 import { forwardAuthSetCookies } from "../lib/forward-auth-set-cookies";
 import { HANDLE_RE } from "../lib/handle-re";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
@@ -324,6 +325,18 @@ export const staffRoute = new Elysia({ prefix: "/api/staff", tags: ["staff"] })
 						);
 					if (taken) return status(409, "Handle already taken");
 					setValues.handle = desired;
+				} else if (field === "bannerUrl") {
+					const trimmed = value.trim();
+					if (!trimmed) {
+						setValues.bannerUrl = null;
+					} else if (!isSensePersistedImageRef(trimmed)) {
+						return status(
+							400,
+							"Invalid bannerUrl — use a Sense upload key or Vercel Blob URL",
+						);
+					} else {
+						setValues.bannerUrl = trimmed;
+					}
 				} else {
 					setValues[field] = value;
 				}

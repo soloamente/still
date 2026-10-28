@@ -81,13 +81,17 @@ export function reviewExcerptPlainText(
 	return `${head.replace(/[,.;:!?-]+$/, "")}…`;
 }
 
-/** Whether a circle query row counts for the requested Today media slice. */
+/**
+ * Whether a circle query row belongs on this Today tab.
+ * Omitted `media` (`"all"`) is the Movies tab — films only.
+ * `tv` is the TV Shows tab — series logs only.
+ */
 export function circleRowMatchesMedia(
 	row: { movieId: number | null; tvId: number | null },
 	media: "all" | "tv",
 ): boolean {
 	if (media === "tv") return row.tvId != null;
-	return true;
+	return row.movieId != null;
 }
 
 export function buildTodayCirclePayload(

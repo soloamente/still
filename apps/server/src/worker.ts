@@ -1,4 +1,4 @@
-import { auth } from "@still/auth";
+import { auth, maybeBlockAuthAdminHttp } from "@still/auth";
 import { createRequestDb, runWithRequestDb } from "@still/db";
 
 import type { AssetsBucket } from "./lib/asset-store";
@@ -30,10 +30,15 @@ export default {
 		// body to populate `ctx.body`, and on workerd request bodies are
 		// single-use, which breaks `auth.handler` ("Body has already been used").
 		const url = new URL(request.url);
-		const handle = (): Response | Promise<Response> =>
-			url.pathname.startsWith("/api/auth/")
-				? auth.handler(request)
-				: app.fetch(request);
+		const handle = (): Response | Promise<Response> => {
+			if (!url.pathname.startsWith("/api/auth/")) {
+				return app.fetch(request);
+			}
+			// Same outranks bypass guard as Bun/Elysia `/api/auth/*` (worker skips Elysia).
+			const blocked = maybeBlockAuthAdminHttp(request);
+			if (blocked) return blocked;
+			return auth.handler(request);
+		};
 
 		// Per-request postgres-js client over Hyperdrive (closed after the
 		// response). A persistent module-scoped pool goes stale on workerd.

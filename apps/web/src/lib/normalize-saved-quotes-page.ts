@@ -1,7 +1,9 @@
 import type {
 	SavedQuoteLobbyItem,
+	SavedQuoteSubmissionMeta,
 	SavedQuotesPage,
 } from "@/lib/quote-saved-types";
+import type { QuoteSubmissionStatus } from "@/lib/quote-submission-types";
 import {
 	LISTING_QUOTE_SOURCES,
 	type ListingQuoteSource,
@@ -24,6 +26,35 @@ function normalizeSavedAt(value: unknown): string {
 		return value.toISOString();
 	}
 	return new Date().toISOString();
+}
+
+function normalizeQuoteSubmissionStatus(
+	value: unknown,
+): QuoteSubmissionStatus | null {
+	if (value === "pending" || value === "approved" || value === "rejected") {
+		return value;
+	}
+	return null;
+}
+
+function normalizeSavedQuoteSubmission(
+	raw: unknown,
+): SavedQuoteSubmissionMeta | null {
+	if (!raw || typeof raw !== "object") return null;
+	const row = raw as Record<string, unknown>;
+	const status = normalizeQuoteSubmissionStatus(row.status);
+	if (!status) return null;
+	return {
+		status,
+		createdAt: normalizeSavedAt(row.createdAt),
+		reviewedAt:
+			typeof row.reviewedAt === "string"
+				? row.reviewedAt
+				: row.reviewedAt instanceof Date &&
+						!Number.isNaN(row.reviewedAt.getTime())
+					? row.reviewedAt.toISOString()
+					: null,
+	};
 }
 
 function normalizeSavedQuoteItem(raw: unknown): SavedQuoteLobbyItem | null {
@@ -78,6 +109,7 @@ function normalizeSavedQuoteItem(raw: unknown): SavedQuoteLobbyItem | null {
 			episodeNumber:
 				typeof l.episodeNumber === "number" ? l.episodeNumber : null,
 		},
+		submission: normalizeSavedQuoteSubmission(row.submission),
 	};
 }
 

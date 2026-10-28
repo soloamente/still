@@ -8,8 +8,9 @@ import { listHeroPosterUrls } from "@/lib/list-detail-hero-posters";
 export async function fetchOgListCoverUrl(
 	listId: string,
 ): Promise<string | null> {
-	const data = await fetchListDetailById(listId);
-	if (!data?.isPublic) return null;
+	const result = await fetchListDetailById(listId);
+	if (result.status !== "ok" || !result.data.isPublic) return null;
+	const data = result.data;
 
 	const rows = listDetailToFilmRows(data);
 	const { posterUrl, backdropUrl } = listHeroPosterUrls(

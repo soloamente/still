@@ -89,12 +89,18 @@ export async function fetchProfileReviewsCount(
 	return Number(row?.total ?? 0);
 }
 
-/** Resolve patron by handle for reviews routes — 404 when private to viewer. */
+/** Resolve patron by handle for reviews routes — 403 when private to viewer. */
 export async function resolveProfileReviewsAccess(
 	handle: string,
 	viewerId: string | null,
 ): Promise<
-	{ ok: true; userId: string } | { ok: false; status: 404; error: string }
+	| { ok: true; userId: string }
+	| {
+			ok: false;
+			status: 404 | 403;
+			error: string;
+			code?: "PROFILE_PRIVATE";
+	  }
 > {
 	const normalized = handle.toLowerCase();
 	const [row] = await db
@@ -105,7 +111,12 @@ export async function resolveProfileReviewsAccess(
 	if (!row) return { ok: false, status: 404, error: "Not found" };
 	const isOwner = viewerId === row.userId;
 	if (row.isPrivate && !isOwner) {
-		return { ok: false, status: 404, error: "Not found" };
+		return {
+			ok: false,
+			status: 403,
+			error: "This profile is private",
+			code: "PROFILE_PRIVATE",
+		};
 	}
 	return { ok: true, userId: row.userId };
 }

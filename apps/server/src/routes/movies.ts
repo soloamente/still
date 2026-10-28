@@ -37,6 +37,7 @@ import {
 	invalidateMovieDetailCache,
 	setCachedMovieDetail,
 } from "../lib/listing-detail-cache";
+import { resolveMovieHeroOverview } from "../lib/listing-hero-overview";
 import { fetchListingQuotesForMovie } from "../lib/listing-quotes-query";
 import { fetchFollowingRatingsForMovie } from "../lib/movie-following-ratings";
 import { resolveMovieTitleLogoPath } from "../lib/movie-title-logo-resolve";
@@ -838,6 +839,12 @@ export const moviesRoute = new Elysia({
 			trailerKey: trailer?.trailerKey ?? null,
 			trailerSite: trailer?.trailerSite ?? null,
 		};
+	})
+	.get("/:id/hero-overview", async ({ params, status }) => {
+		const id = Number(params.id);
+		if (!Number.isFinite(id) || id <= 0) return status(400, "Invalid id");
+		const overview = await resolveMovieHeroOverview(id);
+		return { overview };
 	})
 	/**
 	 * Rent/buy prices for every country (Streaming Availability).

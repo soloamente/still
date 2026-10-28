@@ -10,6 +10,9 @@ describe("CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME", () => {
 			"overflow-x-auto",
 		);
 		expect(CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME).toContain("pt-3");
+		expect(CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME).toContain(
+			"px-1.5",
+		);
 		expect(CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME).not.toContain(
 			"t-avatar-group",
 		);

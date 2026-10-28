@@ -1,5 +1,5 @@
 import type { ContentVisibility } from "@/components/review/visibility-select";
-
+import type { QuoteSubmissionStatus } from "@/lib/quote-submission-types";
 import type { ListingQuoteItem } from "@/lib/quote-types";
 
 /** Listing thumb on saved-quote rows — mirrors server `SavedQuoteListingThumb`. */
@@ -14,6 +14,12 @@ export type SavedQuoteListingThumb = {
 	episodeNumber: number | null;
 };
 
+export type SavedQuoteSubmissionMeta = {
+	status: QuoteSubmissionStatus;
+	createdAt: string;
+	reviewedAt: string | null;
+};
+
 /** One saved quote in `/quotes` lobby or profile strip preview. */
 export type SavedQuoteLobbyItem = {
 	saveId: string;
@@ -21,6 +27,7 @@ export type SavedQuoteLobbyItem = {
 	visibility: ContentVisibility;
 	quote: ListingQuoteItem;
 	listing: SavedQuoteListingThumb;
+	submission: SavedQuoteSubmissionMeta | null;
 };
 
 export type SavedQuotesPage = {

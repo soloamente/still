@@ -1,5 +1,5 @@
 import { cors } from "@elysiajs/cors";
-import { auth } from "@still/auth";
+import { auth, maybeBlockAuthAdminHttp } from "@still/auth";
 import { db } from "@still/db";
 import { env } from "@still/env/server";
 import { sql } from "drizzle-orm";
@@ -86,6 +86,9 @@ export const app = new Elysia({ aot: false })
 		if (request.method !== "POST" && request.method !== "GET") {
 			return ctx.status(405);
 		}
+		// Native BA admin ban/set-role/unban skip Sense `outranks` — refuse HTTP.
+		const blocked = maybeBlockAuthAdminHttp(request);
+		if (blocked) return blocked;
 		// `aot: false` (required for Workers) puts Elysia in dynamic mode, which
 		// eagerly drains the request body into `ctx.body` before this handler
 		// runs. Request bodies are single-use, so passing the original `request`

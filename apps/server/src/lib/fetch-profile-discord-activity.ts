@@ -10,6 +10,10 @@ import {
 	formatCompanionProfileActivity,
 } from "./companion-profile-activity";
 import {
+	type ContentPrivatePayload,
+	contentPrivatePayload,
+} from "./content-private";
+import {
 	type DiscordActivityDisplay,
 	formatDiscordActivity,
 } from "./discord-activity";
@@ -31,7 +35,11 @@ export type ProfileDiscordActivityResponse =
 
 export type FetchProfileDiscordActivityResult =
 	| { ok: true; body: ProfileDiscordActivityResponse }
-	| { ok: false; status: 404; error: string };
+	| {
+			ok: false;
+			status: 404 | 403;
+			error: string | ContentPrivatePayload;
+	  };
 
 /**
  * Returns formatted Discord activity for a profile when the viewer is allowed
@@ -58,7 +66,11 @@ export async function fetchProfileDiscordActivity(input: {
 	const ownerUserId = access.userId;
 	const isOwner = input.viewerId === ownerUserId;
 	if (access.isPrivate && !isOwner) {
-		return { ok: false, status: 404, error: "Not found" };
+		return {
+			ok: false,
+			status: 403,
+			error: contentPrivatePayload("profile"),
+		};
 	}
 
 	const metadata = await fetchDiscordActivityProfileMetadata(ownerUserId);

@@ -314,18 +314,34 @@ export function CatalogSearchDialogRoot({
 			pendingNavigationRef.current = null;
 			const committedSearchRaw = searchParams.get("search")?.trim() ?? "";
 			const catalogueBrowse = browseSurface === "tv" ? "tv" : "movies";
+			const seed = useCatalogSearchDialog.getState().pendingSeed;
+			if (seed) {
+				useCatalogSearchDialog.setState({ pendingSeed: null });
+			}
 			const hydrateFromUrl =
+				!seed &&
 				Boolean(committedSearchRaw) &&
 				isHomeCatalogueSearchActive(searchParams, catalogueBrowse);
 			hydrateFromUrlOnOpenRef.current = hydrateFromUrl;
 			// Paint the anchored panel before `showModal()` so the first frame is not empty.
 			flushSync(() => {
-				setBrowseCategory(browseCategoryFromSurface(browseSurface));
-				if (!hydrateFromUrl) {
+				setBrowseCategory(
+					seed
+						? seed.listingKind === "tv"
+							? "tv"
+							: "movies"
+						: browseCategoryFromSurface(browseSurface),
+				);
+				if (seed) {
+					setSearchTags(seed.tags);
+					setFreeText("");
+				} else if (!hydrateFromUrl) {
 					setSearchTags([]);
 					setFreeText("");
 				}
-				setSearchListingKind(browseSurface === "tv" ? "tv" : "movie");
+				setSearchListingKind(
+					seed?.listingKind ?? (browseSurface === "tv" ? "tv" : "movie"),
+				);
 				setPanelLayout({
 					...layout,
 					anchorCenterX: anchor.left + anchor.width / 2,

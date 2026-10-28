@@ -1,9 +1,16 @@
 import type { SenseMedia } from "../presence/activity-log";
 import {
+	type CompanionAutoLogReport,
+	readCompanionAutoLogReport,
+} from "../presence/autolog-error-notice";
+import {
 	type CompanionLoggedNotice,
 	readCompanionLoggedNotice,
 } from "../presence/logged-notice";
 import type { CompanionTokenStore } from "./client";
+
+const isLoopback = (origin: string) =>
+	/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin);
 
 /** Position ticks stay local. Title, pause, and clear still go out immediately. */
 export const COMPANION_HEARTBEAT_MIN_INTERVAL_MS = 5_000;
@@ -74,9 +81,12 @@ export async function postCompanionNowWatching(input: {
 	status: "sent" | "skipped" | "unauthorized" | "unreachable";
 	logged: CompanionLoggedNotice | null;
 	titleUrl: string | null;
+	autoLog: CompanionAutoLogReport | null;
 }> {
 	const token = await input.store.get();
-	if (!token) return { status: "skipped", logged: null, titleUrl: null };
+	if (!token) {
+		return { status: "skipped", logged: null, titleUrl: null, autoLog: null };
+	}
 	const fetchImpl = input.fetchImpl ?? fetch;
 	const body = input.clear
 		? { clear: true }
@@ -93,7 +103,9 @@ export async function postCompanionNowWatching(input: {
 				body: JSON.stringify(body),
 				// Tells Chrome this call stays on this computer, so it is not blocked
 				// as a local-network request.
-				targetAddressSpace: "loopback",
+				...(isLoopback(input.origin)
+					? { targetAddressSpace: "loopback" as const }
+					: {}),
 			},
 		);
 		if (!response.ok) {
@@ -104,12 +116,23 @@ export async function postCompanionNowWatching(input: {
 				detail.slice(0, 180),
 			);
 			if (response.status === 401) {
-				return { status: "unauthorized", logged: null, titleUrl: null };
+				return {
+					status: "unauthorized",
+					logged: null,
+					titleUrl: null,
+					autoLog: null,
+				};
 			}
-			return { status: "unreachable", logged: null, titleUrl: null };
+			return {
+				status: "unreachable",
+				logged: null,
+				titleUrl: null,
+				autoLog: null,
+			};
 		}
 		let logged: CompanionLoggedNotice | null = null;
 		let titleUrl: string | null = null;
+		let autoLog: CompanionAutoLogReport | null = null;
 		try {
 			const payload = (await response.json()) as unknown;
 			logged = readCompanionLoggedNotice({
@@ -117,13 +140,23 @@ export async function postCompanionNowWatching(input: {
 				...readLoggedFields(payload),
 			});
 			titleUrl = readTitleUrl(payload);
+			if (typeof payload === "object" && payload !== null) {
+				autoLog = readCompanionAutoLogReport(
+					(payload as { autoLog?: unknown }).autoLog,
+				);
+			}
 		} catch (error) {
 			console.error("Sense Companion log notice failed", error);
 		}
-		return { status: "sent", logged, titleUrl };
+		return { status: "sent", logged, titleUrl, autoLog };
 	} catch (error) {
 		console.error("Sense Companion heartbeat failed", error);
-		return { status: "unreachable", logged: null, titleUrl: null };
+		return {
+			status: "unreachable",
+			logged: null,
+			titleUrl: null,
+			autoLog: null,
+		};
 	}
 }
 

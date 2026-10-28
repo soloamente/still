@@ -3,6 +3,7 @@ import { and, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { context } from "../context";
+import { contentPrivatePayload } from "../lib/content-private";
 import { fetchOverlapDiarySlices } from "../lib/fetch-overlap-diary-slices";
 import { deliverNotification } from "../lib/notification-delivery";
 import { loadPatronEntitlements } from "../lib/patron-entitlements";
@@ -219,7 +220,7 @@ export const tasteRoute = new Elysia({
 					isFollowing: following,
 				})
 			) {
-				return status(403, "This diary is private");
+				return status(403, contentPrivatePayload("profile"));
 			}
 
 			const [viewerProfile] = await db
@@ -282,7 +283,7 @@ export const tasteRoute = new Elysia({
 					: false,
 			});
 			if (!canSeeA || !canSeeB) {
-				return status(403, "One or both diaries are private");
+				return status(403, contentPrivatePayload("profile"));
 			}
 
 			const [first, second] =

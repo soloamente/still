@@ -12,6 +12,12 @@ export type ReviewTranslationSource = {
 	body: string;
 	title: string | null;
 	sourceLanguage: string | null;
+	/**
+	 * What this translation would be made from (prompt version, model, title,
+	 * body — see `reviewTranslationFingerprint`). A stored row is only reused
+	 * when it carries this exact value.
+	 */
+	fingerprint: string;
 };
 
 export type ReviewTranslationOutcome =
@@ -19,12 +25,19 @@ export type ReviewTranslationOutcome =
 	| ({ status: "translated"; language: string } & StoredReviewTranslation);
 
 export type ReviewTranslationDeps = {
+	/** Must only return a row whose stored fingerprint equals `fingerprint`. */
 	loadStored: (
 		reviewId: string,
 		language: string,
+		fingerprint: string,
 	) => Promise<StoredReviewTranslation | null>;
+	/** Replaces any existing row for the review + language (it is stale). */
 	saveStored: (
-		input: { reviewId: string; language: string } & StoredReviewTranslation,
+		input: {
+			reviewId: string;
+			language: string;
+			fingerprint: string;
+		} & StoredReviewTranslation,
 	) => Promise<void>;
 	translate: ReviewTranslationProvider["translate"];
 };
@@ -65,7 +78,11 @@ export async function resolveReviewTranslation(
 		return { status: "same_language", language: targetLanguage };
 	}
 
-	const stored = await deps.loadStored(source.id, targetLanguage);
+	const stored = await deps.loadStored(
+		source.id,
+		targetLanguage,
+		source.fingerprint,
+	);
 	if (stored) {
 		return { status: "translated", language: targetLanguage, ...stored };
 	}
@@ -80,6 +97,7 @@ export async function resolveReviewTranslation(
 	await deps.saveStored({
 		reviewId: source.id,
 		language: targetLanguage,
+		fingerprint: source.fingerprint,
 		title: translated.title,
 		body: translated.body,
 		model: translated.model,

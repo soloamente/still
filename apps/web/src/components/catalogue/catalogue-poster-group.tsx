@@ -25,7 +25,7 @@ export function CataloguePosterGroup({
 				if (typeof ref === "function") ref(node);
 				else if (ref) ref.current = node;
 			}}
-			className={cn("t-avatar-group", className)}
+			className={cn("t-avatar-group overflow-visible", className)}
 		>
 			{children}
 		</div>

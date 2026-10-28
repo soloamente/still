@@ -73,6 +73,11 @@ type OnboardingWizardLayoutProps = {
 	previewClassName?: string;
 	/** Compact preview strip on narrow viewports during identity steps. */
 	previewStrip?: ReactNode;
+	/**
+	 * Back / Continue row pinned to the bottom of the setup rail so long
+	 * catalogue steps (taste, favorites) never push it off-screen.
+	 */
+	footer?: ReactNode;
 	className?: string;
 };
 
@@ -90,26 +95,37 @@ export function OnboardingWizardLayout({
 	previewKey = "preview",
 	previewClassName,
 	previewStrip,
+	footer,
 	className,
 }: OnboardingWizardLayoutProps) {
 	return (
 		<main
 			className={cn(
-				// Mobile must remain scrollable for longer onboarding steps.
-				"box-border flex min-h-dvh w-full overflow-y-auto overflow-x-hidden bg-background p-2.5 font-medium",
+				// Mobile must remain scrollable for longer onboarding steps (the page
+				// scrolls). `overflow-x-clip` — unlike `overflow-x-hidden` — does not turn
+				// <main> into a scroll container, so the footer below can `sticky` to the
+				// viewport instead of to a box that never scrolls.
+				"box-border flex min-h-dvh w-full overflow-x-clip bg-background p-2.5 font-medium",
 				className,
 			)}
 		>
 			<a className={ONBOARDING_SKIP_LINK_CLASS} href="#onboarding-setup">
 				Skip to setup
 			</a>
-			<div className="flex min-h-[calc(100dvh-1.25rem)] w-full flex-1 flex-col overflow-hidden rounded-3xl bg-card lg:h-[calc(100dvh-1.25rem)] lg:max-h-[calc(100dvh-1.25rem)] lg:flex-row">
+			{/* `overflow-clip` keeps the rounded crop but, unlike `overflow-hidden`, is not a scroll container — the sticky footer still sticks to the viewport. */}
+			<div className="flex min-h-[calc(100dvh-1.25rem)] w-full flex-1 flex-col overflow-clip rounded-3xl bg-card lg:h-[calc(100dvh-1.25rem)] lg:max-h-[calc(100dvh-1.25rem)] lg:flex-row">
 				<section
 					aria-label="Setup"
 					className="flex min-h-0 w-full flex-1 scroll-mt-4 flex-col lg:w-[45%] lg:min-w-[28rem] lg:flex-none lg:shrink-0 xl:w-1/2"
 					id="onboarding-setup"
 				>
-					<div className="flex min-h-0 flex-1 flex-col items-stretch justify-start overflow-y-auto overscroll-contain px-6 py-8 sm:px-8 lg:justify-center lg:px-14 lg:py-10 xl:px-16">
+					{/*
+					  Below `lg` the document scrolls, so this wrapper must NOT be a scroll
+					  container: `overflow-y-auto` + `overscroll-contain` swallows touch drags
+					  that start on the poster grid (they never chain to the page). Only the
+					  fixed-height `lg+` rail scrolls internally.
+					*/}
+					<div className="flex min-h-0 flex-1 flex-col items-stretch justify-start px-6 py-8 sm:px-8 lg:justify-center lg:overflow-y-auto lg:overscroll-contain lg:px-14 lg:py-10 xl:px-16">
 						{/* Cap form/copy width inside the wider rail; keep it centered in the column. */}
 						<div className="mx-auto flex w-full max-w-md flex-col lg:max-w-lg">
 							{previewStrip ? (
@@ -128,6 +144,23 @@ export function OnboardingWizardLayout({
 							{wizard}
 						</div>
 					</div>
+					{footer ? (
+						/*
+						  Below `lg` the page scrolls, so the bar is sticky to the viewport
+						  bottom; from `lg` the rail is a fixed-height flex column and the
+						  bar simply sits under the scrolling body. Soft scrim above it so
+						  content fades out instead of being cut by a hard edge.
+						*/
+						<div className="sticky bottom-0 z-20 shrink-0 bg-card px-6 pt-3 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:px-8 lg:static lg:px-14 lg:pt-4 lg:pb-8 xl:px-16">
+							<div
+								aria-hidden
+								className="pointer-events-none absolute inset-x-0 -top-6 h-6 bg-linear-to-t from-card to-card/0 lg:hidden"
+							/>
+							<div className="mx-auto w-full max-w-md px-1.5 lg:max-w-lg">
+								{footer}
+							</div>
+						</div>
+					) : null}
 				</section>
 
 				{preview ? (

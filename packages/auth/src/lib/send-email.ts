@@ -38,6 +38,14 @@ export async function sendEmail(input: SendEmailInput): Promise<void> {
 		text: input.text,
 	});
 	if (error) {
+		// Better Auth runs these callbacks in a try/catch and only logs a generic
+		// "Failed to run background task" — sign-up still "succeeds" while the
+		// patron never gets the mail. Log the provider error with its subject and
+		// error name (e.g. `invalid_api_key`, `validation_error`) so it's greppable
+		// in Vercel/Worker logs. Never log the recipient or the link in the body.
+		console.error(
+			`[send-email] Resend rejected "${input.subject}": ${error.name} — ${error.message}`,
+		);
 		throw new Error(`Email send failed: ${error.message}`);
 	}
 }

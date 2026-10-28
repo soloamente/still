@@ -19,6 +19,23 @@ const SUBDOMAIN_NOISE = new Set([
 const DEDICATED_HOST =
 	/(^|\.)netflix\.com$|(^|\.)disneyplus\.com$|(^|\.)hotstar\.com$|(^|\.)primevideo\.com$|(^|\.)amazon\.[a-z.]+$|^tv\.apple\.com$|^play\.hbomax\.com$|^play\.max\.com$|^(localhost|127\.0\.0\.1)$/i;
 
+/** Social / UGC players we never report as Watching (generic script only). */
+const EXCLUDED_TRACKING_HOST =
+	/(^|\.)youtube(-nocookie)?\.com$|(^|\.)youtu\.be$|(^|\.)twitter\.com$|(^|\.)x\.com$/i;
+
+/** WXT exclude_matches for blocklisted generic-video hosts. */
+export const BLOCKLISTED_GENERIC_VIDEO_EXCLUDE_MATCHES = [
+	"*://*.youtube.com/*",
+	"*://youtube.com/*",
+	"*://*.youtube-nocookie.com/*",
+	"*://youtube-nocookie.com/*",
+	"*://youtu.be/*",
+	"*://*.twitter.com/*",
+	"*://twitter.com/*",
+	"*://*.x.com/*",
+	"*://x.com/*",
+] as const;
+
 export type VideoCandidate = {
 	paused: boolean;
 	ended: boolean;
@@ -30,6 +47,22 @@ export type VideoCandidate = {
 
 export function isDedicatedCompanionHost(hostname: string): boolean {
 	return DEDICATED_HOST.test(hostname.trim());
+}
+
+export function isExcludedTrackingHost(hostname: string): boolean {
+	return EXCLUDED_TRACKING_HOST.test(hostname.trim());
+}
+
+/** Blocklisted tab URLs must not update Discord, Sense, or diary auto-log. */
+export function isExcludedCompanionPageUrl(url: string | undefined): boolean {
+	if (!url || url.startsWith("about:") || url.startsWith("chrome:")) {
+		return false;
+	}
+	try {
+		return isExcludedTrackingHost(new URL(url).hostname);
+	} catch {
+		return false;
+	}
 }
 
 /** `www.movy.sx` and `play.movy.sx` both read as Movy. */

@@ -3,6 +3,7 @@ import { env } from "@still/env/server";
 import { gateway, generateObject } from "ai";
 import { z } from "zod";
 
+import { assertPlausibleTranslation } from "./review-translation-output";
 import {
 	maskMentionTokens,
 	restoreMentionTokens,
@@ -199,6 +200,10 @@ export function createReviewTranslationProvider(
 					sourceLanguage: request.sourceLanguage,
 				}),
 			});
+
+			// The prompt asks for "only the translation" but cannot enforce it: an
+			// empty reply, refusal or commentary must never be stored or shown.
+			assertPlausibleTranslation(masked, raw.body);
 
 			// Throws when placeholders were mangled — the caller keeps the original.
 			const body = restoreMentionTokens(raw.body, tokens);

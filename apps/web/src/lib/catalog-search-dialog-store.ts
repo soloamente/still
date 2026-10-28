@@ -1,5 +1,13 @@
 import { create } from "zustand";
 
+import type { SearchTag } from "@/lib/search-query-tags";
+
+/** Opens catalogue search already filtered to one studio and films or shows. */
+export type CatalogSearchOpenSeed = {
+	listingKind: "movie" | "tv";
+	tags: SearchTag[];
+};
+
 /** Target panel width floor — wider than the pill so the open state feels roomy. */
 export const CATALOG_SEARCH_PANEL_MIN_WIDTH_PX = 600;
 /** Cap on large viewports so the sheet stays scannable. */
@@ -114,8 +122,15 @@ type CatalogSearchDialogStore = {
 	registerImperativelyClose: (fn: (() => void) | null) => void;
 	openRequestId: number;
 	pendingAnchor: DOMRect | null;
+	/** Consumed by the dialog on the next open. Null for a plain ⌘K open. */
+	pendingSeed: CatalogSearchOpenSeed | null;
 	/** Open the catalog search sheet; anchor prefers the sticky pill, then nav search, then shortcut fallback. */
 	requestOpen: (anchorRect?: DOMRect | null) => void;
+	/** Open search with a studio (and films or shows) already applied. */
+	requestOpenWithSeed: (
+		seed: CatalogSearchOpenSeed,
+		anchorRect?: DOMRect | null,
+	) => void;
 	/** Close the catalog sheet when another launcher (e.g. go-to) takes focus. */
 	requestClose: () => void;
 };
@@ -166,6 +181,11 @@ export const useCatalogSearchDialog = create<CatalogSearchDialogStore>(
 		},
 		openRequestId: 0,
 		pendingAnchor: null,
+		pendingSeed: null,
+		requestOpenWithSeed: (seed, anchorRect) => {
+			set({ pendingSeed: seed });
+			get().requestOpen(anchorRect);
+		},
 		requestOpen: (anchorRect) => {
 			const { homeTriggerEl, navSearchTriggerEl, imperativelyOpen } = get();
 			const anchor = resolveOpenAnchor(

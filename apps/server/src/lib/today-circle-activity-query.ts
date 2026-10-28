@@ -109,7 +109,8 @@ export async function fetchTodayCircleActivity(
 					movieId: log.movieId,
 					tvId: log.tvId,
 				}),
-				media === "tv" ? isNotNull(log.tvId) : undefined,
+				// Same split as circleRowMatchesMedia: Movies is films, TV Shows is series.
+				media === "tv" ? isNotNull(log.tvId) : isNotNull(log.movieId),
 			),
 		)
 		.orderBy(desc(log.createdAt), desc(log.id))

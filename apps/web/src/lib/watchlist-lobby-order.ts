@@ -51,8 +51,18 @@ export type WatchlistLobbyRow = {
 		movieId: number | null;
 		tvId: number | null;
 	};
-	movie: { tmdbId: number; title: string; posterPath: string | null } | null;
-	tv: { tmdbId: number; title: string; posterPath: string | null } | null;
+	movie: {
+		tmdbId: number;
+		title: string;
+		posterPath: string | null;
+		overview?: string | null;
+	} | null;
+	tv: {
+		tmdbId: number;
+		title: string;
+		posterPath: string | null;
+		overview?: string | null;
+	} | null;
 	/** First flatrate provider in the patron's watch region, when cached on the listing. */
 	streaming_provider_name?: string | null;
 	/** TMDb `logo_path` for `streaming_provider_name` in the patron region. */

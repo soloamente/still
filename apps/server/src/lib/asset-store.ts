@@ -28,6 +28,80 @@ export function isR2Key(value: string): boolean {
 	return !/^https?:\/\//i.test(value);
 }
 
+/** Object-key prefixes written by `putImageAsset` upload routes. */
+export const SENSE_IMAGE_KEY_PREFIXES = [
+	"banners/",
+	"avatars/",
+	"list-covers/",
+] as const;
+
+/**
+ * True when `value` is an R2 object key Sense uploads own (prefix + no traversal).
+ * Rejects arbitrary bare keys that would otherwise read the shared assets bucket.
+ */
+export function isSenseR2ImageKey(value: string): boolean {
+	const trimmed = value.trim();
+	if (!trimmed || !isR2Key(trimmed)) return false;
+	if (
+		trimmed.includes("..") ||
+		trimmed.startsWith("/") ||
+		trimmed.includes("\\")
+	) {
+		return false;
+	}
+	return SENSE_IMAGE_KEY_PREFIXES.some((prefix) => trimmed.startsWith(prefix));
+}
+
+/** True for https URLs on Vercel Blob hosts (legacy public/private blob columns). */
+export function isVercelBlobImageUrl(value: string): boolean {
+	try {
+		const url = new URL(value.trim());
+		if (url.protocol !== "https:") return false;
+		const host = url.hostname.toLowerCase();
+		return (
+			host === "blob.vercel-storage.com" ||
+			host.endsWith(".blob.vercel-storage.com")
+		);
+	} catch {
+		return false;
+	}
+}
+
+/**
+ * Values safe to persist on `bannerUrl` / `coverImageUrl` / uploaded `user.image`
+ * (upload-returned keys or blob URLs — not arbitrary attacker URLs).
+ */
+export function isSensePersistedImageRef(value: string): boolean {
+	const trimmed = value.trim();
+	if (!trimmed) return false;
+	return isSenseR2ImageKey(trimmed) || isVercelBlobImageUrl(trimmed);
+}
+
+/** OAuth portrait CDNs we may still server-fetch for `/avatar/:handle`. */
+const OAUTH_AVATAR_HOST_SUFFIXES = [
+	"googleusercontent.com",
+	"ggpht.com",
+	"discordapp.com",
+	"discordapp.net",
+] as const;
+
+/**
+ * True when outbound `fetch` is allowed for a non-blob absolute URL (OAuth
+ * headshots only). Never allow plain `http:` — blocks common SSRF gadgets.
+ */
+export function isAllowedExternalAvatarFetchUrl(value: string): boolean {
+	try {
+		const url = new URL(value.trim());
+		if (url.protocol !== "https:") return false;
+		const host = url.hostname.toLowerCase();
+		return OAUTH_AVATAR_HOST_SUFFIXES.some(
+			(suffix) => host === suffix || host.endsWith(`.${suffix}`),
+		);
+	} catch {
+		return false;
+	}
+}
+
 export type PutImageResult =
 	| { value: string }
 	| { error: string; code: string; hint?: string };
@@ -60,34 +134,36 @@ export async function putImageAsset(
 export type ImageBody = { body: ReadableStream; contentType: string };
 
 /**
- * Resolve a stored image value to a streamable body. Handles R2 keys (bound
- * bucket), legacy Vercel Blob URLs, and external http(s) URLs (OAuth headshots).
- * Returns null when the asset cannot be resolved.
+ * Resolve a stored image value to a streamable body. Handles Sense R2 keys
+ * (bound bucket), legacy Vercel Blob URLs, and allowlisted OAuth headshot
+ * https hosts. Never fetches arbitrary URLs (stored SSRF) or reads bare
+ * non-Sense R2 keys (cross-tenant object probe).
  */
 export async function getImageAsset(value: string): Promise<ImageBody | null> {
 	const trimmed = value.trim();
 	if (!trimmed) return null;
 
-	if (_bucket && isR2Key(trimmed)) {
-		for (const candidate of r2KeyCandidates(trimmed)) {
-			const obj = await _bucket.get(candidate);
-			if (!obj) continue;
-			return {
-				body: obj.body,
-				contentType: obj.httpMetadata?.contentType ?? "image/jpeg",
-			};
-		}
-		return null;
-	}
-
-	// Local `bun dev` — DB stores R2 keys but the Worker ASSETS binding is absent.
+	// Shared-bucket keys must be Sense upload prefixes (not attacker-chosen paths).
 	if (isR2Key(trimmed)) {
+		if (!isSenseR2ImageKey(trimmed)) return null;
+		if (_bucket) {
+			for (const candidate of r2KeyCandidates(trimmed)) {
+				const obj = await _bucket.get(candidate);
+				if (!obj) continue;
+				return {
+					body: obj.body,
+					contentType: obj.httpMetadata?.contentType ?? "image/jpeg",
+				};
+			}
+			return null;
+		}
+		// Local `bun dev` — DB stores R2 keys but the Worker ASSETS binding is absent.
 		const devAsset = await fetchR2AssetDevFallback(trimmed);
 		if (devAsset) return devAsset;
 		return null;
 	}
 
-	if (trimmed.includes("blob.vercel-storage.com")) {
+	if (isVercelBlobImageUrl(trimmed)) {
 		if (!env.BLOB_READ_WRITE_TOKEN) return null;
 		const result = await vercelGet(trimmed, {
 			access: env.BLOB_STORE_ACCESS,
@@ -97,7 +173,8 @@ export async function getImageAsset(value: string): Promise<ImageBody | null> {
 		return { body: result.stream, contentType: result.blob.contentType };
 	}
 
-	if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+	// OAuth portraits only — never open SSRF to link-local / attacker hosts.
+	if (isAllowedExternalAvatarFetchUrl(trimmed)) {
 		const upstream = await fetch(trimmed);
 		if (!upstream.ok || !upstream.body) return null;
 		return {

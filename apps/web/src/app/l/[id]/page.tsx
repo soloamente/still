@@ -39,10 +39,11 @@ export async function generateMetadata({
 	params: Promise<{ id: string }>;
 }): Promise<Metadata> {
 	const { id } = await params;
-	const data = await fetchListDetailById(id);
-	if (!data?.isPublic) {
+	const result = await fetchListDetailById(id);
+	if (result.status !== "ok" || !result.data.isPublic) {
 		return { title: "List", robots: { index: false, follow: false } };
 	}
+	const data = result.data;
 
 	const title = data.title;
 	const description = data.description?.trim();
@@ -80,8 +81,9 @@ export default async function PublicListDetailPage({
 	const session = await authServer();
 	if (session) redirect(`/lists/${id}`);
 
-	const data = await fetchListDetailById(id);
-	if (!data?.isPublic) notFound();
+	const result = await fetchListDetailById(id);
+	if (result.status !== "ok" || !result.data.isPublic) notFound();
+	const data = result.data;
 
 	const filmRows = listDetailToFilmRows(data);
 	const isSystemFavorites = data.systemKind === "favorites";

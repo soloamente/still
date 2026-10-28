@@ -19,7 +19,6 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { formatDayKey, pickDailySpotlight } from "@/lib/daily-pick";
 import {
-	DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
 	DETAIL_MOTION_PRESSABLE_CLASS,
 	useDetailActionMotion,
 } from "@/lib/detail-action-motion";
@@ -38,6 +37,7 @@ import { buildTasteHeroTrailerBackgroundSrc } from "@/lib/home-taste-hero-traile
 import { runTextStateSwap } from "@/lib/run-text-state-swap";
 import { trackSenseProductEvent } from "@/lib/sense-product-analytics";
 import {
+	fetchListingHeroOverview,
 	fetchMovieTitleLogoPath,
 	fetchMovieTrailer,
 } from "@/lib/still-api-fetch";
@@ -86,6 +86,10 @@ function trackWatchlistHeroAction(
 		reasonKind: pick?.tonightReasonKind ?? null,
 	});
 }
+
+/** Text hero pills — avoid `size: "pill"` (`h-10`); Quick log uses the same geometry. */
+const WATCH_TONIGHT_HERO_TEXT_PILL_CLASSNAME =
+	"inline-flex h-11 shrink-0 items-center justify-center rounded-full border border-transparent px-5 font-medium text-sm whitespace-nowrap transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40";
 
 function WatchlistTonightHeroEmpty({
 	failed,
@@ -159,30 +163,14 @@ export function WatchlistTonightHero({
 	/** Skips made before the session id hydrates — persist must merge these. */
 	const pendingSkipsRef = useRef<number[]>([]);
 	const [pool] = useState(initial.pool);
-	const [activeIndex, setActiveIndex] = useState(() => {
-		const dayKey = formatDayKey(readViewerTimeZone());
-		const pin =
-			typeof window === "undefined"
-				? null
-				: readWatchTonightDayPin(window.localStorage, dayKey);
-		const heroId = pickDailySpotlight({
-			rankedIds: initial.pool.map((row) => row.tmdbId),
-			dayKey,
-			userId,
-			surface: "watchlist",
-			skippedIds: pin?.skippedIds ?? [],
-			pinnedId: pin?.tmdbId ?? null,
-		});
-		return Math.max(
-			0,
-			initial.pool.findIndex((row) => row.tmdbId === heroId),
-		);
-	});
+	/** SSR + first client paint — localStorage pin applies in `useEffect` (Today hero parity). */
+	const [activeIndex, setActiveIndex] = useState(0);
 	const [logoPath, setLogoPath] = useState<string | null>(null);
 	const [trailer, setTrailer] = useState<{
 		trailerKey: string;
 		trailerSite: string;
 	} | null>(null);
+	const [heroOverview, setHeroOverview] = useState<string | null>(null);
 
 	const safeIndex = Math.min(activeIndex, Math.max(pool.length - 1, 0));
 	const spotlight = pool[safeIndex] ?? null;
@@ -221,9 +209,8 @@ export function WatchlistTonightHero({
 		// Title/reason come from the current spotlight; only the id should trigger a swap.
 	}, [spotlight?.tmdbId, reduceMotion]);
 
-	/** Persist the day's pick once the session id is real — an empty-id pin would stick. */
+	/** Day pin + spotlight index — never read `localStorage` in `useState` (hydration mismatch). */
 	useEffect(() => {
-		if (userId === "") return;
 		const dayKey = formatDayKey(readViewerTimeZone());
 		const pin = readWatchTonightDayPin(window.localStorage, dayKey);
 		const skippedIds = mergeWatchTonightSkippedIds(
@@ -242,6 +229,8 @@ export function WatchlistTonightHero({
 			0,
 			pool.findIndex((row) => row.tmdbId === heroId),
 		);
+		setActiveIndex(nextIndex);
+		if (userId === "") return;
 		if (
 			heroId != null &&
 			(heroId !== pin?.tmdbId || pendingSkipsRef.current.length > 0)
@@ -262,7 +251,6 @@ export function WatchlistTonightHero({
 				// Quota / blocked storage — the day's pick still shows this session.
 			}
 		}
-		setActiveIndex(nextIndex);
 	}, [pool, userId]);
 
 	/** Skip the current title for the rest of the day without dropping prior skips. */
@@ -315,6 +303,28 @@ export function WatchlistTonightHero({
 		},
 		[pool, userId],
 	);
+
+	useEffect(() => {
+		if (!spotlight) {
+			setHeroOverview(null);
+			return;
+		}
+		const seeded = spotlight.overview?.trim();
+		if (seeded) {
+			setHeroOverview(seeded);
+			return;
+		}
+		setHeroOverview(null);
+		let cancelled = false;
+		void fetchListingHeroOverview(spotlight.listingKind, spotlight.tmdbId).then(
+			(overview) => {
+				if (!cancelled) setHeroOverview(overview);
+			},
+		);
+		return () => {
+			cancelled = true;
+		};
+	}, [spotlight?.listingKind, spotlight?.overview, spotlight?.tmdbId]);
 
 	useEffect(() => {
 		setLogoPath(null);
@@ -486,6 +496,11 @@ export function WatchlistTonightHero({
 									/>
 								</p>
 							) : null}
+							{heroOverview ? (
+								<p className="line-clamp-2 text-pretty font-medium text-pure-white/75 text-sm leading-snug">
+									{heroOverview}
+								</p>
+							) : null}
 							{showRegionNote ? (
 								<p className="text-pretty text-pure-white/70 text-xs sm:text-sm">
 									{watchlistRegionGuidanceCopy(initial.region ?? null)}{" "}
@@ -498,7 +513,8 @@ export function WatchlistTonightHero({
 								<button
 									type="button"
 									className={cn(
-										"inline-flex min-h-11 items-center justify-center rounded-full bg-pure-white px-5 font-medium text-absolute-black text-sm transition-[transform,background-color,color] duration-150 ease-out active:scale-[0.97] motion-reduce:transition-none",
+										WATCH_TONIGHT_HERO_TEXT_PILL_CLASSNAME,
+										"bg-pure-white text-absolute-black",
 										DETAIL_MOTION_PRESSABLE_CLASS,
 									)}
 									style={motionProps.style}
@@ -506,27 +522,12 @@ export function WatchlistTonightHero({
 								>
 									Quick log
 								</button>
-								<Link
-									href={listingDetailHref(spotlight)}
-									className={cn(
-										buttonVariants({ variant: "secondary", size: "pill" }),
-										"min-h-11",
-										DETAIL_MOTION_PRESSABLE_CLASS,
-										DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
-									)}
-									style={motionProps.style}
-									onClick={() =>
-										trackWatchlistHeroAction("open_detail", spotlight)
-									}
-								>
-									Open
-								</Link>
 								{pool.length > 1 ? (
 									<button
 										type="button"
 										className={cn(
-											buttonVariants({ variant: "ghost", size: "pill" }),
-											"min-h-11 bg-background text-foreground",
+											WATCH_TONIGHT_HERO_TEXT_PILL_CLASSNAME,
+											"bg-background text-foreground [@media(hover:hover)]:hover:bg-muted",
 											DETAIL_MOTION_PRESSABLE_CLASS,
 										)}
 										style={motionProps.style}

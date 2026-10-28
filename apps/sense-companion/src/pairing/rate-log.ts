@@ -45,6 +45,8 @@ export async function postCompanionLogRating(input: {
 	const token = await input.store.get();
 	if (!token) return false;
 	const fetchImpl = input.fetchImpl ?? fetch;
+	const isLoopback = (origin: string) =>
+		/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin);
 	try {
 		const response = await fetchImpl(
 			`${input.origin ?? SENSE_COMPANION_API_ORIGIN}/api/companion/log-rating`,
@@ -55,7 +57,9 @@ export async function postCompanionLogRating(input: {
 					authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify({ logId: input.logId, rating: input.rating }),
-				targetAddressSpace: "loopback",
+				...(isLoopback(origin)
+					? { targetAddressSpace: "loopback" as const }
+					: {}),
 			},
 		);
 		if (!response.ok) {

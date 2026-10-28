@@ -622,7 +622,7 @@ export function PopularMoviesInfinite({
 				<motion.div
 					key={presenceKey}
 					layout={false}
-					className="min-w-0"
+					className="min-w-0 overflow-visible"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{

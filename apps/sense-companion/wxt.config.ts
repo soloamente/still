@@ -25,6 +25,8 @@ export default defineConfig({
 		],
 		host_permissions: [
 			"<all_urls>",
+			"https://sense.fans/*",
+			"https://cue-server-lac.vercel.app/*",
 			"*://*.netflix.com/*",
 			"*://netflix.com/*",
 			"*://*.disneyplus.com/*",
@@ -47,13 +49,6 @@ export default defineConfig({
 			"*://tv.apple.com/*",
 			"*://play.hbomax.com/*",
 			"*://play.max.com/*",
-			"http://127.0.0.1:3001/*",
-			"http://localhost:3001/*",
-			"http://127.0.0.1:3000/*",
-			"http://localhost:3000/*",
-			// Discord desktop IPC (ports 6463–6472). Store builds use this, not native messaging.
-			"http://127.0.0.1/*",
-			"http://localhost/*",
 		],
 	},
 	vite: () => ({

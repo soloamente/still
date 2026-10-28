@@ -7,13 +7,13 @@ import {
 	CATALOGUE_HORIZONTAL_POSTER_RAIL_SCROLL_CLASSNAME,
 	cataloguePosterHoverShellClassName,
 } from "@/lib/catalogue-poster-hover";
-import { CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import { tmdbPosterUrlFromPath } from "@/lib/tmdb-poster-url";
 import { formatTvNextEpisodeLabel } from "@/lib/tv-watch-format";
 import type { TvWatchBundle, TvWatchNextEpisode } from "@/lib/tv-watch-types";
 
-/** Rail posters — same iOS-smoothed corners as lobby catalogue tiles. */
-const CONTINUE_RAIL_POSTER_FRAME_CLASSNAME = `${CATALOGUE_POSTER_IOS_CORNERS_CLASSNAME} border-0 bg-background`;
+/** A step under catalogue `poster-ios-corners` (2rem). */
+const CONTINUE_RAIL_POSTER_FRAME_CLASSNAME =
+	"rounded-[1.5rem] border-0 bg-background";
 
 function tmdbPosterUrl(posterPath: string | null): string | null {
 	return tmdbPosterUrlFromPath(posterPath, "w342");
@@ -33,7 +33,7 @@ export function HomeContinueWatchingRail({
 	items,
 	heading = "Continue watching",
 	episodeCaption = "full",
-	titleLines = 2,
+	titleLines = 1,
 }: {
 	items: TvWatchBundle[];
 	/** Section label — watchlist uses “Or continue watching”. */
@@ -46,7 +46,7 @@ export function HomeContinueWatchingRail({
 
 	return (
 		<section aria-label={heading} className="shrink-0 space-y-2.5">
-			<h2 className="font-medium text-muted-foreground text-xs tracking-wide">
+			<h2 className="font-semibold text-foreground text-sm tracking-tight sm:text-base">
 				{heading}
 			</h2>
 			{/*
@@ -92,6 +92,7 @@ export function HomeContinueWatchingRail({
 									posterUrl={tmdbPosterUrl(show.posterPath)}
 									priority={index < 4}
 									showTitle
+									titleClassName="w-full"
 									titleLines={titleLines}
 									title={show.title}
 								/>

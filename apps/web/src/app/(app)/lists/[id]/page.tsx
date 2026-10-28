@@ -1,6 +1,7 @@
 import { cn } from "@still/ui/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ContentPrivatePageShell } from "@/components/content/content-private-page-shell";
 import { ListDetailCollaboratorsByline } from "@/components/list/list-detail-collaborators-byline";
 import {
 	type ListDetailFilmRow,
@@ -40,8 +41,6 @@ import {
 	ogImageMetadataFields,
 	ogListPath,
 } from "@/lib/og/og-image-metadata";
-import { serverApi } from "@/lib/server-api";
-
 export const dynamic = "force-dynamic";
 
 /** SEO canonical for public lists — guests and crawlers use `/l/[id]`. */
@@ -55,7 +54,15 @@ export async function generateMetadata({
 	params: Promise<{ id: string }>;
 }): Promise<Metadata> {
 	const { id } = await params;
-	const data = await fetchListDetailById(id);
+	const result = await fetchListDetailById(id);
+	if (result.status === "private") {
+		return {
+			title: "Private list",
+			robots: { index: false, follow: false },
+			...ogImageMetadataFields(OG_DEFAULT_PATH, "Private list"),
+		};
+	}
+	const data = result.status === "ok" ? result.data : null;
 	const title = data?.title ?? "List";
 	const description = data?.description?.trim();
 	const imageFields = ogImageMetadataFields(
@@ -82,10 +89,17 @@ export default async function ListDetailPage({
 	params: Promise<{ id: string }>;
 }) {
 	const { id } = await params;
-	const [session, api] = await Promise.all([authServer(), serverApi()]);
-	const listRes = await api.api.lists({ id }).get();
-	const data = listRes.data as ListDetailRecord | null;
-	if (!data) notFound();
+	const [session, result] = await Promise.all([
+		authServer(),
+		fetchListDetailById(id),
+	]);
+	if (result.status === "private") {
+		return (
+			<ContentPrivatePageShell kind={result.kind} sharePath={`/lists/${id}`} />
+		);
+	}
+	if (result.status !== "ok") notFound();
+	const data = result.data;
 
 	const filmRows: ListDetailFilmRow[] = listDetailToFilmRows(data);
 	const isSystemFavorites = data.systemKind === "favorites";

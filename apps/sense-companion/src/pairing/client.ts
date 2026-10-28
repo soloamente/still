@@ -178,14 +178,16 @@ async function readPairError(
 
 /** Origins where a Sense session cookie might live. Localhost is the usual one. */
 const LINK_ORIGINS = [
-	"http://localhost:3001",
-	"http://127.0.0.1:3001",
+	"https://sense.fans",
+	"https://cue-server-lac.vercel.app",
 ] as const;
 
 /**
  * Store a device token for the Sense account already signed in on this computer.
  * Discord does not need this. The profile row does.
  */
+const isLoopback = (origin: string) =>
+	/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin);
 export async function linkCompanion(input: {
 	store: CompanionTokenStore;
 	fetchImpl?: FetchLike;
@@ -205,7 +207,9 @@ export async function linkCompanion(input: {
 					"content-type": "application/json",
 					"x-sense-companion": "link",
 				},
-				targetAddressSpace: "loopback",
+				...(isLoopback(origin)
+					? { targetAddressSpace: "loopback" as const }
+					: {}),
 			});
 		} catch {
 			continue;

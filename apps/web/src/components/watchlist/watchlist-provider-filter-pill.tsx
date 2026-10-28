@@ -50,7 +50,9 @@ export function WatchlistProviderFilterPill() {
 	const { providers, removeProvider, clearProviders } =
 		useWatchlistLobbyParams();
 	const { providers: catalogue } = useWatchlistProvidersCatalog();
-	const [slot, setSlot] = useState<HTMLElement | null>(resolvePillSlot);
+	// Start null on server + first client paint so SSR HTML matches; resolve the
+	// portal host only after mount (reading `document` in useState breaks hydration).
+	const [slot, setSlot] = useState<HTMLElement | null>(null);
 	const [open, setOpen] = useState(false);
 	const reduceMotion = useReducedMotion();
 

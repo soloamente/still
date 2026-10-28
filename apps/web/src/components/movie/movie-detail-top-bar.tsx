@@ -1,22 +1,17 @@
 "use client";
 
-import IconShareIn from "@still/ui/icons/share-in";
 import IconShareOut from "@still/ui/icons/share-out";
 import { cn } from "@still/ui/lib/utils";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { useLobbyNavigationOptional } from "@/components/lobby/lobby-navigation-provider";
-import {
-	DetailMotionButton,
-	DetailMotionLink,
-} from "@/components/movie/detail-motion-pressable";
-import { useMovieDetailReturn } from "@/components/movie/use-movie-detail-return";
+import { DetailMotionButton } from "@/components/movie/detail-motion-pressable";
 import { DetailViewSegmentToolbar } from "@/components/ui/detail-view-segment-toolbar";
-import { formatListingDetailBackAffordance } from "@/lib/movie-detail-return";
+import { DETAIL_CANVAS_ON_CARD_HOVER_CLASS } from "@/lib/detail-action-motion";
 import {
 	buildMovieDetailViewHref,
 	type MovieDetailListingKind,
@@ -34,8 +29,10 @@ const DETAIL_VIEW_TABS: readonly {
 ];
 
 /**
- * Film/TV detail header — sticky canvas chrome above the raised detail card; dynamic
- * back pill, four tabs on a measured sliding pill, and share.
+ * Film/TV view header inside the raised detail card — About / Streaming /
+ * Community / Quotes, plus Share. The home lobby header sits above the card.
+ * The left cell stays empty so the tabs stay centered; listing presence (who is
+ * on this title) occupies that corner, so there is no back pill.
  */
 export function MovieDetailTopBar({
 	movieId,
@@ -58,28 +55,13 @@ export function MovieDetailTopBar({
 	const lobbyNav = useLobbyNavigationOptional();
 
 	const pathname = usePathname();
-	const back = useMovieDetailReturn();
-	const backAffordance = formatListingDetailBackAffordance(
-		back.label,
-		DETAIL_VIEW_TABS.map((tab) => tab.label),
-	);
-	const [isScrolled, setIsScrolled] = useState(false);
 	const [shareCopied, setShareCopied] = useState(false);
-
-	useEffect(() => {
-		const onScroll = () => {
-			setIsScrolled(window.scrollY > 2);
-		};
-
-		onScroll();
-		window.addEventListener("scroll", onScroll, { passive: true });
-		return () => window.removeEventListener("scroll", onScroll);
-	}, []);
 
 	const pill = cn(
 		"inline-flex min-h-10 items-center gap-2 rounded-full px-4 py-2 font-medium text-sm transition-colors duration-200 ease-out",
-		"bg-card text-foreground [@media(hover:hover)]:hover:bg-muted/35",
-		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+		"bg-background text-foreground",
+		DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card",
 	);
 	const pillIconOnlyMobile =
 		"max-sm:size-10 max-sm:justify-center max-sm:gap-0 max-sm:p-0";
@@ -155,29 +137,13 @@ export function MovieDetailTopBar({
 	}
 
 	return (
-		<header
-			className={cn(
-				"sticky top-0 z-30 w-full overflow-visible bg-background",
-				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-200 after:ease-out after:content-[''] motion-reduce:after:transition-none",
-				isScrolled && "after:opacity-100",
-			)}
-		>
-			<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-2.5 py-2 sm:px-3">
-				<div className="flex min-w-0 justify-start">
-					<DetailMotionLink
-						href={back.href}
-						motionVariant="chrome"
-						className={cn(pill, pillIconOnlyMobile, "pl-3 max-sm:pl-0")}
-						aria-label={backAffordance.ariaLabel}
-					>
-						<IconShareIn size="20px" className="shrink-0 opacity-90" />
-						<span className="hidden truncate sm:inline">
-							{backAffordance.visibleLabel}
-						</span>
-					</DetailMotionLink>
-				</div>
+		<header className="relative w-full">
+			<div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2">
+				{/* Presence pill is absolutely positioned over this cell. */}
+				<div className="min-w-0" />
 				<DetailViewSegmentToolbar
 					aria-label="Title detail"
+					surface="card"
 					value={view}
 					tabs={DETAIL_VIEW_TABS}
 					renderTab={renderViewTab}

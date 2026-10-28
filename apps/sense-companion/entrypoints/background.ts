@@ -31,6 +31,12 @@ import {
 	type SenseMedia,
 } from "../src/presence/activity-log";
 import { upgradeArtworkUrl } from "../src/presence/artwork-url";
+import { buildCompanionAutologErrorNotice } from "../src/presence/autolog-error-handler";
+import {
+	type CompanionAutoLogReport,
+	popupAutologHintFromReport,
+	shouldShowAutologErrorToast,
+} from "../src/presence/autolog-error-notice";
 import {
 	parseEpisodeTitleFromStateLine,
 	withCompanionEpisodeTitle,
@@ -43,6 +49,7 @@ import {
 	readDiscordActivityLayout,
 	resolveDiscordActivityFromMessage,
 } from "../src/presence/discord-layout";
+import { isExcludedCompanionPageUrl } from "../src/presence/generic-video";
 import type { CompanionLoggedNotice } from "../src/presence/logged-notice";
 import { companionServiceLogoUrl } from "../src/presence/service-platform-brand";
 import { COMPANION_ONBOARDED_KEY } from "../src/presence/site-settings";
@@ -94,6 +101,10 @@ export default defineBackground(() => {
 	let lastWatchKey: string | null = null;
 	/** Kept across throttled ticks so the Sense title button does not blink off. */
 	let cachedTitleUrl: string | null = null;
+	/** Same title key as `lastWatchKey` — survives heartbeat throttling. */
+	let cachedAutoLog: CompanionAutoLogReport | null = null;
+	let cachedAutoLogKey: string | null = null;
+	const autoLogByToastId = new Map<string, CompanionAutoLogReport | null>();
 	let discordLayout: DiscordActivityLayout = DEFAULT_DISCORD_ACTIVITY_LAYOUT;
 	/** Cached from GET /api/companion/session. Null when missing or fetch failed. */
 	let cachedProfileUrl: string | null = null;
@@ -118,6 +129,26 @@ export default defineBackground(() => {
 	});
 
 	let watchPort: Browser.runtime.Port | null = null;
+
+	/** Forward auto-log failures to the streaming tab (port, tab message, or both). */
+	function forwardAutologError(
+		payload: ReturnType<typeof buildCompanionAutologErrorNotice>,
+		replyPort?: Browser.runtime.Port,
+	): void {
+		const port = replyPort ?? watchPort;
+		try {
+			port?.postMessage(payload);
+		} catch {
+			if (!replyPort || watchPort === replyPort) watchPort = null;
+		}
+		const tabId = replyPort?.sender?.tab?.id;
+		if (tabId != null) {
+			// Top frame owns generic-video fallback listeners; iframe players do not.
+			void browser.tabs
+				.sendMessage(tabId, payload, { frameId: 0 })
+				.catch(() => browser.tabs.sendMessage(tabId, payload).catch(() => {}));
+		}
+	}
 
 	/** Forward auto-log to the streaming tab (port, tab message, or both). */
 	function forwardLoggedNotice(
@@ -196,7 +227,7 @@ export default defineBackground(() => {
 				return;
 			}
 			const toastId = readWatchToastId(message);
-			const pending = deliverCompanionMessage(message, port, tabId);
+			const pending = deliverCompanionMessage(message, port, tabId, toastId);
 			if (!toastId) {
 				if (pending) void pending;
 				return;
@@ -207,8 +238,11 @@ export default defineBackground(() => {
 						type: "sense-companion:watch-result",
 						id: toastId,
 						ok,
+						autoLog: autoLogByToastId.get(toastId) ?? null,
 					});
+					autoLogByToastId.delete(toastId);
 				} catch {
+					autoLogByToastId.delete(toastId);
 					// The streaming tab closed before the result arrived.
 				}
 			});
@@ -254,6 +288,33 @@ export default defineBackground(() => {
 		return tabId === activeTabId;
 	}
 
+	/** Drop Discord / Sense watching when the patron opens a blocklisted site. */
+	function clearExcludedTabWatching(tabId: number): void {
+		tabPresence.delete(tabId);
+		if (tabId === discordTabId) discordTabId = null;
+		if (tabId === activeTabId) publishFocusedTab();
+		void tokenForProfile().then((token) => {
+			if (!token) return;
+			void postCompanionNowWatching({
+				origin: SENSE_COMPANION_API_ORIGIN,
+				store: chromeCompanionTokenStore,
+				media: null,
+				paused: false,
+				clear: true,
+			});
+		});
+	}
+
+	async function tabUrlIsExcluded(tabId: number | undefined): Promise<boolean> {
+		if (typeof tabId !== "number") return false;
+		try {
+			const tab = await browser.tabs.get(tabId);
+			return isExcludedCompanionPageUrl(tab.url);
+		} catch {
+			return false;
+		}
+	}
+
 	/** Show the focused tab, or clear when that tab has nothing to report. */
 	function publishFocusedTab(): void {
 		const message =
@@ -279,7 +340,17 @@ export default defineBackground(() => {
 
 	browser.tabs.onActivated.addListener(({ tabId }) => {
 		activeTabId = tabId;
-		publishFocusedTab();
+		void tabUrlIsExcluded(tabId).then((excluded) => {
+			if (excluded) clearExcludedTabWatching(tabId);
+			publishFocusedTab();
+		});
+	});
+
+	browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+		const url = changeInfo.url ?? tab.url;
+		if (!url) return;
+		if (!isExcludedCompanionPageUrl(url)) return;
+		clearExcludedTabWatching(tabId);
 	});
 
 	browser.windows.onFocusChanged.addListener((windowId) => {
@@ -392,8 +463,29 @@ export default defineBackground(() => {
 		message: unknown,
 		replyPort?: Browser.runtime.Port,
 		tabId?: number,
+		watchToastId?: string | null,
 	): Promise<boolean> | undefined {
 		if (!isCompanionActivityMessage(message)) return;
+		return tabUrlIsExcluded(tabId).then((excluded) => {
+			if (excluded) {
+				if (typeof tabId === "number") clearExcludedTabWatching(tabId);
+				return false;
+			}
+			return deliverCompanionMessageAllowed(
+				message,
+				replyPort,
+				tabId,
+				watchToastId,
+			);
+		});
+	}
+
+	function deliverCompanionMessageAllowed(
+		message: CompanionActivityMessage,
+		replyPort?: Browser.runtime.Port,
+		tabId?: number,
+		watchToastId?: string | null,
+	): Promise<boolean> {
 		rememberTabPresence(tabId, message);
 		console.info(formatActivityLogLine(message));
 		if (message.type === "sense-companion:activity" && message.senseMedia) {
@@ -401,30 +493,59 @@ export default defineBackground(() => {
 		}
 		// The popup reads this on open. A background tab must not replace it.
 		const focused = tabOwnsDiscord(tabId);
-		const watch = focused ? popupWatchFromMessage(message) : null;
-		const nextPopupKey = watch
-			? `${watch.service}\0${watch.title}\0${watch.season ?? ""}\0${watch.episode ?? ""}\0${watch.mode}\0${watch.coverUrl ?? ""}`
-			: "";
-		if (focused && nextPopupKey !== lastPopupKey) {
-			lastPopupKey = nextPopupKey;
-			const write = watch
-				? browser.storage.session.set({ [POPUP_WATCH_STORAGE_KEY]: watch })
-				: browser.storage.session.remove(POPUP_WATCH_STORAGE_KEY);
-			void write.catch((error: unknown) => {
-				console.error("Sense Companion popup watch failed", error);
-			});
-		}
+		const watchBase = focused ? popupWatchFromMessage(message) : null;
 		// This browser saves the title it is playing and updates Discord desktop
 		// over the local websocket IPC (no separate helper install).
 		return Promise.all([tokenForProfile(), refreshCachedProfileUrl()]).then(
 			async ([token]) => {
 				const prepared = prepareDiscordActivity(message, discordLayout);
 				const saved = await saveNowWatching(prepared, token);
+				const resolvedAutoLog = saved.autoLog;
+				if (watchToastId) {
+					autoLogByToastId.set(watchToastId, resolvedAutoLog);
+				}
+				const watch =
+					watchBase != null
+						? {
+								...watchBase,
+								autologHint: popupAutologHintFromReport(resolvedAutoLog),
+							}
+						: null;
+				const nextPopupKey = watch
+					? `${watch.service}\0${watch.title}\0${watch.season ?? ""}\0${watch.episode ?? ""}\0${watch.mode}\0${watch.coverUrl ?? ""}\0${watch.autologHint ?? ""}`
+					: "";
+				if (focused && nextPopupKey !== lastPopupKey) {
+					lastPopupKey = nextPopupKey;
+					const write = watch
+						? browser.storage.session.set({
+								[POPUP_WATCH_STORAGE_KEY]: watch,
+							})
+						: browser.storage.session.remove(POPUP_WATCH_STORAGE_KEY);
+					void write.catch((error: unknown) => {
+						console.error("Sense Companion popup watch failed", error);
+					});
+				}
 				const withTitle =
 					saved.titleUrl && prepared.type === "sense-companion:activity"
 						? { ...prepared, titleButtonUrl: saved.titleUrl }
 						: prepared;
 				if (saved.logged) forwardLoggedNotice(saved.logged, replyPort);
+				if (
+					resolvedAutoLog &&
+					shouldShowAutologErrorToast(resolvedAutoLog) &&
+					prepared.type === "sense-companion:activity" &&
+					prepared.senseMedia?.title
+				) {
+					forwardAutologError(
+						buildCompanionAutologErrorNotice({
+							report: resolvedAutoLog,
+							title: prepared.senseMedia.title,
+							titleUrl: saved.titleUrl,
+							senseHomeUrl: `${SENSE_COMPANION_ORIGIN}/home`,
+						}),
+						replyPort,
+					);
+				}
 				// A hidden tab can finish after the focused one. Ignore it.
 				if (!tabOwnsDiscord(tabId)) {
 					return (
@@ -485,7 +606,14 @@ export default defineBackground(() => {
 		},
 		token: string | null,
 	): Promise<Awaited<ReturnType<typeof postCompanionNowWatching>>> {
-		if (!token) return { status: "skipped", logged: null, titleUrl: null };
+		if (!token) {
+			return {
+				status: "skipped",
+				logged: null,
+				titleUrl: null,
+				autoLog: null,
+			};
+		}
 		const clear =
 			message.type === "sense-companion:clear" || message.senseMedia == null;
 		const rawMedia =
@@ -514,7 +642,12 @@ export default defineBackground(() => {
 				minIntervalMs: COMPANION_HEARTBEAT_MIN_INTERVAL_MS,
 			})
 		) {
-			return { status: "sent", logged: null, titleUrl: cachedTitleUrl };
+			return {
+				status: "sent",
+				logged: null,
+				titleUrl: cachedTitleUrl,
+				autoLog: nextKey === cachedAutoLogKey ? cachedAutoLog : null,
+			};
 		}
 		const saved = await postCompanionNowWatching({
 			origin: SENSE_COMPANION_API_ORIGIN,
@@ -527,6 +660,13 @@ export default defineBackground(() => {
 			lastWatchAt = now;
 			lastWatchKey = nextKey;
 			cachedTitleUrl = clear ? null : saved.titleUrl;
+			if (clear) {
+				cachedAutoLog = null;
+				cachedAutoLogKey = null;
+			} else {
+				cachedAutoLog = saved.autoLog;
+				cachedAutoLogKey = nextKey;
+			}
 		}
 		return saved;
 	}

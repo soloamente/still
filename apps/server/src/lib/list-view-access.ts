@@ -9,7 +9,8 @@ export type ListViewAccessRow = {
 
 /**
  * Public lists are readable by anyone; private lists by the owner or invited collaborators.
- * Returns false for anonymous and non-member viewers (caller should respond 404).
+ * Returns false for anonymous and non-member viewers (caller should respond
+ * 403 CONTENT_PRIVATE when the list row exists).
  */
 export async function canViewList(
 	list: ListViewAccessRow,

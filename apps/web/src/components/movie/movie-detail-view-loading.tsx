@@ -1,6 +1,7 @@
 import { Skeleton } from "@still/ui/components/skeleton";
 import { cn } from "@still/ui/lib/utils";
 
+import { LobbyStickyChromeFallback } from "@/components/app/lobby-suspense-fallbacks";
 import { HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME } from "@/lib/home-lobby-catalogue-layout";
 import {
 	MOVIE_DETAIL_ABOUT_COLUMN_CLASSNAME,
@@ -13,22 +14,22 @@ const CAST_ARC_CARD_KEYS = ["a", "b", "c", "d", "e", "f", "g"] as const;
 /** Stable keys for related-title poster placeholders. */
 const RELATED_POSTER_KEYS = ["a", "b", "c", "d", "e", "f"] as const;
 
-/** Sticky film/TV header — back pill, four-tab track, Share pill. */
+/** In-card film/TV header — tab track and Share. Presence covers the empty left cell. */
 function MovieDetailTopBarFallback() {
 	return (
-		<header className="sticky top-0 z-30 w-full bg-background">
+		<header className="w-full">
 			<div
-				className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-2.5 py-2 sm:px-3"
+				className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2"
 				aria-hidden
 			>
-				<Skeleton className="h-10 w-[min(100%,7.5rem)] rounded-full bg-card/70" />
-				<div className="flex shrink-0 gap-1 rounded-full bg-card p-1">
-					<Skeleton className="h-10 w-16 rounded-full bg-background/80" />
-					<Skeleton className="h-10 w-22 rounded-full bg-background/50" />
-					<Skeleton className="h-10 w-24 rounded-full bg-background/50" />
-					<Skeleton className="h-10 w-16 rounded-full bg-background/50" />
+				<div />
+				<div className="flex shrink-0 gap-1 rounded-full bg-background p-1">
+					<Skeleton className="h-10 w-16 rounded-full bg-card/80" />
+					<Skeleton className="h-10 w-22 rounded-full bg-card/50" />
+					<Skeleton className="h-10 w-24 rounded-full bg-card/50" />
+					<Skeleton className="h-10 w-16 rounded-full bg-card/50" />
 				</div>
-				<Skeleton className="ml-auto h-10 w-[min(100%,5.5rem)] rounded-full bg-card/70" />
+				<Skeleton className="ml-auto h-10 w-[min(100%,5.5rem)] rounded-full bg-background" />
 			</div>
 		</header>
 	);
@@ -152,13 +153,14 @@ export function MovieDetailAboutBodyFallback({
 export function MovieDetailViewLoading() {
 	return (
 		<div className="flex flex-1 flex-col bg-background">
-			<MovieDetailTopBarFallback />
+			<LobbyStickyChromeFallback />
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"flex-1 overflow-x-clip overflow-y-visible",
+					"relative flex-1 overflow-x-clip overflow-y-visible px-6 pt-6",
 				)}
 			>
+				<MovieDetailTopBarFallback />
 				<article className="flex flex-1 flex-col">
 					<MovieDetailHeroFallback />
 					<MovieDetailAboutBodyFallback />

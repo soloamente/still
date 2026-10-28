@@ -10,6 +10,7 @@ import {
 	QUOTES_LOBBY_PAGE_SIZE,
 	type QuotesLobbyKind,
 } from "@/lib/quotes-lobby";
+import { QUOTES_SAVED_LOBBY_GRID_CLASSNAME } from "@/lib/quotes-lobby-layout";
 import { fetchMySavedQuotes } from "@/lib/still-api-fetch";
 import { useInfinitePager } from "@/lib/use-infinite-pager";
 
@@ -54,9 +55,9 @@ export function QuotesLobbyInfinite({
 
 	return (
 		<>
-			<ul className="mx-auto flex w-full max-w-2xl flex-col gap-5">
+			<ul className={QUOTES_SAVED_LOBBY_GRID_CLASSNAME}>
 				{items.map((item) => (
-					<li key={item.saveId}>
+					<li key={item.saveId} className="min-w-0">
 						<QuotesSavedRow item={item} />
 					</li>
 				))}

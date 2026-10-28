@@ -879,6 +879,31 @@ export async function fetchMovieReviewStills(
 	return Array.isArray(payload.screenshots) ? payload.screenshots : [];
 }
 
+/** Plot synopsis for lobby heroes when list payloads omit `overview`. */
+export async function fetchListingHeroOverview(
+	listingKind: "movie" | "tv",
+	tmdbId: number,
+	init?: Pick<RequestInit, "signal">,
+): Promise<string | null> {
+	const segment = listingKind === "tv" ? "tv" : "movies";
+	const url = new URL(
+		`/api/${segment}/${tmdbId}/hero-overview`,
+		stillApiOrigin(),
+	);
+	const response = await fetch(url, {
+		credentials: "include",
+		signal: init?.signal,
+	});
+	if (!response.ok) return null;
+	const data = (await response.json()) as unknown;
+	if (isStillApiErrorPayload(data)) return null;
+	const payload = data as { overview?: string | null };
+	return typeof payload.overview === "string" &&
+		payload.overview.trim().length > 0
+		? payload.overview.trim()
+		: null;
+}
+
 /** TMDb title wordmark path — used by the home taste hero when spotlight swaps. */
 export async function fetchMovieTitleLogoPath(
 	movieId: number,

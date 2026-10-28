@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "@still/ui/components/button";
+import { PinTackFilledGlyph20 } from "@still/ui/icons/nucleo-ui/PinTackFilledGlyph20";
+import { PinTackGlyph20 } from "@still/ui/icons/nucleo-ui/PinTackGlyph20";
 import { cn } from "@still/ui/lib/utils";
-import { Pin, PinOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -23,7 +24,7 @@ export function QuotePinToProfileButton({
 	variant = "pill",
 }: {
 	saveId: string;
-	variant?: "pill" | "compact";
+	variant?: "pill" | "compact" | "toolbar";
 }) {
 	const router = useRouter();
 	const [pinnedIds, setPinnedIds] = useState<string[]>([]);
@@ -91,6 +92,36 @@ export function QuotePinToProfileButton({
 
 	const pinLabel = isPinned ? "Unpin from profile" : "Pin to profile";
 
+	function PinMark({ className }: { className?: string }) {
+		if (isPinned) {
+			return <PinTackFilledGlyph20 className={className} aria-hidden />;
+		}
+		return <PinTackGlyph20 className={className} aria-hidden />;
+	}
+
+	if (variant === "toolbar") {
+		return (
+			<DetailMotionButtonWrap>
+				<Button
+					type="button"
+					variant="secondary"
+					size="icon-sm"
+					className={cn(
+						"size-[38px] rounded-[1.1875rem] bg-card text-foreground",
+						DETAIL_CANVAS_ON_CARD_HOVER_CLASS,
+						isPinned && "text-foreground",
+					)}
+					disabled={busy || loadingPins}
+					aria-label={pinLabel}
+					aria-pressed={isPinned}
+					onClick={() => void handleTogglePin()}
+				>
+					<PinMark className="size-[18px]" />
+				</Button>
+			</DetailMotionButtonWrap>
+		);
+	}
+
 	if (variant === "compact") {
 		return (
 			<DetailMotionButtonWrap>
@@ -105,11 +136,7 @@ export function QuotePinToProfileButton({
 					disabled={busy || loadingPins}
 					onClick={() => void handleTogglePin()}
 				>
-					{isPinned ? (
-						<PinOff className="size-3.5" aria-hidden />
-					) : (
-						<Pin className="size-3.5" aria-hidden />
-					)}
+					<PinMark className="size-3.5" />
 					{isPinned ? "Pinned" : "Pin to profile"}
 				</Button>
 			</DetailMotionButtonWrap>
@@ -126,11 +153,7 @@ export function QuotePinToProfileButton({
 				disabled={busy || loadingPins}
 				onClick={() => void handleTogglePin()}
 			>
-				{isPinned ? (
-					<PinOff className="size-4" aria-hidden />
-				) : (
-					<Pin className="size-4" aria-hidden />
-				)}
+				<PinMark className="size-4" />
 				{pinLabel}
 			</Button>
 		</DetailMotionButtonWrap>

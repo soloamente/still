@@ -43,6 +43,7 @@ export function MovieDetailViewShell({
 	about,
 	community,
 	quotes,
+	stickyChrome,
 }: {
 	initialView: MovieDetailView;
 	basePath: string;
@@ -59,6 +60,8 @@ export function MovieDetailViewShell({
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
+	/** Home lobby header. The page passes a server slot; it stays above the card. */
+	stickyChrome?: ReactNode;
 }) {
 	return (
 		<LobbyNavigationProvider>
@@ -76,6 +79,7 @@ export function MovieDetailViewShell({
 				about={about}
 				community={community}
 				quotes={quotes}
+				stickyChrome={stickyChrome}
 			/>
 		</LobbyNavigationProvider>
 	);
@@ -95,6 +99,7 @@ function MovieDetailViewShellBody({
 	about,
 	community,
 	quotes,
+	stickyChrome,
 }: {
 	initialView: MovieDetailView;
 	basePath: string;
@@ -109,6 +114,7 @@ function MovieDetailViewShellBody({
 	about: ReactNode;
 	community: ReactNode;
 	quotes: ReactNode;
+	stickyChrome?: ReactNode;
 }) {
 	const searchParams = useSearchParams();
 	const urlView = parseMovieDetailViewFromSearchParams({
@@ -133,15 +139,7 @@ function MovieDetailViewShellBody({
 	return (
 		<div className="flex min-h-0 flex-1 flex-col bg-background">
 			<MovieReviewDeepLinkOpener />
-			<MovieDetailTopBar
-				movieId={movieId}
-				title={title}
-				view={view}
-				detailBasePath={basePath}
-				listingKind={listingKind}
-				tvQuoteEpisode={tvQuoteEpisode}
-				onViewChange={setView}
-			/>
+			{stickyChrome}
 			{showSectionNav ? (
 				<MovieDetailSectionNav sections={sectionNavItems} />
 			) : null}
@@ -149,10 +147,21 @@ function MovieDetailViewShellBody({
 			<section
 				className={cn(
 					HOME_LOBBY_CATALOGUE_SECTION_BASE_CLASSNAME,
-					"relative flex min-h-0 flex-1 flex-col overflow-x-clip overflow-y-visible",
+					// A little more than the lobby's 1rem so Share and the live count clear the corner.
+					"relative flex min-h-0 flex-1 flex-col overflow-x-clip overflow-y-visible px-6 pt-6",
 				)}
 			>
+				<MovieDetailTopBar
+					movieId={movieId}
+					title={title}
+					view={view}
+					detailBasePath={basePath}
+					listingKind={listingKind}
+					tvQuoteEpisode={tvQuoteEpisode}
+					onViewChange={setView}
+				/>
 				<ListingPresenceProvider
+					className="top-6 left-6"
 					listingKind={listingKind}
 					listingId={movieId}
 				/>

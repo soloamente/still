@@ -91,6 +91,7 @@ export interface LetterboxdMinimalLogInsertInput {
 	ratingStars: number | null;
 	rewatch: boolean;
 	letterboxdUri: string | null;
+	visibility?: import("@still/db").ContentVisibility;
 }
 
 export interface ApplyLetterboxdImportOptions {
@@ -143,6 +144,7 @@ async function applyDiaryPhase(
 	rows: LetterboxdCsvRow[],
 	resolveTmdbId: (name: string, year: number | null) => Promise<number | null>,
 	ensureMovie: (tmdbId: number) => Promise<void>,
+	defaultVisibility: Awaited<ReturnType<typeof loadDefaultReviewVisibility>>,
 ): Promise<{
 	counts: LetterboxdImportDiaryCounts;
 	ratingFilled: number;
@@ -201,6 +203,7 @@ async function applyDiaryPhase(
 				? `Imported from Letterboxd (${row.letterboxdUri})`
 				: "Imported from Letterboxd",
 			watchVenue: "streaming",
+			visibility: defaultVisibility,
 		});
 		counts.imported++;
 	}
@@ -272,6 +275,7 @@ async function applyReviewsPhase(
 					ratingStars: row.ratingStars,
 					rewatch: row.rewatch,
 					letterboxdUri: row.letterboxdUri,
+					visibility: defaultVisibility,
 				});
 				linkedLog = {
 					id: logId,
@@ -346,6 +350,7 @@ async function applyLikesPhase(
 	resolveTmdbId: (name: string, year: number | null) => Promise<number | null>,
 	ensureMovie: (tmdbId: number) => Promise<void>,
 	importDay: Date,
+	defaultVisibility: Awaited<ReturnType<typeof loadDefaultReviewVisibility>>,
 ): Promise<LetterboxdImportLikesCounts> {
 	const counts: LetterboxdImportLikesCounts = {
 		favorited: 0,
@@ -384,6 +389,7 @@ async function applyLikesPhase(
 				ratingStars: null,
 				rewatch: false,
 				letterboxdUri: row.letterboxdUri,
+				visibility: defaultVisibility,
 			});
 			latest = { id: logId, rating: null, watchedAt };
 			counts.logsCreated++;
@@ -605,15 +611,21 @@ export async function applyLetterboxdImport(
 		return result;
 	}
 
+	const defaultVisibility = await loadDefaultReviewVisibility(opts.userId);
+
 	const diaryOutcome = await applyDiaryPhase(
 		opts.userId,
 		diaryRows,
 		resolveTmdbId,
 		ensureMovie,
+		defaultVisibility,
 	);
 	result.diary = diaryOutcome.counts;
 	result.ratingFilled = diaryOutcome.ratingFilled;
 	syncLegacyDiaryFields(result);
+
+	const insertMinimalLogWithVisibility: typeof insertMinimalLog = (input) =>
+		insertMinimalLog({ ...input, visibility: defaultVisibility });
 
 	result.watched = await applyWatchedGapFillPhase(
 		opts.userId,
@@ -622,10 +634,8 @@ export async function applyLetterboxdImport(
 		resolveTmdbId,
 		ensureMovie,
 		hasAnyLogForMovie,
-		insertMinimalLog,
+		insertMinimalLogWithVisibility,
 	);
-
-	const defaultVisibility = await loadDefaultReviewVisibility(opts.userId);
 
 	result.reviews = await applyReviewsPhase(
 		opts.userId,
@@ -641,6 +651,7 @@ export async function applyLetterboxdImport(
 		resolveTmdbId,
 		ensureMovie,
 		importDay,
+		defaultVisibility,
 	);
 	result.watchlist = await applyWatchlistPhase(
 		opts.userId,

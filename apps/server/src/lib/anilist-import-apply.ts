@@ -1,6 +1,8 @@
+import type { ContentVisibility } from "@still/db";
 import {
 	db,
 	log,
+	profile,
 	type TvWatchStatus,
 	tvWatch,
 	tvWatchEpisode,
@@ -192,6 +194,7 @@ async function ensureImportedShowLog(
 	userId: string,
 	tvId: number,
 	entry: AnilistImportEntry,
+	visibility: ContentVisibility,
 ): Promise<boolean> {
 	const [existing] = await db
 		.select({ id: log.id })
@@ -227,6 +230,7 @@ async function ensureImportedShowLog(
 		rewatch,
 		note: `Imported from Anilist (${statusNote}, media #${entry.media.anilistId})`,
 		watchVenue: "streaming",
+		visibility,
 	});
 	return true;
 }
@@ -257,6 +261,13 @@ export async function applyAnilistImport(
 		unmatched: 0,
 		unmatchedTitles: [],
 	};
+
+	const [prof] = await db
+		.select({ visibility: profile.defaultVisibility })
+		.from(profile)
+		.where(eq(profile.userId, opts.userId))
+		.limit(1);
+	const defaultVisibility: ContentVisibility = prof?.visibility ?? "public";
 
 	const seenKeys = new Set<string>();
 
@@ -334,7 +345,12 @@ export async function applyAnilistImport(
 
 			// Profile and /diary read `log` rows — backfill a show log when missing so
 			// in-progress Anilist entries appear on the TV grid, not only in tv_watch.
-			const logged = await ensureImportedShowLog(opts.userId, tvId, entry);
+			const logged = await ensureImportedShowLog(
+				opts.userId,
+				tvId,
+				entry,
+				defaultVisibility,
+			);
 			if (logged) result.imported++;
 		} catch (err) {
 			console.error(

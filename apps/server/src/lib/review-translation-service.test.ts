@@ -33,6 +33,7 @@ const SOURCE: ReviewTranslationSource = {
 	body: "Un film magnifique.",
 	title: null,
 	sourceLanguage: "fr",
+	fingerprint: "fp-current",
 };
 
 function createDeps(
@@ -86,6 +87,15 @@ describe("resolveReviewTranslation", () => {
 		expect(deps.saveStored).not.toHaveBeenCalled();
 	});
 
+	test("asks the store for the current fingerprint, so a stale row cannot match", async () => {
+		const deps = createDeps();
+		await resolveReviewTranslation(SOURCE, "en", deps);
+
+		// The store is the one that must filter on it; the service's job is to
+		// always pass it.
+		expect(deps.loadStored).toHaveBeenCalledWith("rev_1", "en", "fp-current");
+	});
+
 	test("translates and persists on a miss so nobody pays twice", async () => {
 		const deps = createDeps();
 		const outcome = await resolveReviewTranslation(SOURCE, "en", deps);
@@ -103,6 +113,8 @@ describe("resolveReviewTranslation", () => {
 			title: null,
 			body: "A magnificent film.",
 			model: "test-model",
+			// Saved against the fingerprint of the text that was translated.
+			fingerprint: "fp-current",
 		});
 	});
 

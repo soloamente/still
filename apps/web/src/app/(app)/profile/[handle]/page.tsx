@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 
+import { ContentPrivatePageShell } from "@/components/content/content-private-page-shell";
 import { ProfilePatronLobbyShell } from "@/components/profile/profile-patron-lobby-shell";
 import type {
 	ProfileEarnedBadge,
@@ -58,19 +59,24 @@ export async function generateMetadata({
 
 	try {
 		const res = await fetchProfileDetailServer(normalized);
-		const data = res as {
-			profile?: { displayName?: string; isPrivate?: boolean };
-			user?: { name?: string | null };
-		} | null;
-		const isPrivate = data?.profile?.isPrivate === true;
-		const displayName = data?.profile?.displayName ?? data?.user?.name ?? title;
-
-		if (isPrivate) {
+		if (res.status === "private") {
 			return {
 				title,
-				...ogImageMetadataFields(OG_DEFAULT_PATH, displayName),
+				robots: { index: false, follow: false },
+				...ogImageMetadataFields(OG_DEFAULT_PATH, title),
 			};
 		}
+		if (res.status !== "ok") {
+			return {
+				title,
+				...ogImageMetadataFields(OG_DEFAULT_PATH, title),
+			};
+		}
+		const data = res.data as {
+			profile?: { displayName?: string; isPrivate?: boolean };
+			user?: { name?: string | null };
+		};
+		const displayName = data?.profile?.displayName ?? data?.user?.name ?? title;
 
 		return {
 			title,
@@ -161,8 +167,16 @@ export default async function ProfilePage({
 	const sp = await searchParams;
 	const session = await authServer();
 	const res = await fetchProfileDetailServer(handle);
-	const data = res as ProfileData | null;
-	if (!data) notFound();
+	if (res.status === "private") {
+		return (
+			<ContentPrivatePageShell
+				kind={res.kind}
+				sharePath={`/profile/${handle.toLowerCase()}`}
+			/>
+		);
+	}
+	if (res.status !== "ok") notFound();
+	const data = res.data as ProfileData;
 	const { profile, user, stats } = data;
 	const isMe = session?.user.id === user.id;
 

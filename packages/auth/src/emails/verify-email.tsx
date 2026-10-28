@@ -1,24 +1,29 @@
-import { Text } from "@react-email/components";
+import { AuthEmailLayout, AuthEmailParagraph } from "./layout";
 
-import { AuthEmailLayout } from "./layout";
-
-/** Verification email — sent after sign-up; link expires in 24 hours. */
-export function VerifyEmail({ url }: { url: string }) {
+/**
+ * Verification email — sent after sign-up; link expires in 24 hours.
+ * `email` is optional so a resend that lacks it still reads correctly.
+ */
+export function VerifyEmail({ url, email }: { url: string; email?: string }) {
 	return (
 		<AuthEmailLayout
 			ctaHref={url}
 			ctaLabel="Confirm email"
+			expires="24 hours"
 			footer="If you didn't create a Sense account, you can ignore this email."
-			preview="Confirm your email for Sense"
+			kicker="Verify email"
+			preview="One tap to confirm your email and finish setting up Sense."
 			title="Confirm your email"
 		>
-			<Text style={{ margin: 0 }}>
-				Tap the button to verify your email. You'll need this before sharing
-				reviews, lists, or your profile publicly.
-			</Text>
-			<Text style={{ margin: "16px 0 0", color: "#a3a3a3" }}>
-				This link expires in 24 hours.
-			</Text>
+			<AuthEmailParagraph>
+				{email
+					? `Welcome to Sense. Confirm ${email} to finish setting up your account.`
+					: "Welcome to Sense. Confirm your email to finish setting up your account."}
+			</AuthEmailParagraph>
+			<AuthEmailParagraph muted>
+				You'll need this before sharing reviews, lists, or your profile
+				publicly.
+			</AuthEmailParagraph>
 		</AuthEmailLayout>
 	);
 }

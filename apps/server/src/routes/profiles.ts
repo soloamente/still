@@ -45,9 +45,14 @@ import { readShowAdultContentPref } from "../lib/adult-content-policy";
 import { movieNotAdultSql, tvNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { r2ObjectKeyFilename } from "../lib/asset-object-key";
-import { getImageAsset, putImageAsset } from "../lib/asset-store";
+import {
+	getImageAsset,
+	isSensePersistedImageRef,
+	putImageAsset,
+} from "../lib/asset-store";
 import { backfillMissingListingPosters } from "../lib/backfill-listing-posters";
 import { createCompanionNowWatching } from "../lib/companion-now-watching-redis";
+import { contentPrivatePayload } from "../lib/content-private";
 import {
 	contentVisibilityWhere,
 	visibilitySchema,
@@ -364,6 +369,22 @@ export const profilesRoute = new Elysia({
 				};
 			}
 
+			// Banner bytes come from POST /me/banner — reject planted SSRF URLs here.
+			let bannerUrlForUpdate: string | undefined;
+			if (body.bannerUrl !== undefined) {
+				const trimmedBanner = body.bannerUrl.trim();
+				if (!trimmedBanner) {
+					bannerUrlForUpdate = "";
+				} else if (!isSensePersistedImageRef(trimmedBanner)) {
+					return status(
+						400,
+						"Invalid bannerUrl — upload via POST /api/profiles/me/banner",
+					);
+				} else {
+					bannerUrlForUpdate = trimmedBanner;
+				}
+			}
+
 			const updates = {
 				handle: body.handle?.toLowerCase(),
 				displayName: body.displayName,
@@ -377,7 +398,7 @@ export const profilesRoute = new Elysia({
 						: birthDateForUpdate === null
 							? null
 							: birthDateForUpdate,
-				bannerUrl: body.bannerUrl,
+				bannerUrl: bannerUrlForUpdate,
 				accentColor: body.accentColor,
 				favoriteMovieIds: body.favoriteMovieIds,
 				sectionOrder: body.sectionOrder,
@@ -1104,7 +1125,8 @@ export const profilesRoute = new Elysia({
 			if (!row) return status(404, "Not found");
 
 			const isOwner = viewer?.id === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			const targetEntitlements = await loadPatronEntitlements(row.userId);
 			if (!patronHasPlanFeature(targetEntitlements, "activity_signature")) {
@@ -1197,7 +1219,8 @@ export const profilesRoute = new Elysia({
 			if (!row) return status(404, "Not found");
 
 			const isOwner = viewer?.id === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			const streak = await getWatchStreakSnapshot(row.userId);
 			return { currentStreak: streak.currentStreak };
@@ -1221,7 +1244,8 @@ export const profilesRoute = new Elysia({
 			if (!row) return status(404, "Not found");
 
 			const isOwner = viewer?.id === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			return fetchProfilePinnedQuotes({
 				userId: row.userId,
@@ -1258,7 +1282,8 @@ export const profilesRoute = new Elysia({
 			if (!row) return status(404, "Not found");
 			const viewerId = viewer?.id ?? null;
 			const isOwner = viewerId === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			const media = parseFilmographyMedia(query.media);
 			const order = parseFilmographyOrder(query.order);
@@ -1470,7 +1495,12 @@ export const profilesRoute = new Elysia({
 		async ({ params, query, user: viewer, status }) => {
 			const viewerId = viewer?.id ?? null;
 			const access = await resolveProfileReviewsAccess(params.handle, viewerId);
-			if (!access.ok) return status(access.status, access.error);
+			if (!access.ok) {
+				if (access.status === 403) {
+					return status(403, contentPrivatePayload("profile"));
+				}
+				return status(access.status, access.error);
+			}
 
 			const page = parseProfileReviewsPage(query.page);
 			const limit = parseProfileReviewsLimit(query.limit);
@@ -1513,7 +1543,7 @@ export const profilesRoute = new Elysia({
 	)
 	/**
 	 * Public Wrapped stats for share previews — same payload as `/api/me/year/:year`
-	 * when the profile is public (404 for private non-owners).
+	 * when the profile is public (403 PROFILE_PRIVATE for private non-owners).
 	 */
 	.get(
 		"/:handle/year/:year",
@@ -1531,7 +1561,8 @@ export const profilesRoute = new Elysia({
 
 			const viewerId = viewer?.id ?? null;
 			const isOwner = viewerId === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			const ownerEntitlements = await loadPatronEntitlements(row.userId);
 			if (!canAccessYearInReviewYear(year, ownerEntitlements)) {
@@ -1561,7 +1592,8 @@ export const profilesRoute = new Elysia({
 			if (!row) return status(404, "Not found");
 
 			const isOwner = viewer?.id === row.userId;
-			if (row.isPrivate && !isOwner) return status(404, "Not found");
+			if (row.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
 
 			const page = await listPersonFavoritesForUser({
 				userId: row.userId,
@@ -1601,11 +1633,16 @@ export const profilesRoute = new Elysia({
 				.limit(1);
 			if (!row?.user) return status(404, "Not found");
 
+			// Match filmography/streak/quotes: private profiles 403 for non-owners.
+			const targetUserId = row.user.id;
+			const viewerId = viewer?.id ?? null;
+			const isOwner = viewerId === targetUserId;
+			if (row.profile.isPrivate && !isOwner)
+				return status(403, contentPrivatePayload("profile"));
+
 			// neon-http does one HTTP round trip per query, so every independent
 			// read below is dispatched concurrently — otherwise the handler stacks
 			// ~10 sequential round trips and the profile page stalls on load.
-			const targetUserId = row.user.id;
-			const viewerId = viewer?.id ?? null;
 
 			// Distinct-title counts for tab availability + count lines (replaces the
 			// old 500-row ledger). Newest-log-per-title dedup, viewer visibility applied.

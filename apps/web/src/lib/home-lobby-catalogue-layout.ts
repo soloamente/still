@@ -1,9 +1,15 @@
+import { CATALOGUE_POSTER_HOVER_LIFT_GUTTER_CLASSNAME } from "@/lib/catalogue-poster-hover";
+
 /**
  * Canonical lobby poster catalogue layout for `/home` and any surface that should
  * match it pixel-for-pixel (e.g. diary “Catalogue” view).
+ * Includes hover-lift gutter so scaled posters are not clipped at the grid edge.
  */
-export const HOME_LOBBY_CATALOGUE_GRID_CLASSNAME =
-	"isolate grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-2 md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-2 xl:grid-cols-6 xl:gap-2";
+export const HOME_LOBBY_CATALOGUE_GRID_CLASSNAME = [
+	// z above the filter stack (`z-10 bg-card`) so lift/scale is not covered by it.
+	"relative z-[11] isolate grid grid-cols-2 gap-3 overflow-visible sm:grid-cols-3 sm:gap-2 md:grid-cols-4 md:gap-2 lg:grid-cols-5 lg:gap-2 xl:grid-cols-6 xl:gap-2",
+	CATALOGUE_POSTER_HOVER_LIFT_GUTTER_CLASSNAME,
+].join(" ");
 
 /**
  * List detail films — wide `minmax` tracks so the films section reads larger than lobby grids.

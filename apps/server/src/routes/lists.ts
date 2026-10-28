@@ -26,7 +26,11 @@ import { context } from "../context";
 import { joinedTitleItemNotAdultSql } from "../lib/adult-content-sql";
 import { getShowAdultContentForUser } from "../lib/adult-content-user-pref";
 import { r2ObjectKeyFilename } from "../lib/asset-object-key";
-import { getImageAsset, putImageAsset } from "../lib/asset-store";
+import {
+	getImageAsset,
+	isSensePersistedImageRef,
+	putImageAsset,
+} from "../lib/asset-store";
 import {
 	communityOffset,
 	parseCommunityPage,
@@ -36,6 +40,7 @@ import {
 	resolveCommunityPeriodQuery,
 	withinCommunityPeriod,
 } from "../lib/community-period";
+import { contentPrivatePayload } from "../lib/content-private";
 import { makeId } from "../lib/cuid";
 import {
 	isFavoritesSystemList,
@@ -383,8 +388,9 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.from(list)
 				.where(and(eq(list.id, params.id), isNull(list.removedAt)))
 				.limit(1);
-			if (!row || !(await canViewList(row, user?.id)))
-				return status(404, "Not found");
+			if (!row) return status(404, "Not found");
+			if (!(await canViewList(row, user?.id)))
+				return status(403, contentPrivatePayload("content"));
 			const coverImageUrl = row.coverImageUrl?.trim();
 			if (!coverImageUrl) return status(404, "No cover");
 
@@ -411,7 +417,8 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 				.where(and(eq(list.id, params.id), isNull(list.removedAt)))
 				.limit(1);
 			if (!meta) return status(404, "Not found");
-			if (!(await canViewList(meta, user?.id))) return status(404, "Not found");
+			if (!(await canViewList(meta, user?.id)))
+				return status(403, contentPrivatePayload("content"));
 			// Upgrade legacy favorites lists to ranked + normalized positions on read.
 			if (isFavoritesSystemList(meta) && !meta.isRanked) {
 				await db
@@ -459,6 +466,7 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 					movieId: row.item.movieId,
 					tvId: row.item.tvId,
 				})),
+				user?.id ?? null,
 			);
 			const itemsWithOwnerLog = items.map((row) => {
 				const key = logMediaKey(row.item.movieId, row.item.tvId);
@@ -627,6 +635,13 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 								"list_covers",
 								"Custom list covers require Immersed",
 							),
+						);
+					}
+					// Only upload-issued keys/blob URLs — blocks stored SSRF via PATCH.
+					if (!isSensePersistedImageRef(body.coverImageUrl)) {
+						return status(
+							400,
+							"Invalid coverImageUrl — upload via POST /api/lists/:id/cover",
 						);
 					}
 				}
@@ -1052,12 +1067,20 @@ export const listsRoute = new Elysia({ prefix: "/api/lists", tags: ["lists"] })
 	)
 	.get(
 		"/by-user/:userId",
-		async ({ params, query }) => {
+		async ({ params, query, user }) => {
 			const limit = Math.min(Number(query.limit ?? 24), 60);
+			const isOwner = user?.id === params.userId;
+			// Non-owners only see public lists (parity with canViewList on GET :id).
 			const rows = await db
 				.select()
 				.from(list)
-				.where(and(eq(list.userId, params.userId), isNull(list.removedAt)))
+				.where(
+					and(
+						eq(list.userId, params.userId),
+						isNull(list.removedAt),
+						...(isOwner ? [] : [eq(list.isPublic, true)]),
+					),
+				)
 				.orderBy(desc(list.updatedAt))
 				.limit(limit);
 			return withCoverPosterPaths(rows);

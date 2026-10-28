@@ -1,6 +1,7 @@
 import { db, log } from "@still/db";
 import { and, desc, eq, inArray, isNull, or } from "drizzle-orm";
 
+import { contentVisibilityWhere } from "./content-visibility";
 import { logMediaKey } from "./sense-taste-overlap";
 import { resolveTvTitleScore } from "./tv-title-score";
 
@@ -86,10 +87,13 @@ export function buildOwnerLogScoresFromRows(
 
 /**
  * Diary scores for list detail posters — TV uses derived title scores.
+ * `viewerId` applies the same content-visibility gate as diary reads so a
+ * public list cannot leak private/followers owner scores.
  */
 export async function fetchOwnerLogScoresForListItems(
 	ownerUserId: string,
 	items: { movieId: number | null; tvId: number | null }[],
+	viewerId: string | null = null,
 ): Promise<Map<string, OwnerLogScore>> {
 	const movieIds = [
 		...new Set(
@@ -128,7 +132,14 @@ export async function fetchOwnerLogScoresForListItems(
 			seasonNumber: log.seasonNumber,
 		})
 		.from(log)
-		.where(and(eq(log.userId, ownerUserId), isNull(log.removedAt), mediaFilter))
+		.where(
+			and(
+				eq(log.userId, ownerUserId),
+				isNull(log.removedAt),
+				mediaFilter,
+				contentVisibilityWhere(viewerId, log.userId, log.visibility),
+			),
+		)
 		.orderBy(desc(log.watchedAt));
 
 	return buildOwnerLogScoresFromRows(rows);

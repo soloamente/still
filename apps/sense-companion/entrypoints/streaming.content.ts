@@ -1,3 +1,4 @@
+import { SENSE_COMPANION_ORIGIN } from "../src/pairing/origin";
 import { popupWatchFromMessage } from "../src/popup/watch-state";
 import {
 	activityIsPaused,
@@ -10,6 +11,14 @@ import {
 	nextAutologCountdown,
 } from "../src/presence/autolog-countdown";
 import { syncAutologCountdownPill } from "../src/presence/autolog-countdown-view";
+import {
+	applyCompanionAutoLogReport,
+	autologCountdownAllowed,
+	handleCompanionAutologErrorMessage,
+	notifyCompanionAutologFromHeartbeat,
+	resetAutologCatalogueEligibility,
+} from "../src/presence/autolog-error-handler";
+import { readWatchResultAutoLog } from "../src/presence/autolog-error-notice";
 import {
 	type CompanionLoggedNotice,
 	readCompanionLoggedNotice,
@@ -180,6 +189,7 @@ function ensureWatchPort(): Browser.runtime.Port {
 	if (!watchPort) {
 		watchPort = browser.runtime.connect({ name: SENSE_COMPANION_WATCH_PORT });
 		watchPort.onMessage.addListener((value: unknown) => {
+			handleCompanionAutologErrorMessage(value);
 			const notice = readCompanionLoggedNotice(value);
 			if (!notice) return;
 			handleLoggedNotice(notice);
@@ -235,10 +245,36 @@ function requestLogRating(logId: string, rating: number): Promise<boolean> {
 	}
 }
 
+function applyWatchResultAutolog(
+	value: unknown,
+	message: CompanionActivityMessage,
+): void {
+	const report = readWatchResultAutoLog(value);
+	if (
+		report &&
+		message.type === "sense-companion:activity" &&
+		message.senseMedia?.title
+	) {
+		notifyCompanionAutologFromHeartbeat({
+			report,
+			title: message.senseMedia.title,
+			titleUrl: null,
+			senseHomeUrl: `${SENSE_COMPANION_ORIGIN}/home`,
+		});
+		return;
+	}
+	applyCompanionAutoLogReport(report);
+}
+
 function isWatchResult(
 	value: unknown,
 	id: string,
-): value is { type: "sense-companion:watch-result"; id: string; ok: boolean } {
+): value is {
+	type: "sense-companion:watch-result";
+	id: string;
+	ok: boolean;
+	autoLog?: unknown;
+} {
 	if (typeof value !== "object" || value === null) return false;
 	const result = value as { type?: unknown; id?: unknown; ok?: unknown };
 	return (
@@ -274,6 +310,7 @@ function confirmWatchDelivery(
 				if (!isWatchResult(value, id)) return;
 				window.clearTimeout(timer);
 				active.onMessage.removeListener(onMessage);
+				applyWatchResultAutolog(value, message);
 				resolve(value.ok);
 			};
 			active.onMessage.addListener(onMessage);
@@ -321,10 +358,12 @@ function paintAutolog(
 	if (media == null) {
 		if (autologTitleKey != null) autologLogged = false;
 		autologTitleKey = null;
+		resetAutologCatalogueEligibility();
 	} else {
 		const key = autologMediaKey(media);
 		if (autologTitleKey != null && key !== autologTitleKey) {
 			autologLogged = false;
+			resetAutologCatalogueEligibility();
 		}
 		autologTitleKey = key;
 		// Apply a log that arrived on an empty screen before the countdown decision.
@@ -341,6 +380,7 @@ function paintAutolog(
 		state: autologState,
 		now: Date.now(),
 		paired: autologPaired === true,
+		catalogueEligible: autologCountdownAllowed(),
 		paused,
 		logged: autologLogged,
 		media,
@@ -405,6 +445,7 @@ export default defineContentScript({
 
 		// Fallback when the background reaches this tab without the watch port.
 		browser.runtime.onMessage.addListener((value: unknown) => {
+			handleCompanionAutologErrorMessage(value);
 			const notice = readCompanionLoggedNotice(value);
 			if (!notice) return;
 			handleLoggedNotice(notice);

@@ -1,6 +1,12 @@
 import "server-only";
 
 import {
+	type ContentPrivateKind,
+	contentPrivateCodeFromEdenError,
+	contentPrivateKindFromCode,
+} from "@/lib/content-private";
+import { edenApiErrorStatus } from "@/lib/eden-api-error";
+import {
 	type ListDetailItemsRecord,
 	listDetailToFilmRows,
 } from "@/lib/list-detail-film-rows";
@@ -32,23 +38,45 @@ export type ListDetailRecord = ListDetailItemsRecord & {
 	liked?: boolean;
 };
 
+export type ListDetailFetchResult =
+	| { status: "ok"; data: ListDetailRecord }
+	| { status: "private"; kind: ContentPrivateKind }
+	| { status: "missing" };
+
 export { listDetailToFilmRows };
 
-/** Load list detail for RSC pages (respects API visibility — private lists 404 for guests). */
+/**
+ * Load list detail for RSC pages. Private lists return `private` (403) rather
+ * than collapsing into a silent miss — callers render ContentPrivatePageShell.
+ */
 export async function fetchListDetailById(
 	listId: string,
-): Promise<ListDetailRecord | null> {
+): Promise<ListDetailFetchResult> {
 	const api = await serverApi();
 	const listRes = await api.api.lists({ id: listId }).get();
-	if (listRes.error || !listRes.data) return null;
+	if (listRes.error) {
+		const httpStatus = edenApiErrorStatus(listRes.error);
+		const privateCode = contentPrivateCodeFromEdenError(listRes.error);
+		if (httpStatus === 403 && privateCode) {
+			return {
+				status: "private",
+				kind: contentPrivateKindFromCode(privateCode),
+			};
+		}
+		return { status: "missing" };
+	}
+	if (!listRes.data) return { status: "missing" };
 	const raw = listRes.data as unknown as ListDetailRecord & {
 		updatedAt: string | Date;
 	};
 	return {
-		...raw,
-		updatedAt:
-			typeof raw.updatedAt === "string"
-				? raw.updatedAt
-				: new Date(raw.updatedAt).toISOString(),
+		status: "ok",
+		data: {
+			...raw,
+			updatedAt:
+				typeof raw.updatedAt === "string"
+					? raw.updatedAt
+					: new Date(raw.updatedAt).toISOString(),
+		},
 	};
 }

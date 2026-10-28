@@ -175,7 +175,7 @@ export function HomeStickyChrome({
 				 * Side tracks: `minmax(max-content,1fr)` keeps browse + shortcuts visible.
 				 * Center: `minmax(0,36rem)` — search shrinks first when horizontal space is tight.
 				 */
-				"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 bg-background py-2.5 sm:grid-cols-[minmax(max-content,1fr)_minmax(0,36rem)_minmax(max-content,1fr)] sm:gap-4",
+				"sticky top-0 z-20 grid w-full grid-cols-1 items-center gap-3 bg-background pt-[15px] pb-2.5 sm:grid-cols-[minmax(max-content,1fr)_minmax(0,36rem)_minmax(max-content,1fr)] sm:gap-4",
 				// Full-opacity canvas at the seam, then a long multi-stop fade so the poster row
 				// eases in instead of meeting a razor line (same token as `bg-background`).
 				"after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[clamp(7rem,42svh,18rem)] after:bg-[linear-gradient(180deg,var(--background)_0%,color-mix(in_oklab,var(--background)_92%,transparent)_14%,color-mix(in_oklab,var(--background)_68%,transparent)_38%,color-mix(in_oklab,var(--background)_32%,transparent)_68%,transparent_100%)] after:opacity-0 after:transition-opacity after:duration-300 after:ease-out after:content-[''] motion-reduce:after:transition-none",

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AdultContentBlockedState } from "@/components/detail/adult-content-blocked-state";
 import { ListingDetailHeroSynopsis } from "@/components/detail/listing-detail-hero-synopsis";
+import { DetailHomeStickyChromeSlot } from "@/components/movie/detail-home-sticky-chrome";
 import { MovieDetailAboutAsync } from "@/components/movie/movie-detail-about-async";
 import { MovieDetailAboutFallback } from "@/components/movie/movie-detail-about-fallback";
 import { MovieDetailCommunityFallback } from "@/components/movie/movie-detail-community-fallback";
@@ -11,6 +12,7 @@ import { MovieDetailCommunityRatingHero } from "@/components/movie/movie-detail-
 import { MovieDetailHeroMedia } from "@/components/movie/movie-detail-hero-media";
 import { MovieDetailPrimaryActions } from "@/components/movie/movie-detail-primary-actions";
 import { MovieDetailQuotesPanel } from "@/components/movie/movie-detail-quotes-panel";
+import { MovieDetailStudioMarks } from "@/components/movie/movie-detail-studio-marks";
 import { MovieDetailViewShell } from "@/components/movie/movie-detail-view-shell";
 import { MovieThemeProvider } from "@/components/movie/movie-theme-provider";
 import { TodayPickDetailCue } from "@/components/movie/today-pick-detail-cue";
@@ -20,6 +22,7 @@ import { fetchMeProfile, PROFILE_FETCH_FAILED } from "@/lib/fetch-me-profile";
 import { fetchMovieDetailServer } from "@/lib/fetch-movie-detail-server";
 import { formatRuntime } from "@/lib/format";
 import { listingDetailHeroSynopsisBlurb } from "@/lib/listing-detail-hero-synopsis";
+import { movieNotYetAvailableCopy } from "@/lib/movie-availability-notice";
 import {
 	mapCastToArcCards,
 	mapCrewToArcCards,
@@ -39,6 +42,10 @@ import {
 } from "@/lib/movie-detail-tmdb";
 import { parseMovieDetailViewFromSearchParams } from "@/lib/movie-detail-view";
 import { buildMovieRecognitionEntries } from "@/lib/movie-festival-recognition";
+import {
+	movieStudioMarks,
+	movieStudioNameFallback,
+} from "@/lib/movie-studio-credit";
 import { movieLooksTheatricalOnly } from "@/lib/movie-theatrical-only";
 import { buildMovieWatchProvidersViewModel } from "@/lib/movie-watch-providers";
 import {
@@ -118,6 +125,11 @@ type TmdbJsonShape = {
 		results?: { id: number; title: string; poster_path: string | null }[];
 	};
 	keywords?: { keywords?: { id: number; name: string }[] };
+	production_companies?: {
+		id: number;
+		name: string;
+		logo_path: string | null;
+	}[];
 	release_dates?: {
 		results: {
 			iso_3166_1: string;
@@ -167,6 +179,7 @@ type Detail = {
 	year: number | null;
 	runtime: number | null;
 	releaseDate: string | null;
+	status: string | null;
 	posterPath: string | null;
 	backdropPath: string | null;
 	backdrop_url: string | null;
@@ -286,6 +299,14 @@ export default async function MoviePage({
 	if (runtimeLabel) heroMetaBits.push(runtimeLabel);
 	const heroMetaLine =
 		heroMetaBits.length > 0 ? heroMetaBits.join("\u00a0\u00a0") : null;
+	const studioMarks = movieStudioMarks(j?.production_companies);
+	const studioName = movieStudioNameFallback(j?.production_companies);
+	const notYetAvailable = movieNotYetAvailableCopy({
+		releaseDates: j?.release_dates,
+		region: catalogWatchRegion,
+		primaryReleaseDate: data.releaseDate,
+		status: data.status,
+	});
 
 	const hasCast = arcCast.length > 0 || arcCrew.length > 0;
 	const sectionNavItems = [
@@ -329,6 +350,32 @@ export default async function MoviePage({
 			<h1 className="mt-7 text-balance font-sans font-semibold text-3xl leading-[1.12] tracking-[-0.02em] sm:text-4xl">
 				{data.title}
 			</h1>
+			<MovieDetailStudioMarks
+				marks={studioMarks}
+				nameFallback={studioName}
+				listingKind="movie"
+			/>
+			{notYetAvailable ? (
+				<p className="mt-4 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-0.5 rounded-full bg-background px-4 py-2 text-sm leading-snug">
+					<span className="sr-only">
+						{notYetAvailable.lead}
+						{notYetAvailable.when ? ` ${notYetAvailable.when}` : ""}
+					</span>
+					<span aria-hidden className="text-muted-foreground">
+						{notYetAvailable.lead.replace(/\.$/, "")}
+					</span>
+					{notYetAvailable.when ? (
+						<>
+							<span aria-hidden className="text-muted-foreground">
+								·
+							</span>
+							<span aria-hidden className="font-medium text-foreground">
+								{notYetAvailable.when.replace(/\.$/, "")}
+							</span>
+						</>
+					) : null}
+				</p>
+			) : null}
 			<TodayPickDetailCue mediaKind="movie" tmdbId={data.tmdbId} />
 			<ListingDetailHeroSynopsis title={data.title} overview={data.overview} />
 			<MovieDetailCommunityRatingHero
@@ -368,6 +415,7 @@ export default async function MoviePage({
 				basePath={detailBasePath}
 				movieId={data.tmdbId}
 				title={data.title}
+				stickyChrome={<DetailHomeStickyChromeSlot />}
 				sectionNavItems={sectionNavItems}
 				hero={hero}
 				watchProviders={watchProviders}

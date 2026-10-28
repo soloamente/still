@@ -25,6 +25,7 @@ import {
 	withinCommunityPeriod,
 } from "../lib/community-period";
 import { notifyPatronMentionsInContent } from "../lib/content-mention-notify";
+import { contentPrivatePayload } from "../lib/content-private";
 import {
 	canViewContent,
 	contentVisibilityWhere,
@@ -69,16 +70,25 @@ import {
 	readReviewReactionSnapshot,
 	removeViewerReviewReaction,
 } from "../lib/review-reactions";
+import { reviewTranslationFingerprint } from "../lib/review-translation-fingerprint";
+import { TranslationOutputError } from "../lib/review-translation-output";
 import {
 	createReviewTranslationProvider,
 	isReviewTranslationConfigured,
+	reviewTranslationModel,
 } from "../lib/review-translation-provider";
+import {
+	type QuotaRedis,
+	spendTranslationQuota,
+	TranslationQuotaError,
+} from "../lib/review-translation-quota";
 import {
 	normalizeLanguageTag,
 	resolveReviewTranslation,
 } from "../lib/review-translation-service";
 import { MentionPlaceholderError } from "../lib/review-translation-tokens";
 import { routeBody } from "../lib/route-body";
+import { type SingleFlightRedis, singleFlight } from "../lib/single-flight";
 import {
 	parseViralReviewsLimit,
 	viralReviewCandidateSql,
@@ -388,23 +398,17 @@ export const reviewsRoute = new Elysia({
 			const target = normalizeLanguageTag(body.language);
 			if (!target) return status(400, "Invalid language");
 
-			// Burst guard plus a daily ceiling — one runaway client should not be
-			// able to spend the month's budget in an afternoon.
+			// Cheap per-process guard so a client cannot hammer the review lookup
+			// below. It does NOT meter spend: the real burst + daily allowance is
+			// charged in `translate` (Redis-backed), only when a model call
+			// actually happens — cache and stored hits are free.
 			if (
-				!hit(`reviews:translate:${user.id}`, {
-					limit: 20,
+				!hit(`reviews:translate:req:${user.id}`, {
+					limit: 120,
 					windowMs: 60_000,
 				}).ok
 			) {
 				return status(429, "Slow down");
-			}
-			if (
-				!hit(`reviews:translate:day:${user.id}`, {
-					limit: 200,
-					windowMs: 86_400_000,
-				}).ok
-			) {
-				return status(429, "Daily translation limit reached");
 			}
 
 			const [existing] = await db
@@ -425,69 +429,136 @@ export const reviewsRoute = new Elysia({
 					...follows,
 				})
 			) {
-				return status(404, "Not found");
+				return status(403, contentPrivatePayload("content"));
 			}
 
 			if (!existing.body.trim()) return status(400, "Nothing to translate");
 
-			// `updatedAt` in the key means an edit self-invalidates the hot cache;
-			// the stored rows are deleted separately on PATCH.
-			const cacheKey = `sense:review-translation:${existing.id}:${target}:${new Date(existing.updatedAt).getTime()}`;
+			// The fingerprint (prompt version + model + title + body) is the
+			// identity of a translation. Both the hot cache key and the stored row
+			// are matched on it, so an edit — body OR title — or a model/prompt
+			// change makes old text unreachable rather than relying on a delete
+			// racing an in-flight translation.
+			const fingerprint = reviewTranslationFingerprint({
+				title: existing.title,
+				body: existing.body,
+				model: reviewTranslationModel(),
+			});
+			const flightId = `${existing.id}:${target}:${fingerprint.slice(0, 24)}`;
+			const cacheKey = `sense:review-translation:${flightId}`;
+			const lockKey = `sense:review-translation-lock:${flightId}`;
 			const provider = createReviewTranslationProvider();
+			const redis = await cacheRedis();
 
 			try {
 				return await cachedRead(
-					await cacheRedis(),
+					redis,
 					cacheKey,
 					REVIEW_TRANSLATION_CACHE_TTL_SEC,
+					// Single-flight: concurrent readers of the same untranslated
+					// review share one model call instead of each paying for it.
 					() =>
-						resolveReviewTranslation(
-							{
-								id: existing.id,
-								body: existing.body,
-								title: existing.title,
-								sourceLanguage: existing.sourceLanguage,
-							},
-							target,
-							{
-								loadStored: async (reviewId, language) => {
-									const [row] = await db
-										.select({
-											title: reviewTranslation.title,
-											body: reviewTranslation.body,
-											model: reviewTranslation.model,
-										})
-										.from(reviewTranslation)
-										.where(
-											and(
-												eq(reviewTranslation.reviewId, reviewId),
-												eq(reviewTranslation.targetLanguage, language),
-											),
-										)
-										.limit(1);
-									return row ?? null;
-								},
-								saveStored: async (input) => {
-									await db
-										.insert(reviewTranslation)
-										.values({
-											id: makeId("rtr"),
-											reviewId: input.reviewId,
-											targetLanguage: input.language,
-											title: input.title,
-											body: input.body,
-											model: input.model,
-										})
-										.onConflictDoNothing();
-								},
-								translate: (request) => provider.translate(request),
-							},
-						),
+						singleFlight({
+							// The real Upstash client satisfies this; `CacheRedis` is just the
+							// narrower read-through slice.
+							redis: redis as unknown as SingleFlightRedis | null,
+							lockKey,
+							resultKey: cacheKey,
+							lockTtlSec: 90,
+							waitMs: 20_000,
+							pollMs: 500,
+							run: () =>
+								resolveReviewTranslation(
+									{
+										id: existing.id,
+										body: existing.body,
+										title: existing.title,
+										sourceLanguage: existing.sourceLanguage,
+										fingerprint,
+									},
+									target,
+									{
+										loadStored: async (reviewId, language, expected) => {
+											const [row] = await db
+												.select({
+													title: reviewTranslation.title,
+													body: reviewTranslation.body,
+													model: reviewTranslation.model,
+													sourceHash: reviewTranslation.sourceHash,
+												})
+												.from(reviewTranslation)
+												.where(
+													and(
+														eq(reviewTranslation.reviewId, reviewId),
+														eq(reviewTranslation.targetLanguage, language),
+													),
+												)
+												.limit(1);
+											// Stale (or pre-fingerprint) rows are a miss, not a hit.
+											if (!row || row.sourceHash !== expected) return null;
+											return {
+												title: row.title,
+												body: row.body,
+												model: row.model,
+											};
+										},
+										saveStored: async (input) => {
+											// Upsert: a stale row for this review + language is replaced
+											// rather than blocking the fresh translation forever.
+											await db
+												.insert(reviewTranslation)
+												.values({
+													id: makeId("rtr"),
+													reviewId: input.reviewId,
+													targetLanguage: input.language,
+													title: input.title,
+													body: input.body,
+													model: input.model,
+													sourceHash: input.fingerprint,
+												})
+												.onConflictDoUpdate({
+													target: [
+														reviewTranslation.reviewId,
+														reviewTranslation.targetLanguage,
+													],
+													set: {
+														title: input.title,
+														body: input.body,
+														model: input.model,
+														sourceHash: input.fingerprint,
+														createdAt: new Date(),
+													},
+												});
+										},
+										// Spend is charged here — the one place a model call is
+										// certain — so cached and stored reads never cost quota.
+										translate: async (request) => {
+											await spendTranslationQuota(
+												redis as unknown as QuotaRedis | null,
+												user.id,
+											);
+											return provider.translate(request);
+										},
+									},
+								),
+						}),
 				);
 			} catch (error) {
-				// A mangled placeholder means the links in the body would be broken —
-				// better to fail and leave the reader on the original text.
-				if (error instanceof MentionPlaceholderError) {
+				if (error instanceof TranslationQuotaError) {
+					return status(
+						429,
+						error.reason === "daily"
+							? "Daily translation limit reached"
+							: "Slow down",
+					);
+				}
+				// A mangled placeholder means the links in the body would be broken,
+				// and an empty/implausible reply is a refusal or commentary — better
+				// to fail and leave the reader on the original text.
+				if (
+					error instanceof MentionPlaceholderError ||
+					error instanceof TranslationOutputError
+				) {
 					return status(502, "Translation could not be completed");
 				}
 				console.error("[reviews] translate failed", error);
@@ -569,11 +640,15 @@ export const reviewsRoute = new Elysia({
 				.where(eq(review.id, params.id))
 				.returning();
 
-			// Stored translations describe the old text — drop them when the body
-			// actually changed. (The Redis key carries `updatedAt`, so it expires
-			// itself.) Only on a real text change: re-translating after a visibility
-			// toggle would be pure waste.
-			if (nextBody !== null && nextBody !== existing.body) {
+			// Housekeeping only: correctness no longer depends on this. Stored rows
+			// and the Redis key are matched on a fingerprint of title + body, so a
+			// stale row is simply unreachable. Dropping them on a real text change
+			// (body or title) just keeps dead rows out of the table. Skipped for
+			// visibility/rating-only edits, which do not change what is translated.
+			const bodyChanged = nextBody !== null && nextBody !== existing.body;
+			const titleChanged =
+				body.title !== undefined && body.title !== existing.title;
+			if (bodyChanged || titleChanged) {
 				await db
 					.delete(reviewTranslation)
 					.where(eq(reviewTranslation.reviewId, params.id));
@@ -742,7 +817,7 @@ export const reviewsRoute = new Elysia({
 					...follows,
 				})
 			) {
-				return status(404, "Not found");
+				return status(403, contentPrivatePayload("content"));
 			}
 			// Viewer like/dislike + public counters.
 			const reactionSnapshot = await readReviewReactionSnapshot(
@@ -902,6 +977,30 @@ export const reviewsRoute = new Elysia({
 		"/:id/like",
 		async ({ params, user, status }) => {
 			if (!user) return status(401, "Sign in");
+			// Reactions require the same visibility as reading the review.
+			const [targetReview] = await db
+				.select({
+					userId: review.userId,
+					visibility: review.visibility,
+				})
+				.from(review)
+				.where(and(eq(review.id, params.id), isNull(review.removedAt)))
+				.limit(1);
+			if (!targetReview) return status(404, "Not found");
+			const likeFollows = await resolveViewerFollow(
+				user.id,
+				targetReview.userId,
+			);
+			if (
+				!canViewContent({
+					viewerId: user.id,
+					authorId: targetReview.userId,
+					visibility: targetReview.visibility,
+					...likeFollows,
+				})
+			) {
+				return status(403, contentPrivatePayload("content"));
+			}
 			const [existing] = await db
 				.select()
 				.from(reaction)
@@ -987,6 +1086,30 @@ export const reviewsRoute = new Elysia({
 				!hit(`review-dislike:${user.id}`, { limit: 120, windowMs: 60_000 }).ok
 			)
 				return status(429, "Slow down");
+
+			const [targetReview] = await db
+				.select({
+					userId: review.userId,
+					visibility: review.visibility,
+				})
+				.from(review)
+				.where(and(eq(review.id, params.id), isNull(review.removedAt)))
+				.limit(1);
+			if (!targetReview) return status(404, "Not found");
+			const dislikeFollows = await resolveViewerFollow(
+				user.id,
+				targetReview.userId,
+			);
+			if (
+				!canViewContent({
+					viewerId: user.id,
+					authorId: targetReview.userId,
+					visibility: targetReview.visibility,
+					...dislikeFollows,
+				})
+			) {
+				return status(403, contentPrivatePayload("content"));
+			}
 
 			const [existing] = await db
 				.select()

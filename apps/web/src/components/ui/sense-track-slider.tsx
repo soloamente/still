@@ -123,7 +123,10 @@ export function SenseTrackSlider({
 		isDraggingRef.current = true;
 		setIsDragging(true);
 		el.setPointerCapture(e.pointerId);
-		setFromClientX(e.clientX);
+		// Touch: don't commit a value on contact — the finger may be starting a
+		// vertical page scroll (the track is `touch-pan-y`). The value is applied
+		// on move (horizontal drag) or on release (tap); a scroll cancels the pointer.
+		if (e.pointerType !== "touch") setFromClientX(e.clientX);
 	}
 
 	function stepBy(delta: number) {
@@ -166,7 +169,7 @@ export function SenseTrackSlider({
 				aria-valuenow={Number(value.toFixed(2))}
 				aria-valuetext={valueText}
 				className={cn(
-					"relative isolate h-10 min-h-10 min-w-0 flex-1 cursor-grab touch-none select-none overflow-hidden rounded-full bg-background",
+					"relative isolate h-10 min-h-10 min-w-0 flex-1 cursor-grab touch-pan-y select-none overflow-hidden rounded-full bg-background",
 					"[-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 					ringOffsetClassName,
 					isDragging && "cursor-grabbing",
@@ -176,7 +179,13 @@ export function SenseTrackSlider({
 					if (!isDraggingRef.current) return;
 					setFromClientX(e.clientX);
 				}}
-				onPointerUp={(e) => finishDrag(e.pointerId)}
+				onPointerUp={(e) => {
+					// Touch tap (no move yet) commits its value on release.
+					if (e.pointerType === "touch" && isDraggingRef.current) {
+						setFromClientX(e.clientX);
+					}
+					finishDrag(e.pointerId);
+				}}
 				onPointerCancel={(e) => finishDrag(e.pointerId)}
 				onKeyDown={(e) => {
 					if (e.key === "ArrowLeft" || e.key === "ArrowDown") {

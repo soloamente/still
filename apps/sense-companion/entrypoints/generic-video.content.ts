@@ -1,4 +1,8 @@
-import { popupWatchFromMessage } from "../src/popup/watch-state";
+import { SENSE_COMPANION_ORIGIN } from "../src/pairing/origin";
+import {
+	playbackTitleIsSiteName,
+	popupWatchFromMessage,
+} from "../src/popup/watch-state";
 import {
 	type CompanionActivityMessage,
 	SENSE_COMPANION_WATCH_PORT,
@@ -11,8 +15,18 @@ import {
 } from "../src/presence/autolog-countdown";
 import { syncAutologCountdownPill } from "../src/presence/autolog-countdown-view";
 import {
+	applyCompanionAutoLogReport,
+	autologCountdownAllowed,
+	handleCompanionAutologErrorMessage,
+	notifyCompanionAutologFromHeartbeat,
+	resetAutologCatalogueEligibility,
+} from "../src/presence/autolog-error-handler";
+import { readWatchResultAutoLog } from "../src/presence/autolog-error-notice";
+import {
+	BLOCKLISTED_GENERIC_VIDEO_EXCLUDE_MATCHES,
 	cleanWatchTitle,
 	isDedicatedCompanionHost,
+	isExcludedTrackingHost,
 	pickWatchableVideo,
 	seasonEpisodeFromTitle,
 	serviceLabelFromHostname,
@@ -145,6 +159,7 @@ function ensureWatchPort(): Browser.runtime.Port {
 	if (!watchPort) {
 		watchPort = browser.runtime.connect({ name: SENSE_COMPANION_WATCH_PORT });
 		watchPort.onMessage.addListener((value: unknown) => {
+			handleCompanionAutologErrorMessage(value);
 			const notice = readCompanionLoggedNotice(value);
 			if (!notice) return;
 			handleLoggedNotice(notice);
@@ -165,10 +180,36 @@ function postWatch(message: CompanionActivityMessage): void {
 	}
 }
 
+function applyWatchResultAutolog(
+	value: unknown,
+	message: CompanionActivityMessage,
+): void {
+	const report = readWatchResultAutoLog(value);
+	if (
+		report &&
+		message.type === "sense-companion:activity" &&
+		message.senseMedia?.title
+	) {
+		notifyCompanionAutologFromHeartbeat({
+			report,
+			title: message.senseMedia.title,
+			titleUrl: null,
+			senseHomeUrl: `${SENSE_COMPANION_ORIGIN}/home`,
+		});
+		return;
+	}
+	applyCompanionAutoLogReport(report);
+}
+
 function isWatchResult(
 	value: unknown,
 	id: string,
-): value is { type: "sense-companion:watch-result"; id: string; ok: boolean } {
+): value is {
+	type: "sense-companion:watch-result";
+	id: string;
+	ok: boolean;
+	autoLog?: unknown;
+} {
 	if (typeof value !== "object" || value === null) return false;
 	const result = value as { type?: unknown; id?: unknown; ok?: unknown };
 	return (
@@ -194,6 +235,7 @@ function confirmWatchDelivery(
 				if (!isWatchResult(value, id)) return;
 				window.clearTimeout(timer);
 				active.onMessage.removeListener(onMessage);
+				applyWatchResultAutolog(value, message);
 				resolve(value.ok);
 			};
 			active.onMessage.addListener(onMessage);
@@ -241,10 +283,12 @@ function paintAutolog(
 	if (media == null) {
 		if (autologTitleKey != null) autologLogged = false;
 		autologTitleKey = null;
+		resetAutologCatalogueEligibility();
 	} else {
 		const key = autologMediaKey(media);
 		if (autologTitleKey != null && key !== autologTitleKey) {
 			autologLogged = false;
+			resetAutologCatalogueEligibility();
 		}
 		autologTitleKey = key;
 		// Apply a log that arrived on an empty screen before the countdown decision.
@@ -261,6 +305,7 @@ function paintAutolog(
 		state: autologState,
 		now: Date.now(),
 		paired: autologPaired === true,
+		catalogueEligible: autologCountdownAllowed(),
 		paused,
 		logged: autologLogged,
 		media,
@@ -332,11 +377,21 @@ export default defineContentScript({
 		"http://localhost:3001/*",
 		"http://127.0.0.1:3000/*",
 		"http://localhost:3000/*",
+		...BLOCKLISTED_GENERIC_VIDEO_EXCLUDE_MATCHES,
 	],
 	allFrames: true,
 	runAt: "document_idle",
 	main(ctx) {
 		if (isDedicatedCompanionHost(location.hostname)) return;
+		if (isExcludedTrackingHost(location.hostname)) return;
+
+		// Background may reach the tab without the watch port (generic sites, top frame).
+		browser.runtime.onMessage.addListener((value: unknown) => {
+			handleCompanionAutologErrorMessage(value);
+			const notice = readCompanionLoggedNotice(value);
+			if (!notice) return;
+			handleLoggedNotice(notice);
+		});
 
 		const service = serviceLabelFromHostname(location.hostname);
 		let toastState: WatchToastState = emptyWatchToastState();
@@ -405,6 +460,18 @@ export default defineContentScript({
 					}
 				}
 				if (!title) return;
+				if (title.trim().toLowerCase() === label.trim().toLowerCase()) {
+					notifyCompanionAutologFromHeartbeat({
+						report: {
+							status: "unmatched",
+							reason: "no_match",
+							timing: "early",
+						},
+						title: label,
+						titleUrl: null,
+						senseHomeUrl: `${SENSE_COMPANION_ORIGIN}/home`,
+					});
+				}
 				const episode = seasonEpisodeFromTitle(`${title} ${document.title}`);
 				const positionSec = Math.floor(video.currentTime);
 				const durationSec = Math.floor(video.duration);
@@ -453,8 +520,10 @@ export default defineContentScript({
 				reporting = true;
 				activeService = label;
 				if (next.show && watch) {
-					// Watching copy is immediate. Delivery confirm is for pairing only.
-					showWatchToast(watchToastCopy(watch, next.resume), true);
+					// A site-name title already has the error card. Skip the eye pill.
+					if (!playbackTitleIsSiteName(watch)) {
+						showWatchToast(watchToastCopy(watch, next.resume), true);
+					}
 					// Every Watching confirm paints its own mark. Only a success
 					// may reveal the countdown, including after a pairing timeout.
 					const delivery = confirmWatchDelivery(message).then((ok) => {

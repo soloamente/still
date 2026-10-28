@@ -31,7 +31,10 @@ export function isPublicContentVisibility(
 export function assertEmailVerified(user: EmailVerifiedUser): void {
 	// Local onboarding often can't complete inbox links (auth skips sendOnSignUp
 	// in development). Keep the hard gate for production / test.
-	if (process.env.NODE_ENV === "development") return;
+	// `bun run --hot` leaves `process.env.NODE_ENV` unset, while `@still/env` (and so
+	// auth + the web onboarding page) treat unset as "development" — mirror that
+	// default or the wizard skips the verify step but this gate still rejects logs.
+	if ((process.env.NODE_ENV ?? "development") === "development") return;
 	if (!user.emailVerified) {
 		throw new EmailVerificationRequiredError();
 	}

@@ -7,9 +7,13 @@ export const HOME_TASTE_HERO_BAND_HEIGHT_CLASSNAME =
 	"h-[min(56rem,85svh)] sm:h-[min(44rem,62svh)] lg:h-[min(48rem,66svh)] xl:h-[min(52rem,68svh)] min-[2000px]:h-[min(58rem,64svh)]";
 /** Content column band — full width of the hero section. */
 export const HOME_TASTE_HERO_BAND_CLASSNAME = `w-full ${HOME_TASTE_HERO_BAND_HEIGHT_CLASSNAME}`;
-/** Lobby shell media — bleeds over catalogue padding + filter row baseline. */
+/**
+ * Lobby shell media — bleeds over catalogue padding + filter row baseline.
+ * Top radius matches the lobby card so the section can stay `overflow-visible`
+ * (poster hover lift/scale) without square media corners poking past the card.
+ */
 export const HOME_TASTE_HERO_SHELL_MEDIA_CLASSNAME =
-	"pointer-events-none absolute -top-4 -right-4 -left-4 -bottom-[4.75rem] z-0 overflow-hidden bg-absolute-black [transform:translateZ(0)]";
+	"pointer-events-none absolute -top-4 -right-4 -left-4 -bottom-[4.75rem] z-0 overflow-hidden rounded-t-[2.5rem] bg-absolute-black [transform:translateZ(0)]";
 /** Bleed past rounded-corner anti-alias — kills card/iframe edge slivers. */
 export const HOME_TASTE_HERO_MEDIA_OVERSCAN_CLASSNAME = "-inset-px";
 /** Background trailer iframe — mobile default first; `sm+` / 2K breakpoints unchanged. */

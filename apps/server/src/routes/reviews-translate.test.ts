@@ -12,6 +12,7 @@ let configured = true;
 
 mock.module("../lib/review-translation-provider", () => ({
 	isReviewTranslationConfigured: () => configured,
+	reviewTranslationModel: () => "test-model",
 	createReviewTranslationProvider: () => ({
 		translate: async () => {
 			throw new Error("provider must not be reached in these tests");

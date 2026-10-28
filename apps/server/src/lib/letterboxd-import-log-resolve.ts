@@ -1,3 +1,4 @@
+import type { ContentVisibility } from "@still/db";
 import { db, log } from "@still/db";
 import { and, desc, eq, sql } from "drizzle-orm";
 
@@ -111,6 +112,8 @@ export async function createMinimalLetterboxdLog(input: {
 	ratingStars: number | null;
 	rewatch: boolean;
 	letterboxdUri: string | null;
+	/** Defaults to schema public — callers should pass profile.defaultVisibility. */
+	visibility?: ContentVisibility;
 }): Promise<string> {
 	const id = makeId("log");
 	await db.insert(log).values({
@@ -125,6 +128,7 @@ export async function createMinimalLetterboxdLog(input: {
 		rewatch: input.rewatch,
 		note: letterboxdImportNote(input.letterboxdUri),
 		watchVenue: "streaming",
+		...(input.visibility ? { visibility: input.visibility } : {}),
 	});
 	return id;
 }

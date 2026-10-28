@@ -1,23 +1,25 @@
-import { Text } from "@react-email/components";
+import { AuthEmailLayout, AuthEmailParagraph } from "./layout";
 
-import { AuthEmailLayout } from "./layout";
-
+/** Account deletion confirmation — destructive tone; link expires in 24 hours. */
 export function DeleteAccountEmail({ url }: { url: string }) {
 	return (
 		<AuthEmailLayout
 			ctaHref={url}
-			ctaLabel="Confirm deletion"
+			ctaLabel="Permanently delete account"
+			expires="24 hours"
 			footer="If you didn't request account deletion, ignore this email — nothing will happen."
-			preview="Confirm your Sense account deletion"
+			kicker="Account deletion"
+			preview="Confirm to permanently delete your Sense account."
 			title="Confirm account deletion"
+			tone="danger"
 		>
-			<Text style={{ margin: 0 }}>
+			<AuthEmailParagraph>
 				You asked to permanently delete your Sense account. This removes your
 				profile, diary, reviews, lists, and followers. There is no undo.
-			</Text>
-			<Text style={{ margin: "16px 0 0", color: "#a3a3a3" }}>
-				This link expires in 24 hours.
-			</Text>
+			</AuthEmailParagraph>
+			<AuthEmailParagraph muted>
+				Changed your mind? Don't open the link and your account stays as it is.
+			</AuthEmailParagraph>
 		</AuthEmailLayout>
 	);
 }

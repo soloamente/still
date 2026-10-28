@@ -181,6 +181,14 @@ export const reviewTranslation = pgTable(
 		title: text("title"),
 		body: text("body").notNull(),
 		model: text("model").notNull(),
+		/**
+		 * sha256 of what this was translated from (prompt version, model, title,
+		 * body). A row is only served when it equals the review's current
+		 * fingerprint, so an edit, a title-only change, or a model/prompt change
+		 * can never surface stale text. Null on rows from before this column —
+		 * they never match and are overwritten on next use.
+		 */
+		sourceHash: text("source_hash"),
 		createdAt: timestamp("created_at", { withTimezone: true })
 			.defaultNow()
 			.notNull(),

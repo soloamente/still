@@ -80,7 +80,9 @@ export function ProfileTabIcon({
 			} catch {
 				return;
 			}
-			for (const extra of links.slice(1)) extra.remove();
+			// Leave sibling icon links in the document. Removing them detaches
+			// nodes React still tracks, and the next navigation crashes while
+			// deleting those hoisted tags.
 		};
 		image.src = profilePatronAvatarImageUrl(handle);
 

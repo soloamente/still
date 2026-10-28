@@ -380,6 +380,49 @@ function FavoritesCatalogueTile({
 	);
 }
 
+/**
+ * Collapsed "Your picks" shelf — one row of small posters plus faint empty slots,
+ * so the shelf reads as progress (3/10) and search results stay the focus.
+ */
+function FavoritesPicksShelf({ favorites }: { favorites: OnboardingMovie[] }) {
+	// Value (not loop index) doubles as the key — slots are positional by design.
+	const emptySlots = Array.from(
+		{ length: Math.max(0, MAX_FAVORITES - favorites.length) },
+		(_, offset) => favorites.length + offset,
+	);
+
+	return (
+		<ul
+			aria-label="Selected favorites"
+			className="scrollbar-none justify-safe-center flex w-full gap-2 overflow-x-auto px-1 py-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+		>
+			{favorites.map((movie) => (
+				<li className="w-14 shrink-0" key={movie.id}>
+					<MoviePoster
+						avatarGroupItem={false}
+						className="w-full"
+						emptyArtworkClassName={ONBOARDING_EMPTY_ARTWORK_CLASSNAME}
+						frameClassName="rounded-xl border-0 bg-background"
+						hoverEffect="elevation"
+						linkable={false}
+						movieId={movie.id}
+						posterUrl={movie.poster_url}
+						size="xs"
+						title={movie.title}
+					/>
+				</li>
+			))}
+			{emptySlots.map((slot) => (
+				<li
+					aria-hidden
+					className="aspect-2/3 w-14 shrink-0 rounded-xl bg-background/60"
+					key={`favorites-empty-slot-${slot}`}
+				/>
+			))}
+		</ul>
+	);
+}
+
 /** Right column (desktop) or stacked below controls (mobile) — catalogue picker grid. */
 export function FavoritesStepGridPanel({
 	model,
@@ -404,6 +447,23 @@ export function FavoritesStepGridPanel({
 	const showSearchSection = trimmed.length > 0;
 	const showEmptyHint =
 		favorites.length === 0 && !showSearchSection && !searchLoading;
+
+	// Picks: full grid while browsing, compact shelf while searching so results come
+	// first. `null` = follow that default; the Edit / Collapse toggle overrides it
+	// until the patron starts or stops searching again.
+	const [manualPicksExpanded, setManualPicksExpanded] = useState<
+		boolean | null
+	>(null);
+	useEffect(() => {
+		setManualPicksExpanded(null);
+	}, [showSearchSection]);
+	const picksExpanded = manualPicksExpanded ?? !showSearchSection;
+	const reduceMotion = useReducedMotion();
+	// Height tween for shelf ↔ grid (transitions.dev card-resize easing).
+	const picksResizeTransition = {
+		duration: reduceMotion ? 0 : 0.3,
+		ease: FAVORITES_EASE,
+	};
 
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const scrollContentKey = useMemo(
@@ -471,35 +531,75 @@ export function FavoritesStepGridPanel({
 
 							{favorites.length > 0 ? (
 								<motion.section
-									aria-label="Selected favorites"
+									aria-label="Your picks"
 									className="w-full"
 									layout={!disableMotion}
 									initial={disableMotion ? false : { opacity: 0, y: 10 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={FAVORITES_TILE_TRANSITION}
 								>
-									<p className="mb-3 text-center font-medium text-muted-foreground text-xs uppercase tracking-wider">
-										Your picks
-										<span className="ms-1.5 text-foreground/50 tabular-nums">
-											{favorites.length}/{MAX_FAVORITES}
-										</span>
-									</p>
-									<CataloguePosterGroup
-										className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}
-									>
-										<AnimatePresence initial={false} mode="popLayout">
-											{favorites.map((movie) => (
-												<FavoritesCatalogueTile
-													key={movie.id}
-													disabled={false}
-													disableMotion={disableMotion}
-													movie={movie}
-													onToggle={() => onToggleFavorite(movie)}
-													selected
-												/>
-											))}
-										</AnimatePresence>
-									</CataloguePosterGroup>
+									{/* Header: count on the left, Edit / Collapse pill on the right. */}
+									<div className="mb-3 flex items-center justify-between gap-3 px-1">
+										<p className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
+											Your picks
+											<span className="ms-1.5 text-foreground/50 tabular-nums">
+												{favorites.length}/{MAX_FAVORITES}
+											</span>
+										</p>
+										<button
+											aria-expanded={picksExpanded}
+											className={cn(
+												"inline-flex min-h-9 select-none items-center rounded-full bg-background px-4 font-medium text-foreground text-sm transition-[background-color,transform] duration-200 ease-out",
+												"active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100",
+												"[@media(hover:hover)]:hover:bg-background/70",
+											)}
+											onClick={() => setManualPicksExpanded(!picksExpanded)}
+											type="button"
+										>
+											{picksExpanded ? "Collapse" : "Edit"}
+										</button>
+									</div>
+									<AnimatePresence initial={false}>
+										{picksExpanded ? (
+											<motion.div
+												key="picks-grid"
+												// Small gutter so poster hover-lift isn't clipped by the height tween.
+												className="-mx-2 overflow-hidden px-2 py-2"
+												initial={{ height: 0, opacity: 0 }}
+												animate={{ height: "auto", opacity: 1 }}
+												exit={{ height: 0, opacity: 0 }}
+												transition={picksResizeTransition}
+											>
+												<CataloguePosterGroup
+													className={ONBOARDING_CATALOGUE_GRID_CLASSNAME}
+												>
+													<AnimatePresence initial={false} mode="popLayout">
+														{favorites.map((movie) => (
+															<FavoritesCatalogueTile
+																key={movie.id}
+																disabled={false}
+																disableMotion={disableMotion}
+																movie={movie}
+																onToggle={() => onToggleFavorite(movie)}
+																selected
+															/>
+														))}
+													</AnimatePresence>
+												</CataloguePosterGroup>
+											</motion.div>
+										) : (
+											<motion.div
+												key="picks-shelf"
+												className="overflow-hidden"
+												initial={{ height: 0, opacity: 0 }}
+												animate={{ height: "auto", opacity: 1 }}
+												exit={{ height: 0, opacity: 0 }}
+												transition={picksResizeTransition}
+											>
+												<FavoritesPicksShelf favorites={favorites} />
+											</motion.div>
+										)}
+									</AnimatePresence>
 								</motion.section>
 							) : null}
 
